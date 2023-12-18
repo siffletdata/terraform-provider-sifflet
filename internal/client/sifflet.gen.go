@@ -1135,10 +1135,10 @@ type AirflowParams struct {
 // AlertingHookDto defines model for AlertingHookDto.
 type AlertingHookDto struct {
 	CreatedBy        *string             `json:"createdBy,omitempty"`
-	CreatedDate      *int64          `json:"createdDate,omitempty"`
+	CreatedDate      *int64              `json:"createdDate,omitempty"`
 	ExternalHook     *string             `json:"externalHook,omitempty"`
 	Id               openapi_types.UUID  `json:"id"`
-	LastModifiedDate *int64          `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate *int64              `json:"lastModifiedDate,omitempty"`
 	ModifiedBy       *string             `json:"modifiedBy,omitempty"`
 	Name             string              `json:"name"`
 	Type             AlertingHookDtoType `json:"type"`
@@ -1177,8 +1177,8 @@ type AssetDetailsDto struct {
 	Description          *string                       `json:"description,omitempty"`
 	ExternalDescriptions *[]DescriptionDto             `json:"externalDescriptions,omitempty"`
 	HasPreview           bool                          `json:"hasPreview"`
-	LastRefresh          *int64                    `json:"lastRefresh,omitempty"`
-	NextRefresh          *int64                    `json:"nextRefresh,omitempty"`
+	LastRefresh          *int64                        `json:"lastRefresh,omitempty"`
+	NextRefresh          *int64                        `json:"nextRefresh,omitempty"`
 	Platform             *string                       `json:"platform,omitempty"`
 	Tags                 *[]TagDto                     `json:"tags,omitempty"`
 	Terms                *[]TagDto                     `json:"terms,omitempty"`
@@ -1191,7 +1191,7 @@ type AssetDetailsDtoDatasourceType string
 // AssetDto defines model for AssetDto.
 type AssetDto struct {
 	CreatedBy         *string                    `json:"createdBy,omitempty"`
-	CreatedDate       *int64                 `json:"createdDate,omitempty"`
+	CreatedDate       *int64                     `json:"createdDate,omitempty"`
 	DatasourceId      *openapi_types.UUID        `json:"datasourceId,omitempty"`
 	DatasourceName    *string                    `json:"datasourceName,omitempty"`
 	DatasourceType    *string                    `json:"datasourceType,omitempty"`
@@ -1200,7 +1200,7 @@ type AssetDto struct {
 	EntityType        *AssetDtoEntityType        `json:"entityType,omitempty"`
 	ExternalLink      *string                    `json:"externalLink,omitempty"`
 	Id                openapi_types.UUID         `json:"id"`
-	LastModifiedDate  *int64                 `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate  *int64                     `json:"lastModifiedDate,omitempty"`
 	ModifiedBy        *string                    `json:"modifiedBy,omitempty"`
 	Name              string                     `json:"name"`
 	QualityStatus     *AssetDtoQualityStatus     `json:"qualityStatus,omitempty"`
@@ -1280,13 +1280,13 @@ type AssetSearchFilterElementDtoId string
 // AssetUsageDto defines model for AssetUsageDto.
 type AssetUsageDto struct {
 	AssetId                 openapi_types.UUID          `json:"assetId"`
-	CalculationDate         int64                   `json:"calculationDate"`
+	CalculationDate         int64                       `json:"calculationDate"`
 	CountRead               int64                       `json:"countRead"`
-	EndDay                  int64                   `json:"endDay"`
+	EndDay                  int64                       `json:"endDay"`
 	Percentile              float32                     `json:"percentile"`
 	Qualification           AssetUsageDtoQualification  `json:"qualification"`
 	ReadType                AssetUsageDtoReadType       `json:"readType"`
-	StartDay                int64                   `json:"startDay"`
+	StartDay                int64                       `json:"startDay"`
 	UsagePerDatasourceUsers []UsagePerDatasourceUserDto `json:"usagePerDatasourceUsers"`
 }
 
@@ -1460,8 +1460,8 @@ type DagDetailsDto struct {
 	Description          *string                     `json:"description,omitempty"`
 	ExternalDescriptions *[]DescriptionDto           `json:"externalDescriptions,omitempty"`
 	HasPreview           bool                        `json:"hasPreview"`
-	LastRefresh          *int64                  `json:"lastRefresh,omitempty"`
-	NextRefresh          *int64                  `json:"nextRefresh,omitempty"`
+	LastRefresh          *int64                      `json:"lastRefresh,omitempty"`
+	NextRefresh          *int64                      `json:"nextRefresh,omitempty"`
 	Platform             *string                     `json:"platform,omitempty"`
 	Tags                 *[]TagDto                   `json:"tags,omitempty"`
 	Tasks                *int32                      `json:"tasks,omitempty"`
@@ -1551,8 +1551,8 @@ type DatasetDetailsDto struct {
 	Description          *string                         `json:"description,omitempty"`
 	ExternalDescriptions *[]DescriptionDto               `json:"externalDescriptions,omitempty"`
 	HasPreview           bool                            `json:"hasPreview"`
-	LastRefresh          *int64                      `json:"lastRefresh,omitempty"`
-	NextRefresh          *int64                      `json:"nextRefresh,omitempty"`
+	LastRefresh          *int64                          `json:"lastRefresh,omitempty"`
+	NextRefresh          *int64                          `json:"nextRefresh,omitempty"`
 	Platform             *string                         `json:"platform,omitempty"`
 	Size                 *map[string]int64               `json:"size,omitempty"`
 	Tags                 *[]TagDto                       `json:"tags,omitempty"`
@@ -1568,7 +1568,7 @@ type DatasetDetailsDtoDatasourceType string
 // DatasetDto defines model for DatasetDto.
 type DatasetDto struct {
 	CreatedBy         *string                       `json:"createdBy,omitempty"`
-	CreatedDate       *int64                    `json:"createdDate,omitempty"`
+	CreatedDate       *int64                        `json:"createdDate,omitempty"`
 	Database          *string                       `json:"database,omitempty"`
 	DatasetProperties *DatasetDto_DatasetProperties `json:"datasetProperties,omitempty"`
 	DatasourceId      *openapi_types.UUID           `json:"datasourceId,omitempty"`
@@ -1580,7 +1580,7 @@ type DatasetDto struct {
 	EntityType        DatasetDtoEntityType          `json:"entityType"`
 	HasARule          *bool                         `json:"hasARule,omitempty"`
 	Id                string                        `json:"id"`
-	LastModifiedDate  *int64                    `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate  *int64                        `json:"lastModifiedDate,omitempty"`
 	ModifiedBy        *string                       `json:"modifiedBy,omitempty"`
 	Name              *string                       `json:"name,omitempty"`
 	Params            *DatasetParamsDto             `json:"params,omitempty"`
@@ -1633,15 +1633,15 @@ type DatasetParamsDto struct {
 // DatasourceCatalogAssetDto defines model for DatasourceCatalogAssetDto.
 type DatasourceCatalogAssetDto struct {
 	CreatedBy        *string                             `json:"createdBy,omitempty"`
-	CreatedDate      *int64                          `json:"createdDate,omitempty"`
+	CreatedDate      *int64                              `json:"createdDate,omitempty"`
 	CronExpression   *string                             `json:"cronExpression,omitempty"`
 	EntityType       DatasourceCatalogAssetDtoEntityType `json:"entityType"`
 	Id               openapi_types.UUID                  `json:"id"`
-	LastModifiedDate *int64                          `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate *int64                              `json:"lastModifiedDate,omitempty"`
 	LastWeekStatuses *[]LastIngestionStatusDto           `json:"lastWeekStatuses,omitempty"`
 	ModifiedBy       *string                             `json:"modifiedBy,omitempty"`
 	Name             string                              `json:"name"`
-	NextExecution    *int64                          `json:"nextExecution,omitempty"`
+	NextExecution    *int64                              `json:"nextExecution,omitempty"`
 	Params           DatasourceCatalogAssetDto_Params    `json:"params"`
 	Tags             *[]TagDto                           `json:"tags,omitempty"`
 	Type             string                              `json:"type"`
@@ -1659,7 +1659,7 @@ type DatasourceCatalogAssetDto_Params struct {
 type DatasourceDto struct {
 	Catalogued                *bool                   `json:"catalogued,omitempty"`
 	CreatedBy                 *string                 `json:"createdBy,omitempty"`
-	CreatedDate               *int64              `json:"createdDate,omitempty"`
+	CreatedDate               *int64                  `json:"createdDate,omitempty"`
 	CronExpression            *string                 `json:"cronExpression,omitempty"`
 	CronExpressionDescription *string                 `json:"cronExpressionDescription,omitempty"`
 	Description               *string                 `json:"description,omitempty"`
@@ -1667,10 +1667,10 @@ type DatasourceDto struct {
 	Id                        openapi_types.UUID      `json:"id"`
 	KubeCronJobId             *string                 `json:"kubeCronJobId,omitempty"`
 	LastIngestionStatus       *LastIngestionStatusDto `json:"lastIngestionStatus,omitempty"`
-	LastModifiedDate          *int64              `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate          *int64                  `json:"lastModifiedDate,omitempty"`
 	ModifiedBy                *string                 `json:"modifiedBy,omitempty"`
 	Name                      string                  `json:"name"`
-	NextExecution             *int64              `json:"nextExecution,omitempty"`
+	NextExecution             *int64                  `json:"nextExecution,omitempty"`
 	Params                    DatasourceDto_Params    `json:"params"`
 	SecretId                  *string                 `json:"secretId,omitempty"`
 	Tags                      *[]TagDto               `json:"tags,omitempty"`
@@ -1688,11 +1688,11 @@ type DatasourceDto_Params struct {
 // DatasourceIngestionRunDto defines model for DatasourceIngestionRunDto.
 type DatasourceIngestionRunDto struct {
 	CreatedBy         *string                              `json:"createdBy,omitempty"`
-	CreatedDate       *int64                           `json:"createdDate,omitempty"`
+	CreatedDate       *int64                               `json:"createdDate,omitempty"`
 	DurationInSeconds *int64                               `json:"durationInSeconds,omitempty"`
-	ExecutionEndDate  *int64                           `json:"executionEndDate,omitempty"`
+	ExecutionEndDate  *int64                               `json:"executionEndDate,omitempty"`
 	Id                openapi_types.UUID                   `json:"id"`
-	LastModifiedDate  *int64                           `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate  *int64                               `json:"lastModifiedDate,omitempty"`
 	LastStatus        *DatasourceIngestionRunDtoLastStatus `json:"lastStatus,omitempty"`
 	ModifiedBy        *string                              `json:"modifiedBy,omitempty"`
 	RunSummary        *IngestionRunSummary                 `json:"runSummary,omitempty"`
@@ -1727,11 +1727,11 @@ type DescriptionDtoSourceType string
 type DomainDto struct {
 	Assets           []AssetLightDto    `json:"assets"`
 	CreatedBy        *string            `json:"createdBy,omitempty"`
-	CreatedDate      *int64         `json:"createdDate,omitempty"`
+	CreatedDate      *int64             `json:"createdDate,omitempty"`
 	Description      *string            `json:"description,omitempty"`
 	Id               openapi_types.UUID `json:"id"`
 	IsAllDomain      bool               `json:"isAllDomain"`
-	LastModifiedDate *int64         `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate *int64             `json:"lastModifiedDate,omitempty"`
 	ModifiedBy       *string            `json:"modifiedBy,omitempty"`
 	Name             string             `json:"name"`
 	Regexs           *[]string          `json:"regexs,omitempty"`
@@ -1749,7 +1749,7 @@ type EntityUrnType string
 // EventDto defines model for EventDto.
 type EventDto struct {
 	CreatedBy    *string             `json:"createdBy,omitempty"`
-	CreatedDate  *int64          `json:"createdDate,omitempty"`
+	CreatedDate  *int64              `json:"createdDate,omitempty"`
 	Id           *openapi_types.UUID `json:"id,omitempty"`
 	Payload      *EventDto_Payload   `json:"payload,omitempty"`
 	PublisherUrn *EntityUrn          `json:"publisherUrn,omitempty"`
@@ -1784,7 +1784,7 @@ type ExternalTablePropertiesType string
 // FieldDto defines model for FieldDto.
 type FieldDto struct {
 	CreatedBy            *string             `json:"createdBy,omitempty"`
-	CreatedDate          *int64          `json:"createdDate,omitempty"`
+	CreatedDate          *int64              `json:"createdDate,omitempty"`
 	DatasetId            *openapi_types.UUID `json:"datasetId,omitempty"`
 	DatasetName          *string             `json:"datasetName,omitempty"`
 	DatasourceName       *string             `json:"datasourceName,omitempty"`
@@ -1796,7 +1796,7 @@ type FieldDto struct {
 	DisplayType          *string             `json:"displayType,omitempty"`
 	EntityType           FieldDtoEntityType  `json:"entityType"`
 	Id                   openapi_types.UUID  `json:"id"`
-	LastModifiedDate     *int64          `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate     *int64              `json:"lastModifiedDate,omitempty"`
 	ModifiedBy           *string             `json:"modifiedBy,omitempty"`
 	Name                 *string             `json:"name,omitempty"`
 	Nullable             *bool               `json:"nullable,omitempty"`
@@ -1827,7 +1827,7 @@ type FieldLevelSearchDto struct {
 	Fields               *SearchCollectionFieldLevelSearchFieldDto `json:"fields,omitempty"`
 	Health               *FieldLevelSearchDtoHealth                `json:"health,omitempty"`
 	Id                   openapi_types.UUID                        `json:"id"`
-	MetadataRefresh      *int64                                `json:"metadataRefresh,omitempty"`
+	MetadataRefresh      *int64                                    `json:"metadataRefresh,omitempty"`
 	Name                 string                                    `json:"name"`
 	SearchWeight         *int32                                    `json:"searchWeight,omitempty"`
 	Tags                 *[]TagDto                                 `json:"tags,omitempty"`
@@ -1943,7 +1943,7 @@ type ImpactedAssetDtoDatasourceType string
 
 // ImpactedAssetsSearchDto defines model for ImpactedAssetsSearchDto.
 type ImpactedAssetsSearchDto struct {
-	LastUpdate   int64                        `json:"lastUpdate"`
+	LastUpdate   int64                            `json:"lastUpdate"`
 	SearchAssets SearchCollectionImpactedAssetDto `json:"searchAssets"`
 }
 
@@ -1961,12 +1961,12 @@ type IncidentLightDto struct {
 	Datasets          *[]DatasetBriefDto      `json:"datasets,omitempty"`
 	Id                *openapi_types.UUID     `json:"id,omitempty"`
 	IssueNo           *int32                  `json:"issueNo,omitempty"`
-	LastModifiedDate  *int64              `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate  *int64                  `json:"lastModifiedDate,omitempty"`
 	Name              *string                 `json:"name,omitempty"`
 	Owners            *[]UserDto              `json:"owners,omitempty"`
 	RuleLabel         *string                 `json:"ruleLabel,omitempty"`
 	Status            *IncidentLightDtoStatus `json:"status,omitempty"`
-	TriggerTime       *int64              `json:"triggerTime,omitempty"`
+	TriggerTime       *int64                  `json:"triggerTime,omitempty"`
 }
 
 // IncidentLightDtoStatus defines model for IncidentLightDto.Status.
@@ -1974,7 +1974,7 @@ type IncidentLightDtoStatus string
 
 // IncidentScope defines model for IncidentScope.
 type IncidentScope struct {
-	LastOccurredDate *int64              `json:"lastOccurredDate,omitempty"`
+	LastOccurredDate *int64                  `json:"lastOccurredDate,omitempty"`
 	NumberOfFailures *int32                  `json:"numberOfFailures,omitempty"`
 	Rule             *RuleInIncidentScopeDto `json:"rule,omitempty"`
 	Tables           *[]DatasetDto           `json:"tables,omitempty"`
@@ -2013,11 +2013,11 @@ type IngestionRunSummary struct {
 // IssueDetailsDto defines model for IssueDetailsDto.
 type IssueDetailsDto struct {
 	CreatedBy        *string                       `json:"createdBy,omitempty"`
-	CreatedDate      *int64                    `json:"createdDate,omitempty"`
+	CreatedDate      *int64                        `json:"createdDate,omitempty"`
 	Criticality      *IssueDetailsDtoCriticality   `json:"criticality,omitempty"`
 	Id               openapi_types.UUID            `json:"id"`
 	IssueNo          *int32                        `json:"issueNo,omitempty"`
-	LastModifiedDate *int64                    `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate *int64                        `json:"lastModifiedDate,omitempty"`
 	ModifiedBy       *string                       `json:"modifiedBy,omitempty"`
 	Name             *string                       `json:"name,omitempty"`
 	Owners           *[]UserDto                    `json:"owners,omitempty"`
@@ -2037,7 +2037,7 @@ type IssueDetailsDtoStatus string
 // LastIngestionStatusDto defines model for LastIngestionStatusDto.
 type LastIngestionStatusDto struct {
 	Status    LastIngestionStatusDtoStatus `json:"status"`
-	Timestamp int64                    `json:"timestamp"`
+	Timestamp int64                        `json:"timestamp"`
 }
 
 // LastIngestionStatusDtoStatus defines model for LastIngestionStatusDto.Status.
@@ -2372,12 +2372,12 @@ type SnowflakeParams struct {
 
 // SnowflakeStreamProperties defines model for SnowflakeStreamProperties.
 type SnowflakeStreamProperties struct {
-	CreatedDate   *int64                    `json:"createdDate,omitempty"`
+	CreatedDate   *int64                        `json:"createdDate,omitempty"`
 	InvalidReason *string                       `json:"invalidReason,omitempty"`
 	Mode          *string                       `json:"mode,omitempty"`
 	Owner         *string                       `json:"owner,omitempty"`
 	Stale         *bool                         `json:"stale,omitempty"`
-	StaleAfter    *int64                    `json:"staleAfter,omitempty"`
+	StaleAfter    *int64                        `json:"staleAfter,omitempty"`
 	StreamType    *string                       `json:"streamType,omitempty"`
 	TableName     *string                       `json:"tableName,omitempty"`
 	Type          SnowflakeStreamPropertiesType `json:"type"`
@@ -2420,11 +2420,11 @@ type TagCreateDtoType string
 // TagDto defines model for TagDto.
 type TagDto struct {
 	CreatedBy        *string            `json:"createdBy,omitempty"`
-	CreatedDate      *int64         `json:"createdDate,omitempty"`
+	CreatedDate      *int64             `json:"createdDate,omitempty"`
 	Description      *string            `json:"description,omitempty"`
 	Editable         *bool              `json:"editable,omitempty"`
 	Id               openapi_types.UUID `json:"id"`
-	LastModifiedDate *int64         `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate *int64             `json:"lastModifiedDate,omitempty"`
 	ModifiedBy       *string            `json:"modifiedBy,omitempty"`
 	Name             string             `json:"name"`
 	Type             TagDtoType         `json:"type"`
@@ -2708,8 +2708,8 @@ type GetAllIncidentParams struct {
 	From *int64 `form:"from,omitempty" json:"from,omitempty"`
 
 	// To Retrieve incidents up to a given end date
-	To          *int64 `form:"to,omitempty" json:"to,omitempty"`
-	Criticality *[]int32   `form:"criticality,omitempty" json:"criticality,omitempty"`
+	To          *int64   `form:"to,omitempty" json:"to,omitempty"`
+	Criticality *[]int32 `form:"criticality,omitempty" json:"criticality,omitempty"`
 
 	// Status Filter on given statuses
 	Status *[]GetAllIncidentParamsStatus `form:"status,omitempty" json:"status,omitempty"`
