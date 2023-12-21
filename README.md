@@ -7,7 +7,7 @@ go mod tidy
 go mod install .
 ```
 
-Then update your `.terraform.rc` like this:
+Then update your `.terraformrc` like this:
 
 ```
 provider_installation {
@@ -40,6 +40,8 @@ provider "sifflet" {
   token = "<SIFFLET_TOKEN>"
 }
 ```
+
+You can use environment variable `SIFFLET_TOKEN` to set Sifflet token instead of hardcoding in file.
 
 You can set Terraform log as DEBUG with this env variable:
 ```
