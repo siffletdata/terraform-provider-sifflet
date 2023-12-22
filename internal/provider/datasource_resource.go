@@ -156,17 +156,23 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		"type": "bigquery",
 		"billingProjectId": "%s",
 		"datasetId": "%s",
-		"projectId": "%s"
+		"projectId": "%s",
+		"timezoneData": {
+			"timezone": "%s",
+			"utcOffset": "%s"
+		}
 	}
 	`, *plan.BigQuery.BillingProjectID,
 		*plan.BigQuery.DatasetID,
 		*plan.BigQuery.ProjectID,
+		*plan.BigQuery.TimezoneData.TimeZone,
+		*plan.BigQuery.TimezoneData.UtcOffset,
 	))
 	tflog.Debug(ctx, "test1 "+string(jsonData))
 
 	err := json.Unmarshal(jsonData, &params)
 	if err != nil {
-		fmt.Println("Error unmarshaling JSON:", err)
+		fmt.Println("Error unmarshaling JSON from plan:", err)
 		return
 	}
 
@@ -299,6 +305,37 @@ func (r *datasourceResource) Update(ctx context.Context, req resource.UpdateRequ
 
 // Delete deletes the resource and removes the Terraform state on success.
 func (r *datasourceResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+
+	var state CreateDatasourceDto
+	diags := req.State.Get(ctx, &state)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	id := state.ID.String()
+
+	datasourceResponse, _ := r.client.DeleteDatasourceById(ctx, uuid.MustParse(id))
+	resBody, _ := io.ReadAll(datasourceResponse.Body)
+	tflog.Debug(ctx, "test1 "+string(resBody))
+	
+	if datasourceResponse.StatusCode != http.StatusNoContent {
+		var message ErrorMessage
+		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
+			resp.Diagnostics.AddError(
+				"Can not unmarshal JSON",
+				err.Error(),
+			)
+			return
+		}
+		resp.Diagnostics.AddError(
+			message.Title,
+			message.Detail,
+		)
+		resp.State.RemoveResource(ctx)
+		return
+	}
+
 }
 
 func (r *datasourceResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {

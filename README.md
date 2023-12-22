@@ -57,4 +57,7 @@ oapi-codegen -package example openapi.yaml > internal/client/sifflet.gen.go
 
 **Note**
 
-JSON lib doesn't support epoch as Time format, you need to replace all `*time.Time` by `*int64`
+- JSON lib doesn't support epoch as Time format, you need to replace all `*time.Time` by `*int64`
+
+- Update is not implemented in OPENAPI for datasource
+- timezoneData used to create a datasource content is not validate by the API can be anything. 
