@@ -196,7 +196,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	}
 
 	// Create new order
-	datasourceResponse, err := r.client.CreateDatasource(ctx, datasource)
+	datasourceResponse, _ := r.client.CreateDatasource(ctx, datasource)
 
 	resBody, _ := io.ReadAll(datasourceResponse.Body)
 	tflog.Debug(ctx, "test1 "+string(resBody))
@@ -233,7 +233,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	plan.CronExpression = result.CronExpression
 	plan.Type = types.StringValue(result.Type)
 	plan.SecretID = result.SecretId
-	resultParams, err := result.Params.AsBigQueryParams()
+	resultParams, _ := result.Params.AsBigQueryParams()
 	plan.BigQuery.BillingProjectID = resultParams.BillingProjectId
 	plan.BigQuery.ProjectID = resultParams.ProjectId
 	plan.BigQuery.DatasetID = resultParams.DatasetId
@@ -279,7 +279,7 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	resultParams, err := result.Params.AsBigQueryParams()
+	resultParams, _ := result.Params.AsBigQueryParams()
 
 	result_timezone := TimeZoneDto{
 		TimeZone:  &resultParams.TimezoneData.Timezone,
