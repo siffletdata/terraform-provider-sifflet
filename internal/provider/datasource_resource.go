@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net/http"
 	sifflet "terraform-provider-sifflet/internal/client"
 
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -27,19 +28,25 @@ type TimeZoneDto struct {
 }
 
 type BigQueryParams struct {
-	Type             *string     `tfsdk:"type"`
-	BillingProjectID *string     `tfsdk:"billing_project_id"`
-	DatasetID        *string     `tfsdk:"dataset_id"`
-	ProjectID        *string     `tfsdk:"project_id"`
-	TimezoneData     TimeZoneDto `tfsdk:"timezone_data"`
+	Type             types.String `tfsdk:"type"`
+	BillingProjectID *string      `tfsdk:"billing_project_id"`
+	DatasetID        *string      `tfsdk:"dataset_id"`
+	ProjectID        *string      `tfsdk:"project_id"`
+	TimezoneData     TimeZoneDto  `tfsdk:"timezone_data"`
 }
 
 type CreateDatasourceDto struct {
 	ID       types.String    `tfsdk:"id"`
 	Name     *string         `tfsdk:"name"`
-	Type     *string         `tfsdk:"type"`
+	Type     types.String    `tfsdk:"type"`
 	SecretID *string         `tfsdk:"secret_id"`
 	BigQuery *BigQueryParams `tfsdk:"bigquery"`
+}
+
+type ErrorMessage struct {
+	Title  string `json:"title"`
+	Status int64  `json:"status"`
+	Detail string `json:"detail"`
 }
 
 // NewDataSourceResource is a helper function to simplify the provider implementation.
@@ -71,7 +78,7 @@ func (r *datasourceResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Required: true,
 			},
 			"type": schema.StringAttribute{
-				Required: true,
+				Computed: true,
 			},
 			"secret_id": schema.StringAttribute{
 				Optional: true,
@@ -80,7 +87,7 @@ func (r *datasourceResource) Schema(_ context.Context, _ resource.SchemaRequest,
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"type": schema.StringAttribute{
-						Required: true,
+						Computed: true,
 					},
 					"billing_project_id": schema.StringAttribute{
 						Required: true,
@@ -120,7 +127,17 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	params := sifflet.CreateDatasourceDto_Params{}
 
 	// Assuming you have some JSON data, you can unmarshal it into the RawMessage field
-	jsonData := []byte(fmt.Sprintf(`{"type": "%s"}`, *plan.BigQuery.Type))
+	jsonData := []byte(fmt.Sprintf(`
+	{
+		"type": "bigquery",
+		"billingProjectId": "%s",
+		"datasetId": "%s",
+		"projectId": "%s"
+	}
+	`, *plan.BigQuery.BillingProjectID,
+		*plan.BigQuery.DatasetID,
+		*plan.BigQuery.ProjectID,
+	))
 	tflog.Debug(ctx, "test1 "+string(jsonData))
 
 	err := json.Unmarshal(jsonData, &params)
@@ -134,37 +151,51 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		Name:     *plan.Name,
 		SecretId: plan.SecretID,
 		Params:   params,
+		Type:     "bigquery",
 	}
 
 	// Create new order
 	datasourceResponse, err := r.client.CreateDatasource(ctx, datasource)
-	if err != nil {
-		resp.Diagnostics.AddError(
-			"Error creating order",
-			"Could not create order, unexpected error: "+err.Error(),
-		)
-		return
-	}
 
 	resBody, _ := io.ReadAll(datasourceResponse.Body)
 	tflog.Debug(ctx, "test1 "+string(resBody))
 
+	if datasourceResponse.StatusCode == http.StatusInternalServerError {
+		var message ErrorMessage
+		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
+			resp.Diagnostics.AddError(
+				"Can not unmarshal JSON",
+				err.Error(),
+			)
+			return
+		}
+		resp.Diagnostics.AddError(
+			message.Title,
+			message.Detail,
+		)
+		resp.State.RemoveResource(ctx)
+		return
+	}
+
+	var result sifflet.DatasourceDto
+	if err := json.Unmarshal(resBody, &result); err != nil { // Parse []byte to go struct pointer
+		resp.Diagnostics.AddError(
+			"Can not unmarshal JSON",
+			err.Error(),
+		)
+		return
+	}
+
 	// Map response body to schema and populate Computed attribute values
-	// plan.ID = types.StringValue(strconv.Itoa(order.ID))
-	// for orderItemIndex, orderItem := range order.Items {
-	// 	plan.Items[orderItemIndex] = orderItemModel{
-	// 		Coffee: orderItemCoffeeModel{
-	// 			ID:          types.Int64Value(int64(orderItem.Coffee.ID)),
-	// 			Name:        types.StringValue(orderItem.Coffee.Name),
-	// 			Teaser:      types.StringValue(orderItem.Coffee.Teaser),
-	// 			Description: types.StringValue(orderItem.Coffee.Description),
-	// 			Price:       types.Float64Value(orderItem.Coffee.Price),
-	// 			Image:       types.StringValue(orderItem.Coffee.Image),
-	// 		},
-	// 		Quantity: types.Int64Value(int64(orderItem.Quantity)),
-	// 	}
-	// }
-	// plan.LastUpdated = types.StringValue(time.Now().Format(time.RFC850))
+	plan.ID = types.StringValue(result.Id.String())
+	plan.Name = &result.Name
+	plan.Type = types.StringValue(result.Type)
+	plan.SecretID = result.SecretId
+	resultParams, err := result.Params.AsBigQueryParams()
+	plan.BigQuery.BillingProjectID = resultParams.BillingProjectId
+	plan.BigQuery.ProjectID = resultParams.ProjectId
+	plan.BigQuery.DatasetID = resultParams.DatasetId
+	plan.BigQuery.Type = types.StringValue(resultParams.Type)
 
 	// Set state to fully populated data
 	diags = resp.State.Set(ctx, plan)
