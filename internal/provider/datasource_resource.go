@@ -79,12 +79,18 @@ func (r *datasourceResource) Schema(_ context.Context, _ resource.SchemaRequest,
 			},
 			"name": schema.StringAttribute{
 				Required: true,
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.RequiresReplace(),
+				},
 			},
 			"type": schema.StringAttribute{
 				Computed: true,
 			},
 			"secret_id": schema.StringAttribute{
 				Optional: true,
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.RequiresReplace(),
+				},
 			},
 			"bigquery": schema.SingleNestedAttribute{
 				Optional: true,
@@ -94,21 +100,36 @@ func (r *datasourceResource) Schema(_ context.Context, _ resource.SchemaRequest,
 					},
 					"billing_project_id": schema.StringAttribute{
 						Required: true,
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
+						},
 					},
 					"dataset_id": schema.StringAttribute{
 						Required: true,
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
+						},
 					},
 					"project_id": schema.StringAttribute{
 						Required: true,
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
+						},
 					},
 					"timezone_data": schema.SingleNestedAttribute{
 						Required: true,
 						Attributes: map[string]schema.Attribute{
 							"timezone": schema.StringAttribute{
 								Required: true,
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
 							},
 							"utc_offset": schema.StringAttribute{
 								Required: true,
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
 							},
 						},
 					},
@@ -273,6 +294,7 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 
 // Update updates the resource and sets the updated Terraform state on success.
 func (r *datasourceResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	// NOT IMPLEMENTED IN OPENAPI CONTRACT
 }
 
 // Delete deletes the resource and removes the Terraform state on success.
