@@ -6,6 +6,9 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+
+	"github.com/google/uuid"
+
 	sifflet "terraform-provider-sifflet/internal/client"
 
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -160,7 +163,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	resBody, _ := io.ReadAll(datasourceResponse.Body)
 	tflog.Debug(ctx, "test1 "+string(resBody))
 
-	if datasourceResponse.StatusCode == http.StatusInternalServerError {
+	if datasourceResponse.StatusCode != http.StatusCreated {
 		var message ErrorMessage
 		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
 			resp.Diagnostics.AddError(
@@ -207,6 +210,65 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 
 // Read refreshes the Terraform state with the latest data.
 func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+	var state CreateDatasourceDto
+	diags := req.State.Get(ctx, &state)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	id := state.ID.String()
+
+	itemResponse, err := r.client.GetDatasourceById(ctx, uuid.MustParse(id))
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to Read Item",
+			err.Error(),
+		)
+		return
+	}
+
+	resBody, _ := io.ReadAll(itemResponse.Body)
+	tflog.Debug(ctx, "test1 "+string(resBody))
+
+	var result sifflet.DatasourceDto
+	if err := json.Unmarshal(resBody, &result); err != nil { // Parse []byte to go struct pointer
+		resp.Diagnostics.AddError(
+			"Can not unmarshal JSON",
+			err.Error(),
+		)
+		return
+	}
+
+	resultParams, err := result.Params.AsBigQueryParams()
+
+	result_timezone := TimeZoneDto{
+		TimeZone:  &resultParams.TimezoneData.Timezone,
+		UtcOffset: &resultParams.TimezoneData.UtcOffset,
+	}
+
+	result_bq := BigQueryParams{
+		Type:             types.StringValue(resultParams.Type),
+		BillingProjectID: resultParams.BillingProjectId,
+		DatasetID:        resultParams.DatasetId,
+		ProjectID:        resultParams.ProjectId,
+		TimezoneData:     result_timezone,
+	}
+
+	state = CreateDatasourceDto{
+		ID:       types.StringValue(result.Id.String()),
+		Name:     &result.Name,
+		Type:     types.StringValue(result.Type),
+		SecretID: result.SecretId,
+		BigQuery: &result_bq,
+	}
+
+	// Set state to fully populated data
+	diags = resp.State.Set(ctx, &state)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
 }
 
 // Update updates the resource and sets the updated Terraform state on success.
