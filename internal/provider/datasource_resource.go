@@ -39,11 +39,12 @@ type BigQueryParams struct {
 }
 
 type CreateDatasourceDto struct {
-	ID       types.String    `tfsdk:"id"`
-	Name     *string         `tfsdk:"name"`
-	Type     types.String    `tfsdk:"type"`
-	SecretID *string         `tfsdk:"secret_id"`
-	BigQuery *BigQueryParams `tfsdk:"bigquery"`
+	ID             types.String    `tfsdk:"id"`
+	Name           *string         `tfsdk:"name"`
+	CronExpression *string         `tfsdk:"cron_expression"`
+	Type           types.String    `tfsdk:"type"`
+	SecretID       *string         `tfsdk:"secret_id"`
+	BigQuery       *BigQueryParams `tfsdk:"bigquery"`
 }
 
 type ErrorMessage struct {
@@ -79,6 +80,12 @@ func (r *datasourceResource) Schema(_ context.Context, _ resource.SchemaRequest,
 			},
 			"name": schema.StringAttribute{
 				Required: true,
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.RequiresReplace(),
+				},
+			},
+			"cron_expression": schema.StringAttribute{
+				Optional: true,
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
@@ -141,6 +148,9 @@ func (r *datasourceResource) Schema(_ context.Context, _ resource.SchemaRequest,
 
 // Create creates the resource and sets the initial Terraform state.
 func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+
+	// TODO: Datasources is not tested, can be create with anythings as value
+
 	var plan CreateDatasourceDto
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
@@ -178,10 +188,11 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 
 	// Generate API request body from plan
 	datasource := sifflet.CreateDatasourceJSONRequestBody{
-		Name:     *plan.Name,
-		SecretId: plan.SecretID,
-		Params:   params,
-		Type:     "bigquery",
+		Name:           *plan.Name,
+		SecretId:       plan.SecretID,
+		Params:         params,
+		CronExpression: plan.CronExpression,
+		Type:           "bigquery",
 	}
 
 	// Create new order
@@ -219,6 +230,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	// Map response body to schema and populate Computed attribute values
 	plan.ID = types.StringValue(result.Id.String())
 	plan.Name = &result.Name
+	plan.CronExpression = result.CronExpression
 	plan.Type = types.StringValue(result.Type)
 	plan.SecretID = result.SecretId
 	resultParams, err := result.Params.AsBigQueryParams()
@@ -283,11 +295,12 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 	}
 
 	state = CreateDatasourceDto{
-		ID:       types.StringValue(result.Id.String()),
-		Name:     &result.Name,
-		Type:     types.StringValue(result.Type),
-		SecretID: result.SecretId,
-		BigQuery: &result_bq,
+		ID:             types.StringValue(result.Id.String()),
+		Name:           &result.Name,
+		CronExpression: result.CronExpression,
+		Type:           types.StringValue(result.Type),
+		SecretID:       result.SecretId,
+		BigQuery:       &result_bq,
 	}
 
 	// Set state to fully populated data
@@ -318,7 +331,7 @@ func (r *datasourceResource) Delete(ctx context.Context, req resource.DeleteRequ
 	datasourceResponse, _ := r.client.DeleteDatasourceById(ctx, uuid.MustParse(id))
 	resBody, _ := io.ReadAll(datasourceResponse.Body)
 	tflog.Debug(ctx, "test1 "+string(resBody))
-	
+
 	if datasourceResponse.StatusCode != http.StatusNoContent {
 		var message ErrorMessage
 		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
