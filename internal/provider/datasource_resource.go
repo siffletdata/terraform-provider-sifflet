@@ -13,6 +13,7 @@ import (
 	sifflet "terraform-provider-sifflet/internal/client"
 	datasource_struct "terraform-provider-sifflet/internal/datasource_datasource"
 
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
@@ -253,7 +254,7 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		SecretID:       result.SecretId,
 	}
 
-	if state.BigQuery != nil {
+	if result.Type == "bigquery" {
 		resultParams, _ := result.Params.AsBigQueryParams()
 
 		result_timezone := datasource_struct.TimeZoneDto{
@@ -272,7 +273,7 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		state.BigQuery = &result_bq
 	}
 
-	if state.DBT != nil {
+	if result.Type == "dbt" {
 		resultParams, _ := result.Params.AsDBTParams()
 
 		result_timezone := datasource_struct.TimeZoneDto{
@@ -338,6 +339,10 @@ func (r *datasourceResource) Delete(ctx context.Context, req resource.DeleteRequ
 
 }
 
+func (r *datasourceResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
+}
+
 func (r *datasourceResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
@@ -366,6 +371,7 @@ func (r *datasourceResource) ValidateConfig(ctx context.Context, req resource.Va
 		return
 	}
 
+	// TODO: maybe find something more elegant than chaining checks
 	if data.DBT != nil && data.BigQuery != nil {
 		tflog.Debug(ctx, "tratat")
 		resp.Diagnostics.AddError(
