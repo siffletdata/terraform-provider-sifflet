@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strconv"
 
 	"github.com/google/uuid"
 
@@ -57,10 +58,16 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 
 	params := sifflet.CreateDatasourceDto_Params{}
 
+	var jsonData []byte
+	var connect_type string
+
 	// Assuming you have some JSON data, you can unmarshal it into the RawMessage field
-	jsonData := []byte(fmt.Sprintf(`
+	if plan.BigQuery != nil {
+		connect_type = "bigquery"
+
+		jsonData = []byte(fmt.Sprintf(`
 	{
-		"type": "bigquery",
+		"type": "%s",
 		"billingProjectId": "%s",
 		"datasetId": "%s",
 		"projectId": "%s",
@@ -69,13 +76,37 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 			"utcOffset": "%s"
 		}
 	}
-	`, *plan.BigQuery.BillingProjectID,
-		*plan.BigQuery.DatasetID,
-		*plan.BigQuery.ProjectID,
-		*plan.BigQuery.TimezoneData.TimeZone,
-		*plan.BigQuery.TimezoneData.UtcOffset,
-	))
-	tflog.Debug(ctx, "test1 "+string(jsonData))
+	`,
+			connect_type,
+			*plan.BigQuery.BillingProjectID,
+			*plan.BigQuery.DatasetID,
+			*plan.BigQuery.ProjectID,
+			*plan.BigQuery.TimezoneData.TimeZone,
+			*plan.BigQuery.TimezoneData.UtcOffset,
+		))
+		tflog.Debug(ctx, "Params:  "+string(jsonData))
+	} else if plan.DBT != nil {
+		connect_type = "dbt"
+
+		jsonData = []byte(fmt.Sprintf(`
+	{
+		"type": "%s",
+		"projectName": "%s",
+		"target": "%s",
+		"timezoneData": {
+			"timezone": "%s",
+			"utcOffset": "%s"
+		}
+	}
+	`,
+			connect_type,
+			*plan.DBT.ProjectName,
+			*plan.DBT.Target,
+			*plan.DBT.TimezoneData.TimeZone,
+			*plan.DBT.TimezoneData.UtcOffset,
+		))
+		tflog.Debug(ctx, "Params:  "+string(jsonData))
+	}
 
 	err := json.Unmarshal(jsonData, &params)
 	if err != nil {
@@ -89,7 +120,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		SecretId:       plan.SecretID,
 		Params:         params,
 		CronExpression: plan.CronExpression,
-		Type:           "bigquery",
+		Type:           connect_type,
 	}
 
 	// Create new order
@@ -129,13 +160,23 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	plan.Name = &result.Name
 	plan.CronExpression = result.CronExpression
 	plan.Type = types.StringValue(result.Type)
+	plan.CreatedBy = types.StringValue(*result.CreatedBy)
+	plan.CreatedDate = types.StringValue(strconv.FormatInt(*result.CreatedDate, 10))
+	plan.ModifiedBy = types.StringValue(*result.ModifiedBy)
 	plan.SecretID = result.SecretId
-	resultParams, _ := result.Params.AsBigQueryParams()
-	plan.BigQuery.BillingProjectID = resultParams.BillingProjectId
-	plan.BigQuery.ProjectID = resultParams.ProjectId
-	plan.BigQuery.DatasetID = resultParams.DatasetId
-	plan.BigQuery.Type = types.StringValue(resultParams.Type)
 
+	if plan.BigQuery != nil {
+		resultParams, _ := result.Params.AsBigQueryParams()
+		plan.BigQuery.BillingProjectID = resultParams.BillingProjectId
+		plan.BigQuery.ProjectID = resultParams.ProjectId
+		plan.BigQuery.DatasetID = resultParams.DatasetId
+		plan.BigQuery.Type = types.StringValue(resultParams.Type)
+	} else if plan.DBT != nil {
+		resultParams, _ := result.Params.AsDBTParams()
+		plan.DBT.Target = resultParams.Target
+		plan.DBT.ProjectName = resultParams.ProjectName
+		plan.DBT.Type = types.StringValue(resultParams.Type)
+	}
 	// Set state to fully populated data
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
@@ -201,28 +242,52 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	resultParams, _ := result.Params.AsBigQueryParams()
-
-	result_timezone := datasource_struct.TimeZoneDto{
-		TimeZone:  &resultParams.TimezoneData.Timezone,
-		UtcOffset: &resultParams.TimezoneData.UtcOffset,
-	}
-
-	result_bq := datasource_struct.BigQueryParams{
-		Type:             types.StringValue(resultParams.Type),
-		BillingProjectID: resultParams.BillingProjectId,
-		DatasetID:        resultParams.DatasetId,
-		ProjectID:        resultParams.ProjectId,
-		TimezoneData:     result_timezone,
-	}
-
 	state = datasource_struct.CreateDatasourceDto{
 		ID:             types.StringValue(result.Id.String()),
 		Name:           &result.Name,
+		CreatedBy:      types.StringValue(*result.CreatedBy),
+		CreatedDate:    types.StringValue(strconv.FormatInt(*result.CreatedDate, 10)),
+		ModifiedBy:     types.StringValue(*result.ModifiedBy),
 		CronExpression: result.CronExpression,
 		Type:           types.StringValue(result.Type),
 		SecretID:       result.SecretId,
-		BigQuery:       &result_bq,
+	}
+
+	if state.BigQuery != nil {
+		resultParams, _ := result.Params.AsBigQueryParams()
+
+		result_timezone := datasource_struct.TimeZoneDto{
+			TimeZone:  &resultParams.TimezoneData.Timezone,
+			UtcOffset: &resultParams.TimezoneData.UtcOffset,
+		}
+
+		result_bq := datasource_struct.BigQueryParams{
+			Type:             types.StringValue(resultParams.Type),
+			BillingProjectID: resultParams.BillingProjectId,
+			DatasetID:        resultParams.DatasetId,
+			ProjectID:        resultParams.ProjectId,
+			TimezoneData:     result_timezone,
+		}
+
+		state.BigQuery = &result_bq
+	}
+
+	if state.DBT != nil {
+		resultParams, _ := result.Params.AsDBTParams()
+
+		result_timezone := datasource_struct.TimeZoneDto{
+			TimeZone:  &resultParams.TimezoneData.Timezone,
+			UtcOffset: &resultParams.TimezoneData.UtcOffset,
+		}
+
+		result_dbt := datasource_struct.DBTParams{
+			Type:         types.StringValue(resultParams.Type),
+			Target:       resultParams.Target,
+			ProjectName:  resultParams.ProjectName,
+			TimezoneData: result_timezone,
+		}
+
+		state.DBT = &result_dbt
 	}
 
 	// Set state to fully populated data
@@ -289,4 +354,24 @@ func (r *datasourceResource) Configure(_ context.Context, req resource.Configure
 	}
 
 	r.client = client
+}
+
+func (r *datasourceResource) ValidateConfig(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+
+	var data datasource_struct.CreateDatasourceDto
+
+	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	if data.DBT != nil && data.BigQuery != nil {
+		tflog.Debug(ctx, "tratat")
+		resp.Diagnostics.AddError(
+			"Error",
+			"Define only one type of data source",
+		)
+		return
+	}
 }
