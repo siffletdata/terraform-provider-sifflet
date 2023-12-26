@@ -61,3 +61,4 @@ oapi-codegen -package example openapi.yaml > internal/client/sifflet.gen.go
 
 - Update is not implemented in OPENAPI for datasource
 - timezoneData used to create a datasource content is not validate by the API can be anything. 
+- Endpoint `/ui/v1/datasources/{id}` return nothing when 404

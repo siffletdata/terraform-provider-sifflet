@@ -10,11 +10,9 @@ import (
 	"github.com/google/uuid"
 
 	sifflet "terraform-provider-sifflet/internal/client"
+	datasource_struct "terraform-provider-sifflet/internal/datasource_datasource"
 
 	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
@@ -24,34 +22,6 @@ var (
 	_ resource.Resource              = &datasourceResource{}
 	_ resource.ResourceWithConfigure = &datasourceResource{}
 )
-
-type TimeZoneDto struct {
-	TimeZone  *string `tfsdk:"timezone"`
-	UtcOffset *string `tfsdk:"utc_offset"`
-}
-
-type BigQueryParams struct {
-	Type             types.String `tfsdk:"type"`
-	BillingProjectID *string      `tfsdk:"billing_project_id"`
-	DatasetID        *string      `tfsdk:"dataset_id"`
-	ProjectID        *string      `tfsdk:"project_id"`
-	TimezoneData     TimeZoneDto  `tfsdk:"timezone_data"`
-}
-
-type CreateDatasourceDto struct {
-	ID             types.String    `tfsdk:"id"`
-	Name           *string         `tfsdk:"name"`
-	CronExpression *string         `tfsdk:"cron_expression"`
-	Type           types.String    `tfsdk:"type"`
-	SecretID       *string         `tfsdk:"secret_id"`
-	BigQuery       *BigQueryParams `tfsdk:"bigquery"`
-}
-
-type ErrorMessage struct {
-	Title  string `json:"title"`
-	Status int64  `json:"status"`
-	Detail string `json:"detail"`
-}
 
 // NewDataSourceResource is a helper function to simplify the provider implementation.
 func NewDataSourceResource() resource.Resource {
@@ -69,81 +39,8 @@ func (r *datasourceResource) Metadata(_ context.Context, req resource.MetadataRe
 }
 
 // Schema defines the schema for the resource.
-func (r *datasourceResource) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
-	resp.Schema = schema.Schema{
-		Attributes: map[string]schema.Attribute{
-			"id": schema.StringAttribute{
-				Computed: true,
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.UseStateForUnknown(),
-				},
-			},
-			"name": schema.StringAttribute{
-				Required: true,
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-			},
-			"cron_expression": schema.StringAttribute{
-				Optional: true,
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-			},
-			"type": schema.StringAttribute{
-				Computed: true,
-			},
-			"secret_id": schema.StringAttribute{
-				Optional: true,
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplace(),
-				},
-			},
-			"bigquery": schema.SingleNestedAttribute{
-				Optional: true,
-				Attributes: map[string]schema.Attribute{
-					"type": schema.StringAttribute{
-						Computed: true,
-					},
-					"billing_project_id": schema.StringAttribute{
-						Required: true,
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-					},
-					"dataset_id": schema.StringAttribute{
-						Required: true,
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-					},
-					"project_id": schema.StringAttribute{
-						Required: true,
-						PlanModifiers: []planmodifier.String{
-							stringplanmodifier.RequiresReplace(),
-						},
-					},
-					"timezone_data": schema.SingleNestedAttribute{
-						Required: true,
-						Attributes: map[string]schema.Attribute{
-							"timezone": schema.StringAttribute{
-								Required: true,
-								PlanModifiers: []planmodifier.String{
-									stringplanmodifier.RequiresReplace(),
-								},
-							},
-							"utc_offset": schema.StringAttribute{
-								Required: true,
-								PlanModifiers: []planmodifier.String{
-									stringplanmodifier.RequiresReplace(),
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-	}
+func (r *datasourceResource) Schema(ctx context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+	resp.Schema = datasource_struct.DatasourceDataSourceSchema(ctx)
 }
 
 // Create creates the resource and sets the initial Terraform state.
@@ -151,7 +48,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 
 	// TODO: Datasources is not tested, can be create with anythings as value
 
-	var plan CreateDatasourceDto
+	var plan datasource_struct.CreateDatasourceDto
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -202,7 +99,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	tflog.Debug(ctx, "test1 "+string(resBody))
 
 	if datasourceResponse.StatusCode != http.StatusCreated {
-		var message ErrorMessage
+		var message datasource_struct.ErrorMessage
 		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
 			resp.Diagnostics.AddError(
 				"Can not unmarshal JSON",
@@ -249,7 +146,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 
 // Read refreshes the Terraform state with the latest data.
 func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var state CreateDatasourceDto
+	var state datasource_struct.CreateDatasourceDto
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -268,7 +165,32 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 	}
 
 	resBody, _ := io.ReadAll(itemResponse.Body)
-	tflog.Debug(ctx, "test1 "+string(resBody))
+	tflog.Debug(ctx, fmt.Sprintf("test 1 %d ", itemResponse.Body))
+
+	if itemResponse.StatusCode == http.StatusNotFound {
+		// TODO: in case of 404 nothing is return by the API
+		resp.State.RemoveResource(ctx)
+		return
+	}
+
+	if itemResponse.StatusCode != http.StatusOK {
+
+		var message datasource_struct.ErrorMessage
+		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
+			tflog.Debug(ctx, "if is valid"+string(resBody))
+			resp.Diagnostics.AddError(
+				"Can not unmarshal JSON",
+				err.Error(),
+			)
+			return
+		}
+		resp.Diagnostics.AddError(
+			message.Title,
+			message.Detail,
+		)
+		resp.State.RemoveResource(ctx)
+		return
+	}
 
 	var result sifflet.DatasourceDto
 	if err := json.Unmarshal(resBody, &result); err != nil { // Parse []byte to go struct pointer
@@ -281,12 +203,12 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 
 	resultParams, _ := result.Params.AsBigQueryParams()
 
-	result_timezone := TimeZoneDto{
+	result_timezone := datasource_struct.TimeZoneDto{
 		TimeZone:  &resultParams.TimezoneData.Timezone,
 		UtcOffset: &resultParams.TimezoneData.UtcOffset,
 	}
 
-	result_bq := BigQueryParams{
+	result_bq := datasource_struct.BigQueryParams{
 		Type:             types.StringValue(resultParams.Type),
 		BillingProjectID: resultParams.BillingProjectId,
 		DatasetID:        resultParams.DatasetId,
@@ -294,7 +216,7 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		TimezoneData:     result_timezone,
 	}
 
-	state = CreateDatasourceDto{
+	state = datasource_struct.CreateDatasourceDto{
 		ID:             types.StringValue(result.Id.String()),
 		Name:           &result.Name,
 		CronExpression: result.CronExpression,
@@ -319,7 +241,7 @@ func (r *datasourceResource) Update(ctx context.Context, req resource.UpdateRequ
 // Delete deletes the resource and removes the Terraform state on success.
 func (r *datasourceResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 
-	var state CreateDatasourceDto
+	var state datasource_struct.CreateDatasourceDto
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -333,7 +255,7 @@ func (r *datasourceResource) Delete(ctx context.Context, req resource.DeleteRequ
 	tflog.Debug(ctx, "test1 "+string(resBody))
 
 	if datasourceResponse.StatusCode != http.StatusNoContent {
-		var message ErrorMessage
+		var message datasource_struct.ErrorMessage
 		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
 			resp.Diagnostics.AddError(
 				"Can not unmarshal JSON",
