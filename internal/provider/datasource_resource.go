@@ -73,8 +73,8 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		"datasetId": "%s",
 		"projectId": "%s",
 		"timezoneData": {
-			"timezone": "%s",
-			"utcOffset": "%s"
+			"timezone": %s,
+			"utcOffset": %s
 		}
 	}
 	`,
@@ -82,8 +82,8 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 			*plan.BigQuery.BillingProjectID,
 			*plan.BigQuery.DatasetID,
 			*plan.BigQuery.ProjectID,
-			*plan.BigQuery.TimezoneData.TimeZone,
-			*plan.BigQuery.TimezoneData.UtcOffset,
+			plan.BigQuery.TimezoneData.TimeZone,
+			plan.BigQuery.TimezoneData.UtcOffset,
 		))
 		tflog.Debug(ctx, "Params:  "+string(jsonData))
 	} else if plan.DBT != nil {
@@ -95,16 +95,16 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		"projectName": "%s",
 		"target": "%s",
 		"timezoneData": {
-			"timezone": "%s",
-			"utcOffset": "%s"
+			"timezone": %s,
+			"utcOffset": %s
 		}
 	}
 	`,
 			connect_type,
 			*plan.DBT.ProjectName,
 			*plan.DBT.Target,
-			*plan.DBT.TimezoneData.TimeZone,
-			*plan.DBT.TimezoneData.UtcOffset,
+			plan.DBT.TimezoneData.TimeZone,
+			plan.DBT.TimezoneData.UtcOffset,
 		))
 		tflog.Debug(ctx, "Params:  "+string(jsonData))
 	}
@@ -172,11 +172,16 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		plan.BigQuery.ProjectID = resultParams.ProjectId
 		plan.BigQuery.DatasetID = resultParams.DatasetId
 		plan.BigQuery.Type = types.StringValue(resultParams.Type)
+		plan.BigQuery.TimezoneData.TimeZone = types.StringValue(resultParams.TimezoneData.Timezone)
+		plan.BigQuery.TimezoneData.UtcOffset = types.StringValue(resultParams.TimezoneData.UtcOffset)
 	} else if plan.DBT != nil {
 		resultParams, _ := result.Params.AsDBTParams()
 		plan.DBT.Target = resultParams.Target
 		plan.DBT.ProjectName = resultParams.ProjectName
 		plan.DBT.Type = types.StringValue(resultParams.Type)
+		plan.DBT.TimezoneData.TimeZone = types.StringValue(resultParams.TimezoneData.Timezone)
+		plan.DBT.TimezoneData.UtcOffset = types.StringValue(resultParams.TimezoneData.UtcOffset)
+
 	}
 	// Set state to fully populated data
 	diags = resp.State.Set(ctx, plan)
@@ -258,8 +263,8 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		resultParams, _ := result.Params.AsBigQueryParams()
 
 		result_timezone := datasource_struct.TimeZoneDto{
-			TimeZone:  &resultParams.TimezoneData.Timezone,
-			UtcOffset: &resultParams.TimezoneData.UtcOffset,
+			TimeZone:  types.StringValue(resultParams.TimezoneData.Timezone),
+			UtcOffset: types.StringValue(resultParams.TimezoneData.UtcOffset),
 		}
 
 		result_bq := datasource_struct.BigQueryParams{
@@ -267,7 +272,7 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 			BillingProjectID: resultParams.BillingProjectId,
 			DatasetID:        resultParams.DatasetId,
 			ProjectID:        resultParams.ProjectId,
-			TimezoneData:     result_timezone,
+			TimezoneData:     &result_timezone,
 		}
 
 		state.BigQuery = &result_bq
@@ -277,15 +282,15 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		resultParams, _ := result.Params.AsDBTParams()
 
 		result_timezone := datasource_struct.TimeZoneDto{
-			TimeZone:  &resultParams.TimezoneData.Timezone,
-			UtcOffset: &resultParams.TimezoneData.UtcOffset,
+			TimeZone:  types.StringValue(resultParams.TimezoneData.Timezone),
+			UtcOffset: types.StringValue(resultParams.TimezoneData.UtcOffset),
 		}
 
 		result_dbt := datasource_struct.DBTParams{
 			Type:         types.StringValue(resultParams.Type),
 			Target:       resultParams.Target,
 			ProjectName:  resultParams.ProjectName,
-			TimezoneData: result_timezone,
+			TimezoneData: &result_timezone,
 		}
 
 		state.DBT = &result_dbt

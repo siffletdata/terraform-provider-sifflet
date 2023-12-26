@@ -3,15 +3,17 @@ package datasource_datasource
 import (
 	"context"
 
+	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/objectdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
 type TimeZoneDto struct {
-	TimeZone  *string `tfsdk:"timezone"`
-	UtcOffset *string `tfsdk:"utc_offset"`
+	TimeZone  types.String `tfsdk:"timezone"`
+	UtcOffset types.String `tfsdk:"utc_offset"`
 }
 
 type BigQueryParams struct {
@@ -19,14 +21,14 @@ type BigQueryParams struct {
 	BillingProjectID *string      `tfsdk:"billing_project_id"`
 	DatasetID        *string      `tfsdk:"dataset_id"`
 	ProjectID        *string      `tfsdk:"project_id"`
-	TimezoneData     TimeZoneDto  `tfsdk:"timezone_data"`
+	TimezoneData     *TimeZoneDto `tfsdk:"timezone_data"`
 }
 
 type DBTParams struct {
 	Type         types.String `tfsdk:"type"`
 	ProjectName  *string      `tfsdk:"project_name"`
 	Target       *string      `tfsdk:"target"`
-	TimezoneData TimeZoneDto  `tfsdk:"timezone_data"`
+	TimezoneData *TimeZoneDto `tfsdk:"timezone_data"`
 }
 
 type CreateDatasourceDto struct {
@@ -121,7 +123,20 @@ func DatasourceDataSourceSchema(ctx context.Context) schema.Schema {
 						},
 					},
 					"timezone_data": schema.SingleNestedAttribute{
-						Required: true,
+						Optional: true,
+						Computed: true,
+						Default: objectdefault.StaticValue(
+							types.ObjectValueMust(
+								map[string]attr.Type{
+									"timezone":   types.StringType,
+									"utc_offset": types.StringType,
+								},
+								map[string]attr.Value{
+									"timezone":   types.StringValue("UTC"),
+									"utc_offset": types.StringValue("(UTC+00:00)"),
+								},
+							),
+						),
 						Attributes: map[string]schema.Attribute{
 							"timezone": schema.StringAttribute{
 								Required: true,
@@ -158,7 +173,20 @@ func DatasourceDataSourceSchema(ctx context.Context) schema.Schema {
 						},
 					},
 					"timezone_data": schema.SingleNestedAttribute{
-						Required: true,
+						Optional: true,
+						Computed: true,
+						Default: objectdefault.StaticValue(
+							types.ObjectValueMust(
+								map[string]attr.Type{
+									"timezone":   types.StringType,
+									"utc_offset": types.StringType,
+								},
+								map[string]attr.Value{
+									"timezone":   types.StringValue("UTC"),
+									"utc_offset": types.StringValue("(UTC+00:00)"),
+								},
+							),
+						),
 						Attributes: map[string]schema.Attribute{
 							"timezone": schema.StringAttribute{
 								Required: true,
