@@ -41,8 +41,13 @@ Read-Only:
 <a id="nestedatt--search_rules--data"></a>
 ### Nested Schema for `search_rules.data`
 
+Optional:
+
+- `dbt` (Attributes) (see [below for nested schema](#nestedatt--search_rules--data--dbt))
+
 Read-Only:
 
+- `bigquery` (Attributes) (see [below for nested schema](#nestedatt--search_rules--data--bigquery))
 - `created_by` (String)
 - `created_date` (Number)
 - `cron_expression` (String)
@@ -53,3 +58,48 @@ Read-Only:
 - `name` (String)
 - `next_execution` (Number)
 - `type` (String)
+
+<a id="nestedatt--search_rules--data--dbt"></a>
+### Nested Schema for `search_rules.data.dbt`
+
+Optional:
+
+- `timezone_data` (Attributes) (see [below for nested schema](#nestedatt--search_rules--data--dbt--timezone_data))
+
+Read-Only:
+
+- `project_name` (String)
+- `target` (String)
+- `type` (String)
+
+<a id="nestedatt--search_rules--data--dbt--timezone_data"></a>
+### Nested Schema for `search_rules.data.dbt.type`
+
+Read-Only:
+
+- `timezone` (String)
+- `utc_offset` (String)
+
+
+
+<a id="nestedatt--search_rules--data--bigquery"></a>
+### Nested Schema for `search_rules.data.bigquery`
+
+Optional:
+
+- `timezone_data` (Attributes) (see [below for nested schema](#nestedatt--search_rules--data--bigquery--timezone_data))
+
+Read-Only:
+
+- `billing_project_id` (String)
+- `dataset_id` (String)
+- `project_id` (String)
+- `type` (String)
+
+<a id="nestedatt--search_rules--data--bigquery--timezone_data"></a>
+### Nested Schema for `search_rules.data.bigquery.type`
+
+Read-Only:
+
+- `timezone` (String)
+- `utc_offset` (String)

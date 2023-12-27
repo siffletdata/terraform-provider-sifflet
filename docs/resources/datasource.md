@@ -39,12 +39,12 @@ description: |-
 
 Required:
 
-- `billing_project_id` (String)
 - `dataset_id` (String)
 - `project_id` (String)
 
 Optional:
 
+- `billing_project_id` (String)
 - `timezone_data` (Attributes) (see [below for nested schema](#nestedatt--bigquery--timezone_data))
 
 Read-Only:
