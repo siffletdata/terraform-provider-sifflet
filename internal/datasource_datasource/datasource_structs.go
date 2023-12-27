@@ -2,7 +2,6 @@ package datasource_datasource
 
 import (
 	"context"
-	"encoding/json"
 
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
@@ -213,10 +212,6 @@ func DatasourceDataSourceSchema(ctx context.Context) schema.Schema {
 }
 
 type DatasourceCatalogAssetDtoEntityType string
-
-type DatasourceDto_Params struct {
-	union json.RawMessage
-}
 
 type DatasourceCatalogAssetDto struct {
 	CreatedBy        *string                             `tfsdk:"created_by"`
