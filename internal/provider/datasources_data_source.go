@@ -159,6 +159,24 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 			}
 
 			data_source_catalog_asset.DBT = &result_dbt
+		} else if data.Type == "snowflake" {
+			resultParams, _ := data.Params.AsSnowflakeParams()
+
+			result_timezone := datasource_struct.TimeZoneDto{
+				TimeZone:  types.StringValue(resultParams.TimezoneData.Timezone),
+				UtcOffset: types.StringValue(resultParams.TimezoneData.UtcOffset),
+			}
+
+			result_snowflake := datasource_struct.SnowflakeParams{
+				Type:              types.StringValue(resultParams.Type),
+				Database:          resultParams.Database,
+				Schema:            resultParams.Schema,
+				Warehouse:         resultParams.Warehouse,
+				AccountIdentifier: resultParams.AccountIdentifier,
+				TimezoneData:      &result_timezone,
+			}
+
+			data_source_catalog_asset.Snowflake = &result_snowflake
 		}
 
 		*state.SearchRules.Data = append(*state.SearchRules.Data, data_source_catalog_asset)

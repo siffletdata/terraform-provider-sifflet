@@ -107,6 +107,31 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 			plan.DBT.TimezoneData.UtcOffset,
 		))
 		tflog.Debug(ctx, "Params:  "+string(jsonData))
+	} else if plan.Snowflake != nil {
+		connect_type = "snowflake"
+
+		jsonData = []byte(fmt.Sprintf(`
+	{
+		"type": "%s",
+		"accountIdentifier": "%s",
+		"database": "%s",
+		"schema": "%s",
+		"warehouse": "%s",
+		"timezoneData": {
+			"timezone": %s,
+			"utcOffset": %s
+		}
+	}
+	`,
+			connect_type,
+			*plan.Snowflake.AccountIdentifier,
+			*plan.Snowflake.Database,
+			*plan.Snowflake.Schema,
+			*plan.Snowflake.Warehouse,
+			plan.Snowflake.TimezoneData.TimeZone,
+			plan.Snowflake.TimezoneData.UtcOffset,
+		))
+		tflog.Debug(ctx, "Params:  "+string(jsonData))
 	}
 
 	err := json.Unmarshal(jsonData, &params)
@@ -181,6 +206,16 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		plan.DBT.Type = types.StringValue(resultParams.Type)
 		plan.DBT.TimezoneData.TimeZone = types.StringValue(resultParams.TimezoneData.Timezone)
 		plan.DBT.TimezoneData.UtcOffset = types.StringValue(resultParams.TimezoneData.UtcOffset)
+
+	} else if plan.Snowflake != nil {
+		resultParams, _ := result.Params.AsSnowflakeParams()
+		plan.Snowflake.AccountIdentifier = resultParams.AccountIdentifier
+		plan.Snowflake.Database = resultParams.Database
+		plan.Snowflake.Schema = resultParams.Schema
+		plan.Snowflake.Warehouse = resultParams.Warehouse
+		plan.Snowflake.Type = types.StringValue(resultParams.Type)
+		plan.Snowflake.TimezoneData.TimeZone = types.StringValue(resultParams.TimezoneData.Timezone)
+		plan.Snowflake.TimezoneData.UtcOffset = types.StringValue(resultParams.TimezoneData.UtcOffset)
 
 	}
 	// Set state to fully populated data
@@ -275,9 +310,7 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		}
 
 		state.BigQuery = &result_bq
-	}
-
-	if result.Type == "dbt" {
+	} else if result.Type == "dbt" {
 		resultParams, _ := result.Params.AsDBTParams()
 
 		result_timezone := datasource_struct.TimeZoneDto{
@@ -293,6 +326,24 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		}
 
 		state.DBT = &result_dbt
+	} else if result.Type == "snowflake" {
+		resultParams, _ := result.Params.AsSnowflakeParams()
+
+		result_timezone := datasource_struct.TimeZoneDto{
+			TimeZone:  types.StringValue(resultParams.TimezoneData.Timezone),
+			UtcOffset: types.StringValue(resultParams.TimezoneData.UtcOffset),
+		}
+
+		result_snowflake := datasource_struct.SnowflakeParams{
+			Type:              types.StringValue(resultParams.Type),
+			Database:          resultParams.Database,
+			Schema:            resultParams.Schema,
+			Warehouse:         resultParams.Warehouse,
+			AccountIdentifier: resultParams.AccountIdentifier,
+			TimezoneData:      &result_timezone,
+		}
+
+		state.Snowflake = &result_snowflake
 	}
 
 	// Set state to fully populated data
@@ -376,7 +427,7 @@ func (r *datasourceResource) ValidateConfig(ctx context.Context, req resource.Va
 	}
 
 	// TODO: maybe find something more elegant than chaining checks
-	if data.DBT != nil && data.BigQuery != nil {
+	if data.DBT != nil && data.BigQuery != nil && data.Snowflake != nil {
 		resp.Diagnostics.AddError(
 			"Error",
 			"Define only one type of data source",

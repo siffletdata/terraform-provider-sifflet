@@ -19,3 +19,19 @@ resource "sifflet_datasource" "dbt" {
     target       = "prod"
   }
 }
+
+resource "sifflet_datasource" "snowflake" {
+  name            = "snwoflake-orders"
+  secret_id       = "snowflake_creds"
+  cron_expression = "@daily"
+  snowflake = {
+    account_identifier = "my-account-id"
+    database           = "database"
+    schema             = "schema"
+    warehouse          = "warehouse"
+    timezone_data = {
+      timezone   = "UTC"
+      utc_offset = "(UTC+00:00)"
+    }
+  }
+}

@@ -33,17 +33,27 @@ type DBTParams struct {
 	TimezoneData *TimeZoneDto `tfsdk:"timezone_data"`
 }
 
+type SnowflakeParams struct {
+	Type              types.String `tfsdk:"type"`
+	AccountIdentifier *string      `tfsdk:"account_identifier"`
+	Database          *string      `tfsdk:"database"`
+	Schema            *string      `tfsdk:"schema"`
+	Warehouse         *string      `tfsdk:"warehouse"`
+	TimezoneData      *TimeZoneDto `tfsdk:"timezone_data"`
+}
+
 type CreateDatasourceDto struct {
-	ID             types.String    `tfsdk:"id"`
-	Name           *string         `tfsdk:"name"`
-	CronExpression *string         `tfsdk:"cron_expression"`
-	Type           types.String    `tfsdk:"type"`
-	SecretID       *string         `tfsdk:"secret_id"`
-	BigQuery       *BigQueryParams `tfsdk:"bigquery"`
-	DBT            *DBTParams      `tfsdk:"dbt"`
-	CreatedBy      types.String    `tfsdk:"created_by"`
-	CreatedDate    types.String    `tfsdk:"created_date"`
-	ModifiedBy     types.String    `tfsdk:"modified_by"`
+	ID             types.String     `tfsdk:"id"`
+	Name           *string          `tfsdk:"name"`
+	CronExpression *string          `tfsdk:"cron_expression"`
+	Type           types.String     `tfsdk:"type"`
+	SecretID       *string          `tfsdk:"secret_id"`
+	BigQuery       *BigQueryParams  `tfsdk:"bigquery"`
+	DBT            *DBTParams       `tfsdk:"dbt"`
+	Snowflake      *SnowflakeParams `tfsdk:"snowflake"`
+	CreatedBy      types.String     `tfsdk:"created_by"`
+	CreatedDate    types.String     `tfsdk:"created_date"`
+	ModifiedBy     types.String     `tfsdk:"modified_by"`
 }
 
 type ErrorMessage struct {
@@ -229,6 +239,78 @@ func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 					},
 				},
 			},
+			"snowflake": schema.SingleNestedAttribute{
+				Optional: true,
+				Attributes: map[string]schema.Attribute{
+					"type": schema.StringAttribute{
+						Computed:    true,
+						Description: "Type of data source (ie: dbt, bigquery).",
+					},
+					"account_identifier": schema.StringAttribute{
+						Optional:    true,
+						Computed:    true,
+						Description: "Snowflake account identifier (see: https://docs.siffletdata.com/docs/snowflake#3--create-the-snowflake-connection-using-sifflets-integrations-page).",
+						Default:     stringdefault.StaticString(""),
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
+						},
+					},
+					"database": schema.StringAttribute{
+						Required:    true,
+						Description: "Snowflake database.",
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
+						},
+					},
+					"schema": schema.StringAttribute{
+						Required:    true,
+						Description: "Snowflake schema.",
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
+						},
+					},
+					"warehouse": schema.StringAttribute{
+						Required:    true,
+						Description: "Snowflake warehouse.",
+						PlanModifiers: []planmodifier.String{
+							stringplanmodifier.RequiresReplace(),
+						},
+					},
+					"timezone_data": schema.SingleNestedAttribute{
+						Optional:    true,
+						Computed:    true,
+						Description: "Timezone informations of your data source.",
+						Default: objectdefault.StaticValue(
+							types.ObjectValueMust(
+								map[string]attr.Type{
+									"timezone":   types.StringType,
+									"utc_offset": types.StringType,
+								},
+								map[string]attr.Value{
+									"timezone":   types.StringValue("UTC"),
+									"utc_offset": types.StringValue("(UTC+00:00)"),
+								},
+							),
+						),
+						Attributes: map[string]schema.Attribute{
+							"timezone": schema.StringAttribute{
+								Required:    true,
+								Description: "Timezone of your data source (ie: UTC).",
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+							},
+							"utc_offset": schema.StringAttribute{
+								Required:    true,
+								Description: "Timezone offset of your data source (ie: '(UTC+00:00)').",
+								PlanModifiers: []planmodifier.String{
+									stringplanmodifier.RequiresReplace(),
+								},
+							},
+						},
+					},
+				},
+			},
 		},
 	}
 }
@@ -247,6 +329,7 @@ type DatasourceCatalogAssetDto struct {
 	NextExecution    *int64                              `tfsdk:"next_execution"`
 	BigQuery         *BigQueryParams                     `tfsdk:"bigquery"`
 	DBT              *DBTParams                          `tfsdk:"dbt"`
+	Snowflake        *SnowflakeParams                    `tfsdk:"snowflake"`
 	// Tags             *[]TagDto                           `tfsdk:"tags"`
 	Type string `tfsdk:"type"`
 }
@@ -385,6 +468,47 @@ func DatasourceDataSourceSchema(ctx context.Context) data_source.Schema {
 										"target": data_source.StringAttribute{
 											Computed:    true,
 											Description: "the target value of the profile that corresponds to your project (the 'target' in your profiles.yml).",
+										},
+										"timezone_data": data_source.SingleNestedAttribute{
+											Optional:    true,
+											Computed:    true,
+											Description: "Timezone informations of your data source.",
+											Attributes: map[string]data_source.Attribute{
+												"timezone": data_source.StringAttribute{
+													Computed:    true,
+													Description: "Timezone of your data source (ie: UTC).",
+												},
+												"utc_offset": data_source.StringAttribute{
+													Computed:    true,
+													Description: "Timezone offset of your data source (ie: '(UTC+00:00)').",
+												},
+											},
+										},
+									},
+								},
+								"snowflake": data_source.SingleNestedAttribute{
+									Optional: true,
+									Computed: true,
+									Attributes: map[string]data_source.Attribute{
+										"type": data_source.StringAttribute{
+											Computed:    true,
+											Description: "Type of data source (ie: dbt, bigquery).",
+										},
+										"account_identifier": data_source.StringAttribute{
+											Computed:    true,
+											Description: "Snowflake account identifier (see: https://docs.siffletdata.com/docs/snowflake#3--create-the-snowflake-connection-using-sifflets-integrations-page).",
+										},
+										"database": data_source.StringAttribute{
+											Computed:    true,
+											Description: "Snowflake database.",
+										},
+										"schema": data_source.StringAttribute{
+											Computed:    true,
+											Description: "Snowflake schema.",
+										},
+										"warehouse": data_source.StringAttribute{
+											Computed:    true,
+											Description: "Snowflake warehouse.",
 										},
 										"timezone_data": data_source.SingleNestedAttribute{
 											Optional:    true,

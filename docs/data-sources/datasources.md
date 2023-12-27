@@ -53,6 +53,7 @@ Optional:
 
 - `bigquery` (Attributes) (see [below for nested schema](#nestedatt--search_rules--data--bigquery))
 - `dbt` (Attributes) (see [below for nested schema](#nestedatt--search_rules--data--dbt))
+- `snowflake` (Attributes) (see [below for nested schema](#nestedatt--search_rules--data--snowflake))
 
 Read-Only:
 
@@ -106,6 +107,31 @@ Read-Only:
 
 <a id="nestedatt--search_rules--data--dbt--timezone_data"></a>
 ### Nested Schema for `search_rules.data.dbt.type`
+
+Read-Only:
+
+- `timezone` (String) Timezone of your data source (ie: UTC).
+- `utc_offset` (String) Timezone offset of your data source (ie: '(UTC+00:00)').
+
+
+
+<a id="nestedatt--search_rules--data--snowflake"></a>
+### Nested Schema for `search_rules.data.snowflake`
+
+Optional:
+
+- `timezone_data` (Attributes) Timezone informations of your data source. (see [below for nested schema](#nestedatt--search_rules--data--snowflake--timezone_data))
+
+Read-Only:
+
+- `account_identifier` (String) Snowflake account identifier (see: https://docs.siffletdata.com/docs/snowflake#3--create-the-snowflake-connection-using-sifflets-integrations-page).
+- `database` (String) Snowflake database.
+- `schema` (String) Snowflake schema.
+- `type` (String) Type of data source (ie: dbt, bigquery).
+- `warehouse` (String) Snowflake warehouse.
+
+<a id="nestedatt--search_rules--data--snowflake--timezone_data"></a>
+### Nested Schema for `search_rules.data.snowflake.warehouse`
 
 Read-Only:
 
