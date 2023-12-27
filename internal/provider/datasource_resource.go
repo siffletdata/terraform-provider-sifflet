@@ -42,7 +42,7 @@ func (r *datasourceResource) Metadata(_ context.Context, req resource.MetadataRe
 
 // Schema defines the schema for the resource.
 func (r *datasourceResource) Schema(ctx context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
-	resp.Schema = datasource_struct.DatasourceDataSourceSchema(ctx)
+	resp.Schema = datasource_struct.DatasourceResourceSchema(ctx)
 }
 
 // Create creates the resource and sets the initial Terraform state.

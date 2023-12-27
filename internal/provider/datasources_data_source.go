@@ -10,7 +10,6 @@ import (
 	datasource_struct "terraform-provider-sifflet/internal/datasource_datasource"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
-	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
@@ -50,127 +49,8 @@ func (d *datasourcesDataSource) Metadata(_ context.Context, req datasource.Metad
 	resp.TypeName = req.ProviderTypeName + "_datasources"
 }
 
-func (d *datasourcesDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
-	resp.Schema = schema.Schema{
-		Attributes: map[string]schema.Attribute{
-			"catalog_filters": schema.ListNestedAttribute{
-				NestedObject: schema.NestedAttributeObject{
-					Attributes: map[string]schema.Attribute{
-						"id": schema.StringAttribute{
-							Computed: true,
-						},
-						"name": schema.StringAttribute{
-							Computed: true,
-						},
-						"query": schema.StringAttribute{
-							Computed: true,
-						},
-					},
-				},
-				Computed: true,
-			},
-			"search_rules": schema.SingleNestedAttribute{
-				Attributes: map[string]schema.Attribute{
-					"data": schema.ListNestedAttribute{
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"created_by": schema.StringAttribute{
-									Computed: true,
-								},
-								"created_date": schema.Int64Attribute{
-									Computed: true,
-								},
-								"cron_expression": schema.StringAttribute{
-									Computed: true,
-								},
-								"entity_type": schema.StringAttribute{
-									Computed: true,
-								},
-								"id": schema.StringAttribute{
-									Computed: true,
-								},
-								"last_modified_date": schema.Int64Attribute{
-									Computed: true,
-								},
-								"modified_by": schema.StringAttribute{
-									Computed: true,
-								},
-								"name": schema.StringAttribute{
-									Computed: true,
-								},
-								"next_execution": schema.Int64Attribute{
-									Computed: true,
-								},
-								"type": schema.StringAttribute{
-									Computed: true,
-								},
-								"bigquery": schema.SingleNestedAttribute{
-									Computed: true,
-									Attributes: map[string]schema.Attribute{
-										"type": schema.StringAttribute{
-											Computed: true,
-										},
-										"billing_project_id": schema.StringAttribute{
-											Computed: true,
-										},
-										"dataset_id": schema.StringAttribute{
-											Computed: true,
-										},
-										"project_id": schema.StringAttribute{
-											Computed: true,
-										},
-										"timezone_data": schema.SingleNestedAttribute{
-											Optional: true,
-											Computed: true,
-											Attributes: map[string]schema.Attribute{
-												"timezone": schema.StringAttribute{
-													Computed: true,
-												},
-												"utc_offset": schema.StringAttribute{
-													Computed: true,
-												},
-											},
-										},
-									},
-								},
-								"dbt": schema.SingleNestedAttribute{
-									Optional: true,
-									Attributes: map[string]schema.Attribute{
-										"type": schema.StringAttribute{
-											Computed: true,
-										},
-										"project_name": schema.StringAttribute{
-											Computed: true,
-										},
-										"target": schema.StringAttribute{
-											Computed: true,
-										},
-										"timezone_data": schema.SingleNestedAttribute{
-											Optional: true,
-											Computed: true,
-											Attributes: map[string]schema.Attribute{
-												"timezone": schema.StringAttribute{
-													Computed: true,
-												},
-												"utc_offset": schema.StringAttribute{
-													Computed: true,
-												},
-											},
-										},
-									},
-								},
-							},
-						},
-						Computed: true,
-					},
-					"total_elements": schema.Int64Attribute{
-						Computed: true,
-					},
-				},
-				Computed: true,
-			},
-		},
-	}
+func (d *datasourcesDataSource) Schema(ctx context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+	resp.Schema = datasource_struct.DatasourceDataSourceSchema(ctx)
 }
 
 func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {

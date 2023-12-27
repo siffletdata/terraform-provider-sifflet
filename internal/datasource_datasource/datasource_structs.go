@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/hashicorp/terraform-plugin-framework/attr"
+	data_source "github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/objectdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
@@ -51,7 +52,7 @@ type ErrorMessage struct {
 	Detail string `json:"detail"`
 }
 
-func DatasourceDataSourceSchema(ctx context.Context) schema.Schema {
+func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
@@ -244,4 +245,127 @@ type CatalogFilterDto struct {
 type DatasourceSearchDto struct {
 	CatalogFilters []CatalogFilterDto                        `tfsdk:"catalog_filters"`
 	SearchRules    SearchCollectionDatasourceCatalogAssetDto `tfsdk:"search_rules"`
+}
+
+func DatasourceDataSourceSchema(ctx context.Context) data_source.Schema {
+	return data_source.Schema{
+		Attributes: map[string]data_source.Attribute{
+			"catalog_filters": data_source.ListNestedAttribute{
+				NestedObject: data_source.NestedAttributeObject{
+					Attributes: map[string]data_source.Attribute{
+						"id": data_source.StringAttribute{
+							Computed: true,
+						},
+						"name": data_source.StringAttribute{
+							Computed: true,
+						},
+						"query": data_source.StringAttribute{
+							Computed: true,
+						},
+					},
+				},
+				Computed: true,
+			},
+			"search_rules": data_source.SingleNestedAttribute{
+				Attributes: map[string]data_source.Attribute{
+					"data": data_source.ListNestedAttribute{
+						NestedObject: data_source.NestedAttributeObject{
+							Attributes: map[string]data_source.Attribute{
+								"created_by": data_source.StringAttribute{
+									Computed: true,
+								},
+								"created_date": data_source.Int64Attribute{
+									Computed: true,
+								},
+								"cron_expression": data_source.StringAttribute{
+									Computed: true,
+								},
+								"entity_type": data_source.StringAttribute{
+									Computed: true,
+								},
+								"id": data_source.StringAttribute{
+									Computed: true,
+								},
+								"last_modified_date": data_source.Int64Attribute{
+									Computed: true,
+								},
+								"modified_by": data_source.StringAttribute{
+									Computed: true,
+								},
+								"name": data_source.StringAttribute{
+									Computed: true,
+								},
+								"next_execution": data_source.Int64Attribute{
+									Computed: true,
+								},
+								"type": data_source.StringAttribute{
+									Computed: true,
+								},
+								"bigquery": data_source.SingleNestedAttribute{
+									Computed: true,
+									Attributes: map[string]data_source.Attribute{
+										"type": data_source.StringAttribute{
+											Computed: true,
+										},
+										"billing_project_id": data_source.StringAttribute{
+											Computed: true,
+										},
+										"dataset_id": data_source.StringAttribute{
+											Computed: true,
+										},
+										"project_id": data_source.StringAttribute{
+											Computed: true,
+										},
+										"timezone_data": data_source.SingleNestedAttribute{
+											Optional: true,
+											Computed: true,
+											Attributes: map[string]data_source.Attribute{
+												"timezone": data_source.StringAttribute{
+													Computed: true,
+												},
+												"utc_offset": data_source.StringAttribute{
+													Computed: true,
+												},
+											},
+										},
+									},
+								},
+								"dbt": data_source.SingleNestedAttribute{
+									Optional: true,
+									Attributes: map[string]data_source.Attribute{
+										"type": data_source.StringAttribute{
+											Computed: true,
+										},
+										"project_name": data_source.StringAttribute{
+											Computed: true,
+										},
+										"target": data_source.StringAttribute{
+											Computed: true,
+										},
+										"timezone_data": data_source.SingleNestedAttribute{
+											Optional: true,
+											Computed: true,
+											Attributes: map[string]data_source.Attribute{
+												"timezone": data_source.StringAttribute{
+													Computed: true,
+												},
+												"utc_offset": data_source.StringAttribute{
+													Computed: true,
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+						Computed: true,
+					},
+					"total_elements": data_source.Int64Attribute{
+						Computed: true,
+					},
+				},
+				Computed: true,
+			},
+		},
+	}
 }
