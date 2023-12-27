@@ -2,11 +2,13 @@ package datasource_datasource
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/objectdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
@@ -105,7 +107,9 @@ func DatasourceDataSourceSchema(ctx context.Context) schema.Schema {
 						Computed: true,
 					},
 					"billing_project_id": schema.StringAttribute{
-						Required: true,
+						Optional: true,
+						Computed: true,
+						Default:  stringdefault.StaticString(""),
 						PlanModifiers: []planmodifier.String{
 							stringplanmodifier.RequiresReplace(),
 						},
@@ -206,4 +210,44 @@ func DatasourceDataSourceSchema(ctx context.Context) schema.Schema {
 			},
 		},
 	}
+}
+
+type DatasourceCatalogAssetDtoEntityType string
+
+type DatasourceDto_Params struct {
+	union json.RawMessage
+}
+
+type DatasourceCatalogAssetDto struct {
+	CreatedBy        *string                             `tfsdk:"created_by"`
+	CreatedDate      *int64                              `tfsdk:"created_date"`
+	CronExpression   *string                             `tfsdk:"cron_expression"`
+	EntityType       DatasourceCatalogAssetDtoEntityType `tfsdk:"entity_type"`
+	Id               *string                             `tfsdk:"id"`
+	LastModifiedDate *int64                              `tfsdk:"last_modified_date"`
+	// LastWeekStatuses *[]LastIngestionStatusDto           `tfsdk:"lastWeekStatuses"`
+	ModifiedBy    *string         `tfsdk:"modified_by"`
+	Name          string          `tfsdk:"name"`
+	NextExecution *int64          `tfsdk:"next_execution"`
+	BigQuery      *BigQueryParams `tfsdk:"bigquery"`
+	DBT           *DBTParams      `tfsdk:"dbt"`
+	// Tags             *[]TagDto                           `tfsdk:"tags"`
+	Type string `tfsdk:"type"`
+}
+
+type SearchCollectionDatasourceCatalogAssetDto struct {
+	Data          *[]DatasourceCatalogAssetDto `tfsdk:"data"`
+	TotalElements *int64                       `tfsdk:"total_elements"`
+}
+
+type CatalogFilterDto struct {
+	// Children *[]FilterElementDto `tfsdk:"children"`
+	Id    *string `tfsdk:"id"`
+	Name  *string `tfsdk:"name"`
+	Query *string `tfsdk:"query"`
+}
+
+type DatasourceSearchDto struct {
+	CatalogFilters []CatalogFilterDto                        `tfsdk:"catalog_filters"`
+	SearchRules    SearchCollectionDatasourceCatalogAssetDto `tfsdk:"search_rules"`
 }

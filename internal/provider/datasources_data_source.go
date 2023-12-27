@@ -7,9 +7,11 @@ import (
 	"io"
 
 	sifflet "terraform-provider-sifflet/internal/client"
+	datasource_struct "terraform-provider-sifflet/internal/datasource_datasource"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
@@ -17,41 +19,6 @@ var (
 	_ datasource.DataSource              = &datasourcesDataSource{}
 	_ datasource.DataSourceWithConfigure = &datasourcesDataSource{}
 )
-
-type DatasourceSearchDto struct {
-	CatalogFilters []CatalogFilterDto                        `tfsdk:"catalog_filters"`
-	SearchRules    SearchCollectionDatasourceCatalogAssetDto `tfsdk:"search_rules"`
-}
-
-type CatalogFilterDto struct {
-	// Children *[]FilterElementDto `tfsdk:"children"`
-	Id    *string `tfsdk:"id"`
-	Name  *string `tfsdk:"name"`
-	Query *string `tfsdk:"query"`
-}
-
-type DatasourceCatalogAssetDtoEntityType string
-
-type DatasourceCatalogAssetDto struct {
-	CreatedBy        *string                             `tfsdk:"created_by"`
-	CreatedDate      *int64                              `tfsdk:"created_date"`
-	CronExpression   *string                             `tfsdk:"cron_expression"`
-	EntityType       DatasourceCatalogAssetDtoEntityType `tfsdk:"entity_type"`
-	Id               *string                             `tfsdk:"id"`
-	LastModifiedDate *int64                              `tfsdk:"last_modified_date"`
-	// LastWeekStatuses *[]LastIngestionStatusDto           `tfsdk:"lastWeekStatuses"`
-	ModifiedBy    *string `tfsdk:"modified_by"`
-	Name          string  `tfsdk:"name"`
-	NextExecution *int64  `tfsdk:"next_execution"`
-	// Params           DatasourceCatalogAssetDto_Params    `tfsdk:"params"`
-	// Tags             *[]TagDto                           `tfsdk:"tags"`
-	Type string `tfsdk:"type"`
-}
-
-type SearchCollectionDatasourceCatalogAssetDto struct {
-	Data          *[]DatasourceCatalogAssetDto `tfsdk:"data"`
-	TotalElements *int64                       `tfsdk:"total_elements"`
-}
 
 func NewDatasourcesDataSource() datasource.DataSource {
 	return &datasourcesDataSource{}
@@ -89,22 +56,6 @@ func (d *datasourcesDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 			"catalog_filters": schema.ListNestedAttribute{
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
-						// "children": schema.ListNestedAttribute{
-						// 	NestedObject: schema.NestedAttributeObject{
-						// 		Attributes: map[string]schema.Attribute{
-						// 			"id": schema.Int64Attribute{
-						// 				Computed: true,
-						// 			},
-						// 			"name": schema.StringAttribute{
-						// 				Computed: true,
-						// 			},
-						// 			"results": schema.Int64Attribute{
-						// 				Computed: true,
-						// 			},
-						// 		},
-						// 	},
-						// 	Computed: true,
-						// },
 						"id": schema.StringAttribute{
 							Computed: true,
 						},
@@ -153,6 +104,61 @@ func (d *datasourcesDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 								"type": schema.StringAttribute{
 									Computed: true,
 								},
+								"bigquery": schema.SingleNestedAttribute{
+									Computed: true,
+									Attributes: map[string]schema.Attribute{
+										"type": schema.StringAttribute{
+											Computed: true,
+										},
+										"billing_project_id": schema.StringAttribute{
+											Computed: true,
+										},
+										"dataset_id": schema.StringAttribute{
+											Computed: true,
+										},
+										"project_id": schema.StringAttribute{
+											Computed: true,
+										},
+										"timezone_data": schema.SingleNestedAttribute{
+											Optional: true,
+											Computed: true,
+											Attributes: map[string]schema.Attribute{
+												"timezone": schema.StringAttribute{
+													Computed: true,
+												},
+												"utc_offset": schema.StringAttribute{
+													Computed: true,
+												},
+											},
+										},
+									},
+								},
+								"dbt": schema.SingleNestedAttribute{
+									Optional: true,
+									Attributes: map[string]schema.Attribute{
+										"type": schema.StringAttribute{
+											Computed: true,
+										},
+										"project_name": schema.StringAttribute{
+											Computed: true,
+										},
+										"target": schema.StringAttribute{
+											Computed: true,
+										},
+										"timezone_data": schema.SingleNestedAttribute{
+											Optional: true,
+											Computed: true,
+											Attributes: map[string]schema.Attribute{
+												"timezone": schema.StringAttribute{
+													Computed: true,
+												},
+												"utc_offset": schema.StringAttribute{
+													Computed: true,
+												},
+											},
+										},
+									},
+								},
 							},
 						},
 						Computed: true,
@@ -168,7 +174,7 @@ func (d *datasourcesDataSource) Schema(_ context.Context, _ datasource.SchemaReq
 }
 
 func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var state DatasourceSearchDto
+	var state datasource_struct.DatasourceSearchDto
 
 	ItemsPerPage := int32(-1)
 
@@ -201,13 +207,14 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 	state.SearchRules.TotalElements = result.SearchDatasources.TotalElements
 
 	if state.SearchRules.Data == nil {
-		state.SearchRules.Data = &[]DatasourceCatalogAssetDto{}
+		state.SearchRules.Data = &[]datasource_struct.DatasourceCatalogAssetDto{}
 	}
 
 	for _, data := range *result.SearchDatasources.Data {
+
 		idString := data.Id.String()
-		yEntityType := DatasourceCatalogAssetDtoEntityType(data.EntityType)
-		*state.SearchRules.Data = append(*state.SearchRules.Data, DatasourceCatalogAssetDto{
+		yEntityType := datasource_struct.DatasourceCatalogAssetDtoEntityType(data.EntityType)
+		data_source_catalog_asset := datasource_struct.DatasourceCatalogAssetDto{
 			CreatedBy:        data.CreatedBy,
 			CreatedDate:      data.CreatedDate,
 			CronExpression:   data.CronExpression,
@@ -218,11 +225,49 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 			Type:             data.Type,
 			EntityType:       yEntityType,
 			Id:               &idString,
-		})
+		}
+
+		if data.Type == "bigquery" {
+
+			resultParams, _ := data.Params.AsBigQueryParams()
+
+			result_timezone := datasource_struct.TimeZoneDto{
+				TimeZone:  types.StringValue(resultParams.TimezoneData.Timezone),
+				UtcOffset: types.StringValue(resultParams.TimezoneData.UtcOffset),
+			}
+
+			result_bq := datasource_struct.BigQueryParams{
+				Type:             types.StringValue(resultParams.Type),
+				BillingProjectID: resultParams.BillingProjectId,
+				DatasetID:        resultParams.DatasetId,
+				ProjectID:        resultParams.ProjectId,
+				TimezoneData:     &result_timezone,
+			}
+			data_source_catalog_asset.BigQuery = &result_bq
+		} else if data.Type == "dbt" {
+			resultParams, _ := data.Params.AsDBTParams()
+
+			result_timezone := datasource_struct.TimeZoneDto{
+				TimeZone:  types.StringValue(resultParams.TimezoneData.Timezone),
+				UtcOffset: types.StringValue(resultParams.TimezoneData.UtcOffset),
+			}
+
+			result_dbt := datasource_struct.DBTParams{
+				Type:         types.StringValue(resultParams.Type),
+				Target:       resultParams.Target,
+				ProjectName:  resultParams.ProjectName,
+				TimezoneData: &result_timezone,
+			}
+
+			data_source_catalog_asset.DBT = &result_dbt
+		}
+
+		*state.SearchRules.Data = append(*state.SearchRules.Data, data_source_catalog_asset)
+
 	}
 
 	for _, filters := range result.CatalogFilters {
-		state.CatalogFilters = append(state.CatalogFilters, CatalogFilterDto{
+		state.CatalogFilters = append(state.CatalogFilters, datasource_struct.CatalogFilterDto{
 			Name:  filters.Name,
 			Id:    filters.Id,
 			Query: filters.Query,
