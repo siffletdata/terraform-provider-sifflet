@@ -220,12 +220,11 @@ type DatasourceCatalogAssetDto struct {
 	EntityType       DatasourceCatalogAssetDtoEntityType `tfsdk:"entity_type"`
 	Id               *string                             `tfsdk:"id"`
 	LastModifiedDate *int64                              `tfsdk:"last_modified_date"`
-	// LastWeekStatuses *[]LastIngestionStatusDto           `tfsdk:"lastWeekStatuses"`
-	ModifiedBy    *string         `tfsdk:"modified_by"`
-	Name          string          `tfsdk:"name"`
-	NextExecution *int64          `tfsdk:"next_execution"`
-	BigQuery      *BigQueryParams `tfsdk:"bigquery"`
-	DBT           *DBTParams      `tfsdk:"dbt"`
+	ModifiedBy       *string                             `tfsdk:"modified_by"`
+	Name             string                              `tfsdk:"name"`
+	NextExecution    *int64                              `tfsdk:"next_execution"`
+	BigQuery         *BigQueryParams                     `tfsdk:"bigquery"`
+	DBT              *DBTParams                          `tfsdk:"dbt"`
 	// Tags             *[]TagDto                           `tfsdk:"tags"`
 	Type string `tfsdk:"type"`
 }
