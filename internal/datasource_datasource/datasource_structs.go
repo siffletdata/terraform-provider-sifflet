@@ -56,46 +56,54 @@ func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "Data source UID",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
 			"name": schema.StringAttribute{
-				Required: true,
+				Required:    true,
+				Description: "Name to represent your integration in Sifflet",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
 			},
 			"cron_expression": schema.StringAttribute{
-				Optional: true,
+				Optional:    true,
+				Description: "Cron expression used to defined schedule refresh of the data source.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
 			},
 			"type": schema.StringAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "Type of data source (ie: dbt, bigquery)",
 			},
 			"secret_id": schema.StringAttribute{
-				Optional: true,
+				Optional:    true,
+				Description: "Secret ID used by the connection.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
 			},
 			"created_by": schema.StringAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "Username that created the data source.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
 			"created_date": schema.StringAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "Data of data source creation.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
 			"modified_by": schema.StringAttribute{
-				Computed: true,
+				Computed:    true,
+				Description: "Last username that modified the datasource.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
@@ -104,31 +112,36 @@ func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"type": schema.StringAttribute{
-						Computed: true,
+						Computed:    true,
+						Description: "Type of data source (ie: dbt, bigquery).",
 					},
 					"billing_project_id": schema.StringAttribute{
-						Optional: true,
-						Computed: true,
-						Default:  stringdefault.StaticString(""),
+						Optional:    true,
+						Computed:    true,
+						Description: "GCP project used for billing.",
+						Default:     stringdefault.StaticString(""),
 						PlanModifiers: []planmodifier.String{
 							stringplanmodifier.RequiresReplace(),
 						},
 					},
 					"dataset_id": schema.StringAttribute{
-						Required: true,
+						Required:    true,
+						Description: "BigQuery dataset to add as data source.",
 						PlanModifiers: []planmodifier.String{
 							stringplanmodifier.RequiresReplace(),
 						},
 					},
 					"project_id": schema.StringAttribute{
-						Required: true,
+						Required:    true,
+						Description: "Project where the dataset to add is located.",
 						PlanModifiers: []planmodifier.String{
 							stringplanmodifier.RequiresReplace(),
 						},
 					},
 					"timezone_data": schema.SingleNestedAttribute{
-						Optional: true,
-						Computed: true,
+						Optional:    true,
+						Computed:    true,
+						Description: "Timezone informations of your data source.",
 						Default: objectdefault.StaticValue(
 							types.ObjectValueMust(
 								map[string]attr.Type{
@@ -143,13 +156,15 @@ func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 						),
 						Attributes: map[string]schema.Attribute{
 							"timezone": schema.StringAttribute{
-								Required: true,
+								Required:    true,
+								Description: "Timezone of your data source (ie: UTC).",
 								PlanModifiers: []planmodifier.String{
 									stringplanmodifier.RequiresReplace(),
 								},
 							},
 							"utc_offset": schema.StringAttribute{
-								Required: true,
+								Required:    true,
+								Description: "Timezone offset of your data source (ie: '(UTC+00:00)').",
 								PlanModifiers: []planmodifier.String{
 									stringplanmodifier.RequiresReplace(),
 								},
@@ -162,23 +177,27 @@ func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"type": schema.StringAttribute{
-						Computed: true,
+						Computed:    true,
+						Description: "Type of data source (ie: dbt, bigquery).",
 					},
 					"project_name": schema.StringAttribute{
-						Required: true,
+						Required:    true,
+						Description: "The name of your dbt project (the 'name' in your dbt_project.yml file).",
 						PlanModifiers: []planmodifier.String{
 							stringplanmodifier.RequiresReplace(),
 						},
 					},
 					"target": schema.StringAttribute{
-						Required: true,
+						Required:    true,
+						Description: "the target value of the profile that corresponds to your project (the 'target' in your profiles.yml).",
 						PlanModifiers: []planmodifier.String{
 							stringplanmodifier.RequiresReplace(),
 						},
 					},
 					"timezone_data": schema.SingleNestedAttribute{
-						Optional: true,
-						Computed: true,
+						Optional:    true,
+						Computed:    true,
+						Description: "Timezone informations of your data source.",
 						Default: objectdefault.StaticValue(
 							types.ObjectValueMust(
 								map[string]attr.Type{
@@ -193,13 +212,15 @@ func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 						),
 						Attributes: map[string]schema.Attribute{
 							"timezone": schema.StringAttribute{
-								Required: true,
+								Required:    true,
+								Description: "Timezone of your data source (ie: UTC).",
 								PlanModifiers: []planmodifier.String{
 									stringplanmodifier.RequiresReplace(),
 								},
 							},
 							"utc_offset": schema.StringAttribute{
-								Required: true,
+								Required:    true,
+								Description: "Timezone offset of your data source (ie: '(UTC+00:00)').",
 								PlanModifiers: []planmodifier.String{
 									stringplanmodifier.RequiresReplace(),
 								},
