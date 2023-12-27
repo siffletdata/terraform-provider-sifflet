@@ -128,7 +128,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	datasourceResponse, _ := r.client.CreateDatasource(ctx, datasource)
 
 	resBody, _ := io.ReadAll(datasourceResponse.Body)
-	tflog.Debug(ctx, "test1 "+string(resBody))
+	tflog.Debug(ctx, "Response:  "+string(resBody))
 
 	if datasourceResponse.StatusCode != http.StatusCreated {
 		var message datasource_struct.ErrorMessage
@@ -212,7 +212,7 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 	}
 
 	resBody, _ := io.ReadAll(itemResponse.Body)
-	tflog.Debug(ctx, fmt.Sprintf("test 1 %d ", itemResponse.Body))
+	tflog.Debug(ctx, fmt.Sprintf("Response: %d ", itemResponse.Body))
 
 	if itemResponse.StatusCode == http.StatusNotFound {
 		// TODO: in case of 404 nothing is return by the API
@@ -224,7 +224,6 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 
 		var message datasource_struct.ErrorMessage
 		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
-			tflog.Debug(ctx, "if is valid"+string(resBody))
 			resp.Diagnostics.AddError(
 				"Can not unmarshal JSON",
 				err.Error(),
@@ -323,7 +322,7 @@ func (r *datasourceResource) Delete(ctx context.Context, req resource.DeleteRequ
 
 	datasourceResponse, _ := r.client.DeleteDatasourceById(ctx, uuid.MustParse(id))
 	resBody, _ := io.ReadAll(datasourceResponse.Body)
-	tflog.Debug(ctx, "test1 "+string(resBody))
+	tflog.Debug(ctx, "Response "+string(resBody))
 
 	if datasourceResponse.StatusCode != http.StatusNoContent {
 		var message datasource_struct.ErrorMessage
@@ -378,7 +377,6 @@ func (r *datasourceResource) ValidateConfig(ctx context.Context, req resource.Va
 
 	// TODO: maybe find something more elegant than chaining checks
 	if data.DBT != nil && data.BigQuery != nil {
-		tflog.Debug(ctx, "tratat")
 		resp.Diagnostics.AddError(
 			"Error",
 			"Define only one type of data source",

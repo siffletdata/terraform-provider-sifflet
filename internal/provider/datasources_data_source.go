@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net/http"
 
 	sifflet "terraform-provider-sifflet/internal/client"
 	datasource_struct "terraform-provider-sifflet/internal/datasource_datasource"
@@ -65,13 +66,31 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 	itemResponse, err := d.client.GetAllDatasource(ctx, &params)
 	if err != nil {
 		resp.Diagnostics.AddError(
-			"Unable to Read HashiCups Coffees",
+			"Unable to read data sources",
 			err.Error(),
 		)
 		return
 	}
 	resBody, _ := io.ReadAll(itemResponse.Body)
-	tflog.Debug(ctx, "test1 "+string(resBody))
+	tflog.Debug(ctx, "Response:  "+string(resBody))
+
+	if itemResponse.StatusCode != http.StatusOK {
+
+		var message datasource_struct.ErrorMessage
+		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
+			resp.Diagnostics.AddError(
+				"Can not unmarshal JSON",
+				err.Error(),
+			)
+			return
+		}
+		resp.Diagnostics.AddError(
+			message.Title,
+			message.Detail,
+		)
+		resp.State.RemoveResource(ctx)
+		return
+	}
 
 	var result sifflet.DatasourceSearchDto
 	if err := json.Unmarshal(resBody, &result); err != nil { // Parse []byte to go struct pointer
