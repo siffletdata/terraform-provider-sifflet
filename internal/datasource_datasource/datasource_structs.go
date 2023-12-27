@@ -96,7 +96,7 @@ func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 			},
 			"created_date": schema.StringAttribute{
 				Computed:    true,
-				Description: "Data of data source creation.",
+				Description: "Date of data source creation.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
@@ -290,62 +290,81 @@ func DatasourceDataSourceSchema(ctx context.Context) data_source.Schema {
 			"search_rules": data_source.SingleNestedAttribute{
 				Attributes: map[string]data_source.Attribute{
 					"data": data_source.ListNestedAttribute{
+						Description: "List of all data sources.",
 						NestedObject: data_source.NestedAttributeObject{
 							Attributes: map[string]data_source.Attribute{
 								"created_by": data_source.StringAttribute{
-									Computed: true,
+									Description: "Username that created the data source.",
+									Computed:    true,
 								},
 								"created_date": data_source.Int64Attribute{
-									Computed: true,
+									Description: "Date of data source creation.",
+									Computed:    true,
 								},
 								"cron_expression": data_source.StringAttribute{
-									Computed: true,
+									Description: "Cron expression used to defined schedule refresh of the data source.",
+									Computed:    true,
 								},
 								"entity_type": data_source.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: "Sifflet entity type (ie: DATASOURCE).",
 								},
 								"id": data_source.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: "Data source UID",
 								},
 								"last_modified_date": data_source.Int64Attribute{
-									Computed: true,
+									Description: "Date of data source last modification.",
+									Computed:    true,
 								},
 								"modified_by": data_source.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: "Last username that modified the datasource.",
 								},
 								"name": data_source.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: "Name to represent your integration in Sifflet.",
 								},
 								"next_execution": data_source.Int64Attribute{
-									Computed: true,
+									Computed:    true,
+									Description: "Date of the next refresh for the data source.",
 								},
 								"type": data_source.StringAttribute{
-									Computed: true,
+									Computed:    true,
+									Description: "Type of data source (ie: dbt, bigquery)",
 								},
 								"bigquery": data_source.SingleNestedAttribute{
 									Computed: true,
+									Optional: true,
 									Attributes: map[string]data_source.Attribute{
 										"type": data_source.StringAttribute{
-											Computed: true,
+											Computed:    true,
+											Description: "Type of data source (ie: dbt, bigquery).",
 										},
 										"billing_project_id": data_source.StringAttribute{
-											Computed: true,
+											Computed:    true,
+											Description: "GCP project used for billing.",
 										},
 										"dataset_id": data_source.StringAttribute{
-											Computed: true,
+											Computed:    true,
+											Description: "BigQuery dataset to add as data source.",
 										},
 										"project_id": data_source.StringAttribute{
-											Computed: true,
+											Computed:    true,
+											Description: "Project where the dataset to add is located.",
 										},
 										"timezone_data": data_source.SingleNestedAttribute{
-											Optional: true,
-											Computed: true,
+											Optional:    true,
+											Computed:    true,
+											Description: "Timezone informations of your data source.",
 											Attributes: map[string]data_source.Attribute{
 												"timezone": data_source.StringAttribute{
-													Computed: true,
+													Computed:    true,
+													Description: "Timezone of your data source (ie: UTC).",
 												},
 												"utc_offset": data_source.StringAttribute{
-													Computed: true,
+													Computed:    true,
+													Description: "Timezone offset of your data source (ie: '(UTC+00:00)').",
 												},
 											},
 										},
@@ -353,25 +372,32 @@ func DatasourceDataSourceSchema(ctx context.Context) data_source.Schema {
 								},
 								"dbt": data_source.SingleNestedAttribute{
 									Optional: true,
+									Computed: true,
 									Attributes: map[string]data_source.Attribute{
 										"type": data_source.StringAttribute{
-											Computed: true,
+											Computed:    true,
+											Description: "Type of data source (ie: dbt, bigquery).",
 										},
 										"project_name": data_source.StringAttribute{
-											Computed: true,
+											Computed:    true,
+											Description: "The name of your dbt project (the 'name' in your dbt_project.yml file).",
 										},
 										"target": data_source.StringAttribute{
-											Computed: true,
+											Computed:    true,
+											Description: "the target value of the profile that corresponds to your project (the 'target' in your profiles.yml).",
 										},
 										"timezone_data": data_source.SingleNestedAttribute{
-											Optional: true,
-											Computed: true,
+											Optional:    true,
+											Computed:    true,
+											Description: "Timezone informations of your data source.",
 											Attributes: map[string]data_source.Attribute{
 												"timezone": data_source.StringAttribute{
-													Computed: true,
+													Computed:    true,
+													Description: "Timezone of your data source (ie: UTC).",
 												},
 												"utc_offset": data_source.StringAttribute{
-													Computed: true,
+													Computed:    true,
+													Description: "Timezone offset of your data source (ie: '(UTC+00:00)').",
 												},
 											},
 										},
@@ -382,7 +408,8 @@ func DatasourceDataSourceSchema(ctx context.Context) data_source.Schema {
 						Computed: true,
 					},
 					"total_elements": data_source.Int64Attribute{
-						Computed: true,
+						Computed:    true,
+						Description: "Total number of data sources.",
 					},
 				},
 				Computed: true,

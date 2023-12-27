@@ -53,7 +53,7 @@ resource "sifflet_datasource" "dbt" {
 ### Read-Only
 
 - `created_by` (String) Username that created the data source.
-- `created_date` (String) Data of data source creation.
+- `created_date` (String) Date of data source creation.
 - `id` (String) Data source UID
 - `modified_by` (String) Last username that modified the datasource.
 - `type` (String) Type of data source (ie: dbt, bigquery)
@@ -108,3 +108,11 @@ Required:
 
 - `timezone` (String) Timezone of your data source (ie: UTC).
 - `utc_offset` (String) Timezone offset of your data source (ie: '(UTC+00:00)').
+
+## Import
+
+Import is supported using the following syntax:
+
+```shell
+terraform import sifflet_datasource.example 'ad7b0951-318c-4950-932b-4614621b9bed'
+```
