@@ -172,6 +172,7 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
 		NewDatasourcesDataSource,
+		NewTagDataSource,
 	}
 }
 
