@@ -34,11 +34,11 @@ output "tags" {
 Read-Only:
 
 - `created_by` (String) Username that created the tag.
-- `created_date` (Number) Date of tag creation.
+- `created_date` (String) Date of tag creation.
 - `description` (String) Tag description.
 - `editable` (Boolean) If tag is editable.
 - `id` (String) Tag UID
-- `last_modified_date` (Number) Date of tag last modification.
+- `last_modified_date` (String) Date of tag last modification.
 - `modified_by` (String) Last username that modified the tag.
 - `name` (String) Name to represent your integration in Sifflet.
-- `type` (String) Type of tag (ie: GENERIC)
+- `type` (String) Type of tag (ie: GENERIC, HIDDEN_DATA_CLASSIFICATION, VISIBLE_DATA_CLASSIFICATION, TERM, BIGQUERY_EXTERNAL, SNOWFLAKE_EXTERNAL)

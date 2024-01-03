@@ -6,11 +6,14 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strconv"
 
 	sifflet "terraform-provider-sifflet/internal/client"
 	tag_struct "terraform-provider-sifflet/internal/tag_datasource"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
@@ -112,16 +115,38 @@ func (d *tagDataSource) Read(ctx context.Context, req datasource.ReadRequest, re
 
 		idString := data.Id.String()
 		yType := tag_struct.TagDtoType(data.Type)
+
+		var lmd basetypes.StringValue
+		if data.LastModifiedDate == nil {
+			lmd = types.StringValue("")
+		} else {
+			lmd = types.StringValue(strconv.FormatInt(*data.LastModifiedDate, 10))
+		}
+
+		var cd basetypes.StringValue
+		if data.CreatedDate == nil {
+			cd = types.StringValue("")
+		} else {
+			cd = types.StringValue(strconv.FormatInt(*data.CreatedDate, 10))
+		}
+
+		var mb basetypes.StringValue
+		if data.ModifiedBy == nil {
+			mb = types.StringValue("")
+		} else {
+			mb = types.StringValue(*data.ModifiedBy)
+		}
+
 		data_source_catalog_asset := tag_struct.TagDto{
-			CreatedBy:        data.CreatedBy,
-			CreatedDate:      data.CreatedDate,
+			CreatedBy:        types.StringValue(*data.CreatedBy),
+			CreatedDate:      cd,
 			Description:      data.Description,
-			Editable:         data.Editable,
-			LastModifiedDate: data.LastModifiedDate,
-			ModifiedBy:       data.ModifiedBy,
-			Name:             data.Name,
-			Type:             yType,
-			Id:               idString,
+			Editable:         types.BoolValue(*data.Editable),
+			LastModifiedDate: lmd,
+			ModifiedBy:       mb,
+			Name:             &data.Name,
+			Type:             &yType,
+			Id:               types.StringValue(idString),
 		}
 
 		*state.Data = append(*state.Data, data_source_catalog_asset)

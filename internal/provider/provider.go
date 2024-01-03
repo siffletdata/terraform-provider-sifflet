@@ -180,5 +180,6 @@ func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.Dat
 func (p *siffletProvider) Resources(_ context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
 		NewDataSourceResource,
+		NewTagResource,
 	}
 }
