@@ -97,7 +97,7 @@ type TagDto struct {
 	Id               types.String `tfsdk:"id"`
 	LastModifiedDate types.String `tfsdk:"last_modified_date"`
 	ModifiedBy       types.String `tfsdk:"modified_by"`
-	Name             *string       `tfsdk:"name"`
+	Name             *string      `tfsdk:"name"`
 	Type             *TagDtoType  `tfsdk:"type"`
 }
 
