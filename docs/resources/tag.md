@@ -3,12 +3,12 @@
 page_title: "sifflet_tag Resource - terraform-provider-sifflet"
 subcategory: ""
 description: |-
-  
+  Create a Sifflet tag.
 ---
 
 # sifflet_tag (Resource)
 
-
+Create a Sifflet tag.
 
 ## Example Usage
 

@@ -16,7 +16,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
+
+	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -140,6 +143,12 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		return
 	}
 
+	var tags []openapi_types.UUID
+
+	for _, tag := range *plan.Tags {
+		tags = append(tags, uuid.MustParse(tag.String()))
+	}
+
 	// Generate API request body from plan
 	datasource := sifflet.CreateDatasourceJSONRequestBody{
 		Name:           *plan.Name,
@@ -147,6 +156,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		Params:         params,
 		CronExpression: plan.CronExpression,
 		Type:           connect_type,
+		Tags:           &tags,
 	}
 
 	// Create new order
@@ -218,6 +228,14 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		plan.Snowflake.TimezoneData.UtcOffset = types.StringValue(resultParams.TimezoneData.UtcOffset)
 
 	}
+
+	var result_tags []basetypes.StringValue
+	for _, tag := range *result.Tags {
+		Id := tag.Id.String()
+		result_tags = append(result_tags, types.StringValue(Id))
+	}
+
+	plan.Tags = &result_tags
 	// Set state to fully populated data
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
@@ -345,6 +363,13 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 
 		state.Snowflake = &result_snowflake
 	}
+
+	var result_tags []basetypes.StringValue
+	for _, tag := range *result.Tags {
+		Id := tag.Id.String()
+		result_tags = append(result_tags, types.StringValue(Id))
+	}
+	state.Tags = &result_tags
 
 	// Set state to fully populated data
 	diags = resp.State.Set(ctx, &state)

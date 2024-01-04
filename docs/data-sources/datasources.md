@@ -3,12 +3,12 @@
 page_title: "sifflet_datasources Data Source - terraform-provider-sifflet"
 subcategory: ""
 description: |-
-  
+  Read all Sifflet Data Sources.
 ---
 
 # sifflet_datasources (Data Source)
 
-
+Read all Sifflet Data Sources.
 
 ## Example Usage
 

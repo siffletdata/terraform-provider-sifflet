@@ -3,12 +3,12 @@
 page_title: "sifflet_datasource Resource - terraform-provider-sifflet"
 subcategory: ""
 description: |-
-  
+  Create a Sifflet Data Source.
 ---
 
 # sifflet_datasource (Resource)
 
-
+Create a Sifflet Data Source.
 
 ## Example Usage
 
@@ -66,6 +66,7 @@ resource "sifflet_datasource" "snowflake" {
 - `dbt` (Attributes) (see [below for nested schema](#nestedatt--dbt))
 - `secret_id` (String) Secret ID used by the connection.
 - `snowflake` (Attributes) (see [below for nested schema](#nestedatt--snowflake))
+- `tags` (Set of String)
 
 ### Read-Only
 

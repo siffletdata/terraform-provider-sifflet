@@ -19,6 +19,7 @@ type ErrorMessage struct {
 
 func TagResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
+		Description: "Create a Sifflet tag.",
 		Attributes: map[string]schema.Attribute{
 			"created_by": schema.StringAttribute{
 				Description: "Username that created the tag.",
@@ -108,6 +109,7 @@ type SearchCollectionTagDto struct {
 
 func TagDataSourceSchema(ctx context.Context) data_source.Schema {
 	return data_source.Schema{
+		Description: "Real all Sifflet tags.",
 		Attributes: map[string]data_source.Attribute{
 			"data": data_source.ListNestedAttribute{
 				Description: "List of all tags.",

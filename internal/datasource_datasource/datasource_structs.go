@@ -54,6 +54,7 @@ type CreateDatasourceDto struct {
 	CreatedBy      types.String     `tfsdk:"created_by"`
 	CreatedDate    types.String     `tfsdk:"created_date"`
 	ModifiedBy     types.String     `tfsdk:"modified_by"`
+	Tags           *[]types.String  `tfsdk:"tags"`
 }
 
 type ErrorMessage struct {
@@ -64,6 +65,7 @@ type ErrorMessage struct {
 
 func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
+		Description: "Create a Sifflet Data Source.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Computed:    true,
@@ -117,6 +119,10 @@ func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.UseStateForUnknown(),
 				},
+			},
+			"tags": schema.SetAttribute{
+				ElementType: types.StringType,
+				Optional:    true,
 			},
 			"bigquery": schema.SingleNestedAttribute{
 				Optional: true,
@@ -353,6 +359,7 @@ type DatasourceSearchDto struct {
 
 func DatasourceDataSourceSchema(ctx context.Context) data_source.Schema {
 	return data_source.Schema{
+		Description: "Read all Sifflet Data Sources.",
 		Attributes: map[string]data_source.Attribute{
 			"catalog_filters": data_source.ListNestedAttribute{
 				NestedObject: data_source.NestedAttributeObject{
