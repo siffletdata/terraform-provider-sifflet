@@ -13,6 +13,12 @@ Create a Sifflet Data Source.
 ## Example Usage
 
 ```terraform
+resource "sifflet_tag" "super_tag" {
+  type        = "GENERIC"
+  name        = "my-tag"
+  description = "My super tag."
+}
+
 resource "sifflet_datasource" "bigquery" {
   name            = "orders"
   secret_id       = "bq_secrets"
@@ -23,6 +29,9 @@ resource "sifflet_datasource" "bigquery" {
     project_id         = "orders-prj"
   }
 
+  tags = [
+    sifflet_tag.super_tag.id
+  ]
 }
 
 
@@ -66,7 +75,7 @@ resource "sifflet_datasource" "snowflake" {
 - `dbt` (Attributes) (see [below for nested schema](#nestedatt--dbt))
 - `secret_id` (String) Secret ID used by the connection.
 - `snowflake` (Attributes) (see [below for nested schema](#nestedatt--snowflake))
-- `tags` (Set of String)
+- `tags` (Set of String) List of tags UUID.
 
 ### Read-Only
 

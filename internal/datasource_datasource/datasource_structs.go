@@ -123,6 +123,7 @@ func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 			"tags": schema.SetAttribute{
 				ElementType: types.StringType,
 				Optional:    true,
+				Description: "List of tags UUID.",
 			},
 			"bigquery": schema.SingleNestedAttribute{
 				Optional: true,

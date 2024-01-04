@@ -1,3 +1,9 @@
+resource "sifflet_tag" "super_tag" {
+  type        = "GENERIC"
+  name        = "my-tag"
+  description = "My super tag."
+}
+
 resource "sifflet_datasource" "bigquery" {
   name            = "orders"
   secret_id       = "bq_secrets"
@@ -8,6 +14,9 @@ resource "sifflet_datasource" "bigquery" {
     project_id         = "orders-prj"
   }
 
+  tags = [
+    sifflet_tag.super_tag.id
+  ]
 }
 
 
