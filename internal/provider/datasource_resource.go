@@ -82,9 +82,9 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	}
 	`,
 			connect_type,
-			*plan.BigQuery.BillingProjectID,
-			*plan.BigQuery.DatasetID,
-			*plan.BigQuery.ProjectID,
+			plan.BigQuery.BillingProjectID,
+			plan.BigQuery.DatasetID,
+			plan.BigQuery.ProjectID,
 			plan.BigQuery.TimezoneData.TimeZone,
 			plan.BigQuery.TimezoneData.UtcOffset,
 		))
@@ -104,8 +104,8 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	}
 	`,
 			connect_type,
-			*plan.DBT.ProjectName,
-			*plan.DBT.Target,
+			plan.DBT.ProjectName,
+			plan.DBT.Target,
 			plan.DBT.TimezoneData.TimeZone,
 			plan.DBT.TimezoneData.UtcOffset,
 		))
@@ -127,10 +127,10 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	}
 	`,
 			connect_type,
-			*plan.Snowflake.AccountIdentifier,
-			*plan.Snowflake.Database,
-			*plan.Snowflake.Schema,
-			*plan.Snowflake.Warehouse,
+			plan.Snowflake.AccountIdentifier,
+			plan.Snowflake.Database,
+			plan.Snowflake.Schema,
+			plan.Snowflake.Warehouse,
 			plan.Snowflake.TimezoneData.TimeZone,
 			plan.Snowflake.TimezoneData.UtcOffset,
 		))
@@ -151,13 +151,13 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 
 	// Generate API request body from plan
 	datasource := sifflet.CreateDatasourceJSONRequestBody{
-		Name:           *plan.Name,
-		SecretId:       plan.SecretID,
 		Params:         params,
 		CronExpression: plan.CronExpression,
 		Type:           connect_type,
 		Tags:           &tags,
 	}
+	datasource.Name = plan.Name.String()
+	datasource.SecretId = plan.SecretID.ValueStringPointer()
 
 	// Create new order
 	datasourceResponse, _ := r.client.CreateDatasource(ctx, datasource)
@@ -193,36 +193,36 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 
 	// Map response body to schema and populate Computed attribute values
 	plan.ID = types.StringValue(result.Id.String())
-	plan.Name = &result.Name
+	plan.Name = types.StringValue(result.Name)
 	plan.CronExpression = result.CronExpression
 	plan.Type = types.StringValue(result.Type)
 	plan.CreatedBy = types.StringValue(*result.CreatedBy)
 	plan.CreatedDate = types.StringValue(strconv.FormatInt(*result.CreatedDate, 10))
 	plan.ModifiedBy = types.StringValue(*result.ModifiedBy)
-	plan.SecretID = result.SecretId
+	plan.SecretID = types.StringValue(*result.SecretId)
 
 	if plan.BigQuery != nil {
 		resultParams, _ := result.Params.AsBigQueryParams()
-		plan.BigQuery.BillingProjectID = resultParams.BillingProjectId
-		plan.BigQuery.ProjectID = resultParams.ProjectId
-		plan.BigQuery.DatasetID = resultParams.DatasetId
+		plan.BigQuery.BillingProjectID = types.StringValue(*resultParams.BillingProjectId)
+		plan.BigQuery.ProjectID = types.StringValue(*resultParams.ProjectId)
+		plan.BigQuery.DatasetID = types.StringValue(*resultParams.DatasetId)
 		plan.BigQuery.Type = types.StringValue(resultParams.Type)
 		plan.BigQuery.TimezoneData.TimeZone = types.StringValue(resultParams.TimezoneData.Timezone)
 		plan.BigQuery.TimezoneData.UtcOffset = types.StringValue(resultParams.TimezoneData.UtcOffset)
 	} else if plan.DBT != nil {
 		resultParams, _ := result.Params.AsDBTParams()
-		plan.DBT.Target = resultParams.Target
-		plan.DBT.ProjectName = resultParams.ProjectName
+		plan.DBT.Target = types.StringValue(*resultParams.Target)
+		plan.DBT.ProjectName = types.StringValue(*resultParams.ProjectName)
 		plan.DBT.Type = types.StringValue(resultParams.Type)
 		plan.DBT.TimezoneData.TimeZone = types.StringValue(resultParams.TimezoneData.Timezone)
 		plan.DBT.TimezoneData.UtcOffset = types.StringValue(resultParams.TimezoneData.UtcOffset)
 
 	} else if plan.Snowflake != nil {
 		resultParams, _ := result.Params.AsSnowflakeParams()
-		plan.Snowflake.AccountIdentifier = resultParams.AccountIdentifier
-		plan.Snowflake.Database = resultParams.Database
-		plan.Snowflake.Schema = resultParams.Schema
-		plan.Snowflake.Warehouse = resultParams.Warehouse
+		plan.Snowflake.AccountIdentifier = types.StringValue(*resultParams.AccountIdentifier)
+		plan.Snowflake.Database = types.StringValue(*resultParams.Database)
+		plan.Snowflake.Schema = types.StringValue(*resultParams.Schema)
+		plan.Snowflake.Warehouse = types.StringValue(*resultParams.Warehouse)
 		plan.Snowflake.Type = types.StringValue(resultParams.Type)
 		plan.Snowflake.TimezoneData.TimeZone = types.StringValue(resultParams.TimezoneData.Timezone)
 		plan.Snowflake.TimezoneData.UtcOffset = types.StringValue(resultParams.TimezoneData.UtcOffset)
@@ -302,13 +302,13 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 
 	state = datasource_struct.CreateDatasourceDto{
 		ID:             types.StringValue(result.Id.String()),
-		Name:           &result.Name,
+		Name:           types.StringValue(result.Name),
 		CreatedBy:      types.StringValue(*result.CreatedBy),
 		CreatedDate:    types.StringValue(strconv.FormatInt(*result.CreatedDate, 10)),
 		ModifiedBy:     types.StringValue(*result.ModifiedBy),
 		CronExpression: result.CronExpression,
 		Type:           types.StringValue(result.Type),
-		SecretID:       result.SecretId,
+		SecretID:       types.StringValue(*result.SecretId),
 	}
 
 	if result.Type == "bigquery" {
@@ -321,9 +321,9 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 
 		result_bq := datasource_struct.BigQueryParams{
 			Type:             types.StringValue(resultParams.Type),
-			BillingProjectID: resultParams.BillingProjectId,
-			DatasetID:        resultParams.DatasetId,
-			ProjectID:        resultParams.ProjectId,
+			BillingProjectID: types.StringValue(*resultParams.BillingProjectId),
+			DatasetID:        types.StringValue(*resultParams.DatasetId),
+			ProjectID:        types.StringValue(*resultParams.ProjectId),
 			TimezoneData:     &result_timezone,
 		}
 
@@ -338,8 +338,8 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 
 		result_dbt := datasource_struct.DBTParams{
 			Type:         types.StringValue(resultParams.Type),
-			Target:       resultParams.Target,
-			ProjectName:  resultParams.ProjectName,
+			Target:       types.StringValue(*resultParams.Target),
+			ProjectName:  types.StringValue(*resultParams.ProjectName),
 			TimezoneData: &result_timezone,
 		}
 
@@ -354,10 +354,10 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 
 		result_snowflake := datasource_struct.SnowflakeParams{
 			Type:              types.StringValue(resultParams.Type),
-			Database:          resultParams.Database,
-			Schema:            resultParams.Schema,
-			Warehouse:         resultParams.Warehouse,
-			AccountIdentifier: resultParams.AccountIdentifier,
+			Database:          types.StringValue(*resultParams.Database),
+			Schema:            types.StringValue(*resultParams.Schema),
+			Warehouse:         types.StringValue(*resultParams.Warehouse),
+			AccountIdentifier: types.StringValue(*resultParams.AccountIdentifier),
 			TimezoneData:      &result_timezone,
 		}
 

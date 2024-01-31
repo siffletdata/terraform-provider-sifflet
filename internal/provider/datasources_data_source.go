@@ -137,9 +137,9 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 
 			result_bq := datasource_struct.BigQueryParams{
 				Type:             types.StringValue(resultParams.Type),
-				BillingProjectID: resultParams.BillingProjectId,
-				DatasetID:        resultParams.DatasetId,
-				ProjectID:        resultParams.ProjectId,
+				BillingProjectID: types.StringValue(*resultParams.BillingProjectId),
+				DatasetID:        types.StringValue(*resultParams.DatasetId),
+				ProjectID:        types.StringValue(*resultParams.ProjectId),
 				TimezoneData:     &result_timezone,
 			}
 			data_source_catalog_asset.BigQuery = &result_bq
@@ -153,8 +153,8 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 
 			result_dbt := datasource_struct.DBTParams{
 				Type:         types.StringValue(resultParams.Type),
-				Target:       resultParams.Target,
-				ProjectName:  resultParams.ProjectName,
+				Target:       types.StringValue(*resultParams.Target),
+				ProjectName:  types.StringValue(*resultParams.ProjectName),
 				TimezoneData: &result_timezone,
 			}
 
@@ -169,10 +169,10 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 
 			result_snowflake := datasource_struct.SnowflakeParams{
 				Type:              types.StringValue(resultParams.Type),
-				Database:          resultParams.Database,
-				Schema:            resultParams.Schema,
-				Warehouse:         resultParams.Warehouse,
-				AccountIdentifier: resultParams.AccountIdentifier,
+				Database:          types.StringValue(*resultParams.Database),
+				Schema:            types.StringValue(*resultParams.Schema),
+				Warehouse:         types.StringValue(*resultParams.Warehouse),
+				AccountIdentifier: types.StringValue(*resultParams.AccountIdentifier),
 				TimezoneData:      &result_timezone,
 			}
 
