@@ -72,9 +72,9 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		jsonData = []byte(fmt.Sprintf(`
 	{
 		"type": "%s",
-		"billingProjectId": "%s",
-		"datasetId": "%s",
-		"projectId": "%s",
+		"billingProjectId": %s,
+		"datasetId": %s,
+		"projectId": %s,
 		"timezoneData": {
 			"timezone": %s,
 			"utcOffset": %s
@@ -95,8 +95,8 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		jsonData = []byte(fmt.Sprintf(`
 	{
 		"type": "%s",
-		"projectName": "%s",
-		"target": "%s",
+		"projectName": %s,
+		"target": %s,
 		"timezoneData": {
 			"timezone": %s,
 			"utcOffset": %s
@@ -116,10 +116,10 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		jsonData = []byte(fmt.Sprintf(`
 	{
 		"type": "%s",
-		"accountIdentifier": "%s",
-		"database": "%s",
-		"schema": "%s",
-		"warehouse": "%s",
+		"accountIdentifier": %s,
+		"database": %s,
+		"schema": %s,
+		"warehouse": %s,
 		"timezoneData": {
 			"timezone": %s,
 			"utcOffset": %s
@@ -156,7 +156,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		Type:           connect_type,
 		Tags:           &tags,
 	}
-	datasource.Name = plan.Name.String()
+	datasource.Name = plan.Name.ValueString()
 	datasource.SecretId = plan.SecretID.ValueStringPointer()
 
 	// Create new order
