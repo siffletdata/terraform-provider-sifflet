@@ -20,34 +20,34 @@ type TimeZoneDto struct {
 
 type BigQueryParams struct {
 	Type             types.String `tfsdk:"type"`
-	BillingProjectID *string      `tfsdk:"billing_project_id"`
-	DatasetID        *string      `tfsdk:"dataset_id"`
-	ProjectID        *string      `tfsdk:"project_id"`
+	BillingProjectID types.String `tfsdk:"billing_project_id"`
+	DatasetID        types.String `tfsdk:"dataset_id"`
+	ProjectID        types.String `tfsdk:"project_id"`
 	TimezoneData     *TimeZoneDto `tfsdk:"timezone_data"`
 }
 
 type DBTParams struct {
 	Type         types.String `tfsdk:"type"`
-	ProjectName  *string      `tfsdk:"project_name"`
-	Target       *string      `tfsdk:"target"`
+	ProjectName  types.String `tfsdk:"project_name"`
+	Target       types.String `tfsdk:"target"`
 	TimezoneData *TimeZoneDto `tfsdk:"timezone_data"`
 }
 
 type SnowflakeParams struct {
 	Type              types.String `tfsdk:"type"`
-	AccountIdentifier *string      `tfsdk:"account_identifier"`
-	Database          *string      `tfsdk:"database"`
-	Schema            *string      `tfsdk:"schema"`
-	Warehouse         *string      `tfsdk:"warehouse"`
+	AccountIdentifier types.String `tfsdk:"account_identifier"`
+	Database          types.String `tfsdk:"database"`
+	Schema            types.String `tfsdk:"schema"`
+	Warehouse         types.String `tfsdk:"warehouse"`
 	TimezoneData      *TimeZoneDto `tfsdk:"timezone_data"`
 }
 
 type CreateDatasourceDto struct {
 	ID             types.String     `tfsdk:"id"`
-	Name           *string          `tfsdk:"name"`
+	Name           types.String     `tfsdk:"name"`
 	CronExpression *string          `tfsdk:"cron_expression"`
 	Type           types.String     `tfsdk:"type"`
-	SecretID       *string          `tfsdk:"secret_id"`
+	SecretID       types.String     `tfsdk:"secret_id"`
 	BigQuery       *BigQueryParams  `tfsdk:"bigquery"`
 	DBT            *DBTParams       `tfsdk:"dbt"`
 	Snowflake      *SnowflakeParams `tfsdk:"snowflake"`
