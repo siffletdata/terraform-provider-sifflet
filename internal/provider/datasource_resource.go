@@ -199,9 +199,9 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	plan.CreatedBy = types.StringValue(*result.CreatedBy)
 	plan.CreatedDate = types.StringValue(strconv.FormatInt(*result.CreatedDate, 10))
 	plan.ModifiedBy = types.StringValue(*result.ModifiedBy)
-	plan.SecretID = types.StringValue(*result.SecretId)
 
 	if plan.BigQuery != nil {
+		plan.SecretID = types.StringValue(*result.SecretId)
 		resultParams, _ := result.Params.AsBigQueryParams()
 		plan.BigQuery.BillingProjectID = types.StringValue(*resultParams.BillingProjectId)
 		plan.BigQuery.ProjectID = types.StringValue(*resultParams.ProjectId)
@@ -218,6 +218,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		plan.DBT.TimezoneData.UtcOffset = types.StringValue(resultParams.TimezoneData.UtcOffset)
 
 	} else if plan.Snowflake != nil {
+		plan.SecretID = types.StringValue(*result.SecretId)
 		resultParams, _ := result.Params.AsSnowflakeParams()
 		plan.Snowflake.AccountIdentifier = types.StringValue(*resultParams.AccountIdentifier)
 		plan.Snowflake.Database = types.StringValue(*resultParams.Database)
