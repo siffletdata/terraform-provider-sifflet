@@ -106,8 +106,10 @@ export TF_LOG=DEBUG
 
 ### Regenerate the Sifflet API client
 
+You can fetch the latest OpenAPI schema from https://docs.siffletdata.com/openapi/.
+
 ```
-oapi-codegen -package example openapi.yaml > internal/client/sifflet.gen.go
+oapi-codegen -package client openapi.yaml > internal/client/sifflet.gen.go
 ```
 
 **Notes and known issues**

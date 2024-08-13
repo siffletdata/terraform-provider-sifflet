@@ -52,12 +52,14 @@ func (p *siffletProvider) Metadata(_ context.Context, _ provider.MetadataRequest
 // Schema defines the provider-level schema for configuration data.
 func (p *siffletProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		// TODO: add validators and descriptions to the schema
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
 				Optional: true,
 			},
 			"token": schema.StringAttribute{
-				Optional: true,
+				Optional:  true,
+				Sensitive: true,
 			},
 		},
 	}
