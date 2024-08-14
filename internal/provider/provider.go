@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
-	sifflet "terraform-provider-sifflet/internal/client"
+	sifflet "terraform-provider-sifflet/internal/alphaclient"
 
 	"github.com/deepmap/oapi-codegen/pkg/securityprovider"
 )

@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"strconv"
 
-	sifflet "terraform-provider-sifflet/internal/client"
+	sifflet "terraform-provider-sifflet/internal/alphaclient"
 	tag_struct "terraform-provider-sifflet/internal/tag_datasource"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"

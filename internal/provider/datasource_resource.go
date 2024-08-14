@@ -10,7 +10,7 @@ import (
 
 	"github.com/google/uuid"
 
-	sifflet "terraform-provider-sifflet/internal/client"
+	sifflet "terraform-provider-sifflet/internal/alphaclient"
 	datasource_struct "terraform-provider-sifflet/internal/datasource_datasource"
 
 	"github.com/hashicorp/terraform-plugin-framework/path"
