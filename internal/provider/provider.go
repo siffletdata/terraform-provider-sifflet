@@ -14,7 +14,7 @@ import (
 	alphasifflet "terraform-provider-sifflet/internal/alphaclient"
 	sifflet "terraform-provider-sifflet/internal/client"
 
-	"github.com/deepmap/oapi-codegen/pkg/securityprovider"
+	"github.com/oapi-codegen/oapi-codegen/v2/pkg/securityprovider"
 )
 
 // Ensure the implementation satisfies the expected interfaces.

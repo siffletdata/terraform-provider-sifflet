@@ -4,5 +4,4 @@ package: client
 generate:
   models: true
   client: true
-  server: false
 output: sifflet.gen.go
