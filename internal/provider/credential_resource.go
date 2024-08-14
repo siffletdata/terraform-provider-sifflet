@@ -2,13 +2,8 @@ package provider
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
-	"strconv"
-
-	"github.com/google/uuid"
 
 	sifflet "terraform-provider-sifflet/internal/client"
 
@@ -17,8 +12,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/types"
-	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
 var (
@@ -31,7 +24,7 @@ func NewCredentialResource() resource.Resource {
 }
 
 type credentialResource struct {
-	client *sifflet.Client
+	client *sifflet.ClientWithResponses
 }
 
 // Metadata returns the resource type name.
@@ -74,8 +67,7 @@ func (r *credentialResource) Schema(ctx context.Context, _ resource.SchemaReques
 }
 
 func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-
-	var plan CredentialDto
+	var plan CredentialDto // FIXME should this be named "state"?
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -88,138 +80,72 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 		Value:       plan.Value,
 	}
 
-	credentialResponse, err := r.client.PublicCreateCredential(ctx, credentialDto)
+	credentialResponse, err := r.client.PublicCreateCredentialWithResponse(ctx, credentialDto)
 	if err != nil {
-		resp.Diagnostics.AddError(
-			"Unable to create credential",
-			err.Error(),
-		)
+		resp.Diagnostics.AddError("Unable to create credential", err.Error())
 		return
 	}
-	// if credentialResponse.StatusCode != http.StatusCreated {
 
-	resBody, _ := io.ReadAll(credentialResponse.Body)
-	// FIXME debug logs
-	tflog.Debug(ctx, "Response:  "+string(resBody))
+	if credentialResponse.StatusCode() != http.StatusCreated {
+		sifflet.HandleHttpErrorAsProblem(
+			ctx, &resp.Diagnostics, "Unable to create credential",
+			credentialResponse.StatusCode(), credentialResponse.Body,
+		)
+		resp.State.RemoveResource(ctx) // FIXME: is it necessary?
+		return
+	}
 
-	// if credentialResponse.StatusCode != http.StatusCreated {
-	// 	if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
-	// 		resp.Diagnostics.AddError(
-	// 			"Can not unmarshal JSON",
-	// 			err.Error(),
-	// 		)
-	// 		return
-	// 	}
-	// 	resp.Diagnostics.AddError(
-	// 		message.Title,
-	// 		message.Detail,
-	// 	)
-	// 	resp.State.RemoveResource(ctx)
-	// 	return
-	// }
-	//
-	// var result sifflet.PublicGetCredentialResponse
-	// if err := json.Unmarshal(resBody, &result); err != nil { // Parse []byte to go struct pointer
-	// 	resp.Diagnostics.AddError(
-	// 		"Can not unmarshal JSON",
-	// 		err.Error(),
-	// 	)
-	// 	return
-	// }
-	//
-	// // Map response body to schema and populate Computed attribute values
-	//
-	// Type := tag_struct.TagDtoType(result.Type)
-	// id := result.Id.String()
-	//
-	// plan.CreatedBy = types.StringValue(*result.CreatedBy)
-	// plan.CreatedDate = types.StringValue(strconv.FormatInt(*result.CreatedDate, 10))
-	// plan.Description = result.Description
-	// plan.Editable = types.BoolValue(*result.Editable)
-	// plan.Id = types.StringValue(id)
-	// plan.LastModifiedDate = types.StringValue(strconv.FormatInt(*result.LastModifiedDate, 10))
-	// plan.ModifiedBy = types.StringValue(*result.ModifiedBy)
-	// plan.Name = &result.Name
-	// plan.Type = &Type
-	//
-	// // Set state to fully populated data
-	// diags = resp.State.Set(ctx, plan)
-	// resp.Diagnostics.Append(diags...)
-	// if resp.Diagnostics.HasError() {
-	// 	return
-	// }
+	plan.Name = credentialDto.Name
+	plan.Description = credentialDto.Description
+	plan.Value = credentialDto.Value
+
+	diags = resp.State.Set(ctx, plan)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
 }
 
-// Read refreshes the Terraform state with the latest data.
+// FIXME/ log all API responses (can probably be done at the client level instead of each function)
+
 func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var state tag_struct.TagDto
+	var state CredentialDto
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	id := state.Id.String()
+	id := state.Name
 
-	itemResponse, err := r.client.GetTagById(ctx, uuid.MustParse(id))
+	credentialResponse, err := r.client.PublicGetCredentialWithResponse(ctx, id)
 	if err != nil {
 		resp.Diagnostics.AddError(
-			"Unable to Read Item",
+			"Unable to read credential",
 			err.Error(),
 		)
 		return
 	}
 
-	resBody, _ := io.ReadAll(itemResponse.Body)
-	tflog.Debug(ctx, fmt.Sprintf("Response: %d ", itemResponse.Body))
-
-	if itemResponse.StatusCode == http.StatusNotFound {
-		// TODO: in case of 404 nothing is return by the API
+	if credentialResponse.StatusCode() == http.StatusNotFound {
+		// FIXME is that the correct logic?
 		resp.State.RemoveResource(ctx)
 		return
 	}
 
-	if itemResponse.StatusCode != http.StatusOK {
-
-		var message tag_struct.ErrorMessage
-		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
-			resp.Diagnostics.AddError(
-				"Can not unmarshal JSON",
-				err.Error(),
-			)
-			return
-		}
-		resp.Diagnostics.AddError(
-			message.Title,
-			message.Detail,
-		)
+	if credentialResponse.StatusCode() != http.StatusOK {
+		sifflet.HandleHttpErrorAsProblem(
+			ctx, &resp.Diagnostics, "Unable to read credential",
+			credentialResponse.StatusCode(), credentialResponse.Body)
 		resp.State.RemoveResource(ctx)
 		return
 	}
 
-	var result sifflet.TagDto
-	if err := json.Unmarshal(resBody, &result); err != nil { // Parse []byte to go struct pointer
-		resp.Diagnostics.AddError(
-			"Can not unmarshal JSON",
-			err.Error(),
-		)
-		return
+	state = CredentialDto{
+		Name:        credentialResponse.JSON200.Name,
+		Description: credentialResponse.JSON200.Description,
 	}
 
-	Type := tag_struct.TagDtoType(result.Type)
-	state = tag_struct.TagDto{
-		CreatedBy:        types.StringValue(*result.CreatedBy),
-		CreatedDate:      types.StringValue(strconv.FormatInt(*result.CreatedDate, 10)),
-		Description:      result.Description,
-		Editable:         types.BoolValue(*result.Editable),
-		Id:               types.StringValue(result.Id.String()),
-		LastModifiedDate: types.StringValue(strconv.FormatInt(*result.LastModifiedDate, 10)),
-		ModifiedBy:       types.StringValue(*result.ModifiedBy),
-		Name:             &result.Name,
-		Type:             &Type,
-	}
-
-	// Set state to fully populated data
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -227,39 +153,26 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 	}
 }
 
-// Update updates the resource and sets the updated Terraform state on success.
 func (r *credentialResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	// NOT IMPLEMENTED IN OPENAPI CONTRACT
+	// TODO
 }
 
-// Delete deletes the resource and removes the Terraform state on success.
 func (r *credentialResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-
-	var state tag_struct.TagDto
+	var state CredentialDto
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	id := state.Id.String()
+	id := state.Name
 
-	tagResponse, _ := r.client.DeleteTag(ctx, uuid.MustParse(id))
-	resBody, _ := io.ReadAll(tagResponse.Body)
-	tflog.Debug(ctx, "Response "+string(resBody))
+	credentialResponse, _ := r.client.PublicDeleteCredentialWithResponse(ctx, id)
 
-	if tagResponse.StatusCode != http.StatusNoContent {
-		var message tag_struct.ErrorMessage
-		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
-			resp.Diagnostics.AddError(
-				"Can not unmarshal JSON",
-				err.Error(),
-			)
-			return
-		}
-		resp.Diagnostics.AddError(
-			message.Title,
-			message.Detail,
+	if credentialResponse.StatusCode() != http.StatusNoContent {
+		sifflet.HandleHttpErrorAsProblem(
+			ctx, &resp.Diagnostics, "Unable to delete credential",
+			credentialResponse.StatusCode(), credentialResponse.Body,
 		)
 		resp.State.RemoveResource(ctx)
 		return
@@ -286,5 +199,5 @@ func (r *credentialResource) Configure(_ context.Context, req resource.Configure
 		return
 	}
 
-	r.client = clients.AlphaClient
+	r.client = clients.Client
 }
