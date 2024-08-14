@@ -11,7 +11,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
-	sifflet "terraform-provider-sifflet/internal/alphaclient"
+	alphasifflet "terraform-provider-sifflet/internal/alphaclient"
+	sifflet "terraform-provider-sifflet/internal/client"
 
 	"github.com/deepmap/oapi-codegen/pkg/securityprovider"
 )
@@ -152,7 +153,18 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 	// WithHTTPClient(httpClient *http.Client)
 	//
 
-	// Create a new Sifflet client using the configuration values
+	// Create a new Sifflet alphaclient using the configuration values
+	alphaclient, err := alphasifflet.NewClient(host, alphasifflet.WithRequestEditorFn(bearerTokenProvider.Intercept))
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to Create Sifflet API Client",
+			"An unexpected error occurred when creating the Sifflet API client. "+
+				"If the error is not clear, please contact the provider developers.\n\n"+
+				"Sifflet Client Error: "+err.Error(),
+		)
+		return
+	}
+
 	client, err := sifflet.NewClient(host, sifflet.WithRequestEditorFn(bearerTokenProvider.Intercept))
 	if err != nil {
 		resp.Diagnostics.AddError(
@@ -164,10 +176,20 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 		return
 	}
 
-	// Make the Sifflet client available during DataSource and Resource
+	httpClients := &httpClients{
+		AlphaClient: alphaclient,
+		Client:      client,
+	}
+
+	// Make the Sifflet clients available during DataSource and Resource
 	// type Configure methods.
-	resp.DataSourceData = client
-	resp.ResourceData = client
+	resp.DataSourceData = httpClients
+	resp.ResourceData = httpClients
+}
+
+type httpClients struct {
+	AlphaClient *alphasifflet.Client
+	Client      *sifflet.Client
 }
 
 // DataSources defines the data sources implemented in the provider.

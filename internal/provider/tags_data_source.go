@@ -35,17 +35,17 @@ func (d *tagDataSource) Configure(_ context.Context, req datasource.ConfigureReq
 		return
 	}
 
-	client, ok := req.ProviderData.(*sifflet.Client)
+	clients, ok := req.ProviderData.(*httpClients)
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected Data Source Configure Type",
-			fmt.Sprintf("Expected *sifflet.Client, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+			fmt.Sprintf("Expected *httpClients, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 
 		return
 	}
 
-	d.client = client
+	d.client = clients.AlphaClient
 }
 
 func (d *tagDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
