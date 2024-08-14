@@ -65,7 +65,6 @@ func (r *tagResource) Create(ctx context.Context, req resource.CreateRequest, re
 		Type:        yType,
 	}
 
-	// Create new order
 	tagResponse, _ := r.client.CreateTag(ctx, tag)
 
 	resBody, _ := io.ReadAll(tagResponse.Body)

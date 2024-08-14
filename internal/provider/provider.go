@@ -165,7 +165,7 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 		return
 	}
 
-	client, err := sifflet.NewClient(host, sifflet.WithRequestEditorFn(bearerTokenProvider.Intercept))
+	client, err := sifflet.NewClientWithResponses(host, sifflet.WithRequestEditorFn(bearerTokenProvider.Intercept))
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Create Sifflet API Client",
@@ -189,7 +189,7 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 
 type httpClients struct {
 	AlphaClient *alphasifflet.Client
-	Client      *sifflet.Client
+	Client      *sifflet.ClientWithResponses
 }
 
 // DataSources defines the data sources implemented in the provider.
