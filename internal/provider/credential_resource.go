@@ -13,6 +13,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
 var (
@@ -54,6 +55,9 @@ func CredentialResourceSchema(ctx context.Context) schema.Schema {
 				Description: "The value of the credential. Due to API limitations, Terraform can't detect changes to this value made outside of Terraform. Mandatory when asking Terraform to create the resource; otherwise, if the resource is imported or was created during a previous apply, this value is optional.",
 				Sensitive:   true,
 				Optional:    true,
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.UseStateForUnknown(),
+				},
 			},
 		},
 	}
@@ -61,9 +65,9 @@ func CredentialResourceSchema(ctx context.Context) schema.Schema {
 }
 
 type CredentialDto struct {
-	Name        string  `tfsdk:"name"`
-	Description *string `tfsdk:"description"`
-	Value       *string `tfsdk:"value"`
+	Name        types.String `tfsdk:"name"`
+	Description types.String `tfsdk:"description"`
+	Value       types.String `tfsdk:"value"`
 }
 
 func (r *credentialResource) Schema(ctx context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
@@ -78,15 +82,15 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 		return
 	}
 
-	if plan.Value == nil {
+	if plan.Value.IsNull() {
 		resp.Diagnostics.AddError("Value is required", "The value attribute is required when creating a credential.")
 		return
 	}
 
 	credentialDto := sifflet.PublicCredentialCreateDto{
-		Name:        plan.Name,
-		Description: plan.Description,
-		Value:       *plan.Value, // null check done above
+		Name:        plan.Name.ValueString(),
+		Description: plan.Description.ValueStringPointer(),
+		Value:       plan.Value.ValueString(),
 	}
 
 	credentialResponse, err := r.client.PublicCreateCredentialWithResponse(ctx, credentialDto)
@@ -104,9 +108,9 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 		return
 	}
 
-	plan.Name = credentialDto.Name
-	plan.Description = credentialDto.Description
-	plan.Value = &credentialDto.Value
+	plan.Name = types.StringValue(credentialDto.Name)
+	plan.Description = types.StringPointerValue(credentialDto.Description)
+	plan.Value = types.StringValue(credentialDto.Value)
 
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
@@ -125,7 +129,7 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	id := state.Name
+	id := state.Name.ValueString()
 
 	// FIXME: workaround until the error schema is fixed: handle eventual consistency in the API
 	// (the code fails when parsing the body of 404 response, before the status code is interpreted)
@@ -165,8 +169,8 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 	}
 
 	state = CredentialDto{
-		Name:        credentialResponse.JSON200.Name,
-		Description: credentialResponse.JSON200.Description,
+		Name:        types.StringValue(credentialResponse.JSON200.Name),
+		Description: types.StringPointerValue(credentialResponse.JSON200.Description),
 		// TODO: The API doesn't include any way to detect if the secret value has changed (like a version field).
 		// See PLTE-901.
 		// In the meantime, let's copy the previous value from the state, if any. This won't allow Terraform to detect whether the value has changed outside of Terraform though.
@@ -188,17 +192,13 @@ func (r *credentialResource) Update(ctx context.Context, req resource.UpdateRequ
 		return
 	}
 
-	if plan.Value == nil {
-		resp.Diagnostics.AddError("Value is required", "The value attribute is required when updating a credential.")
-		return
-	}
-
+	id := plan.Name.ValueString()
 	body := sifflet.PublicUpdateCredentialJSONRequestBody{
-		Description: plan.Description,
-		Value:       plan.Value, // null check done above
+		Description: plan.Description.ValueStringPointer(),
+		Value:       plan.Value.ValueStringPointer(),
 	}
 
-	updateResponse, err := r.client.PublicUpdateCredentialWithResponse(ctx, plan.Name, body)
+	updateResponse, err := r.client.PublicUpdateCredentialWithResponse(ctx, id, body)
 	if err != nil {
 		resp.Diagnostics.AddError("Unable to update credential", err.Error())
 		return
@@ -211,6 +211,9 @@ func (r *credentialResource) Update(ctx context.Context, req resource.UpdateRequ
 		)
 		return
 	}
+
+	plan.Description = types.StringPointerValue(body.Description)
+	plan.Value = types.StringPointerValue(body.Value)
 
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
@@ -227,7 +230,7 @@ func (r *credentialResource) Delete(ctx context.Context, req resource.DeleteRequ
 		return
 	}
 
-	id := state.Name
+	id := state.Name.ValueString()
 
 	credentialResponse, _ := r.client.PublicDeleteCredentialWithResponse(ctx, id)
 
