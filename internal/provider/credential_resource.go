@@ -181,7 +181,42 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 }
 
 func (r *credentialResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	// TODO
+	var plan CredentialDto
+	diags := req.Plan.Get(ctx, &plan)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	if plan.Value == nil {
+		resp.Diagnostics.AddError("Value is required", "The value attribute is required when updating a credential.")
+		return
+	}
+
+	body := sifflet.PublicUpdateCredentialJSONRequestBody{
+		Description: plan.Description,
+		Value:       plan.Value, // null check done above
+	}
+
+	updateResponse, err := r.client.PublicUpdateCredentialWithResponse(ctx, plan.Name, body)
+	if err != nil {
+		resp.Diagnostics.AddError("Unable to update credential", err.Error())
+		return
+	}
+
+	if updateResponse.StatusCode() != http.StatusNoContent {
+		sifflet.HandleHttpErrorAsProblem(
+			ctx, &resp.Diagnostics, "Unable to update credential",
+			updateResponse.StatusCode(), updateResponse.Body,
+		)
+		return
+	}
+
+	diags = resp.State.Set(ctx, plan)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
 }
 
 func (r *credentialResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
