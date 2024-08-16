@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	sifflet "terraform-provider-sifflet/internal/client"
 
@@ -38,18 +39,20 @@ func CredentialResourceSchema(ctx context.Context) schema.Schema {
 		Description: "A credential resource",
 		Attributes: map[string]schema.Attribute{
 			"name": schema.StringAttribute{
-				Description: "The name of the credential",
+				Description: "The name of the credential. Must only contain alphanumeric characters. Must be uniquein the Sifflet instance.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
+				Required: true,
 			},
 			"description": schema.StringAttribute{
-				Description: "The description of the credential",
+				Description: "The description of the credential.",
 				Optional:    true,
 			},
 			"value": schema.StringAttribute{
-				Description: "The value of the credential",
+				Description: "The value of the credential. Due to API limitations, Terraform can't detect changes to this value made outside of Terraform.",
 				Sensitive:   true,
+				Required:    true,
 			},
 		},
 	}
@@ -118,19 +121,33 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 
 	id := state.Name
 
-	credentialResponse, err := r.client.PublicGetCredentialWithResponse(ctx, id)
-	if err != nil {
-		resp.Diagnostics.AddError(
-			"Unable to read credential",
-			err.Error(),
-		)
-		return
-	}
+	// FIXME: workaround until the error schema is fixed: handle eventual consistency in the API
+	// (the code fails when parsing the body of 404 response, before the status code is interpreted)
+	time.Sleep(1000 * time.Millisecond)
 
-	if credentialResponse.StatusCode() == http.StatusNotFound {
-		// FIXME is that the correct logic?
-		resp.State.RemoveResource(ctx)
-		return
+	maxAttempts := 10
+	var credentialResponse *sifflet.PublicGetCredentialResponse
+	var err error
+	for attempt := 0; attempt < maxAttempts; attempt++ {
+		credentialResponse, err = r.client.PublicGetCredentialWithResponse(ctx, id)
+
+		if err != nil {
+			resp.Diagnostics.AddError(
+				"Unable to read credential",
+				err.Error(),
+			)
+			return
+		}
+
+		if credentialResponse.StatusCode() == http.StatusNotFound {
+			// Retry a few times, as there's a delay in the API (eventual consistency)
+			if attempt < maxAttempts {
+				time.Sleep(500 * time.Millisecond)
+				continue
+			}
+		} else {
+			break
+		}
 	}
 
 	if credentialResponse.StatusCode() != http.StatusOK {
@@ -144,6 +161,10 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 	state = CredentialDto{
 		Name:        credentialResponse.JSON200.Name,
 		Description: credentialResponse.JSON200.Description,
+		// TODO: The API doesn't include any way to detect if the secret value has changed (like a version field).
+		// See PLTE-901.
+		// In the meantime, let's copy the previous value from the state, if any. This won't allow Terraform to detect whether the value has changed outside of Terraform though.
+		Value: state.Value,
 	}
 
 	diags = resp.State.Set(ctx, &state)

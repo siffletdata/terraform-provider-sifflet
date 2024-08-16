@@ -21,11 +21,22 @@ func HandleHttpErrorAsProblem(ctx context.Context, diagnostics *diag.Diagnostics
 			summary,
 			fmt.Sprintf("HTTP status code: %d", statusCode),
 		)
+		return
+	}
+
+	title := ""
+	if problem.Title != nil {
+		title = *problem.Title
+	}
+
+	detail := ""
+	if problem.Detail != nil {
+		title = *problem.Detail
 	}
 
 	diagnostics.AddError(
 		summary,
-		fmt.Sprintf("HTTP status code: %d. Details: %s %s", statusCode, *problem.Title, *problem.Detail),
+		fmt.Sprintf("HTTP status code: %d. Details: %s %s", statusCode, title, detail),
 	)
 
 }

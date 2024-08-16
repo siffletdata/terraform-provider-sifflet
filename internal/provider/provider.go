@@ -56,11 +56,13 @@ func (p *siffletProvider) Schema(_ context.Context, _ provider.SchemaRequest, re
 		// TODO: add validators and descriptions to the schema
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Optional: true,
+				Optional:    true,
+				Description: "Sifflet API host, such as `https://yourinstance.siffletdata.com/api`. If not set, the provider will use the SIFFLET_HOST environment variable.",
 			},
 			"token": schema.StringAttribute{
-				Optional:  true,
-				Sensitive: true,
+				Optional:    true,
+				Sensitive:   true,
+				Description: "Sifflet API token. If not set, the provider will use the SIFFLET_TOKEN environment variable. We recommend not setting this value directly in the configuration, use the environment variable instead.",
 			},
 		},
 	}
@@ -205,5 +207,6 @@ func (p *siffletProvider) Resources(_ context.Context) []func() resource.Resourc
 	return []func() resource.Resource{
 		NewDataSourceResource,
 		NewTagResource,
+		NewCredentialResource,
 	}
 }

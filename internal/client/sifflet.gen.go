@@ -7769,6 +7769,7 @@ func ParsePublicCreateCredentialResponse(rsp *http.Response) (*PublicCreateCrede
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
+	fmt.Printf("create credential %s\n", rsp.Status)
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
@@ -7824,6 +7825,8 @@ func ParsePublicDeleteCredentialResponse(rsp *http.Response) (*PublicDeleteCrede
 		HTTPResponse: rsp,
 	}
 
+	fmt.Printf("delete credential %s\n", rsp.Status)
+
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
 		var dest Problem
@@ -7870,6 +7873,8 @@ func ParsePublicGetCredentialResponse(rsp *http.Response) (*PublicGetCredentialR
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
+
+	fmt.Printf("get credential %s\n", rsp.Status)
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:

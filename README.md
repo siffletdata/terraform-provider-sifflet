@@ -90,18 +90,33 @@ terraform {
   }
 }
 
-provider "sifflet" {
-  host  = "http://localhost:8080" # or Sifflet API endpoint
-  token = "<SIFFLET_TOKEN>"
-}
+provider "sifflet" { }
 ```
 
-You can use the environment variable `SIFFLET_TOKEN` to set the Sifflet API token instead of hardcoding it in the provider block.
+Export the required environment variables:
+
+```
+export SIFFLET_HOST="http://localhost:8000" # or your Sifflet API endpoint e.g https://yourinstance.siffletdata.com/api
+export SIFFLET_TOKEN="your-api-token"
+```
+
 
 Tip: you can set the Terraform log level to DEBUG with this environment variable:
 ```
 export TF_LOG=DEBUG
 ```
+
+### Run tests
+
+Ensure the `SIFFLET_TOKEN` environment variable is set, then run this command, subsituting your Sifflet API
+endpoint:
+
+```
+SIFFLET_HOST="https://yourinstance.siffletdata.com/api" TF_ACC=1 go test -v ./...
+```
+
+**Important**: tests create and delete resources in your Sifflet instance. When tests fail or are interrupted, then can leave
+dangling resources behind them. Avoid using a production instance for testing.
 
 
 ### Regenerate the Sifflet API client
@@ -110,11 +125,15 @@ You can fetch the latest OpenAPI schema from https://docs.siffletdata.com/openap
 ``openapi.yaml``, then run:
 
 ```
-cd internal/alphaclient
+cd internal/client
 go generate
 ```
 
-**Notes and known issues**
+**Alpha APIs and known issues**
+
+The `internal/alphaclient` package contains a generated client against 'alpha APIs' - private Sifflet APIs
+  subject to chance without notice. Don't use this package for new resources. This client has the following
+  known issues:
 
 - The JSON lib doesn't support epoch as Time format, you need to replace all `*time.Time` by `*int64`
 - The `Update` method is not yet implemented in the OpenAPI schema for the `datasource` resource.
