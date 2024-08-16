@@ -26,7 +26,7 @@ See https://registry.terraform.io/providers/Siffletapp/sifflet/latest/docs.
 ### Requirements
 
 - [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.0
-- [Go](https://golang.org/doc/install) >= 1.20
+- [Go](https://golang.org/doc/install) >= 1.22
 
 ### Building The provider
 
@@ -118,6 +118,13 @@ SIFFLET_HOST="https://yourinstance.siffletdata.com/api" TF_ACC=1 go test -v ./..
 **Important**: tests create and delete resources in your Sifflet instance. When tests fail or are interrupted, then can leave
 dangling resources behind them. Avoid using a production instance for testing.
 
+### Run linters
+
+Install golangci-lint, then run
+
+```
+golangci-lint run
+```
 
 ### Regenerate the Sifflet API client
 

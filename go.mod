@@ -1,6 +1,6 @@
 module terraform-provider-sifflet
 
-go 1.21
+go 1.22.0
 
 require (
 	github.com/getkin/kin-openapi v0.124.0
