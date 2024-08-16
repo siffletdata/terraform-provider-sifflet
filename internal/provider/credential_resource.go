@@ -35,10 +35,11 @@ func (r *credentialResource) Metadata(_ context.Context, req resource.MetadataRe
 
 func CredentialResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
-		// TODO docs
-		Description: "A credential resource",
+		Description:         "A credential resource.",
+		MarkdownDescription: "Credentials are used to store secret source connection information, such as username, passwords, service account keys, or API tokens",
 		Attributes: map[string]schema.Attribute{
 			"name": schema.StringAttribute{
+				// TODO add validation (https://developer.hashicorp.com/terraform/plugin/framework/validation#attribute-validation)
 				Description: "The name of the credential. Must only contain alphanumeric characters. Must be uniquein the Sifflet instance.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
@@ -50,9 +51,9 @@ func CredentialResourceSchema(ctx context.Context) schema.Schema {
 				Optional:    true,
 			},
 			"value": schema.StringAttribute{
-				Description: "The value of the credential. Due to API limitations, Terraform can't detect changes to this value made outside of Terraform.",
+				Description: "The value of the credential. Due to API limitations, Terraform can't detect changes to this value made outside of Terraform. Mandatory when asking Terraform to create the resource; otherwise, if the resource is imported or was created during a previous apply, this value is optional.",
 				Sensitive:   true,
-				Required:    true,
+				Optional:    true,
 			},
 		},
 	}
@@ -62,7 +63,7 @@ func CredentialResourceSchema(ctx context.Context) schema.Schema {
 type CredentialDto struct {
 	Name        string  `tfsdk:"name"`
 	Description *string `tfsdk:"description"`
-	Value       string  `tfsdk:"value"`
+	Value       *string `tfsdk:"value"`
 }
 
 func (r *credentialResource) Schema(ctx context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
@@ -77,10 +78,15 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 		return
 	}
 
+	if plan.Value == nil {
+		resp.Diagnostics.AddError("Value is required", "The value attribute is required when creating a credential.")
+		return
+	}
+
 	credentialDto := sifflet.PublicCredentialCreateDto{
 		Name:        plan.Name,
 		Description: plan.Description,
-		Value:       plan.Value,
+		Value:       *plan.Value, // null check done above
 	}
 
 	credentialResponse, err := r.client.PublicCreateCredentialWithResponse(ctx, credentialDto)
@@ -100,7 +106,7 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 
 	plan.Name = credentialDto.Name
 	plan.Description = credentialDto.Description
-	plan.Value = credentialDto.Value
+	plan.Value = &credentialDto.Value
 
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
@@ -202,7 +208,7 @@ func (r *credentialResource) Delete(ctx context.Context, req resource.DeleteRequ
 }
 
 func (r *credentialResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resource.ImportStatePassthroughID(ctx, path.Root("id"), req, resp)
+	resource.ImportStatePassthroughID(ctx, path.Root("name"), req, resp)
 }
 
 func (r *credentialResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
