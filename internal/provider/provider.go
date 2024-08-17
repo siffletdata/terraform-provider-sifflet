@@ -199,6 +199,7 @@ func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.Dat
 	return []func() datasource.DataSource{
 		NewDatasourcesDataSource,
 		NewTagDataSource,
+		NewCredentialDataSource,
 	}
 }
 

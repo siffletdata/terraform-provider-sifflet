@@ -109,7 +109,7 @@ type SearchCollectionTagDto struct {
 
 func TagDataSourceSchema(ctx context.Context) data_source.Schema {
 	return data_source.Schema{
-		Description: "Real all Sifflet tags.",
+		Description: "Read all Sifflet tags.",
 		Attributes: map[string]data_source.Attribute{
 			"data": data_source.ListNestedAttribute{
 				Description: "List of all tags.",
