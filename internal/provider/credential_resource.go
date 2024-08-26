@@ -131,11 +131,7 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 
 	id := state.Name.ValueString()
 
-	// FIXME: workaround until the error schema is fixed: handle eventual consistency in the API
-	// (the code fails when parsing the body of 404 response, before the status code is interpreted)
-	time.Sleep(1000 * time.Millisecond)
-
-	maxAttempts := 10
+	maxAttempts := 20
 	var credentialResponse *sifflet.PublicGetCredentialResponse
 	var err error
 	for attempt := 0; attempt < maxAttempts; attempt++ {
@@ -152,7 +148,7 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 		if credentialResponse.StatusCode() == http.StatusNotFound {
 			// Retry a few times, as there's a delay in the API (eventual consistency)
 			if attempt < maxAttempts {
-				time.Sleep(500 * time.Millisecond)
+				time.Sleep(200 * time.Millisecond)
 				continue
 			}
 		} else {
@@ -210,6 +206,37 @@ func (r *credentialResource) Update(ctx context.Context, req resource.UpdateRequ
 			updateResponse.StatusCode(), updateResponse.Body,
 		)
 		return
+	}
+
+	// Since the credential API is eventually consistent, we wait until we read back the description that we wrote.
+	// Otherwise, the next read by Terraform might return the old value, which would generate an error (inconsistent plan).
+	maxAttempts := 20
+	var credentialResponse *sifflet.PublicGetCredentialResponse
+	for attempt := 0; attempt < maxAttempts; attempt++ {
+		credentialResponse, err = r.client.PublicGetCredentialWithResponse(ctx, id)
+
+		if err != nil {
+			resp.Diagnostics.AddError(
+				"Unable to read back credential after updating it",
+				err.Error(),
+			)
+			return
+		}
+
+		if credentialResponse.StatusCode() != http.StatusOK {
+			sifflet.HandleHttpErrorAsProblem(
+				ctx, &resp.Diagnostics, "Unable to read credential after updating it",
+				credentialResponse.StatusCode(), credentialResponse.Body)
+			resp.State.RemoveResource(ctx)
+			return
+		}
+
+		if credentialResponse.JSON200.Description == body.Description {
+			break
+		}
+		time.Sleep(200 * time.Millisecond)
+		// If we exhausted the attempts, try to proceed anyway. We still hope that when Terraform reads
+		// back the value, it will be updated by that time.
 	}
 
 	plan.Description = types.StringPointerValue(body.Description)

@@ -82,11 +82,7 @@ func (d *credentialDataSource) Read(ctx context.Context, req datasource.ReadRequ
 
 	name := data.Name.ValueString()
 
-	// FIXME: workaround until the error schema is fixed: handle eventual consistency in the API
-	// (the code fails when parsing the body of 404 response, before the status code is interpreted)
-	time.Sleep(1000 * time.Millisecond)
-
-	maxAttempts := 10
+	maxAttempts := 20
 	var credentialResponse *sifflet.PublicGetCredentialResponse
 	var err error
 
@@ -103,7 +99,7 @@ func (d *credentialDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		if credentialResponse.StatusCode() == http.StatusNotFound {
 			// Retry a few times, as there's a delay in the API (eventual consistency)
 			if attempt < maxAttempts {
-				time.Sleep(500 * time.Millisecond)
+				time.Sleep(200 * time.Millisecond)
 				continue
 			}
 		} else {
