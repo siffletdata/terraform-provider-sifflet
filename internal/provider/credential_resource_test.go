@@ -72,7 +72,7 @@ func TestAccCredentialNoValue(t *testing.T) {
 						resource "sifflet_credential" "test" {
 							name = "%s"
 							description = "A description"
-							// Value purposely ommited, this is an error when creating or importing a credential
+							// Value purposely omitted, this is an error when creating or importing a credential
 						}
 						`, credentialName),
 				ExpectError: regexp.MustCompile("The value attribute is required when creating a credential"),
