@@ -13,6 +13,7 @@ import (
 
 	alphasifflet "terraform-provider-sifflet/internal/alphaclient"
 	sifflet "terraform-provider-sifflet/internal/client"
+	"terraform-provider-sifflet/internal/tfhttp"
 
 	"github.com/oapi-codegen/oapi-codegen/v2/pkg/securityprovider"
 )
@@ -167,7 +168,11 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 		return
 	}
 
-	client, err := sifflet.NewClientWithResponses(host, sifflet.WithRequestEditorFn(bearerTokenProvider.Intercept))
+	client, err := sifflet.NewClientWithResponses(
+		host,
+		sifflet.WithRequestEditorFn(bearerTokenProvider.Intercept),
+		sifflet.WithHTTPClient(tfhttp.NewTerraformHttpClient()),
+	)
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Create Sifflet API Client",
