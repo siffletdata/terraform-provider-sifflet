@@ -135,7 +135,7 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 			path.Root("token"),
 			"Missing Sifflet API Username",
 			"The provider cannot create the Sifflet API client as there is a missing or empty value for the Sifflet API token. "+
-				"Set the token value in the configuration or use the SIFFLET_USERNAME environment variable. "+
+				"Set the token value in the provider configuration or use the SIFFLET_TOKEN environment variable. "+
 				"If either is already set, ensure the value is not empty.",
 		)
 	}
