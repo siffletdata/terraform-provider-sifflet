@@ -112,6 +112,7 @@ func (d *credentialDataSource) Read(ctx context.Context, req datasource.ReadRequ
 			ctx, &resp.Diagnostics, "Unable to read credential",
 			credentialResponse.StatusCode(), credentialResponse.Body,
 		)
+		return
 	}
 
 	data.Name = types.StringValue(credentialResponse.JSON200.Name)
