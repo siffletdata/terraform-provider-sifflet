@@ -2,6 +2,9 @@ package provider
 
 import (
 	"context"
+	"fmt"
+	"net/http"
+	"net/url"
 	"os"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -161,10 +164,12 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 		return
 	}
 
+	httpClient := tfhttp.NewTerraformHttpClient()
+
 	client, err := sifflet.NewClientWithResponses(
 		host,
 		sifflet.WithRequestEditorFn(bearerTokenProvider.Intercept),
-		sifflet.WithHTTPClient(tfhttp.NewTerraformHttpClient()),
+		sifflet.WithHTTPClient(httpClient),
 	)
 	if err != nil {
 		resp.Diagnostics.AddError(
@@ -185,6 +190,35 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 	// type Configure methods.
 	resp.DataSourceData = httpClients
 	resp.ResourceData = httpClients
+
+	// Check that the provided URL is valid by making a request
+	// to the Sifflet API.
+	apiHealthCheck(httpClient, host, resp)
+}
+
+func apiHealthCheck(httpClient *http.Client, host string, resp *provider.ConfigureResponse) {
+	queryUrl, err := url.JoinPath(host, "/actuator/health")
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to validate Sifflet API Host",
+			fmt.Sprintf("Got error when building the health check URL from the configured Sifflet API host %s: %s ", host, err.Error()),
+		)
+		return
+	}
+	res, err := httpClient.Get(queryUrl)
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to validate Sifflet API Host",
+			fmt.Sprintf("Got error when attempting to perform a health check on the configured Sifflet API host %s: %s ", host, err.Error()),
+		)
+		return
+	}
+	if res.StatusCode != 200 {
+		resp.Diagnostics.AddError(
+			"Unable to validate Sifflet API Host",
+			fmt.Sprintf("Got an unexpected status code when attempting to perform a health check on the configured Sifflet API host %s: expected 200, got %d ", host, res.StatusCode),
+		)
+	}
 }
 
 type httpClients struct {
