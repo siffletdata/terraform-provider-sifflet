@@ -10,7 +10,7 @@ import (
 )
 
 func HandleHttpErrorAsProblem(ctx context.Context, diagnostics *diag.Diagnostics, summary string, statusCode int, body []byte) {
-	var problem Problem
+	var problem ApiProblemSchema
 
 	if err := json.Unmarshal(body, &problem); err != nil {
 		// Could not parse the provided body as a generic Problem (maybe the API isn't returning this type
