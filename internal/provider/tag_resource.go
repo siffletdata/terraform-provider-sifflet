@@ -10,7 +10,7 @@ import (
 
 	"github.com/google/uuid"
 
-	sifflet "terraform-provider-sifflet/internal/client"
+	sifflet "terraform-provider-sifflet/internal/alphaclient"
 	tag_struct "terraform-provider-sifflet/internal/tag_datasource"
 
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -65,7 +65,6 @@ func (r *tagResource) Create(ctx context.Context, req resource.CreateRequest, re
 		Type:        yType,
 	}
 
-	// Create new order
 	tagResponse, _ := r.client.CreateTag(ctx, tag)
 
 	resBody, _ := io.ReadAll(tagResponse.Body)
@@ -246,15 +245,15 @@ func (r *tagResource) Configure(_ context.Context, req resource.ConfigureRequest
 		return
 	}
 
-	client, ok := req.ProviderData.(*sifflet.Client)
+	clients, ok := req.ProviderData.(*httpClients)
 	if !ok {
 		resp.Diagnostics.AddError(
-			"Unexpected Data Source Configure Type",
-			fmt.Sprintf("Expected *sifflet.Client, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+			"Unexpected Resource Configure Type",
+			fmt.Sprintf("Expected *httpClients, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 
 		return
 	}
 
-	r.client = client
+	r.client = clients.AlphaClient
 }
