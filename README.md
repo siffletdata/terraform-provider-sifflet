@@ -138,8 +138,12 @@ go generate ./internal/client
 **Alpha APIs and known issues**
 
 The `internal/alphaclient` package contains a generated client against 'alpha APIs' - private Sifflet APIs
-  subject to chance without notice. Don't use this package for new resources. This client has the following
-  known issues:
+  subject to chance without notice. Don't use this package for new resources.
+
+Some existing resources are implemented against this client. They will be deprecated or migrated to the stable
+  client in the future.
+
+This "alpha" client has the following known issues:
 
 - The JSON lib doesn't support epoch as Time format, you need to replace all `*time.Time` by `*int64`
 - The `Update` method is not yet implemented in the OpenAPI schema for the `datasource` resource.
