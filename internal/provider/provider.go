@@ -54,7 +54,6 @@ func (p *siffletProvider) Metadata(_ context.Context, _ provider.MetadataRequest
 // Schema defines the provider-level schema for configuration data.
 func (p *siffletProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		// TODO: add validators and descriptions to the schema
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
 				Optional:    true,
@@ -149,12 +148,6 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 	if bearerTokenProviderErr != nil {
 		panic(bearerTokenProviderErr)
 	}
-
-	// Exhaustive list of some defaults you can use to initialize a Client.
-	// If you need to override the underlying httpClient, you can use the option
-	//
-	// WithHTTPClient(httpClient *http.Client)
-	//
 
 	// Create a new Sifflet alphaclient using the configuration values
 	alphaclient, err := alphasifflet.NewClient(host, alphasifflet.WithRequestEditorFn(bearerTokenProvider.Intercept))

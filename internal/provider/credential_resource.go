@@ -75,7 +75,7 @@ func (r *credentialResource) Schema(ctx context.Context, _ resource.SchemaReques
 }
 
 func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var plan CredentialDto // FIXME should this be named "state"?
+	var plan CredentialDto
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -104,7 +104,7 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 			ctx, &resp.Diagnostics, "Unable to create credential",
 			credentialResponse.StatusCode(), credentialResponse.Body,
 		)
-		resp.State.RemoveResource(ctx) // FIXME: is it necessary?
+		resp.State.RemoveResource(ctx)
 		return
 	}
 
@@ -118,8 +118,6 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 		return
 	}
 }
-
-// FIXME/ log all API responses (can probably be done at the client level instead of each function)
 
 func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	var state CredentialDto
