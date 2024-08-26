@@ -3,12 +3,12 @@
 page_title: "sifflet_tags Data Source - terraform-provider-sifflet"
 subcategory: ""
 description: |-
-  Real all Sifflet tags.
+  Read all Sifflet tags.
 ---
 
 # sifflet_tags (Data Source)
 
-Real all Sifflet tags.
+Read all Sifflet tags.
 
 ## Example Usage
 
