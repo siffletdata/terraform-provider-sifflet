@@ -1,3 +1,4 @@
+// Package tfhttp provides a [http.Client] suitable for use in this Terraform provider.
 package tfhttp
 
 import (
