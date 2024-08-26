@@ -210,6 +210,8 @@ func (r *credentialResource) Update(ctx context.Context, req resource.UpdateRequ
 
 	// Since the credential API is eventually consistent, we wait until we read back the description that we wrote.
 	// Otherwise, the next read by Terraform might return the old value, which would generate an error (inconsistent plan).
+	// Reading the credential description is currently the only way we can know whether the credential was updated,  the API doesn't include any way to detect if the secret value has changed (like a version field).
+	// See PLTE-901.
 	maxAttempts := 20
 	var credentialResponse *sifflet.PublicGetCredentialResponse
 	for attempt := 0; attempt < maxAttempts; attempt++ {
