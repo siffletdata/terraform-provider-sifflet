@@ -26,7 +26,7 @@ See https://registry.terraform.io/providers/Siffletapp/sifflet/latest/docs.
 ### Requirements
 
 - [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.0
-- [Go](https://golang.org/doc/install) >= 1.20
+- [Go](https://golang.org/doc/install) >= 1.22
 
 ### Building The provider
 
@@ -58,7 +58,7 @@ If you wish to work on the provider, you'll first need [Go](http://www.golang.or
 
 To compile the provider, run `go install`. This will build the provider and put the provider binary in the `$GOPATH/bin` directory.
 
-To generate or update documentation, run `go generate`.
+To update the generated documentation and code, run `go generate ./...`.
 
 ### Local setup
 
@@ -90,27 +90,60 @@ terraform {
   }
 }
 
-provider "sifflet" {
-  host  = "http://localhost:8080" # or Sifflet API endpoint
-  token = "<SIFFLET_TOKEN>"
-}
+provider "sifflet" { }
 ```
 
-You can use the environment variable `SIFFLET_TOKEN` to set the Sifflet API token instead of hardcoding it in the provider block.
+Export the required environment variables:
+
+```
+export SIFFLET_HOST="http://localhost:8000" # or your Sifflet API endpoint e.g https://yourinstance.siffletdata.com/api
+export SIFFLET_TOKEN="your-api-token"
+```
+
 
 Tip: you can set the Terraform log level to DEBUG with this environment variable:
 ```
 export TF_LOG=DEBUG
 ```
 
+### Run tests
+
+Ensure the `SIFFLET_TOKEN` environment variable is set, then run this command, subsituting your Sifflet API
+endpoint:
+
+```
+SIFFLET_HOST="https://yourinstance.siffletdata.com/api" TF_ACC=1 go test -v ./...
+```
+
+**Important**: tests create and delete resources in your Sifflet instance. When tests fail or are interrupted, they can leave
+dangling resources behind them. Avoid using a production instance for testing.
+
+### Run linters
+
+Install golangci-lint, then run
+
+```
+golangci-lint run
+```
 
 ### Regenerate the Sifflet API client
 
+You can fetch the latest OpenAPI schema from https://docs.siffletdata.com/openapi/. Store it under
+``internal/client/openapi.yaml``, then run:
+
 ```
-oapi-codegen -package example openapi.yaml > internal/client/sifflet.gen.go
+go generate ./internal/client
 ```
 
-**Notes and known issues**
+**Alpha APIs and known issues**
+
+The `internal/alphaclient` package contains a generated client against 'alpha APIs' - private Sifflet APIs
+  subject to chance without notice. Don't use this package for new resources.
+
+Some existing resources are implemented against this client. They will be deprecated or migrated to the stable
+  client in the future.
+
+This "alpha" client has the following known issues:
 
 - The JSON lib doesn't support epoch as Time format, you need to replace all `*time.Time` by `*int64`
 - The `Update` method is not yet implemented in the OpenAPI schema for the `datasource` resource.

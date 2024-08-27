@@ -2,6 +2,9 @@ package provider
 
 import (
 	"context"
+	"fmt"
+	"net/http"
+	"net/url"
 	"os"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -11,9 +14,11 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
+	alphasifflet "terraform-provider-sifflet/internal/alphaclient"
 	sifflet "terraform-provider-sifflet/internal/client"
+	"terraform-provider-sifflet/internal/tfhttp"
 
-	"github.com/deepmap/oapi-codegen/pkg/securityprovider"
+	"github.com/oapi-codegen/oapi-codegen/v2/pkg/securityprovider"
 )
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -54,10 +59,13 @@ func (p *siffletProvider) Schema(_ context.Context, _ provider.SchemaRequest, re
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Optional: true,
+				Optional:    true,
+				Description: "Sifflet API host, such as `https://yourinstance.siffletdata.com/api`. If not set, the provider will use the SIFFLET_HOST environment variable.",
 			},
 			"token": schema.StringAttribute{
-				Optional: true,
+				Optional:    true,
+				Sensitive:   true,
+				Description: "Sifflet API token. If not set, the provider will use the SIFFLET_TOKEN environment variable. We recommend not setting this value directly in the configuration, use the environment variable instead.",
 			},
 		},
 	}
@@ -81,7 +89,7 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 			path.Root("host"),
 			"Unknown Sifflet API Host",
 			"The provider cannot create the Sifflet API client as there is an unknown configuration value for the Sifflet API host. "+
-				"Either target apply the source of the value first, set the value statically in the configuration, or use the SIFFLET_HOST environment variable.",
+				"Either target apply the source of the value first, set the value statically in the configuration (under the `host` attribute of the provider block), or use the SIFFLET_HOST environment variable.",
 		)
 	}
 
@@ -89,8 +97,8 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 		resp.Diagnostics.AddAttributeError(
 			path.Root("token"),
 			"Unknown Sifflet API token",
-			"The provider cannot create the Sifflet API client as there is an unknown configuration value for the Sifflet API username. "+
-				"Either target apply the source of the value first, set the value statically in the configuration, or use the SIFFLET_TOKEN environment variable.",
+			"The provider cannot create the Sifflet API client as there is an unknown configuration value for the Sifflet API token. "+
+				"Either target apply the source of the value first, set the value statically in the configuration (under the `token` attribute of the provider block), or use the SIFFLET_TOKEN environment variable.",
 		)
 	}
 
@@ -130,7 +138,7 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 			path.Root("token"),
 			"Missing Sifflet API Username",
 			"The provider cannot create the Sifflet API client as there is a missing or empty value for the Sifflet API token. "+
-				"Set the token value in the configuration or use the SIFFLET_USERNAME environment variable. "+
+				"Set the token value in the provider configuration or use the SIFFLET_TOKEN environment variable. "+
 				"If either is already set, ensure the value is not empty.",
 		)
 	}
@@ -144,14 +152,8 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 		panic(bearerTokenProviderErr)
 	}
 
-	// Exhaustive list of some defaults you can use to initialize a Client.
-	// If you need to override the underlying httpClient, you can use the option
-	//
-	// WithHTTPClient(httpClient *http.Client)
-	//
-
-	// Create a new Sifflet client using the configuration values
-	client, err := sifflet.NewClient(host, sifflet.WithRequestEditorFn(bearerTokenProvider.Intercept))
+	// Create a new Sifflet alphaclient using the configuration values
+	alphaclient, err := alphasifflet.NewClient(host, alphasifflet.WithRequestEditorFn(bearerTokenProvider.Intercept))
 	if err != nil {
 		resp.Diagnostics.AddError(
 			"Unable to Create Sifflet API Client",
@@ -162,10 +164,66 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 		return
 	}
 
-	// Make the Sifflet client available during DataSource and Resource
+	httpClient := tfhttp.NewTerraformHttpClient()
+
+	client, err := sifflet.NewClientWithResponses(
+		host,
+		sifflet.WithRequestEditorFn(bearerTokenProvider.Intercept),
+		sifflet.WithHTTPClient(httpClient),
+	)
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to Create Sifflet API Client",
+			"An unexpected error occurred when creating the Sifflet API client. "+
+				"If the error is not clear, please contact the provider developers.\n\n"+
+				"Sifflet Client Error: "+err.Error(),
+		)
+		return
+	}
+
+	httpClients := &httpClients{
+		AlphaClient: alphaclient,
+		Client:      client,
+	}
+
+	// Make the Sifflet clients available during DataSource and Resource
 	// type Configure methods.
-	resp.DataSourceData = client
-	resp.ResourceData = client
+	resp.DataSourceData = httpClients
+	resp.ResourceData = httpClients
+
+	// Check that the provided URL is valid by making a request
+	// to the Sifflet API.
+	apiHealthCheck(httpClient, host, resp)
+}
+
+func apiHealthCheck(httpClient *http.Client, host string, resp *provider.ConfigureResponse) {
+	queryUrl, err := url.JoinPath(host, "/actuator/health")
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to validate Sifflet API Host",
+			fmt.Sprintf("Got error when building the health check URL from the configured Sifflet API host %s: %s ", host, err.Error()),
+		)
+		return
+	}
+	res, err := httpClient.Get(queryUrl)
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to validate Sifflet API Host",
+			fmt.Sprintf("Got error when attempting to perform a health check on the configured Sifflet API host %s: %s ", host, err.Error()),
+		)
+		return
+	}
+	if res.StatusCode != 200 {
+		resp.Diagnostics.AddError(
+			"Unable to validate Sifflet API Host",
+			fmt.Sprintf("Got an unexpected status code when attempting to perform a health check on the configured Sifflet API host %s: expected 200, got %d ", host, res.StatusCode),
+		)
+	}
+}
+
+type httpClients struct {
+	AlphaClient *alphasifflet.Client
+	Client      *sifflet.ClientWithResponses
 }
 
 // DataSources defines the data sources implemented in the provider.
@@ -173,6 +231,7 @@ func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.Dat
 	return []func() datasource.DataSource{
 		NewDatasourcesDataSource,
 		NewTagDataSource,
+		NewCredentialDataSource,
 	}
 }
 
@@ -181,5 +240,6 @@ func (p *siffletProvider) Resources(_ context.Context) []func() resource.Resourc
 	return []func() resource.Resource{
 		NewDataSourceResource,
 		NewTagResource,
+		NewCredentialResource,
 	}
 }

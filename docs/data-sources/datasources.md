@@ -83,7 +83,7 @@ Read-Only:
 - `type` (String) Type of data source (ie: dbt, bigquery).
 
 <a id="nestedatt--search_rules--data--bigquery--timezone_data"></a>
-### Nested Schema for `search_rules.data.bigquery.type`
+### Nested Schema for `search_rules.data.bigquery.timezone_data`
 
 Read-Only:
 
@@ -106,7 +106,7 @@ Read-Only:
 - `type` (String) Type of data source (ie: dbt, bigquery).
 
 <a id="nestedatt--search_rules--data--dbt--timezone_data"></a>
-### Nested Schema for `search_rules.data.dbt.type`
+### Nested Schema for `search_rules.data.dbt.timezone_data`
 
 Read-Only:
 
@@ -131,7 +131,7 @@ Read-Only:
 - `warehouse` (String) Snowflake warehouse.
 
 <a id="nestedatt--search_rules--data--snowflake--timezone_data"></a>
-### Nested Schema for `search_rules.data.snowflake.warehouse`
+### Nested Schema for `search_rules.data.snowflake.timezone_data`
 
 Read-Only:
 
