@@ -58,7 +58,7 @@ If you wish to work on the provider, you'll first need [Go](http://www.golang.or
 
 To compile the provider, run `go install`. This will build the provider and put the provider binary in the `$GOPATH/bin` directory.
 
-To generate or update documentation, run `go generate ./...`.
+To update the generated documentation and code, run `go generate ./...`.
 
 ### Local setup
 
@@ -115,7 +115,7 @@ endpoint:
 SIFFLET_HOST="https://yourinstance.siffletdata.com/api" TF_ACC=1 go test -v ./...
 ```
 
-**Important**: tests create and delete resources in your Sifflet instance. When tests fail or are interrupted, then can leave
+**Important**: tests create and delete resources in your Sifflet instance. When tests fail or are interrupted, they can leave
 dangling resources behind them. Avoid using a production instance for testing.
 
 ### Run linters

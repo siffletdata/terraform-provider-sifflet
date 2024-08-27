@@ -89,7 +89,7 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 			path.Root("host"),
 			"Unknown Sifflet API Host",
 			"The provider cannot create the Sifflet API client as there is an unknown configuration value for the Sifflet API host. "+
-				"Either target apply the source of the value first, set the value statically in the configuration (under the `token` attribute of the provider block), or use the SIFFLET_HOST environment variable.",
+				"Either target apply the source of the value first, set the value statically in the configuration (under the `host` attribute of the provider block), or use the SIFFLET_HOST environment variable.",
 		)
 	}
 
