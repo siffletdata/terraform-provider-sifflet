@@ -3,25 +3,20 @@ package provider
 import (
 	"fmt"
 	"regexp"
-	"strings"
+	"terraform-provider-sifflet/internal/provider/providertests"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 )
 
-func randomCredentialName() string {
-	// Add a trailing "s" to the name because credential names can't end with a digit, as returned by RandomName
-	return strings.ReplaceAll(RandomName(), "-", "") + "s"
-}
-
 func TestAccCredentialResourceBasic(t *testing.T) {
-	credentialName := randomCredentialName()
+	credentialName := providertests.RandomCredentialName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: providerConfig + fmt.Sprintf(`
+				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 						resource "sifflet_credential" "test" {
 							name = "%s"
 							description = "A description"
@@ -44,7 +39,7 @@ func TestAccCredentialResourceBasic(t *testing.T) {
 				ImportStateVerifyIgnore: []string{"value"},
 			},
 			{
-				Config: providerConfig + fmt.Sprintf(`
+				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 						resource "sifflet_credential" "test" {
 							name = "%s"
 							description = "An updated description"
@@ -62,13 +57,13 @@ func TestAccCredentialResourceBasic(t *testing.T) {
 }
 
 func TestAccCredentialNoValue(t *testing.T) {
-	credentialName := randomCredentialName()
+	credentialName := providertests.RandomCredentialName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: providerConfig + fmt.Sprintf(`
+				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 						resource "sifflet_credential" "test" {
 							name = "%s"
 							description = "A description"
@@ -79,7 +74,7 @@ func TestAccCredentialNoValue(t *testing.T) {
 			},
 			// Create the credential resource
 			{
-				Config: providerConfig + fmt.Sprintf(`
+				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 						resource "sifflet_credential" "test" {
 							name = "%s"
 							description = "A description"
@@ -92,7 +87,7 @@ func TestAccCredentialNoValue(t *testing.T) {
 			},
 			// Now, ensure its description can be updated even if value is removed from the configuration
 			{
-				Config: providerConfig + fmt.Sprintf(`
+				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 						resource "sifflet_credential" "test" {
 							name = "%s"
 							description = "Updated description"

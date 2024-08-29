@@ -1,7 +1,8 @@
-package provider
+package providertests
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/acctest"
 )
@@ -18,3 +19,19 @@ func SessionPrefix() string {
 func RandomName() string {
 	return SessionPrefix() + "-" + acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
 }
+
+func RandomCredentialName() string {
+	// Add a trailing "s" to the name because credential names can't end with a digit, as returned by RandomName
+	return strings.ReplaceAll(RandomName(), "-", "") + "s"
+}
+
+func ProviderConfig() string {
+	return providerConfig
+}
+
+const (
+	// Use environment variables to configure the provider during tests (SIFFLET_HOST and SIFFLET_TOKEN, see README.md).
+	providerConfig = `
+provider "sifflet" { }
+`
+)

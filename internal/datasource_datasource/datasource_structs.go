@@ -65,7 +65,8 @@ type ErrorMessage struct {
 
 func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
-		Description: "Create a Sifflet Data Source.",
+		Description:        "Create a Sifflet Data Source.",
+		DeprecationMessage: "This resource relies on unstable APIs that may change in the future. Use the `sifflet_source` resource instead.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Computed:    true,

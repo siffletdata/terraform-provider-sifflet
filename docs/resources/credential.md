@@ -26,7 +26,7 @@ resource "sifflet_credential" "example" {
 
 ### Required
 
-- `name` (String) The name of the credential. Must only contain alphanumeric characters. Must be uniquein the Sifflet instance.
+- `name` (String) The name of the credential. Must only contain alphanumeric characters. Must be unique in the Sifflet instance.
 
 ### Optional
 

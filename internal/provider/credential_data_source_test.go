@@ -3,19 +3,20 @@ package provider
 import (
 	"fmt"
 	"regexp"
+	"terraform-provider-sifflet/internal/provider/providertests"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 )
 
 func TestAccCredentialDataSource(t *testing.T) {
-	credentialName := randomCredentialName()
+	credentialName := providertests.RandomCredentialName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: providerConfig + fmt.Sprintf(`
+				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 				resource "sifflet_credential" "test" {
 					name = "%s"
 					description = "Description"
@@ -35,13 +36,13 @@ func TestAccCredentialDataSource(t *testing.T) {
 }
 
 func TestAccCredentialReadErrorDataSource(t *testing.T) {
-	credentialName := randomCredentialName()
+	credentialName := providertests.RandomCredentialName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: providerConfig + fmt.Sprintf(`
+				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 				data "sifflet_credential" "test" {
 					name = "%s"
 				}`, credentialName),
