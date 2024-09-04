@@ -117,6 +117,28 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	// Since the credential API is eventually consistent, we wait until we can read back the credential that we created.
+	// Otherwise, further operations with these credentials (such as "create a datasource referencing this credential") might fail.
+	maxAttempts := 20
+	for attempt := 0; attempt < maxAttempts; attempt++ {
+		_, err = r.client.PublicGetCredentialWithResponse(ctx, credentialDto.Name)
+
+		if err != nil {
+			resp.Diagnostics.AddError(
+				"Unable to read back credential after creating it", err.Error())
+			return
+		}
+
+		if credentialResponse.StatusCode() == http.StatusOK {
+			break
+		}
+
+		time.Sleep(200 * time.Millisecond)
+		// If we exhausted the attempts, try to proceed anyway. We still hope that when Terraform reads
+		// back the value, it will be updated by that time.
+	}
+
 }
 
 func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
