@@ -66,6 +66,7 @@ func TestAccBigQuerySource(t *testing.T) {
 									billing_project_id = "dataset"
 								}
 							}
+							timezone = "UTC+1"
 						}
 						`, sourceName, projectId),
 				Check: resource.ComposeTestCheckFunc(
