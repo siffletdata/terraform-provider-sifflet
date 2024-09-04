@@ -13,14 +13,14 @@ func randomSourceName() string {
 	return providertests.RandomName()
 }
 
-func baseConfig() string {
+func baseConfig(credName string) string {
 	return providertests.ProviderConfig() + fmt.Sprintf(`
     resource "sifflet_credential" "test" {
 		name = "%s"
 		description = "Description"
 		value = "Value"
 	}
-	`, providertests.RandomCredentialName())
+	`, credName)
 }
 
 // BigQuery sources are also used for testing specific attributes and behaviours of the sifflet_source resource.
@@ -28,12 +28,13 @@ func baseConfig() string {
 func TestAccBigQuerySource(t *testing.T) {
 	sourceName := randomSourceName()
 	projectId := providertests.RandomName()
+	credName := providertests.RandomCredentialName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -54,7 +55,7 @@ func TestAccBigQuerySource(t *testing.T) {
 				),
 			},
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "Another description"
@@ -81,12 +82,13 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 	sourceName := randomSourceName()
 	projectId := providertests.RandomName()
 	database := providertests.RandomName()
+	credName := providertests.RandomCredentialName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -109,7 +111,7 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 				ExpectError: regexp.MustCompile("Exactly one of these attributes must be configured"),
 			},
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -126,7 +128,7 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 				ExpectError: regexp.MustCompile("Credential is required for this source type, but got an empty string"),
 			},
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -155,12 +157,13 @@ func TestAccSourceTags(t *testing.T) {
 	sourceName := randomSourceName()
 	projectId := providertests.RandomName()
 	tagName := providertests.RandomName()
+	credName := providertests.RandomCredentialName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -180,7 +183,7 @@ func TestAccSourceTags(t *testing.T) {
 				),
 			},
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -201,7 +204,7 @@ func TestAccSourceTags(t *testing.T) {
 				),
 			},
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_tag" "test" {
 							name = "%s"
 							type = "GENERIC"
@@ -231,7 +234,7 @@ func TestAccSourceTags(t *testing.T) {
 				),
 			},
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_tag" "test" {
 							name = "%s"
 							type = "GENERIC"
@@ -264,15 +267,22 @@ func TestAccSourceTags(t *testing.T) {
 	})
 }
 
-func TestAccDbtSource(t *testing.T) {
+func TestAccSourceParams(t *testing.T) {
 	sourceName := randomSourceName()
 	project := providertests.RandomName()
+	host := providertests.RandomName()
+	database := providertests.RandomName()
+	catalog := providertests.RandomName()
+	accountId := providertests.RandomName()
+	clientId := providertests.RandomName()
+	accountIdentifier := providertests.RandomName()
+	credName := providertests.RandomCredentialName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -290,19 +300,8 @@ func TestAccDbtSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.dbt.project_name", project),
 				),
 			},
-		},
-	})
-}
-
-func TestAccAirflowSource(t *testing.T) {
-	sourceName := randomSourceName()
-	host := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -321,19 +320,8 @@ func TestAccAirflowSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.airflow.host", host),
 				),
 			},
-		},
-	})
-}
-
-func TestAccAthenaSource(t *testing.T) {
-	sourceName := randomSourceName()
-	database := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -355,19 +343,8 @@ func TestAccAthenaSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.athena.database", database),
 				),
 			},
-		},
-	})
-}
-
-func TestAccDatabricksSource(t *testing.T) {
-	sourceName := randomSourceName()
-	catalog := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -389,19 +366,8 @@ func TestAccDatabricksSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.databricks.catalog", catalog),
 				),
 			},
-		},
-	})
-}
-
-func TestAccDbtCloudSource(t *testing.T) {
-	sourceName := randomSourceName()
-	accountId := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -421,18 +387,8 @@ func TestAccDbtCloudSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.dbt_cloud.account_id", accountId),
 				),
 			},
-		},
-	})
-}
-
-func TestAccFivetranSource(t *testing.T) {
-	sourceName := randomSourceName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -448,19 +404,8 @@ func TestAccFivetranSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.fivetran.host", "https://api.fivetran.com"),
 				),
 			},
-		},
-	})
-}
-
-func TestAccHiveSource(t *testing.T) {
-	sourceName := randomSourceName()
-	database := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -483,19 +428,8 @@ func TestAccHiveSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.hive.database", database),
 				),
 			},
-		},
-	})
-}
-
-func TestAccLookerSource(t *testing.T) {
-	sourceName := randomSourceName()
-	host := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -521,19 +455,8 @@ func TestAccLookerSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.looker.git_connections.0.url", "url"),
 				),
 			},
-		},
-	})
-}
-
-func TestAccMssqlSource(t *testing.T) {
-	sourceName := randomSourceName()
-	host := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -556,19 +479,8 @@ func TestAccMssqlSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.mssql.ssl", "false"),
 				),
 			},
-		},
-	})
-}
-
-func TestAccMysqlSource(t *testing.T) {
-	sourceName := randomSourceName()
-	host := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -589,19 +501,8 @@ func TestAccMysqlSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.mysql.host", host),
 				),
 			},
-		},
-	})
-}
-
-func TestAccOracleSource(t *testing.T) {
-	sourceName := randomSourceName()
-	host := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -622,19 +523,8 @@ func TestAccOracleSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.oracle.host", host),
 				),
 			},
-		},
-	})
-}
-
-func TestAccPostgresqlSource(t *testing.T) {
-	sourceName := randomSourceName()
-	host := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -655,19 +545,8 @@ func TestAccPostgresqlSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.postgresql.host", host),
 				),
 			},
-		},
-	})
-}
-
-func TestAccPowerBiSource(t *testing.T) {
-	sourceName := randomSourceName()
-	client_id := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -680,26 +559,15 @@ func TestAccPowerBiSource(t *testing.T) {
 								}
 							}
 						}
-						`, sourceName, client_id),
+						`, sourceName, clientId),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_source.test", "name", sourceName),
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.source_type", "power_bi"),
-					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.power_bi.client_id", client_id),
+					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.power_bi.client_id", clientId),
 				),
 			},
-		},
-	})
-}
-
-func TestAccQuickSightSource(t *testing.T) {
-	sourceName := randomSourceName()
-	account_id := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -711,26 +579,15 @@ func TestAccQuickSightSource(t *testing.T) {
 								}
 							}
 						}
-						`, sourceName, account_id),
+						`, sourceName, accountId),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_source.test", "name", sourceName),
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.source_type", "quicksight"),
-					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.quicksight.account_id", account_id),
+					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.quicksight.account_id", accountId),
 				),
 			},
-		},
-	})
-}
-
-func TestAccRedshiftSource(t *testing.T) {
-	sourceName := randomSourceName()
-	host := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -752,19 +609,8 @@ func TestAccRedshiftSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.redshift.ssl", "true"),
 				),
 			},
-		},
-	})
-}
-
-func TestAccSnowflakeSource(t *testing.T) {
-	sourceName := randomSourceName()
-	accountIdentifier := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -785,19 +631,8 @@ func TestAccSnowflakeSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.snowflake.account_identifier", accountIdentifier),
 				),
 			},
-		},
-	})
-}
-
-func TestAccSynapseSource(t *testing.T) {
-	sourceName := randomSourceName()
-	host := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -818,19 +653,8 @@ func TestAccSynapseSource(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.synapse.host", host),
 				),
 			},
-		},
-	})
-}
-
-func TestAccTableauSource(t *testing.T) {
-	sourceName := randomSourceName()
-	host := providertests.RandomName()
-
-	resource.Test(t, resource.TestCase{
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
@@ -849,7 +673,7 @@ func TestAccTableauSource(t *testing.T) {
 				),
 			},
 			{
-				Config: baseConfig() + fmt.Sprintf(`
+				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
