@@ -237,6 +237,7 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 	length := len(plan.Tags.Elements())
 	tagsModel := make([]source.TagModel, 0, length)
 	diags = plan.Tags.ElementsAs(ctx, &tagsModel, false)
+	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -409,7 +410,7 @@ func (r *sourceResource) Read(ctx context.Context, req resource.ReadRequest, res
 	}
 }
 
-// TODO: factorize duplicated code with Create
+// TODO: factorize duplicated code with Create.
 func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	var plan source.SourceModel
 	diags := req.Plan.Get(ctx, &plan)
@@ -463,6 +464,7 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 	length := len(plan.Tags.Elements())
 	tagsModel := make([]source.TagModel, 0, length)
 	diags = plan.Tags.ElementsAs(ctx, &tagsModel, false)
+	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
