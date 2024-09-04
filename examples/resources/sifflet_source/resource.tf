@@ -34,7 +34,8 @@ resource "sifflet_source" "complex" {
     }
   }
   schedule = "@daily"
-  timezone = "UTC"
+  # The timezone can also be a timezone name, e.g. "Europe/Paris".
+  timezone = "UTC+1"
   tags = [{
     # Tags specified this way must be created before the source.
     name = "tag_name"
