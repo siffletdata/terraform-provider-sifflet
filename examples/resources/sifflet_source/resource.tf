@@ -1,4 +1,4 @@
-# The credential value must match waht the source expects.
+# The credential value must match what the source expects.
 # See the Sifflet documentation for each source type for details
 # on the credential value format.
 data "sifflet_credential" "example" {
