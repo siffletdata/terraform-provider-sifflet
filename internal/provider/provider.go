@@ -14,11 +14,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
-	alphasifflet "terraform-provider-sifflet/internal/alphaclient"
-	sifflet "terraform-provider-sifflet/internal/client"
-	"terraform-provider-sifflet/internal/tfhttp"
-
-	"github.com/oapi-codegen/oapi-codegen/v2/pkg/securityprovider"
+	"terraform-provider-sifflet/internal/apiclients"
 )
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -147,43 +143,10 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 		return
 	}
 
-	bearerTokenProvider, bearerTokenProviderErr := securityprovider.NewSecurityProviderBearerToken(token)
-	if bearerTokenProviderErr != nil {
-		panic(bearerTokenProviderErr)
-	}
-
-	// Create a new Sifflet alphaclient using the configuration values
-	alphaclient, err := alphasifflet.NewClient(host, alphasifflet.WithRequestEditorFn(bearerTokenProvider.Intercept))
-	if err != nil {
-		resp.Diagnostics.AddError(
-			"Unable to Create Sifflet API Client",
-			"An unexpected error occurred when creating the Sifflet API client. "+
-				"If the error is not clear, please contact the provider developers.\n\n"+
-				"Sifflet Client Error: "+err.Error(),
-		)
+	httpClients, diag := apiclients.MakeHttpClients(token, host)
+	if diag != nil {
+		resp.Diagnostics.Append(diag)
 		return
-	}
-
-	httpClient := tfhttp.NewTerraformHttpClient()
-
-	client, err := sifflet.NewClientWithResponses(
-		host,
-		sifflet.WithRequestEditorFn(bearerTokenProvider.Intercept),
-		sifflet.WithHTTPClient(httpClient),
-	)
-	if err != nil {
-		resp.Diagnostics.AddError(
-			"Unable to Create Sifflet API Client",
-			"An unexpected error occurred when creating the Sifflet API client. "+
-				"If the error is not clear, please contact the provider developers.\n\n"+
-				"Sifflet Client Error: "+err.Error(),
-		)
-		return
-	}
-
-	httpClients := &httpClients{
-		AlphaClient: alphaclient,
-		Client:      client,
 	}
 
 	// Make the Sifflet clients available during DataSource and Resource
@@ -193,7 +156,7 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 
 	// Check that the provided URL is valid by making a request
 	// to the Sifflet API.
-	apiHealthCheck(httpClient, host, resp)
+	apiHealthCheck(httpClients.HttpClient, host, resp)
 }
 
 func apiHealthCheck(httpClient *http.Client, host string, resp *provider.ConfigureResponse) {
@@ -221,11 +184,6 @@ func apiHealthCheck(httpClient *http.Client, host string, resp *provider.Configu
 	}
 }
 
-type httpClients struct {
-	AlphaClient *alphasifflet.Client
-	Client      *sifflet.ClientWithResponses
-}
-
 // DataSources defines the data sources implemented in the provider.
 func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
@@ -241,5 +199,6 @@ func (p *siffletProvider) Resources(_ context.Context) []func() resource.Resourc
 		NewDataSourceResource,
 		NewTagResource,
 		NewCredentialResource,
+		NewSourceResource,
 	}
 }

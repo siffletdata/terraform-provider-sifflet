@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	"terraform-provider-sifflet/internal/apiclients"
 	sifflet "terraform-provider-sifflet/internal/client"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -31,11 +32,11 @@ func (d *credentialDataSource) Configure(_ context.Context, req datasource.Confi
 		return
 	}
 
-	clients, ok := req.ProviderData.(*httpClients)
+	clients, ok := req.ProviderData.(*apiclients.HttpClients)
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected Data Source Configure Type",
-			fmt.Sprintf("Expected *httpClients, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+			fmt.Sprintf("Expected *HttpClients, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 
 		return

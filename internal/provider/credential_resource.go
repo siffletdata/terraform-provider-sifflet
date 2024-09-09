@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"time"
 
+	"terraform-provider-sifflet/internal/apiclients"
 	sifflet "terraform-provider-sifflet/internal/client"
 
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -41,7 +42,7 @@ func CredentialResourceSchema(ctx context.Context) schema.Schema {
 		Attributes: map[string]schema.Attribute{
 			"name": schema.StringAttribute{
 				// TODO add validation (https://developer.hashicorp.com/terraform/plugin/framework/validation#attribute-validation)
-				Description: "The name of the credential. Must only contain alphanumeric characters. Must be uniquein the Sifflet instance.",
+				Description: "The name of the credential. Must only contain alphanumeric characters. Must be unique in the Sifflet instance.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
@@ -303,11 +304,11 @@ func (r *credentialResource) Configure(_ context.Context, req resource.Configure
 		return
 	}
 
-	clients, ok := req.ProviderData.(*httpClients)
+	clients, ok := req.ProviderData.(*apiclients.HttpClients)
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected Resource Configure Type",
-			fmt.Sprintf("Expected *httpClients, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+			fmt.Sprintf("Expected *HttpClients, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 
 		return

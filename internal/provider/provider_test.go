@@ -9,13 +9,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 )
 
-const (
-	// Use environment variables to configure the provider during tests (SIFFLET_HOST and SIFFLET_TOKEN, see README.md).
-	providerConfig = `
-provider "sifflet" { }
-`
-)
-
 var (
 	testAccProtoV6ProviderFactories = map[string]func() (tfprotov6.ProviderServer, error){
 		"sifflet": providerserver.NewProtocol6WithError(New("test")()),

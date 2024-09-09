@@ -11,6 +11,7 @@ import (
 	"github.com/google/uuid"
 
 	sifflet "terraform-provider-sifflet/internal/alphaclient"
+	"terraform-provider-sifflet/internal/apiclients"
 	tag_struct "terraform-provider-sifflet/internal/tag_datasource"
 
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -245,11 +246,11 @@ func (r *tagResource) Configure(_ context.Context, req resource.ConfigureRequest
 		return
 	}
 
-	clients, ok := req.ProviderData.(*httpClients)
+	clients, ok := req.ProviderData.(*apiclients.HttpClients)
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected Resource Configure Type",
-			fmt.Sprintf("Expected *httpClients, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+			fmt.Sprintf("Expected *HttpClients, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 
 		return
