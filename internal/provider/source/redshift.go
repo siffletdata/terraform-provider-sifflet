@@ -29,7 +29,7 @@ func (m RedshiftParametersModel) TerraformSchema() schema.SingleNestedAttribute 
 		Optional: true,
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Description: "PostgreSQL server hostname",
+				Description: "Redshift server hostname",
 				Required:    true,
 			},
 			"database": schema.StringAttribute{
@@ -37,7 +37,7 @@ func (m RedshiftParametersModel) TerraformSchema() schema.SingleNestedAttribute 
 				Required:    true,
 			},
 			"port": schema.Int32Attribute{
-				Description: "PostgreSQL server port number",
+				Description: "Redshift server port number",
 				Required:    true,
 			},
 			"schema": schema.StringAttribute{
