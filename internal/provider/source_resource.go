@@ -106,7 +106,7 @@ func SourceResourceSchema(ctx context.Context) schema.Schema {
 							Validators: []validator.String{
 								stringvalidator.OneOf("Tag", "Classification"),
 								stringvalidator.ConflictsWith(
-									path.MatchRelative().AtParent().AtName("kind"),
+									path.MatchRelative().AtParent().AtName("id"),
 								),
 							},
 						},
