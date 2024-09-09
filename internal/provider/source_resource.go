@@ -450,7 +450,7 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 	if t.RequiresCredential() {
 		credentials = plan.Credential.ValueStringPointer()
 		if credentials == nil {
-			resp.Diagnostics.AddError("Unable to create source", "Credential is required for this source type, but got an empty string")
+			resp.Diagnostics.AddError("Unable to update source", "Credential is required for this source type, but got an empty string")
 			return
 		}
 	} else {
