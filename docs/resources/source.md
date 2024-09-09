@@ -13,7 +13,7 @@ A Sifflet source.
 ## Example Usage
 
 ```terraform
-# The credential value must match waht the source expects.
+# The credential value must match what the source expects.
 # See the Sifflet documentation for each source type for details
 # on the credential value format.
 data "sifflet_credential" "example" {
@@ -302,8 +302,8 @@ Required:
 Required:
 
 - `database` (String) Database name
-- `host` (String) PostgreSQL server hostname
-- `port` (Number) PostgreSQL server port number
+- `host` (String) Redshift server hostname
+- `port` (Number) Redshift server port number
 - `schema` (String) Schema name
 
 Optional:
