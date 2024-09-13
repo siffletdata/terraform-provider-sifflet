@@ -100,7 +100,7 @@ func SourceResourceSchema(ctx context.Context) schema.Schema {
 							Computed:    true,
 						},
 						"kind": schema.StringAttribute{
-							Description: "Tag kind. If provided, name must be provided. Use this field when a tag name could be used for different kinds of tags.",
+							Description: "Tag kind. If provided, name must be provided. Use this field for disambiguation when the tag name matches both a regular and a classification tag. Use 'Tag' to match a regular, user-managed tag. Use 'Classification' to match a tag that was automatically created by Sifflet. See the Sifflet documentation for more about tag types.",
 							Optional:    true,
 							Computed:    true,
 							Validators: []validator.String{

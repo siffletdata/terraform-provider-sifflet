@@ -347,38 +347,15 @@ type SearchCollectionDatasourceCatalogAssetDto struct {
 	TotalElements *int64                       `tfsdk:"total_elements"`
 }
 
-type CatalogFilterDto struct {
-	// Children *[]FilterElementDto `tfsdk:"children"`
-	Id    *string `tfsdk:"id"`
-	Name  *string `tfsdk:"name"`
-	Query *string `tfsdk:"query"`
-}
-
 type DatasourceSearchDto struct {
-	CatalogFilters []CatalogFilterDto                        `tfsdk:"catalog_filters"`
-	SearchRules    SearchCollectionDatasourceCatalogAssetDto `tfsdk:"search_rules"`
+	SearchRules SearchCollectionDatasourceCatalogAssetDto `tfsdk:"search_rules"`
 }
 
 func DatasourceDataSourceSchema(ctx context.Context) data_source.Schema {
 	return data_source.Schema{
-		Description: "Read all Sifflet Data Sources.",
+		Description:        "Read all Sifflet Data Sources.",
+		DeprecationMessage: "This data source relies on an unstable API that may change in the future.",
 		Attributes: map[string]data_source.Attribute{
-			"catalog_filters": data_source.ListNestedAttribute{
-				NestedObject: data_source.NestedAttributeObject{
-					Attributes: map[string]data_source.Attribute{
-						"id": data_source.StringAttribute{
-							Computed: true,
-						},
-						"name": data_source.StringAttribute{
-							Computed: true,
-						},
-						"query": data_source.StringAttribute{
-							Computed: true,
-						},
-					},
-				},
-				Computed: true,
-			},
 			"search_rules": data_source.SingleNestedAttribute{
 				Attributes: map[string]data_source.Attribute{
 					"data": data_source.ListNestedAttribute{

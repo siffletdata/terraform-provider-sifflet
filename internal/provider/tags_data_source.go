@@ -28,7 +28,7 @@ func NewTagDataSource() datasource.DataSource {
 }
 
 type tagDataSource struct {
-	client *sifflet.Client
+	client *sifflet.ClientWithResponses
 }
 
 func (d *tagDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
@@ -112,7 +112,7 @@ func (d *tagDataSource) Read(ctx context.Context, req datasource.ReadRequest, re
 		state.Data = &[]tag_struct.TagDto{}
 	}
 
-	for _, data := range *result.Data {
+	for _, data := range result.Data {
 
 		idString := data.Id.String()
 		yType := tag_struct.TagDtoType(data.Type)

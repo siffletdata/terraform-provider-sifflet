@@ -11,7 +11,7 @@ import (
 )
 
 type HttpClients struct {
-	AlphaClient *alphasifflet.Client
+	AlphaClient *alphasifflet.ClientWithResponses
 	Client      *sifflet.ClientWithResponses
 	HttpClient  *http.Client
 }
@@ -22,7 +22,7 @@ func MakeHttpClients(token string, host string) (*HttpClients, diag.Diagnostic) 
 		panic(bearerTokenProviderErr)
 	}
 
-	alphaclient, err := alphasifflet.NewClient(host, alphasifflet.WithRequestEditorFn(bearerTokenProvider.Intercept))
+	alphaclient, err := alphasifflet.NewClientWithResponses(host, alphasifflet.WithRequestEditorFn(bearerTokenProvider.Intercept))
 	if err != nil {
 		return nil, diag.NewErrorDiagnostic(
 			"Unable to Create Sifflet API Client",

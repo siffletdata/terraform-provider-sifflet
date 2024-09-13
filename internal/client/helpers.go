@@ -41,5 +41,4 @@ func HandleHttpErrorAsProblem(ctx context.Context, diagnostics *diag.Diagnostics
 		summary,
 		fmt.Sprintf("HTTP status code: %d. Details: %s %s", httpStatusCode, title, detail),
 	)
-
 }

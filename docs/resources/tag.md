@@ -3,12 +3,12 @@
 page_title: "sifflet_tag Resource - terraform-provider-sifflet"
 subcategory: ""
 description: |-
-  Create a Sifflet tag.
+  Tags are used to classify data in Sifflet. This resource can not create 'Classification' tags, as these tags are automatically created by Sifflet. See the Sifflet documentation https://docs.siffletdata.com/docs/tags for more about tag types.
 ---
 
 # sifflet_tag (Resource)
 
-Create a Sifflet tag.
+Tags are used to classify data in Sifflet. This resource can not create 'Classification' tags, as these tags are automatically created by Sifflet. See the [Sifflet documentation](https://docs.siffletdata.com/docs/tags) for more about tag types.
 
 ## Example Usage
 
@@ -25,8 +25,7 @@ resource "sifflet_tag" "super_tag" {
 
 ### Required
 
-- `name` (String) Name to represent your integration in Sifflet.
-- `type` (String) Type of tag (ie: GENERIC, HIDDEN_DATA_CLASSIFICATION, VISIBLE_DATA_CLASSIFICATION, TERM, BIGQUERY_EXTERNAL, SNOWFLAKE_EXTERNAL)
+- `name` (String) Tag name.
 
 ### Optional
 
@@ -34,12 +33,7 @@ resource "sifflet_tag" "super_tag" {
 
 ### Read-Only
 
-- `created_by` (String) Username that created the tag.
-- `created_date` (String) Date of tag creation.
-- `editable` (Boolean) If tag is editable.
-- `id` (String) Tag UID
-- `last_modified_date` (String) Date of tag last modification.
-- `modified_by` (String) Last username that modified the tag.
+- `id` (String) Tag ID
 
 ## Import
 
