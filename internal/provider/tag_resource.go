@@ -41,10 +41,10 @@ func (r *tagResource) Metadata(_ context.Context, req resource.MetadataRequest, 
 
 // Schema defines the schema for the resource.
 func (r *tagResource) Schema(ctx context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
-	resp.Schema = tagResourceSchema(ctx)
+	resp.Schema = tagResourceSchema()
 }
 
-func tagResourceSchema(ctx context.Context) schema.Schema {
+func tagResourceSchema() schema.Schema {
 	return schema.Schema{
 		Version:             1,
 		Description:         "Manage a Sifflet tag.",
