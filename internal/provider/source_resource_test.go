@@ -207,7 +207,6 @@ func TestAccSourceTags(t *testing.T) {
 				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_tag" "test" {
 							name = "%s"
-							type = "GENERIC"
 						}
 
 						resource "sifflet_source" "test" {
@@ -237,7 +236,6 @@ func TestAccSourceTags(t *testing.T) {
 				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_tag" "test" {
 							name = "%s"
-							type = "GENERIC"
 						}
 
 						resource "sifflet_source" "test" {
