@@ -14,7 +14,6 @@ Create a Sifflet Data Source.
 
 ```terraform
 resource "sifflet_tag" "super_tag" {
-  type        = "GENERIC"
   name        = "my-tag"
   description = "My super tag."
 }
