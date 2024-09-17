@@ -352,7 +352,7 @@ Optional:
 Optional:
 
 - `id` (String) Tag ID. If provided, name and kind must be omitted.
-- `kind` (String) Tag kind. If provided, name must be provided. Use this field when a tag name could be used for different kinds of tags.
+- `kind` (String) Tag kind. If provided, name must be provided. Use this field for disambiguation when the tag name matches both a regular and a classification tag. Use 'Tag' to match a regular, user-managed tag. Use 'Classification' to match a tag that was automatically created by Sifflet. See the Sifflet documentation for more about tag types.
 - `name` (String) Tag name. If provided, id must be omitted.
 
 ## Import

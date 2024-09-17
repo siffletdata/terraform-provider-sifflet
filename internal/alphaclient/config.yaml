@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/oapi-codegen/oapi-codegen/main/configuration-schema.json
+
+package: alphaclient
+generate:
+  models: true
+  client: true
+output: sifflet.gen.go

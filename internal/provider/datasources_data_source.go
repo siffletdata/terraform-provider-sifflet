@@ -26,7 +26,7 @@ func NewDatasourcesDataSource() datasource.DataSource {
 }
 
 type datasourcesDataSource struct {
-	client *sifflet.Client
+	client *sifflet.ClientWithResponses
 }
 
 func (d *datasourcesDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
@@ -110,7 +110,7 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 		state.SearchRules.Data = &[]datasource_struct.DatasourceCatalogAssetDto{}
 	}
 
-	for _, data := range *result.SearchDatasources.Data {
+	for _, data := range result.SearchDatasources.Data {
 
 		idString := data.Id.String()
 		yEntityType := datasource_struct.DatasourceCatalogAssetDtoEntityType(data.EntityType)
@@ -182,14 +182,6 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 
 		*state.SearchRules.Data = append(*state.SearchRules.Data, data_source_catalog_asset)
 
-	}
-
-	for _, filters := range result.CatalogFilters {
-		state.CatalogFilters = append(state.CatalogFilters, datasource_struct.CatalogFilterDto{
-			Name:  filters.Name,
-			Id:    filters.Id,
-			Query: filters.Query,
-		})
 	}
 
 	// Set state

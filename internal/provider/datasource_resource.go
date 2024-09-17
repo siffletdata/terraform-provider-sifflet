@@ -36,7 +36,7 @@ func NewDataSourceResource() resource.Resource {
 
 // datasourceResource is the resource implementation.
 type datasourceResource struct {
-	client *sifflet.Client
+	client *sifflet.ClientWithResponses
 }
 
 // Metadata returns the resource type name.

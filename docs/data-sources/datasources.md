@@ -25,18 +25,7 @@ output "datasources" {
 
 ### Read-Only
 
-- `catalog_filters` (Attributes List) (see [below for nested schema](#nestedatt--catalog_filters))
 - `search_rules` (Attributes) (see [below for nested schema](#nestedatt--search_rules))
-
-<a id="nestedatt--catalog_filters"></a>
-### Nested Schema for `catalog_filters`
-
-Read-Only:
-
-- `id` (String)
-- `name` (String)
-- `query` (String)
-
 
 <a id="nestedatt--search_rules"></a>
 ### Nested Schema for `search_rules`

@@ -2,38 +2,36 @@ package provider
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
-	"strconv"
 
 	"github.com/google/uuid"
 
 	sifflet "terraform-provider-sifflet/internal/alphaclient"
 	"terraform-provider-sifflet/internal/apiclients"
-	tag_struct "terraform-provider-sifflet/internal/tag_datasource"
+	"terraform-provider-sifflet/internal/client"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
-// Ensure the implementation satisfies the expected interfaces.
 var (
 	_ resource.Resource              = &tagResource{}
 	_ resource.ResourceWithConfigure = &tagResource{}
 )
 
-// NewTagResource is a helper function to simplify the provider implementation.
 func NewTagResource() resource.Resource {
 	return &tagResource{}
 }
 
-// tagResource is the resource implementation.
 type tagResource struct {
-	client *sifflet.Client
+	client *sifflet.ClientWithResponses
 }
 
 // Metadata returns the resource type name.
@@ -43,76 +41,70 @@ func (r *tagResource) Metadata(_ context.Context, req resource.MetadataRequest, 
 
 // Schema defines the schema for the resource.
 func (r *tagResource) Schema(ctx context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
-	resp.Schema = tag_struct.TagResourceSchema(ctx)
+	resp.Schema = tagResourceSchema()
 }
 
-// Create creates the resource and sets the initial Terraform state.
+func tagResourceSchema() schema.Schema {
+	return schema.Schema{
+		Version:             1,
+		Description:         "Manage a Sifflet tag.",
+		MarkdownDescription: "Tags are used to classify data in Sifflet. This resource can not create 'Classification' tags, as these tags are automatically created by Sifflet. See the [Sifflet documentation](https://docs.siffletdata.com/docs/tags) for more about tag types.",
+		Attributes: map[string]schema.Attribute{
+			"id": schema.StringAttribute{
+				Computed:    true,
+				Description: "Tag ID",
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.RequiresReplace(),
+				},
+			},
+			"name": schema.StringAttribute{
+				Required:    true,
+				Description: "Tag name.",
+				Validators: []validator.String{
+					stringvalidator.LengthAtLeast(1),
+				},
+			},
+			"description": schema.StringAttribute{
+				Description: "Tag description.",
+				Optional:    true,
+			},
+		},
+	}
+}
+
+type tagModel struct {
+	Id          types.String `tfsdk:"id"`
+	Name        types.String `tfsdk:"name"`
+	Description types.String `tfsdk:"description"`
+}
+
 func (r *tagResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-
-	// TODO: Datasources is not tested, can be create with anythings as value
-
-	var plan tag_struct.TagDto
+	var plan tagModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	yType := sifflet.TagCreateDtoType(*plan.Type)
-
-	tag := sifflet.TagCreateDto{
-		Name:        *plan.Name,
-		Description: plan.Description,
-		Type:        yType,
+	tagDto := sifflet.TagCreateDto{
+		Name:        plan.Name.ValueString(),
+		Description: plan.Description.ValueStringPointer(),
+		Type:        sifflet.TagCreateDtoTypeGENERIC,
 	}
 
-	tagResponse, _ := r.client.CreateTag(ctx, tag)
+	tagResponse, _ := r.client.CreateTagWithResponse(ctx, tagDto)
 
-	resBody, _ := io.ReadAll(tagResponse.Body)
-	tflog.Debug(ctx, "Response:  "+string(resBody))
-
-	if tagResponse.StatusCode != http.StatusCreated {
-		var message tag_struct.ErrorMessage
-		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
-			resp.Diagnostics.AddError(
-				"Can not unmarshal JSON",
-				err.Error(),
-			)
-			return
-		}
-		resp.Diagnostics.AddError(
-			message.Title,
-			message.Detail,
-		)
+	if tagResponse.StatusCode() != http.StatusCreated {
+		client.HandleHttpErrorAsProblem(
+			ctx, &resp.Diagnostics, "Unable to create tag", tagResponse.StatusCode(), tagResponse.Body)
 		resp.State.RemoveResource(ctx)
 		return
 	}
 
-	var result sifflet.TagDto
-	if err := json.Unmarshal(resBody, &result); err != nil { // Parse []byte to go struct pointer
-		resp.Diagnostics.AddError(
-			"Can not unmarshal JSON",
-			err.Error(),
-		)
-		return
-	}
+	plan.Id = types.StringValue(tagResponse.JSON201.Id.String())
+	plan.Name = types.StringValue(tagResponse.JSON201.Name)
+	plan.Description = types.StringPointerValue(tagResponse.JSON201.Description)
 
-	// Map response body to schema and populate Computed attribute values
-
-	Type := tag_struct.TagDtoType(result.Type)
-	id := result.Id.String()
-
-	plan.CreatedBy = types.StringValue(*result.CreatedBy)
-	plan.CreatedDate = types.StringValue(strconv.FormatInt(*result.CreatedDate, 10))
-	plan.Description = result.Description
-	plan.Editable = types.BoolValue(*result.Editable)
-	plan.Id = types.StringValue(id)
-	plan.LastModifiedDate = types.StringValue(strconv.FormatInt(*result.LastModifiedDate, 10))
-	plan.ModifiedBy = types.StringValue(*result.ModifiedBy)
-	plan.Name = &result.Name
-	plan.Type = &Type
-
-	// Set state to fully populated data
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -120,9 +112,8 @@ func (r *tagResource) Create(ctx context.Context, req resource.CreateRequest, re
 	}
 }
 
-// Read refreshes the Terraform state with the latest data.
 func (r *tagResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var state tag_struct.TagDto
+	var state tagModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -131,65 +122,28 @@ func (r *tagResource) Read(ctx context.Context, req resource.ReadRequest, resp *
 
 	id := state.Id.String()
 
-	itemResponse, err := r.client.GetTagById(ctx, uuid.MustParse(id))
+	uid, err := uuid.Parse(id)
 	if err != nil {
-		resp.Diagnostics.AddError(
-			"Unable to Read Item",
-			err.Error(),
-		)
+		resp.Diagnostics.AddError("Unable to read tag: could not parse tag ID as UUID", err.Error())
+	}
+
+	tagResponse, err := r.client.GetTagByIdWithResponse(ctx, uid)
+	if err != nil {
+		resp.Diagnostics.AddError("Unable to read tag", err.Error())
 		return
 	}
 
-	resBody, _ := io.ReadAll(itemResponse.Body)
-	tflog.Debug(ctx, fmt.Sprintf("Response: %d ", itemResponse.Body))
-
-	if itemResponse.StatusCode == http.StatusNotFound {
-		// TODO: in case of 404 nothing is return by the API
+	if tagResponse.StatusCode() != http.StatusOK {
+		client.HandleHttpErrorAsProblem(
+			ctx, &resp.Diagnostics, "Unable to read tag", tagResponse.StatusCode(), tagResponse.Body)
 		resp.State.RemoveResource(ctx)
 		return
 	}
 
-	if itemResponse.StatusCode != http.StatusOK {
+	state.Id = types.StringValue(tagResponse.JSON200.Id.String())
+	state.Name = types.StringValue(tagResponse.JSON200.Name)
+	state.Description = types.StringPointerValue(tagResponse.JSON200.Description)
 
-		var message tag_struct.ErrorMessage
-		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
-			resp.Diagnostics.AddError(
-				"Can not unmarshal JSON",
-				err.Error(),
-			)
-			return
-		}
-		resp.Diagnostics.AddError(
-			message.Title,
-			message.Detail,
-		)
-		resp.State.RemoveResource(ctx)
-		return
-	}
-
-	var result sifflet.TagDto
-	if err := json.Unmarshal(resBody, &result); err != nil { // Parse []byte to go struct pointer
-		resp.Diagnostics.AddError(
-			"Can not unmarshal JSON",
-			err.Error(),
-		)
-		return
-	}
-
-	Type := tag_struct.TagDtoType(result.Type)
-	state = tag_struct.TagDto{
-		CreatedBy:        types.StringValue(*result.CreatedBy),
-		CreatedDate:      types.StringValue(strconv.FormatInt(*result.CreatedDate, 10)),
-		Description:      result.Description,
-		Editable:         types.BoolValue(*result.Editable),
-		Id:               types.StringValue(result.Id.String()),
-		LastModifiedDate: types.StringValue(strconv.FormatInt(*result.LastModifiedDate, 10)),
-		ModifiedBy:       types.StringValue(*result.ModifiedBy),
-		Name:             &result.Name,
-		Type:             &Type,
-	}
-
-	// Set state to fully populated data
 	diags = resp.State.Set(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -197,15 +151,51 @@ func (r *tagResource) Read(ctx context.Context, req resource.ReadRequest, resp *
 	}
 }
 
-// Update updates the resource and sets the updated Terraform state on success.
 func (r *tagResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	// NOT IMPLEMENTED IN OPENAPI CONTRACT
+	var state tagModel
+	diags := req.State.Get(ctx, &state)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+	id := state.Id.String()
+
+	uid, err := uuid.Parse(id)
+	if err != nil {
+		resp.Diagnostics.AddError("Unable to read tag: could not parse tag ID as UUID", err.Error())
+	}
+
+	tagDto := sifflet.TagUpdateDto{
+		Name:        state.Name.ValueString(),
+		Description: state.Description.ValueStringPointer(),
+	}
+
+	tagResponse, err := r.client.UpdateTagWithResponse(ctx, uid, tagDto)
+	if err != nil {
+		resp.Diagnostics.AddError("Unable to update tag", err.Error())
+		return
+	}
+
+	if tagResponse.StatusCode() != http.StatusOK {
+		client.HandleHttpErrorAsProblem(
+			ctx, &resp.Diagnostics, "Unable to update tag", tagResponse.StatusCode(), tagResponse.Body)
+		resp.State.RemoveResource(ctx)
+		return
+	}
+
+	state.Id = types.StringValue(tagResponse.JSON200.Id.String())
+	state.Name = types.StringValue(tagResponse.JSON200.Name)
+	state.Description = types.StringPointerValue(tagResponse.JSON200.Description)
+
+	diags = resp.State.Set(ctx, state)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
 }
 
-// Delete deletes the resource and removes the Terraform state on success.
 func (r *tagResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-
-	var state tag_struct.TagDto
+	var state tagModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -213,28 +203,22 @@ func (r *tagResource) Delete(ctx context.Context, req resource.DeleteRequest, re
 	}
 
 	id := state.Id.String()
+	uid, err := uuid.Parse(id)
+	if err != nil {
+		resp.Diagnostics.AddError("Unable to delete tag: could not parse tag ID as UUID", err.Error())
+	}
 
-	tagResponse, _ := r.client.DeleteTag(ctx, uuid.MustParse(id))
-	resBody, _ := io.ReadAll(tagResponse.Body)
-	tflog.Debug(ctx, "Response "+string(resBody))
-
-	if tagResponse.StatusCode != http.StatusNoContent {
-		var message tag_struct.ErrorMessage
-		if err := json.Unmarshal(resBody, &message); err != nil { // Parse []byte to go struct pointer
-			resp.Diagnostics.AddError(
-				"Can not unmarshal JSON",
-				err.Error(),
-			)
-			return
-		}
-		resp.Diagnostics.AddError(
-			message.Title,
-			message.Detail,
-		)
-		resp.State.RemoveResource(ctx)
+	tagResponse, err := r.client.DeleteTagWithResponse(ctx, uid)
+	if err != nil {
+		resp.Diagnostics.AddError("Unable to delete tag", err.Error())
 		return
 	}
 
+	if tagResponse.StatusCode() != http.StatusNoContent {
+		client.HandleHttpErrorAsProblem(
+			ctx, &resp.Diagnostics, "Unable to delete tag", tagResponse.StatusCode(), tagResponse.Body)
+		return
+	}
 }
 
 func (r *tagResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
