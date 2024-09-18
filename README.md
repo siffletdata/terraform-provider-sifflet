@@ -150,6 +150,17 @@ This "alpha" client has the following known issues:
 - The `timezoneData` field (used to create a datasource content) is not validated by the API.
 - The `/ui/v1/datasources/{id}` endpoint returns nothing on 404 responses.
 
+### Pre-commit hooks
+
+To catch early some common issues that would be rejected in CI, you can install pre-commit hooks:
+
+1. Install [pre-commit](https://pre-commit.com/#install)
+1. Run:
+
+```
+pre-commit install
+```
+
 ## Thanks
 
 This provider was contributed by [Benjamin Berriot](https://github.com/IIBenII). Many thanks from the Sifflet
