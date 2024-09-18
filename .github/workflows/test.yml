@@ -65,9 +65,14 @@ jobs:
       matrix:
         terraform:
           # Supported Terraform versions:
+          # Oldest
           - "1.6.*"
-          - "1.7.*"
-          - "1.8.*"
+          # Reduce the number of concurrent calls to the Sifflet API to avoid throttling.
+          # We don't use any fancy Terraform feature, so for now we assume that testing with both
+          # the oldest and latest support versions is enough.
+          # - "1.7.*"
+          # - "1.8.*"
+          # Latest
           - "1.9.*"
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
