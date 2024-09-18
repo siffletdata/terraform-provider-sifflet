@@ -1,0 +1,25 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+  - id: check-added-large-files
+- repo: local
+  hooks:
+    - name: golangci-lint
+      id: golangci-lint
+      description: Run golangci-lint.
+      entry: golangci-lint run --fix
+      types: [go]
+      language: golang
+      require_serial: true
+      pass_filenames: false
+    - name: go generate
+      id: go-generate
+      description: Run go generate to ensure generated files are up-to-date.
+      entry: go generate ./...
+      types: [go, yaml]
+      language: golang
+      require_serial: true
+      pass_filenames: false
