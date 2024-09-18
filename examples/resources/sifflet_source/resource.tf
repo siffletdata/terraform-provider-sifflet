@@ -1,7 +1,7 @@
-# The credential value must match what the source expects.
+# The credentials value must match what the source expects.
 # See the Sifflet documentation for each source type for details
 # on the credential value format.
-data "sifflet_credential" "example" {
+data "sifflet_credentials" "example" {
   name = "example"
 }
 
@@ -9,7 +9,7 @@ data "sifflet_credential" "example" {
 resource "sifflet_source" "example" {
   name        = "example"
   description = "A description"
-  credential  = sifflet_credential.example.name
+  credentials = sifflet_credentials.example.name
   parameters = {
     # Pass the parameter block that matches the source type.
     bigquery = {
@@ -24,7 +24,7 @@ resource "sifflet_source" "example" {
 resource "sifflet_source" "complex" {
   name        = "example"
   description = "A description"
-  credential  = sifflet_credential.example.name
+  credentials = sifflet_credentials.example.name
   parameters = {
     snowflake = {
       account_identifier = "accountidentifier"

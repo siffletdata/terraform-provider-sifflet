@@ -15,7 +15,7 @@ func randomSourceName() string {
 
 func baseConfig(credName string) string {
 	return providertests.ProviderConfig() + fmt.Sprintf(`
-    resource "sifflet_credential" "test" {
+    resource "sifflet_credentials" "test" {
 		name = "%s"
 		description = "Description"
 		value = "Value"
@@ -28,7 +28,7 @@ func baseConfig(credName string) string {
 func TestAccBigQuerySource(t *testing.T) {
 	sourceName := randomSourceName()
 	projectId := providertests.RandomName()
-	credName := providertests.RandomCredentialName()
+	credName := providertests.RandomCredentialsName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
@@ -38,7 +38,7 @@ func TestAccBigQuerySource(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								bigquery = {
 									project_id = "%s"
@@ -59,7 +59,7 @@ func TestAccBigQuerySource(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "Another description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								bigquery = {
 									project_id = "%s"
@@ -82,7 +82,7 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 	sourceName := randomSourceName()
 	projectId := providertests.RandomName()
 	database := providertests.RandomName()
-	credName := providertests.RandomCredentialName()
+	credName := providertests.RandomCredentialsName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
@@ -92,7 +92,7 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								bigquery = {
 									project_id = "project_id"
@@ -133,7 +133,7 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 							name = "%s"
 							description = "A description"
 							// Credentials, even if they are not required for Athena datasources
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								athena = {
 									database = "%s"
@@ -157,7 +157,7 @@ func TestAccSourceTags(t *testing.T) {
 	sourceName := randomSourceName()
 	projectId := providertests.RandomName()
 	tagName := providertests.RandomName()
-	credName := providertests.RandomCredentialName()
+	credName := providertests.RandomCredentialsName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
@@ -167,7 +167,7 @@ func TestAccSourceTags(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								bigquery = {
 									project_id = "%s"
@@ -187,7 +187,7 @@ func TestAccSourceTags(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								bigquery = {
 									project_id = "%s"
@@ -212,7 +212,7 @@ func TestAccSourceTags(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								bigquery = {
 									project_id = "%s"
@@ -241,7 +241,7 @@ func TestAccSourceTags(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								bigquery = {
 									project_id = "%s"
@@ -274,7 +274,7 @@ func TestAccSourceParams(t *testing.T) {
 	accountId := providertests.RandomName()
 	clientId := providertests.RandomName()
 	accountIdentifier := providertests.RandomName()
-	credName := providertests.RandomCredentialName()
+	credName := providertests.RandomCredentialsName()
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
@@ -303,7 +303,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								airflow = {
 									host = "%s"
@@ -346,7 +346,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								databricks = {
 									catalog = "%s"
@@ -369,7 +369,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								dbt_cloud = {
 									account_id = "%s"
@@ -390,7 +390,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 							    fivetran	 = { }
 							}
@@ -407,7 +407,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								hive = {
 									atlas_base_url = "atlas_base_url"
@@ -431,14 +431,14 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								looker = {
 									host = "%s"
 									git_connections = [{
 										auth_type = "HTTP_AUTHORIZATION_HEADER"
 										branch = "branch"
-										secret_id = sifflet_credential.test.name
+										secret_id = sifflet_credentials.test.name
 										url = "url"
 									}]
 								}
@@ -458,7 +458,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								mssql = {
 									host = "%s"
@@ -482,7 +482,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								mysql = {
 									host = "%s"
@@ -504,7 +504,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								oracle = {
 									host = "%s"
@@ -526,7 +526,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								postgresql = {
 									host = "%s"
@@ -548,7 +548,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								power_bi = {
 									client_id = "%s"
@@ -589,7 +589,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								redshift = {
 									host = "%s"
@@ -612,7 +612,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								snowflake = {
 									account_identifier = "%s"
@@ -634,7 +634,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								synapse = {
 									host = "%s"
@@ -656,7 +656,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								tableau = {
 									host = "%s"
@@ -675,7 +675,7 @@ func TestAccSourceParams(t *testing.T) {
 						resource "sifflet_source" "test" {
 							name = "%s"
 							description = "A description"
-							credential = sifflet_credential.test.name
+							credentials = sifflet_credentials.test.name
 							parameters = {
 								tableau = {
 									host = "%s"
