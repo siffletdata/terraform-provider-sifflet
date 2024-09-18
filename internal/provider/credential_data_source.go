@@ -69,13 +69,13 @@ func (d *credentialDataSource) Schema(ctx context.Context, _ datasource.SchemaRe
 	resp.Schema = CredentialDataSourceSchema(ctx)
 }
 
-type CredentialDataSourceDto struct {
+type CredentialDataSourceModel struct {
 	Name        types.String `tfsdk:"name"`
 	Description types.String `tfsdk:"description"`
 }
 
 func (d *credentialDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data CredentialDataSourceDto
+	var data CredentialDataSourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return

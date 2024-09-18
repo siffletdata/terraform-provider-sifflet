@@ -65,7 +65,7 @@ func CredentialResourceSchema(ctx context.Context) schema.Schema {
 
 }
 
-type CredentialDto struct {
+type CredentialModel struct {
 	Name        types.String `tfsdk:"name"`
 	Description types.String `tfsdk:"description"`
 	Value       types.String `tfsdk:"value"`
@@ -76,7 +76,7 @@ func (r *credentialResource) Schema(ctx context.Context, _ resource.SchemaReques
 }
 
 func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var plan CredentialDto
+	var plan CredentialModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -143,7 +143,7 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 }
 
 func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var state CredentialDto
+	var state CredentialModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -185,7 +185,7 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	state = CredentialDto{
+	state = CredentialModel{
 		Name:        types.StringValue(credentialResponse.JSON200.Name),
 		Description: types.StringPointerValue(credentialResponse.JSON200.Description),
 		// TODO: The API doesn't include any way to detect if the secret value has changed (like a version field).
@@ -202,7 +202,7 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 }
 
 func (r *credentialResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var plan CredentialDto
+	var plan CredentialModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -273,7 +273,7 @@ func (r *credentialResource) Update(ctx context.Context, req resource.UpdateRequ
 }
 
 func (r *credentialResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-	var state CredentialDto
+	var state CredentialModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
