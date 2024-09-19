@@ -57,7 +57,7 @@ func (m TableauParametersModel) IsRepresentedBy(model ParametersModel) bool {
 	return !model.Tableau.IsNull()
 }
 
-func (m *TableauParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+func (m *TableauParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	diags := p.Tableau.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
@@ -72,6 +72,26 @@ func (m *TableauParametersModel) DtoFromModel(ctx context.Context, p ParametersM
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *TableauParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	diags := p.Tableau.As(ctx, &m, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+	dto := sifflet.PublicTableauParametersDto{
+		Type: sifflet.PublicTableauParametersDtoTypeTABLEAU,
+		Host: m.Host.ValueStringPointer(),
+		Site: m.Site.ValueStringPointer(),
+	}
+	err := parametersDto.FromPublicTableauParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}

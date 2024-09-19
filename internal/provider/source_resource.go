@@ -228,7 +228,7 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 		}
 	}
 
-	parametersDto, diags := parametersModel.AsDto(ctx)
+	parametersDto, diags := parametersModel.AsCreateSourceDto(ctx)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -474,6 +474,12 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
+	parametersDto, diags := parametersModel.AsUpdateSourceDto(ctx)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	body := sifflet.PublicEditSourceJSONRequestBody{
 		Description: plan.Description.ValueStringPointer(),
 		Credentials: credentials,
@@ -481,8 +487,7 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		Timezone:    plan.Timezone.ValueStringPointer(),
 		Name:        plan.Name.ValueStringPointer(),
 		Tags:        &tagsDto,
-		// TODO: add support for parameters - the API documentation doesn't explain how to update them yet. See PLTE-964.
-		// For now, parameter changes are marked as "require replacement" in the schema.
+		Parameters:  &parametersDto,
 	}
 
 	updateResponse, err := r.client.PublicEditSourceWithResponse(ctx, id, body)
@@ -516,9 +521,8 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		Credentials: types.StringPointerValue(updateResponse.JSON200.Credentials),
 		Schedule:    types.StringPointerValue(updateResponse.JSON200.Schedule),
 		Timezone:    types.StringPointerValue(updateResponse.JSON200.Timezone),
-		// Copying the plan parameters since any change will require a replacement (see PLTE-964)
-		Parameters: plan.Parameters,
-		Tags:       tags,
+		Parameters:  plan.Parameters,
+		Tags:        tags,
 	}
 	newState, diags := types.ObjectValueFrom(ctx, newStateModel.AttributeTypes(), newStateModel)
 	resp.Diagnostics.Append(diags...)

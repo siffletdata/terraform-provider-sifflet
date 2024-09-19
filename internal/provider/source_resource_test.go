@@ -25,7 +25,7 @@ func baseConfig(credName string) string {
 
 // BigQuery sources are also used for testing specific attributes and behaviours of the sifflet_source resource.
 // For other source types, we only do a simple create/destroy test.
-func TestAccBigQuerySource(t *testing.T) {
+func TestAccSourceBasic(t *testing.T) {
 	sourceName := randomSourceName()
 	projectId := providertests.RandomName()
 	credName := providertests.RandomCredentialsName()
@@ -49,11 +49,13 @@ func TestAccBigQuerySource(t *testing.T) {
 						}
 						`, sourceName, projectId),
 				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttrSet("sifflet_source.test", "id"),
 					resource.TestCheckResourceAttr("sifflet_source.test", "name", sourceName),
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.source_type", "bigquery"),
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.bigquery.project_id", projectId),
 				),
 			},
+			// Test description update
 			{
 				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
@@ -72,6 +74,49 @@ func TestAccBigQuerySource(t *testing.T) {
 						`, sourceName, projectId),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_source.test", "description", "Another description"),
+				),
+			},
+			// Test parameters update, same source
+			{
+				Config: baseConfig(credName) + fmt.Sprintf(`
+						resource "sifflet_source" "test" {
+							name = "%s"
+							description = "Another description"
+							credentials = sifflet_credentials.test.name
+							parameters = {
+								bigquery = {
+									project_id = "%s"
+									dataset_id = "dataset_2"
+									billing_project_id = "dataset"
+								}
+							}
+							timezone = "UTC+1"
+						}
+						`, sourceName, projectId),
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.bigquery.dataset_id", "dataset_2"),
+				),
+			},
+			// Test parameters update, different source (requires replacement)
+			{
+				Config: baseConfig(credName) + fmt.Sprintf(`
+						resource "sifflet_source" "test" {
+							name = "%s"
+							description = "Another description"
+							credentials = sifflet_credentials.test.name
+							parameters = {
+								snowflake = {
+									account_identifier = "%s"
+									database = "database"
+									schema = "schema"
+									warehouse = "warehouse"
+								}
+							}
+							timezone = "UTC+1"
+						}
+						`, sourceName, projectId),
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.snowflake.database", "database"),
 				),
 			},
 		},

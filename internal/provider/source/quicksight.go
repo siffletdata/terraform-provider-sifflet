@@ -63,7 +63,7 @@ func (m QuickSightParametersModel) IsRepresentedBy(model ParametersModel) bool {
 	return !model.QuickSight.IsNull()
 }
 
-func (m *QuickSightParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+func (m *QuickSightParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	diags := p.QuickSight.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
@@ -79,6 +79,27 @@ func (m *QuickSightParametersModel) DtoFromModel(ctx context.Context, p Paramete
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *QuickSightParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	diags := p.QuickSight.As(ctx, &m, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+	dto := sifflet.PublicQuicksightParametersDto{
+		Type:      sifflet.PublicQuicksightParametersDtoTypeQUICKSIGHT,
+		AccountId: m.AccountID.ValueStringPointer(),
+		AwsRegion: m.AwsRegion.ValueStringPointer(),
+		RoleArn:   m.RoleArn.ValueStringPointer(),
+	}
+	err := parametersDto.FromPublicQuicksightParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}

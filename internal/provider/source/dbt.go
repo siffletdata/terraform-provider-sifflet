@@ -57,7 +57,7 @@ func (m DbtParametersModel) IsRepresentedBy(model ParametersModel) bool {
 	return !model.Dbt.IsNull()
 }
 
-func (m *DbtParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+func (m *DbtParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	diags := p.Dbt.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
@@ -72,6 +72,26 @@ func (m *DbtParametersModel) DtoFromModel(ctx context.Context, p ParametersModel
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *DbtParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	diags := p.Dbt.As(ctx, &m, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+	dto := sifflet.PublicDbtParametersDto{
+		Type:        sifflet.PublicDbtParametersDtoTypeDBT,
+		ProjectName: m.ProjectName.ValueStringPointer(),
+		Target:      m.Target.ValueStringPointer(),
+	}
+	err := parametersDto.FromPublicDbtParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}

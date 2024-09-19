@@ -57,7 +57,7 @@ func (m AirflowParametersModel) IsRepresentedBy(model ParametersModel) bool {
 	return !model.Airflow.IsNull()
 }
 
-func (m *AirflowParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+func (m *AirflowParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	diags := p.Airflow.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
@@ -71,10 +71,27 @@ func (m *AirflowParametersModel) DtoFromModel(ctx context.Context, p ParametersM
 	err := parametersDto.FromPublicAirflowParametersDto(dto)
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
-			diag.NewErrorDiagnostic(
-				"Unable to create source",
-				err.Error(),
-			),
+			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *AirflowParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	diags := p.Airflow.As(ctx, &m, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+	dto := sifflet.PublicAirflowParametersDto{
+		Host: m.Host.ValueStringPointer(),
+		Port: m.Port.ValueInt32Pointer(),
+		Type: sifflet.PublicAirflowParametersDtoTypeAIRFLOW,
+	}
+	err := parametersDto.FromPublicAirflowParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}

@@ -75,7 +75,7 @@ func (m DatabricksParametersModel) IsRepresentedBy(model ParametersModel) bool {
 	return !model.Databricks.IsNull()
 }
 
-func (m *DatabricksParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+func (m *DatabricksParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	diags := p.Databricks.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
@@ -93,6 +93,29 @@ func (m *DatabricksParametersModel) DtoFromModel(ctx context.Context, p Paramete
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *DatabricksParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	diags := p.Databricks.As(ctx, &m, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+	dto := sifflet.PublicDatabricksParametersDto{
+		Type:     sifflet.PublicDatabricksParametersDtoTypeDATABRICKS,
+		Catalog:  m.Catalog.ValueStringPointer(),
+		Host:     m.Host.ValueStringPointer(),
+		HttpPath: m.HttpPath.ValueStringPointer(),
+		Port:     m.Port.ValueInt32Pointer(),
+		Schema:   m.Schema.ValueStringPointer(),
+	}
+	err := parametersDto.FromPublicDatabricksParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}

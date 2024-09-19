@@ -54,7 +54,7 @@ func (m FivetranParametersModel) IsRepresentedBy(model ParametersModel) bool {
 	return !model.Fivetran.IsNull()
 }
 
-func (m *FivetranParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+func (m *FivetranParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	diags := p.Fivetran.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
@@ -68,6 +68,25 @@ func (m *FivetranParametersModel) DtoFromModel(ctx context.Context, p Parameters
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *FivetranParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	diags := p.Fivetran.As(ctx, &m, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+	dto := sifflet.PublicFivetranParametersDto{
+		Host: m.Host.ValueStringPointer(),
+		Type: sifflet.PublicFivetranParametersDtoTypeFIVETRAN,
+	}
+	err := parametersDto.FromPublicFivetranParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}

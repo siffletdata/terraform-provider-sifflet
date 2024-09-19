@@ -63,7 +63,7 @@ func (m PowerBiParametersModel) IsRepresentedBy(model ParametersModel) bool {
 	return !model.PowerBi.IsNull()
 }
 
-func (m *PowerBiParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+func (m *PowerBiParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	diags := p.PowerBi.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
@@ -79,6 +79,27 @@ func (m *PowerBiParametersModel) DtoFromModel(ctx context.Context, p ParametersM
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *PowerBiParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	diags := p.PowerBi.As(ctx, &m, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+	dto := sifflet.PublicPowerBiParametersDto{
+		Type:        sifflet.PublicPowerBiParametersDtoTypePOWERBI,
+		ClientId:    m.ClientID.ValueStringPointer(),
+		TenantId:    m.TenantID.ValueStringPointer(),
+		WorkspaceId: m.WorkspaceID.ValueStringPointer(),
+	}
+	err := parametersDto.FromPublicPowerBiParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}

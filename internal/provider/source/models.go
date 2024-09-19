@@ -17,8 +17,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/objectplanmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -116,10 +114,15 @@ type sourceParameters interface {
 	// this method is called.
 	IsRepresentedBy(ParametersModel) bool
 
-	// DtoFromModel populates the struct with the values from the given ParametersModel, then
+	// CreateSourceDtoFromModel populates the struct with the values from the given ParametersModel, then
 	// converts the parameters models to a DTO (data transfer object) that can be sent to the API.
 	// This method may assume that the given ParametersModel type matches this source type.
-	DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics)
+	CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics)
+
+	// UpdateSourceDtoFromModel populates the struct with the values from the given ParametersModel, then
+	// converts the parameters models to a DTO (data transfer object) that can be sent to the API.
+	// This method may assume that the given ParametersModel type matches this source type.
+	UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics)
 
 	// ModelFromDto populates the struct with the values from the given DTO.
 	// This method may assume that the given DTO type matches this source type.
@@ -200,11 +203,7 @@ func (m ParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 	return schema.SingleNestedAttribute{
 		Description: "Connection parameters. Provide only one nested block depending on the source type.",
 		Required:    true,
-		PlanModifiers: []planmodifier.Object{
-			// The API doesn't allow yet to update parameters (or this behaviour is not correctly documented), see PLTE-964. In the meantime, we'll replace the datasource if the parameters change.
-			objectplanmodifier.RequiresReplace(),
-		},
-		Attributes: attributes,
+		Attributes:  attributes,
 	}
 }
 
