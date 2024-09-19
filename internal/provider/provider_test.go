@@ -28,7 +28,7 @@ func TestProviderInvalidConfigs(t *testing.T) {
 				}
 
 				// Dummy resource to force the provider instantiation.
-				data "sifflet_credential" "test" {
+				data "sifflet_credentials" "test" {
 					name = "my-credential"
 				}
 				`,
@@ -42,7 +42,7 @@ func TestProviderInvalidConfigs(t *testing.T) {
 					token = "invalid token"
 				}
 
-				data "sifflet_credential" "test" {
+				data "sifflet_credentials" "test" {
 					name = "my-credential"
 				}
 				`,

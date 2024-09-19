@@ -13,10 +13,10 @@ A Sifflet source.
 ## Example Usage
 
 ```terraform
-# The credential value must match what the source expects.
+# The credentials value must match what the source expects.
 # See the Sifflet documentation for each source type for details
 # on the credential value format.
-data "sifflet_credential" "example" {
+data "sifflet_credentials" "example" {
   name = "example"
 }
 
@@ -24,7 +24,7 @@ data "sifflet_credential" "example" {
 resource "sifflet_source" "example" {
   name        = "example"
   description = "A description"
-  credential  = sifflet_credential.example.name
+  credentials = sifflet_credentials.example.name
   parameters = {
     # Pass the parameter block that matches the source type.
     bigquery = {
@@ -39,7 +39,7 @@ resource "sifflet_source" "example" {
 resource "sifflet_source" "complex" {
   name        = "example"
   description = "A description"
-  credential  = sifflet_credential.example.name
+  credentials = sifflet_credentials.example.name
   parameters = {
     snowflake = {
       account_identifier = "accountidentifier"
@@ -68,7 +68,7 @@ resource "sifflet_source" "complex" {
 
 ### Optional
 
-- `credential` (String) Name of the credential used to connect to the source. Required for most datasources, except for 'athena', 'dbt' and 'quicksight' sources.
+- `credentials` (String) Name of the credentials used to connect to the source. Required for most datasources, except for 'athena', 'dbt' and 'quicksight' sources.
 - `description` (String) Source description.
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
 - `tags` (Attributes List) Tags for the source. For each tag, you can provider either: an ID, a name, or a name + a kind (when the name alone is ambiguous). It's recommended to use tag IDs (coming from a sifflet_tag resource or data source) most of the time, but directly providing tag names can simplify some configurations. (see [below for nested schema](#nestedatt--tags))

@@ -50,8 +50,8 @@ func SourceResourceSchema(ctx context.Context) schema.Schema {
 				Description: "The ID of the source.",
 				Computed:    true,
 			},
-			"credential": schema.StringAttribute{
-				Description: "Name of the credential used to connect to the source. Required for most datasources, except for 'athena', 'dbt' and 'quicksight' sources.",
+			"credentials": schema.StringAttribute{
+				Description: "Name of the credentials used to connect to the source. Required for most datasources, except for 'athena', 'dbt' and 'quicksight' sources.",
 				Optional:    true,
 			},
 			"description": schema.StringAttribute{
@@ -215,14 +215,14 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 	}
 	var credentials *string
 	if t.RequiresCredential() {
-		credentials = plan.Credential.ValueStringPointer()
+		credentials = plan.Credentials.ValueStringPointer()
 		if credentials == nil {
 			resp.Diagnostics.AddError("Unable to create source", "Credential is required for this source type, but got an empty string")
 			return
 		}
 	} else {
 		credentials = nil
-		if !plan.Credential.IsNull() {
+		if !plan.Credentials.IsNull() {
 			resp.Diagnostics.AddError("Invalid credential", "Credential is not required for this source type and would be ignored, but got a non-null string")
 			return
 		}
@@ -286,7 +286,7 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 		ID:          types.StringValue(sourceResponse.JSON201.Id.String()),
 		Name:        types.StringValue(sourceResponse.JSON201.Name),
 		Description: types.StringPointerValue(sourceResponse.JSON201.Description),
-		Credential:  types.StringPointerValue(sourceResponse.JSON201.Credentials),
+		Credentials: types.StringPointerValue(sourceResponse.JSON201.Credentials),
 		Schedule:    types.StringPointerValue(sourceResponse.JSON201.Schedule),
 		Timezone:    types.StringPointerValue(sourceResponse.JSON201.Timezone),
 		Parameters:  plan.Parameters,
@@ -396,7 +396,7 @@ func (r *sourceResource) Read(ctx context.Context, req resource.ReadRequest, res
 		ID:          types.StringValue(res.JSON200.Id.String()),
 		Name:        types.StringValue(res.JSON200.Name),
 		Description: types.StringPointerValue(res.JSON200.Description),
-		Credential:  types.StringPointerValue(res.JSON200.Credentials),
+		Credentials: types.StringPointerValue(res.JSON200.Credentials),
 		Schedule:    types.StringPointerValue(res.JSON200.Schedule),
 		Timezone:    types.StringPointerValue(res.JSON200.Timezone),
 		Parameters:  parameters,
@@ -448,14 +448,14 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 
 	var credentials *string
 	if t.RequiresCredential() {
-		credentials = plan.Credential.ValueStringPointer()
+		credentials = plan.Credentials.ValueStringPointer()
 		if credentials == nil {
 			resp.Diagnostics.AddError("Unable to update source", "Credential is required for this source type, but got an empty string")
 			return
 		}
 	} else {
 		credentials = nil
-		if !plan.Credential.IsNull() {
+		if !plan.Credentials.IsNull() {
 			resp.Diagnostics.AddError("Invalid credential", "Credential is not required for this source type and would be ignored, but got a non-null string")
 			return
 		}
@@ -513,7 +513,7 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		ID:          types.StringValue(updateResponse.JSON200.Id.String()),
 		Name:        types.StringValue(updateResponse.JSON200.Name),
 		Description: types.StringPointerValue(updateResponse.JSON200.Description),
-		Credential:  types.StringPointerValue(updateResponse.JSON200.Credentials),
+		Credentials: types.StringPointerValue(updateResponse.JSON200.Credentials),
 		Schedule:    types.StringPointerValue(updateResponse.JSON200.Schedule),
 		Timezone:    types.StringPointerValue(updateResponse.JSON200.Timezone),
 		// Copying the plan parameters since any change will require a replacement (see PLTE-964)

@@ -15,19 +15,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &credentialDataSource{}
-	_ datasource.DataSourceWithConfigure = &credentialDataSource{}
+	_ datasource.DataSource              = &credentialsDataSource{}
+	_ datasource.DataSourceWithConfigure = &credentialsDataSource{}
 )
 
 func NewCredentialDataSource() datasource.DataSource {
-	return &credentialDataSource{}
+	return &credentialsDataSource{}
 }
 
-type credentialDataSource struct {
+type credentialsDataSource struct {
 	client *sifflet.ClientWithResponses
 }
 
-func (d *credentialDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *credentialsDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -45,37 +45,37 @@ func (d *credentialDataSource) Configure(_ context.Context, req datasource.Confi
 	d.client = clients.Client
 }
 
-func (d *credentialDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_credential"
+func (d *credentialsDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_credentials"
 }
 
 func CredentialDataSourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
-		Description: "Read a Sifflet credential. This data source doesn't return the credential value.",
+		Description: "Read Sifflet credentials. This data source doesn't return the credentials value.",
 		Attributes: map[string]schema.Attribute{
 			"name": schema.StringAttribute{
-				Description: "Name of the credential.",
+				Description: "Name of the credentials.",
 				Required:    true,
 			},
 			"description": schema.StringAttribute{
-				Description: "Description of the credential",
+				Description: "Description of the credentials",
 				Computed:    true,
 			},
 		},
 	}
 }
 
-func (d *credentialDataSource) Schema(ctx context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+func (d *credentialsDataSource) Schema(ctx context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = CredentialDataSourceSchema(ctx)
 }
 
-type CredentialDataSourceModel struct {
+type CredentialsDataSourceModel struct {
 	Name        types.String `tfsdk:"name"`
 	Description types.String `tfsdk:"description"`
 }
 
-func (d *credentialDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
-	var data CredentialDataSourceModel
+func (d *credentialsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data CredentialsDataSourceModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -84,20 +84,22 @@ func (d *credentialDataSource) Read(ctx context.Context, req datasource.ReadRequ
 	name := data.Name.ValueString()
 
 	maxAttempts := 20
-	var credentialResponse *sifflet.PublicGetCredentialResponse
+	var credentialsResponse *sifflet.PublicGetCredentials1Response
 	var err error
 
 	for attempt := 0; attempt < maxAttempts; attempt++ {
-		credentialResponse, err = d.client.PublicGetCredentialWithResponse(ctx, name)
+		// Conflict in the OpenAPI schema between operation IDs for "get credentials" and "list credentials",
+		// hence the strange operation name.
+		credentialsResponse, err = d.client.PublicGetCredentials1WithResponse(ctx, name)
 
 		if err != nil {
 			resp.Diagnostics.AddError(
-				"Unable to read credential",
+				"Unable to read credentials",
 				err.Error(),
 			)
 			return
 		}
-		if credentialResponse.StatusCode() == http.StatusNotFound {
+		if credentialsResponse.StatusCode() == http.StatusNotFound {
 			// Retry a few times, as there's a delay in the API (eventual consistency)
 			if attempt < maxAttempts {
 				time.Sleep(200 * time.Millisecond)
@@ -108,16 +110,16 @@ func (d *credentialDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		}
 	}
 
-	if credentialResponse.StatusCode() != http.StatusOK {
+	if credentialsResponse.StatusCode() != http.StatusOK {
 		sifflet.HandleHttpErrorAsProblem(
-			ctx, &resp.Diagnostics, "Unable to read credential",
-			credentialResponse.StatusCode(), credentialResponse.Body,
+			ctx, &resp.Diagnostics, "Unable to read credentials",
+			credentialsResponse.StatusCode(), credentialsResponse.Body,
 		)
 		return
 	}
 
-	data.Name = types.StringValue(credentialResponse.JSON200.Name)
-	data.Description = types.StringPointerValue(credentialResponse.JSON200.Description)
+	data.Name = types.StringValue(credentialsResponse.JSON200.Name)
+	data.Description = types.StringPointerValue(credentialsResponse.JSON200.Description)
 
 	diags := resp.State.Set(ctx, &data)
 	resp.Diagnostics.Append(diags...)

@@ -12,7 +12,6 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-	"time"
 
 	"github.com/oapi-codegen/runtime"
 	openapi_types "github.com/oapi-codegen/runtime/types"
@@ -831,10 +830,10 @@ type AccessTokenProviderDtoType string
 // AlertingHookDto defines model for AlertingHookDto.
 type AlertingHookDto struct {
 	CreatedBy        *string             `json:"createdBy,omitempty"`
-	CreatedDate      *time.Time          `json:"createdDate,omitempty"`
+	CreatedDate      *int64              `json:"createdDate,omitempty"`
 	ExternalHook     string              `json:"externalHook"`
 	Id               openapi_types.UUID  `json:"id"`
-	LastModifiedDate *time.Time          `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate *int64              `json:"lastModifiedDate,omitempty"`
 	ModifiedBy       *string             `json:"modifiedBy,omitempty"`
 	Name             string              `json:"name"`
 	Type             AlertingHookDtoType `json:"type"`
@@ -953,13 +952,13 @@ type IncidentLightDto struct {
 	Datasets          []DatasetBriefDto             `json:"datasets"`
 	Id                openapi_types.UUID            `json:"id"`
 	IssueNo           int32                         `json:"issueNo"`
-	LastModifiedDate  *time.Time                    `json:"lastModifiedDate,omitempty"`
-	LastOccurredDate  time.Time                     `json:"lastOccurredDate"`
+	LastModifiedDate  *int64                        `json:"lastModifiedDate,omitempty"`
+	LastOccurredDate  int64                         `json:"lastOccurredDate"`
 	Name              string                        `json:"name"`
 	Owners            []UserDto                     `json:"owners"`
 	Qualification     IncidentLightDtoQualification `json:"qualification"`
 	Status            IncidentLightDtoStatus        `json:"status"`
-	TriggerTime       time.Time                     `json:"triggerTime"`
+	TriggerTime       int64                         `json:"triggerTime"`
 }
 
 // IncidentLightDtoQualification defines model for IncidentLightDto.Qualification.
@@ -988,7 +987,7 @@ type JsonNode = map[string]interface{}
 type LastRunStatusDto struct {
 	Result    string                 `json:"result"`
 	Status    LastRunStatusDtoStatus `json:"status"`
-	Timestamp time.Time              `json:"timestamp"`
+	Timestamp int64                  `json:"timestamp"`
 }
 
 // LastRunStatusDtoStatus defines model for LastRunStatusDto.Status.
@@ -1143,41 +1142,41 @@ type PublicCreateSourceDto_Parameters struct {
 	union json.RawMessage
 }
 
-// PublicCredentialCreateDto defines model for PublicCredentialCreateDto.
-type PublicCredentialCreateDto struct {
-	// Description Description of the credential
+// PublicCredentialsCreateDto defines model for PublicCredentialsCreateDto.
+type PublicCredentialsCreateDto struct {
+	// Description Description of credentials
 	Description *string `json:"description,omitempty"`
 
-	// Name Name of the credential
+	// Name Name of credentials. Must start and end with a letter, and contain only letters, digits, and hyphens
 	Name string `json:"name"`
 
-	// Value Value of the credential. Double quotes must be escaped with a backslash.
+	// Value Value of credentials. Double quotes must be escaped with a backslash.
 	Value string `json:"value"`
 }
 
-// PublicCredentialGetDto defines model for PublicCredentialGetDto.
-type PublicCredentialGetDto struct {
-	// Description Description of the credential
+// PublicCredentialsGetDto defines model for PublicCredentialsGetDto.
+type PublicCredentialsGetDto struct {
+	// Description Description of credentials
 	Description *string `json:"description,omitempty"`
 
-	// Name Name of the credential
+	// Name Name of credentials
 	Name string `json:"name"`
 }
 
-// PublicCredentialPageDtoPublicCredentialGetDto defines model for PublicCredentialPageDtoPublicCredentialGetDto.
-type PublicCredentialPageDtoPublicCredentialGetDto struct {
-	Data []PublicCredentialGetDto `json:"data"`
+// PublicCredentialsPageDtoPublicCredentialsGetDto defines model for PublicCredentialsPageDtoPublicCredentialsGetDto.
+type PublicCredentialsPageDtoPublicCredentialsGetDto struct {
+	Data []PublicCredentialsGetDto `json:"data"`
 
 	// TotalCount Number of credentials on the account
 	TotalCount *int64 `json:"totalCount,omitempty"`
 }
 
-// PublicCredentialPatchDto defines model for PublicCredentialPatchDto.
-type PublicCredentialPatchDto struct {
-	// Description Description of the credential
+// PublicCredentialsPatchDto defines model for PublicCredentialsPatchDto.
+type PublicCredentialsPatchDto struct {
+	// Description Description of credentials
 	Description *string `json:"description,omitempty"`
 
-	// Value Value of the credential. Double quotes must be escaped with a backslash.
+	// Value Value of credentials. Double quotes must be escaped with a backslash.
 	Value *string `json:"value,omitempty"`
 }
 
@@ -1340,7 +1339,7 @@ type PublicGetLastRunDto struct {
 	Status *PublicGetLastRunDtoStatus `json:"status,omitempty"`
 
 	// Timestamp Timestamp of the last update of the source
-	Timestamp *time.Time `json:"timestamp,omitempty"`
+	Timestamp *int64 `json:"timestamp,omitempty"`
 }
 
 // PublicGetLastRunDtoStatus Last run status of the source
@@ -1706,10 +1705,8 @@ type PublicUpdateSourceDto struct {
 	Description *string `json:"description,omitempty"`
 
 	// Name Name of the source
-	Name *string `json:"name,omitempty"`
-
-	// Parameters Parameters of the source
-	Parameters *PublicSourceParametersDto `json:"parameters,omitempty"`
+	Name       *string                           `json:"name,omitempty"`
+	Parameters *PublicUpdateSourceDto_Parameters `json:"parameters,omitempty"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string                  `json:"schedule,omitempty"`
@@ -1717,6 +1714,11 @@ type PublicUpdateSourceDto struct {
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
+}
+
+// PublicUpdateSourceDto_Parameters defines model for PublicUpdateSourceDto.Parameters.
+type PublicUpdateSourceDto_Parameters struct {
+	union json.RawMessage
 }
 
 // PublicUserCreateDto defines model for PublicUserCreateDto.
@@ -1810,8 +1812,8 @@ type RuleCatalogAssetDtoSourcePlatform string
 // RuleDetailsDto defines model for RuleDetailsDto.
 type RuleDetailsDto struct {
 	CreatedBy        *string                  `json:"createdBy,omitempty"`
-	CreatedDate      *time.Time               `json:"createdDate,omitempty"`
-	LastModifiedDate *time.Time               `json:"lastModifiedDate,omitempty"`
+	CreatedDate      *int64                   `json:"createdDate,omitempty"`
+	LastModifiedDate *int64                   `json:"lastModifiedDate,omitempty"`
 	Mails            *[]AlertingHookDto       `json:"mails,omitempty"`
 	ModifiedBy       *string                  `json:"modifiedBy,omitempty"`
 	MsTeams          *[]AlertingHookDto       `json:"msTeams,omitempty"`
@@ -1835,7 +1837,7 @@ type RuleInfoDto struct {
 	Datasets                    *[]DatasetBriefDto        `json:"datasets,omitempty"`
 	Id                          openapi_types.UUID        `json:"id"`
 	LastRunStatus               *RuleInfoDtoLastRunStatus `json:"lastRunStatus,omitempty"`
-	LastRunTimestamp            *time.Time                `json:"lastRunTimestamp,omitempty"`
+	LastRunTimestamp            *int64                    `json:"lastRunTimestamp,omitempty"`
 	LastUnresolvedIncident      *IncidentLightDto         `json:"lastUnresolvedIncident,omitempty"`
 	Mails                       *[]AlertingHookDto        `json:"mails,omitempty"`
 	MsTeams                     *[]AlertingHookDto        `json:"msTeams,omitempty"`
@@ -1871,10 +1873,10 @@ type RuleOverviewDto struct {
 type RuleRunDto struct {
 	CanShowFailingRows bool                      `json:"canShowFailingRows"`
 	CreatedBy          *string                   `json:"createdBy,omitempty"`
-	CreatedDate        *time.Time                `json:"createdDate,omitempty"`
+	CreatedDate        *int64                    `json:"createdDate,omitempty"`
 	DebugSql           *ParameterizedQueryDto    `json:"debugSql,omitempty"`
 	Debuggable         bool                      `json:"debuggable"`
-	EndDate            *time.Time                `json:"endDate,omitempty"`
+	EndDate            *int64                    `json:"endDate,omitempty"`
 	HasGraph           bool                      `json:"hasGraph"`
 	HasGroupBy         bool                      `json:"hasGroupBy"`
 	Id                 openapi_types.UUID        `json:"id"`
@@ -1883,7 +1885,7 @@ type RuleRunDto struct {
 	IncidentStatus     *RuleRunDtoIncidentStatus `json:"incidentStatus,omitempty"`
 	Result             *string                   `json:"result,omitempty"`
 	RuleId             *openapi_types.UUID       `json:"ruleId,omitempty"`
-	StartDate          *time.Time                `json:"startDate,omitempty"`
+	StartDate          *int64                    `json:"startDate,omitempty"`
 	Status             *RuleRunDtoStatus         `json:"status,omitempty"`
 	Type               *RuleRunDtoType           `json:"type,omitempty"`
 	Values             *RuleRunValuesDto         `json:"values,omitempty"`
@@ -1925,11 +1927,11 @@ type SearchCollectionRuleRunDto struct {
 // TagDto defines model for TagDto.
 type TagDto struct {
 	CreatedBy        *string            `json:"createdBy,omitempty"`
-	CreatedDate      *time.Time         `json:"createdDate,omitempty"`
+	CreatedDate      *int64             `json:"createdDate,omitempty"`
 	Description      *string            `json:"description,omitempty"`
 	Editable         *bool              `json:"editable,omitempty"`
 	Id               openapi_types.UUID `json:"id"`
-	LastModifiedDate *time.Time         `json:"lastModifiedDate,omitempty"`
+	LastModifiedDate *int64             `json:"lastModifiedDate,omitempty"`
 	ModifiedBy       *string            `json:"modifiedBy,omitempty"`
 	Name             string             `json:"name"`
 	Type             TagDtoType         `json:"type"`
@@ -2080,11 +2082,11 @@ type PublicCreateCalendarJSONRequestBody = PublicCalendarCreateDto
 // PublicUpdateCalendarJSONRequestBody defines body for PublicUpdateCalendar for application/json ContentType.
 type PublicUpdateCalendarJSONRequestBody = PublicCalendarUpdateDto
 
-// PublicCreateCredentialJSONRequestBody defines body for PublicCreateCredential for application/json ContentType.
-type PublicCreateCredentialJSONRequestBody = PublicCredentialCreateDto
+// PublicCreateCredentialsJSONRequestBody defines body for PublicCreateCredentials for application/json ContentType.
+type PublicCreateCredentialsJSONRequestBody = PublicCredentialsCreateDto
 
-// PublicUpdateCredentialJSONRequestBody defines body for PublicUpdateCredential for application/json ContentType.
-type PublicUpdateCredentialJSONRequestBody = PublicCredentialPatchDto
+// PublicUpdateCredentialsJSONRequestBody defines body for PublicUpdateCredentials for application/json ContentType.
+type PublicUpdateCredentialsJSONRequestBody = PublicCredentialsPatchDto
 
 // CreatePipelineDeclarativeLineageJSONRequestBody defines body for CreatePipelineDeclarativeLineage for application/json ContentType.
 type CreatePipelineDeclarativeLineageJSONRequestBody = PipelineDeclarativeLineageDto
@@ -3173,6 +3175,536 @@ func (t *PublicGetSourceDto_Parameters) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsPublicAirflowParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicAirflowParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicAirflowParametersDto() (PublicAirflowParametersDto, error) {
+	var body PublicAirflowParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicAirflowParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicAirflowParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicAirflowParametersDto(v PublicAirflowParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicAirflowParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicAirflowParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicAirflowParametersDto(v PublicAirflowParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicAthenaParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicAthenaParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicAthenaParametersDto() (PublicAthenaParametersDto, error) {
+	var body PublicAthenaParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicAthenaParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicAthenaParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicAthenaParametersDto(v PublicAthenaParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicAthenaParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicAthenaParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicAthenaParametersDto(v PublicAthenaParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicBigQueryParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicBigQueryParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicBigQueryParametersDto() (PublicBigQueryParametersDto, error) {
+	var body PublicBigQueryParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicBigQueryParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicBigQueryParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicBigQueryParametersDto(v PublicBigQueryParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicBigQueryParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicBigQueryParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicBigQueryParametersDto(v PublicBigQueryParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicDatabricksParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicDatabricksParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicDatabricksParametersDto() (PublicDatabricksParametersDto, error) {
+	var body PublicDatabricksParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicDatabricksParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicDatabricksParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicDatabricksParametersDto(v PublicDatabricksParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicDatabricksParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicDatabricksParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicDatabricksParametersDto(v PublicDatabricksParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicDbtCloudParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicDbtCloudParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicDbtCloudParametersDto() (PublicDbtCloudParametersDto, error) {
+	var body PublicDbtCloudParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicDbtCloudParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicDbtCloudParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicDbtCloudParametersDto(v PublicDbtCloudParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicDbtCloudParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicDbtCloudParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicDbtCloudParametersDto(v PublicDbtCloudParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicDbtParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicDbtParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicDbtParametersDto() (PublicDbtParametersDto, error) {
+	var body PublicDbtParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicDbtParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicDbtParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicDbtParametersDto(v PublicDbtParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicDbtParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicDbtParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicDbtParametersDto(v PublicDbtParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicDeclarativeParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicDeclarativeParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicDeclarativeParametersDto() (PublicDeclarativeParametersDto, error) {
+	var body PublicDeclarativeParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicDeclarativeParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicDeclarativeParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicDeclarativeParametersDto(v PublicDeclarativeParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicDeclarativeParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicDeclarativeParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicDeclarativeParametersDto(v PublicDeclarativeParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicFivetranParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicFivetranParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicFivetranParametersDto() (PublicFivetranParametersDto, error) {
+	var body PublicFivetranParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicFivetranParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicFivetranParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicFivetranParametersDto(v PublicFivetranParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicFivetranParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicFivetranParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicFivetranParametersDto(v PublicFivetranParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicHiveParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicHiveParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicHiveParametersDto() (PublicHiveParametersDto, error) {
+	var body PublicHiveParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicHiveParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicHiveParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicHiveParametersDto(v PublicHiveParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicHiveParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicHiveParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicHiveParametersDto(v PublicHiveParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicLookerParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicLookerParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicLookerParametersDto() (PublicLookerParametersDto, error) {
+	var body PublicLookerParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicLookerParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicLookerParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicLookerParametersDto(v PublicLookerParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicLookerParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicLookerParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicLookerParametersDto(v PublicLookerParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicMssqlParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicMssqlParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicMssqlParametersDto() (PublicMssqlParametersDto, error) {
+	var body PublicMssqlParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicMssqlParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicMssqlParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicMssqlParametersDto(v PublicMssqlParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicMssqlParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicMssqlParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicMssqlParametersDto(v PublicMssqlParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicMysqlParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicMysqlParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicMysqlParametersDto() (PublicMysqlParametersDto, error) {
+	var body PublicMysqlParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicMysqlParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicMysqlParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicMysqlParametersDto(v PublicMysqlParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicMysqlParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicMysqlParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicMysqlParametersDto(v PublicMysqlParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicOracleParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicOracleParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicOracleParametersDto() (PublicOracleParametersDto, error) {
+	var body PublicOracleParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicOracleParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicOracleParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicOracleParametersDto(v PublicOracleParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicOracleParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicOracleParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicOracleParametersDto(v PublicOracleParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicPostgresqlParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicPostgresqlParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicPostgresqlParametersDto() (PublicPostgresqlParametersDto, error) {
+	var body PublicPostgresqlParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicPostgresqlParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicPostgresqlParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicPostgresqlParametersDto(v PublicPostgresqlParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicPostgresqlParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicPostgresqlParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicPostgresqlParametersDto(v PublicPostgresqlParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicPowerBiParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicPowerBiParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicPowerBiParametersDto() (PublicPowerBiParametersDto, error) {
+	var body PublicPowerBiParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicPowerBiParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicPowerBiParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicPowerBiParametersDto(v PublicPowerBiParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicPowerBiParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicPowerBiParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicPowerBiParametersDto(v PublicPowerBiParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicQuicksightParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicQuicksightParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicQuicksightParametersDto() (PublicQuicksightParametersDto, error) {
+	var body PublicQuicksightParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicQuicksightParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicQuicksightParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicQuicksightParametersDto(v PublicQuicksightParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicQuicksightParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicQuicksightParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicQuicksightParametersDto(v PublicQuicksightParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicRedshiftParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicRedshiftParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicRedshiftParametersDto() (PublicRedshiftParametersDto, error) {
+	var body PublicRedshiftParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicRedshiftParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicRedshiftParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicRedshiftParametersDto(v PublicRedshiftParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicRedshiftParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicRedshiftParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicRedshiftParametersDto(v PublicRedshiftParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicSnowflakeParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicSnowflakeParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicSnowflakeParametersDto() (PublicSnowflakeParametersDto, error) {
+	var body PublicSnowflakeParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicSnowflakeParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicSnowflakeParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicSnowflakeParametersDto(v PublicSnowflakeParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicSnowflakeParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicSnowflakeParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicSnowflakeParametersDto(v PublicSnowflakeParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicSynapseParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicSynapseParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicSynapseParametersDto() (PublicSynapseParametersDto, error) {
+	var body PublicSynapseParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicSynapseParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicSynapseParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicSynapseParametersDto(v PublicSynapseParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicSynapseParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicSynapseParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicSynapseParametersDto(v PublicSynapseParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicTableauParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicTableauParametersDto
+func (t PublicUpdateSourceDto_Parameters) AsPublicTableauParametersDto() (PublicTableauParametersDto, error) {
+	var body PublicTableauParametersDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicTableauParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicTableauParametersDto
+func (t *PublicUpdateSourceDto_Parameters) FromPublicTableauParametersDto(v PublicTableauParametersDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicTableauParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicTableauParametersDto
+func (t *PublicUpdateSourceDto_Parameters) MergePublicTableauParametersDto(v PublicTableauParametersDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PublicUpdateSourceDto_Parameters) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PublicUpdateSourceDto_Parameters) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsAccessTokenProviderDto returns the union data inside the RuleCatalogAssetDto_Provider as a AccessTokenProviderDto
 func (t RuleCatalogAssetDto_Provider) AsAccessTokenProviderDto() (AccessTokenProviderDto, error) {
 	var body AccessTokenProviderDto
@@ -3504,21 +4036,21 @@ type ClientInterface interface {
 	// PublicGetCredentials request
 	PublicGetCredentials(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// PublicCreateCredentialWithBody request with any body
-	PublicCreateCredentialWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// PublicCreateCredentialsWithBody request with any body
+	PublicCreateCredentialsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PublicCreateCredential(ctx context.Context, body PublicCreateCredentialJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PublicCreateCredentials(ctx context.Context, body PublicCreateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// PublicDeleteCredential request
-	PublicDeleteCredential(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// PublicDeleteCredentials request
+	PublicDeleteCredentials(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// PublicGetCredential request
-	PublicGetCredential(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// PublicGetCredentials1 request
+	PublicGetCredentials1(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// PublicUpdateCredentialWithBody request with any body
-	PublicUpdateCredentialWithBody(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// PublicUpdateCredentialsWithBody request with any body
+	PublicUpdateCredentialsWithBody(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PublicUpdateCredential(ctx context.Context, name string, body PublicUpdateCredentialJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PublicUpdateCredentials(ctx context.Context, name string, body PublicUpdateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CreatePipelineDeclarativeLineageWithBody request with any body
 	CreatePipelineDeclarativeLineageWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -3738,8 +4270,8 @@ func (c *Client) PublicGetCredentials(ctx context.Context, reqEditors ...Request
 	return c.Client.Do(req)
 }
 
-func (c *Client) PublicCreateCredentialWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPublicCreateCredentialRequestWithBody(c.Server, contentType, body)
+func (c *Client) PublicCreateCredentialsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicCreateCredentialsRequestWithBody(c.Server, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3750,8 +4282,8 @@ func (c *Client) PublicCreateCredentialWithBody(ctx context.Context, contentType
 	return c.Client.Do(req)
 }
 
-func (c *Client) PublicCreateCredential(ctx context.Context, body PublicCreateCredentialJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPublicCreateCredentialRequest(c.Server, body)
+func (c *Client) PublicCreateCredentials(ctx context.Context, body PublicCreateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicCreateCredentialsRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3762,8 +4294,8 @@ func (c *Client) PublicCreateCredential(ctx context.Context, body PublicCreateCr
 	return c.Client.Do(req)
 }
 
-func (c *Client) PublicDeleteCredential(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPublicDeleteCredentialRequest(c.Server, name)
+func (c *Client) PublicDeleteCredentials(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicDeleteCredentialsRequest(c.Server, name)
 	if err != nil {
 		return nil, err
 	}
@@ -3774,8 +4306,8 @@ func (c *Client) PublicDeleteCredential(ctx context.Context, name string, reqEdi
 	return c.Client.Do(req)
 }
 
-func (c *Client) PublicGetCredential(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPublicGetCredentialRequest(c.Server, name)
+func (c *Client) PublicGetCredentials1(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetCredentials1Request(c.Server, name)
 	if err != nil {
 		return nil, err
 	}
@@ -3786,8 +4318,8 @@ func (c *Client) PublicGetCredential(ctx context.Context, name string, reqEditor
 	return c.Client.Do(req)
 }
 
-func (c *Client) PublicUpdateCredentialWithBody(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPublicUpdateCredentialRequestWithBody(c.Server, name, contentType, body)
+func (c *Client) PublicUpdateCredentialsWithBody(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicUpdateCredentialsRequestWithBody(c.Server, name, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -3798,8 +4330,8 @@ func (c *Client) PublicUpdateCredentialWithBody(ctx context.Context, name string
 	return c.Client.Do(req)
 }
 
-func (c *Client) PublicUpdateCredential(ctx context.Context, name string, body PublicUpdateCredentialJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPublicUpdateCredentialRequest(c.Server, name, body)
+func (c *Client) PublicUpdateCredentials(ctx context.Context, name string, body PublicUpdateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicUpdateCredentialsRequest(c.Server, name, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4509,19 +5041,19 @@ func NewPublicGetCredentialsRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewPublicCreateCredentialRequest calls the generic PublicCreateCredential builder with application/json body
-func NewPublicCreateCredentialRequest(server string, body PublicCreateCredentialJSONRequestBody) (*http.Request, error) {
+// NewPublicCreateCredentialsRequest calls the generic PublicCreateCredentials builder with application/json body
+func NewPublicCreateCredentialsRequest(server string, body PublicCreateCredentialsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPublicCreateCredentialRequestWithBody(server, "application/json", bodyReader)
+	return NewPublicCreateCredentialsRequestWithBody(server, "application/json", bodyReader)
 }
 
-// NewPublicCreateCredentialRequestWithBody generates requests for PublicCreateCredential with any type of body
-func NewPublicCreateCredentialRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+// NewPublicCreateCredentialsRequestWithBody generates requests for PublicCreateCredentials with any type of body
+func NewPublicCreateCredentialsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -4549,8 +5081,8 @@ func NewPublicCreateCredentialRequestWithBody(server string, contentType string,
 	return req, nil
 }
 
-// NewPublicDeleteCredentialRequest generates requests for PublicDeleteCredential
-func NewPublicDeleteCredentialRequest(server string, name string) (*http.Request, error) {
+// NewPublicDeleteCredentialsRequest generates requests for PublicDeleteCredentials
+func NewPublicDeleteCredentialsRequest(server string, name string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4583,8 +5115,8 @@ func NewPublicDeleteCredentialRequest(server string, name string) (*http.Request
 	return req, nil
 }
 
-// NewPublicGetCredentialRequest generates requests for PublicGetCredential
-func NewPublicGetCredentialRequest(server string, name string) (*http.Request, error) {
+// NewPublicGetCredentials1Request generates requests for PublicGetCredentials1
+func NewPublicGetCredentials1Request(server string, name string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -4617,19 +5149,19 @@ func NewPublicGetCredentialRequest(server string, name string) (*http.Request, e
 	return req, nil
 }
 
-// NewPublicUpdateCredentialRequest calls the generic PublicUpdateCredential builder with application/json body
-func NewPublicUpdateCredentialRequest(server string, name string, body PublicUpdateCredentialJSONRequestBody) (*http.Request, error) {
+// NewPublicUpdateCredentialsRequest calls the generic PublicUpdateCredentials builder with application/json body
+func NewPublicUpdateCredentialsRequest(server string, name string, body PublicUpdateCredentialsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPublicUpdateCredentialRequestWithBody(server, name, "application/json", bodyReader)
+	return NewPublicUpdateCredentialsRequestWithBody(server, name, "application/json", bodyReader)
 }
 
-// NewPublicUpdateCredentialRequestWithBody generates requests for PublicUpdateCredential with any type of body
-func NewPublicUpdateCredentialRequestWithBody(server string, name string, contentType string, body io.Reader) (*http.Request, error) {
+// NewPublicUpdateCredentialsRequestWithBody generates requests for PublicUpdateCredentials with any type of body
+func NewPublicUpdateCredentialsRequestWithBody(server string, name string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5879,21 +6411,21 @@ type ClientWithResponsesInterface interface {
 	// PublicGetCredentialsWithResponse request
 	PublicGetCredentialsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PublicGetCredentialsResponse, error)
 
-	// PublicCreateCredentialWithBodyWithResponse request with any body
-	PublicCreateCredentialWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateCredentialResponse, error)
+	// PublicCreateCredentialsWithBodyWithResponse request with any body
+	PublicCreateCredentialsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateCredentialsResponse, error)
 
-	PublicCreateCredentialWithResponse(ctx context.Context, body PublicCreateCredentialJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicCreateCredentialResponse, error)
+	PublicCreateCredentialsWithResponse(ctx context.Context, body PublicCreateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicCreateCredentialsResponse, error)
 
-	// PublicDeleteCredentialWithResponse request
-	PublicDeleteCredentialWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicDeleteCredentialResponse, error)
+	// PublicDeleteCredentialsWithResponse request
+	PublicDeleteCredentialsWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicDeleteCredentialsResponse, error)
 
-	// PublicGetCredentialWithResponse request
-	PublicGetCredentialWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicGetCredentialResponse, error)
+	// PublicGetCredentials1WithResponse request
+	PublicGetCredentials1WithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicGetCredentials1Response, error)
 
-	// PublicUpdateCredentialWithBodyWithResponse request with any body
-	PublicUpdateCredentialWithBodyWithResponse(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialResponse, error)
+	// PublicUpdateCredentialsWithBodyWithResponse request with any body
+	PublicUpdateCredentialsWithBodyWithResponse(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialsResponse, error)
 
-	PublicUpdateCredentialWithResponse(ctx context.Context, name string, body PublicUpdateCredentialJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialResponse, error)
+	PublicUpdateCredentialsWithResponse(ctx context.Context, name string, body PublicUpdateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialsResponse, error)
 
 	// CreatePipelineDeclarativeLineageWithBodyWithResponse request with any body
 	CreatePipelineDeclarativeLineageWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePipelineDeclarativeLineageResponse, error)
@@ -6168,9 +6700,10 @@ func (r PublicUpdateCalendarResponse) StatusCode() int {
 type PublicGetCredentialsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PublicCredentialPageDtoPublicCredentialGetDto
+	JSON200                   *PublicCredentialsPageDtoPublicCredentialsGetDto
 	ApplicationproblemJSON401 *ApiProblemSchema
 	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON429 *ApiProblemSchema
 	ApplicationproblemJSON500 *ApiProblemSchema
 }
 
@@ -6190,18 +6723,19 @@ func (r PublicGetCredentialsResponse) StatusCode() int {
 	return 0
 }
 
-type PublicCreateCredentialResponse struct {
+type PublicCreateCredentialsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
 	ApplicationproblemJSON400 *ApiProblemSchema
 	ApplicationproblemJSON401 *ApiProblemSchema
 	ApplicationproblemJSON403 *ApiProblemSchema
 	ApplicationproblemJSON409 *ApiProblemSchema
+	ApplicationproblemJSON429 *ApiProblemSchema
 	ApplicationproblemJSON500 *ApiProblemSchema
 }
 
 // Status returns HTTPResponse.Status
-func (r PublicCreateCredentialResponse) Status() string {
+func (r PublicCreateCredentialsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -6209,24 +6743,25 @@ func (r PublicCreateCredentialResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r PublicCreateCredentialResponse) StatusCode() int {
+func (r PublicCreateCredentialsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type PublicDeleteCredentialResponse struct {
+type PublicDeleteCredentialsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
 	ApplicationproblemJSON401 *ApiProblemSchema
 	ApplicationproblemJSON403 *ApiProblemSchema
 	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON429 *ApiProblemSchema
 	ApplicationproblemJSON500 *ApiProblemSchema
 }
 
 // Status returns HTTPResponse.Status
-func (r PublicDeleteCredentialResponse) Status() string {
+func (r PublicDeleteCredentialsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -6234,25 +6769,26 @@ func (r PublicDeleteCredentialResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r PublicDeleteCredentialResponse) StatusCode() int {
+func (r PublicDeleteCredentialsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type PublicGetCredentialResponse struct {
+type PublicGetCredentials1Response struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
-	JSON200                   *PublicCredentialGetDto
+	JSON200                   *PublicCredentialsGetDto
 	ApplicationproblemJSON401 *ApiProblemSchema
 	ApplicationproblemJSON403 *ApiProblemSchema
 	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON429 *ApiProblemSchema
 	ApplicationproblemJSON500 *ApiProblemSchema
 }
 
 // Status returns HTTPResponse.Status
-func (r PublicGetCredentialResponse) Status() string {
+func (r PublicGetCredentials1Response) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -6260,25 +6796,26 @@ func (r PublicGetCredentialResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r PublicGetCredentialResponse) StatusCode() int {
+func (r PublicGetCredentials1Response) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type PublicUpdateCredentialResponse struct {
+type PublicUpdateCredentialsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
 	ApplicationproblemJSON400 *ApiProblemSchema
 	ApplicationproblemJSON401 *ApiProblemSchema
 	ApplicationproblemJSON403 *ApiProblemSchema
 	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON429 *ApiProblemSchema
 	ApplicationproblemJSON500 *ApiProblemSchema
 }
 
 // Status returns HTTPResponse.Status
-func (r PublicUpdateCredentialResponse) Status() string {
+func (r PublicUpdateCredentialsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -6286,7 +6823,7 @@ func (r PublicUpdateCredentialResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r PublicUpdateCredentialResponse) StatusCode() int {
+func (r PublicUpdateCredentialsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7001,56 +7538,56 @@ func (c *ClientWithResponses) PublicGetCredentialsWithResponse(ctx context.Conte
 	return ParsePublicGetCredentialsResponse(rsp)
 }
 
-// PublicCreateCredentialWithBodyWithResponse request with arbitrary body returning *PublicCreateCredentialResponse
-func (c *ClientWithResponses) PublicCreateCredentialWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateCredentialResponse, error) {
-	rsp, err := c.PublicCreateCredentialWithBody(ctx, contentType, body, reqEditors...)
+// PublicCreateCredentialsWithBodyWithResponse request with arbitrary body returning *PublicCreateCredentialsResponse
+func (c *ClientWithResponses) PublicCreateCredentialsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateCredentialsResponse, error) {
+	rsp, err := c.PublicCreateCredentialsWithBody(ctx, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePublicCreateCredentialResponse(rsp)
+	return ParsePublicCreateCredentialsResponse(rsp)
 }
 
-func (c *ClientWithResponses) PublicCreateCredentialWithResponse(ctx context.Context, body PublicCreateCredentialJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicCreateCredentialResponse, error) {
-	rsp, err := c.PublicCreateCredential(ctx, body, reqEditors...)
+func (c *ClientWithResponses) PublicCreateCredentialsWithResponse(ctx context.Context, body PublicCreateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicCreateCredentialsResponse, error) {
+	rsp, err := c.PublicCreateCredentials(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePublicCreateCredentialResponse(rsp)
+	return ParsePublicCreateCredentialsResponse(rsp)
 }
 
-// PublicDeleteCredentialWithResponse request returning *PublicDeleteCredentialResponse
-func (c *ClientWithResponses) PublicDeleteCredentialWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicDeleteCredentialResponse, error) {
-	rsp, err := c.PublicDeleteCredential(ctx, name, reqEditors...)
+// PublicDeleteCredentialsWithResponse request returning *PublicDeleteCredentialsResponse
+func (c *ClientWithResponses) PublicDeleteCredentialsWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicDeleteCredentialsResponse, error) {
+	rsp, err := c.PublicDeleteCredentials(ctx, name, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePublicDeleteCredentialResponse(rsp)
+	return ParsePublicDeleteCredentialsResponse(rsp)
 }
 
-// PublicGetCredentialWithResponse request returning *PublicGetCredentialResponse
-func (c *ClientWithResponses) PublicGetCredentialWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicGetCredentialResponse, error) {
-	rsp, err := c.PublicGetCredential(ctx, name, reqEditors...)
+// PublicGetCredentials1WithResponse request returning *PublicGetCredentials1Response
+func (c *ClientWithResponses) PublicGetCredentials1WithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicGetCredentials1Response, error) {
+	rsp, err := c.PublicGetCredentials1(ctx, name, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePublicGetCredentialResponse(rsp)
+	return ParsePublicGetCredentials1Response(rsp)
 }
 
-// PublicUpdateCredentialWithBodyWithResponse request with arbitrary body returning *PublicUpdateCredentialResponse
-func (c *ClientWithResponses) PublicUpdateCredentialWithBodyWithResponse(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialResponse, error) {
-	rsp, err := c.PublicUpdateCredentialWithBody(ctx, name, contentType, body, reqEditors...)
+// PublicUpdateCredentialsWithBodyWithResponse request with arbitrary body returning *PublicUpdateCredentialsResponse
+func (c *ClientWithResponses) PublicUpdateCredentialsWithBodyWithResponse(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialsResponse, error) {
+	rsp, err := c.PublicUpdateCredentialsWithBody(ctx, name, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePublicUpdateCredentialResponse(rsp)
+	return ParsePublicUpdateCredentialsResponse(rsp)
 }
 
-func (c *ClientWithResponses) PublicUpdateCredentialWithResponse(ctx context.Context, name string, body PublicUpdateCredentialJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialResponse, error) {
-	rsp, err := c.PublicUpdateCredential(ctx, name, body, reqEditors...)
+func (c *ClientWithResponses) PublicUpdateCredentialsWithResponse(ctx context.Context, name string, body PublicUpdateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialsResponse, error) {
+	rsp, err := c.PublicUpdateCredentials(ctx, name, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePublicUpdateCredentialResponse(rsp)
+	return ParsePublicUpdateCredentialsResponse(rsp)
 }
 
 // CreatePipelineDeclarativeLineageWithBodyWithResponse request with arbitrary body returning *CreatePipelineDeclarativeLineageResponse
@@ -7731,7 +8268,7 @@ func ParsePublicGetCredentialsResponse(rsp *http.Response) (*PublicGetCredential
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PublicCredentialPageDtoPublicCredentialGetDto
+		var dest PublicCredentialsPageDtoPublicCredentialsGetDto
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7751,6 +8288,13 @@ func ParsePublicGetCredentialsResponse(rsp *http.Response) (*PublicGetCredential
 		}
 		response.ApplicationproblemJSON403 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON429 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest ApiProblemSchema
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7763,15 +8307,15 @@ func ParsePublicGetCredentialsResponse(rsp *http.Response) (*PublicGetCredential
 	return response, nil
 }
 
-// ParsePublicCreateCredentialResponse parses an HTTP response from a PublicCreateCredentialWithResponse call
-func ParsePublicCreateCredentialResponse(rsp *http.Response) (*PublicCreateCredentialResponse, error) {
+// ParsePublicCreateCredentialsResponse parses an HTTP response from a PublicCreateCredentialsWithResponse call
+func ParsePublicCreateCredentialsResponse(rsp *http.Response) (*PublicCreateCredentialsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &PublicCreateCredentialResponse{
+	response := &PublicCreateCredentialsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -7805,6 +8349,13 @@ func ParsePublicCreateCredentialResponse(rsp *http.Response) (*PublicCreateCrede
 		}
 		response.ApplicationproblemJSON409 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON429 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest ApiProblemSchema
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7817,15 +8368,15 @@ func ParsePublicCreateCredentialResponse(rsp *http.Response) (*PublicCreateCrede
 	return response, nil
 }
 
-// ParsePublicDeleteCredentialResponse parses an HTTP response from a PublicDeleteCredentialWithResponse call
-func ParsePublicDeleteCredentialResponse(rsp *http.Response) (*PublicDeleteCredentialResponse, error) {
+// ParsePublicDeleteCredentialsResponse parses an HTTP response from a PublicDeleteCredentialsWithResponse call
+func ParsePublicDeleteCredentialsResponse(rsp *http.Response) (*PublicDeleteCredentialsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &PublicDeleteCredentialResponse{
+	response := &PublicDeleteCredentialsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -7852,6 +8403,13 @@ func ParsePublicDeleteCredentialResponse(rsp *http.Response) (*PublicDeleteCrede
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON429 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest ApiProblemSchema
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7864,22 +8422,22 @@ func ParsePublicDeleteCredentialResponse(rsp *http.Response) (*PublicDeleteCrede
 	return response, nil
 }
 
-// ParsePublicGetCredentialResponse parses an HTTP response from a PublicGetCredentialWithResponse call
-func ParsePublicGetCredentialResponse(rsp *http.Response) (*PublicGetCredentialResponse, error) {
+// ParsePublicGetCredentials1Response parses an HTTP response from a PublicGetCredentials1WithResponse call
+func ParsePublicGetCredentials1Response(rsp *http.Response) (*PublicGetCredentials1Response, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &PublicGetCredentialResponse{
+	response := &PublicGetCredentials1Response{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest PublicCredentialGetDto
+		var dest PublicCredentialsGetDto
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -7906,6 +8464,13 @@ func ParsePublicGetCredentialResponse(rsp *http.Response) (*PublicGetCredentialR
 		}
 		response.ApplicationproblemJSON404 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON429 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest ApiProblemSchema
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -7918,15 +8483,15 @@ func ParsePublicGetCredentialResponse(rsp *http.Response) (*PublicGetCredentialR
 	return response, nil
 }
 
-// ParsePublicUpdateCredentialResponse parses an HTTP response from a PublicUpdateCredentialWithResponse call
-func ParsePublicUpdateCredentialResponse(rsp *http.Response) (*PublicUpdateCredentialResponse, error) {
+// ParsePublicUpdateCredentialsResponse parses an HTTP response from a PublicUpdateCredentialsWithResponse call
+func ParsePublicUpdateCredentialsResponse(rsp *http.Response) (*PublicUpdateCredentialsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &PublicUpdateCredentialResponse{
+	response := &PublicUpdateCredentialsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -7959,6 +8524,13 @@ func ParsePublicUpdateCredentialResponse(rsp *http.Response) (*PublicUpdateCrede
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON429 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest ApiProblemSchema

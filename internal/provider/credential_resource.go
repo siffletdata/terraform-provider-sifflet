@@ -18,42 +18,42 @@ import (
 )
 
 var (
-	_ resource.Resource              = &credentialResource{}
-	_ resource.ResourceWithConfigure = &credentialResource{}
+	_ resource.Resource              = &credentialsResource{}
+	_ resource.ResourceWithConfigure = &credentialsResource{}
 )
 
 func NewCredentialResource() resource.Resource {
-	return &credentialResource{}
+	return &credentialsResource{}
 }
 
-type credentialResource struct {
+type credentialsResource struct {
 	client *sifflet.ClientWithResponses
 }
 
 // Metadata returns the resource type name.
-func (r *credentialResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_credential"
+func (r *credentialsResource) Metadata(_ context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_credentials"
 }
 
 func CredentialResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
-		Description:         "A credential resource.",
+		Description:         "A credentials resource.",
 		MarkdownDescription: "Credentials are used to store secret source connection information, such as username, passwords, service account keys, or API tokens",
 		Attributes: map[string]schema.Attribute{
 			"name": schema.StringAttribute{
 				// TODO add validation (https://developer.hashicorp.com/terraform/plugin/framework/validation#attribute-validation)
-				Description: "The name of the credential. Must only contain alphanumeric characters. Must be unique in the Sifflet instance.",
+				Description: "The name of the credentials. Must only contain alphanumeric characters. Must be unique in the Sifflet instance.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
 				Required: true,
 			},
 			"description": schema.StringAttribute{
-				Description: "The description of the credential.",
+				Description: "The description of the credentials.",
 				Optional:    true,
 			},
 			"value": schema.StringAttribute{
-				Description: "The value of the credential. Due to API limitations, Terraform can't detect changes to this value made outside of Terraform. Mandatory when asking Terraform to create the resource; otherwise, if the resource is imported or was created during a previous apply, this value is optional.",
+				Description: "The value of the credentials. Due to API limitations, Terraform can't detect changes to this value made outside of Terraform. Mandatory when asking Terraform to create the resource; otherwise, if the resource is imported or was created during a previous apply, this value is optional.",
 				Sensitive:   true,
 				Optional:    true,
 				PlanModifiers: []planmodifier.String{
@@ -71,11 +71,11 @@ type CredentialModel struct {
 	Value       types.String `tfsdk:"value"`
 }
 
-func (r *credentialResource) Schema(ctx context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
+func (r *credentialsResource) Schema(ctx context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = CredentialResourceSchema(ctx)
 }
 
-func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+func (r *credentialsResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
 	var plan CredentialModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
@@ -84,34 +84,34 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 	}
 
 	if plan.Value.IsNull() {
-		resp.Diagnostics.AddError("Value is required", "The value attribute is required when creating a credential.")
+		resp.Diagnostics.AddError("Value is required", "The value attribute is required when creating credentials.")
 		return
 	}
 
-	credentialDto := sifflet.PublicCredentialCreateDto{
+	credentialsDto := sifflet.PublicCredentialsCreateDto{
 		Name:        plan.Name.ValueString(),
 		Description: plan.Description.ValueStringPointer(),
 		Value:       plan.Value.ValueString(),
 	}
 
-	credentialResponse, err := r.client.PublicCreateCredentialWithResponse(ctx, credentialDto)
+	credentialsResponse, err := r.client.PublicCreateCredentialsWithResponse(ctx, credentialsDto)
 	if err != nil {
-		resp.Diagnostics.AddError("Unable to create credential", err.Error())
+		resp.Diagnostics.AddError("Unable to create credentials", err.Error())
 		return
 	}
 
-	if credentialResponse.StatusCode() != http.StatusCreated {
+	if credentialsResponse.StatusCode() != http.StatusCreated {
 		sifflet.HandleHttpErrorAsProblem(
-			ctx, &resp.Diagnostics, "Unable to create credential",
-			credentialResponse.StatusCode(), credentialResponse.Body,
+			ctx, &resp.Diagnostics, "Unable to create credentials",
+			credentialsResponse.StatusCode(), credentialsResponse.Body,
 		)
 		resp.State.RemoveResource(ctx)
 		return
 	}
 
-	plan.Name = types.StringValue(credentialDto.Name)
-	plan.Description = types.StringPointerValue(credentialDto.Description)
-	plan.Value = types.StringValue(credentialDto.Value)
+	plan.Name = types.StringValue(credentialsDto.Name)
+	plan.Description = types.StringPointerValue(credentialsDto.Description)
+	plan.Value = types.StringValue(credentialsDto.Value)
 
 	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
@@ -119,19 +119,21 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 		return
 	}
 
-	// Since the credential API is eventually consistent, we wait until we can read back the credential that we created.
-	// Otherwise, further operations with these credentials (such as "create a datasource referencing this credential") might fail.
+	// Since the credentials API is eventually consistent, we wait until we can read back the credentials that we created.
+	// Otherwise, further operations with these credentials (such as "create a datasource referencing these credentials") might fail.
 	maxAttempts := 20
 	for attempt := 0; attempt < maxAttempts; attempt++ {
-		_, err = r.client.PublicGetCredentialWithResponse(ctx, credentialDto.Name)
+		// Conflict in the OpenAPI schema between operation IDs for "get credentials" and "list credentials",
+		// hence the strange operation name.
+		_, err = r.client.PublicGetCredentials1WithResponse(ctx, credentialsDto.Name)
 
 		if err != nil {
 			resp.Diagnostics.AddError(
-				"Unable to read back credential after creating it", err.Error())
+				"Unable to read back credentials after creating them", err.Error())
 			return
 		}
 
-		if credentialResponse.StatusCode() == http.StatusOK {
+		if credentialsResponse.StatusCode() == http.StatusOK {
 			break
 		}
 
@@ -142,7 +144,7 @@ func (r *credentialResource) Create(ctx context.Context, req resource.CreateRequ
 
 }
 
-func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+func (r *credentialsResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
 	var state CredentialModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -153,10 +155,12 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 	id := state.Name.ValueString()
 
 	maxAttempts := 20
-	var credentialResponse *sifflet.PublicGetCredentialResponse
+	var credentialsResponse *sifflet.PublicGetCredentials1Response
 	var err error
 	for attempt := 0; attempt < maxAttempts; attempt++ {
-		credentialResponse, err = r.client.PublicGetCredentialWithResponse(ctx, id)
+		// Conflict in the OpenAPI schema between operation IDs for "get credentials" and "list credentials",
+		// hence the strange operation name.
+		credentialsResponse, err = r.client.PublicGetCredentials1WithResponse(ctx, id)
 
 		if err != nil {
 			resp.Diagnostics.AddError(
@@ -166,7 +170,7 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 			return
 		}
 
-		if credentialResponse.StatusCode() == http.StatusNotFound {
+		if credentialsResponse.StatusCode() == http.StatusNotFound {
 			// Retry a few times, as there's a delay in the API (eventual consistency)
 			if attempt < maxAttempts {
 				time.Sleep(200 * time.Millisecond)
@@ -177,17 +181,17 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 		}
 	}
 
-	if credentialResponse.StatusCode() != http.StatusOK {
+	if credentialsResponse.StatusCode() != http.StatusOK {
 		sifflet.HandleHttpErrorAsProblem(
-			ctx, &resp.Diagnostics, "Unable to read credential",
-			credentialResponse.StatusCode(), credentialResponse.Body)
+			ctx, &resp.Diagnostics, "Unable to read credentials",
+			credentialsResponse.StatusCode(), credentialsResponse.Body)
 		resp.State.RemoveResource(ctx)
 		return
 	}
 
 	state = CredentialModel{
-		Name:        types.StringValue(credentialResponse.JSON200.Name),
-		Description: types.StringPointerValue(credentialResponse.JSON200.Description),
+		Name:        types.StringValue(credentialsResponse.JSON200.Name),
+		Description: types.StringPointerValue(credentialsResponse.JSON200.Description),
 		// TODO: The API doesn't include any way to detect if the secret value has changed (like a version field).
 		// See PLTE-901.
 		// In the meantime, let's copy the previous value from the state, if any. This won't allow Terraform to detect whether the value has changed outside of Terraform though.
@@ -201,7 +205,7 @@ func (r *credentialResource) Read(ctx context.Context, req resource.ReadRequest,
 	}
 }
 
-func (r *credentialResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+func (r *credentialsResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	var plan CredentialModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
@@ -210,51 +214,53 @@ func (r *credentialResource) Update(ctx context.Context, req resource.UpdateRequ
 	}
 
 	id := plan.Name.ValueString()
-	body := sifflet.PublicUpdateCredentialJSONRequestBody{
+	body := sifflet.PublicUpdateCredentialsJSONRequestBody{
 		Description: plan.Description.ValueStringPointer(),
 		Value:       plan.Value.ValueStringPointer(),
 	}
 
-	updateResponse, err := r.client.PublicUpdateCredentialWithResponse(ctx, id, body)
+	updateResponse, err := r.client.PublicUpdateCredentialsWithResponse(ctx, id, body)
 	if err != nil {
-		resp.Diagnostics.AddError("Unable to update credential", err.Error())
+		resp.Diagnostics.AddError("Unable to update credentials", err.Error())
 		return
 	}
 
 	if updateResponse.StatusCode() != http.StatusNoContent {
 		sifflet.HandleHttpErrorAsProblem(
-			ctx, &resp.Diagnostics, "Unable to update credential",
+			ctx, &resp.Diagnostics, "Unable to update credentials",
 			updateResponse.StatusCode(), updateResponse.Body,
 		)
 		return
 	}
 
-	// Since the credential API is eventually consistent, we wait until we read back the description that we wrote.
+	// Since the credentials API is eventually consistent, we wait until we read back the description that we wrote.
 	// Otherwise, the next read by Terraform might return the old value, which would generate an error (inconsistent plan).
 	// Reading the credential description is currently the only way we can know whether the credential was updated,  the API doesn't include any way to detect if the secret value has changed (like a version field).
 	// See PLTE-901.
 	maxAttempts := 20
-	var credentialResponse *sifflet.PublicGetCredentialResponse
+	var credentialsResponse *sifflet.PublicGetCredentials1Response
 	for attempt := 0; attempt < maxAttempts; attempt++ {
-		credentialResponse, err = r.client.PublicGetCredentialWithResponse(ctx, id)
+		// Conflict in the OpenAPI schema between operation IDs for "get credentials" and "list credentials",
+		// hence the strange operation name.
+		credentialsResponse, err = r.client.PublicGetCredentials1WithResponse(ctx, id)
 
 		if err != nil {
 			resp.Diagnostics.AddError(
-				"Unable to read back credential after updating it",
+				"Unable to read back credentials after updating it",
 				err.Error(),
 			)
 			return
 		}
 
-		if credentialResponse.StatusCode() != http.StatusOK {
+		if credentialsResponse.StatusCode() != http.StatusOK {
 			sifflet.HandleHttpErrorAsProblem(
-				ctx, &resp.Diagnostics, "Unable to read credential after updating it",
-				credentialResponse.StatusCode(), credentialResponse.Body)
+				ctx, &resp.Diagnostics, "Unable to read credentials after updating it",
+				credentialsResponse.StatusCode(), credentialsResponse.Body)
 			resp.State.RemoveResource(ctx)
 			return
 		}
 
-		if credentialResponse.JSON200.Description == body.Description {
+		if credentialsResponse.JSON200.Description == body.Description {
 			break
 		}
 		time.Sleep(200 * time.Millisecond)
@@ -272,7 +278,7 @@ func (r *credentialResource) Update(ctx context.Context, req resource.UpdateRequ
 	}
 }
 
-func (r *credentialResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+func (r *credentialsResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	var state CredentialModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -282,12 +288,12 @@ func (r *credentialResource) Delete(ctx context.Context, req resource.DeleteRequ
 
 	id := state.Name.ValueString()
 
-	credentialResponse, _ := r.client.PublicDeleteCredentialWithResponse(ctx, id)
+	credentialsResponse, _ := r.client.PublicDeleteCredentialsWithResponse(ctx, id)
 
-	if credentialResponse.StatusCode() != http.StatusNoContent {
+	if credentialsResponse.StatusCode() != http.StatusNoContent {
 		sifflet.HandleHttpErrorAsProblem(
-			ctx, &resp.Diagnostics, "Unable to delete credential",
-			credentialResponse.StatusCode(), credentialResponse.Body,
+			ctx, &resp.Diagnostics, "Unable to delete credentials",
+			credentialsResponse.StatusCode(), credentialsResponse.Body,
 		)
 		resp.State.RemoveResource(ctx)
 		return
@@ -295,11 +301,11 @@ func (r *credentialResource) Delete(ctx context.Context, req resource.DeleteRequ
 
 }
 
-func (r *credentialResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *credentialsResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	resource.ImportStatePassthroughID(ctx, path.Root("name"), req, resp)
 }
 
-func (r *credentialResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *credentialsResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}

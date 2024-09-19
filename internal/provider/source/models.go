@@ -230,7 +230,7 @@ type SourceModel struct {
 	ID          types.String `tfsdk:"id"`
 	Name        types.String `tfsdk:"name"`
 	Description types.String `tfsdk:"description"`
-	Credential  types.String `tfsdk:"credential"`
+	Credentials types.String `tfsdk:"credentials"`
 	Schedule    types.String `tfsdk:"schedule"`
 	Timezone    types.String `tfsdk:"timezone"`
 	Parameters  types.Object `tfsdk:"parameters"`
@@ -242,7 +242,7 @@ func (m SourceModel) AttributeTypes() map[string]attr.Type {
 		"id":          types.StringType,
 		"name":        types.StringType,
 		"description": types.StringType,
-		"credential":  types.StringType,
+		"credentials": types.StringType,
 		"schedule":    types.StringType,
 		"timezone":    types.StringType,
 		"parameters": types.ObjectType{
