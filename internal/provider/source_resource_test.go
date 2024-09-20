@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+	"github.com/hashicorp/terraform-plugin-testing/plancheck"
 )
 
 func randomSourceName() string {
@@ -55,7 +56,7 @@ func TestAccSourceBasic(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.bigquery.project_id", projectId),
 				),
 			},
-			// Test description update
+			// Test description update, should not trigger replacement
 			{
 				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source" "test" {
@@ -75,6 +76,11 @@ func TestAccSourceBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_source.test", "description", "Another description"),
 				),
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionUpdate),
+					},
+				},
 			},
 			// Test parameters update, same source
 			{
@@ -96,6 +102,11 @@ func TestAccSourceBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.bigquery.dataset_id", "dataset_2"),
 				),
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionUpdate),
+					},
+				},
 			},
 			// Test parameters update, different source (requires replacement)
 			{
@@ -118,6 +129,11 @@ func TestAccSourceBasic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.snowflake.database", "database"),
 				),
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionDestroyBeforeCreate),
+					},
+				},
 			},
 		},
 	})

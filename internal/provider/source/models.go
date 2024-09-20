@@ -16,7 +16,10 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/objectplanmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -204,6 +207,46 @@ func (m ParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 		Description: "Connection parameters. Provide only one nested block depending on the source type.",
 		Required:    true,
 		Attributes:  attributes,
+		PlanModifiers: []planmodifier.Object{
+			objectplanmodifier.RequiresReplaceIf(
+				func(ctx context.Context, req planmodifier.ObjectRequest, resp *objectplanmodifier.RequiresReplaceIfFuncResponse) {
+					// If the source type changes, the resource must be replaced (the API will reject a type change)
+					resp.RequiresReplace = true
+
+					var state ParametersModel
+					var plan ParametersModel
+
+					diags := req.State.GetAttribute(ctx, path.Root("parameters"), &state)
+					if diags.HasError() {
+						resp.Diagnostics.Append(diags...)
+						return
+					}
+
+					diags = req.Plan.GetAttribute(ctx, path.Root("parameters"), &plan)
+					if diags.HasError() {
+						resp.Diagnostics.Append(diags...)
+						return
+					}
+
+					previousSourceType, err := state.GetSourceType()
+					if err != nil {
+						resp.Diagnostics.Append(diag.NewWarningDiagnostic("Unable to determine source type from state", err.Error()))
+						return
+					}
+					nextSourceType, err := plan.GetSourceType()
+					if err != nil {
+						resp.Diagnostics.Append(diag.NewWarningDiagnostic("Unable to determine next source type from plan", err.Error()))
+						return
+					}
+
+					if previousSourceType == nextSourceType {
+						resp.RequiresReplace = false
+					}
+				},
+				"If the source type changes, the resource must be replaced.",
+				"If the source type changes, the resource must be replaced.",
+			),
+		},
 	}
 }
 
