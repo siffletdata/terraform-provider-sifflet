@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+	"github.com/hashicorp/terraform-plugin-testing/plancheck"
 )
 
 func TestAccTagResourceBasic(t *testing.T) {
@@ -25,6 +26,11 @@ func TestAccTagResourceBasic(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_tag.test", "name", tagName),
 					resource.TestCheckResourceAttr("sifflet_tag.test", "description", "A description"),
 				),
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectResourceAction("sifflet_tag.test", plancheck.ResourceActionCreate),
+					},
+				},
 			},
 			{
 				ResourceName:      "sifflet_tag.test",
@@ -42,6 +48,11 @@ func TestAccTagResourceBasic(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_tag.test", "name", tagName),
 					resource.TestCheckResourceAttr("sifflet_tag.test", "description", "An updated description"),
 				),
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectResourceAction("sifflet_tag.test", plancheck.ResourceActionUpdate),
+					},
+				},
 			},
 		},
 	})
