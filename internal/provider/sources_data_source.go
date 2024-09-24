@@ -213,41 +213,49 @@ func (d *sourcesDataSource) Read(ctx context.Context, req datasource.ReadRequest
 		return
 	}
 
-	// FIXME implement pagination
-
 	filterDto, diags := filterModel.ToDto(ctx)
 	if diags.HasError() {
 		resp.Diagnostics.Append(diags...)
 		return
 	}
 
-	requestDto := sifflet.PublicSourceSearchCriteriaDto{
-		Filter: &filterDto,
-	}
+	var page int32 = 0
+	var itemsPerPage int32 = 100
+	results := make([]source.SourceModel, 0)
 
-	searchResponse, err := d.client.PublicGetSourcesWithResponse(ctx, requestDto)
-
-	if err != nil {
-		resp.Diagnostics.AddError("Unable to read sources", err.Error())
-		return
-	}
-
-	if searchResponse.StatusCode() != http.StatusOK {
-		sifflet.HandleHttpErrorAsProblem(
-			ctx, &resp.Diagnostics, "Unable to read sources", searchResponse.StatusCode(), searchResponse.Body,
-		)
-		return
-	}
-
-	responseDto := *searchResponse.JSON200
-	results := make([]source.SourceModel, len(responseDto.Data))
-	for i, data := range responseDto.Data {
-		sourceModel, diags := source.SourceModelFromDto(ctx, data)
-		resp.Diagnostics.Append(diags...)
-		if diags.HasError() {
+	for ; ; page++ {
+		paginationDto := sifflet.PublicSourcePaginationDto{
+			ItemsPerPage: &itemsPerPage,
+			Page:         &page,
+		}
+		requestDto := sifflet.PublicSourceSearchCriteriaDto{
+			Filter:     &filterDto,
+			Pagination: &paginationDto,
+		}
+		searchResponse, err := d.client.PublicGetSourcesWithResponse(ctx, requestDto)
+		if err != nil {
+			resp.Diagnostics.AddError("Unable to read sources", err.Error())
 			return
 		}
-		results[i] = sourceModel
+		if searchResponse.StatusCode() != http.StatusOK {
+			sifflet.HandleHttpErrorAsProblem(
+				ctx, &resp.Diagnostics, "Unable to read sources", searchResponse.StatusCode(), searchResponse.Body,
+			)
+			return
+		}
+
+		responseDto := *searchResponse.JSON200
+		if len(responseDto.Data) == 0 {
+			break
+		}
+		for _, data := range responseDto.Data {
+			sourceModel, diags := source.SourceModelFromDto(ctx, data)
+			resp.Diagnostics.Append(diags...)
+			if diags.HasError() {
+				return
+			}
+			results = append(results, sourceModel)
+		}
 	}
 
 	data.Results, diags = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: source.SourceModel{}.AttributeTypes()}, results)

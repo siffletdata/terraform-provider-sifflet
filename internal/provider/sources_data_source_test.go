@@ -20,13 +20,13 @@ func TestAccSourcesDataSource(t *testing.T) {
 		Steps: []resource.TestStep{
 			// No result
 			{
-				Config: providertests.ProviderConfig() + fmt.Sprintf(`
+				Config: providertests.ProviderConfig() + `
 				data "sifflet_sources" "test" {
 					filter = {
-						text_search = "test"
+						text_search = "doesn't match any data source"
 						types = ["MYSQL"]
 					}
-				}`),
+				}`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr("data.sifflet_sources.test", "results.#", "0"),
 				),
