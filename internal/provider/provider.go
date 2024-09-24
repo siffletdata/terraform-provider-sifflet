@@ -187,9 +187,9 @@ func apiHealthCheck(httpClient *http.Client, host string, resp *provider.Configu
 // DataSources defines the data sources implemented in the provider.
 func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
-		// NewDatasourcesDataSource,
-		// NewTagDataSource,
-		// NewCredentialDataSource,
+		NewDatasourcesDataSource,
+		NewTagDataSource,
+		NewCredentialDataSource,
 		NewSourcesDataSource,
 	}
 }
@@ -197,9 +197,9 @@ func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.Dat
 // Resources defines the resources implemented in the provider.
 func (p *siffletProvider) Resources(_ context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
-		// NewDataSourceResource,
-		// NewTagResource,
-		// NewCredentialResource,
-		// NewSourceResource,
+		NewDataSourceResource,
+		NewTagResource,
+		NewCredentialResource,
+		NewSourceResource,
 	}
 }

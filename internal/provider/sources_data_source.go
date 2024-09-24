@@ -236,10 +236,11 @@ func (d *sourcesDataSource) Read(ctx context.Context, req datasource.ReadRequest
 		sifflet.HandleHttpErrorAsProblem(
 			ctx, &resp.Diagnostics, "Unable to read sources", searchResponse.StatusCode(), searchResponse.Body,
 		)
+		return
 	}
 
 	responseDto := *searchResponse.JSON200
-	results := make([]source.SourceModel, 0, len(responseDto.Data))
+	results := make([]source.SourceModel, len(responseDto.Data))
 	for i, data := range responseDto.Data {
 		sourceModel, diags := source.SourceModelFromDto(ctx, data)
 		resp.Diagnostics.Append(diags...)
