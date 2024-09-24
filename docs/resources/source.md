@@ -71,7 +71,7 @@ resource "sifflet_source" "complex" {
 - `credentials` (String) Name of the credentials used to connect to the source. Required for most datasources, except for 'athena', 'dbt' and 'quicksight' sources.
 - `description` (String) Source description.
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `tags` (Attributes List) Tags for the source. For each tag, you can provider either: an ID, a name, or a name + a kind (when the name alone is ambiguous). It's recommended to use tag IDs (coming from a sifflet_tag resource or data source) most of the time, but directly providing tag names can simplify some configurations. (see [below for nested schema](#nestedatt--tags))
+- `tags` (Attributes List) Tags for the source. For each tag, you can provide either: an ID, a name, or a name + a kind (when the name alone is ambiguous). It's recommended to use tag IDs (coming from a sifflet_tag resource or data source) most of the time, but directly providing tag names can simplify some configurations. (see [below for nested schema](#nestedatt--tags))
 - `timezone` (String) Timezone for the source. If empty, defaults to UTC.
 
 ### Read-Only

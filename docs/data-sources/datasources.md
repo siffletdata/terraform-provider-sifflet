@@ -3,12 +3,12 @@
 page_title: "sifflet_datasources Data Source - terraform-provider-sifflet"
 subcategory: ""
 description: |-
-  Read all Sifflet Data Sources.
+  Read all Sifflet Data Sources. Deprecated: this data source doesn't support all Sifflet source types. Use the sifflet_sources data source instead.
 ---
 
 # sifflet_datasources (Data Source)
 
-Read all Sifflet Data Sources.
+Read all Sifflet Data Sources. Deprecated: this data source doesn't support all Sifflet source types. Use the `sifflet_sources` data source instead.
 
 ## Example Usage
 

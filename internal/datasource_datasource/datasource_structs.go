@@ -65,8 +65,8 @@ type ErrorMessage struct {
 
 func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
-		Description:        "Create a Sifflet Data Source.",
-		DeprecationMessage: "This resource relies on unstable APIs that may change in the future. Use the `sifflet_source` resource instead.",
+		Description:        "Create a Sifflet data source. Deprecated: this resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead.",
+		DeprecationMessage: "This resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Computed:    true,
@@ -353,8 +353,8 @@ type DatasourceSearchDto struct {
 
 func DatasourceDataSourceSchema(ctx context.Context) data_source.Schema {
 	return data_source.Schema{
-		Description:        "Read all Sifflet Data Sources.",
-		DeprecationMessage: "This data source relies on an unstable API that may change in the future.",
+		Description:        "Read all Sifflet Data Sources. Deprecated: this data source doesn't support all Sifflet source types. Use the `sifflet_sources` data source instead.",
+		DeprecationMessage: "This data source relies on an unstable API that may change in the future. It also doesn't support all Sifflet source types. Use the `sifflet_sources` data source instead.",
 		Attributes: map[string]data_source.Attribute{
 			"search_rules": data_source.SingleNestedAttribute{
 				Attributes: map[string]data_source.Attribute{
