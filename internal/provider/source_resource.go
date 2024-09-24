@@ -172,6 +172,7 @@ func tagsModelToDto(tagsModel []source.TagModel) ([]sifflet.PublicTagReferenceDt
 	return tagsDto, nil
 }
 
+// FIXME remove
 func tagsDtoToModel(tagsDto []sifflet.PublicTagReferenceDto) ([]source.TagModel, diag.Diagnostics) {
 	tagsModel := make([]source.TagModel, len(tagsDto))
 	for i, tagDto := range tagsDto {
@@ -253,7 +254,7 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 		return
 	}
 
-	credentialDto := sifflet.PublicCreateSourceDto{
+	sourceDto := sifflet.PublicCreateSourceDto{
 		Name:        plan.Name.ValueString(),
 		Description: plan.Description.ValueStringPointer(),
 		Credentials: credentials,
@@ -263,7 +264,7 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 		Tags:        &tagsDto,
 	}
 
-	sourceResponse, err := r.client.PublicCreateSourceWithResponse(ctx, credentialDto)
+	sourceResponse, err := r.client.PublicCreateSourceWithResponse(ctx, sourceDto)
 	if err != nil {
 		resp.Diagnostics.AddError("Unable to create source", err.Error())
 		return
@@ -350,63 +351,10 @@ func (r *sourceResource) Read(ctx context.Context, req resource.ReadRequest, res
 		return
 	}
 
-	sourceTypeParams, err := source.ParamsImplFromApiResponseName(sourceType)
-	if err != nil {
-		resp.Diagnostics.AddError("Unable to read source: unsupported source type", err.Error())
-		return
-	}
-	diags = sourceTypeParams.ModelFromDto(ctx, res.JSON200.Parameters)
+	state, diags = source.SourceModelFromDto(ctx, *res.JSON200, sourceType)
 	resp.Diagnostics.Append(diags...)
-	if diags.HasError() {
+	if resp.Diagnostics.HasError() {
 		return
-	}
-
-	parametersModel, diags := sourceTypeParams.AsParametersModel(ctx)
-	resp.Diagnostics.Append(diags...)
-	if diags.HasError() {
-		return
-	}
-
-	parameters, diags := types.ObjectValueFrom(
-		ctx,
-		parametersModel.AttributeTypes(),
-		parametersModel,
-	)
-	resp.Diagnostics.Append(diags...)
-	if diags.HasError() {
-		return
-	}
-
-	tagModels := make([]source.TagModel, len(*res.JSON200.Tags))
-	for i, tag := range *res.JSON200.Tags {
-		kind, err := source.TagKindToString(*tag.Kind)
-		if err != nil {
-			resp.Diagnostics.AddError("Unable to read source: could not parse tag kind", err.Error())
-			return
-		}
-		tagModel := source.TagModel{
-			ID:   types.StringValue(tag.Id.String()),
-			Name: types.StringPointerValue(tag.Name),
-			Kind: types.StringValue(kind),
-		}
-		tagModels[i] = tagModel
-	}
-
-	tags, diags := types.ListValueFrom(ctx, types.ObjectType{AttrTypes: source.TagModel{}.AttributeTypes()}, tagModels)
-	resp.Diagnostics.Append(diags...)
-	if diags.HasError() {
-		return
-	}
-
-	state = source.SourceModel{
-		ID:          types.StringValue(res.JSON200.Id.String()),
-		Name:        types.StringValue(res.JSON200.Name),
-		Description: types.StringPointerValue(res.JSON200.Description),
-		Credentials: types.StringPointerValue(res.JSON200.Credentials),
-		Schedule:    types.StringPointerValue(res.JSON200.Schedule),
-		Timezone:    types.StringPointerValue(res.JSON200.Timezone),
-		Parameters:  parameters,
-		Tags:        tags,
 	}
 
 	diags = resp.State.Set(ctx, &state)
@@ -416,7 +364,6 @@ func (r *sourceResource) Read(ctx context.Context, req resource.ReadRequest, res
 	}
 }
 
-// TODO: factorize duplicated code with Create.
 func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
 	var plan source.SourceModel
 	diags := req.Plan.Get(ctx, &plan)
@@ -446,14 +393,14 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
-	t, err := parametersModel.GetSourceType()
+	sourceType, err := parametersModel.GetSourceType()
 	if err != nil {
 		resp.Diagnostics.AddError("Unable to update source", err.Error())
 		return
 	}
 
 	var credentials *string
-	if t.RequiresCredential() {
+	if sourceType.RequiresCredential() {
 		credentials = plan.Credentials.ValueStringPointer()
 		if credentials == nil {
 			resp.Diagnostics.AddError("Unable to update source", "Credential is required for this source type, but got an empty string")
@@ -509,28 +456,13 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
-	tagsModel, diags = tagsDtoToModel(*updateResponse.JSON200.Tags)
-	resp.Diagnostics.Append(diags...)
-	if resp.Diagnostics.HasError() {
-		return
-	}
-	tags, diags := types.ListValueFrom(ctx, types.ObjectType{AttrTypes: source.TagModel{}.AttributeTypes()}, tagsModel)
+	sourceModel, diags := source.SourceModelFromDto(ctx, *updateResponse.JSON200, sourceType.SchemaSourceType())
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
 
-	newStateModel := source.SourceModel{
-		ID:          types.StringValue(updateResponse.JSON200.Id.String()),
-		Name:        types.StringValue(updateResponse.JSON200.Name),
-		Description: types.StringPointerValue(updateResponse.JSON200.Description),
-		Credentials: types.StringPointerValue(updateResponse.JSON200.Credentials),
-		Schedule:    types.StringPointerValue(updateResponse.JSON200.Schedule),
-		Timezone:    types.StringPointerValue(updateResponse.JSON200.Timezone),
-		Parameters:  plan.Parameters,
-		Tags:        tags,
-	}
-	newState, diags := types.ObjectValueFrom(ctx, newStateModel.AttributeTypes(), newStateModel)
+	newState, diags := types.ObjectValueFrom(ctx, sourceModel.AttributeTypes(), sourceModel)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
