@@ -172,7 +172,7 @@ func tagsModelToDto(tagsModel []source.TagModel) ([]sifflet.PublicTagReferenceDt
 	return tagsDto, nil
 }
 
-// FIXME remove
+// FIXME remove.
 func tagsDtoToModel(tagsDto []sifflet.PublicTagReferenceDto) ([]source.TagModel, diag.Diagnostics) {
 	tagsModel := make([]source.TagModel, len(tagsDto))
 	for i, tagDto := range tagsDto {
@@ -345,13 +345,7 @@ func (r *sourceResource) Read(ctx context.Context, req resource.ReadRequest, res
 		return
 	}
 
-	sourceType, diags := source.ParseSourceType(res)
-	resp.Diagnostics.Append(diags...)
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	state, diags = source.SourceModelFromDto(ctx, *res.JSON200, sourceType)
+	state, diags = source.SourceModelFromDto(ctx, *res.JSON200)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -456,7 +450,7 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
-	sourceModel, diags := source.SourceModelFromDto(ctx, *updateResponse.JSON200, sourceType.SchemaSourceType())
+	sourceModel, diags := source.SourceModelFromDto(ctx, *updateResponse.JSON200)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return

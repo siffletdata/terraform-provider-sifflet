@@ -317,7 +317,13 @@ func tagsDtoToModel(tagsDto []sifflet.PublicTagReferenceDto) ([]TagModel, diag.D
 	return tagsModel, nil
 }
 
-func parametersDtoToModel(ctx context.Context, dto sifflet.PublicGetSourceDto_Parameters, sourceType string) (ParametersModel, diag.Diagnostics) {
+func parametersDtoToModel(ctx context.Context, dto sifflet.PublicGetSourceDto_Parameters) (ParametersModel, diag.Diagnostics) {
+	sourceType, err := sifflet.GetSourceType(dto)
+	if err != nil {
+		return ParametersModel{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to read source", err.Error()),
+		}
+	}
 	sourceTypeParams, err := ParamsImplFromApiResponseName(sourceType)
 	if err != nil {
 		return ParametersModel{}, diag.Diagnostics{
@@ -331,7 +337,7 @@ func parametersDtoToModel(ctx context.Context, dto sifflet.PublicGetSourceDto_Pa
 	return sourceTypeParams.AsParametersModel(ctx)
 }
 
-func SourceModelFromDto(ctx context.Context, dto sifflet.PublicGetSourceDto, sourceType string) (SourceModel, diag.Diagnostics) {
+func SourceModelFromDto(ctx context.Context, dto sifflet.PublicGetSourceDto) (SourceModel, diag.Diagnostics) {
 	tagsModel, diags := tagsDtoToModel(*dto.Tags)
 	if diags.HasError() {
 		return SourceModel{}, diags
@@ -340,7 +346,7 @@ func SourceModelFromDto(ctx context.Context, dto sifflet.PublicGetSourceDto, sou
 	if diags.HasError() {
 		return SourceModel{}, diags
 	}
-	parametersModel, diags := parametersDtoToModel(ctx, dto.Parameters, sourceType)
+	parametersModel, diags := parametersDtoToModel(ctx, dto.Parameters)
 	if diags.HasError() {
 		return SourceModel{}, diags
 	}
