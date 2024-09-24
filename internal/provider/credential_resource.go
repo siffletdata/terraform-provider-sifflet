@@ -4,16 +4,19 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"regexp"
 	"time"
 
 	"terraform-provider-sifflet/internal/apiclients"
 	sifflet "terraform-provider-sifflet/internal/client"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -41,12 +44,17 @@ func CredentialResourceSchema(ctx context.Context) schema.Schema {
 		MarkdownDescription: "Credentials are used to store secret source connection information, such as username, passwords, service account keys, or API tokens",
 		Attributes: map[string]schema.Attribute{
 			"name": schema.StringAttribute{
-				// TODO add validation (https://developer.hashicorp.com/terraform/plugin/framework/validation#attribute-validation)
 				Description: "The name of the credentials. Must only contain alphanumeric characters. Must be unique in the Sifflet instance.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},
 				Required: true,
+				Validators: []validator.String{
+					stringvalidator.RegexMatches(
+						regexp.MustCompile(`^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z]$`),
+						"must start and end with a letter, and contain only letters, digits, and hyphens",
+					),
+				},
 			},
 			"description": schema.StringAttribute{
 				Description: "The description of the credentials.",

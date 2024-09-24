@@ -2,7 +2,6 @@ package providertests
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/acctest"
 )
@@ -22,7 +21,7 @@ func RandomName() string {
 
 func RandomCredentialsName() string {
 	// Add a trailing "s" to the name because credential names can't end with a digit, as returned by RandomName
-	return strings.ReplaceAll(RandomName(), "-", "") + "s"
+	return RandomName() + "s"
 }
 
 func ProviderConfig() string {

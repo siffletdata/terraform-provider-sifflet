@@ -100,3 +100,21 @@ func TestAccCredentialNoValue(t *testing.T) {
 		},
 	})
 }
+
+func TestAccCredentialInvalidName(t *testing.T) {
+	resource.Test(t, resource.TestCase{
+		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		Steps: []resource.TestStep{
+			{
+				Config: providertests.ProviderConfig() + `
+						resource "sifflet_credentials" "test" {
+							name = "invalid-name-123"
+							description = "A description"
+							value = "Secret value"
+						}
+						`,
+				ExpectError: regexp.MustCompile("Attribute name must start and end with a letter"),
+			},
+		},
+	})
+}
