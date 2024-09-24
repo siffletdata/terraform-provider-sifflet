@@ -18,7 +18,9 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/listdefault"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
@@ -49,6 +51,10 @@ func SourceResourceSchema(ctx context.Context) schema.Schema {
 			"id": schema.StringAttribute{
 				Description: "The ID of the source.",
 				Computed:    true,
+				PlanModifiers: []planmodifier.String{
+					stringplanmodifier.RequiresReplace(),
+					stringplanmodifier.UseStateForUnknown(),
+				},
 			},
 			"credentials": schema.StringAttribute{
 				Description: "Name of the credentials used to connect to the source. Required for most datasources, except for 'athena', 'dbt' and 'quicksight' sources.",
@@ -228,7 +234,7 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 		}
 	}
 
-	parametersDto, diags := parametersModel.AsDto(ctx)
+	parametersDto, diags := parametersModel.AsCreateSourceDto(ctx)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -474,6 +480,12 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
+	parametersDto, diags := parametersModel.AsUpdateSourceDto(ctx)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
 	body := sifflet.PublicEditSourceJSONRequestBody{
 		Description: plan.Description.ValueStringPointer(),
 		Credentials: credentials,
@@ -481,8 +493,7 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		Timezone:    plan.Timezone.ValueStringPointer(),
 		Name:        plan.Name.ValueStringPointer(),
 		Tags:        &tagsDto,
-		// TODO: add support for parameters - the API documentation doesn't explain how to update them yet. See PLTE-964.
-		// For now, parameter changes are marked as "require replacement" in the schema.
+		Parameters:  &parametersDto,
 	}
 
 	updateResponse, err := r.client.PublicEditSourceWithResponse(ctx, id, body)
@@ -516,9 +527,8 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		Credentials: types.StringPointerValue(updateResponse.JSON200.Credentials),
 		Schedule:    types.StringPointerValue(updateResponse.JSON200.Schedule),
 		Timezone:    types.StringPointerValue(updateResponse.JSON200.Timezone),
-		// Copying the plan parameters since any change will require a replacement (see PLTE-964)
-		Parameters: plan.Parameters,
-		Tags:       tags,
+		Parameters:  plan.Parameters,
+		Tags:        tags,
 	}
 	newState, diags := types.ObjectValueFrom(ctx, newStateModel.AttributeTypes(), newStateModel)
 	resp.Diagnostics.Append(diags...)

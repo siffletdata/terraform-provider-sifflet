@@ -63,7 +63,7 @@ func (m BigQueryParametersModel) IsRepresentedBy(model ParametersModel) bool {
 	return !model.BigQuery.IsNull()
 }
 
-func (m *BigQueryParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+func (m *BigQueryParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	diags := p.BigQuery.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
@@ -79,6 +79,27 @@ func (m *BigQueryParametersModel) DtoFromModel(ctx context.Context, p Parameters
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *BigQueryParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	diags := p.BigQuery.As(ctx, &m, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+	dto := sifflet.PublicBigQueryParametersDto{
+		Type:             sifflet.PublicBigQueryParametersDtoTypeBIGQUERY,
+		ProjectId:        m.ProjectId.ValueStringPointer(),
+		BillingProjectId: m.BillingProjectId.ValueStringPointer(),
+		DatasetId:        m.DatasetId.ValueStringPointer(),
+	}
+	err := parametersDto.FromPublicBigQueryParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}

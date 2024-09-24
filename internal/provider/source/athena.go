@@ -87,7 +87,7 @@ func (m AthenaParametersModel) IsRepresentedBy(model ParametersModel) bool {
 	return !model.Athena.IsNull()
 }
 
-func (m *AthenaParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+func (m *AthenaParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	diags := p.Athena.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
@@ -107,6 +107,31 @@ func (m *AthenaParametersModel) DtoFromModel(ctx context.Context, p ParametersMo
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *AthenaParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	diags := p.Athena.As(ctx, &m, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+	dto := sifflet.PublicAthenaParametersDto{
+		Type:             sifflet.PublicAthenaParametersDtoTypeATHENA,
+		Database:         m.Database.ValueStringPointer(),
+		Datasource:       m.Datasource.ValueStringPointer(),
+		Region:           m.Region.ValueStringPointer(),
+		RoleArn:          m.RoleArn.ValueStringPointer(),
+		S3OutputLocation: m.S3OutputLocation.ValueStringPointer(),
+		VpcUrl:           m.VpcUrl.ValueStringPointer(),
+		Workgroup:        m.Workgroup.ValueStringPointer(),
+	}
+	err := parametersDto.FromPublicAthenaParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}

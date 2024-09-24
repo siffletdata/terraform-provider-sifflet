@@ -81,7 +81,7 @@ func (m HiveParametersModel) IsRepresentedBy(model ParametersModel) bool {
 	return !model.Hive.IsNull()
 }
 
-func (m *HiveParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+func (m *HiveParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	diags := p.Hive.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
@@ -101,6 +101,31 @@ func (m *HiveParametersModel) DtoFromModel(ctx context.Context, p ParametersMode
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *HiveParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	diags := p.Hive.As(ctx, &m, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+
+	dto := sifflet.PublicHiveParametersDto{
+		AtlasBaseUrl:   m.AtlasBaseUrl.ValueStringPointer(),
+		AtlasPrincipal: m.AtlasPrincipal.ValueStringPointer(),
+		Database:       m.Database.ValueStringPointer(),
+		JdbcUrl:        m.JdbcUrl.ValueStringPointer(),
+		Krb5Conf:       m.Krb5Conf.ValueStringPointer(),
+		Principal:      m.Principal.ValueStringPointer(),
+		Type:           sifflet.PublicHiveParametersDtoTypeHIVE,
+	}
+	err := parametersDto.FromPublicHiveParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}

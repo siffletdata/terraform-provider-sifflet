@@ -128,17 +128,16 @@ func gitConnectionAuthTypeToString(t sifflet.GitConnectionAuthType) (string, err
 	}
 }
 
-func (m *LookerParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
-	var parametersDto sifflet.PublicCreateSourceDto_Parameters
+func (m *LookerParametersModel) makeLookerParametersDto(ctx context.Context, p ParametersModel) (sifflet.PublicLookerParametersDto, diag.Diagnostics) {
 	diags := p.Looker.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
-		return sifflet.PublicCreateSourceDto_Parameters{}, diags
+		return sifflet.PublicLookerParametersDto{}, diags
 	}
 
 	gitConnections := make([]types.Object, 0, len(m.GitConnections.Elements()))
 	diags = m.GitConnections.ElementsAs(ctx, &gitConnections, false)
 	if diags.HasError() {
-		return sifflet.PublicCreateSourceDto_Parameters{}, diags
+		return sifflet.PublicLookerParametersDto{}, diags
 	}
 
 	gitConnectionsDto := make([]sifflet.GitConnection, len(gitConnections))
@@ -146,12 +145,12 @@ func (m *LookerParametersModel) DtoFromModel(ctx context.Context, p ParametersMo
 		gitConnectionModel := gitConnectionModel{}
 		diags = gitConnection.As(ctx, &gitConnectionModel, basetypes.ObjectAsOptions{})
 		if diags.HasError() {
-			return sifflet.PublicCreateSourceDto_Parameters{}, diags
+			return sifflet.PublicLookerParametersDto{}, diags
 		}
 		authType, err := parseGitConnectionAuthType(gitConnectionModel.AuthType.ValueString())
 		if err != nil {
-			return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
-				diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+			return sifflet.PublicLookerParametersDto{}, diag.Diagnostics{
+				diag.NewErrorDiagnostic("Unable to parse git connection auth type", err.Error()),
 			}
 		}
 		gitConnectionsDto[i] = sifflet.GitConnection{
@@ -162,15 +161,38 @@ func (m *LookerParametersModel) DtoFromModel(ctx context.Context, p ParametersMo
 		}
 	}
 
-	dto := sifflet.PublicLookerParametersDto{
+	return sifflet.PublicLookerParametersDto{
 		GitConnections: &gitConnectionsDto,
 		Host:           m.Host.ValueStringPointer(),
 		Type:           sifflet.PublicLookerParametersDtoTypeLOOKER,
+	}, diags
+}
+
+func (m *LookerParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+	dto, diags := m.makeLookerParametersDto(ctx, p)
+	if diags.HasError() {
+		return sifflet.PublicCreateSourceDto_Parameters{}, diags
 	}
+	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	err := parametersDto.FromPublicLookerParametersDto(dto)
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *LookerParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	dto, diags := m.makeLookerParametersDto(ctx, p)
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	err := parametersDto.FromPublicLookerParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}

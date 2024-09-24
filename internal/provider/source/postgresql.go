@@ -69,7 +69,7 @@ func (m PostgresqlParametersModel) IsRepresentedBy(model ParametersModel) bool {
 	return !model.Postgresql.IsNull()
 }
 
-func (m *PostgresqlParametersModel) DtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
+func (m *PostgresqlParametersModel) CreateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	diags := p.Postgresql.As(ctx, &m, basetypes.ObjectAsOptions{})
 	if diags.HasError() {
@@ -86,6 +86,28 @@ func (m *PostgresqlParametersModel) DtoFromModel(ctx context.Context, p Paramete
 	if err != nil {
 		return sifflet.PublicCreateSourceDto_Parameters{}, diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to create source", err.Error()),
+		}
+	}
+	return parametersDto, diag.Diagnostics{}
+}
+
+func (m *PostgresqlParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p ParametersModel) (sifflet.PublicUpdateSourceDto_Parameters, diag.Diagnostics) {
+	var parametersDto sifflet.PublicUpdateSourceDto_Parameters
+	diags := p.Postgresql.As(ctx, &m, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
+	}
+	dto := sifflet.PublicPostgresqlParametersDto{
+		Type:     sifflet.PublicPostgresqlParametersDtoTypePOSTGRESQL,
+		Host:     m.Host.ValueStringPointer(),
+		Database: m.Database.ValueStringPointer(),
+		Port:     m.Port.ValueInt32Pointer(),
+		Schema:   m.Schema.ValueStringPointer(),
+	}
+	err := parametersDto.FromPublicPostgresqlParametersDto(dto)
+	if err != nil {
+		return sifflet.PublicUpdateSourceDto_Parameters{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update source", err.Error()),
 		}
 	}
 	return parametersDto, diag.Diagnostics{}
