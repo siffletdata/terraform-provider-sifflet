@@ -55,6 +55,7 @@ func tagResourceSchema() schema.Schema {
 				Description: "Tag ID",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
+					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
 			"name": schema.StringAttribute{
@@ -152,22 +153,22 @@ func (r *tagResource) Read(ctx context.Context, req resource.ReadRequest, resp *
 }
 
 func (r *tagResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var state tagModel
-	diags := req.State.Get(ctx, &state)
+	var plan tagModel
+	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
-	id := state.Id.String()
+	id := plan.Id.String()
 
 	uid, err := uuid.Parse(id)
 	if err != nil {
-		resp.Diagnostics.AddError("Unable to read tag: could not parse tag ID as UUID", err.Error())
+		resp.Diagnostics.AddError("Unable to update tag: could not parse tag ID as UUID", err.Error())
 	}
 
 	tagDto := sifflet.TagUpdateDto{
-		Name:        state.Name.ValueString(),
-		Description: state.Description.ValueStringPointer(),
+		Name:        plan.Name.ValueString(),
+		Description: plan.Description.ValueStringPointer(),
 	}
 
 	tagResponse, err := r.client.UpdateTagWithResponse(ctx, uid, tagDto)
@@ -183,11 +184,11 @@ func (r *tagResource) Update(ctx context.Context, req resource.UpdateRequest, re
 		return
 	}
 
-	state.Id = types.StringValue(tagResponse.JSON200.Id.String())
-	state.Name = types.StringValue(tagResponse.JSON200.Name)
-	state.Description = types.StringPointerValue(tagResponse.JSON200.Description)
+	plan.Id = types.StringValue(tagResponse.JSON200.Id.String())
+	plan.Name = types.StringValue(tagResponse.JSON200.Name)
+	plan.Description = types.StringPointerValue(tagResponse.JSON200.Description)
 
-	diags = resp.State.Set(ctx, state)
+	diags = resp.State.Set(ctx, plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
