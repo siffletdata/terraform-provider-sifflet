@@ -298,6 +298,74 @@ func (m SourceModel) AttributeTypes() map[string]attr.Type {
 	}
 }
 
+func tagsDtoToModel(tagsDto []sifflet.PublicTagReferenceDto) ([]TagModel, diag.Diagnostics) {
+	tagsModel := make([]TagModel, len(tagsDto))
+	for i, tagDto := range tagsDto {
+		kind, err := TagKindToString(*tagDto.Kind)
+		if err != nil {
+			return nil, diag.Diagnostics{
+				diag.NewErrorDiagnostic("Unable to read source: could not parse tag kind", err.Error()),
+			}
+		}
+		tagModel := TagModel{
+			ID:   types.StringValue(tagDto.Id.String()),
+			Name: types.StringPointerValue(tagDto.Name),
+			Kind: types.StringValue(kind),
+		}
+		tagsModel[i] = tagModel
+	}
+	return tagsModel, nil
+}
+
+func parametersDtoToModel(ctx context.Context, dto sifflet.PublicGetSourceDto_Parameters) (ParametersModel, diag.Diagnostics) {
+	sourceType, err := sifflet.GetSourceType(dto)
+	if err != nil {
+		return ParametersModel{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to read source", err.Error()),
+		}
+	}
+	sourceTypeParams, err := ParamsImplFromApiResponseName(sourceType)
+	if err != nil {
+		return ParametersModel{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unsupported source type", err.Error()),
+		}
+	}
+	diags := sourceTypeParams.ModelFromDto(ctx, dto)
+	if diags.HasError() {
+		return ParametersModel{}, diags
+	}
+	return sourceTypeParams.AsParametersModel(ctx)
+}
+
+func SourceModelFromDto(ctx context.Context, dto sifflet.PublicGetSourceDto) (SourceModel, diag.Diagnostics) {
+	tagsModel, diags := tagsDtoToModel(*dto.Tags)
+	if diags.HasError() {
+		return SourceModel{}, diags
+	}
+	tags, diags := types.ListValueFrom(ctx, types.ObjectType{AttrTypes: TagModel{}.AttributeTypes()}, tagsModel)
+	if diags.HasError() {
+		return SourceModel{}, diags
+	}
+	parametersModel, diags := parametersDtoToModel(ctx, dto.Parameters)
+	if diags.HasError() {
+		return SourceModel{}, diags
+	}
+	parameters, diags := types.ObjectValueFrom(ctx, ParametersModel{}.AttributeTypes(), parametersModel)
+	if diags.HasError() {
+		return SourceModel{}, diags
+	}
+	return SourceModel{
+		ID:          types.StringValue(dto.Id.String()),
+		Name:        types.StringValue(dto.Name),
+		Description: types.StringPointerValue(dto.Description),
+		Credentials: types.StringPointerValue(dto.Credentials),
+		Schedule:    types.StringPointerValue(dto.Schedule),
+		Timezone:    types.StringPointerValue(dto.Timezone),
+		Parameters:  parameters,
+		Tags:        tags,
+	}, diag.Diagnostics{}
+}
+
 type TagModel struct {
 	Name types.String `tfsdk:"name"`
 	ID   types.String `tfsdk:"id"`

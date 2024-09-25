@@ -42,3 +42,27 @@ func HandleHttpErrorAsProblem(ctx context.Context, diagnostics *diag.Diagnostics
 		fmt.Sprintf("HTTP status code: %d. Details: %s %s", httpStatusCode, title, detail),
 	)
 }
+
+// GetSourceType returns the type of the source from the parameters.
+// This capability is not natively exposed by the generated client code.
+func GetSourceType(dto PublicGetSourceDto_Parameters) (string, error) {
+	// This function must live in this package, in order to be able to access the private
+	// dto.union field.
+
+	m := make(map[string]interface{})
+	if err := json.Unmarshal(dto.union, &m); err != nil {
+		return "", fmt.Errorf("couldn't parse parameters as JSON: %s", err)
+	}
+
+	t, ok := m["type"]
+	if !ok {
+		return "", fmt.Errorf("'type' field not found in parameters")
+	}
+
+	typeStr, ok := t.(string)
+	if !ok {
+		return "", fmt.Errorf("expected 'type' field to be a string, got %T", t)
+	}
+
+	return typeStr, nil
+}

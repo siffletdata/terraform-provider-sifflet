@@ -2,7 +2,6 @@ package source
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	sifflet "terraform-provider-sifflet/internal/client"
 
@@ -22,22 +21,6 @@ func handleDtoToModelError(err error, sourceType string) diag.Diagnostics {
 		}
 	}
 	return diag.Diagnostics{}
-}
-
-func ParseSourceType(res *sifflet.PublicGetSourceResponse) (string, diag.Diagnostics) {
-	m := make(map[string]interface{})
-	// We parse the body twice here because I couldn't find a simple way to get the type of the datasource
-	// using the types provided by the oapi-codegen generated code.
-	err := json.Unmarshal(res.Body, &m)
-	if err != nil {
-		return "", diag.Diagnostics{
-			diag.NewErrorDiagnostic("Unable to read source: could not parse API response body as JSON", err.Error()),
-		}
-	}
-
-	// We know that the type assertion will succeed, because to be able to get a PublicGetSourceResponse struct,
-	// we already had to parse the JSON response body.
-	return (m["parameters"].(map[string]interface{}))["type"].(string), diag.Diagnostics{} // nolint: forcetypeassert
 }
 
 func (m ParametersModel) AsCreateSourceDto(ctx context.Context) (sifflet.PublicCreateSourceDto_Parameters, diag.Diagnostics) {

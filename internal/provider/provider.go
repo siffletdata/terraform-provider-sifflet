@@ -190,6 +190,7 @@ func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.Dat
 		NewDatasourcesDataSource,
 		NewTagDataSource,
 		NewCredentialDataSource,
+		NewSourcesDataSource,
 	}
 }
 
