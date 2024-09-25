@@ -25,7 +25,7 @@ func (m FivetranParametersModel) TerraformSchema() schema.SingleNestedAttribute 
 		Optional: true,
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Description: "Fivetran host",
+				Description: "Fivetran host. Defaults to https://api.fivetran.com.",
 				Optional:    true,
 				Default:     stringdefault.StaticString("https://api.fivetran.com"),
 				Computed:    true,

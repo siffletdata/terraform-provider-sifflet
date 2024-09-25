@@ -46,13 +46,16 @@ func (r *tagResource) Schema(ctx context.Context, _ resource.SchemaRequest, resp
 
 func tagResourceSchema() schema.Schema {
 	return schema.Schema{
-		Version:             1,
-		Description:         "Manage a Sifflet tag.",
-		MarkdownDescription: "Tags are used to classify data in Sifflet. This resource can not create 'Classification' tags, as these tags are automatically created by Sifflet. See the [Sifflet documentation](https://docs.siffletdata.com/docs/tags) for more about tag types.",
+		Version:     1,
+		Description: "Manage a Sifflet tag.",
+		MarkdownDescription: `Tags are used to classify data in Sifflet.
+
+		This resource manages 'regular' tags. See the [Sifflet documentation](https://docs.siffletdata.com/docs/tags) for more about tag types.",
+		`,
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Computed:    true,
-				Description: "Tag ID",
+				Description: "Tag ID.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 					stringplanmodifier.UseStateForUnknown(),

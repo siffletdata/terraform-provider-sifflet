@@ -1,6 +1,6 @@
-# The credentials value must match what the source expects.
+# The format of the credentials value must match what the source expects.
 # See the Sifflet documentation for each source type for details
-# on the credential value format.
+# about the credential value format.
 data "sifflet_credentials" "example" {
   name = "example"
 }
@@ -37,7 +37,8 @@ resource "sifflet_source" "complex" {
   # The timezone can also be a timezone name, e.g. "Europe/Paris".
   timezone = "UTC+1"
   tags = [{
-    # Tags specified this way must be created before the source.
+    # Tags attached to the source must already exist before
+    # creating the source.
     name = "tag_name"
   }]
 }

@@ -8,7 +8,7 @@ description: |-
 
 # sifflet_datasource (Resource)
 
-Create a Sifflet data source. Deprecated: this resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead.
+Create a Sifflet data source. **Deprecated: this resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead**.
 
 ## Example Usage
 

@@ -1,6 +1,6 @@
 resource "sifflet_credentials" "example" {
-  name        = "credentialid"
+  name        = "credential-name"
   description = "Credential description."
   # Due to API limitations, Terraform can't detect changes to the value that are made outside of Terraform.
-  value = "Credential value"
+  value = "example"
 }
