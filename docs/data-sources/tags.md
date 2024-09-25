@@ -3,12 +3,12 @@
 page_title: "sifflet_tags Data Source - terraform-provider-sifflet"
 subcategory: ""
 description: |-
-  Read all Sifflet tags.
+  Read all Sifflet tags. Deprecated: This data source relies on an unstable API that may change in the future.
 ---
 
 # sifflet_tags (Data Source)
 
-Read all Sifflet tags.
+Read all Sifflet tags. **Deprecated: This data source relies on an unstable API that may change in the future.**
 
 ## Example Usage
 

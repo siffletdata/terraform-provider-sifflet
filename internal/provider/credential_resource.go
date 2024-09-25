@@ -41,10 +41,10 @@ func (r *credentialsResource) Metadata(_ context.Context, req resource.MetadataR
 func CredentialResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
 		Description:         "A credentials resource.",
-		MarkdownDescription: "Credentials are used to store secret source connection information, such as username, passwords, service account keys, or API tokens",
+		MarkdownDescription: "Credentials are used to store secret source connection information, such as usernames, passwords, service account keys, or API tokens.",
 		Attributes: map[string]schema.Attribute{
 			"name": schema.StringAttribute{
-				Description: "The name of the credentials. Must only contain alphanumeric characters. Must be unique in the Sifflet instance.",
+				Description: "The name of the credentials. Must start and end with a letter, and contain only letters, digits and hyphens. Must be unique in the Sifflet instance.",
 				PlanModifiers: []planmodifier.String{
 					stringplanmodifier.RequiresReplace(),
 				},

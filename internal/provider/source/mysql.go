@@ -42,7 +42,7 @@ func (m MysqlParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 				Required:    true,
 			},
 			"mysql_tls_version": schema.StringAttribute{
-				Description: "TLS version to use for MySQL connection.",
+				Description: "TLS version to use for MySQL connection. One of TLS_V_1_2 or TLS_V_1_3.",
 				Required:    true,
 				Validators: []validator.String{
 					stringvalidator.OneOf("TLS_V_1_2", "TLS_V_1_3"),

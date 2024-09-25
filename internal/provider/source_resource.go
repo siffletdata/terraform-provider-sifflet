@@ -46,7 +46,8 @@ func (r *sourceResource) Metadata(_ context.Context, req resource.MetadataReques
 
 func SourceResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
-		Description: "A Sifflet source.",
+		Description:         "A Sifflet source.",
+		MarkdownDescription: "A Sifflet source. A source is any system that's monitored by Sifflet.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description: "The ID of the source.",
@@ -79,7 +80,7 @@ func SourceResourceSchema(ctx context.Context) schema.Schema {
 				Default:     stringdefault.StaticString("UTC"),
 			},
 			"tags": schema.ListNestedAttribute{
-				Description: "Tags for the source. For each tag, you can provide either: an ID, a name, or a name + a kind (when the name alone is ambiguous). It's recommended to use tag IDs (coming from a sifflet_tag resource or data source) most of the time, but directly providing tag names can simplify some configurations.",
+				Description: "Tags for the source. For each tag, you can provide either: an ID, a name, or a name + a kind (when the name alone is ambiguous). It's recommended to use tag IDs (coming from a `sifflet_tag` resource or data source) most of the time, but directly providing tag names can simplify some configurations.",
 				Optional:    true,
 				Computed:    true,
 				Default: listdefault.StaticValue(types.ListValueMust(

@@ -3,19 +3,19 @@
 page_title: "sifflet_source Resource - terraform-provider-sifflet"
 subcategory: ""
 description: |-
-  A Sifflet source.
+  A Sifflet source. A source is any system that's monitored by Sifflet.
 ---
 
 # sifflet_source (Resource)
 
-A Sifflet source.
+A Sifflet source. A source is any system that's monitored by Sifflet.
 
 ## Example Usage
 
 ```terraform
-# The credentials value must match what the source expects.
+# The format of the credentials value must match what the source expects.
 # See the Sifflet documentation for each source type for details
-# on the credential value format.
+# about the credential value format.
 data "sifflet_credentials" "example" {
   name = "example"
 }
@@ -52,7 +52,8 @@ resource "sifflet_source" "complex" {
   # The timezone can also be a timezone name, e.g. "Europe/Paris".
   timezone = "UTC+1"
   tags = [{
-    # Tags specified this way must be created before the source.
+    # Tags attached to the source must already exist before
+    # creating the source.
     name = "tag_name"
   }]
 }
@@ -71,7 +72,7 @@ resource "sifflet_source" "complex" {
 - `credentials` (String) Name of the credentials used to connect to the source. Required for most datasources, except for 'athena', 'dbt' and 'quicksight' sources.
 - `description` (String) Source description.
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `tags` (Attributes List) Tags for the source. For each tag, you can provide either: an ID, a name, or a name + a kind (when the name alone is ambiguous). It's recommended to use tag IDs (coming from a sifflet_tag resource or data source) most of the time, but directly providing tag names can simplify some configurations. (see [below for nested schema](#nestedatt--tags))
+- `tags` (Attributes List) Tags for the source. For each tag, you can provide either: an ID, a name, or a name + a kind (when the name alone is ambiguous). It's recommended to use tag IDs (coming from a `sifflet_tag` resource or data source) most of the time, but directly providing tag names can simplify some configurations. (see [below for nested schema](#nestedatt--tags))
 - `timezone` (String) Timezone for the source. If empty, defaults to UTC.
 
 ### Read-Only
@@ -186,7 +187,7 @@ Optional:
 
 Optional:
 
-- `host` (String) Fivetran host
+- `host` (String) Fivetran host. Defaults to https://api.fivetran.com.
 
 
 <a id="nestedatt--parameters--hive"></a>
@@ -250,7 +251,7 @@ Required:
 
 - `database` (String) Database name
 - `host` (String) MySQL server hostname
-- `mysql_tls_version` (String) TLS version to use for MySQL connection.
+- `mysql_tls_version` (String) TLS version to use for MySQL connection. One of TLS_V_1_2 or TLS_V_1_3.
 - `port` (Number) MySQL port number
 
 

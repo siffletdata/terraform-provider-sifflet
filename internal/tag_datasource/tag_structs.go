@@ -34,8 +34,9 @@ type SearchCollectionTagDto struct {
 
 func TagDataSourceSchema(ctx context.Context) data_source.Schema {
 	return data_source.Schema{
-		Description:        "Read all Sifflet tags.",
-		DeprecationMessage: "This data source relies on an unstable API that may change in the future.",
+		Description:         "Read all Sifflet tags. **Deprecated: This data source relies on an unstable API that may change in the future.**",
+		MarkdownDescription: "Read all Sifflet tags. **Deprecated: This data source relies on an unstable API that may change in the future.**",
+		DeprecationMessage:  "This data source relies on an unstable API that may change in the future.",
 		Attributes: map[string]data_source.Attribute{
 			"data": data_source.ListNestedAttribute{
 				Description: "List of all tags.",
