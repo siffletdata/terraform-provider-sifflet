@@ -2,7 +2,7 @@
 
 * Sifflet website: https://www.siffletdata.com
 * Sifflet documentation: https://docs.siffletdata.com
-* Provider documentation: https://registry.terraform.io/providers/Siffletapp/sifflet/latest/docs
+* Provider documentation: https://registry.terraform.io/providers/Siffletdata/sifflet/latest/docs
 
 Sifflet is the leading end-to-end data observability platform built for data engineers and data consumers. The platform includes data quality monitoring, metadata management, and a data catalog with deep lineage capabilities.
 
