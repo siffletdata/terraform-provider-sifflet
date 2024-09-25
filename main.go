@@ -39,7 +39,7 @@ func main() {
 	flag.Parse()
 
 	opts := providerserver.ServeOpts{
-		Address: "registry.terraform.io/Siffletapp/sifflet",
+		Address: "registry.terraform.io/Siffletdata/sifflet",
 		Debug:   debug,
 	}
 
