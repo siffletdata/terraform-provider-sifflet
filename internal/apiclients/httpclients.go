@@ -16,7 +16,7 @@ type HttpClients struct {
 	HttpClient  *http.Client
 }
 
-func MakeHttpClients(token string, host string) (*HttpClients, diag.Diagnostic) {
+func MakeHttpClients(token string, host string, tfVersion string, providerVersion string) (*HttpClients, diag.Diagnostic) {
 	bearerTokenProvider, bearerTokenProviderErr := securityprovider.NewSecurityProviderBearerToken(token)
 	if bearerTokenProviderErr != nil {
 		panic(bearerTokenProviderErr)
@@ -32,7 +32,7 @@ func MakeHttpClients(token string, host string) (*HttpClients, diag.Diagnostic) 
 		)
 	}
 
-	httpClient := tfhttp.NewTerraformHttpClient()
+	httpClient := tfhttp.NewTerraformHttpClient(tfVersion, providerVersion)
 
 	client, err := sifflet.NewClientWithResponses(
 		host,

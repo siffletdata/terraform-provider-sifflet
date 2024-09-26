@@ -4,23 +4,37 @@ package tfhttp
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
 // newTerraformHttpClient creates a new http.Client with additional configuration for use in the Terraform provider.
-// It can log HTT¨P requests and responses.
-func NewTerraformHttpClient() *http.Client {
+// It can log HTTP requests and responses.
+func NewTerraformHttpClient(tfVersion string, providerVersion string) *http.Client {
 	transport := contentTypeValidatorRoundTripper{
 		next: loggingRoundTripper{
-			next: http.DefaultTransport,
+			next: headersRoundTripper{
+				next: http.DefaultTransport,
+				headers: map[string]string{
+					"User-Agent": userAgent(tfVersion, providerVersion),
+				},
+			},
 		},
 		contentTypeIncludes: "json",
 	}
 	return &http.Client{
 		Transport: transport,
 	}
+}
+
+func userAgent(tfVersion string, providerVersion string) string {
+	header := fmt.Sprintf("Terraform/%s (+https://www.terraform.io) terraform-provider-sifflet/%s", tfVersion, providerVersion)
+	if u := os.Getenv("TF_APPEND_USER_AGENT"); u != "" {
+		header = fmt.Sprintf("%s %s", header, u)
+	}
+	return header
 }
 
 // loggingRoundTripper is an http.RoundTripper that logs requests and responses using the Terraform plugin framework.
@@ -73,4 +87,17 @@ func (t contentTypeValidatorRoundTripper) RoundTrip(req *http.Request) (*http.Re
 	}
 
 	return resp, err
+}
+
+// headersRoundTripper is an http.RoundTripper that adds headers to the request before sending it.
+type headersRoundTripper struct {
+	next    http.RoundTripper
+	headers map[string]string
+}
+
+func (t headersRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
+	for k, v := range t.headers {
+		req.Header.Add(k, v)
+	}
+	return t.next.RoundTrip(req)
 }
