@@ -100,7 +100,7 @@ Optional:
 
 Read-Only:
 
-- `source_type` (String) Source type (e.g BIGQUERY, DBT, ...). This attribute is automatically set depending on which connection parameters are set.
+- `source_type` (String) Source type (e.g bigquery, dbt, ...). This attribute is automatically set depending on which connection parameters are set.
 
 <a id="nestedatt--results--parameters--airflow"></a>
 ### Nested Schema for `results.parameters.airflow`

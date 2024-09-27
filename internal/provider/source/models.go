@@ -20,6 +20,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/objectplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -197,8 +198,15 @@ func (m ParametersModel) AttributeTypes() map[string]attr.Type {
 func (m ParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 	attributes := make(map[string]schema.Attribute)
 	attributes["source_type"] = schema.StringAttribute{
-		Description: "Source type (e.g BIGQUERY, DBT, ...). This attribute is automatically set depending on which connection parameters are set.",
+		Description: "Source type (e.g bigquery, dbt, ...). This attribute is automatically set depending on which connection parameters are set.",
 		Computed:    true,
+		PlanModifiers: []planmodifier.String{
+			// The parent "parameters" attribute has a plan modifier that ensures that the source will be recreated
+			// if the source type changes. Thus, if the source type doesn't change, we can keep the existing state value,
+			// and if it does, the whole resource will be recreated anyway.
+			// A better way woul
+			stringplanmodifier.UseStateForUnknown(),
+		},
 	}
 	for _, factory := range allSourceTypes {
 		t := factory()
@@ -338,7 +346,12 @@ func parametersDtoToModel(ctx context.Context, dto sifflet.PublicGetSourceDto_Pa
 	if diags.HasError() {
 		return ParametersModel{}, diags
 	}
-	return sourceTypeParams.AsParametersModel(ctx)
+	out, diags := sourceTypeParams.AsParametersModel(ctx)
+	if diags.HasError() {
+		return ParametersModel{}, diags
+	}
+	out.SourceType = types.StringValue(sourceTypeParams.SchemaSourceType())
+	return out, diag.Diagnostics{}
 }
 
 func SourceModelFromDto(ctx context.Context, dto sifflet.PublicGetSourceDto) (SourceModel, diag.Diagnostics) {

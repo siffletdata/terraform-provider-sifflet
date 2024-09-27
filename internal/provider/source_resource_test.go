@@ -7,7 +7,9 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+	"github.com/hashicorp/terraform-plugin-testing/knownvalue"
 	"github.com/hashicorp/terraform-plugin-testing/plancheck"
+	"github.com/hashicorp/terraform-plugin-testing/tfjsonpath"
 )
 
 func randomSourceName() string {
@@ -49,6 +51,15 @@ func TestAccSourceBasic(t *testing.T) {
 							}
 						}
 						`, sourceName, projectId),
+				// Check that the source_type attribute is known even before the source is created
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectKnownValue("sifflet_source.test",
+							tfjsonpath.New("parameters").AtMapKey("source_type"),
+							knownvalue.StringExact("bigquery"),
+						),
+					},
+				},
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttrSet("sifflet_source.test", "id"),
 					resource.TestCheckResourceAttr("sifflet_source.test", "name", sourceName),
@@ -128,10 +139,16 @@ func TestAccSourceBasic(t *testing.T) {
 						`, sourceName, projectId),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.snowflake.database", "database"),
+					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.source_type", "snowflake"),
 				),
 				ConfigPlanChecks: resource.ConfigPlanChecks{
 					PreApply: []plancheck.PlanCheck{
 						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionDestroyBeforeCreate),
+						// Check that the source_type attribute is known even before the source is created
+						plancheck.ExpectKnownValue("sifflet_source.test",
+							tfjsonpath.New("parameters").AtMapKey("source_type"),
+							knownvalue.StringExact("snowflake"),
+						),
 					},
 				},
 			},
