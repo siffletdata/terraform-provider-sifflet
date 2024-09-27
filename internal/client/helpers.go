@@ -43,7 +43,7 @@ func HandleHttpErrorAsProblem(ctx context.Context, diagnostics *diag.Diagnostics
 	)
 }
 
-// GetSourceType returns the type of the source from the parameters.
+// GetSourceType returns the API type of the source from the parameters (in uppercase).
 // This capability is not natively exposed by the generated client code.
 func GetSourceType(dto PublicGetSourceDto_Parameters) (string, error) {
 	// This function must live in this package, in order to be able to access the private

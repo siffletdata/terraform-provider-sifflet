@@ -27,9 +27,42 @@ import (
 )
 
 var (
-	_ resource.Resource              = &sourceResource{}
-	_ resource.ResourceWithConfigure = &sourceResource{}
+	_ resource.Resource               = &sourceResource{}
+	_ resource.ResourceWithConfigure  = &sourceResource{}
+	_ resource.ResourceWithModifyPlan = &sourceResource{}
 )
+
+func (r sourceResource) ModifyPlan(ctx context.Context, req resource.ModifyPlanRequest, resp *resource.ModifyPlanResponse) {
+	if req.Plan.Raw.IsNull() {
+		// If the request is planned for destruction, do nothing.
+		return
+	}
+
+	var plan source.SourceModel
+	diags := req.Plan.Get(ctx, &plan)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	var parametersModel source.ParametersModel
+	resp.Diagnostics.Append(plan.Parameters.As(ctx, &parametersModel, basetypes.ObjectAsOptions{})...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	sourceType, err := parametersModel.GetSourceType()
+	if err != nil {
+		// not adding an error diagnostic here (the source type may still be unknown at that point, for instance if dynamic blocks are used).
+		return
+	}
+
+	diags = resp.Plan.SetAttribute(ctx, path.Root("parameters").AtName("source_type"), sourceType.SchemaSourceType())
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+}
 
 func NewSourceResource() resource.Resource {
 	return &sourceResource{}
@@ -276,12 +309,6 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 	if resp.Diagnostics.HasError() {
 		return
 	}
-
-	diags = resp.State.SetAttribute(ctx, path.Root("parameters").AtName("source_type"), parametersModel.SourceType)
-	resp.Diagnostics.Append(diags...)
-	if resp.Diagnostics.HasError() {
-		return
-	}
 }
 
 func (r *sourceResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
@@ -429,12 +456,6 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 	}
 
 	diags = resp.State.Set(ctx, newState)
-	resp.Diagnostics.Append(diags...)
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	diags = resp.State.SetAttribute(ctx, path.Root("parameters").AtName("source_type"), parametersModel.SourceType)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
