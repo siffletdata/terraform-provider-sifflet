@@ -23,26 +23,27 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-var allSourceTypes = map[string]sourceParameters{
-	AirflowParametersModel{}.SchemaSourceType():    &AirflowParametersModel{},
-	AthenaParametersModel{}.SchemaSourceType():     &AthenaParametersModel{},
-	BigQueryParametersModel{}.SchemaSourceType():   &BigQueryParametersModel{},
-	DatabricksParametersModel{}.SchemaSourceType(): &DatabricksParametersModel{},
-	DbtParametersModel{}.SchemaSourceType():        &DbtParametersModel{},
-	DbtCloudParametersModel{}.SchemaSourceType():   &DbtCloudParametersModel{},
-	FivetranParametersModel{}.SchemaSourceType():   &FivetranParametersModel{},
-	HiveParametersModel{}.SchemaSourceType():       &HiveParametersModel{},
-	LookerParametersModel{}.SchemaSourceType():     &LookerParametersModel{},
-	MssqlParametersModel{}.SchemaSourceType():      &MssqlParametersModel{},
-	MysqlParametersModel{}.SchemaSourceType():      &MysqlParametersModel{},
-	OracleParametersModel{}.SchemaSourceType():     &OracleParametersModel{},
-	PostgresqlParametersModel{}.SchemaSourceType(): &PostgresqlParametersModel{},
-	PowerBiParametersModel{}.SchemaSourceType():    &PowerBiParametersModel{},
-	QuickSightParametersModel{}.SchemaSourceType(): &QuickSightParametersModel{},
-	RedshiftParametersModel{}.SchemaSourceType():   &RedshiftParametersModel{},
-	SnowflakeParametersModel{}.SchemaSourceType():  &SnowflakeParametersModel{},
-	SynapseParametersModel{}.SchemaSourceType():    &SynapseParametersModel{},
-	TableauParametersModel{}.SchemaSourceType():    &TableauParametersModel{},
+// allSourceTypes is a map of factory functions that return a new instance of a sourceParameters implementation for each supported source type.
+var allSourceTypes = map[string]func() sourceParameters{
+	AirflowParametersModel{}.SchemaSourceType():    func() sourceParameters { return &AirflowParametersModel{} },
+	AthenaParametersModel{}.SchemaSourceType():     func() sourceParameters { return &AthenaParametersModel{} },
+	BigQueryParametersModel{}.SchemaSourceType():   func() sourceParameters { return &BigQueryParametersModel{} },
+	DatabricksParametersModel{}.SchemaSourceType(): func() sourceParameters { return &DatabricksParametersModel{} },
+	DbtParametersModel{}.SchemaSourceType():        func() sourceParameters { return &DbtParametersModel{} },
+	DbtCloudParametersModel{}.SchemaSourceType():   func() sourceParameters { return &DbtCloudParametersModel{} },
+	FivetranParametersModel{}.SchemaSourceType():   func() sourceParameters { return &FivetranParametersModel{} },
+	HiveParametersModel{}.SchemaSourceType():       func() sourceParameters { return &HiveParametersModel{} },
+	LookerParametersModel{}.SchemaSourceType():     func() sourceParameters { return &LookerParametersModel{} },
+	MssqlParametersModel{}.SchemaSourceType():      func() sourceParameters { return &MssqlParametersModel{} },
+	MysqlParametersModel{}.SchemaSourceType():      func() sourceParameters { return &MysqlParametersModel{} },
+	OracleParametersModel{}.SchemaSourceType():     func() sourceParameters { return &OracleParametersModel{} },
+	PostgresqlParametersModel{}.SchemaSourceType(): func() sourceParameters { return &PostgresqlParametersModel{} },
+	PowerBiParametersModel{}.SchemaSourceType():    func() sourceParameters { return &PowerBiParametersModel{} },
+	QuickSightParametersModel{}.SchemaSourceType(): func() sourceParameters { return &QuickSightParametersModel{} },
+	RedshiftParametersModel{}.SchemaSourceType():   func() sourceParameters { return &RedshiftParametersModel{} },
+	SnowflakeParametersModel{}.SchemaSourceType():  func() sourceParameters { return &SnowflakeParametersModel{} },
+	SynapseParametersModel{}.SchemaSourceType():    func() sourceParameters { return &SynapseParametersModel{} },
+	TableauParametersModel{}.SchemaSourceType():    func() sourceParameters { return &TableauParametersModel{} },
 }
 
 // ParametersModel represents the parameters for a source, regardless of the source type.
@@ -146,8 +147,8 @@ func ApiSourceType(p sourceParameters) string {
 // ParamsImplFromSchemaName returns the sourceParameters implementation for the given source type.
 // The source type name must match what's stored in the Terraform schema (e.g in lowercase).
 func ParamsImplFromSchemaName(sourceType string) (sourceParameters, error) {
-	if sourceParams, ok := allSourceTypes[sourceType]; ok {
-		return sourceParams, nil
+	if sourceParamsBuilder, ok := allSourceTypes[sourceType]; ok {
+		return sourceParamsBuilder(), nil
 	}
 	return nil, fmt.Errorf("Unknown source type %s", sourceType)
 }
@@ -182,7 +183,8 @@ func (m ParametersModel) AttributeTypes() map[string]attr.Type {
 	// 	"source_type": types.StringType,
 	// }
 
-	for _, t := range allSourceTypes {
+	for _, factory := range allSourceTypes {
+		t := factory()
 		out[t.SchemaSourceType()] = types.ObjectType{
 			AttrTypes: t.AttributeTypes(),
 		}
@@ -198,7 +200,8 @@ func (m ParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 		Description: "Source type (e.g BIGQUERY, DBT, ...). This attribute is automatically set depending on which connection parameters are set.",
 		Computed:    true,
 	}
-	for _, t := range allSourceTypes {
+	for _, factory := range allSourceTypes {
+		t := factory()
 		// A resource-level validator ensure that only one type of parameters is provided
 		attributes[t.SchemaSourceType()] = t.TerraformSchema()
 	}
@@ -239,7 +242,7 @@ func (m ParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 						return
 					}
 
-					if previousSourceType == nextSourceType {
+					if previousSourceType.SchemaSourceType() == nextSourceType.SchemaSourceType() {
 						resp.RequiresReplace = false
 					}
 				},
@@ -260,9 +263,10 @@ func (m *ParametersModel) SetSourceType() error {
 }
 
 func (m ParametersModel) GetSourceType() (sourceParameters, error) {
-	for _, sourceParams := range allSourceTypes {
-		if sourceParams.IsRepresentedBy(m) {
-			return sourceParams, nil
+	for _, factory := range allSourceTypes {
+		t := factory()
+		if t.IsRepresentedBy(m) {
+			return t, nil
 		}
 	}
 	return nil, fmt.Errorf("Could not determine source type from the provided configuration (the parameters don't match any known type). This is a bug in the provider.")
