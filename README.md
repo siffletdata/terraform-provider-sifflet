@@ -106,6 +106,8 @@ Tip: you can set the Terraform log level to DEBUG with this environment variable
 export TF_LOG=DEBUG
 ```
 
+Don't forget to run `go install` after making changes to the provider to update your local binary.
+
 ### Run tests
 
 Ensure the `SIFFLET_TOKEN` environment variable is set, then run this command, subsituting your Sifflet API
@@ -163,5 +165,5 @@ pre-commit install
 
 ## Thanks
 
-This provider was contributed by [Benjamin Berriot](https://github.com/IIBenII). Many thanks from the Sifflet
+The first version of this provider was contributed by [Benjamin Berriot](https://github.com/IIBenII). Many thanks from the Sifflet
 team for your work on this project!
