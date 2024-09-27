@@ -242,7 +242,7 @@ func (m ParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 						return
 					}
 
-					if previousSourceType == nextSourceType {
+					if previousSourceType.SchemaSourceType() == nextSourceType.SchemaSourceType() {
 						resp.RequiresReplace = false
 					}
 				},
