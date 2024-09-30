@@ -10,7 +10,7 @@ Sifflet is the leading end-to-end data observability platform built for data eng
 
 ```hcl
 provider "sifflet" {
-  host  = "http://localhost:8080"
+  host  = "https://example.siffletdata.com/api"
   token = "123azert"
 }
 ```
