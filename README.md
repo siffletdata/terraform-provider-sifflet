@@ -10,18 +10,15 @@ Sifflet is the leading end-to-end data observability platform built for data eng
 
 ## Project status and support
 
-**This is not an official Sifflet product**.
-
-Sifflet does not provide official support for this provider. This provider should be considered alpha-quality
-software.
-
-This provider relies on alpha Sifflet APIs. These APIs may be subject to change without notice.
+This is an official Sifflet project. See `docs/index.md` for more about the current status of the provider.
 
 ## Usage
 
 See https://registry.terraform.io/providers/Siffletdata/sifflet/latest/docs.
 
 ## Development
+
+Also see `CODING.md` for high-level guidelines.
 
 ### Requirements
 
