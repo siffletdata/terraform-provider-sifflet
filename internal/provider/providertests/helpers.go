@@ -24,6 +24,10 @@ func RandomCredentialsName() string {
 	return RandomName() + "s"
 }
 
+func RandomEmail() string {
+	return RandomName() + "@tfacceptancetests.com"
+}
+
 func ProviderConfig() string {
 	return providerConfig
 }
