@@ -203,5 +203,6 @@ func (p *siffletProvider) Resources(_ context.Context) []func() resource.Resourc
 		NewTagResource,
 		NewCredentialResource,
 		NewSourceResource,
+		NewUserResource,
 	}
 }
