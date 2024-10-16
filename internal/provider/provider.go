@@ -6,15 +6,23 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"slices"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
+	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 
 	"terraform-provider-sifflet/internal/apiclients"
+	"terraform-provider-sifflet/internal/provider/credentials"
+	sifflet_datasource "terraform-provider-sifflet/internal/provider/datasource"
+	"terraform-provider-sifflet/internal/provider/source"
+	"terraform-provider-sifflet/internal/provider/tag"
+	"terraform-provider-sifflet/internal/provider/user"
 )
 
 // Ensure the implementation satisfies the expected interfaces.
@@ -188,21 +196,28 @@ func apiHealthCheck(httpClient *http.Client, host string, resp *provider.Configu
 
 // DataSources defines the data sources implemented in the provider.
 func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{
-		NewDatasourcesDataSource,
-		NewTagDataSource,
-		NewCredentialDataSource,
-		NewSourcesDataSource,
-	}
+	return slices.Concat(
+		credentials.DataSources(),
+		sifflet_datasource.DataSources(),
+		source.DataSources(),
+		tag.DataSources(),
+		user.DataSources(),
+	)
 }
 
 // Resources defines the resources implemented in the provider.
 func (p *siffletProvider) Resources(_ context.Context) []func() resource.Resource {
-	return []func() resource.Resource{
-		NewDataSourceResource,
-		NewTagResource,
-		NewCredentialResource,
-		NewSourceResource,
-		NewUserResource,
-	}
+	return slices.Concat(
+		credentials.Resources(),
+		sifflet_datasource.Resources(),
+		source.Resources(),
+		tag.Resources(),
+		user.Resources(),
+	)
 }
+
+var (
+	TestAccProtoV6ProviderFactories = map[string]func() (tfprotov6.ProviderServer, error){
+		"sifflet": providerserver.NewProtocol6WithError(New("test")()),
+	}
+)
