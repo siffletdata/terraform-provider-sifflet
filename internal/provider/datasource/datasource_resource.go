@@ -135,6 +135,29 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 			plan.Snowflake.TimezoneData.UtcOffset,
 		))
 		tflog.Debug(ctx, "Params:  "+string(jsonData))
+	} else if plan.PowerBi != nil {
+		connect_type = "power_bi"
+
+		jsonData = []byte(fmt.Sprintf(`
+	{
+		"type": "%s",
+		"tenantId": %s,
+		"workspaceId": %s,
+		"clientId": %s,
+		"timezoneData": {
+			"timezone": %s,
+			"utcOffset": %s
+		}
+	}
+	`,
+			connect_type,
+			plan.PowerBi.TenantID,
+			plan.PowerBi.WorkspaceID,
+			plan.PowerBi.ClientID,
+			plan.PowerBi.TimezoneData.TimeZone,
+			plan.PowerBi.TimezoneData.UtcOffset,
+		))
+		tflog.Debug(ctx, "Params:  "+string(jsonData))
 	}
 
 	err := json.Unmarshal(jsonData, &params)
@@ -228,6 +251,15 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 		plan.Snowflake.TimezoneData.TimeZone = types.StringValue(resultParams.TimezoneData.Timezone)
 		plan.Snowflake.TimezoneData.UtcOffset = types.StringValue(resultParams.TimezoneData.UtcOffset)
 
+	} else if plan.PowerBi != nil {
+		plan.SecretID = types.StringValue(*result.SecretId)
+		resultParams, _ := result.Params.AsPowerBiParams()
+		plan.PowerBi.ClientID = types.StringValue(*resultParams.ClientId)
+		plan.PowerBi.TenantID = types.StringValue(*resultParams.TenantId)
+		plan.PowerBi.WorkspaceID = types.StringValue(*resultParams.WorkspaceId)
+		plan.PowerBi.Type = types.StringValue(resultParams.Type)
+		plan.PowerBi.TimezoneData.TimeZone = types.StringValue(resultParams.TimezoneData.Timezone)
+		plan.PowerBi.TimezoneData.UtcOffset = types.StringValue(resultParams.TimezoneData.UtcOffset)
 	}
 
 	var result_tags []basetypes.StringValue
@@ -363,6 +395,23 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		}
 
 		state.Snowflake = &result_snowflake
+	} else if result.Type == "power_bi" {
+		resultParams, _ := result.Params.AsPowerBiParams()
+
+		result_timezone := TimeZoneDto{
+			TimeZone:  types.StringValue(resultParams.TimezoneData.Timezone),
+			UtcOffset: types.StringValue(resultParams.TimezoneData.UtcOffset),
+		}
+
+		result_power_bi := PowerBiParams{
+			Type:         types.StringValue(resultParams.Type),
+			TenantID:     types.StringValue(*resultParams.TenantId),
+			WorkspaceID:  types.StringValue(*resultParams.WorkspaceId),
+			ClientID:     types.StringValue(*resultParams.ClientId),
+			TimezoneData: &result_timezone,
+		}
+
+		state.PowerBi = &result_power_bi
 	}
 
 	var result_tags []basetypes.StringValue
@@ -452,7 +501,7 @@ func (r *datasourceResource) ValidateConfig(ctx context.Context, req resource.Va
 	}
 
 	// TODO: maybe find something more elegant than chaining checks
-	if data.DBT != nil && data.BigQuery != nil && data.Snowflake != nil {
+	if data.DBT != nil && data.BigQuery != nil && data.Snowflake != nil && data.PowerBi != nil {
 		resp.Diagnostics.AddError(
 			"Error",
 			"Define only one type of data source",

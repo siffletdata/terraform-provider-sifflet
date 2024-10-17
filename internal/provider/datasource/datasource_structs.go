@@ -42,6 +42,14 @@ type SnowflakeParams struct {
 	TimezoneData      *TimeZoneDto `tfsdk:"timezone_data"`
 }
 
+type PowerBiParams struct {
+	Type         types.String `tfsdk:"type"`
+	TenantID     types.String `tfsdk:"tenant_id"`
+	WorkspaceID  types.String `tfsdk:"workspace_id"`
+	ClientID     types.String `tfsdk:"client_id"`
+	TimezoneData *TimeZoneDto `tfsdk:"timezone_data"`
+}
+
 type CreateDatasourceDto struct {
 	ID             types.String     `tfsdk:"id"`
 	Name           types.String     `tfsdk:"name"`
@@ -51,6 +59,7 @@ type CreateDatasourceDto struct {
 	BigQuery       *BigQueryParams  `tfsdk:"bigquery"`
 	DBT            *DBTParams       `tfsdk:"dbt"`
 	Snowflake      *SnowflakeParams `tfsdk:"snowflake"`
+	PowerBi        *PowerBiParams   `tfsdk:"powerbi"`
 	CreatedBy      types.String     `tfsdk:"created_by"`
 	CreatedDate    types.String     `tfsdk:"created_date"`
 	ModifiedBy     types.String     `tfsdk:"modified_by"`
