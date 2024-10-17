@@ -43,3 +43,20 @@ resource "sifflet_datasource" "snowflake" {
     }
   }
 }
+
+resource "sifflet_datasource" "power_bi" {
+  name            = "powerbi-orders"
+  secret_id       = "powerbi_creds"
+  cron_expression = "@daily"
+
+  power_bi = {
+    tenant_id    = "tenant-id"
+    client_id    = "client-id"
+    workspace_id = "workspace-id"
+
+    timezone_data = {
+      timezone   = "UTC"
+      utc_offset = "(UTC+00:00)"
+    }
+  }
+}
