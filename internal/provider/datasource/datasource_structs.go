@@ -59,7 +59,7 @@ type CreateDatasourceDto struct {
 	BigQuery       *BigQueryParams  `tfsdk:"bigquery"`
 	DBT            *DBTParams       `tfsdk:"dbt"`
 	Snowflake      *SnowflakeParams `tfsdk:"snowflake"`
-	PowerBi        *PowerBiParams   `tfsdk:"powerbi"`
+	PowerBi        *PowerBiParams   `tfsdk:"power_bi"`
 	CreatedBy      types.String     `tfsdk:"created_by"`
 	CreatedDate    types.String     `tfsdk:"created_date"`
 	ModifiedBy     types.String     `tfsdk:"modified_by"`
@@ -348,6 +348,7 @@ type DatasourceCatalogAssetDto struct {
 	BigQuery         *BigQueryParams                     `tfsdk:"bigquery"`
 	DBT              *DBTParams                          `tfsdk:"dbt"`
 	Snowflake        *SnowflakeParams                    `tfsdk:"snowflake"`
+	PowerBi          *PowerBiParams                      `tfsdk:"power_bi"`
 	// Tags             *[]TagDto                           `tfsdk:"tags"`
 	Type string `tfsdk:"type"`
 }

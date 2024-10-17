@@ -177,6 +177,23 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 			}
 
 			data_source_catalog_asset.Snowflake = &result_snowflake
+		} else if data.Type == "power_bi" {
+			resultParams, _ := data.Params.AsPowerBiParams()
+
+			result_timezone := TimeZoneDto{
+				TimeZone:  types.StringValue(resultParams.TimezoneData.Timezone),
+				UtcOffset: types.StringValue(resultParams.TimezoneData.UtcOffset),
+			}
+
+			result_power_bi := PowerBiParams{
+				Type:         types.StringValue(resultParams.Type),
+				TenantID:     types.StringValue(*resultParams.TenantId),
+				WorkspaceID:  types.StringValue(*resultParams.WorkspaceId),
+				ClientID:     types.StringValue(*resultParams.ClientId),
+				TimezoneData: &result_timezone,
+			}
+
+			data_source_catalog_asset.PowerBi = &result_power_bi
 		}
 
 		*state.SearchRules.Data = append(*state.SearchRules.Data, data_source_catalog_asset)
