@@ -80,7 +80,7 @@ func SourceResourceSchema(ctx context.Context) schema.Schema {
 		Description: "A Sifflet source.",
 		MarkdownDescription: `A Sifflet source. A source is any system that's monitored by Sifflet.
 
-		~> It's recommended to add a ` + "`lifecycle { prevent_destroy = true }` to `sifflet_source`" + ` resources once they are correctly configured. Deleting a source deletes all associated data, including monitors on that source.
+~> Consider adding a ` + "`lifecycle { prevent_destroy = true }` to `sifflet_source`" + ` resources once they are correctly configured. Deleting a source deletes all associated data, including monitors on that source.
 		`,
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
