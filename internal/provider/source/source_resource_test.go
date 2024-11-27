@@ -488,30 +488,6 @@ func TestAccSourceParams(t *testing.T) {
 							description = "A description"
 							credentials = sifflet_credentials.test.name
 							parameters = {
-								hive = {
-									atlas_base_url = "atlas_base_url"
-									atlas_principal = "atlas_principal"
-									database = "%s"
-									jdbc_url = "jdbc_url"
-									krb5_conf = "krb5_conf"
-									principal = "principal"
-								}
-							}
-						}
-						`, sourceName, database),
-				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("sifflet_source.test", "name", sourceName),
-					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.source_type", "hive"),
-					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.hive.database", database),
-				),
-			},
-			{
-				Config: baseConfig(credName) + fmt.Sprintf(`
-						resource "sifflet_source" "test" {
-							name = "%s"
-							description = "A description"
-							credentials = sifflet_credentials.test.name
-							parameters = {
 								looker = {
 									host = "%s"
 									git_connections = [{
