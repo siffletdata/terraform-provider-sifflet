@@ -94,7 +94,6 @@ Optional:
 - `dbt` (Attributes) (see [below for nested schema](#nestedatt--parameters--dbt))
 - `dbt_cloud` (Attributes) (see [below for nested schema](#nestedatt--parameters--dbt_cloud))
 - `fivetran` (Attributes) (see [below for nested schema](#nestedatt--parameters--fivetran))
-- `hive` (Attributes) (see [below for nested schema](#nestedatt--parameters--hive))
 - `looker` (Attributes) (see [below for nested schema](#nestedatt--parameters--looker))
 - `mssql` (Attributes) (see [below for nested schema](#nestedatt--parameters--mssql))
 - `mysql` (Attributes) (see [below for nested schema](#nestedatt--parameters--mysql))
@@ -191,22 +190,6 @@ Optional:
 Optional:
 
 - `host` (String) Fivetran host. Defaults to https://api.fivetran.com.
-
-
-<a id="nestedatt--parameters--hive"></a>
-### Nested Schema for `parameters.hive`
-
-Required:
-
-- `database` (String) Hive database name
-- `jdbc_url` (String) Hive server JDBC URL
-- `krb5_conf` (String) Kerberos configuration file (krb5.conf)
-- `principal` (String) Hive server principal
-
-Optional:
-
-- `atlas_base_url` (String) Atlas server base URL
-- `atlas_principal` (String) Atlas server principal
 
 
 <a id="nestedatt--parameters--looker"></a>

@@ -33,7 +33,6 @@ var allSourceTypes = map[string]func() SourceParameters{
 	DbtParametersModel{}.SchemaSourceType():        func() SourceParameters { return &DbtParametersModel{} },
 	DbtCloudParametersModel{}.SchemaSourceType():   func() SourceParameters { return &DbtCloudParametersModel{} },
 	FivetranParametersModel{}.SchemaSourceType():   func() SourceParameters { return &FivetranParametersModel{} },
-	HiveParametersModel{}.SchemaSourceType():       func() SourceParameters { return &HiveParametersModel{} },
 	LookerParametersModel{}.SchemaSourceType():     func() SourceParameters { return &LookerParametersModel{} },
 	MssqlParametersModel{}.SchemaSourceType():      func() SourceParameters { return &MssqlParametersModel{} },
 	MysqlParametersModel{}.SchemaSourceType():      func() SourceParameters { return &MysqlParametersModel{} },
@@ -63,7 +62,6 @@ type ParametersModel struct {
 	Dbt        types.Object `tfsdk:"dbt"`
 	DbtCloud   types.Object `tfsdk:"dbt_cloud"`
 	Fivetran   types.Object `tfsdk:"fivetran"`
-	Hive       types.Object `tfsdk:"hive"`
 	Looker     types.Object `tfsdk:"looker"`
 	Mssql      types.Object `tfsdk:"mssql"`
 	Mysql      types.Object `tfsdk:"mysql"`
@@ -87,7 +85,6 @@ func NewParametersModel() ParametersModel {
 		Dbt:        types.ObjectNull(DbtParametersModel{}.AttributeTypes()),
 		DbtCloud:   types.ObjectNull(DbtCloudParametersModel{}.AttributeTypes()),
 		Fivetran:   types.ObjectNull(FivetranParametersModel{}.AttributeTypes()),
-		Hive:       types.ObjectNull(HiveParametersModel{}.AttributeTypes()),
 		Looker:     types.ObjectNull(LookerParametersModel{}.AttributeTypes()),
 		Mssql:      types.ObjectNull(MssqlParametersModel{}.AttributeTypes()),
 		Mysql:      types.ObjectNull(MysqlParametersModel{}.AttributeTypes()),
