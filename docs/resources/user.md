@@ -45,7 +45,7 @@ resource "sifflet_user" "example" {
 Required:
 
 - `domain_id` (String) Domain ID. This can be retrieved from the domain details page from the Sifflet UI (there's no public API for this as of this writing).
-- `domain_role` (String) User role in the domain. One of 'EDITOR', 'VIEWER'.
+- `domain_role` (String) User role in the domain. One of 'EDITOR', 'VIEWER', 'CATALOG_EDITOR', 'MONITOR_RESPONDER'.
 
 ## Import
 

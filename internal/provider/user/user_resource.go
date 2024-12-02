@@ -73,7 +73,7 @@ func userResourceSchema() schema.Schema {
 							Required:    true,
 						},
 						"domain_role": schema.StringAttribute{
-							Description: "User role in the domain. One of 'EDITOR', 'VIEWER'.",
+							Description: "User role in the domain. One of 'EDITOR', 'VIEWER', 'CATALOG_EDITOR', 'MONITOR_RESPONDER'.",
 							Required:    true,
 						},
 					},
