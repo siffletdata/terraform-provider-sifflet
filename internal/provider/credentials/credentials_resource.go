@@ -124,9 +124,7 @@ func (r *credentialsResource) Create(ctx context.Context, req resource.CreateReq
 	// Otherwise, further operations with these credentials (such as "create a datasource referencing these credentials") might fail.
 	maxAttempts := 20
 	for attempt := 0; attempt < maxAttempts; attempt++ {
-		// Conflict in the OpenAPI schema between operation IDs for "get credentials" and "list credentials",
-		// hence the strange operation name.
-		_, err = r.client.PublicGetCredentials1WithResponse(ctx, credentialsDto.Name)
+		_, err = r.client.PublicGetCredentialsWithResponse(ctx, credentialsDto.Name)
 
 		if err != nil {
 			resp.Diagnostics.AddError(
@@ -161,11 +159,9 @@ func (r *credentialsResource) Read(ctx context.Context, req resource.ReadRequest
 
 	maxAttempts := 20
 	var err error
-	var credentialsResponse *sifflet.PublicGetCredentials1Response
+	var credentialsResponse *sifflet.PublicGetCredentialsResponse
 	for attempt := 0; attempt < maxAttempts; attempt++ {
-		// Conflict in the OpenAPI schema between operation IDs for "get credentials" and "list credentials",
-		// hence the strange operation name.
-		credentialsResponse, err = r.client.PublicGetCredentials1WithResponse(ctx, id)
+		credentialsResponse, err = r.client.PublicGetCredentialsWithResponse(ctx, id)
 
 		if err != nil {
 			resp.Diagnostics.AddError(
@@ -248,11 +244,9 @@ func (r *credentialsResource) Update(ctx context.Context, req resource.UpdateReq
 	// Reading the credential description is currently the only way we can know whether the credential was updated,  the API doesn't include any way to detect if the secret value has changed (like a version field).
 	// See PLTE-901.
 	maxAttempts := 20
-	var credentialsResponse *sifflet.PublicGetCredentials1Response
+	var credentialsResponse *sifflet.PublicGetCredentialsResponse
 	for attempt := 0; attempt < maxAttempts; attempt++ {
-		// Conflict in the OpenAPI schema between operation IDs for "get credentials" and "list credentials",
-		// hence the strange operation name.
-		credentialsResponse, err = r.client.PublicGetCredentials1WithResponse(ctx, id)
+		credentialsResponse, err = r.client.PublicGetCredentialsWithResponse(ctx, id)
 
 		if err != nil {
 			resp.Diagnostics.AddError(

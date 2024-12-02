@@ -84,13 +84,13 @@ func (d *credentialsDataSource) Read(ctx context.Context, req datasource.ReadReq
 	name := data.Name.ValueString()
 
 	maxAttempts := 20
-	var credentialsResponse *sifflet.PublicGetCredentials1Response
+	var credentialsResponse *sifflet.PublicGetCredentialsResponse
 	var err error
 
 	for attempt := 0; attempt < maxAttempts; attempt++ {
 		// Conflict in the OpenAPI schema between operation IDs for "get credentials" and "list credentials",
 		// hence the strange operation name.
-		credentialsResponse, err = d.client.PublicGetCredentials1WithResponse(ctx, name)
+		credentialsResponse, err = d.client.PublicGetCredentialsWithResponse(ctx, name)
 
 		if err != nil {
 			resp.Diagnostics.AddError(

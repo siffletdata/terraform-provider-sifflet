@@ -34,6 +34,7 @@ const (
 	MAIL    AlertingHookDtoType = "MAIL"
 	MSTEAMS AlertingHookDtoType = "MS_TEAMS"
 	SLACK   AlertingHookDtoType = "SLACK"
+	WEBHOOK AlertingHookDtoType = "WEBHOOK"
 )
 
 // Defines values for ChangeDtoType.
@@ -45,6 +46,14 @@ const (
 	MoveAndUpdate   ChangeDtoType = "MoveAndUpdate"
 	None            ChangeDtoType = "None"
 	Update          ChangeDtoType = "Update"
+)
+
+// Defines values for Criticality.
+const (
+	CRITICAL Criticality = "CRITICAL"
+	HIGH     Criticality = "HIGH"
+	LOW      Criticality = "LOW"
+	MODERATE Criticality = "MODERATE"
 )
 
 // Defines values for DatasourceProviderDtoType.
@@ -63,6 +72,11 @@ const (
 	GenericProviderDtoTypeUSER        GenericProviderDtoType = "USER"
 )
 
+// Defines values for GetCollaborationToolItemDtoType.
+const (
+	JIRA GetCollaborationToolItemDtoType = "JIRA"
+)
+
 // Defines values for GitConnectionAuthType.
 const (
 	HTTPAUTHORIZATIONHEADER GitConnectionAuthType = "HTTP_AUTHORIZATION_HEADER"
@@ -72,11 +86,10 @@ const (
 
 // Defines values for IncidentLightDtoQualification.
 const (
-	DUPLICATE     IncidentLightDtoQualification = "DUPLICATE"
-	EXPECTED      IncidentLightDtoQualification = "EXPECTED"
-	FALSEPOSITIVE IncidentLightDtoQualification = "FALSE_POSITIVE"
-	FIXED         IncidentLightDtoQualification = "FIXED"
-	KNOWNERROR    IncidentLightDtoQualification = "KNOWN_ERROR"
+	DUPLICATE      IncidentLightDtoQualification = "DUPLICATE"
+	FALSEPOSITIVE  IncidentLightDtoQualification = "FALSE_POSITIVE"
+	FIXED          IncidentLightDtoQualification = "FIXED"
+	NOACTIONNEEDED IncidentLightDtoQualification = "NO_ACTION_NEEDED"
 )
 
 // Defines values for IncidentLightDtoStatus.
@@ -122,7 +135,6 @@ const (
 	PublicAirflowParametersDtoTypeDBTCLOUD    PublicAirflowParametersDtoType = "DBT_CLOUD"
 	PublicAirflowParametersDtoTypeDECLARATIVE PublicAirflowParametersDtoType = "DECLARATIVE"
 	PublicAirflowParametersDtoTypeFIVETRAN    PublicAirflowParametersDtoType = "FIVETRAN"
-	PublicAirflowParametersDtoTypeHIVE        PublicAirflowParametersDtoType = "HIVE"
 	PublicAirflowParametersDtoTypeLOOKER      PublicAirflowParametersDtoType = "LOOKER"
 	PublicAirflowParametersDtoTypeMSSQL       PublicAirflowParametersDtoType = "MSSQL"
 	PublicAirflowParametersDtoTypeMYSQL       PublicAirflowParametersDtoType = "MYSQL"
@@ -147,7 +159,6 @@ const (
 	PublicAthenaParametersDtoTypeDBTCLOUD    PublicAthenaParametersDtoType = "DBT_CLOUD"
 	PublicAthenaParametersDtoTypeDECLARATIVE PublicAthenaParametersDtoType = "DECLARATIVE"
 	PublicAthenaParametersDtoTypeFIVETRAN    PublicAthenaParametersDtoType = "FIVETRAN"
-	PublicAthenaParametersDtoTypeHIVE        PublicAthenaParametersDtoType = "HIVE"
 	PublicAthenaParametersDtoTypeLOOKER      PublicAthenaParametersDtoType = "LOOKER"
 	PublicAthenaParametersDtoTypeMSSQL       PublicAthenaParametersDtoType = "MSSQL"
 	PublicAthenaParametersDtoTypeMYSQL       PublicAthenaParametersDtoType = "MYSQL"
@@ -172,7 +183,6 @@ const (
 	PublicBigQueryParametersDtoTypeDBTCLOUD    PublicBigQueryParametersDtoType = "DBT_CLOUD"
 	PublicBigQueryParametersDtoTypeDECLARATIVE PublicBigQueryParametersDtoType = "DECLARATIVE"
 	PublicBigQueryParametersDtoTypeFIVETRAN    PublicBigQueryParametersDtoType = "FIVETRAN"
-	PublicBigQueryParametersDtoTypeHIVE        PublicBigQueryParametersDtoType = "HIVE"
 	PublicBigQueryParametersDtoTypeLOOKER      PublicBigQueryParametersDtoType = "LOOKER"
 	PublicBigQueryParametersDtoTypeMSSQL       PublicBigQueryParametersDtoType = "MSSQL"
 	PublicBigQueryParametersDtoTypeMYSQL       PublicBigQueryParametersDtoType = "MYSQL"
@@ -210,7 +220,6 @@ const (
 	PublicDatabricksParametersDtoTypeDBTCLOUD    PublicDatabricksParametersDtoType = "DBT_CLOUD"
 	PublicDatabricksParametersDtoTypeDECLARATIVE PublicDatabricksParametersDtoType = "DECLARATIVE"
 	PublicDatabricksParametersDtoTypeFIVETRAN    PublicDatabricksParametersDtoType = "FIVETRAN"
-	PublicDatabricksParametersDtoTypeHIVE        PublicDatabricksParametersDtoType = "HIVE"
 	PublicDatabricksParametersDtoTypeLOOKER      PublicDatabricksParametersDtoType = "LOOKER"
 	PublicDatabricksParametersDtoTypeMSSQL       PublicDatabricksParametersDtoType = "MSSQL"
 	PublicDatabricksParametersDtoTypeMYSQL       PublicDatabricksParametersDtoType = "MYSQL"
@@ -235,7 +244,6 @@ const (
 	PublicDbtCloudParametersDtoTypeDBTCLOUD    PublicDbtCloudParametersDtoType = "DBT_CLOUD"
 	PublicDbtCloudParametersDtoTypeDECLARATIVE PublicDbtCloudParametersDtoType = "DECLARATIVE"
 	PublicDbtCloudParametersDtoTypeFIVETRAN    PublicDbtCloudParametersDtoType = "FIVETRAN"
-	PublicDbtCloudParametersDtoTypeHIVE        PublicDbtCloudParametersDtoType = "HIVE"
 	PublicDbtCloudParametersDtoTypeLOOKER      PublicDbtCloudParametersDtoType = "LOOKER"
 	PublicDbtCloudParametersDtoTypeMSSQL       PublicDbtCloudParametersDtoType = "MSSQL"
 	PublicDbtCloudParametersDtoTypeMYSQL       PublicDbtCloudParametersDtoType = "MYSQL"
@@ -260,7 +268,6 @@ const (
 	PublicDbtParametersDtoTypeDBTCLOUD    PublicDbtParametersDtoType = "DBT_CLOUD"
 	PublicDbtParametersDtoTypeDECLARATIVE PublicDbtParametersDtoType = "DECLARATIVE"
 	PublicDbtParametersDtoTypeFIVETRAN    PublicDbtParametersDtoType = "FIVETRAN"
-	PublicDbtParametersDtoTypeHIVE        PublicDbtParametersDtoType = "HIVE"
 	PublicDbtParametersDtoTypeLOOKER      PublicDbtParametersDtoType = "LOOKER"
 	PublicDbtParametersDtoTypeMSSQL       PublicDbtParametersDtoType = "MSSQL"
 	PublicDbtParametersDtoTypeMYSQL       PublicDbtParametersDtoType = "MYSQL"
@@ -294,7 +301,6 @@ const (
 	PublicFivetranParametersDtoTypeDBTCLOUD    PublicFivetranParametersDtoType = "DBT_CLOUD"
 	PublicFivetranParametersDtoTypeDECLARATIVE PublicFivetranParametersDtoType = "DECLARATIVE"
 	PublicFivetranParametersDtoTypeFIVETRAN    PublicFivetranParametersDtoType = "FIVETRAN"
-	PublicFivetranParametersDtoTypeHIVE        PublicFivetranParametersDtoType = "HIVE"
 	PublicFivetranParametersDtoTypeLOOKER      PublicFivetranParametersDtoType = "LOOKER"
 	PublicFivetranParametersDtoTypeMSSQL       PublicFivetranParametersDtoType = "MSSQL"
 	PublicFivetranParametersDtoTypeMYSQL       PublicFivetranParametersDtoType = "MYSQL"
@@ -318,31 +324,6 @@ const (
 	PublicGetLastRunDtoStatusSUCCESS                         PublicGetLastRunDtoStatus = "SUCCESS"
 )
 
-// Defines values for PublicHiveParametersDtoType.
-const (
-	PublicHiveParametersDtoTypeAIRFLOW     PublicHiveParametersDtoType = "AIRFLOW"
-	PublicHiveParametersDtoTypeATHENA      PublicHiveParametersDtoType = "ATHENA"
-	PublicHiveParametersDtoTypeBIGQUERY    PublicHiveParametersDtoType = "BIGQUERY"
-	PublicHiveParametersDtoTypeDATABRICKS  PublicHiveParametersDtoType = "DATABRICKS"
-	PublicHiveParametersDtoTypeDBT         PublicHiveParametersDtoType = "DBT"
-	PublicHiveParametersDtoTypeDBTCLOUD    PublicHiveParametersDtoType = "DBT_CLOUD"
-	PublicHiveParametersDtoTypeDECLARATIVE PublicHiveParametersDtoType = "DECLARATIVE"
-	PublicHiveParametersDtoTypeFIVETRAN    PublicHiveParametersDtoType = "FIVETRAN"
-	PublicHiveParametersDtoTypeHIVE        PublicHiveParametersDtoType = "HIVE"
-	PublicHiveParametersDtoTypeLOOKER      PublicHiveParametersDtoType = "LOOKER"
-	PublicHiveParametersDtoTypeMSSQL       PublicHiveParametersDtoType = "MSSQL"
-	PublicHiveParametersDtoTypeMYSQL       PublicHiveParametersDtoType = "MYSQL"
-	PublicHiveParametersDtoTypeORACLE      PublicHiveParametersDtoType = "ORACLE"
-	PublicHiveParametersDtoTypePOSTGRESQL  PublicHiveParametersDtoType = "POSTGRESQL"
-	PublicHiveParametersDtoTypePOWERBI     PublicHiveParametersDtoType = "POWER_BI"
-	PublicHiveParametersDtoTypeQUICKSIGHT  PublicHiveParametersDtoType = "QUICKSIGHT"
-	PublicHiveParametersDtoTypeREDSHIFT    PublicHiveParametersDtoType = "REDSHIFT"
-	PublicHiveParametersDtoTypeSNOWFLAKE   PublicHiveParametersDtoType = "SNOWFLAKE"
-	PublicHiveParametersDtoTypeSYNAPSE     PublicHiveParametersDtoType = "SYNAPSE"
-	PublicHiveParametersDtoTypeTABLEAU     PublicHiveParametersDtoType = "TABLEAU"
-	PublicHiveParametersDtoTypeUNKNOWN     PublicHiveParametersDtoType = "_UNKNOWN_"
-)
-
 // Defines values for PublicLookerParametersDtoType.
 const (
 	PublicLookerParametersDtoTypeAIRFLOW     PublicLookerParametersDtoType = "AIRFLOW"
@@ -353,7 +334,6 @@ const (
 	PublicLookerParametersDtoTypeDBTCLOUD    PublicLookerParametersDtoType = "DBT_CLOUD"
 	PublicLookerParametersDtoTypeDECLARATIVE PublicLookerParametersDtoType = "DECLARATIVE"
 	PublicLookerParametersDtoTypeFIVETRAN    PublicLookerParametersDtoType = "FIVETRAN"
-	PublicLookerParametersDtoTypeHIVE        PublicLookerParametersDtoType = "HIVE"
 	PublicLookerParametersDtoTypeLOOKER      PublicLookerParametersDtoType = "LOOKER"
 	PublicLookerParametersDtoTypeMSSQL       PublicLookerParametersDtoType = "MSSQL"
 	PublicLookerParametersDtoTypeMYSQL       PublicLookerParametersDtoType = "MYSQL"
@@ -378,7 +358,6 @@ const (
 	PublicMssqlParametersDtoTypeDBTCLOUD    PublicMssqlParametersDtoType = "DBT_CLOUD"
 	PublicMssqlParametersDtoTypeDECLARATIVE PublicMssqlParametersDtoType = "DECLARATIVE"
 	PublicMssqlParametersDtoTypeFIVETRAN    PublicMssqlParametersDtoType = "FIVETRAN"
-	PublicMssqlParametersDtoTypeHIVE        PublicMssqlParametersDtoType = "HIVE"
 	PublicMssqlParametersDtoTypeLOOKER      PublicMssqlParametersDtoType = "LOOKER"
 	PublicMssqlParametersDtoTypeMSSQL       PublicMssqlParametersDtoType = "MSSQL"
 	PublicMssqlParametersDtoTypeMYSQL       PublicMssqlParametersDtoType = "MYSQL"
@@ -409,7 +388,6 @@ const (
 	PublicMysqlParametersDtoTypeDBTCLOUD    PublicMysqlParametersDtoType = "DBT_CLOUD"
 	PublicMysqlParametersDtoTypeDECLARATIVE PublicMysqlParametersDtoType = "DECLARATIVE"
 	PublicMysqlParametersDtoTypeFIVETRAN    PublicMysqlParametersDtoType = "FIVETRAN"
-	PublicMysqlParametersDtoTypeHIVE        PublicMysqlParametersDtoType = "HIVE"
 	PublicMysqlParametersDtoTypeLOOKER      PublicMysqlParametersDtoType = "LOOKER"
 	PublicMysqlParametersDtoTypeMSSQL       PublicMysqlParametersDtoType = "MSSQL"
 	PublicMysqlParametersDtoTypeMYSQL       PublicMysqlParametersDtoType = "MYSQL"
@@ -434,7 +412,6 @@ const (
 	PublicOracleParametersDtoTypeDBTCLOUD    PublicOracleParametersDtoType = "DBT_CLOUD"
 	PublicOracleParametersDtoTypeDECLARATIVE PublicOracleParametersDtoType = "DECLARATIVE"
 	PublicOracleParametersDtoTypeFIVETRAN    PublicOracleParametersDtoType = "FIVETRAN"
-	PublicOracleParametersDtoTypeHIVE        PublicOracleParametersDtoType = "HIVE"
 	PublicOracleParametersDtoTypeLOOKER      PublicOracleParametersDtoType = "LOOKER"
 	PublicOracleParametersDtoTypeMSSQL       PublicOracleParametersDtoType = "MSSQL"
 	PublicOracleParametersDtoTypeMYSQL       PublicOracleParametersDtoType = "MYSQL"
@@ -459,7 +436,6 @@ const (
 	PublicPostgresqlParametersDtoTypeDBTCLOUD    PublicPostgresqlParametersDtoType = "DBT_CLOUD"
 	PublicPostgresqlParametersDtoTypeDECLARATIVE PublicPostgresqlParametersDtoType = "DECLARATIVE"
 	PublicPostgresqlParametersDtoTypeFIVETRAN    PublicPostgresqlParametersDtoType = "FIVETRAN"
-	PublicPostgresqlParametersDtoTypeHIVE        PublicPostgresqlParametersDtoType = "HIVE"
 	PublicPostgresqlParametersDtoTypeLOOKER      PublicPostgresqlParametersDtoType = "LOOKER"
 	PublicPostgresqlParametersDtoTypeMSSQL       PublicPostgresqlParametersDtoType = "MSSQL"
 	PublicPostgresqlParametersDtoTypeMYSQL       PublicPostgresqlParametersDtoType = "MYSQL"
@@ -484,7 +460,6 @@ const (
 	PublicPowerBiParametersDtoTypeDBTCLOUD    PublicPowerBiParametersDtoType = "DBT_CLOUD"
 	PublicPowerBiParametersDtoTypeDECLARATIVE PublicPowerBiParametersDtoType = "DECLARATIVE"
 	PublicPowerBiParametersDtoTypeFIVETRAN    PublicPowerBiParametersDtoType = "FIVETRAN"
-	PublicPowerBiParametersDtoTypeHIVE        PublicPowerBiParametersDtoType = "HIVE"
 	PublicPowerBiParametersDtoTypeLOOKER      PublicPowerBiParametersDtoType = "LOOKER"
 	PublicPowerBiParametersDtoTypeMSSQL       PublicPowerBiParametersDtoType = "MSSQL"
 	PublicPowerBiParametersDtoTypeMYSQL       PublicPowerBiParametersDtoType = "MYSQL"
@@ -509,7 +484,6 @@ const (
 	PublicQuicksightParametersDtoTypeDBTCLOUD    PublicQuicksightParametersDtoType = "DBT_CLOUD"
 	PublicQuicksightParametersDtoTypeDECLARATIVE PublicQuicksightParametersDtoType = "DECLARATIVE"
 	PublicQuicksightParametersDtoTypeFIVETRAN    PublicQuicksightParametersDtoType = "FIVETRAN"
-	PublicQuicksightParametersDtoTypeHIVE        PublicQuicksightParametersDtoType = "HIVE"
 	PublicQuicksightParametersDtoTypeLOOKER      PublicQuicksightParametersDtoType = "LOOKER"
 	PublicQuicksightParametersDtoTypeMSSQL       PublicQuicksightParametersDtoType = "MSSQL"
 	PublicQuicksightParametersDtoTypeMYSQL       PublicQuicksightParametersDtoType = "MYSQL"
@@ -534,7 +508,6 @@ const (
 	PublicRedshiftParametersDtoTypeDBTCLOUD    PublicRedshiftParametersDtoType = "DBT_CLOUD"
 	PublicRedshiftParametersDtoTypeDECLARATIVE PublicRedshiftParametersDtoType = "DECLARATIVE"
 	PublicRedshiftParametersDtoTypeFIVETRAN    PublicRedshiftParametersDtoType = "FIVETRAN"
-	PublicRedshiftParametersDtoTypeHIVE        PublicRedshiftParametersDtoType = "HIVE"
 	PublicRedshiftParametersDtoTypeLOOKER      PublicRedshiftParametersDtoType = "LOOKER"
 	PublicRedshiftParametersDtoTypeMSSQL       PublicRedshiftParametersDtoType = "MSSQL"
 	PublicRedshiftParametersDtoTypeMYSQL       PublicRedshiftParametersDtoType = "MYSQL"
@@ -559,7 +532,6 @@ const (
 	PublicSnowflakeParametersDtoTypeDBTCLOUD    PublicSnowflakeParametersDtoType = "DBT_CLOUD"
 	PublicSnowflakeParametersDtoTypeDECLARATIVE PublicSnowflakeParametersDtoType = "DECLARATIVE"
 	PublicSnowflakeParametersDtoTypeFIVETRAN    PublicSnowflakeParametersDtoType = "FIVETRAN"
-	PublicSnowflakeParametersDtoTypeHIVE        PublicSnowflakeParametersDtoType = "HIVE"
 	PublicSnowflakeParametersDtoTypeLOOKER      PublicSnowflakeParametersDtoType = "LOOKER"
 	PublicSnowflakeParametersDtoTypeMSSQL       PublicSnowflakeParametersDtoType = "MSSQL"
 	PublicSnowflakeParametersDtoTypeMYSQL       PublicSnowflakeParametersDtoType = "MYSQL"
@@ -584,7 +556,6 @@ const (
 	PublicSourceFilterDtoTypesDBTCLOUD    PublicSourceFilterDtoTypes = "DBT_CLOUD"
 	PublicSourceFilterDtoTypesDECLARATIVE PublicSourceFilterDtoTypes = "DECLARATIVE"
 	PublicSourceFilterDtoTypesFIVETRAN    PublicSourceFilterDtoTypes = "FIVETRAN"
-	PublicSourceFilterDtoTypesHIVE        PublicSourceFilterDtoTypes = "HIVE"
 	PublicSourceFilterDtoTypesLOOKER      PublicSourceFilterDtoTypes = "LOOKER"
 	PublicSourceFilterDtoTypesMSSQL       PublicSourceFilterDtoTypes = "MSSQL"
 	PublicSourceFilterDtoTypesMYSQL       PublicSourceFilterDtoTypes = "MYSQL"
@@ -609,7 +580,6 @@ const (
 	PublicSourceParametersDtoTypeDBTCLOUD    PublicSourceParametersDtoType = "DBT_CLOUD"
 	PublicSourceParametersDtoTypeDECLARATIVE PublicSourceParametersDtoType = "DECLARATIVE"
 	PublicSourceParametersDtoTypeFIVETRAN    PublicSourceParametersDtoType = "FIVETRAN"
-	PublicSourceParametersDtoTypeHIVE        PublicSourceParametersDtoType = "HIVE"
 	PublicSourceParametersDtoTypeLOOKER      PublicSourceParametersDtoType = "LOOKER"
 	PublicSourceParametersDtoTypeMSSQL       PublicSourceParametersDtoType = "MSSQL"
 	PublicSourceParametersDtoTypeMYSQL       PublicSourceParametersDtoType = "MYSQL"
@@ -634,7 +604,6 @@ const (
 	PublicSynapseParametersDtoTypeDBTCLOUD    PublicSynapseParametersDtoType = "DBT_CLOUD"
 	PublicSynapseParametersDtoTypeDECLARATIVE PublicSynapseParametersDtoType = "DECLARATIVE"
 	PublicSynapseParametersDtoTypeFIVETRAN    PublicSynapseParametersDtoType = "FIVETRAN"
-	PublicSynapseParametersDtoTypeHIVE        PublicSynapseParametersDtoType = "HIVE"
 	PublicSynapseParametersDtoTypeLOOKER      PublicSynapseParametersDtoType = "LOOKER"
 	PublicSynapseParametersDtoTypeMSSQL       PublicSynapseParametersDtoType = "MSSQL"
 	PublicSynapseParametersDtoTypeMYSQL       PublicSynapseParametersDtoType = "MYSQL"
@@ -659,7 +628,6 @@ const (
 	PublicTableauParametersDtoTypeDBTCLOUD    PublicTableauParametersDtoType = "DBT_CLOUD"
 	PublicTableauParametersDtoTypeDECLARATIVE PublicTableauParametersDtoType = "DECLARATIVE"
 	PublicTableauParametersDtoTypeFIVETRAN    PublicTableauParametersDtoType = "FIVETRAN"
-	PublicTableauParametersDtoTypeHIVE        PublicTableauParametersDtoType = "HIVE"
 	PublicTableauParametersDtoTypeLOOKER      PublicTableauParametersDtoType = "LOOKER"
 	PublicTableauParametersDtoTypeMSSQL       PublicTableauParametersDtoType = "MSSQL"
 	PublicTableauParametersDtoTypeMYSQL       PublicTableauParametersDtoType = "MYSQL"
@@ -696,8 +664,10 @@ const (
 
 // Defines values for PublicUserPermissionAssignmentDtoDomainRole.
 const (
-	PublicUserPermissionAssignmentDtoDomainRoleEDITOR PublicUserPermissionAssignmentDtoDomainRole = "EDITOR"
-	PublicUserPermissionAssignmentDtoDomainRoleVIEWER PublicUserPermissionAssignmentDtoDomainRole = "VIEWER"
+	PublicUserPermissionAssignmentDtoDomainRoleCATALOGEDITOR    PublicUserPermissionAssignmentDtoDomainRole = "CATALOG_EDITOR"
+	PublicUserPermissionAssignmentDtoDomainRoleEDITOR           PublicUserPermissionAssignmentDtoDomainRole = "EDITOR"
+	PublicUserPermissionAssignmentDtoDomainRoleMONITORRESPONDER PublicUserPermissionAssignmentDtoDomainRole = "MONITOR_RESPONDER"
+	PublicUserPermissionAssignmentDtoDomainRoleVIEWER           PublicUserPermissionAssignmentDtoDomainRole = "VIEWER"
 )
 
 // Defines values for PublicUserUpdateDtoRole.
@@ -718,14 +688,6 @@ const (
 const (
 	RuleCatalogAssetDtoSourcePlatformDBT     RuleCatalogAssetDtoSourcePlatform = "DBT"
 	RuleCatalogAssetDtoSourcePlatformSIFFLET RuleCatalogAssetDtoSourcePlatform = "SIFFLET"
-)
-
-// Defines values for RuleInfoDtoCriticality.
-const (
-	CRITICAL RuleInfoDtoCriticality = "CRITICAL"
-	HIGH     RuleInfoDtoCriticality = "HIGH"
-	LOW      RuleInfoDtoCriticality = "LOW"
-	MODERATE RuleInfoDtoCriticality = "MODERATE"
 )
 
 // Defines values for RuleInfoDtoLastRunStatus.
@@ -763,9 +725,9 @@ const (
 
 // Defines values for RuleRunDtoType.
 const (
-	RuleRunDtoTypeDBT       RuleRunDtoType = "DBT"
-	RuleRunDtoTypeMANUAL    RuleRunDtoType = "MANUAL"
-	RuleRunDtoTypeSCHEDULED RuleRunDtoType = "SCHEDULED"
+	DBT       RuleRunDtoType = "DBT"
+	MANUAL    RuleRunDtoType = "MANUAL"
+	SCHEDULED RuleRunDtoType = "SCHEDULED"
 )
 
 // Defines values for TagDtoType.
@@ -805,12 +767,22 @@ const (
 
 // Defines values for GetAllRuleParamsLastRunStatus.
 const (
-	FAILED                GetAllRuleParamsLastRunStatus = "FAILED"
-	PENDING               GetAllRuleParamsLastRunStatus = "PENDING"
-	REQUIRESYOURATTENTION GetAllRuleParamsLastRunStatus = "REQUIRES_YOUR_ATTENTION"
-	RUNNING               GetAllRuleParamsLastRunStatus = "RUNNING"
-	SUCCESS               GetAllRuleParamsLastRunStatus = "SUCCESS"
-	TECHNICALERROR        GetAllRuleParamsLastRunStatus = "TECHNICAL_ERROR"
+	GetAllRuleParamsLastRunStatusFAILED                GetAllRuleParamsLastRunStatus = "FAILED"
+	GetAllRuleParamsLastRunStatusPENDING               GetAllRuleParamsLastRunStatus = "PENDING"
+	GetAllRuleParamsLastRunStatusREQUIRESYOURATTENTION GetAllRuleParamsLastRunStatus = "REQUIRES_YOUR_ATTENTION"
+	GetAllRuleParamsLastRunStatusRUNNING               GetAllRuleParamsLastRunStatus = "RUNNING"
+	GetAllRuleParamsLastRunStatusSUCCESS               GetAllRuleParamsLastRunStatus = "SUCCESS"
+	GetAllRuleParamsLastRunStatusTECHNICALERROR        GetAllRuleParamsLastRunStatus = "TECHNICAL_ERROR"
+)
+
+// Defines values for GetSiffletRuleRunsParamsStatus.
+const (
+	GetSiffletRuleRunsParamsStatusFAILED                GetSiffletRuleRunsParamsStatus = "FAILED"
+	GetSiffletRuleRunsParamsStatusPENDING               GetSiffletRuleRunsParamsStatus = "PENDING"
+	GetSiffletRuleRunsParamsStatusREQUIRESYOURATTENTION GetSiffletRuleRunsParamsStatus = "REQUIRES_YOUR_ATTENTION"
+	GetSiffletRuleRunsParamsStatusRUNNING               GetSiffletRuleRunsParamsStatus = "RUNNING"
+	GetSiffletRuleRunsParamsStatusSUCCESS               GetSiffletRuleRunsParamsStatus = "SUCCESS"
+	GetSiffletRuleRunsParamsStatusTECHNICALERROR        GetSiffletRuleRunsParamsStatus = "TECHNICAL_ERROR"
 )
 
 // Defines values for GetSiffletRuleRunParamsExpand.
@@ -836,11 +808,17 @@ type AlertingHookDto struct {
 	LastModifiedDate *int64              `json:"lastModifiedDate,omitempty"`
 	ModifiedBy       *string             `json:"modifiedBy,omitempty"`
 	Name             string              `json:"name"`
+	Params           *AlertingHookParams `json:"params,omitempty"`
 	Type             AlertingHookDtoType `json:"type"`
 }
 
 // AlertingHookDtoType defines model for AlertingHookDto.Type.
 type AlertingHookDtoType string
+
+// AlertingHookParams defines model for AlertingHookParams.
+type AlertingHookParams struct {
+	Headers *[]CustomHeader `json:"headers,omitempty"`
+}
 
 // ApiProblemSchema defines model for ApiProblemSchema.
 type ApiProblemSchema struct {
@@ -888,6 +866,15 @@ type ChangeDto struct {
 // ChangeDtoType defines model for ChangeDto.Type.
 type ChangeDtoType string
 
+// Criticality defines model for Criticality.
+type Criticality string
+
+// CustomHeader defines model for CustomHeader.
+type CustomHeader struct {
+	Key   *string `json:"key,omitempty"`
+	Value *string `json:"value,omitempty"`
+}
+
 // DatasetBriefDto defines model for DatasetBriefDto.
 type DatasetBriefDto struct {
 	DatasourceName string             `json:"datasourceName"`
@@ -934,6 +921,17 @@ type GenericProviderDto struct {
 // GenericProviderDtoType defines model for GenericProviderDto.Type.
 type GenericProviderDtoType string
 
+// GetCollaborationToolItemDto defines model for GetCollaborationToolItemDto.
+type GetCollaborationToolItemDto struct {
+	Id      openapi_types.UUID              `json:"id"`
+	ItemKey string                          `json:"itemKey"`
+	ItemUrl *string                         `json:"itemUrl,omitempty"`
+	Type    GetCollaborationToolItemDtoType `json:"type"`
+}
+
+// GetCollaborationToolItemDtoType defines model for GetCollaborationToolItemDto.Type.
+type GetCollaborationToolItemDtoType string
+
 // GitConnection The LookML configuration. See https://docs.siffletdata.com/docs/looker. If you don't use LookML, use an empty list `[]`
 type GitConnection struct {
 	AuthType GitConnectionAuthType `json:"authType"`
@@ -947,18 +945,19 @@ type GitConnectionAuthType string
 
 // IncidentLightDto defines model for IncidentLightDto.
 type IncidentLightDto struct {
-	CompromisedAssets int32                         `json:"compromisedAssets"`
-	Criticality       int32                         `json:"criticality"`
-	Datasets          []DatasetBriefDto             `json:"datasets"`
-	Id                openapi_types.UUID            `json:"id"`
-	IssueNo           int32                         `json:"issueNo"`
-	LastModifiedDate  *int64                        `json:"lastModifiedDate,omitempty"`
-	LastOccurredDate  int64                         `json:"lastOccurredDate"`
-	Name              string                        `json:"name"`
-	Owners            []UserDto                     `json:"owners"`
-	Qualification     IncidentLightDtoQualification `json:"qualification"`
-	Status            IncidentLightDtoStatus        `json:"status"`
-	TriggerTime       int64                         `json:"triggerTime"`
+	CollaborationToolItem *GetCollaborationToolItemDto  `json:"collaborationToolItem,omitempty"`
+	CompromisedAssets     int32                         `json:"compromisedAssets"`
+	Criticality           int32                         `json:"criticality"`
+	Datasets              []DatasetBriefDto             `json:"datasets"`
+	Id                    openapi_types.UUID            `json:"id"`
+	IssueNo               int32                         `json:"issueNo"`
+	LastModifiedDate      *int64                        `json:"lastModifiedDate,omitempty"`
+	LastOccurredDate      int64                         `json:"lastOccurredDate"`
+	Name                  string                        `json:"name"`
+	Owners                []UserDto                     `json:"owners"`
+	Qualification         IncidentLightDtoQualification `json:"qualification"`
+	Status                IncidentLightDtoStatus        `json:"status"`
+	TriggerTime           int64                         `json:"triggerTime"`
 }
 
 // IncidentLightDtoQualification defines model for IncidentLightDto.Qualification.
@@ -985,7 +984,7 @@ type JsonNode = map[string]interface{}
 
 // LastRunStatusDto defines model for LastRunStatusDto.
 type LastRunStatusDto struct {
-	Result    string                 `json:"result"`
+	Result    *string                `json:"result"`
 	Status    LastRunStatusDtoStatus `json:"status"`
 	Timestamp int64                  `json:"timestamp"`
 }
@@ -1375,31 +1374,6 @@ type PublicGetSourceDto struct {
 type PublicGetSourceDto_Parameters struct {
 	union json.RawMessage
 }
-
-// PublicHiveParametersDto defines model for PublicHiveParametersDto.
-type PublicHiveParametersDto struct {
-	// AtlasBaseUrl Your Atlas server base URL
-	AtlasBaseUrl *string `json:"atlasBaseUrl,omitempty"`
-
-	// AtlasPrincipal Your Atlas server principal
-	AtlasPrincipal *string `json:"atlasPrincipal,omitempty"`
-
-	// Database Your Hive database name
-	Database *string `json:"database,omitempty"`
-
-	// JdbcUrl Your Hive server JDBC URL
-	JdbcUrl *string `json:"jdbcUrl,omitempty"`
-
-	// Krb5Conf Your krb5.conf file content
-	Krb5Conf *string `json:"krb5Conf,omitempty"`
-
-	// Principal Your Hive server principal
-	Principal *string                     `json:"principal,omitempty"`
-	Type      PublicHiveParametersDtoType `json:"type"`
-}
-
-// PublicHiveParametersDtoType defines model for PublicHiveParametersDto.Type.
-type PublicHiveParametersDtoType string
 
 // PublicLookerParametersDto defines model for PublicLookerParametersDto.
 type PublicLookerParametersDto struct {
@@ -1811,17 +1785,32 @@ type RuleCatalogAssetDtoSourcePlatform string
 
 // RuleDetailsDto defines model for RuleDetailsDto.
 type RuleDetailsDto struct {
-	CreatedBy        *string                  `json:"createdBy,omitempty"`
-	CreatedDate      *int64                   `json:"createdDate,omitempty"`
-	LastModifiedDate *int64                   `json:"lastModifiedDate,omitempty"`
-	Mails            *[]AlertingHookDto       `json:"mails,omitempty"`
-	ModifiedBy       *string                  `json:"modifiedBy,omitempty"`
-	MsTeams          *[]AlertingHookDto       `json:"msTeams,omitempty"`
-	Provider         *RuleDetailsDto_Provider `json:"provider,omitempty"`
-	RuleParams       *JsonNode                `json:"ruleParams,omitempty"`
-	SlackChannels    *[]AlertingHookDto       `json:"slackChannels,omitempty"`
-	Tags             *[]TagDto                `json:"tags,omitempty"`
-	Terms            *[]TagDto                `json:"terms,omitempty"`
+	// Deprecated:
+	CreatedBy         *string                          `json:"createdBy"`
+	CreatedByProvider RuleDetailsDto_CreatedByProvider `json:"createdByProvider"`
+	CreatedDate       *int64                           `json:"createdDate"`
+	LastModifiedDate  *int64                           `json:"lastModifiedDate"`
+	Mails             []AlertingHookDto                `json:"mails"`
+	// Deprecated:
+	ModifiedBy         *string                           `json:"modifiedBy"`
+	ModifiedByProvider RuleDetailsDto_ModifiedByProvider `json:"modifiedByProvider"`
+	MsTeams            []AlertingHookDto                 `json:"msTeams"`
+	Provider           RuleDetailsDto_Provider           `json:"provider"`
+	RuleParams         *JsonNode                         `json:"ruleParams,omitempty"`
+	SlackChannels      []AlertingHookDto                 `json:"slackChannels"`
+	Tags               []TagDto                          `json:"tags"`
+	Terms              []TagDto                          `json:"terms"`
+	Webhooks           []AlertingHookDto                 `json:"webhooks"`
+}
+
+// RuleDetailsDto_CreatedByProvider defines model for RuleDetailsDto.CreatedByProvider.
+type RuleDetailsDto_CreatedByProvider struct {
+	union json.RawMessage
+}
+
+// RuleDetailsDto_ModifiedByProvider defines model for RuleDetailsDto.ModifiedByProvider.
+type RuleDetailsDto_ModifiedByProvider struct {
+	union json.RawMessage
 }
 
 // RuleDetailsDto_Provider defines model for RuleDetailsDto.Provider.
@@ -1833,7 +1822,7 @@ type RuleDetailsDto_Provider struct {
 type RuleInfoDto struct {
 	CanBeScheduled              bool                      `json:"canBeScheduled"`
 	CanManuallyRun              bool                      `json:"canManuallyRun"`
-	Criticality                 RuleInfoDtoCriticality    `json:"criticality"`
+	Criticality                 Criticality               `json:"criticality"`
 	Datasets                    *[]DatasetBriefDto        `json:"datasets,omitempty"`
 	Id                          openapi_types.UUID        `json:"id"`
 	LastRunStatus               *RuleInfoDtoLastRunStatus `json:"lastRunStatus,omitempty"`
@@ -1854,9 +1843,6 @@ type RuleInfoDto struct {
 	UnresolvedIncidents         int32                     `json:"unresolvedIncidents"`
 	Workspace                   *WorkspaceDto             `json:"workspace,omitempty"`
 }
-
-// RuleInfoDtoCriticality defines model for RuleInfoDto.Criticality.
-type RuleInfoDtoCriticality string
 
 // RuleInfoDtoLastRunStatus defines model for RuleInfoDto.LastRunStatus.
 type RuleInfoDtoLastRunStatus string
@@ -2046,6 +2032,9 @@ type GetAllRuleParamsLastRunStatus string
 
 // GetSiffletRuleRunsParams defines parameters for GetSiffletRuleRuns.
 type GetSiffletRuleRunsParams struct {
+	// Status Filter by run status
+	Status *[]GetSiffletRuleRunsParamsStatus `form:"status,omitempty" json:"status,omitempty"`
+
 	// Page The requested page number. Zero-based page index (0..N)
 	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
 
@@ -2055,6 +2044,9 @@ type GetSiffletRuleRunsParams struct {
 	// Sort The resource fields on which to apply the sort, format : property,ASC|DESC
 	Sort *[]string `form:"sort,omitempty" json:"sort,omitempty"`
 }
+
+// GetSiffletRuleRunsParamsStatus defines parameters for GetSiffletRuleRuns.
+type GetSiffletRuleRunsParamsStatus string
 
 // GetSiffletRuleRunParams defines parameters for GetSiffletRuleRun.
 type GetSiffletRuleRunParams struct {
@@ -2313,32 +2305,6 @@ func (t *PublicCreateSourceDto_Parameters) FromPublicFivetranParametersDto(v Pub
 
 // MergePublicFivetranParametersDto performs a merge with any union data inside the PublicCreateSourceDto_Parameters, using the provided PublicFivetranParametersDto
 func (t *PublicCreateSourceDto_Parameters) MergePublicFivetranParametersDto(v PublicFivetranParametersDto) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsPublicHiveParametersDto returns the union data inside the PublicCreateSourceDto_Parameters as a PublicHiveParametersDto
-func (t PublicCreateSourceDto_Parameters) AsPublicHiveParametersDto() (PublicHiveParametersDto, error) {
-	var body PublicHiveParametersDto
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPublicHiveParametersDto overwrites any union data inside the PublicCreateSourceDto_Parameters as the provided PublicHiveParametersDto
-func (t *PublicCreateSourceDto_Parameters) FromPublicHiveParametersDto(v PublicHiveParametersDto) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePublicHiveParametersDto performs a merge with any union data inside the PublicCreateSourceDto_Parameters, using the provided PublicHiveParametersDto
-func (t *PublicCreateSourceDto_Parameters) MergePublicHiveParametersDto(v PublicHiveParametersDto) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -2853,32 +2819,6 @@ func (t *PublicGetSourceDto_Parameters) MergePublicFivetranParametersDto(v Publi
 	return err
 }
 
-// AsPublicHiveParametersDto returns the union data inside the PublicGetSourceDto_Parameters as a PublicHiveParametersDto
-func (t PublicGetSourceDto_Parameters) AsPublicHiveParametersDto() (PublicHiveParametersDto, error) {
-	var body PublicHiveParametersDto
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPublicHiveParametersDto overwrites any union data inside the PublicGetSourceDto_Parameters as the provided PublicHiveParametersDto
-func (t *PublicGetSourceDto_Parameters) FromPublicHiveParametersDto(v PublicHiveParametersDto) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePublicHiveParametersDto performs a merge with any union data inside the PublicGetSourceDto_Parameters, using the provided PublicHiveParametersDto
-func (t *PublicGetSourceDto_Parameters) MergePublicHiveParametersDto(v PublicHiveParametersDto) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
 // AsPublicLookerParametersDto returns the union data inside the PublicGetSourceDto_Parameters as a PublicLookerParametersDto
 func (t PublicGetSourceDto_Parameters) AsPublicLookerParametersDto() (PublicLookerParametersDto, error) {
 	var body PublicLookerParametersDto
@@ -3383,32 +3323,6 @@ func (t *PublicUpdateSourceDto_Parameters) MergePublicFivetranParametersDto(v Pu
 	return err
 }
 
-// AsPublicHiveParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicHiveParametersDto
-func (t PublicUpdateSourceDto_Parameters) AsPublicHiveParametersDto() (PublicHiveParametersDto, error) {
-	var body PublicHiveParametersDto
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromPublicHiveParametersDto overwrites any union data inside the PublicUpdateSourceDto_Parameters as the provided PublicHiveParametersDto
-func (t *PublicUpdateSourceDto_Parameters) FromPublicHiveParametersDto(v PublicHiveParametersDto) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergePublicHiveParametersDto performs a merge with any union data inside the PublicUpdateSourceDto_Parameters, using the provided PublicHiveParametersDto
-func (t *PublicUpdateSourceDto_Parameters) MergePublicHiveParametersDto(v PublicHiveParametersDto) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
 // AsPublicLookerParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicLookerParametersDto
 func (t PublicUpdateSourceDto_Parameters) AsPublicLookerParametersDto() (PublicLookerParametersDto, error) {
 	var body PublicLookerParametersDto
@@ -3819,6 +3733,234 @@ func (t *RuleCatalogAssetDto_Provider) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsAccessTokenProviderDto returns the union data inside the RuleDetailsDto_CreatedByProvider as a AccessTokenProviderDto
+func (t RuleDetailsDto_CreatedByProvider) AsAccessTokenProviderDto() (AccessTokenProviderDto, error) {
+	var body AccessTokenProviderDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAccessTokenProviderDto overwrites any union data inside the RuleDetailsDto_CreatedByProvider as the provided AccessTokenProviderDto
+func (t *RuleDetailsDto_CreatedByProvider) FromAccessTokenProviderDto(v AccessTokenProviderDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAccessTokenProviderDto performs a merge with any union data inside the RuleDetailsDto_CreatedByProvider, using the provided AccessTokenProviderDto
+func (t *RuleDetailsDto_CreatedByProvider) MergeAccessTokenProviderDto(v AccessTokenProviderDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsDatasourceProviderDto returns the union data inside the RuleDetailsDto_CreatedByProvider as a DatasourceProviderDto
+func (t RuleDetailsDto_CreatedByProvider) AsDatasourceProviderDto() (DatasourceProviderDto, error) {
+	var body DatasourceProviderDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDatasourceProviderDto overwrites any union data inside the RuleDetailsDto_CreatedByProvider as the provided DatasourceProviderDto
+func (t *RuleDetailsDto_CreatedByProvider) FromDatasourceProviderDto(v DatasourceProviderDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDatasourceProviderDto performs a merge with any union data inside the RuleDetailsDto_CreatedByProvider, using the provided DatasourceProviderDto
+func (t *RuleDetailsDto_CreatedByProvider) MergeDatasourceProviderDto(v DatasourceProviderDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsGenericProviderDto returns the union data inside the RuleDetailsDto_CreatedByProvider as a GenericProviderDto
+func (t RuleDetailsDto_CreatedByProvider) AsGenericProviderDto() (GenericProviderDto, error) {
+	var body GenericProviderDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenericProviderDto overwrites any union data inside the RuleDetailsDto_CreatedByProvider as the provided GenericProviderDto
+func (t *RuleDetailsDto_CreatedByProvider) FromGenericProviderDto(v GenericProviderDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenericProviderDto performs a merge with any union data inside the RuleDetailsDto_CreatedByProvider, using the provided GenericProviderDto
+func (t *RuleDetailsDto_CreatedByProvider) MergeGenericProviderDto(v GenericProviderDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUserProviderDto returns the union data inside the RuleDetailsDto_CreatedByProvider as a UserProviderDto
+func (t RuleDetailsDto_CreatedByProvider) AsUserProviderDto() (UserProviderDto, error) {
+	var body UserProviderDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserProviderDto overwrites any union data inside the RuleDetailsDto_CreatedByProvider as the provided UserProviderDto
+func (t *RuleDetailsDto_CreatedByProvider) FromUserProviderDto(v UserProviderDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserProviderDto performs a merge with any union data inside the RuleDetailsDto_CreatedByProvider, using the provided UserProviderDto
+func (t *RuleDetailsDto_CreatedByProvider) MergeUserProviderDto(v UserProviderDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RuleDetailsDto_CreatedByProvider) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RuleDetailsDto_CreatedByProvider) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAccessTokenProviderDto returns the union data inside the RuleDetailsDto_ModifiedByProvider as a AccessTokenProviderDto
+func (t RuleDetailsDto_ModifiedByProvider) AsAccessTokenProviderDto() (AccessTokenProviderDto, error) {
+	var body AccessTokenProviderDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAccessTokenProviderDto overwrites any union data inside the RuleDetailsDto_ModifiedByProvider as the provided AccessTokenProviderDto
+func (t *RuleDetailsDto_ModifiedByProvider) FromAccessTokenProviderDto(v AccessTokenProviderDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAccessTokenProviderDto performs a merge with any union data inside the RuleDetailsDto_ModifiedByProvider, using the provided AccessTokenProviderDto
+func (t *RuleDetailsDto_ModifiedByProvider) MergeAccessTokenProviderDto(v AccessTokenProviderDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsDatasourceProviderDto returns the union data inside the RuleDetailsDto_ModifiedByProvider as a DatasourceProviderDto
+func (t RuleDetailsDto_ModifiedByProvider) AsDatasourceProviderDto() (DatasourceProviderDto, error) {
+	var body DatasourceProviderDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDatasourceProviderDto overwrites any union data inside the RuleDetailsDto_ModifiedByProvider as the provided DatasourceProviderDto
+func (t *RuleDetailsDto_ModifiedByProvider) FromDatasourceProviderDto(v DatasourceProviderDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDatasourceProviderDto performs a merge with any union data inside the RuleDetailsDto_ModifiedByProvider, using the provided DatasourceProviderDto
+func (t *RuleDetailsDto_ModifiedByProvider) MergeDatasourceProviderDto(v DatasourceProviderDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsGenericProviderDto returns the union data inside the RuleDetailsDto_ModifiedByProvider as a GenericProviderDto
+func (t RuleDetailsDto_ModifiedByProvider) AsGenericProviderDto() (GenericProviderDto, error) {
+	var body GenericProviderDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenericProviderDto overwrites any union data inside the RuleDetailsDto_ModifiedByProvider as the provided GenericProviderDto
+func (t *RuleDetailsDto_ModifiedByProvider) FromGenericProviderDto(v GenericProviderDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenericProviderDto performs a merge with any union data inside the RuleDetailsDto_ModifiedByProvider, using the provided GenericProviderDto
+func (t *RuleDetailsDto_ModifiedByProvider) MergeGenericProviderDto(v GenericProviderDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUserProviderDto returns the union data inside the RuleDetailsDto_ModifiedByProvider as a UserProviderDto
+func (t RuleDetailsDto_ModifiedByProvider) AsUserProviderDto() (UserProviderDto, error) {
+	var body UserProviderDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserProviderDto overwrites any union data inside the RuleDetailsDto_ModifiedByProvider as the provided UserProviderDto
+func (t *RuleDetailsDto_ModifiedByProvider) FromUserProviderDto(v UserProviderDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserProviderDto performs a merge with any union data inside the RuleDetailsDto_ModifiedByProvider, using the provided UserProviderDto
+func (t *RuleDetailsDto_ModifiedByProvider) MergeUserProviderDto(v UserProviderDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RuleDetailsDto_ModifiedByProvider) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RuleDetailsDto_ModifiedByProvider) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsAccessTokenProviderDto returns the union data inside the RuleDetailsDto_Provider as a AccessTokenProviderDto
 func (t RuleDetailsDto_Provider) AsAccessTokenProviderDto() (AccessTokenProviderDto, error) {
 	var body AccessTokenProviderDto
@@ -4033,8 +4175,8 @@ type ClientInterface interface {
 
 	PublicUpdateCalendar(ctx context.Context, id openapi_types.UUID, body PublicUpdateCalendarJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// PublicGetCredentials request
-	PublicGetCredentials(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// PublicGetAllCredentials request
+	PublicGetAllCredentials(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PublicCreateCredentialsWithBody request with any body
 	PublicCreateCredentialsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4044,8 +4186,8 @@ type ClientInterface interface {
 	// PublicDeleteCredentials request
 	PublicDeleteCredentials(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// PublicGetCredentials1 request
-	PublicGetCredentials1(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// PublicGetCredentials request
+	PublicGetCredentials(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PublicUpdateCredentialsWithBody request with any body
 	PublicUpdateCredentialsWithBody(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4258,8 +4400,8 @@ func (c *Client) PublicUpdateCalendar(ctx context.Context, id openapi_types.UUID
 	return c.Client.Do(req)
 }
 
-func (c *Client) PublicGetCredentials(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPublicGetCredentialsRequest(c.Server)
+func (c *Client) PublicGetAllCredentials(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetAllCredentialsRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -4306,8 +4448,8 @@ func (c *Client) PublicDeleteCredentials(ctx context.Context, name string, reqEd
 	return c.Client.Do(req)
 }
 
-func (c *Client) PublicGetCredentials1(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPublicGetCredentials1Request(c.Server, name)
+func (c *Client) PublicGetCredentials(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetCredentialsRequest(c.Server, name)
 	if err != nil {
 		return nil, err
 	}
@@ -5014,8 +5156,8 @@ func NewPublicUpdateCalendarRequestWithBody(server string, id openapi_types.UUID
 	return req, nil
 }
 
-// NewPublicGetCredentialsRequest generates requests for PublicGetCredentials
-func NewPublicGetCredentialsRequest(server string) (*http.Request, error) {
+// NewPublicGetAllCredentialsRequest generates requests for PublicGetAllCredentials
+func NewPublicGetAllCredentialsRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -5115,8 +5257,8 @@ func NewPublicDeleteCredentialsRequest(server string, name string) (*http.Reques
 	return req, nil
 }
 
-// NewPublicGetCredentials1Request generates requests for PublicGetCredentials1
-func NewPublicGetCredentials1Request(server string, name string) (*http.Request, error) {
+// NewPublicGetCredentialsRequest generates requests for PublicGetCredentials
+func NewPublicGetCredentialsRequest(server string, name string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -5692,6 +5834,22 @@ func NewGetSiffletRuleRunsRequest(server string, id openapi_types.UUID, params *
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "status", runtime.ParamLocationQuery, *params.Status); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.Page != nil {
 
@@ -6408,8 +6566,8 @@ type ClientWithResponsesInterface interface {
 
 	PublicUpdateCalendarWithResponse(ctx context.Context, id openapi_types.UUID, body PublicUpdateCalendarJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicUpdateCalendarResponse, error)
 
-	// PublicGetCredentialsWithResponse request
-	PublicGetCredentialsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PublicGetCredentialsResponse, error)
+	// PublicGetAllCredentialsWithResponse request
+	PublicGetAllCredentialsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PublicGetAllCredentialsResponse, error)
 
 	// PublicCreateCredentialsWithBodyWithResponse request with any body
 	PublicCreateCredentialsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateCredentialsResponse, error)
@@ -6419,8 +6577,8 @@ type ClientWithResponsesInterface interface {
 	// PublicDeleteCredentialsWithResponse request
 	PublicDeleteCredentialsWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicDeleteCredentialsResponse, error)
 
-	// PublicGetCredentials1WithResponse request
-	PublicGetCredentials1WithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicGetCredentials1Response, error)
+	// PublicGetCredentialsWithResponse request
+	PublicGetCredentialsWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicGetCredentialsResponse, error)
 
 	// PublicUpdateCredentialsWithBodyWithResponse request with any body
 	PublicUpdateCredentialsWithBodyWithResponse(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialsResponse, error)
@@ -6697,7 +6855,7 @@ func (r PublicUpdateCalendarResponse) StatusCode() int {
 	return 0
 }
 
-type PublicGetCredentialsResponse struct {
+type PublicGetAllCredentialsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
 	JSON200                   *PublicCredentialsPageDtoPublicCredentialsGetDto
@@ -6708,7 +6866,7 @@ type PublicGetCredentialsResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r PublicGetCredentialsResponse) Status() string {
+func (r PublicGetAllCredentialsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -6716,7 +6874,7 @@ func (r PublicGetCredentialsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r PublicGetCredentialsResponse) StatusCode() int {
+func (r PublicGetAllCredentialsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -6776,7 +6934,7 @@ func (r PublicDeleteCredentialsResponse) StatusCode() int {
 	return 0
 }
 
-type PublicGetCredentials1Response struct {
+type PublicGetCredentialsResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
 	JSON200                   *PublicCredentialsGetDto
@@ -6788,7 +6946,7 @@ type PublicGetCredentials1Response struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r PublicGetCredentials1Response) Status() string {
+func (r PublicGetCredentialsResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -6796,7 +6954,7 @@ func (r PublicGetCredentials1Response) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r PublicGetCredentials1Response) StatusCode() int {
+func (r PublicGetCredentialsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7529,13 +7687,13 @@ func (c *ClientWithResponses) PublicUpdateCalendarWithResponse(ctx context.Conte
 	return ParsePublicUpdateCalendarResponse(rsp)
 }
 
-// PublicGetCredentialsWithResponse request returning *PublicGetCredentialsResponse
-func (c *ClientWithResponses) PublicGetCredentialsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PublicGetCredentialsResponse, error) {
-	rsp, err := c.PublicGetCredentials(ctx, reqEditors...)
+// PublicGetAllCredentialsWithResponse request returning *PublicGetAllCredentialsResponse
+func (c *ClientWithResponses) PublicGetAllCredentialsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PublicGetAllCredentialsResponse, error) {
+	rsp, err := c.PublicGetAllCredentials(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePublicGetCredentialsResponse(rsp)
+	return ParsePublicGetAllCredentialsResponse(rsp)
 }
 
 // PublicCreateCredentialsWithBodyWithResponse request with arbitrary body returning *PublicCreateCredentialsResponse
@@ -7564,13 +7722,13 @@ func (c *ClientWithResponses) PublicDeleteCredentialsWithResponse(ctx context.Co
 	return ParsePublicDeleteCredentialsResponse(rsp)
 }
 
-// PublicGetCredentials1WithResponse request returning *PublicGetCredentials1Response
-func (c *ClientWithResponses) PublicGetCredentials1WithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicGetCredentials1Response, error) {
-	rsp, err := c.PublicGetCredentials1(ctx, name, reqEditors...)
+// PublicGetCredentialsWithResponse request returning *PublicGetCredentialsResponse
+func (c *ClientWithResponses) PublicGetCredentialsWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*PublicGetCredentialsResponse, error) {
+	rsp, err := c.PublicGetCredentials(ctx, name, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParsePublicGetCredentials1Response(rsp)
+	return ParsePublicGetCredentialsResponse(rsp)
 }
 
 // PublicUpdateCredentialsWithBodyWithResponse request with arbitrary body returning *PublicUpdateCredentialsResponse
@@ -8253,15 +8411,15 @@ func ParsePublicUpdateCalendarResponse(rsp *http.Response) (*PublicUpdateCalenda
 	return response, nil
 }
 
-// ParsePublicGetCredentialsResponse parses an HTTP response from a PublicGetCredentialsWithResponse call
-func ParsePublicGetCredentialsResponse(rsp *http.Response) (*PublicGetCredentialsResponse, error) {
+// ParsePublicGetAllCredentialsResponse parses an HTTP response from a PublicGetAllCredentialsWithResponse call
+func ParsePublicGetAllCredentialsResponse(rsp *http.Response) (*PublicGetAllCredentialsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &PublicGetCredentialsResponse{
+	response := &PublicGetAllCredentialsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -8422,15 +8580,15 @@ func ParsePublicDeleteCredentialsResponse(rsp *http.Response) (*PublicDeleteCred
 	return response, nil
 }
 
-// ParsePublicGetCredentials1Response parses an HTTP response from a PublicGetCredentials1WithResponse call
-func ParsePublicGetCredentials1Response(rsp *http.Response) (*PublicGetCredentials1Response, error) {
+// ParsePublicGetCredentialsResponse parses an HTTP response from a PublicGetCredentialsWithResponse call
+func ParsePublicGetCredentialsResponse(rsp *http.Response) (*PublicGetCredentialsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &PublicGetCredentials1Response{
+	response := &PublicGetCredentialsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
