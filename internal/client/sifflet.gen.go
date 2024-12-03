@@ -12,6 +12,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 
 	"github.com/oapi-codegen/runtime"
 	openapi_types "github.com/oapi-codegen/runtime/types"
@@ -1338,7 +1339,7 @@ type PublicGetLastRunDto struct {
 	Status *PublicGetLastRunDtoStatus `json:"status,omitempty"`
 
 	// Timestamp Timestamp of the last update of the source
-	Timestamp *int64 `json:"timestamp,omitempty"`
+	Timestamp *time.Time `json:"timestamp,omitempty"`
 }
 
 // PublicGetLastRunDtoStatus Last run status of the source
