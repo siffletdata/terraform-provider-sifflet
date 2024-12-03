@@ -89,5 +89,5 @@ jobs:
           TF_ACC: "1"
           SIFFLET_HOST: ${{ secrets.SIFFLET_HOST }}
           SIFFLET_TOKEN: ${{ secrets.SIFFLET_TOKEN }}
-        run: go test -v -cover ./internal/provider/
+        run: go test -v -cover ./...
         timeout-minutes: 10
