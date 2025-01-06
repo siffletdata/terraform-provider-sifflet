@@ -8,6 +8,7 @@ import (
 	"net/http/httputil"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
@@ -28,6 +29,7 @@ func NewTerraformHttpClient(tfVersion string, providerVersion string) *http.Clie
 	}
 	return &http.Client{
 		Transport: transport,
+		Timeout:   time.Second * 60,
 	}
 }
 
