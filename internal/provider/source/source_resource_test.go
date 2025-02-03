@@ -27,6 +27,15 @@ func baseConfig(credName string) string {
 	`, credName)
 }
 
+func tagsConfig(tagName string) string {
+	return fmt.Sprintf(`
+	resource "sifflet_tag" "tag" {
+		name = "%s"
+		description = "Description"
+	}
+	`, tagName)
+}
+
 // BigQuery sources are also used for testing specific attributes and behaviours of the sifflet_source resource.
 // For other source types, we only do a simple create/destroy test.
 func TestAccSourceBasic(t *testing.T) {
@@ -745,6 +754,179 @@ func TestAccSourceParams(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.tableau.host", host),
 					resource.TestCheckResourceAttr("sifflet_source.test", "parameters.tableau.site", "something"),
 				),
+			},
+		},
+	})
+}
+
+func TestAccMoveFromBigQueryDatasource(t *testing.T) {
+	projectId := providertests.RandomName()
+	tagName := providertests.RandomName()
+	credName := providertests.RandomCredentialsName()
+	sourceName := randomSourceName()
+
+	resource.Test(t, resource.TestCase{
+		ProtoV6ProviderFactories: provider.TestAccProtoV6ProviderFactories,
+		Steps: []resource.TestStep{
+			{
+				Config: baseConfig(credName) + tagsConfig(tagName) + fmt.Sprintf(`
+					resource "sifflet_datasource" "test" {
+						name = "%s"
+						secret_id = sifflet_credentials.test.name
+						cron_expression = "@daily"
+						bigquery = {
+							project_id = "%s"
+							dataset_id = "dataset"
+							billing_project_id = "dataset"
+							timezone = {
+								timezone = "UTC",
+								utc_offset = "(UTC+00:00)'"
+							}
+						}
+						tags = [ sifflet_tag.tag.id ]
+					}`, sourceName, projectId),
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttrSet("sifflet_datasource.test", "id"),
+				),
+			},
+			{
+				Config: baseConfig(credName) + tagsConfig(tagName) + fmt.Sprintf(`
+					resource "sifflet_source" "test" {
+						name = "%s"
+						credentials = sifflet_credentials.test.name
+						parameters = {
+							bigquery = {
+								project_id = "%s"
+								dataset_id = "dataset"
+								billing_project_id = "dataset"
+								timezone = "UTC"
+							}
+						}
+						schedule = "@daily"
+						tags = [ {id: sifflet_tag.tag.id} ]
+					}
+
+					moved {
+						from = sifflet_datasource.test
+						to = sifflet_source.test
+					}`, sourceName, projectId),
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionNoop),
+					},
+				},
+			},
+		},
+	})
+}
+
+func TestAccMoveFromDbtDatasource(t *testing.T) {
+	projectId := providertests.RandomName()
+	tagName := providertests.RandomName()
+	credName := providertests.RandomCredentialsName()
+	sourceName := randomSourceName()
+
+	resource.Test(t, resource.TestCase{
+		ProtoV6ProviderFactories: provider.TestAccProtoV6ProviderFactories,
+		Steps: []resource.TestStep{
+			{
+				Config: baseConfig(credName) + tagsConfig(tagName) + fmt.Sprintf(`
+					resource "sifflet_datasource" "test" {
+						name = "%s"
+						secret_id = sifflet_credentials.test.name
+						cron_expression = "@daily"
+						dbt = {
+							project_name = "%s"
+							target = "prod"
+						}
+						tags = [ sifflet_tag.tag.id ]
+					}`, sourceName, projectId),
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttrSet("sifflet_datasource.test", "id"),
+				),
+			},
+			{
+				Config: baseConfig(credName) + tagsConfig(tagName) + fmt.Sprintf(`
+					resource "sifflet_source" "test" {
+						name = "%s"
+						credentials = sifflet_credentials.test.name
+						parameters = {
+							dbt = {
+								project_name = "%s"
+								target = "prod"
+							}
+						}
+						schedule = "@daily"
+						tags = [ {id: sifflet_tag.tag.id} ]
+					}
+
+					moved {
+						from = sifflet_datasource.test
+						to = sifflet_source.test
+					}`, sourceName, projectId),
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionNoop),
+					},
+				},
+			},
+		},
+	})
+}
+
+func TestAccMoveFromSnowflakeDatasource(t *testing.T) {
+	projectId := providertests.RandomName()
+	tagName := providertests.RandomName()
+	credName := providertests.RandomCredentialsName()
+	sourceName := randomSourceName()
+
+	resource.Test(t, resource.TestCase{
+		ProtoV6ProviderFactories: provider.TestAccProtoV6ProviderFactories,
+		Steps: []resource.TestStep{
+			{
+				Config: baseConfig(credName) + tagsConfig(tagName) + fmt.Sprintf(`
+					resource "sifflet_datasource" "test" {
+						name = "%s"
+						secret_id = sifflet_credentials.test.name
+						cron_expression = "@daily"
+						snowflake = {
+							account_identifier = "my-account-id"
+							database           = "%s"
+							schema             = "schema"
+							warehouse          = "warehouse"
+						}
+						tags = [ sifflet_tag.tag.id ]
+					}`, sourceName, projectId),
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttrSet("sifflet_datasource.test", "id"),
+				),
+			},
+			{
+				Config: baseConfig(credName) + tagsConfig(tagName) + fmt.Sprintf(`
+					resource "sifflet_source" "test" {
+						name = "%s"
+						credentials = sifflet_credentials.test.name
+						parameters = {
+							snowflake = {
+								account_identifier = "my-account-id"
+								database           = "%s"
+								schema             = "schema"
+								warehouse          = "warehouse"
+							}
+						}
+						schedule = "@daily"
+						tags = [ {id: sifflet_tag.tag.id} ]
+					}
+
+					moved {
+						from = sifflet_datasource.test
+						to = sifflet_source.test
+					}`, sourceName, projectId),
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionNoop),
+					},
+				},
 			},
 		},
 	})

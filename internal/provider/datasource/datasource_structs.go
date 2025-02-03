@@ -65,9 +65,9 @@ type ErrorMessage struct {
 
 func DatasourceResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
-		Description:         "Create a Sifflet data source. **Deprecated: this resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead**.",
-		MarkdownDescription: "Create a Sifflet data source. **Deprecated: this resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead**.",
-		DeprecationMessage:  "This resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead.",
+		Description:         "Create a Sifflet data source. **Deprecated: this resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead**. You can use a `move` block to migrate your current resources to `sifflet_source`.",
+		MarkdownDescription: "Create a Sifflet data source. **Deprecated: this resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead**. You can use a `move` block to migrate your current resources to `sifflet_source`.",
+		DeprecationMessage:  "This resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead. You can use a `move` block to migrate your current resources to `sifflet_source`.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Computed:    true,

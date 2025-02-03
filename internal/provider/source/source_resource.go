@@ -7,6 +7,7 @@ import (
 
 	"terraform-provider-sifflet/internal/apiclients"
 	sifflet "terraform-provider-sifflet/internal/client"
+	"terraform-provider-sifflet/internal/provider/datasource"
 	"terraform-provider-sifflet/internal/provider/source/parameters"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/resourcevalidator"
@@ -28,6 +29,7 @@ var (
 	_ resource.Resource               = &sourceResource{}
 	_ resource.ResourceWithConfigure  = &sourceResource{}
 	_ resource.ResourceWithModifyPlan = &sourceResource{}
+	_ resource.ResourceWithMoveState  = &sourceResource{}
 )
 
 func (r sourceResource) ModifyPlan(ctx context.Context, req resource.ModifyPlanRequest, resp *resource.ModifyPlanResponse) {
@@ -351,5 +353,101 @@ func (r sourceResource) ConfigValidators(ctx context.Context) []resource.ConfigV
 		resourcevalidator.ExactlyOneOf(
 			paths...,
 		),
+	}
+}
+
+func moveTimezone(sourceTz *datasource.TimeZoneDto) types.String {
+	if sourceTz == nil {
+		return types.StringNull()
+	}
+	if sourceTz.TimeZone.ValueString() != "" {
+		return sourceTz.TimeZone
+	}
+	return sourceTz.UtcOffset
+}
+
+// MoveState moves the state from the deprecated sifflet_datasource resource to the sifflet_source resource.
+// Remove this method once the sifflet_datasource resource is removed.
+func (r *sourceResource) MoveState(ctx context.Context) []resource.StateMover {
+	sourceSchema := datasource.DatasourceResourceSchema(ctx)
+	return []resource.StateMover{
+		{
+			SourceSchema: &sourceSchema,
+			StateMover: func(ctx context.Context, req resource.MoveStateRequest, resp *resource.MoveStateResponse) {
+				if req.SourceTypeName != "sifflet_datasource" {
+					return
+				}
+
+				if req.SourceSchemaVersion != 0 {
+					return
+				}
+
+				var sourceStateData datasource.CreateDatasourceDto
+				resp.Diagnostics.Append(req.SourceState.Get(ctx, &sourceStateData)...)
+				if resp.Diagnostics.HasError() {
+					return
+				}
+
+				tagsModel := make([]tagModel, len(*sourceStateData.Tags))
+				for i, tag := range *sourceStateData.Tags {
+					tagsModel[i] = tagModel{ID: tag}
+				}
+				tags, diags := types.ListValueFrom(ctx, types.ObjectType{AttrTypes: tagModel{}.AttributeTypes()}, tagsModel)
+				resp.Diagnostics.Append(diags...)
+				if diags.HasError() {
+					return
+				}
+
+				var parametersModel parameters.ParametersModel
+				var timezone types.String
+				if sourceStateData.BigQuery != nil {
+					parametersModel, diags = parameters.BigQueryParametersModel{
+						ProjectId:        sourceStateData.BigQuery.ProjectID,
+						BillingProjectId: sourceStateData.BigQuery.BillingProjectID,
+					}.AsParametersModel(ctx)
+					timezone = moveTimezone(sourceStateData.BigQuery.TimezoneData)
+				} else if sourceStateData.DBT != nil {
+					parametersModel, diags = parameters.DbtParametersModel{
+						ProjectName: sourceStateData.DBT.ProjectName,
+						Target:      sourceStateData.DBT.Target,
+					}.AsParametersModel(ctx)
+					timezone = moveTimezone(sourceStateData.DBT.TimezoneData)
+				} else if sourceStateData.Snowflake != nil {
+					parametersModel, diags = parameters.SnowflakeParametersModel{
+						AccountIdentifier: sourceStateData.Snowflake.AccountIdentifier,
+						Database:          sourceStateData.Snowflake.Database,
+						Schema:            sourceStateData.Snowflake.Schema,
+						Warehouse:         sourceStateData.Snowflake.Warehouse,
+					}.AsParametersModel(ctx)
+					timezone = moveTimezone(sourceStateData.Snowflake.TimezoneData)
+				} else {
+					resp.Diagnostics.AddError("Unsupported source type", "The sifflet_datasource type is not supported for this move operation.")
+					return
+				}
+				resp.Diagnostics.Append(diags...)
+				if diags.HasError() {
+					return
+				}
+
+				parameters, diags := types.ObjectValueFrom(ctx, parametersModel.AttributeTypes(), parametersModel)
+				resp.Diagnostics.Append(diags...)
+				if diags.HasError() {
+					return
+				}
+
+				targetStateData := sourceModel{
+					ID:   sourceStateData.ID,
+					Name: sourceStateData.Name,
+					// Description not available in the sifflet_datasource resource.
+					Credentials: sourceStateData.SecretID,
+					Schedule:    types.StringPointerValue(sourceStateData.CronExpression),
+					Timezone:    timezone,
+					Tags:        tags,
+					Parameters:  parameters,
+				}
+
+				resp.Diagnostics.Append(resp.TargetState.Set(ctx, targetStateData)...)
+			},
+		},
 	}
 }
