@@ -3,12 +3,12 @@
 page_title: "sifflet_datasource Resource - terraform-provider-sifflet"
 subcategory: ""
 description: |-
-  Create a Sifflet data source. Deprecated: this resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the sifflet_source resource instead.
+  Create a Sifflet data source. Deprecated: this resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the sifflet_source resource instead. You can use a move block to migrate your current resources to sifflet_source.
 ---
 
 # sifflet_datasource (Resource)
 
-Create a Sifflet data source. **Deprecated: this resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead**.
+Create a Sifflet data source. **Deprecated: this resource relies on unstable APIs that may change in the future, and doesn't support all Sifflet source types. Use the `sifflet_source` resource instead**. You can use a `move` block to migrate your current resources to `sifflet_source`.
 
 ## Example Usage
 
