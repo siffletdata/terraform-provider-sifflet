@@ -4,14 +4,14 @@ page_title: "sifflet_tag Resource - terraform-provider-sifflet"
 subcategory: ""
 description: |-
   Tags are used to classify data in Sifflet.
-  	This resource manages 'regular' tags. See the [Sifflet documentation](https://docs.siffletdata.com/docs/tags) for more about tag types.",
+  This resource manages 'regular' tags. See the Sifflet documentation https://docs.siffletdata.com/docs/tags for more about tag types.",
 ---
 
 # sifflet_tag (Resource)
 
 Tags are used to classify data in Sifflet.
 
-		This resource manages 'regular' tags. See the [Sifflet documentation](https://docs.siffletdata.com/docs/tags) for more about tag types.",
+This resource manages 'regular' tags. See the [Sifflet documentation](https://docs.siffletdata.com/docs/tags) for more about tag types.",
 
 ## Example Usage
 
