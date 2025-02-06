@@ -11,6 +11,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/knownvalue"
 	"github.com/hashicorp/terraform-plugin-testing/plancheck"
 	"github.com/hashicorp/terraform-plugin-testing/tfjsonpath"
+	"github.com/hashicorp/terraform-plugin-testing/tfversion"
 )
 
 func randomSourceName() string {
@@ -767,6 +768,10 @@ func TestAccMoveFromBigQueryDatasource(t *testing.T) {
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: provider.TestAccProtoV6ProviderFactories,
+		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
+			// Not possible to move between different resource types before this version
+			tfversion.SkipBelow(tfversion.Version1_8_0),
+		},
 		Steps: []resource.TestStep{
 			{
 				Config: baseConfig(credName) + tagsConfig(tagName) + fmt.Sprintf(`
@@ -828,6 +833,10 @@ func TestAccMoveFromDbtDatasource(t *testing.T) {
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: provider.TestAccProtoV6ProviderFactories,
+		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
+			// Not possible to move between different resource types before this version
+			tfversion.SkipBelow(tfversion.Version1_8_0),
+		},
 		Steps: []resource.TestStep{
 			{
 				Config: baseConfig(credName) + tagsConfig(tagName) + fmt.Sprintf(`
@@ -882,6 +891,10 @@ func TestAccMoveFromSnowflakeDatasource(t *testing.T) {
 
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: provider.TestAccProtoV6ProviderFactories,
+		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
+			// Not possible to move between different resource types before this version
+			tfversion.SkipBelow(tfversion.Version1_8_0),
+		},
 		Steps: []resource.TestStep{
 			{
 				Config: baseConfig(credName) + tagsConfig(tagName) + fmt.Sprintf(`
