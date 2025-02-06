@@ -1,6 +1,7 @@
 package apiclients
 
 import (
+	"context"
 	"net/http"
 	alphasifflet "terraform-provider-sifflet/internal/alphaclient"
 	sifflet "terraform-provider-sifflet/internal/client"
@@ -16,7 +17,7 @@ type HttpClients struct {
 	HttpClient  *http.Client
 }
 
-func MakeHttpClients(token string, host string, tfVersion string, providerVersion string) (*HttpClients, diag.Diagnostic) {
+func MakeHttpClients(ctx context.Context, token string, host string, tfVersion string, providerVersion string) (*HttpClients, diag.Diagnostic) {
 	bearerTokenProvider, bearerTokenProviderErr := securityprovider.NewSecurityProviderBearerToken(token)
 	if bearerTokenProviderErr != nil {
 		panic(bearerTokenProviderErr)
@@ -32,7 +33,7 @@ func MakeHttpClients(token string, host string, tfVersion string, providerVersio
 		)
 	}
 
-	httpClient := tfhttp.NewTerraformHttpClient(tfVersion, providerVersion)
+	httpClient := tfhttp.NewTerraformHttpClient(ctx, tfVersion, providerVersion)
 
 	client, err := sifflet.NewClientWithResponses(
 		host,

@@ -5,29 +5,28 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"net/http/httputil"
 	"os"
 	"strings"
 	"time"
 
 	"github.com/hashicorp/go-retryablehttp"
-	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
 // newTerraformHttpClient creates a new http.Client with additional configuration for use in the Terraform provider.
 // It can log HTTP requests and responses.
-func NewTerraformHttpClient(tfVersion string, providerVersion string) *http.Client {
+func NewTerraformHttpClient(ctx context.Context, tfVersion string, providerVersion string) *http.Client {
 	c := retryablehttp.NewClient()
 	rt := retryablehttp.RoundTripper{Client: c}
+	c.Logger = httpLogger{ctx: ctx}
+	c.RequestLogHook = requestLogHook
+	c.ResponseLogHook = responseLogHook
 
 	transport := contentTypeValidatorRoundTripper{
-		next: loggingRoundTripper{
-			next: headersRoundTripper{
-				headers: map[string]string{
-					"User-Agent": userAgent(tfVersion, providerVersion),
-				},
-				next: &rt,
+		next: headersRoundTripper{
+			headers: map[string]string{
+				"User-Agent": userAgent(tfVersion, providerVersion),
 			},
+			next: &rt,
 		},
 		contentTypeIncludes: "json",
 	}
@@ -43,63 +42,6 @@ func userAgent(tfVersion string, providerVersion string) string {
 		header = fmt.Sprintf("%s %s", header, u)
 	}
 	return header
-}
-
-// loggingRoundTripper is an http.RoundTripper that logs requests and responses using the Terraform plugin framework.
-type loggingRoundTripper struct {
-	next http.RoundTripper
-}
-
-func (t loggingRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
-	ctx := req.Context()
-	ctx = tflog.SetField(ctx, "http.request.url", req.URL.String())
-	ctx = tflog.SetField(ctx, "http.request.method", req.Method)
-
-	if err := logRequest(ctx, req); err != nil {
-		return nil, err
-	}
-
-	resp, err := t.next.RoundTrip(req)
-
-	// Attempt to log the status even if err is not nil
-	if resp != nil {
-		ctx = tflog.SetField(ctx, "http.response.status", resp.Status)
-	} else {
-		ctx = tflog.SetField(ctx, "http.response.status", "nil (no valid response)")
-	}
-	if err != nil {
-		return resp, err
-	}
-
-	if err := logResponse(ctx, resp); err != nil {
-		return resp, err
-	}
-
-	return resp, nil
-}
-
-func logResponse(ctx context.Context, resp *http.Response) error {
-	tflog.Debug(ctx, "HTTP response")
-
-	respDump, err := httputil.DumpResponse(resp, true)
-	if err != nil {
-		tflog.Error(ctx, "Failed to dump response for logging", map[string]interface{}{"error": err})
-		return err
-	}
-	respLog := fmt.Sprintf("%q", respDump)
-	tflog.Trace(ctx, "HTTP response details", map[string]interface{}{"http.response.dump": respLog})
-	return nil
-}
-
-func logRequest(ctx context.Context, req *http.Request) error {
-	reqDump, err := httputil.DumpRequest(req, true)
-	if err != nil {
-		tflog.Error(ctx, "Failed to dump request for logging", map[string]interface{}{"error": err})
-		return err
-	}
-	reqLog := fmt.Sprintf("%q", reqDump)
-	tflog.Trace(ctx, "HTTP request details", map[string]interface{}{"http.request.dump": reqLog})
-	return nil
 }
 
 // contentTypeValidatorRoundTripper is an http.RoundTripper that ensures that the Content-Type header of the response contains a given string.
