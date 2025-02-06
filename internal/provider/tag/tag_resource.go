@@ -47,7 +47,7 @@ func tagResourceSchema() schema.Schema {
 		Description: "Manage a Sifflet tag.",
 		MarkdownDescription: `Tags are used to classify data in Sifflet.
 
-		This resource manages 'regular' tags. See the [Sifflet documentation](https://docs.siffletdata.com/docs/tags) for more about tag types.",
+This resource manages 'regular' tags. See the [Sifflet documentation](https://docs.siffletdata.com/docs/tags) for more about tag types.",
 		`,
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
