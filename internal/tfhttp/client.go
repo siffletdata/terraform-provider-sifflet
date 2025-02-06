@@ -61,18 +61,21 @@ func (t loggingRoundTripper) RoundTrip(req *http.Request) (*http.Response, error
 
 	resp, err := t.next.RoundTrip(req)
 
-	// Log the status even if err is not nil
+	// Attempt to log the status even if err is not nil
 	if resp != nil {
 		ctx = tflog.SetField(ctx, "http.response.status", resp.Status)
 	} else {
 		ctx = tflog.SetField(ctx, "http.response.status", "nil (no valid response)")
 	}
-
-	if err := logResponse(ctx, resp); err != nil {
-		return nil, err
+	if err != nil {
+		return resp, err
 	}
 
-	return resp, err
+	if err := logResponse(ctx, resp); err != nil {
+		return resp, err
+	}
+
+	return resp, nil
 }
 
 func logResponse(ctx context.Context, resp *http.Response) error {
