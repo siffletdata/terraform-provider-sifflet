@@ -10,19 +10,23 @@ import (
 	"strings"
 	"time"
 
+	"github.com/hashicorp/go-retryablehttp"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 )
 
 // newTerraformHttpClient creates a new http.Client with additional configuration for use in the Terraform provider.
 // It can log HTTP requests and responses.
 func NewTerraformHttpClient(tfVersion string, providerVersion string) *http.Client {
+	c := retryablehttp.NewClient()
+	rt := retryablehttp.RoundTripper{Client: c}
+
 	transport := contentTypeValidatorRoundTripper{
 		next: loggingRoundTripper{
 			next: headersRoundTripper{
-				next: http.DefaultTransport,
 				headers: map[string]string{
 					"User-Agent": userAgent(tfVersion, providerVersion),
 				},
+				next: &rt,
 			},
 		},
 		contentTypeIncludes: "json",
