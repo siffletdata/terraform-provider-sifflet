@@ -130,7 +130,7 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 	if host == "" {
 		resp.Diagnostics.AddAttributeError(
 			path.Root("host"),
-			"Missing Sifflet API Host",
+			"Missing Sifflet API host",
 			"The provider cannot create the Sifflet API client as there is a missing or empty value for the Sifflet API host. "+
 				"Set the host value in the configuration or use the SIFFLET_HOST environment variable. "+
 				"If either is already set, ensure the value is not empty.",
@@ -140,7 +140,7 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 	if token == "" {
 		resp.Diagnostics.AddAttributeError(
 			path.Root("token"),
-			"Missing Sifflet API Username",
+			"Missing Sifflet API token",
 			"The provider cannot create the Sifflet API client as there is a missing or empty value for the Sifflet API token. "+
 				"Set the token value in the provider configuration or use the SIFFLET_TOKEN environment variable. "+
 				"If either is already set, ensure the value is not empty.",

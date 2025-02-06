@@ -135,9 +135,6 @@ func (m permissionModel) ToDto() (sifflet.PublicUserPermissionAssignmentDto, dia
 	if err != nil {
 		return sifflet.PublicUserPermissionAssignmentDto{}, tfutils.ErrToDiags("Could not parse domain ID as UUID", err)
 	}
-	if err != nil {
-		return sifflet.PublicUserPermissionAssignmentDto{}, tfutils.ErrToDiags("Invalid domain role", err)
-	}
 	role := sifflet.PublicUserPermissionAssignmentDtoDomainRole(m.DomainRole.ValueString())
 	return sifflet.PublicUserPermissionAssignmentDto{
 		DomainId:   uid,
