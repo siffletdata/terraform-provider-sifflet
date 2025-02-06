@@ -153,7 +153,7 @@ func (p *siffletProvider) Configure(ctx context.Context, req provider.ConfigureR
 
 	tfVersion := req.TerraformVersion
 	providerVersion := p.version
-	httpClients, diag := apiclients.MakeHttpClients(token, host, tfVersion, providerVersion)
+	httpClients, diag := apiclients.MakeHttpClients(ctx, token, host, tfVersion, providerVersion)
 	if diag != nil {
 		resp.Diagnostics.Append(diag)
 		return
