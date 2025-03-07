@@ -25,7 +25,7 @@ func RandomCredentialsName() string {
 }
 
 func RandomEmail() string {
-	return RandomName() + "@tfacceptancetests.com"
+	return "alerts-sandbox+" + RandomName() + "@siffletdata.com"
 }
 
 func ProviderConfig() string {
