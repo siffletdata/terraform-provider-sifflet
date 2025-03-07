@@ -32,10 +32,10 @@ const (
 
 // Defines values for AlertingHookDtoType.
 const (
-	MAIL    AlertingHookDtoType = "MAIL"
-	MSTEAMS AlertingHookDtoType = "MS_TEAMS"
-	SLACK   AlertingHookDtoType = "SLACK"
-	WEBHOOK AlertingHookDtoType = "WEBHOOK"
+	AlertingHookDtoTypeMAIL    AlertingHookDtoType = "MAIL"
+	AlertingHookDtoTypeMSTEAMS AlertingHookDtoType = "MS_TEAMS"
+	AlertingHookDtoTypeSLACK   AlertingHookDtoType = "SLACK"
+	AlertingHookDtoTypeWEBHOOK AlertingHookDtoType = "WEBHOOK"
 )
 
 // Defines values for ChangeDtoType.
@@ -51,10 +51,10 @@ const (
 
 // Defines values for Criticality.
 const (
-	CRITICAL Criticality = "CRITICAL"
-	HIGH     Criticality = "HIGH"
-	LOW      Criticality = "LOW"
-	MODERATE Criticality = "MODERATE"
+	CriticalityCRITICAL Criticality = "CRITICAL"
+	CriticalityHIGH     Criticality = "HIGH"
+	CriticalityLOW      Criticality = "LOW"
+	CriticalityMODERATE Criticality = "MODERATE"
 )
 
 // Defines values for DatasourceProviderDtoType.
@@ -75,7 +75,8 @@ const (
 
 // Defines values for GetCollaborationToolItemDtoType.
 const (
-	JIRA GetCollaborationToolItemDtoType = "JIRA"
+	GetCollaborationToolItemDtoTypeJIRA       GetCollaborationToolItemDtoType = "JIRA"
+	GetCollaborationToolItemDtoTypeSERVICENOW GetCollaborationToolItemDtoType = "SERVICENOW"
 )
 
 // Defines values for GitConnectionAuthType.
@@ -87,6 +88,7 @@ const (
 
 // Defines values for IncidentLightDtoQualification.
 const (
+	AUTOMATIC      IncidentLightDtoQualification = "AUTOMATIC"
 	DUPLICATE      IncidentLightDtoQualification = "DUPLICATE"
 	FALSEPOSITIVE  IncidentLightDtoQualification = "FALSE_POSITIVE"
 	FIXED          IncidentLightDtoQualification = "FIXED"
@@ -148,6 +150,29 @@ const (
 	PublicAirflowParametersDtoTypeSYNAPSE     PublicAirflowParametersDtoType = "SYNAPSE"
 	PublicAirflowParametersDtoTypeTABLEAU     PublicAirflowParametersDtoType = "TABLEAU"
 	PublicAirflowParametersDtoTypeUNKNOWN     PublicAirflowParametersDtoType = "_UNKNOWN_"
+)
+
+// Defines values for PublicAssetFilterDtoHealthStatus.
+const (
+	PublicAssetFilterDtoHealthStatusHIGHRISKINCIDENTS PublicAssetFilterDtoHealthStatus = "HIGH_RISK_INCIDENTS"
+	PublicAssetFilterDtoHealthStatusNOINCIDENTS       PublicAssetFilterDtoHealthStatus = "NO_INCIDENTS"
+	PublicAssetFilterDtoHealthStatusNOTMONITORED      PublicAssetFilterDtoHealthStatus = "NOT_MONITORED"
+	PublicAssetFilterDtoHealthStatusUNSUPPORTED       PublicAssetFilterDtoHealthStatus = "UNSUPPORTED"
+	PublicAssetFilterDtoHealthStatusURGENTINCIDENTS   PublicAssetFilterDtoHealthStatus = "URGENT_INCIDENTS"
+)
+
+// Defines values for PublicAssetFilterDtoIngestionMethod.
+const (
+	PublicAssetFilterDtoIngestionMethodDECLARATIVE    PublicAssetFilterDtoIngestionMethod = "DECLARATIVE"
+	PublicAssetFilterDtoIngestionMethodSIFFLETSOURCED PublicAssetFilterDtoIngestionMethod = "SIFFLET_SOURCED"
+)
+
+// Defines values for PublicAssetFilterDtoLevelOfUsage.
+const (
+	PublicAssetFilterDtoLevelOfUsageHIGH        PublicAssetFilterDtoLevelOfUsage = "HIGH"
+	PublicAssetFilterDtoLevelOfUsageLOW         PublicAssetFilterDtoLevelOfUsage = "LOW"
+	PublicAssetFilterDtoLevelOfUsageMEDIUM      PublicAssetFilterDtoLevelOfUsage = "MEDIUM"
+	PublicAssetFilterDtoLevelOfUsageUNSUPPORTED PublicAssetFilterDtoLevelOfUsage = "UNSUPPORTED"
 )
 
 // Defines values for PublicAthenaParametersDtoType.
@@ -292,6 +317,464 @@ const (
 	Pipeline  PublicDeclarativeAssetDtoType = "Pipeline"
 )
 
+// Defines values for PublicDescriptionDtoOrigin.
+const (
+	PublicDescriptionDtoOriginACCELDATA                 PublicDescriptionDtoOrigin = "ACCELDATA"
+	PublicDescriptionDtoOriginACRYLDATA                 PublicDescriptionDtoOrigin = "ACRYL_DATA"
+	PublicDescriptionDtoOriginACTIANVECTOR              PublicDescriptionDtoOrigin = "ACTIAN_VECTOR"
+	PublicDescriptionDtoOriginACTIVECAMPAIGN            PublicDescriptionDtoOrigin = "ACTIVE_CAMPAIGN"
+	PublicDescriptionDtoOriginADA                       PublicDescriptionDtoOrigin = "ADA"
+	PublicDescriptionDtoOriginADJUST                    PublicDescriptionDtoOrigin = "ADJUST"
+	PublicDescriptionDtoOriginADOBE                     PublicDescriptionDtoOrigin = "ADOBE"
+	PublicDescriptionDtoOriginADPWFN                    PublicDescriptionDtoOrigin = "ADP_WFN"
+	PublicDescriptionDtoOriginADROLL                    PublicDescriptionDtoOrigin = "ADROLL"
+	PublicDescriptionDtoOriginAFFINITY                  PublicDescriptionDtoOrigin = "AFFINITY"
+	PublicDescriptionDtoOriginAIRBYTE                   PublicDescriptionDtoOrigin = "AIRBYTE"
+	PublicDescriptionDtoOriginAIRCALL                   PublicDescriptionDtoOrigin = "AIRCALL"
+	PublicDescriptionDtoOriginAIRFLOW                   PublicDescriptionDtoOrigin = "AIRFLOW"
+	PublicDescriptionDtoOriginAIRTABLE                  PublicDescriptionDtoOrigin = "AIRTABLE"
+	PublicDescriptionDtoOriginALATION                   PublicDescriptionDtoOrigin = "ALATION"
+	PublicDescriptionDtoOriginALCHEMER                  PublicDescriptionDtoOrigin = "ALCHEMER"
+	PublicDescriptionDtoOriginALVINAI                   PublicDescriptionDtoOrigin = "ALVIN_AI"
+	PublicDescriptionDtoOriginAMAZON                    PublicDescriptionDtoOrigin = "AMAZON"
+	PublicDescriptionDtoOriginAMAZONCLOUDFRONT          PublicDescriptionDtoOrigin = "AMAZON_CLOUDFRONT"
+	PublicDescriptionDtoOriginAMAZONDOCUMENTDB          PublicDescriptionDtoOrigin = "AMAZON_DOCUMENTDB"
+	PublicDescriptionDtoOriginAMAZONDYNAMODB            PublicDescriptionDtoOrigin = "AMAZON_DYNAMODB"
+	PublicDescriptionDtoOriginAMAZONFIREHOSE            PublicDescriptionDtoOrigin = "AMAZON_FIREHOSE"
+	PublicDescriptionDtoOriginAMAZONSAGEMAKER           PublicDescriptionDtoOrigin = "AMAZON_SAGEMAKER"
+	PublicDescriptionDtoOriginAMAZONSELLINGPARTNER      PublicDescriptionDtoOrigin = "AMAZON_SELLING_PARTNER"
+	PublicDescriptionDtoOriginAMPLITUDE                 PublicDescriptionDtoOrigin = "AMPLITUDE"
+	PublicDescriptionDtoOriginANAPLAN                   PublicDescriptionDtoOrigin = "ANAPLAN"
+	PublicDescriptionDtoOriginANOMALO                   PublicDescriptionDtoOrigin = "ANOMALO"
+	PublicDescriptionDtoOriginAPACHEKAFKA               PublicDescriptionDtoOrigin = "APACHE_KAFKA"
+	PublicDescriptionDtoOriginAPACHESPARK               PublicDescriptionDtoOrigin = "APACHE_SPARK"
+	PublicDescriptionDtoOriginAPPCUES                   PublicDescriptionDtoOrigin = "APPCUES"
+	PublicDescriptionDtoOriginAPPFIGURES                PublicDescriptionDtoOrigin = "APPFIGURES"
+	PublicDescriptionDtoOriginAPPLE                     PublicDescriptionDtoOrigin = "APPLE"
+	PublicDescriptionDtoOriginAPPLEAPPSTORE             PublicDescriptionDtoOrigin = "APPLE_APP_STORE"
+	PublicDescriptionDtoOriginAPPSFLYER                 PublicDescriptionDtoOrigin = "APPSFLYER"
+	PublicDescriptionDtoOriginASANA                     PublicDescriptionDtoOrigin = "ASANA"
+	PublicDescriptionDtoOriginASSEMBLED                 PublicDescriptionDtoOrigin = "ASSEMBLED"
+	PublicDescriptionDtoOriginATHENA                    PublicDescriptionDtoOrigin = "ATHENA"
+	PublicDescriptionDtoOriginATLAN                     PublicDescriptionDtoOrigin = "ATLAN"
+	PublicDescriptionDtoOriginATLASSIANCONFLUENCE       PublicDescriptionDtoOrigin = "ATLASSIAN_CONFLUENCE"
+	PublicDescriptionDtoOriginATLASSIANJIRA             PublicDescriptionDtoOrigin = "ATLASSIAN_JIRA"
+	PublicDescriptionDtoOriginATLASSIANOPSGENIE         PublicDescriptionDtoOrigin = "ATLASSIAN_OPSGENIE"
+	PublicDescriptionDtoOriginAUTH0                     PublicDescriptionDtoOrigin = "AUTH0"
+	PublicDescriptionDtoOriginAUTODESKBIM360            PublicDescriptionDtoOrigin = "AUTODESK_BIM_360"
+	PublicDescriptionDtoOriginAWIN                      PublicDescriptionDtoOrigin = "AWIN"
+	PublicDescriptionDtoOriginAWSCLOUDTRAIL             PublicDescriptionDtoOrigin = "AWS_CLOUDTRAIL"
+	PublicDescriptionDtoOriginAWSCOSTEXPLORER           PublicDescriptionDtoOrigin = "AWS_COST_EXPLORER"
+	PublicDescriptionDtoOriginAWSINVENTORY              PublicDescriptionDtoOrigin = "AWS_INVENTORY"
+	PublicDescriptionDtoOriginAWSLAMBDA                 PublicDescriptionDtoOrigin = "AWS_LAMBDA"
+	PublicDescriptionDtoOriginAZURE                     PublicDescriptionDtoOrigin = "AZURE"
+	PublicDescriptionDtoOriginBALLOTREADY               PublicDescriptionDtoOrigin = "BALLOT_READY"
+	PublicDescriptionDtoOriginBAMBOOHR                  PublicDescriptionDtoOrigin = "BAMBOOHR"
+	PublicDescriptionDtoOriginBIGCOMMERCE               PublicDescriptionDtoOrigin = "BIGCOMMERCE"
+	PublicDescriptionDtoOriginBIGEYE                    PublicDescriptionDtoOrigin = "BIGEYE"
+	PublicDescriptionDtoOriginBIGQUERY                  PublicDescriptionDtoOrigin = "BIGQUERY"
+	PublicDescriptionDtoOriginBILLINGPLATFORM           PublicDescriptionDtoOrigin = "BILLINGPLATFORM"
+	PublicDescriptionDtoOriginBIRDEYE                   PublicDescriptionDtoOrigin = "BIRDEYE"
+	PublicDescriptionDtoOriginBLACKBOARD                PublicDescriptionDtoOrigin = "BLACKBOARD"
+	PublicDescriptionDtoOriginBOX                       PublicDescriptionDtoOrigin = "BOX"
+	PublicDescriptionDtoOriginBRAINTREE                 PublicDescriptionDtoOrigin = "BRAINTREE"
+	PublicDescriptionDtoOriginBRAZE                     PublicDescriptionDtoOrigin = "BRAZE"
+	PublicDescriptionDtoOriginBREVO                     PublicDescriptionDtoOrigin = "BREVO"
+	PublicDescriptionDtoOriginBREX                      PublicDescriptionDtoOrigin = "BREX"
+	PublicDescriptionDtoOriginBUILDKITE                 PublicDescriptionDtoOrigin = "BUILDKITE"
+	PublicDescriptionDtoOriginBUZZSPROUT                PublicDescriptionDtoOrigin = "BUZZSPROUT"
+	PublicDescriptionDtoOriginCALENDLY                  PublicDescriptionDtoOrigin = "CALENDLY"
+	PublicDescriptionDtoOriginCAMPAIGNMONITOR           PublicDescriptionDtoOrigin = "CAMPAIGN_MONITOR"
+	PublicDescriptionDtoOriginCANNY                     PublicDescriptionDtoOrigin = "CANNY"
+	PublicDescriptionDtoOriginCANVAS                    PublicDescriptionDtoOrigin = "CANVAS"
+	PublicDescriptionDtoOriginCAPTERRA                  PublicDescriptionDtoOrigin = "CAPTERRA"
+	PublicDescriptionDtoOriginCASTORDOC                 PublicDescriptionDtoOrigin = "CASTOR_DOC"
+	PublicDescriptionDtoOriginCENSUS                    PublicDescriptionDtoOrigin = "CENSUS"
+	PublicDescriptionDtoOriginCERTINIA                  PublicDescriptionDtoOrigin = "CERTINIA"
+	PublicDescriptionDtoOriginCHAMELEON                 PublicDescriptionDtoOrigin = "CHAMELEON"
+	PublicDescriptionDtoOriginCHANNELADVISOR            PublicDescriptionDtoOrigin = "CHANNEL_ADVISOR"
+	PublicDescriptionDtoOriginCHARGEBEE                 PublicDescriptionDtoOrigin = "CHARGEBEE"
+	PublicDescriptionDtoOriginCHARGEDESK                PublicDescriptionDtoOrigin = "CHARGEDESK"
+	PublicDescriptionDtoOriginCHARTMOGUL                PublicDescriptionDtoOrigin = "CHARTMOGUL"
+	PublicDescriptionDtoOriginCHORUSAI                  PublicDescriptionDtoOrigin = "CHORUS_AI"
+	PublicDescriptionDtoOriginCHURNKEY                  PublicDescriptionDtoOrigin = "CHURNKEY"
+	PublicDescriptionDtoOriginCHURNZERO                 PublicDescriptionDtoOrigin = "CHURNZERO"
+	PublicDescriptionDtoOriginCIMIS                     PublicDescriptionDtoOrigin = "CIMIS"
+	PublicDescriptionDtoOriginCIN7                      PublicDescriptionDtoOrigin = "CIN7"
+	PublicDescriptionDtoOriginCIRCLECI                  PublicDescriptionDtoOrigin = "CIRCLE_CI"
+	PublicDescriptionDtoOriginCLARI                     PublicDescriptionDtoOrigin = "CLARI"
+	PublicDescriptionDtoOriginCLICKUP                   PublicDescriptionDtoOrigin = "CLICKUP"
+	PublicDescriptionDtoOriginCLIFFAI                   PublicDescriptionDtoOrigin = "CLIFF_AI"
+	PublicDescriptionDtoOriginCLOSE                     PublicDescriptionDtoOrigin = "CLOSE"
+	PublicDescriptionDtoOriginCOLLIBRA                  PublicDescriptionDtoOrigin = "COLLIBRA"
+	PublicDescriptionDtoOriginCOMMERCETOOLS             PublicDescriptionDtoOrigin = "COMMERCETOOLS"
+	PublicDescriptionDtoOriginCOMPOSER                  PublicDescriptionDtoOrigin = "COMPOSER"
+	PublicDescriptionDtoOriginCONFLUENTCLOUD            PublicDescriptionDtoOrigin = "CONFLUENT_CLOUD"
+	PublicDescriptionDtoOriginCONTRASTSECURITY          PublicDescriptionDtoOrigin = "CONTRAST_SECURITY"
+	PublicDescriptionDtoOriginCOUPA                     PublicDescriptionDtoOrigin = "COUPA"
+	PublicDescriptionDtoOriginCRITEO                    PublicDescriptionDtoOrigin = "CRITEO"
+	PublicDescriptionDtoOriginCROSSBEAM                 PublicDescriptionDtoOrigin = "CROSSBEAM"
+	PublicDescriptionDtoOriginCRUNCHBASE                PublicDescriptionDtoOrigin = "CRUNCHBASE"
+	PublicDescriptionDtoOriginCUSTOMERIO                PublicDescriptionDtoOrigin = "CUSTOMER_IO"
+	PublicDescriptionDtoOriginD2LBRIGHTSPACE            PublicDescriptionDtoOrigin = "D2L_BRIGHTSPACE"
+	PublicDescriptionDtoOriginDAGSTER                   PublicDescriptionDtoOrigin = "DAGSTER"
+	PublicDescriptionDtoOriginDATABAND                  PublicDescriptionDtoOrigin = "DATABAND"
+	PublicDescriptionDtoOriginDATABRICKS                PublicDescriptionDtoOrigin = "DATABRICKS"
+	PublicDescriptionDtoOriginDATADOG                   PublicDescriptionDtoOrigin = "DATADOG"
+	PublicDescriptionDtoOriginDATAEDO                   PublicDescriptionDtoOrigin = "DATAEDO"
+	PublicDescriptionDtoOriginDATAFOLD                  PublicDescriptionDtoOrigin = "DATAFOLD"
+	PublicDescriptionDtoOriginDATAGALAXY                PublicDescriptionDtoOrigin = "DATAGALAXY"
+	PublicDescriptionDtoOriginDATAHUB                   PublicDescriptionDtoOrigin = "DATAHUB"
+	PublicDescriptionDtoOriginDATAIKU                   PublicDescriptionDtoOrigin = "DATAIKU"
+	PublicDescriptionDtoOriginDATAWORLD                 PublicDescriptionDtoOrigin = "DATA_WORLD"
+	PublicDescriptionDtoOriginDB2                       PublicDescriptionDtoOrigin = "DB2"
+	PublicDescriptionDtoOriginDBT                       PublicDescriptionDtoOrigin = "DBT"
+	PublicDescriptionDtoOriginDBTCLOUD                  PublicDescriptionDtoOrigin = "DBTCLOUD"
+	PublicDescriptionDtoOriginDCLLOGISTICS              PublicDescriptionDtoOrigin = "DCL_LOGISTICS"
+	PublicDescriptionDtoOriginDEAR                      PublicDescriptionDtoOrigin = "DEAR"
+	PublicDescriptionDtoOriginDECUBE                    PublicDescriptionDtoOrigin = "DECUBE"
+	PublicDescriptionDtoOriginDELIGHTED                 PublicDescriptionDtoOrigin = "DELIGHTED"
+	PublicDescriptionDtoOriginDEPUTY                    PublicDescriptionDtoOrigin = "DEPUTY"
+	PublicDescriptionDtoOriginDESTINI                   PublicDescriptionDtoOrigin = "DESTINI"
+	PublicDescriptionDtoOriginDIXA                      PublicDescriptionDtoOrigin = "DIXA"
+	PublicDescriptionDtoOriginDOCEBO                    PublicDescriptionDtoOrigin = "DOCEBO"
+	PublicDescriptionDtoOriginDRATA                     PublicDescriptionDtoOrigin = "DRATA"
+	PublicDescriptionDtoOriginDRIFT                     PublicDescriptionDtoOrigin = "DRIFT"
+	PublicDescriptionDtoOriginDRIP                      PublicDescriptionDtoOrigin = "DRIP"
+	PublicDescriptionDtoOriginDROPBOX                   PublicDescriptionDtoOrigin = "DROPBOX"
+	PublicDescriptionDtoOriginDUOPLANE                  PublicDescriptionDtoOrigin = "DUOPLANE"
+	PublicDescriptionDtoOriginEASYPOST                  PublicDescriptionDtoOrigin = "EASY_POST"
+	PublicDescriptionDtoOriginECONOMIC                  PublicDescriptionDtoOrigin = "E_CONOMIC"
+	PublicDescriptionDtoOriginELASTICSEARCH             PublicDescriptionDtoOrigin = "ELASTICSEARCH"
+	PublicDescriptionDtoOriginELEMENTARY                PublicDescriptionDtoOrigin = "ELEMENTARY"
+	PublicDescriptionDtoOriginELLUCIAN                  PublicDescriptionDtoOrigin = "ELLUCIAN"
+	PublicDescriptionDtoOriginELOQUA                    PublicDescriptionDtoOrigin = "ELOQUA"
+	PublicDescriptionDtoOriginEMAIL                     PublicDescriptionDtoOrigin = "EMAIL"
+	PublicDescriptionDtoOriginEMPLOYMENTHERO            PublicDescriptionDtoOrigin = "EMPLOYMENT_HERO"
+	PublicDescriptionDtoOriginEPICORPROPHET21           PublicDescriptionDtoOrigin = "EPICOR_PROPHET_21"
+	PublicDescriptionDtoOriginEVENTBRITE                PublicDescriptionDtoOrigin = "EVENTBRITE"
+	PublicDescriptionDtoOriginEVERHOUR                  PublicDescriptionDtoOrigin = "EVERHOUR"
+	PublicDescriptionDtoOriginEXCEL                     PublicDescriptionDtoOrigin = "EXCEL"
+	PublicDescriptionDtoOriginEXPENSIFY                 PublicDescriptionDtoOrigin = "EXPENSIFY"
+	PublicDescriptionDtoOriginFACEBOOK                  PublicDescriptionDtoOrigin = "FACEBOOK"
+	PublicDescriptionDtoOriginFIFTEENFIVE               PublicDescriptionDtoOrigin = "FIFTEENFIVE"
+	PublicDescriptionDtoOriginFIGMA                     PublicDescriptionDtoOrigin = "FIGMA"
+	PublicDescriptionDtoOriginFIREBASE                  PublicDescriptionDtoOrigin = "FIREBASE"
+	PublicDescriptionDtoOriginFIREBOLT                  PublicDescriptionDtoOrigin = "FIREBOLT"
+	PublicDescriptionDtoOriginFIVETRAN                  PublicDescriptionDtoOrigin = "FIVETRAN"
+	PublicDescriptionDtoOriginFLEXPORT                  PublicDescriptionDtoOrigin = "FLEXPORT"
+	PublicDescriptionDtoOriginFORJ                      PublicDescriptionDtoOrigin = "FORJ"
+	PublicDescriptionDtoOriginFOUNTAIN                  PublicDescriptionDtoOrigin = "FOUNTAIN"
+	PublicDescriptionDtoOriginFREIGHTVIEW               PublicDescriptionDtoOrigin = "FREIGHTVIEW"
+	PublicDescriptionDtoOriginFRESHBOOKS                PublicDescriptionDtoOrigin = "FRESHBOOKS"
+	PublicDescriptionDtoOriginFRESHCHAT                 PublicDescriptionDtoOrigin = "FRESHCHAT"
+	PublicDescriptionDtoOriginFRESHDESK                 PublicDescriptionDtoOrigin = "FRESHDESK"
+	PublicDescriptionDtoOriginFRESHDESKCONTACTCENTER    PublicDescriptionDtoOrigin = "FRESHDESK_CONTACT_CENTER"
+	PublicDescriptionDtoOriginFRESHSERVICE              PublicDescriptionDtoOrigin = "FRESHSERVICE"
+	PublicDescriptionDtoOriginFRESHSUCCESS              PublicDescriptionDtoOrigin = "FRESHSUCCESS"
+	PublicDescriptionDtoOriginFRESHTEAM                 PublicDescriptionDtoOrigin = "FRESHTEAM"
+	PublicDescriptionDtoOriginFRIENDBUY                 PublicDescriptionDtoOrigin = "FRIENDBUY"
+	PublicDescriptionDtoOriginFRONT                     PublicDescriptionDtoOrigin = "FRONT"
+	PublicDescriptionDtoOriginFTP                       PublicDescriptionDtoOrigin = "FTP"
+	PublicDescriptionDtoOriginFULLSTORY                 PublicDescriptionDtoOrigin = "FULLSTORY"
+	PublicDescriptionDtoOriginG2                        PublicDescriptionDtoOrigin = "G2"
+	PublicDescriptionDtoOriginGAINSIGHT                 PublicDescriptionDtoOrigin = "GAINSIGHT"
+	PublicDescriptionDtoOriginGEM                       PublicDescriptionDtoOrigin = "GEM"
+	PublicDescriptionDtoOriginGIT                       PublicDescriptionDtoOrigin = "GIT"
+	PublicDescriptionDtoOriginGITHUB                    PublicDescriptionDtoOrigin = "GITHUB"
+	PublicDescriptionDtoOriginGITLAB                    PublicDescriptionDtoOrigin = "GITLAB"
+	PublicDescriptionDtoOriginGLADLY                    PublicDescriptionDtoOrigin = "GLADLY"
+	PublicDescriptionDtoOriginGOCARDLESS                PublicDescriptionDtoOrigin = "GOCARDLESS"
+	PublicDescriptionDtoOriginGONG                      PublicDescriptionDtoOrigin = "GONG"
+	PublicDescriptionDtoOriginGOOGLE                    PublicDescriptionDtoOrigin = "GOOGLE"
+	PublicDescriptionDtoOriginGOOGLEADMANAGER           PublicDescriptionDtoOrigin = "GOOGLE_AD_MANAGER"
+	PublicDescriptionDtoOriginGOOGLEADS                 PublicDescriptionDtoOrigin = "GOOGLE_ADS"
+	PublicDescriptionDtoOriginGOOGLEANALYTICS           PublicDescriptionDtoOrigin = "GOOGLE_ANALYTICS"
+	PublicDescriptionDtoOriginGOOGLECALENDAR            PublicDescriptionDtoOrigin = "GOOGLE_CALENDAR"
+	PublicDescriptionDtoOriginGOOGLECAMPAIGNMANAGER     PublicDescriptionDtoOrigin = "GOOGLE_CAMPAIGN_MANAGER"
+	PublicDescriptionDtoOriginGOOGLECHROME              PublicDescriptionDtoOrigin = "GOOGLE_CHROME"
+	PublicDescriptionDtoOriginGOOGLECLOUD               PublicDescriptionDtoOrigin = "GOOGLE_CLOUD"
+	PublicDescriptionDtoOriginGOOGLECLOUDSTORAGE        PublicDescriptionDtoOrigin = "GOOGLE_CLOUD_STORAGE"
+	PublicDescriptionDtoOriginGOOGLEDISPLAY             PublicDescriptionDtoOrigin = "GOOGLE_DISPLAY"
+	PublicDescriptionDtoOriginGOOGLEDRIVE               PublicDescriptionDtoOrigin = "GOOGLE_DRIVE"
+	PublicDescriptionDtoOriginGOOGLEPLAY                PublicDescriptionDtoOrigin = "GOOGLE_PLAY"
+	PublicDescriptionDtoOriginGOOGLESEARCHADS360        PublicDescriptionDtoOrigin = "GOOGLE_SEARCH_ADS_360"
+	PublicDescriptionDtoOriginGOOGLESEARCHCONSOLE       PublicDescriptionDtoOrigin = "GOOGLE_SEARCH_CONSOLE"
+	PublicDescriptionDtoOriginGOOGLESHEETS              PublicDescriptionDtoOrigin = "GOOGLE_SHEETS"
+	PublicDescriptionDtoOriginGOOGLETASKS               PublicDescriptionDtoOrigin = "GOOGLE_TASKS"
+	PublicDescriptionDtoOriginGORGIAS                   PublicDescriptionDtoOrigin = "GORGIAS"
+	PublicDescriptionDtoOriginGREENHOUSE                PublicDescriptionDtoOrigin = "GREENHOUSE"
+	PublicDescriptionDtoOriginGREENPLUM                 PublicDescriptionDtoOrigin = "GREENPLUM"
+	PublicDescriptionDtoOriginGREENPOWERMONITOR         PublicDescriptionDtoOrigin = "GREEN_POWER_MONITOR"
+	PublicDescriptionDtoOriginGREPSR                    PublicDescriptionDtoOrigin = "GREPSR"
+	PublicDescriptionDtoOriginGRIN                      PublicDescriptionDtoOrigin = "GRIN"
+	PublicDescriptionDtoOriginGURU                      PublicDescriptionDtoOrigin = "GURU"
+	PublicDescriptionDtoOriginH2                        PublicDescriptionDtoOrigin = "H2"
+	PublicDescriptionDtoOriginHARVEST                   PublicDescriptionDtoOrigin = "HARVEST"
+	PublicDescriptionDtoOriginHDFS                      PublicDescriptionDtoOrigin = "HDFS"
+	PublicDescriptionDtoOriginHEAP                      PublicDescriptionDtoOrigin = "HEAP"
+	PublicDescriptionDtoOriginHEIGHT                    PublicDescriptionDtoOrigin = "HEIGHT"
+	PublicDescriptionDtoOriginHELPSCOUT                 PublicDescriptionDtoOrigin = "HELP_SCOUT"
+	PublicDescriptionDtoOriginHELPSHIFT                 PublicDescriptionDtoOrigin = "HELPSHIFT"
+	PublicDescriptionDtoOriginHEROKUKAFKA               PublicDescriptionDtoOrigin = "HEROKU_KAFKA"
+	PublicDescriptionDtoOriginHEX                       PublicDescriptionDtoOrigin = "HEX"
+	PublicDescriptionDtoOriginHIBOB                     PublicDescriptionDtoOrigin = "HIBOB"
+	PublicDescriptionDtoOriginHIGHTOUCH                 PublicDescriptionDtoOrigin = "HIGH_TOUCH"
+	PublicDescriptionDtoOriginHOPIN                     PublicDescriptionDtoOrigin = "HOPIN"
+	PublicDescriptionDtoOriginHUBSPOT                   PublicDescriptionDtoOrigin = "HUBSPOT"
+	PublicDescriptionDtoOriginIMPACT                    PublicDescriptionDtoOrigin = "IMPACT"
+	PublicDescriptionDtoOriginINCIDENTIO                PublicDescriptionDtoOrigin = "INCIDENT_IO"
+	PublicDescriptionDtoOriginINFOBIP                   PublicDescriptionDtoOrigin = "INFOBIP"
+	PublicDescriptionDtoOriginINFORMATICA               PublicDescriptionDtoOrigin = "INFORMATICA"
+	PublicDescriptionDtoOriginINSIGHTLY                 PublicDescriptionDtoOrigin = "INSIGHTLY"
+	PublicDescriptionDtoOriginINSTAGRAM                 PublicDescriptionDtoOrigin = "INSTAGRAM"
+	PublicDescriptionDtoOriginINTERCOM                  PublicDescriptionDtoOrigin = "INTERCOM"
+	PublicDescriptionDtoOriginINVESTOPEDIA              PublicDescriptionDtoOrigin = "INVESTOPEDIA"
+	PublicDescriptionDtoOriginIRONCLAD                  PublicDescriptionDtoOrigin = "IRONCLAD"
+	PublicDescriptionDtoOriginIRONSOURCE                PublicDescriptionDtoOrigin = "IRONSOURCE"
+	PublicDescriptionDtoOriginITERABLE                  PublicDescriptionDtoOrigin = "ITERABLE"
+	PublicDescriptionDtoOriginJAVA                      PublicDescriptionDtoOrigin = "JAVA"
+	PublicDescriptionDtoOriginJENKINS                   PublicDescriptionDtoOrigin = "JENKINS"
+	PublicDescriptionDtoOriginJUSTCALL                  PublicDescriptionDtoOrigin = "JUSTCALL"
+	PublicDescriptionDtoOriginKANDJI                    PublicDescriptionDtoOrigin = "KANDJI"
+	PublicDescriptionDtoOriginKENSU                     PublicDescriptionDtoOrigin = "KENSU"
+	PublicDescriptionDtoOriginKHOROSCARE                PublicDescriptionDtoOrigin = "KHOROS_CARE"
+	PublicDescriptionDtoOriginKISSMETRICS               PublicDescriptionDtoOrigin = "KISSMETRICS"
+	PublicDescriptionDtoOriginKLAVIYO                   PublicDescriptionDtoOrigin = "KLAVIYO"
+	PublicDescriptionDtoOriginKNOWBE4                   PublicDescriptionDtoOrigin = "KNOWBE4"
+	PublicDescriptionDtoOriginKONNECTINSIGHTS           PublicDescriptionDtoOrigin = "KONNECT_INSIGHTS"
+	PublicDescriptionDtoOriginKUSTOMER                  PublicDescriptionDtoOrigin = "KUSTOMER"
+	PublicDescriptionDtoOriginLARIATDATA                PublicDescriptionDtoOrigin = "LARIAT_DATA"
+	PublicDescriptionDtoOriginLATTICE                   PublicDescriptionDtoOrigin = "LATTICE"
+	PublicDescriptionDtoOriginLAUNCHDARKLY              PublicDescriptionDtoOrigin = "LAUNCH_DARKLY"
+	PublicDescriptionDtoOriginLEARNUPON                 PublicDescriptionDtoOrigin = "LEARN_UPON"
+	PublicDescriptionDtoOriginLESSONLY                  PublicDescriptionDtoOrigin = "LESSONLY"
+	PublicDescriptionDtoOriginLEVER                     PublicDescriptionDtoOrigin = "LEVER"
+	PublicDescriptionDtoOriginLIFTOFF                   PublicDescriptionDtoOrigin = "LIFTOFF"
+	PublicDescriptionDtoOriginLIGHTDASH                 PublicDescriptionDtoOrigin = "LIGHTDASH"
+	PublicDescriptionDtoOriginLIGHTSPEED                PublicDescriptionDtoOrigin = "LIGHTSPEED"
+	PublicDescriptionDtoOriginLIGHTSUP                  PublicDescriptionDtoOrigin = "LIGHTSUP"
+	PublicDescriptionDtoOriginLINEAR                    PublicDescriptionDtoOrigin = "LINEAR"
+	PublicDescriptionDtoOriginLINKEDIN                  PublicDescriptionDtoOrigin = "LINKEDIN"
+	PublicDescriptionDtoOriginLIVECHAT                  PublicDescriptionDtoOrigin = "LIVECHAT"
+	PublicDescriptionDtoOriginLOADEDCOMMERCE            PublicDescriptionDtoOrigin = "LOADED_COMMERCE"
+	PublicDescriptionDtoOriginLOB                       PublicDescriptionDtoOrigin = "LOB"
+	PublicDescriptionDtoOriginLOOKER                    PublicDescriptionDtoOrigin = "LOOKER"
+	PublicDescriptionDtoOriginLOOP                      PublicDescriptionDtoOrigin = "LOOP"
+	PublicDescriptionDtoOriginLOOPIO                    PublicDescriptionDtoOrigin = "LOOPIO"
+	PublicDescriptionDtoOriginLUMA                      PublicDescriptionDtoOrigin = "LUMA"
+	PublicDescriptionDtoOriginMAGENTO                   PublicDescriptionDtoOrigin = "MAGENTO"
+	PublicDescriptionDtoOriginMAILCHIMP                 PublicDescriptionDtoOrigin = "MAILCHIMP"
+	PublicDescriptionDtoOriginMAILGUN                   PublicDescriptionDtoOrigin = "MAILGUN"
+	PublicDescriptionDtoOriginMANDRILL                  PublicDescriptionDtoOrigin = "MANDRILL"
+	PublicDescriptionDtoOriginMANTA                     PublicDescriptionDtoOrigin = "MANTA"
+	PublicDescriptionDtoOriginMARIADB                   PublicDescriptionDtoOrigin = "MARIADB"
+	PublicDescriptionDtoOriginMARINSOFTWARE             PublicDescriptionDtoOrigin = "MARIN_SOFTWARE"
+	PublicDescriptionDtoOriginMARKETO                   PublicDescriptionDtoOrigin = "MARKETO"
+	PublicDescriptionDtoOriginMATTERMOST                PublicDescriptionDtoOrigin = "MATTERMOST"
+	PublicDescriptionDtoOriginMAVENLINK                 PublicDescriptionDtoOrigin = "MAVENLINK"
+	PublicDescriptionDtoOriginMAXIO                     PublicDescriptionDtoOrigin = "MAXIO"
+	PublicDescriptionDtoOriginMEDALLIA                  PublicDescriptionDtoOrigin = "MEDALLIA"
+	PublicDescriptionDtoOriginMETA                      PublicDescriptionDtoOrigin = "META"
+	PublicDescriptionDtoOriginMETABASE                  PublicDescriptionDtoOrigin = "METABASE"
+	PublicDescriptionDtoOriginMETAPHOR                  PublicDescriptionDtoOrigin = "METAPHOR"
+	PublicDescriptionDtoOriginMETAPLANE                 PublicDescriptionDtoOrigin = "METAPLANE"
+	PublicDescriptionDtoOriginMICROSOFT                 PublicDescriptionDtoOrigin = "MICROSOFT"
+	PublicDescriptionDtoOriginMICROSOFTAZUREBLOBSTORAGE PublicDescriptionDtoOrigin = "MICROSOFT_AZURE_BLOB_STORAGE"
+	PublicDescriptionDtoOriginMICROSOFTAZUREML          PublicDescriptionDtoOrigin = "MICROSOFT_AZURE_ML"
+	PublicDescriptionDtoOriginMICROSOFTDYNAMICS         PublicDescriptionDtoOrigin = "MICROSOFT_DYNAMICS"
+	PublicDescriptionDtoOriginMICROSOFTONEDRIVE         PublicDescriptionDtoOrigin = "MICROSOFT_ONEDRIVE"
+	PublicDescriptionDtoOriginMICROSOFTPURVIEW          PublicDescriptionDtoOrigin = "MICROSOFT_PURVIEW"
+	PublicDescriptionDtoOriginMICROSOFTTEAMS            PublicDescriptionDtoOrigin = "MICROSOFT_TEAMS"
+	PublicDescriptionDtoOriginMICROSTRATEGY             PublicDescriptionDtoOrigin = "MICROSTRATEGY"
+	PublicDescriptionDtoOriginMIXMAX                    PublicDescriptionDtoOrigin = "MIXMAX"
+	PublicDescriptionDtoOriginMIXPANEL                  PublicDescriptionDtoOrigin = "MIXPANEL"
+	PublicDescriptionDtoOriginMONDAYCOM                 PublicDescriptionDtoOrigin = "MONDAY_COM"
+	PublicDescriptionDtoOriginMONGODB                   PublicDescriptionDtoOrigin = "MONGODB"
+	PublicDescriptionDtoOriginMONTECARLO                PublicDescriptionDtoOrigin = "MONTE_CARLO"
+	PublicDescriptionDtoOriginMOUNTAIN                  PublicDescriptionDtoOrigin = "MOUNTAIN"
+	PublicDescriptionDtoOriginMSSQL                     PublicDescriptionDtoOrigin = "MSSQL"
+	PublicDescriptionDtoOriginMULESOFT                  PublicDescriptionDtoOrigin = "MULESOFT"
+	PublicDescriptionDtoOriginMUX                       PublicDescriptionDtoOrigin = "MUX"
+	PublicDescriptionDtoOriginMWAA                      PublicDescriptionDtoOrigin = "MWAA"
+	PublicDescriptionDtoOriginMYSQL                     PublicDescriptionDtoOrigin = "MYSQL"
+	PublicDescriptionDtoOriginNAMELY                    PublicDescriptionDtoOrigin = "NAMELY"
+	PublicDescriptionDtoOriginNCINO                     PublicDescriptionDtoOrigin = "NCINO"
+	PublicDescriptionDtoOriginNETSUITEANALYTICS         PublicDescriptionDtoOrigin = "NETSUITE_ANALYTICS"
+	PublicDescriptionDtoOriginNEWRELIC                  PublicDescriptionDtoOrigin = "NEW_RELIC"
+	PublicDescriptionDtoOriginNOTION                    PublicDescriptionDtoOrigin = "NOTION"
+	PublicDescriptionDtoOriginNYLAS                     PublicDescriptionDtoOrigin = "NYLAS"
+	PublicDescriptionDtoOriginOBSERVE                   PublicDescriptionDtoOrigin = "OBSERVE"
+	PublicDescriptionDtoOriginOCTOPAI                   PublicDescriptionDtoOrigin = "OCTOPAI"
+	PublicDescriptionDtoOriginOKTA                      PublicDescriptionDtoOrigin = "OKTA"
+	PublicDescriptionDtoOriginOPENAI                    PublicDescriptionDtoOrigin = "OPEN_AI"
+	PublicDescriptionDtoOriginOPENDATADC                PublicDescriptionDtoOrigin = "OPEN_DATA_DC"
+	PublicDescriptionDtoOriginOPENEXCHANGESRATES        PublicDescriptionDtoOrigin = "OPEN_EXCHANGES_RATES"
+	PublicDescriptionDtoOriginOPENSEARCH                PublicDescriptionDtoOrigin = "OPEN_SEARCH"
+	PublicDescriptionDtoOriginOPTIMIZELY                PublicDescriptionDtoOrigin = "OPTIMIZELY"
+	PublicDescriptionDtoOriginORACLE                    PublicDescriptionDtoOrigin = "ORACLE"
+	PublicDescriptionDtoOriginORBITCOMMUNITYPLATFORM    PublicDescriptionDtoOrigin = "ORBIT_COMMUNITY_PLATFORM"
+	PublicDescriptionDtoOriginORDWAY                    PublicDescriptionDtoOrigin = "ORDWAY"
+	PublicDescriptionDtoOriginORTTO                     PublicDescriptionDtoOrigin = "ORTTO"
+	PublicDescriptionDtoOriginOSCOMMERCE                PublicDescriptionDtoOrigin = "OS_COMMERCE"
+	PublicDescriptionDtoOriginOUTBRAIN                  PublicDescriptionDtoOrigin = "OUTBRAIN"
+	PublicDescriptionDtoOriginOUTREACH                  PublicDescriptionDtoOrigin = "OUTREACH"
+	PublicDescriptionDtoOriginOVALEDGE                  PublicDescriptionDtoOrigin = "OVALEDGE"
+	PublicDescriptionDtoOriginPAGERDUTY                 PublicDescriptionDtoOrigin = "PAGERDUTY"
+	PublicDescriptionDtoOriginPAGERSHIFT                PublicDescriptionDtoOrigin = "PAGERSHIFT"
+	PublicDescriptionDtoOriginPAYPAL                    PublicDescriptionDtoOrigin = "PAYPAL"
+	PublicDescriptionDtoOriginPENDO                     PublicDescriptionDtoOrigin = "PENDO"
+	PublicDescriptionDtoOriginPINGDOM                   PublicDescriptionDtoOrigin = "PINGDOM"
+	PublicDescriptionDtoOriginPINTEREST                 PublicDescriptionDtoOrigin = "PINTEREST"
+	PublicDescriptionDtoOriginPIPE17                    PublicDescriptionDtoOrigin = "PIPE17"
+	PublicDescriptionDtoOriginPIPEDRIVE                 PublicDescriptionDtoOrigin = "PIPEDRIVE"
+	PublicDescriptionDtoOriginPIVOTALTRACKER            PublicDescriptionDtoOrigin = "PIVOTAL_TRACKER"
+	PublicDescriptionDtoOriginPLAYVOX                   PublicDescriptionDtoOrigin = "PLAYVOX"
+	PublicDescriptionDtoOriginPOSTGRES                  PublicDescriptionDtoOrigin = "POSTGRES"
+	PublicDescriptionDtoOriginPOSTHOG                   PublicDescriptionDtoOrigin = "POSTHOG"
+	PublicDescriptionDtoOriginPOWERBI                   PublicDescriptionDtoOrigin = "POWER_BI"
+	PublicDescriptionDtoOriginPOWERSCHOOL               PublicDescriptionDtoOrigin = "POWERSCHOOL"
+	PublicDescriptionDtoOriginPREFECT                   PublicDescriptionDtoOrigin = "PREFECT"
+	PublicDescriptionDtoOriginPRESTASHOP                PublicDescriptionDtoOrigin = "PRESTASHOP"
+	PublicDescriptionDtoOriginPRESTO                    PublicDescriptionDtoOrigin = "PRESTO"
+	PublicDescriptionDtoOriginPRODUCTBOARD              PublicDescriptionDtoOrigin = "PRODUCTBOARD"
+	PublicDescriptionDtoOriginPYTHON                    PublicDescriptionDtoOrigin = "PYTHON"
+	PublicDescriptionDtoOriginQLIK                      PublicDescriptionDtoOrigin = "QLIK"
+	PublicDescriptionDtoOriginQUALAROO                  PublicDescriptionDtoOrigin = "QUALAROO"
+	PublicDescriptionDtoOriginQUALTRICS                 PublicDescriptionDtoOrigin = "QUALTRICS"
+	PublicDescriptionDtoOriginQUICKBOOKS                PublicDescriptionDtoOrigin = "QUICKBOOKS"
+	PublicDescriptionDtoOriginQUICKSIGHT                PublicDescriptionDtoOrigin = "QUICKSIGHT"
+	PublicDescriptionDtoOriginRAMP                      PublicDescriptionDtoOrigin = "RAMP"
+	PublicDescriptionDtoOriginRARIBLE                   PublicDescriptionDtoOrigin = "RARIBLE"
+	PublicDescriptionDtoOriginRECHARGE                  PublicDescriptionDtoOrigin = "RECHARGE"
+	PublicDescriptionDtoOriginRECURLY                   PublicDescriptionDtoOrigin = "RECURLY"
+	PublicDescriptionDtoOriginREDDIT                    PublicDescriptionDtoOrigin = "REDDIT"
+	PublicDescriptionDtoOriginREDSHIFT                  PublicDescriptionDtoOrigin = "REDSHIFT"
+	PublicDescriptionDtoOriginRELTIO                    PublicDescriptionDtoOrigin = "RELTIO"
+	PublicDescriptionDtoOriginREPLYIO                   PublicDescriptionDtoOrigin = "REPLY_IO"
+	PublicDescriptionDtoOriginRETAILNEXT                PublicDescriptionDtoOrigin = "RETAILNEXT"
+	PublicDescriptionDtoOriginRETENTLY                  PublicDescriptionDtoOrigin = "RETENTLY"
+	PublicDescriptionDtoOriginREVELSYSTEMS              PublicDescriptionDtoOrigin = "REVEL_SYSTEMS"
+	PublicDescriptionDtoOriginRINGCENTRAL               PublicDescriptionDtoOrigin = "RINGCENTRAL"
+	PublicDescriptionDtoOriginRIPPLING                  PublicDescriptionDtoOrigin = "RIPPLING"
+	PublicDescriptionDtoOriginROLLBAR                   PublicDescriptionDtoOrigin = "ROLLBAR"
+	PublicDescriptionDtoOriginROOTLY                    PublicDescriptionDtoOrigin = "ROOTLY"
+	PublicDescriptionDtoOriginS3                        PublicDescriptionDtoOrigin = "S3"
+	PublicDescriptionDtoOriginSAGEHR                    PublicDescriptionDtoOrigin = "SAGE_HR"
+	PublicDescriptionDtoOriginSAGEINTACCT               PublicDescriptionDtoOrigin = "SAGE_INTACCT"
+	PublicDescriptionDtoOriginSAILTHRU                  PublicDescriptionDtoOrigin = "SAILTHRU"
+	PublicDescriptionDtoOriginSALESFORCE                PublicDescriptionDtoOrigin = "SALESFORCE"
+	PublicDescriptionDtoOriginSALESLOFT                 PublicDescriptionDtoOrigin = "SALESLOFT"
+	PublicDescriptionDtoOriginSALSIFY                   PublicDescriptionDtoOrigin = "SALSIFY"
+	PublicDescriptionDtoOriginSAMSARA                   PublicDescriptionDtoOrigin = "SAMSARA"
+	PublicDescriptionDtoOriginSAP                       PublicDescriptionDtoOrigin = "SAP"
+	PublicDescriptionDtoOriginSAPCONCUR                 PublicDescriptionDtoOrigin = "SAP_CONCUR"
+	PublicDescriptionDtoOriginSCORM                     PublicDescriptionDtoOrigin = "SCORM"
+	PublicDescriptionDtoOriginSECODA                    PublicDescriptionDtoOrigin = "SECODA"
+	PublicDescriptionDtoOriginSECURITYJOURNEY           PublicDescriptionDtoOrigin = "SECURITY_JOURNEY"
+	PublicDescriptionDtoOriginSEGMENT                   PublicDescriptionDtoOrigin = "SEGMENT"
+	PublicDescriptionDtoOriginSELECTSTAR                PublicDescriptionDtoOrigin = "SELECT_STAR"
+	PublicDescriptionDtoOriginSENDGRID                  PublicDescriptionDtoOrigin = "SENDGRID"
+	PublicDescriptionDtoOriginSERVICENOW                PublicDescriptionDtoOrigin = "SERVICE_NOW"
+	PublicDescriptionDtoOriginSFTP                      PublicDescriptionDtoOrigin = "SFTP"
+	PublicDescriptionDtoOriginSHAREPOINT                PublicDescriptionDtoOrigin = "SHAREPOINT"
+	PublicDescriptionDtoOriginSHARETRIBE                PublicDescriptionDtoOrigin = "SHARETRIBE"
+	PublicDescriptionDtoOriginSHIPHERO                  PublicDescriptionDtoOrigin = "SHIPHERO"
+	PublicDescriptionDtoOriginSHIPSTATION               PublicDescriptionDtoOrigin = "SHIPSTATION"
+	PublicDescriptionDtoOriginSHOPIFY                   PublicDescriptionDtoOrigin = "SHOPIFY"
+	PublicDescriptionDtoOriginSHOPWARE                  PublicDescriptionDtoOrigin = "SHOPWARE"
+	PublicDescriptionDtoOriginSHORTIO                   PublicDescriptionDtoOrigin = "SHORT_IO"
+	PublicDescriptionDtoOriginSIFFLET                   PublicDescriptionDtoOrigin = "SIFFLET"
+	PublicDescriptionDtoOriginSIGMA                     PublicDescriptionDtoOrigin = "SIGMA"
+	PublicDescriptionDtoOriginSIMPLECAST                PublicDescriptionDtoOrigin = "SIMPLECAST"
+	PublicDescriptionDtoOriginSIMPLESAT                 PublicDescriptionDtoOrigin = "SIMPLESAT"
+	PublicDescriptionDtoOriginSINGLESTORE               PublicDescriptionDtoOrigin = "SINGLESTORE"
+	PublicDescriptionDtoOriginSISENSE                   PublicDescriptionDtoOrigin = "SISENSE"
+	PublicDescriptionDtoOriginSIXSENSE                  PublicDescriptionDtoOrigin = "SIXSENSE"
+	PublicDescriptionDtoOriginSKILLJAR                  PublicDescriptionDtoOrigin = "SKILLJAR"
+	PublicDescriptionDtoOriginSKUVAULT                  PublicDescriptionDtoOrigin = "SKUVAULT"
+	PublicDescriptionDtoOriginSLAB                      PublicDescriptionDtoOrigin = "SLAB"
+	PublicDescriptionDtoOriginSLACK                     PublicDescriptionDtoOrigin = "SLACK"
+	PublicDescriptionDtoOriginSMADEX                    PublicDescriptionDtoOrigin = "SMADEX"
+	PublicDescriptionDtoOriginSNAPCHAT                  PublicDescriptionDtoOrigin = "SNAPCHAT"
+	PublicDescriptionDtoOriginSNOWFLAKE                 PublicDescriptionDtoOrigin = "SNOWFLAKE"
+	PublicDescriptionDtoOriginSNOWPLOW                  PublicDescriptionDtoOrigin = "SNOWPLOW"
+	PublicDescriptionDtoOriginSODA                      PublicDescriptionDtoOrigin = "SODA"
+	PublicDescriptionDtoOriginSONARQUBE                 PublicDescriptionDtoOrigin = "SONARQUBE"
+	PublicDescriptionDtoOriginSPLITIO                   PublicDescriptionDtoOrigin = "SPLIT_IO"
+	PublicDescriptionDtoOriginSPLUNK                    PublicDescriptionDtoOrigin = "SPLUNK"
+	PublicDescriptionDtoOriginSPOTIFY                   PublicDescriptionDtoOrigin = "SPOTIFY"
+	PublicDescriptionDtoOriginSPREECOMMERCE             PublicDescriptionDtoOrigin = "SPREE_COMMERCE"
+	PublicDescriptionDtoOriginSPROUTSOCIAL              PublicDescriptionDtoOrigin = "SPROUT_SOCIAL"
+	PublicDescriptionDtoOriginSQUARE                    PublicDescriptionDtoOrigin = "SQUARE"
+	PublicDescriptionDtoOriginSQUARESPACE               PublicDescriptionDtoOrigin = "SQUARESPACE"
+	PublicDescriptionDtoOriginSTACKADAPT                PublicDescriptionDtoOrigin = "STACK_ADAPT"
+	PublicDescriptionDtoOriginSTATSIG                   PublicDescriptionDtoOrigin = "STATSIG"
+	PublicDescriptionDtoOriginSTITCH                    PublicDescriptionDtoOrigin = "STITCH"
+	PublicDescriptionDtoOriginSTRIPE                    PublicDescriptionDtoOrigin = "STRIPE"
+	PublicDescriptionDtoOriginSTYLIGHT                  PublicDescriptionDtoOrigin = "STYLIGHT"
+	PublicDescriptionDtoOriginSUBSCRIPT                 PublicDescriptionDtoOrigin = "SUBSCRIPT"
+	PublicDescriptionDtoOriginSYNAPSE                   PublicDescriptionDtoOrigin = "SYNAPSE"
+	PublicDescriptionDtoOriginTABLEAU                   PublicDescriptionDtoOrigin = "TABLEAU"
+	PublicDescriptionDtoOriginTABOOLA                   PublicDescriptionDtoOrigin = "TABOOLA"
+	PublicDescriptionDtoOriginTALEND                    PublicDescriptionDtoOrigin = "TALEND"
+	PublicDescriptionDtoOriginTALKDESK                  PublicDescriptionDtoOrigin = "TALKDESK"
+	PublicDescriptionDtoOriginTALKWALKER                PublicDescriptionDtoOrigin = "TALKWALKER"
+	PublicDescriptionDtoOriginTEAMWORKCOM               PublicDescriptionDtoOrigin = "TEAMWORK_COM"
+	PublicDescriptionDtoOriginTEMPOIO                   PublicDescriptionDtoOrigin = "TEMPO_IO"
+	PublicDescriptionDtoOriginTERADATA                  PublicDescriptionDtoOrigin = "TERADATA"
+	PublicDescriptionDtoOriginTERRAFORM                 PublicDescriptionDtoOrigin = "TERRAFORM"
+	PublicDescriptionDtoOriginTHETRADEDESK              PublicDescriptionDtoOrigin = "THE_TRADE_DESK"
+	PublicDescriptionDtoOriginTHOUGHTSPOT               PublicDescriptionDtoOrigin = "THOUGHT_SPOT"
+	PublicDescriptionDtoOriginTHREESIXTYLEARNING        PublicDescriptionDtoOrigin = "THREESIXTYLEARNING"
+	PublicDescriptionDtoOriginTIKTOK                    PublicDescriptionDtoOrigin = "TIKTOK"
+	PublicDescriptionDtoOriginTOGGL                     PublicDescriptionDtoOrigin = "TOGGL"
+	PublicDescriptionDtoOriginTRANSCEND                 PublicDescriptionDtoOrigin = "TRANSCEND"
+	PublicDescriptionDtoOriginTRELLO                    PublicDescriptionDtoOrigin = "TRELLO"
+	PublicDescriptionDtoOriginTRINET                    PublicDescriptionDtoOrigin = "TRINET"
+	PublicDescriptionDtoOriginTRISOLUTE                 PublicDescriptionDtoOrigin = "TRISOLUTE"
+	PublicDescriptionDtoOriginTWILIO                    PublicDescriptionDtoOrigin = "TWILIO"
+	PublicDescriptionDtoOriginTYPEFORM                  PublicDescriptionDtoOrigin = "TYPEFORM"
+	PublicDescriptionDtoOriginUNKNOWN                   PublicDescriptionDtoOrigin = "UNKNOWN"
+	PublicDescriptionDtoOriginUPLAND                    PublicDescriptionDtoOrigin = "UPLAND"
+	PublicDescriptionDtoOriginUSERVOICE                 PublicDescriptionDtoOrigin = "USERVOICE"
+	PublicDescriptionDtoOriginVALIDIO                   PublicDescriptionDtoOrigin = "VALIDIO"
+	PublicDescriptionDtoOriginVEEVA                     PublicDescriptionDtoOrigin = "VEEVA"
+	PublicDescriptionDtoOriginVERIZONMEDIA              PublicDescriptionDtoOrigin = "VERIZON_MEDIA"
+	PublicDescriptionDtoOriginVITALLY                   PublicDescriptionDtoOrigin = "VITALLY"
+	PublicDescriptionDtoOriginVONAGE                    PublicDescriptionDtoOrigin = "VONAGE"
+	PublicDescriptionDtoOriginVUETIFY                   PublicDescriptionDtoOrigin = "VUETIFY"
+	PublicDescriptionDtoOriginWEBHOOKS                  PublicDescriptionDtoOrigin = "WEBHOOKS"
+	PublicDescriptionDtoOriginWEBSCRAPER                PublicDescriptionDtoOrigin = "WEB_SCRAPER"
+	PublicDescriptionDtoOriginWHENIWORK                 PublicDescriptionDtoOrigin = "WHEN_I_WORK"
+	PublicDescriptionDtoOriginWHEREFOUR                 PublicDescriptionDtoOrigin = "WHEREFOUR"
+	PublicDescriptionDtoOriginWIKIPEDIA                 PublicDescriptionDtoOrigin = "WIKIPEDIA"
+	PublicDescriptionDtoOriginWOOCOMMERCE               PublicDescriptionDtoOrigin = "WOOCOMMERCE"
+	PublicDescriptionDtoOriginWORDPRESS                 PublicDescriptionDtoOrigin = "WORDPRESS"
+	PublicDescriptionDtoOriginWORKABLE                  PublicDescriptionDtoOrigin = "WORKABLE"
+	PublicDescriptionDtoOriginWORKDAY                   PublicDescriptionDtoOrigin = "WORKDAY"
+	PublicDescriptionDtoOriginWORKFLOWMAX               PublicDescriptionDtoOrigin = "WORKFLOW_MAX"
+	PublicDescriptionDtoOriginWRIKE                     PublicDescriptionDtoOrigin = "WRIKE"
+	PublicDescriptionDtoOriginX                         PublicDescriptionDtoOrigin = "X"
+	PublicDescriptionDtoOriginXERO                      PublicDescriptionDtoOrigin = "XERO"
+	PublicDescriptionDtoOriginXRAY                      PublicDescriptionDtoOrigin = "XRAY"
+	PublicDescriptionDtoOriginYAHOO                     PublicDescriptionDtoOrigin = "YAHOO"
+	PublicDescriptionDtoOriginYOTPO                     PublicDescriptionDtoOrigin = "YOTPO"
+	PublicDescriptionDtoOriginYOUTUBE                   PublicDescriptionDtoOrigin = "YOUTUBE"
+	PublicDescriptionDtoOriginZEENEA                    PublicDescriptionDtoOrigin = "ZEENEA"
+	PublicDescriptionDtoOriginZENCART                   PublicDescriptionDtoOrigin = "ZEN_CART"
+	PublicDescriptionDtoOriginZENDESKCHAT               PublicDescriptionDtoOrigin = "ZENDESK_CHAT"
+	PublicDescriptionDtoOriginZENDESKSELL               PublicDescriptionDtoOrigin = "ZENDESK_SELL"
+	PublicDescriptionDtoOriginZENDESKSUNSHINE           PublicDescriptionDtoOrigin = "ZENDESK_SUNSHINE"
+	PublicDescriptionDtoOriginZENDESKSUPPORT            PublicDescriptionDtoOrigin = "ZENDESK_SUPPORT"
+	PublicDescriptionDtoOriginZINGTREE                  PublicDescriptionDtoOrigin = "ZINGTREE"
+	PublicDescriptionDtoOriginZOHOBOOKS                 PublicDescriptionDtoOrigin = "ZOHO_BOOKS"
+	PublicDescriptionDtoOriginZOHOCAMPAIGNS             PublicDescriptionDtoOrigin = "ZOHO_CAMPAIGNS"
+	PublicDescriptionDtoOriginZOHOCRM                   PublicDescriptionDtoOrigin = "ZOHO_CRM"
+	PublicDescriptionDtoOriginZOOM                      PublicDescriptionDtoOrigin = "ZOOM"
+	PublicDescriptionDtoOriginZUORA                     PublicDescriptionDtoOrigin = "ZUORA"
+)
+
 // Defines values for PublicFivetranParametersDtoType.
 const (
 	PublicFivetranParametersDtoTypeAIRFLOW     PublicFivetranParametersDtoType = "AIRFLOW"
@@ -314,6 +797,1006 @@ const (
 	PublicFivetranParametersDtoTypeSYNAPSE     PublicFivetranParametersDtoType = "SYNAPSE"
 	PublicFivetranParametersDtoTypeTABLEAU     PublicFivetranParametersDtoType = "TABLEAU"
 	PublicFivetranParametersDtoTypeUNKNOWN     PublicFivetranParametersDtoType = "_UNKNOWN_"
+)
+
+// Defines values for PublicGetAssetDtoHealthStatus.
+const (
+	PublicGetAssetDtoHealthStatusHIGHRISKINCIDENTS PublicGetAssetDtoHealthStatus = "HIGH_RISK_INCIDENTS"
+	PublicGetAssetDtoHealthStatusNOINCIDENTS       PublicGetAssetDtoHealthStatus = "NO_INCIDENTS"
+	PublicGetAssetDtoHealthStatusNOTMONITORED      PublicGetAssetDtoHealthStatus = "NOT_MONITORED"
+	PublicGetAssetDtoHealthStatusUNSUPPORTED       PublicGetAssetDtoHealthStatus = "UNSUPPORTED"
+	PublicGetAssetDtoHealthStatusURGENTINCIDENTS   PublicGetAssetDtoHealthStatus = "URGENT_INCIDENTS"
+)
+
+// Defines values for PublicGetAssetDtoIngestionMethod.
+const (
+	PublicGetAssetDtoIngestionMethodDECLARATIVE    PublicGetAssetDtoIngestionMethod = "DECLARATIVE"
+	PublicGetAssetDtoIngestionMethodSIFFLETSOURCED PublicGetAssetDtoIngestionMethod = "SIFFLET_SOURCED"
+)
+
+// Defines values for PublicGetAssetDtoTechnology.
+const (
+	PublicGetAssetDtoTechnologyACCELDATA                 PublicGetAssetDtoTechnology = "ACCELDATA"
+	PublicGetAssetDtoTechnologyACRYLDATA                 PublicGetAssetDtoTechnology = "ACRYL_DATA"
+	PublicGetAssetDtoTechnologyACTIANVECTOR              PublicGetAssetDtoTechnology = "ACTIAN_VECTOR"
+	PublicGetAssetDtoTechnologyACTIVECAMPAIGN            PublicGetAssetDtoTechnology = "ACTIVE_CAMPAIGN"
+	PublicGetAssetDtoTechnologyADA                       PublicGetAssetDtoTechnology = "ADA"
+	PublicGetAssetDtoTechnologyADJUST                    PublicGetAssetDtoTechnology = "ADJUST"
+	PublicGetAssetDtoTechnologyADOBE                     PublicGetAssetDtoTechnology = "ADOBE"
+	PublicGetAssetDtoTechnologyADPWFN                    PublicGetAssetDtoTechnology = "ADP_WFN"
+	PublicGetAssetDtoTechnologyADROLL                    PublicGetAssetDtoTechnology = "ADROLL"
+	PublicGetAssetDtoTechnologyAFFINITY                  PublicGetAssetDtoTechnology = "AFFINITY"
+	PublicGetAssetDtoTechnologyAIRBYTE                   PublicGetAssetDtoTechnology = "AIRBYTE"
+	PublicGetAssetDtoTechnologyAIRCALL                   PublicGetAssetDtoTechnology = "AIRCALL"
+	PublicGetAssetDtoTechnologyAIRFLOW                   PublicGetAssetDtoTechnology = "AIRFLOW"
+	PublicGetAssetDtoTechnologyAIRTABLE                  PublicGetAssetDtoTechnology = "AIRTABLE"
+	PublicGetAssetDtoTechnologyALATION                   PublicGetAssetDtoTechnology = "ALATION"
+	PublicGetAssetDtoTechnologyALCHEMER                  PublicGetAssetDtoTechnology = "ALCHEMER"
+	PublicGetAssetDtoTechnologyALVINAI                   PublicGetAssetDtoTechnology = "ALVIN_AI"
+	PublicGetAssetDtoTechnologyAMAZON                    PublicGetAssetDtoTechnology = "AMAZON"
+	PublicGetAssetDtoTechnologyAMAZONCLOUDFRONT          PublicGetAssetDtoTechnology = "AMAZON_CLOUDFRONT"
+	PublicGetAssetDtoTechnologyAMAZONDOCUMENTDB          PublicGetAssetDtoTechnology = "AMAZON_DOCUMENTDB"
+	PublicGetAssetDtoTechnologyAMAZONDYNAMODB            PublicGetAssetDtoTechnology = "AMAZON_DYNAMODB"
+	PublicGetAssetDtoTechnologyAMAZONFIREHOSE            PublicGetAssetDtoTechnology = "AMAZON_FIREHOSE"
+	PublicGetAssetDtoTechnologyAMAZONSAGEMAKER           PublicGetAssetDtoTechnology = "AMAZON_SAGEMAKER"
+	PublicGetAssetDtoTechnologyAMAZONSELLINGPARTNER      PublicGetAssetDtoTechnology = "AMAZON_SELLING_PARTNER"
+	PublicGetAssetDtoTechnologyAMPLITUDE                 PublicGetAssetDtoTechnology = "AMPLITUDE"
+	PublicGetAssetDtoTechnologyANAPLAN                   PublicGetAssetDtoTechnology = "ANAPLAN"
+	PublicGetAssetDtoTechnologyANOMALO                   PublicGetAssetDtoTechnology = "ANOMALO"
+	PublicGetAssetDtoTechnologyAPACHEKAFKA               PublicGetAssetDtoTechnology = "APACHE_KAFKA"
+	PublicGetAssetDtoTechnologyAPACHESPARK               PublicGetAssetDtoTechnology = "APACHE_SPARK"
+	PublicGetAssetDtoTechnologyAPPCUES                   PublicGetAssetDtoTechnology = "APPCUES"
+	PublicGetAssetDtoTechnologyAPPFIGURES                PublicGetAssetDtoTechnology = "APPFIGURES"
+	PublicGetAssetDtoTechnologyAPPLE                     PublicGetAssetDtoTechnology = "APPLE"
+	PublicGetAssetDtoTechnologyAPPLEAPPSTORE             PublicGetAssetDtoTechnology = "APPLE_APP_STORE"
+	PublicGetAssetDtoTechnologyAPPSFLYER                 PublicGetAssetDtoTechnology = "APPSFLYER"
+	PublicGetAssetDtoTechnologyASANA                     PublicGetAssetDtoTechnology = "ASANA"
+	PublicGetAssetDtoTechnologyASSEMBLED                 PublicGetAssetDtoTechnology = "ASSEMBLED"
+	PublicGetAssetDtoTechnologyATHENA                    PublicGetAssetDtoTechnology = "ATHENA"
+	PublicGetAssetDtoTechnologyATLAN                     PublicGetAssetDtoTechnology = "ATLAN"
+	PublicGetAssetDtoTechnologyATLASSIANCONFLUENCE       PublicGetAssetDtoTechnology = "ATLASSIAN_CONFLUENCE"
+	PublicGetAssetDtoTechnologyATLASSIANJIRA             PublicGetAssetDtoTechnology = "ATLASSIAN_JIRA"
+	PublicGetAssetDtoTechnologyATLASSIANOPSGENIE         PublicGetAssetDtoTechnology = "ATLASSIAN_OPSGENIE"
+	PublicGetAssetDtoTechnologyAUTH0                     PublicGetAssetDtoTechnology = "AUTH0"
+	PublicGetAssetDtoTechnologyAUTODESKBIM360            PublicGetAssetDtoTechnology = "AUTODESK_BIM_360"
+	PublicGetAssetDtoTechnologyAWIN                      PublicGetAssetDtoTechnology = "AWIN"
+	PublicGetAssetDtoTechnologyAWSCLOUDTRAIL             PublicGetAssetDtoTechnology = "AWS_CLOUDTRAIL"
+	PublicGetAssetDtoTechnologyAWSCOSTEXPLORER           PublicGetAssetDtoTechnology = "AWS_COST_EXPLORER"
+	PublicGetAssetDtoTechnologyAWSINVENTORY              PublicGetAssetDtoTechnology = "AWS_INVENTORY"
+	PublicGetAssetDtoTechnologyAWSLAMBDA                 PublicGetAssetDtoTechnology = "AWS_LAMBDA"
+	PublicGetAssetDtoTechnologyAZURE                     PublicGetAssetDtoTechnology = "AZURE"
+	PublicGetAssetDtoTechnologyBALLOTREADY               PublicGetAssetDtoTechnology = "BALLOT_READY"
+	PublicGetAssetDtoTechnologyBAMBOOHR                  PublicGetAssetDtoTechnology = "BAMBOOHR"
+	PublicGetAssetDtoTechnologyBIGCOMMERCE               PublicGetAssetDtoTechnology = "BIGCOMMERCE"
+	PublicGetAssetDtoTechnologyBIGEYE                    PublicGetAssetDtoTechnology = "BIGEYE"
+	PublicGetAssetDtoTechnologyBIGQUERY                  PublicGetAssetDtoTechnology = "BIGQUERY"
+	PublicGetAssetDtoTechnologyBILLINGPLATFORM           PublicGetAssetDtoTechnology = "BILLINGPLATFORM"
+	PublicGetAssetDtoTechnologyBIRDEYE                   PublicGetAssetDtoTechnology = "BIRDEYE"
+	PublicGetAssetDtoTechnologyBLACKBOARD                PublicGetAssetDtoTechnology = "BLACKBOARD"
+	PublicGetAssetDtoTechnologyBOX                       PublicGetAssetDtoTechnology = "BOX"
+	PublicGetAssetDtoTechnologyBRAINTREE                 PublicGetAssetDtoTechnology = "BRAINTREE"
+	PublicGetAssetDtoTechnologyBRAZE                     PublicGetAssetDtoTechnology = "BRAZE"
+	PublicGetAssetDtoTechnologyBREVO                     PublicGetAssetDtoTechnology = "BREVO"
+	PublicGetAssetDtoTechnologyBREX                      PublicGetAssetDtoTechnology = "BREX"
+	PublicGetAssetDtoTechnologyBUILDKITE                 PublicGetAssetDtoTechnology = "BUILDKITE"
+	PublicGetAssetDtoTechnologyBUZZSPROUT                PublicGetAssetDtoTechnology = "BUZZSPROUT"
+	PublicGetAssetDtoTechnologyCALENDLY                  PublicGetAssetDtoTechnology = "CALENDLY"
+	PublicGetAssetDtoTechnologyCAMPAIGNMONITOR           PublicGetAssetDtoTechnology = "CAMPAIGN_MONITOR"
+	PublicGetAssetDtoTechnologyCANNY                     PublicGetAssetDtoTechnology = "CANNY"
+	PublicGetAssetDtoTechnologyCANVAS                    PublicGetAssetDtoTechnology = "CANVAS"
+	PublicGetAssetDtoTechnologyCAPTERRA                  PublicGetAssetDtoTechnology = "CAPTERRA"
+	PublicGetAssetDtoTechnologyCASTORDOC                 PublicGetAssetDtoTechnology = "CASTOR_DOC"
+	PublicGetAssetDtoTechnologyCENSUS                    PublicGetAssetDtoTechnology = "CENSUS"
+	PublicGetAssetDtoTechnologyCERTINIA                  PublicGetAssetDtoTechnology = "CERTINIA"
+	PublicGetAssetDtoTechnologyCHAMELEON                 PublicGetAssetDtoTechnology = "CHAMELEON"
+	PublicGetAssetDtoTechnologyCHANNELADVISOR            PublicGetAssetDtoTechnology = "CHANNEL_ADVISOR"
+	PublicGetAssetDtoTechnologyCHARGEBEE                 PublicGetAssetDtoTechnology = "CHARGEBEE"
+	PublicGetAssetDtoTechnologyCHARGEDESK                PublicGetAssetDtoTechnology = "CHARGEDESK"
+	PublicGetAssetDtoTechnologyCHARTMOGUL                PublicGetAssetDtoTechnology = "CHARTMOGUL"
+	PublicGetAssetDtoTechnologyCHORUSAI                  PublicGetAssetDtoTechnology = "CHORUS_AI"
+	PublicGetAssetDtoTechnologyCHURNKEY                  PublicGetAssetDtoTechnology = "CHURNKEY"
+	PublicGetAssetDtoTechnologyCHURNZERO                 PublicGetAssetDtoTechnology = "CHURNZERO"
+	PublicGetAssetDtoTechnologyCIMIS                     PublicGetAssetDtoTechnology = "CIMIS"
+	PublicGetAssetDtoTechnologyCIN7                      PublicGetAssetDtoTechnology = "CIN7"
+	PublicGetAssetDtoTechnologyCIRCLECI                  PublicGetAssetDtoTechnology = "CIRCLE_CI"
+	PublicGetAssetDtoTechnologyCLARI                     PublicGetAssetDtoTechnology = "CLARI"
+	PublicGetAssetDtoTechnologyCLICKUP                   PublicGetAssetDtoTechnology = "CLICKUP"
+	PublicGetAssetDtoTechnologyCLIFFAI                   PublicGetAssetDtoTechnology = "CLIFF_AI"
+	PublicGetAssetDtoTechnologyCLOSE                     PublicGetAssetDtoTechnology = "CLOSE"
+	PublicGetAssetDtoTechnologyCOLLIBRA                  PublicGetAssetDtoTechnology = "COLLIBRA"
+	PublicGetAssetDtoTechnologyCOMMERCETOOLS             PublicGetAssetDtoTechnology = "COMMERCETOOLS"
+	PublicGetAssetDtoTechnologyCOMPOSER                  PublicGetAssetDtoTechnology = "COMPOSER"
+	PublicGetAssetDtoTechnologyCONFLUENTCLOUD            PublicGetAssetDtoTechnology = "CONFLUENT_CLOUD"
+	PublicGetAssetDtoTechnologyCONTRASTSECURITY          PublicGetAssetDtoTechnology = "CONTRAST_SECURITY"
+	PublicGetAssetDtoTechnologyCOUPA                     PublicGetAssetDtoTechnology = "COUPA"
+	PublicGetAssetDtoTechnologyCRITEO                    PublicGetAssetDtoTechnology = "CRITEO"
+	PublicGetAssetDtoTechnologyCROSSBEAM                 PublicGetAssetDtoTechnology = "CROSSBEAM"
+	PublicGetAssetDtoTechnologyCRUNCHBASE                PublicGetAssetDtoTechnology = "CRUNCHBASE"
+	PublicGetAssetDtoTechnologyCUSTOMERIO                PublicGetAssetDtoTechnology = "CUSTOMER_IO"
+	PublicGetAssetDtoTechnologyD2LBRIGHTSPACE            PublicGetAssetDtoTechnology = "D2L_BRIGHTSPACE"
+	PublicGetAssetDtoTechnologyDAGSTER                   PublicGetAssetDtoTechnology = "DAGSTER"
+	PublicGetAssetDtoTechnologyDATABAND                  PublicGetAssetDtoTechnology = "DATABAND"
+	PublicGetAssetDtoTechnologyDATABRICKS                PublicGetAssetDtoTechnology = "DATABRICKS"
+	PublicGetAssetDtoTechnologyDATADOG                   PublicGetAssetDtoTechnology = "DATADOG"
+	PublicGetAssetDtoTechnologyDATAEDO                   PublicGetAssetDtoTechnology = "DATAEDO"
+	PublicGetAssetDtoTechnologyDATAFOLD                  PublicGetAssetDtoTechnology = "DATAFOLD"
+	PublicGetAssetDtoTechnologyDATAGALAXY                PublicGetAssetDtoTechnology = "DATAGALAXY"
+	PublicGetAssetDtoTechnologyDATAHUB                   PublicGetAssetDtoTechnology = "DATAHUB"
+	PublicGetAssetDtoTechnologyDATAIKU                   PublicGetAssetDtoTechnology = "DATAIKU"
+	PublicGetAssetDtoTechnologyDATAWORLD                 PublicGetAssetDtoTechnology = "DATA_WORLD"
+	PublicGetAssetDtoTechnologyDB2                       PublicGetAssetDtoTechnology = "DB2"
+	PublicGetAssetDtoTechnologyDBT                       PublicGetAssetDtoTechnology = "DBT"
+	PublicGetAssetDtoTechnologyDBTCLOUD                  PublicGetAssetDtoTechnology = "DBTCLOUD"
+	PublicGetAssetDtoTechnologyDCLLOGISTICS              PublicGetAssetDtoTechnology = "DCL_LOGISTICS"
+	PublicGetAssetDtoTechnologyDEAR                      PublicGetAssetDtoTechnology = "DEAR"
+	PublicGetAssetDtoTechnologyDECUBE                    PublicGetAssetDtoTechnology = "DECUBE"
+	PublicGetAssetDtoTechnologyDELIGHTED                 PublicGetAssetDtoTechnology = "DELIGHTED"
+	PublicGetAssetDtoTechnologyDEPUTY                    PublicGetAssetDtoTechnology = "DEPUTY"
+	PublicGetAssetDtoTechnologyDESTINI                   PublicGetAssetDtoTechnology = "DESTINI"
+	PublicGetAssetDtoTechnologyDIXA                      PublicGetAssetDtoTechnology = "DIXA"
+	PublicGetAssetDtoTechnologyDOCEBO                    PublicGetAssetDtoTechnology = "DOCEBO"
+	PublicGetAssetDtoTechnologyDRATA                     PublicGetAssetDtoTechnology = "DRATA"
+	PublicGetAssetDtoTechnologyDRIFT                     PublicGetAssetDtoTechnology = "DRIFT"
+	PublicGetAssetDtoTechnologyDRIP                      PublicGetAssetDtoTechnology = "DRIP"
+	PublicGetAssetDtoTechnologyDROPBOX                   PublicGetAssetDtoTechnology = "DROPBOX"
+	PublicGetAssetDtoTechnologyDUOPLANE                  PublicGetAssetDtoTechnology = "DUOPLANE"
+	PublicGetAssetDtoTechnologyEASYPOST                  PublicGetAssetDtoTechnology = "EASY_POST"
+	PublicGetAssetDtoTechnologyECONOMIC                  PublicGetAssetDtoTechnology = "E_CONOMIC"
+	PublicGetAssetDtoTechnologyELASTICSEARCH             PublicGetAssetDtoTechnology = "ELASTICSEARCH"
+	PublicGetAssetDtoTechnologyELEMENTARY                PublicGetAssetDtoTechnology = "ELEMENTARY"
+	PublicGetAssetDtoTechnologyELLUCIAN                  PublicGetAssetDtoTechnology = "ELLUCIAN"
+	PublicGetAssetDtoTechnologyELOQUA                    PublicGetAssetDtoTechnology = "ELOQUA"
+	PublicGetAssetDtoTechnologyEMAIL                     PublicGetAssetDtoTechnology = "EMAIL"
+	PublicGetAssetDtoTechnologyEMPLOYMENTHERO            PublicGetAssetDtoTechnology = "EMPLOYMENT_HERO"
+	PublicGetAssetDtoTechnologyEPICORPROPHET21           PublicGetAssetDtoTechnology = "EPICOR_PROPHET_21"
+	PublicGetAssetDtoTechnologyEVENTBRITE                PublicGetAssetDtoTechnology = "EVENTBRITE"
+	PublicGetAssetDtoTechnologyEVERHOUR                  PublicGetAssetDtoTechnology = "EVERHOUR"
+	PublicGetAssetDtoTechnologyEXCEL                     PublicGetAssetDtoTechnology = "EXCEL"
+	PublicGetAssetDtoTechnologyEXPENSIFY                 PublicGetAssetDtoTechnology = "EXPENSIFY"
+	PublicGetAssetDtoTechnologyFACEBOOK                  PublicGetAssetDtoTechnology = "FACEBOOK"
+	PublicGetAssetDtoTechnologyFIFTEENFIVE               PublicGetAssetDtoTechnology = "FIFTEENFIVE"
+	PublicGetAssetDtoTechnologyFIGMA                     PublicGetAssetDtoTechnology = "FIGMA"
+	PublicGetAssetDtoTechnologyFIREBASE                  PublicGetAssetDtoTechnology = "FIREBASE"
+	PublicGetAssetDtoTechnologyFIREBOLT                  PublicGetAssetDtoTechnology = "FIREBOLT"
+	PublicGetAssetDtoTechnologyFIVETRAN                  PublicGetAssetDtoTechnology = "FIVETRAN"
+	PublicGetAssetDtoTechnologyFLEXPORT                  PublicGetAssetDtoTechnology = "FLEXPORT"
+	PublicGetAssetDtoTechnologyFORJ                      PublicGetAssetDtoTechnology = "FORJ"
+	PublicGetAssetDtoTechnologyFOUNTAIN                  PublicGetAssetDtoTechnology = "FOUNTAIN"
+	PublicGetAssetDtoTechnologyFREIGHTVIEW               PublicGetAssetDtoTechnology = "FREIGHTVIEW"
+	PublicGetAssetDtoTechnologyFRESHBOOKS                PublicGetAssetDtoTechnology = "FRESHBOOKS"
+	PublicGetAssetDtoTechnologyFRESHCHAT                 PublicGetAssetDtoTechnology = "FRESHCHAT"
+	PublicGetAssetDtoTechnologyFRESHDESK                 PublicGetAssetDtoTechnology = "FRESHDESK"
+	PublicGetAssetDtoTechnologyFRESHDESKCONTACTCENTER    PublicGetAssetDtoTechnology = "FRESHDESK_CONTACT_CENTER"
+	PublicGetAssetDtoTechnologyFRESHSERVICE              PublicGetAssetDtoTechnology = "FRESHSERVICE"
+	PublicGetAssetDtoTechnologyFRESHSUCCESS              PublicGetAssetDtoTechnology = "FRESHSUCCESS"
+	PublicGetAssetDtoTechnologyFRESHTEAM                 PublicGetAssetDtoTechnology = "FRESHTEAM"
+	PublicGetAssetDtoTechnologyFRIENDBUY                 PublicGetAssetDtoTechnology = "FRIENDBUY"
+	PublicGetAssetDtoTechnologyFRONT                     PublicGetAssetDtoTechnology = "FRONT"
+	PublicGetAssetDtoTechnologyFTP                       PublicGetAssetDtoTechnology = "FTP"
+	PublicGetAssetDtoTechnologyFULLSTORY                 PublicGetAssetDtoTechnology = "FULLSTORY"
+	PublicGetAssetDtoTechnologyG2                        PublicGetAssetDtoTechnology = "G2"
+	PublicGetAssetDtoTechnologyGAINSIGHT                 PublicGetAssetDtoTechnology = "GAINSIGHT"
+	PublicGetAssetDtoTechnologyGEM                       PublicGetAssetDtoTechnology = "GEM"
+	PublicGetAssetDtoTechnologyGIT                       PublicGetAssetDtoTechnology = "GIT"
+	PublicGetAssetDtoTechnologyGITHUB                    PublicGetAssetDtoTechnology = "GITHUB"
+	PublicGetAssetDtoTechnologyGITLAB                    PublicGetAssetDtoTechnology = "GITLAB"
+	PublicGetAssetDtoTechnologyGLADLY                    PublicGetAssetDtoTechnology = "GLADLY"
+	PublicGetAssetDtoTechnologyGOCARDLESS                PublicGetAssetDtoTechnology = "GOCARDLESS"
+	PublicGetAssetDtoTechnologyGONG                      PublicGetAssetDtoTechnology = "GONG"
+	PublicGetAssetDtoTechnologyGOOGLE                    PublicGetAssetDtoTechnology = "GOOGLE"
+	PublicGetAssetDtoTechnologyGOOGLEADMANAGER           PublicGetAssetDtoTechnology = "GOOGLE_AD_MANAGER"
+	PublicGetAssetDtoTechnologyGOOGLEADS                 PublicGetAssetDtoTechnology = "GOOGLE_ADS"
+	PublicGetAssetDtoTechnologyGOOGLEANALYTICS           PublicGetAssetDtoTechnology = "GOOGLE_ANALYTICS"
+	PublicGetAssetDtoTechnologyGOOGLECALENDAR            PublicGetAssetDtoTechnology = "GOOGLE_CALENDAR"
+	PublicGetAssetDtoTechnologyGOOGLECAMPAIGNMANAGER     PublicGetAssetDtoTechnology = "GOOGLE_CAMPAIGN_MANAGER"
+	PublicGetAssetDtoTechnologyGOOGLECHROME              PublicGetAssetDtoTechnology = "GOOGLE_CHROME"
+	PublicGetAssetDtoTechnologyGOOGLECLOUD               PublicGetAssetDtoTechnology = "GOOGLE_CLOUD"
+	PublicGetAssetDtoTechnologyGOOGLECLOUDSTORAGE        PublicGetAssetDtoTechnology = "GOOGLE_CLOUD_STORAGE"
+	PublicGetAssetDtoTechnologyGOOGLEDISPLAY             PublicGetAssetDtoTechnology = "GOOGLE_DISPLAY"
+	PublicGetAssetDtoTechnologyGOOGLEDRIVE               PublicGetAssetDtoTechnology = "GOOGLE_DRIVE"
+	PublicGetAssetDtoTechnologyGOOGLEPLAY                PublicGetAssetDtoTechnology = "GOOGLE_PLAY"
+	PublicGetAssetDtoTechnologyGOOGLESEARCHADS360        PublicGetAssetDtoTechnology = "GOOGLE_SEARCH_ADS_360"
+	PublicGetAssetDtoTechnologyGOOGLESEARCHCONSOLE       PublicGetAssetDtoTechnology = "GOOGLE_SEARCH_CONSOLE"
+	PublicGetAssetDtoTechnologyGOOGLESHEETS              PublicGetAssetDtoTechnology = "GOOGLE_SHEETS"
+	PublicGetAssetDtoTechnologyGOOGLETASKS               PublicGetAssetDtoTechnology = "GOOGLE_TASKS"
+	PublicGetAssetDtoTechnologyGORGIAS                   PublicGetAssetDtoTechnology = "GORGIAS"
+	PublicGetAssetDtoTechnologyGREENHOUSE                PublicGetAssetDtoTechnology = "GREENHOUSE"
+	PublicGetAssetDtoTechnologyGREENPLUM                 PublicGetAssetDtoTechnology = "GREENPLUM"
+	PublicGetAssetDtoTechnologyGREENPOWERMONITOR         PublicGetAssetDtoTechnology = "GREEN_POWER_MONITOR"
+	PublicGetAssetDtoTechnologyGREPSR                    PublicGetAssetDtoTechnology = "GREPSR"
+	PublicGetAssetDtoTechnologyGRIN                      PublicGetAssetDtoTechnology = "GRIN"
+	PublicGetAssetDtoTechnologyGURU                      PublicGetAssetDtoTechnology = "GURU"
+	PublicGetAssetDtoTechnologyH2                        PublicGetAssetDtoTechnology = "H2"
+	PublicGetAssetDtoTechnologyHARVEST                   PublicGetAssetDtoTechnology = "HARVEST"
+	PublicGetAssetDtoTechnologyHDFS                      PublicGetAssetDtoTechnology = "HDFS"
+	PublicGetAssetDtoTechnologyHEAP                      PublicGetAssetDtoTechnology = "HEAP"
+	PublicGetAssetDtoTechnologyHEIGHT                    PublicGetAssetDtoTechnology = "HEIGHT"
+	PublicGetAssetDtoTechnologyHELPSCOUT                 PublicGetAssetDtoTechnology = "HELP_SCOUT"
+	PublicGetAssetDtoTechnologyHELPSHIFT                 PublicGetAssetDtoTechnology = "HELPSHIFT"
+	PublicGetAssetDtoTechnologyHEROKUKAFKA               PublicGetAssetDtoTechnology = "HEROKU_KAFKA"
+	PublicGetAssetDtoTechnologyHEX                       PublicGetAssetDtoTechnology = "HEX"
+	PublicGetAssetDtoTechnologyHIBOB                     PublicGetAssetDtoTechnology = "HIBOB"
+	PublicGetAssetDtoTechnologyHIGHTOUCH                 PublicGetAssetDtoTechnology = "HIGH_TOUCH"
+	PublicGetAssetDtoTechnologyHOPIN                     PublicGetAssetDtoTechnology = "HOPIN"
+	PublicGetAssetDtoTechnologyHUBSPOT                   PublicGetAssetDtoTechnology = "HUBSPOT"
+	PublicGetAssetDtoTechnologyIMPACT                    PublicGetAssetDtoTechnology = "IMPACT"
+	PublicGetAssetDtoTechnologyINCIDENTIO                PublicGetAssetDtoTechnology = "INCIDENT_IO"
+	PublicGetAssetDtoTechnologyINFOBIP                   PublicGetAssetDtoTechnology = "INFOBIP"
+	PublicGetAssetDtoTechnologyINFORMATICA               PublicGetAssetDtoTechnology = "INFORMATICA"
+	PublicGetAssetDtoTechnologyINSIGHTLY                 PublicGetAssetDtoTechnology = "INSIGHTLY"
+	PublicGetAssetDtoTechnologyINSTAGRAM                 PublicGetAssetDtoTechnology = "INSTAGRAM"
+	PublicGetAssetDtoTechnologyINTERCOM                  PublicGetAssetDtoTechnology = "INTERCOM"
+	PublicGetAssetDtoTechnologyINVESTOPEDIA              PublicGetAssetDtoTechnology = "INVESTOPEDIA"
+	PublicGetAssetDtoTechnologyIRONCLAD                  PublicGetAssetDtoTechnology = "IRONCLAD"
+	PublicGetAssetDtoTechnologyIRONSOURCE                PublicGetAssetDtoTechnology = "IRONSOURCE"
+	PublicGetAssetDtoTechnologyITERABLE                  PublicGetAssetDtoTechnology = "ITERABLE"
+	PublicGetAssetDtoTechnologyJAVA                      PublicGetAssetDtoTechnology = "JAVA"
+	PublicGetAssetDtoTechnologyJENKINS                   PublicGetAssetDtoTechnology = "JENKINS"
+	PublicGetAssetDtoTechnologyJUSTCALL                  PublicGetAssetDtoTechnology = "JUSTCALL"
+	PublicGetAssetDtoTechnologyKANDJI                    PublicGetAssetDtoTechnology = "KANDJI"
+	PublicGetAssetDtoTechnologyKENSU                     PublicGetAssetDtoTechnology = "KENSU"
+	PublicGetAssetDtoTechnologyKHOROSCARE                PublicGetAssetDtoTechnology = "KHOROS_CARE"
+	PublicGetAssetDtoTechnologyKISSMETRICS               PublicGetAssetDtoTechnology = "KISSMETRICS"
+	PublicGetAssetDtoTechnologyKLAVIYO                   PublicGetAssetDtoTechnology = "KLAVIYO"
+	PublicGetAssetDtoTechnologyKNOWBE4                   PublicGetAssetDtoTechnology = "KNOWBE4"
+	PublicGetAssetDtoTechnologyKONNECTINSIGHTS           PublicGetAssetDtoTechnology = "KONNECT_INSIGHTS"
+	PublicGetAssetDtoTechnologyKUSTOMER                  PublicGetAssetDtoTechnology = "KUSTOMER"
+	PublicGetAssetDtoTechnologyLARIATDATA                PublicGetAssetDtoTechnology = "LARIAT_DATA"
+	PublicGetAssetDtoTechnologyLATTICE                   PublicGetAssetDtoTechnology = "LATTICE"
+	PublicGetAssetDtoTechnologyLAUNCHDARKLY              PublicGetAssetDtoTechnology = "LAUNCH_DARKLY"
+	PublicGetAssetDtoTechnologyLEARNUPON                 PublicGetAssetDtoTechnology = "LEARN_UPON"
+	PublicGetAssetDtoTechnologyLESSONLY                  PublicGetAssetDtoTechnology = "LESSONLY"
+	PublicGetAssetDtoTechnologyLEVER                     PublicGetAssetDtoTechnology = "LEVER"
+	PublicGetAssetDtoTechnologyLIFTOFF                   PublicGetAssetDtoTechnology = "LIFTOFF"
+	PublicGetAssetDtoTechnologyLIGHTDASH                 PublicGetAssetDtoTechnology = "LIGHTDASH"
+	PublicGetAssetDtoTechnologyLIGHTSPEED                PublicGetAssetDtoTechnology = "LIGHTSPEED"
+	PublicGetAssetDtoTechnologyLIGHTSUP                  PublicGetAssetDtoTechnology = "LIGHTSUP"
+	PublicGetAssetDtoTechnologyLINEAR                    PublicGetAssetDtoTechnology = "LINEAR"
+	PublicGetAssetDtoTechnologyLINKEDIN                  PublicGetAssetDtoTechnology = "LINKEDIN"
+	PublicGetAssetDtoTechnologyLIVECHAT                  PublicGetAssetDtoTechnology = "LIVECHAT"
+	PublicGetAssetDtoTechnologyLOADEDCOMMERCE            PublicGetAssetDtoTechnology = "LOADED_COMMERCE"
+	PublicGetAssetDtoTechnologyLOB                       PublicGetAssetDtoTechnology = "LOB"
+	PublicGetAssetDtoTechnologyLOOKER                    PublicGetAssetDtoTechnology = "LOOKER"
+	PublicGetAssetDtoTechnologyLOOP                      PublicGetAssetDtoTechnology = "LOOP"
+	PublicGetAssetDtoTechnologyLOOPIO                    PublicGetAssetDtoTechnology = "LOOPIO"
+	PublicGetAssetDtoTechnologyLUMA                      PublicGetAssetDtoTechnology = "LUMA"
+	PublicGetAssetDtoTechnologyMAGENTO                   PublicGetAssetDtoTechnology = "MAGENTO"
+	PublicGetAssetDtoTechnologyMAILCHIMP                 PublicGetAssetDtoTechnology = "MAILCHIMP"
+	PublicGetAssetDtoTechnologyMAILGUN                   PublicGetAssetDtoTechnology = "MAILGUN"
+	PublicGetAssetDtoTechnologyMANDRILL                  PublicGetAssetDtoTechnology = "MANDRILL"
+	PublicGetAssetDtoTechnologyMANTA                     PublicGetAssetDtoTechnology = "MANTA"
+	PublicGetAssetDtoTechnologyMARIADB                   PublicGetAssetDtoTechnology = "MARIADB"
+	PublicGetAssetDtoTechnologyMARINSOFTWARE             PublicGetAssetDtoTechnology = "MARIN_SOFTWARE"
+	PublicGetAssetDtoTechnologyMARKETO                   PublicGetAssetDtoTechnology = "MARKETO"
+	PublicGetAssetDtoTechnologyMATTERMOST                PublicGetAssetDtoTechnology = "MATTERMOST"
+	PublicGetAssetDtoTechnologyMAVENLINK                 PublicGetAssetDtoTechnology = "MAVENLINK"
+	PublicGetAssetDtoTechnologyMAXIO                     PublicGetAssetDtoTechnology = "MAXIO"
+	PublicGetAssetDtoTechnologyMEDALLIA                  PublicGetAssetDtoTechnology = "MEDALLIA"
+	PublicGetAssetDtoTechnologyMETA                      PublicGetAssetDtoTechnology = "META"
+	PublicGetAssetDtoTechnologyMETABASE                  PublicGetAssetDtoTechnology = "METABASE"
+	PublicGetAssetDtoTechnologyMETAPHOR                  PublicGetAssetDtoTechnology = "METAPHOR"
+	PublicGetAssetDtoTechnologyMETAPLANE                 PublicGetAssetDtoTechnology = "METAPLANE"
+	PublicGetAssetDtoTechnologyMICROSOFT                 PublicGetAssetDtoTechnology = "MICROSOFT"
+	PublicGetAssetDtoTechnologyMICROSOFTAZUREBLOBSTORAGE PublicGetAssetDtoTechnology = "MICROSOFT_AZURE_BLOB_STORAGE"
+	PublicGetAssetDtoTechnologyMICROSOFTAZUREML          PublicGetAssetDtoTechnology = "MICROSOFT_AZURE_ML"
+	PublicGetAssetDtoTechnologyMICROSOFTDYNAMICS         PublicGetAssetDtoTechnology = "MICROSOFT_DYNAMICS"
+	PublicGetAssetDtoTechnologyMICROSOFTONEDRIVE         PublicGetAssetDtoTechnology = "MICROSOFT_ONEDRIVE"
+	PublicGetAssetDtoTechnologyMICROSOFTPURVIEW          PublicGetAssetDtoTechnology = "MICROSOFT_PURVIEW"
+	PublicGetAssetDtoTechnologyMICROSOFTTEAMS            PublicGetAssetDtoTechnology = "MICROSOFT_TEAMS"
+	PublicGetAssetDtoTechnologyMICROSTRATEGY             PublicGetAssetDtoTechnology = "MICROSTRATEGY"
+	PublicGetAssetDtoTechnologyMIXMAX                    PublicGetAssetDtoTechnology = "MIXMAX"
+	PublicGetAssetDtoTechnologyMIXPANEL                  PublicGetAssetDtoTechnology = "MIXPANEL"
+	PublicGetAssetDtoTechnologyMONDAYCOM                 PublicGetAssetDtoTechnology = "MONDAY_COM"
+	PublicGetAssetDtoTechnologyMONGODB                   PublicGetAssetDtoTechnology = "MONGODB"
+	PublicGetAssetDtoTechnologyMONTECARLO                PublicGetAssetDtoTechnology = "MONTE_CARLO"
+	PublicGetAssetDtoTechnologyMOUNTAIN                  PublicGetAssetDtoTechnology = "MOUNTAIN"
+	PublicGetAssetDtoTechnologyMSSQL                     PublicGetAssetDtoTechnology = "MSSQL"
+	PublicGetAssetDtoTechnologyMULESOFT                  PublicGetAssetDtoTechnology = "MULESOFT"
+	PublicGetAssetDtoTechnologyMUX                       PublicGetAssetDtoTechnology = "MUX"
+	PublicGetAssetDtoTechnologyMWAA                      PublicGetAssetDtoTechnology = "MWAA"
+	PublicGetAssetDtoTechnologyMYSQL                     PublicGetAssetDtoTechnology = "MYSQL"
+	PublicGetAssetDtoTechnologyNAMELY                    PublicGetAssetDtoTechnology = "NAMELY"
+	PublicGetAssetDtoTechnologyNCINO                     PublicGetAssetDtoTechnology = "NCINO"
+	PublicGetAssetDtoTechnologyNETSUITEANALYTICS         PublicGetAssetDtoTechnology = "NETSUITE_ANALYTICS"
+	PublicGetAssetDtoTechnologyNEWRELIC                  PublicGetAssetDtoTechnology = "NEW_RELIC"
+	PublicGetAssetDtoTechnologyNOTION                    PublicGetAssetDtoTechnology = "NOTION"
+	PublicGetAssetDtoTechnologyNYLAS                     PublicGetAssetDtoTechnology = "NYLAS"
+	PublicGetAssetDtoTechnologyOBSERVE                   PublicGetAssetDtoTechnology = "OBSERVE"
+	PublicGetAssetDtoTechnologyOCTOPAI                   PublicGetAssetDtoTechnology = "OCTOPAI"
+	PublicGetAssetDtoTechnologyOKTA                      PublicGetAssetDtoTechnology = "OKTA"
+	PublicGetAssetDtoTechnologyOPENAI                    PublicGetAssetDtoTechnology = "OPEN_AI"
+	PublicGetAssetDtoTechnologyOPENDATADC                PublicGetAssetDtoTechnology = "OPEN_DATA_DC"
+	PublicGetAssetDtoTechnologyOPENEXCHANGESRATES        PublicGetAssetDtoTechnology = "OPEN_EXCHANGES_RATES"
+	PublicGetAssetDtoTechnologyOPENSEARCH                PublicGetAssetDtoTechnology = "OPEN_SEARCH"
+	PublicGetAssetDtoTechnologyOPTIMIZELY                PublicGetAssetDtoTechnology = "OPTIMIZELY"
+	PublicGetAssetDtoTechnologyORACLE                    PublicGetAssetDtoTechnology = "ORACLE"
+	PublicGetAssetDtoTechnologyORBITCOMMUNITYPLATFORM    PublicGetAssetDtoTechnology = "ORBIT_COMMUNITY_PLATFORM"
+	PublicGetAssetDtoTechnologyORDWAY                    PublicGetAssetDtoTechnology = "ORDWAY"
+	PublicGetAssetDtoTechnologyORTTO                     PublicGetAssetDtoTechnology = "ORTTO"
+	PublicGetAssetDtoTechnologyOSCOMMERCE                PublicGetAssetDtoTechnology = "OS_COMMERCE"
+	PublicGetAssetDtoTechnologyOUTBRAIN                  PublicGetAssetDtoTechnology = "OUTBRAIN"
+	PublicGetAssetDtoTechnologyOUTREACH                  PublicGetAssetDtoTechnology = "OUTREACH"
+	PublicGetAssetDtoTechnologyOVALEDGE                  PublicGetAssetDtoTechnology = "OVALEDGE"
+	PublicGetAssetDtoTechnologyPAGERDUTY                 PublicGetAssetDtoTechnology = "PAGERDUTY"
+	PublicGetAssetDtoTechnologyPAGERSHIFT                PublicGetAssetDtoTechnology = "PAGERSHIFT"
+	PublicGetAssetDtoTechnologyPAYPAL                    PublicGetAssetDtoTechnology = "PAYPAL"
+	PublicGetAssetDtoTechnologyPENDO                     PublicGetAssetDtoTechnology = "PENDO"
+	PublicGetAssetDtoTechnologyPINGDOM                   PublicGetAssetDtoTechnology = "PINGDOM"
+	PublicGetAssetDtoTechnologyPINTEREST                 PublicGetAssetDtoTechnology = "PINTEREST"
+	PublicGetAssetDtoTechnologyPIPE17                    PublicGetAssetDtoTechnology = "PIPE17"
+	PublicGetAssetDtoTechnologyPIPEDRIVE                 PublicGetAssetDtoTechnology = "PIPEDRIVE"
+	PublicGetAssetDtoTechnologyPIVOTALTRACKER            PublicGetAssetDtoTechnology = "PIVOTAL_TRACKER"
+	PublicGetAssetDtoTechnologyPLAYVOX                   PublicGetAssetDtoTechnology = "PLAYVOX"
+	PublicGetAssetDtoTechnologyPOSTGRES                  PublicGetAssetDtoTechnology = "POSTGRES"
+	PublicGetAssetDtoTechnologyPOSTHOG                   PublicGetAssetDtoTechnology = "POSTHOG"
+	PublicGetAssetDtoTechnologyPOWERBI                   PublicGetAssetDtoTechnology = "POWER_BI"
+	PublicGetAssetDtoTechnologyPOWERSCHOOL               PublicGetAssetDtoTechnology = "POWERSCHOOL"
+	PublicGetAssetDtoTechnologyPREFECT                   PublicGetAssetDtoTechnology = "PREFECT"
+	PublicGetAssetDtoTechnologyPRESTASHOP                PublicGetAssetDtoTechnology = "PRESTASHOP"
+	PublicGetAssetDtoTechnologyPRESTO                    PublicGetAssetDtoTechnology = "PRESTO"
+	PublicGetAssetDtoTechnologyPRODUCTBOARD              PublicGetAssetDtoTechnology = "PRODUCTBOARD"
+	PublicGetAssetDtoTechnologyPYTHON                    PublicGetAssetDtoTechnology = "PYTHON"
+	PublicGetAssetDtoTechnologyQLIK                      PublicGetAssetDtoTechnology = "QLIK"
+	PublicGetAssetDtoTechnologyQUALAROO                  PublicGetAssetDtoTechnology = "QUALAROO"
+	PublicGetAssetDtoTechnologyQUALTRICS                 PublicGetAssetDtoTechnology = "QUALTRICS"
+	PublicGetAssetDtoTechnologyQUICKBOOKS                PublicGetAssetDtoTechnology = "QUICKBOOKS"
+	PublicGetAssetDtoTechnologyQUICKSIGHT                PublicGetAssetDtoTechnology = "QUICKSIGHT"
+	PublicGetAssetDtoTechnologyRAMP                      PublicGetAssetDtoTechnology = "RAMP"
+	PublicGetAssetDtoTechnologyRARIBLE                   PublicGetAssetDtoTechnology = "RARIBLE"
+	PublicGetAssetDtoTechnologyRECHARGE                  PublicGetAssetDtoTechnology = "RECHARGE"
+	PublicGetAssetDtoTechnologyRECURLY                   PublicGetAssetDtoTechnology = "RECURLY"
+	PublicGetAssetDtoTechnologyREDDIT                    PublicGetAssetDtoTechnology = "REDDIT"
+	PublicGetAssetDtoTechnologyREDSHIFT                  PublicGetAssetDtoTechnology = "REDSHIFT"
+	PublicGetAssetDtoTechnologyRELTIO                    PublicGetAssetDtoTechnology = "RELTIO"
+	PublicGetAssetDtoTechnologyREPLYIO                   PublicGetAssetDtoTechnology = "REPLY_IO"
+	PublicGetAssetDtoTechnologyRETAILNEXT                PublicGetAssetDtoTechnology = "RETAILNEXT"
+	PublicGetAssetDtoTechnologyRETENTLY                  PublicGetAssetDtoTechnology = "RETENTLY"
+	PublicGetAssetDtoTechnologyREVELSYSTEMS              PublicGetAssetDtoTechnology = "REVEL_SYSTEMS"
+	PublicGetAssetDtoTechnologyRINGCENTRAL               PublicGetAssetDtoTechnology = "RINGCENTRAL"
+	PublicGetAssetDtoTechnologyRIPPLING                  PublicGetAssetDtoTechnology = "RIPPLING"
+	PublicGetAssetDtoTechnologyROLLBAR                   PublicGetAssetDtoTechnology = "ROLLBAR"
+	PublicGetAssetDtoTechnologyROOTLY                    PublicGetAssetDtoTechnology = "ROOTLY"
+	PublicGetAssetDtoTechnologyS3                        PublicGetAssetDtoTechnology = "S3"
+	PublicGetAssetDtoTechnologySAGEHR                    PublicGetAssetDtoTechnology = "SAGE_HR"
+	PublicGetAssetDtoTechnologySAGEINTACCT               PublicGetAssetDtoTechnology = "SAGE_INTACCT"
+	PublicGetAssetDtoTechnologySAILTHRU                  PublicGetAssetDtoTechnology = "SAILTHRU"
+	PublicGetAssetDtoTechnologySALESFORCE                PublicGetAssetDtoTechnology = "SALESFORCE"
+	PublicGetAssetDtoTechnologySALESLOFT                 PublicGetAssetDtoTechnology = "SALESLOFT"
+	PublicGetAssetDtoTechnologySALSIFY                   PublicGetAssetDtoTechnology = "SALSIFY"
+	PublicGetAssetDtoTechnologySAMSARA                   PublicGetAssetDtoTechnology = "SAMSARA"
+	PublicGetAssetDtoTechnologySAP                       PublicGetAssetDtoTechnology = "SAP"
+	PublicGetAssetDtoTechnologySAPCONCUR                 PublicGetAssetDtoTechnology = "SAP_CONCUR"
+	PublicGetAssetDtoTechnologySCORM                     PublicGetAssetDtoTechnology = "SCORM"
+	PublicGetAssetDtoTechnologySECODA                    PublicGetAssetDtoTechnology = "SECODA"
+	PublicGetAssetDtoTechnologySECURITYJOURNEY           PublicGetAssetDtoTechnology = "SECURITY_JOURNEY"
+	PublicGetAssetDtoTechnologySEGMENT                   PublicGetAssetDtoTechnology = "SEGMENT"
+	PublicGetAssetDtoTechnologySELECTSTAR                PublicGetAssetDtoTechnology = "SELECT_STAR"
+	PublicGetAssetDtoTechnologySENDGRID                  PublicGetAssetDtoTechnology = "SENDGRID"
+	PublicGetAssetDtoTechnologySERVICENOW                PublicGetAssetDtoTechnology = "SERVICE_NOW"
+	PublicGetAssetDtoTechnologySFTP                      PublicGetAssetDtoTechnology = "SFTP"
+	PublicGetAssetDtoTechnologySHAREPOINT                PublicGetAssetDtoTechnology = "SHAREPOINT"
+	PublicGetAssetDtoTechnologySHARETRIBE                PublicGetAssetDtoTechnology = "SHARETRIBE"
+	PublicGetAssetDtoTechnologySHIPHERO                  PublicGetAssetDtoTechnology = "SHIPHERO"
+	PublicGetAssetDtoTechnologySHIPSTATION               PublicGetAssetDtoTechnology = "SHIPSTATION"
+	PublicGetAssetDtoTechnologySHOPIFY                   PublicGetAssetDtoTechnology = "SHOPIFY"
+	PublicGetAssetDtoTechnologySHOPWARE                  PublicGetAssetDtoTechnology = "SHOPWARE"
+	PublicGetAssetDtoTechnologySHORTIO                   PublicGetAssetDtoTechnology = "SHORT_IO"
+	PublicGetAssetDtoTechnologySIFFLET                   PublicGetAssetDtoTechnology = "SIFFLET"
+	PublicGetAssetDtoTechnologySIGMA                     PublicGetAssetDtoTechnology = "SIGMA"
+	PublicGetAssetDtoTechnologySIMPLECAST                PublicGetAssetDtoTechnology = "SIMPLECAST"
+	PublicGetAssetDtoTechnologySIMPLESAT                 PublicGetAssetDtoTechnology = "SIMPLESAT"
+	PublicGetAssetDtoTechnologySINGLESTORE               PublicGetAssetDtoTechnology = "SINGLESTORE"
+	PublicGetAssetDtoTechnologySISENSE                   PublicGetAssetDtoTechnology = "SISENSE"
+	PublicGetAssetDtoTechnologySIXSENSE                  PublicGetAssetDtoTechnology = "SIXSENSE"
+	PublicGetAssetDtoTechnologySKILLJAR                  PublicGetAssetDtoTechnology = "SKILLJAR"
+	PublicGetAssetDtoTechnologySKUVAULT                  PublicGetAssetDtoTechnology = "SKUVAULT"
+	PublicGetAssetDtoTechnologySLAB                      PublicGetAssetDtoTechnology = "SLAB"
+	PublicGetAssetDtoTechnologySLACK                     PublicGetAssetDtoTechnology = "SLACK"
+	PublicGetAssetDtoTechnologySMADEX                    PublicGetAssetDtoTechnology = "SMADEX"
+	PublicGetAssetDtoTechnologySNAPCHAT                  PublicGetAssetDtoTechnology = "SNAPCHAT"
+	PublicGetAssetDtoTechnologySNOWFLAKE                 PublicGetAssetDtoTechnology = "SNOWFLAKE"
+	PublicGetAssetDtoTechnologySNOWPLOW                  PublicGetAssetDtoTechnology = "SNOWPLOW"
+	PublicGetAssetDtoTechnologySODA                      PublicGetAssetDtoTechnology = "SODA"
+	PublicGetAssetDtoTechnologySONARQUBE                 PublicGetAssetDtoTechnology = "SONARQUBE"
+	PublicGetAssetDtoTechnologySPLITIO                   PublicGetAssetDtoTechnology = "SPLIT_IO"
+	PublicGetAssetDtoTechnologySPLUNK                    PublicGetAssetDtoTechnology = "SPLUNK"
+	PublicGetAssetDtoTechnologySPOTIFY                   PublicGetAssetDtoTechnology = "SPOTIFY"
+	PublicGetAssetDtoTechnologySPREECOMMERCE             PublicGetAssetDtoTechnology = "SPREE_COMMERCE"
+	PublicGetAssetDtoTechnologySPROUTSOCIAL              PublicGetAssetDtoTechnology = "SPROUT_SOCIAL"
+	PublicGetAssetDtoTechnologySQUARE                    PublicGetAssetDtoTechnology = "SQUARE"
+	PublicGetAssetDtoTechnologySQUARESPACE               PublicGetAssetDtoTechnology = "SQUARESPACE"
+	PublicGetAssetDtoTechnologySTACKADAPT                PublicGetAssetDtoTechnology = "STACK_ADAPT"
+	PublicGetAssetDtoTechnologySTATSIG                   PublicGetAssetDtoTechnology = "STATSIG"
+	PublicGetAssetDtoTechnologySTITCH                    PublicGetAssetDtoTechnology = "STITCH"
+	PublicGetAssetDtoTechnologySTRIPE                    PublicGetAssetDtoTechnology = "STRIPE"
+	PublicGetAssetDtoTechnologySTYLIGHT                  PublicGetAssetDtoTechnology = "STYLIGHT"
+	PublicGetAssetDtoTechnologySUBSCRIPT                 PublicGetAssetDtoTechnology = "SUBSCRIPT"
+	PublicGetAssetDtoTechnologySYNAPSE                   PublicGetAssetDtoTechnology = "SYNAPSE"
+	PublicGetAssetDtoTechnologyTABLEAU                   PublicGetAssetDtoTechnology = "TABLEAU"
+	PublicGetAssetDtoTechnologyTABOOLA                   PublicGetAssetDtoTechnology = "TABOOLA"
+	PublicGetAssetDtoTechnologyTALEND                    PublicGetAssetDtoTechnology = "TALEND"
+	PublicGetAssetDtoTechnologyTALKDESK                  PublicGetAssetDtoTechnology = "TALKDESK"
+	PublicGetAssetDtoTechnologyTALKWALKER                PublicGetAssetDtoTechnology = "TALKWALKER"
+	PublicGetAssetDtoTechnologyTEAMWORKCOM               PublicGetAssetDtoTechnology = "TEAMWORK_COM"
+	PublicGetAssetDtoTechnologyTEMPOIO                   PublicGetAssetDtoTechnology = "TEMPO_IO"
+	PublicGetAssetDtoTechnologyTERADATA                  PublicGetAssetDtoTechnology = "TERADATA"
+	PublicGetAssetDtoTechnologyTERRAFORM                 PublicGetAssetDtoTechnology = "TERRAFORM"
+	PublicGetAssetDtoTechnologyTHETRADEDESK              PublicGetAssetDtoTechnology = "THE_TRADE_DESK"
+	PublicGetAssetDtoTechnologyTHOUGHTSPOT               PublicGetAssetDtoTechnology = "THOUGHT_SPOT"
+	PublicGetAssetDtoTechnologyTHREESIXTYLEARNING        PublicGetAssetDtoTechnology = "THREESIXTYLEARNING"
+	PublicGetAssetDtoTechnologyTIKTOK                    PublicGetAssetDtoTechnology = "TIKTOK"
+	PublicGetAssetDtoTechnologyTOGGL                     PublicGetAssetDtoTechnology = "TOGGL"
+	PublicGetAssetDtoTechnologyTRANSCEND                 PublicGetAssetDtoTechnology = "TRANSCEND"
+	PublicGetAssetDtoTechnologyTRELLO                    PublicGetAssetDtoTechnology = "TRELLO"
+	PublicGetAssetDtoTechnologyTRINET                    PublicGetAssetDtoTechnology = "TRINET"
+	PublicGetAssetDtoTechnologyTRISOLUTE                 PublicGetAssetDtoTechnology = "TRISOLUTE"
+	PublicGetAssetDtoTechnologyTWILIO                    PublicGetAssetDtoTechnology = "TWILIO"
+	PublicGetAssetDtoTechnologyTYPEFORM                  PublicGetAssetDtoTechnology = "TYPEFORM"
+	PublicGetAssetDtoTechnologyUNKNOWN                   PublicGetAssetDtoTechnology = "UNKNOWN"
+	PublicGetAssetDtoTechnologyUPLAND                    PublicGetAssetDtoTechnology = "UPLAND"
+	PublicGetAssetDtoTechnologyUSERVOICE                 PublicGetAssetDtoTechnology = "USERVOICE"
+	PublicGetAssetDtoTechnologyVALIDIO                   PublicGetAssetDtoTechnology = "VALIDIO"
+	PublicGetAssetDtoTechnologyVEEVA                     PublicGetAssetDtoTechnology = "VEEVA"
+	PublicGetAssetDtoTechnologyVERIZONMEDIA              PublicGetAssetDtoTechnology = "VERIZON_MEDIA"
+	PublicGetAssetDtoTechnologyVITALLY                   PublicGetAssetDtoTechnology = "VITALLY"
+	PublicGetAssetDtoTechnologyVONAGE                    PublicGetAssetDtoTechnology = "VONAGE"
+	PublicGetAssetDtoTechnologyVUETIFY                   PublicGetAssetDtoTechnology = "VUETIFY"
+	PublicGetAssetDtoTechnologyWEBHOOKS                  PublicGetAssetDtoTechnology = "WEBHOOKS"
+	PublicGetAssetDtoTechnologyWEBSCRAPER                PublicGetAssetDtoTechnology = "WEB_SCRAPER"
+	PublicGetAssetDtoTechnologyWHENIWORK                 PublicGetAssetDtoTechnology = "WHEN_I_WORK"
+	PublicGetAssetDtoTechnologyWHEREFOUR                 PublicGetAssetDtoTechnology = "WHEREFOUR"
+	PublicGetAssetDtoTechnologyWIKIPEDIA                 PublicGetAssetDtoTechnology = "WIKIPEDIA"
+	PublicGetAssetDtoTechnologyWOOCOMMERCE               PublicGetAssetDtoTechnology = "WOOCOMMERCE"
+	PublicGetAssetDtoTechnologyWORDPRESS                 PublicGetAssetDtoTechnology = "WORDPRESS"
+	PublicGetAssetDtoTechnologyWORKABLE                  PublicGetAssetDtoTechnology = "WORKABLE"
+	PublicGetAssetDtoTechnologyWORKDAY                   PublicGetAssetDtoTechnology = "WORKDAY"
+	PublicGetAssetDtoTechnologyWORKFLOWMAX               PublicGetAssetDtoTechnology = "WORKFLOW_MAX"
+	PublicGetAssetDtoTechnologyWRIKE                     PublicGetAssetDtoTechnology = "WRIKE"
+	PublicGetAssetDtoTechnologyX                         PublicGetAssetDtoTechnology = "X"
+	PublicGetAssetDtoTechnologyXERO                      PublicGetAssetDtoTechnology = "XERO"
+	PublicGetAssetDtoTechnologyXRAY                      PublicGetAssetDtoTechnology = "XRAY"
+	PublicGetAssetDtoTechnologyYAHOO                     PublicGetAssetDtoTechnology = "YAHOO"
+	PublicGetAssetDtoTechnologyYOTPO                     PublicGetAssetDtoTechnology = "YOTPO"
+	PublicGetAssetDtoTechnologyYOUTUBE                   PublicGetAssetDtoTechnology = "YOUTUBE"
+	PublicGetAssetDtoTechnologyZEENEA                    PublicGetAssetDtoTechnology = "ZEENEA"
+	PublicGetAssetDtoTechnologyZENCART                   PublicGetAssetDtoTechnology = "ZEN_CART"
+	PublicGetAssetDtoTechnologyZENDESKCHAT               PublicGetAssetDtoTechnology = "ZENDESK_CHAT"
+	PublicGetAssetDtoTechnologyZENDESKSELL               PublicGetAssetDtoTechnology = "ZENDESK_SELL"
+	PublicGetAssetDtoTechnologyZENDESKSUNSHINE           PublicGetAssetDtoTechnology = "ZENDESK_SUNSHINE"
+	PublicGetAssetDtoTechnologyZENDESKSUPPORT            PublicGetAssetDtoTechnology = "ZENDESK_SUPPORT"
+	PublicGetAssetDtoTechnologyZINGTREE                  PublicGetAssetDtoTechnology = "ZINGTREE"
+	PublicGetAssetDtoTechnologyZOHOBOOKS                 PublicGetAssetDtoTechnology = "ZOHO_BOOKS"
+	PublicGetAssetDtoTechnologyZOHOCAMPAIGNS             PublicGetAssetDtoTechnology = "ZOHO_CAMPAIGNS"
+	PublicGetAssetDtoTechnologyZOHOCRM                   PublicGetAssetDtoTechnology = "ZOHO_CRM"
+	PublicGetAssetDtoTechnologyZOOM                      PublicGetAssetDtoTechnology = "ZOOM"
+	PublicGetAssetDtoTechnologyZUORA                     PublicGetAssetDtoTechnology = "ZUORA"
+)
+
+// Defines values for PublicGetAssetDtoType.
+const (
+	PublicGetAssetDtoTypeCONNECTOR        PublicGetAssetDtoType = "CONNECTOR"
+	PublicGetAssetDtoTypeDAG              PublicGetAssetDtoType = "DAG"
+	PublicGetAssetDtoTypeDASHBOARD        PublicGetAssetDtoType = "DASHBOARD"
+	PublicGetAssetDtoTypeEXTERNALTABLE    PublicGetAssetDtoType = "EXTERNAL_TABLE"
+	PublicGetAssetDtoTypeMATERIALIZEDVIEW PublicGetAssetDtoType = "MATERIALIZED_VIEW"
+	PublicGetAssetDtoTypeMLMODEL          PublicGetAssetDtoType = "ML_MODEL"
+	PublicGetAssetDtoTypeMODEL            PublicGetAssetDtoType = "MODEL"
+	PublicGetAssetDtoTypeORCHESTRATOR     PublicGetAssetDtoType = "ORCHESTRATOR"
+	PublicGetAssetDtoTypeOTHER            PublicGetAssetDtoType = "OTHER"
+	PublicGetAssetDtoTypePIPELINE         PublicGetAssetDtoType = "PIPELINE"
+	PublicGetAssetDtoTypeREPORT           PublicGetAssetDtoType = "REPORT"
+	PublicGetAssetDtoTypeSNOWFLAKESTREAM  PublicGetAssetDtoType = "SNOWFLAKE_STREAM"
+	PublicGetAssetDtoTypeTABLE            PublicGetAssetDtoType = "TABLE"
+	PublicGetAssetDtoTypeTRANSFORMATION   PublicGetAssetDtoType = "TRANSFORMATION"
+	PublicGetAssetDtoTypeVIEW             PublicGetAssetDtoType = "VIEW"
+)
+
+// Defines values for PublicGetAssetDtoUsage.
+const (
+	PublicGetAssetDtoUsageHIGH        PublicGetAssetDtoUsage = "HIGH"
+	PublicGetAssetDtoUsageLOW         PublicGetAssetDtoUsage = "LOW"
+	PublicGetAssetDtoUsageMEDIUM      PublicGetAssetDtoUsage = "MEDIUM"
+	PublicGetAssetDtoUsageUNSUPPORTED PublicGetAssetDtoUsage = "UNSUPPORTED"
+)
+
+// Defines values for PublicGetAssetListDtoHealthStatus.
+const (
+	PublicGetAssetListDtoHealthStatusHIGHRISKINCIDENTS PublicGetAssetListDtoHealthStatus = "HIGH_RISK_INCIDENTS"
+	PublicGetAssetListDtoHealthStatusNOINCIDENTS       PublicGetAssetListDtoHealthStatus = "NO_INCIDENTS"
+	PublicGetAssetListDtoHealthStatusNOTMONITORED      PublicGetAssetListDtoHealthStatus = "NOT_MONITORED"
+	PublicGetAssetListDtoHealthStatusUNSUPPORTED       PublicGetAssetListDtoHealthStatus = "UNSUPPORTED"
+	PublicGetAssetListDtoHealthStatusURGENTINCIDENTS   PublicGetAssetListDtoHealthStatus = "URGENT_INCIDENTS"
+)
+
+// Defines values for PublicGetAssetListDtoIngestionMethod.
+const (
+	PublicGetAssetListDtoIngestionMethodDECLARATIVE    PublicGetAssetListDtoIngestionMethod = "DECLARATIVE"
+	PublicGetAssetListDtoIngestionMethodSIFFLETSOURCED PublicGetAssetListDtoIngestionMethod = "SIFFLET_SOURCED"
+)
+
+// Defines values for PublicGetAssetListDtoTechnology.
+const (
+	PublicGetAssetListDtoTechnologyACCELDATA                 PublicGetAssetListDtoTechnology = "ACCELDATA"
+	PublicGetAssetListDtoTechnologyACRYLDATA                 PublicGetAssetListDtoTechnology = "ACRYL_DATA"
+	PublicGetAssetListDtoTechnologyACTIANVECTOR              PublicGetAssetListDtoTechnology = "ACTIAN_VECTOR"
+	PublicGetAssetListDtoTechnologyACTIVECAMPAIGN            PublicGetAssetListDtoTechnology = "ACTIVE_CAMPAIGN"
+	PublicGetAssetListDtoTechnologyADA                       PublicGetAssetListDtoTechnology = "ADA"
+	PublicGetAssetListDtoTechnologyADJUST                    PublicGetAssetListDtoTechnology = "ADJUST"
+	PublicGetAssetListDtoTechnologyADOBE                     PublicGetAssetListDtoTechnology = "ADOBE"
+	PublicGetAssetListDtoTechnologyADPWFN                    PublicGetAssetListDtoTechnology = "ADP_WFN"
+	PublicGetAssetListDtoTechnologyADROLL                    PublicGetAssetListDtoTechnology = "ADROLL"
+	PublicGetAssetListDtoTechnologyAFFINITY                  PublicGetAssetListDtoTechnology = "AFFINITY"
+	PublicGetAssetListDtoTechnologyAIRBYTE                   PublicGetAssetListDtoTechnology = "AIRBYTE"
+	PublicGetAssetListDtoTechnologyAIRCALL                   PublicGetAssetListDtoTechnology = "AIRCALL"
+	PublicGetAssetListDtoTechnologyAIRFLOW                   PublicGetAssetListDtoTechnology = "AIRFLOW"
+	PublicGetAssetListDtoTechnologyAIRTABLE                  PublicGetAssetListDtoTechnology = "AIRTABLE"
+	PublicGetAssetListDtoTechnologyALATION                   PublicGetAssetListDtoTechnology = "ALATION"
+	PublicGetAssetListDtoTechnologyALCHEMER                  PublicGetAssetListDtoTechnology = "ALCHEMER"
+	PublicGetAssetListDtoTechnologyALVINAI                   PublicGetAssetListDtoTechnology = "ALVIN_AI"
+	PublicGetAssetListDtoTechnologyAMAZON                    PublicGetAssetListDtoTechnology = "AMAZON"
+	PublicGetAssetListDtoTechnologyAMAZONCLOUDFRONT          PublicGetAssetListDtoTechnology = "AMAZON_CLOUDFRONT"
+	PublicGetAssetListDtoTechnologyAMAZONDOCUMENTDB          PublicGetAssetListDtoTechnology = "AMAZON_DOCUMENTDB"
+	PublicGetAssetListDtoTechnologyAMAZONDYNAMODB            PublicGetAssetListDtoTechnology = "AMAZON_DYNAMODB"
+	PublicGetAssetListDtoTechnologyAMAZONFIREHOSE            PublicGetAssetListDtoTechnology = "AMAZON_FIREHOSE"
+	PublicGetAssetListDtoTechnologyAMAZONSAGEMAKER           PublicGetAssetListDtoTechnology = "AMAZON_SAGEMAKER"
+	PublicGetAssetListDtoTechnologyAMAZONSELLINGPARTNER      PublicGetAssetListDtoTechnology = "AMAZON_SELLING_PARTNER"
+	PublicGetAssetListDtoTechnologyAMPLITUDE                 PublicGetAssetListDtoTechnology = "AMPLITUDE"
+	PublicGetAssetListDtoTechnologyANAPLAN                   PublicGetAssetListDtoTechnology = "ANAPLAN"
+	PublicGetAssetListDtoTechnologyANOMALO                   PublicGetAssetListDtoTechnology = "ANOMALO"
+	PublicGetAssetListDtoTechnologyAPACHEKAFKA               PublicGetAssetListDtoTechnology = "APACHE_KAFKA"
+	PublicGetAssetListDtoTechnologyAPACHESPARK               PublicGetAssetListDtoTechnology = "APACHE_SPARK"
+	PublicGetAssetListDtoTechnologyAPPCUES                   PublicGetAssetListDtoTechnology = "APPCUES"
+	PublicGetAssetListDtoTechnologyAPPFIGURES                PublicGetAssetListDtoTechnology = "APPFIGURES"
+	PublicGetAssetListDtoTechnologyAPPLE                     PublicGetAssetListDtoTechnology = "APPLE"
+	PublicGetAssetListDtoTechnologyAPPLEAPPSTORE             PublicGetAssetListDtoTechnology = "APPLE_APP_STORE"
+	PublicGetAssetListDtoTechnologyAPPSFLYER                 PublicGetAssetListDtoTechnology = "APPSFLYER"
+	PublicGetAssetListDtoTechnologyASANA                     PublicGetAssetListDtoTechnology = "ASANA"
+	PublicGetAssetListDtoTechnologyASSEMBLED                 PublicGetAssetListDtoTechnology = "ASSEMBLED"
+	PublicGetAssetListDtoTechnologyATHENA                    PublicGetAssetListDtoTechnology = "ATHENA"
+	PublicGetAssetListDtoTechnologyATLAN                     PublicGetAssetListDtoTechnology = "ATLAN"
+	PublicGetAssetListDtoTechnologyATLASSIANCONFLUENCE       PublicGetAssetListDtoTechnology = "ATLASSIAN_CONFLUENCE"
+	PublicGetAssetListDtoTechnologyATLASSIANJIRA             PublicGetAssetListDtoTechnology = "ATLASSIAN_JIRA"
+	PublicGetAssetListDtoTechnologyATLASSIANOPSGENIE         PublicGetAssetListDtoTechnology = "ATLASSIAN_OPSGENIE"
+	PublicGetAssetListDtoTechnologyAUTH0                     PublicGetAssetListDtoTechnology = "AUTH0"
+	PublicGetAssetListDtoTechnologyAUTODESKBIM360            PublicGetAssetListDtoTechnology = "AUTODESK_BIM_360"
+	PublicGetAssetListDtoTechnologyAWIN                      PublicGetAssetListDtoTechnology = "AWIN"
+	PublicGetAssetListDtoTechnologyAWSCLOUDTRAIL             PublicGetAssetListDtoTechnology = "AWS_CLOUDTRAIL"
+	PublicGetAssetListDtoTechnologyAWSCOSTEXPLORER           PublicGetAssetListDtoTechnology = "AWS_COST_EXPLORER"
+	PublicGetAssetListDtoTechnologyAWSINVENTORY              PublicGetAssetListDtoTechnology = "AWS_INVENTORY"
+	PublicGetAssetListDtoTechnologyAWSLAMBDA                 PublicGetAssetListDtoTechnology = "AWS_LAMBDA"
+	PublicGetAssetListDtoTechnologyAZURE                     PublicGetAssetListDtoTechnology = "AZURE"
+	PublicGetAssetListDtoTechnologyBALLOTREADY               PublicGetAssetListDtoTechnology = "BALLOT_READY"
+	PublicGetAssetListDtoTechnologyBAMBOOHR                  PublicGetAssetListDtoTechnology = "BAMBOOHR"
+	PublicGetAssetListDtoTechnologyBIGCOMMERCE               PublicGetAssetListDtoTechnology = "BIGCOMMERCE"
+	PublicGetAssetListDtoTechnologyBIGEYE                    PublicGetAssetListDtoTechnology = "BIGEYE"
+	PublicGetAssetListDtoTechnologyBIGQUERY                  PublicGetAssetListDtoTechnology = "BIGQUERY"
+	PublicGetAssetListDtoTechnologyBILLINGPLATFORM           PublicGetAssetListDtoTechnology = "BILLINGPLATFORM"
+	PublicGetAssetListDtoTechnologyBIRDEYE                   PublicGetAssetListDtoTechnology = "BIRDEYE"
+	PublicGetAssetListDtoTechnologyBLACKBOARD                PublicGetAssetListDtoTechnology = "BLACKBOARD"
+	PublicGetAssetListDtoTechnologyBOX                       PublicGetAssetListDtoTechnology = "BOX"
+	PublicGetAssetListDtoTechnologyBRAINTREE                 PublicGetAssetListDtoTechnology = "BRAINTREE"
+	PublicGetAssetListDtoTechnologyBRAZE                     PublicGetAssetListDtoTechnology = "BRAZE"
+	PublicGetAssetListDtoTechnologyBREVO                     PublicGetAssetListDtoTechnology = "BREVO"
+	PublicGetAssetListDtoTechnologyBREX                      PublicGetAssetListDtoTechnology = "BREX"
+	PublicGetAssetListDtoTechnologyBUILDKITE                 PublicGetAssetListDtoTechnology = "BUILDKITE"
+	PublicGetAssetListDtoTechnologyBUZZSPROUT                PublicGetAssetListDtoTechnology = "BUZZSPROUT"
+	PublicGetAssetListDtoTechnologyCALENDLY                  PublicGetAssetListDtoTechnology = "CALENDLY"
+	PublicGetAssetListDtoTechnologyCAMPAIGNMONITOR           PublicGetAssetListDtoTechnology = "CAMPAIGN_MONITOR"
+	PublicGetAssetListDtoTechnologyCANNY                     PublicGetAssetListDtoTechnology = "CANNY"
+	PublicGetAssetListDtoTechnologyCANVAS                    PublicGetAssetListDtoTechnology = "CANVAS"
+	PublicGetAssetListDtoTechnologyCAPTERRA                  PublicGetAssetListDtoTechnology = "CAPTERRA"
+	PublicGetAssetListDtoTechnologyCASTORDOC                 PublicGetAssetListDtoTechnology = "CASTOR_DOC"
+	PublicGetAssetListDtoTechnologyCENSUS                    PublicGetAssetListDtoTechnology = "CENSUS"
+	PublicGetAssetListDtoTechnologyCERTINIA                  PublicGetAssetListDtoTechnology = "CERTINIA"
+	PublicGetAssetListDtoTechnologyCHAMELEON                 PublicGetAssetListDtoTechnology = "CHAMELEON"
+	PublicGetAssetListDtoTechnologyCHANNELADVISOR            PublicGetAssetListDtoTechnology = "CHANNEL_ADVISOR"
+	PublicGetAssetListDtoTechnologyCHARGEBEE                 PublicGetAssetListDtoTechnology = "CHARGEBEE"
+	PublicGetAssetListDtoTechnologyCHARGEDESK                PublicGetAssetListDtoTechnology = "CHARGEDESK"
+	PublicGetAssetListDtoTechnologyCHARTMOGUL                PublicGetAssetListDtoTechnology = "CHARTMOGUL"
+	PublicGetAssetListDtoTechnologyCHORUSAI                  PublicGetAssetListDtoTechnology = "CHORUS_AI"
+	PublicGetAssetListDtoTechnologyCHURNKEY                  PublicGetAssetListDtoTechnology = "CHURNKEY"
+	PublicGetAssetListDtoTechnologyCHURNZERO                 PublicGetAssetListDtoTechnology = "CHURNZERO"
+	PublicGetAssetListDtoTechnologyCIMIS                     PublicGetAssetListDtoTechnology = "CIMIS"
+	PublicGetAssetListDtoTechnologyCIN7                      PublicGetAssetListDtoTechnology = "CIN7"
+	PublicGetAssetListDtoTechnologyCIRCLECI                  PublicGetAssetListDtoTechnology = "CIRCLE_CI"
+	PublicGetAssetListDtoTechnologyCLARI                     PublicGetAssetListDtoTechnology = "CLARI"
+	PublicGetAssetListDtoTechnologyCLICKUP                   PublicGetAssetListDtoTechnology = "CLICKUP"
+	PublicGetAssetListDtoTechnologyCLIFFAI                   PublicGetAssetListDtoTechnology = "CLIFF_AI"
+	PublicGetAssetListDtoTechnologyCLOSE                     PublicGetAssetListDtoTechnology = "CLOSE"
+	PublicGetAssetListDtoTechnologyCOLLIBRA                  PublicGetAssetListDtoTechnology = "COLLIBRA"
+	PublicGetAssetListDtoTechnologyCOMMERCETOOLS             PublicGetAssetListDtoTechnology = "COMMERCETOOLS"
+	PublicGetAssetListDtoTechnologyCOMPOSER                  PublicGetAssetListDtoTechnology = "COMPOSER"
+	PublicGetAssetListDtoTechnologyCONFLUENTCLOUD            PublicGetAssetListDtoTechnology = "CONFLUENT_CLOUD"
+	PublicGetAssetListDtoTechnologyCONTRASTSECURITY          PublicGetAssetListDtoTechnology = "CONTRAST_SECURITY"
+	PublicGetAssetListDtoTechnologyCOUPA                     PublicGetAssetListDtoTechnology = "COUPA"
+	PublicGetAssetListDtoTechnologyCRITEO                    PublicGetAssetListDtoTechnology = "CRITEO"
+	PublicGetAssetListDtoTechnologyCROSSBEAM                 PublicGetAssetListDtoTechnology = "CROSSBEAM"
+	PublicGetAssetListDtoTechnologyCRUNCHBASE                PublicGetAssetListDtoTechnology = "CRUNCHBASE"
+	PublicGetAssetListDtoTechnologyCUSTOMERIO                PublicGetAssetListDtoTechnology = "CUSTOMER_IO"
+	PublicGetAssetListDtoTechnologyD2LBRIGHTSPACE            PublicGetAssetListDtoTechnology = "D2L_BRIGHTSPACE"
+	PublicGetAssetListDtoTechnologyDAGSTER                   PublicGetAssetListDtoTechnology = "DAGSTER"
+	PublicGetAssetListDtoTechnologyDATABAND                  PublicGetAssetListDtoTechnology = "DATABAND"
+	PublicGetAssetListDtoTechnologyDATABRICKS                PublicGetAssetListDtoTechnology = "DATABRICKS"
+	PublicGetAssetListDtoTechnologyDATADOG                   PublicGetAssetListDtoTechnology = "DATADOG"
+	PublicGetAssetListDtoTechnologyDATAEDO                   PublicGetAssetListDtoTechnology = "DATAEDO"
+	PublicGetAssetListDtoTechnologyDATAFOLD                  PublicGetAssetListDtoTechnology = "DATAFOLD"
+	PublicGetAssetListDtoTechnologyDATAGALAXY                PublicGetAssetListDtoTechnology = "DATAGALAXY"
+	PublicGetAssetListDtoTechnologyDATAHUB                   PublicGetAssetListDtoTechnology = "DATAHUB"
+	PublicGetAssetListDtoTechnologyDATAIKU                   PublicGetAssetListDtoTechnology = "DATAIKU"
+	PublicGetAssetListDtoTechnologyDATAWORLD                 PublicGetAssetListDtoTechnology = "DATA_WORLD"
+	PublicGetAssetListDtoTechnologyDB2                       PublicGetAssetListDtoTechnology = "DB2"
+	PublicGetAssetListDtoTechnologyDBT                       PublicGetAssetListDtoTechnology = "DBT"
+	PublicGetAssetListDtoTechnologyDBTCLOUD                  PublicGetAssetListDtoTechnology = "DBTCLOUD"
+	PublicGetAssetListDtoTechnologyDCLLOGISTICS              PublicGetAssetListDtoTechnology = "DCL_LOGISTICS"
+	PublicGetAssetListDtoTechnologyDEAR                      PublicGetAssetListDtoTechnology = "DEAR"
+	PublicGetAssetListDtoTechnologyDECUBE                    PublicGetAssetListDtoTechnology = "DECUBE"
+	PublicGetAssetListDtoTechnologyDELIGHTED                 PublicGetAssetListDtoTechnology = "DELIGHTED"
+	PublicGetAssetListDtoTechnologyDEPUTY                    PublicGetAssetListDtoTechnology = "DEPUTY"
+	PublicGetAssetListDtoTechnologyDESTINI                   PublicGetAssetListDtoTechnology = "DESTINI"
+	PublicGetAssetListDtoTechnologyDIXA                      PublicGetAssetListDtoTechnology = "DIXA"
+	PublicGetAssetListDtoTechnologyDOCEBO                    PublicGetAssetListDtoTechnology = "DOCEBO"
+	PublicGetAssetListDtoTechnologyDRATA                     PublicGetAssetListDtoTechnology = "DRATA"
+	PublicGetAssetListDtoTechnologyDRIFT                     PublicGetAssetListDtoTechnology = "DRIFT"
+	PublicGetAssetListDtoTechnologyDRIP                      PublicGetAssetListDtoTechnology = "DRIP"
+	PublicGetAssetListDtoTechnologyDROPBOX                   PublicGetAssetListDtoTechnology = "DROPBOX"
+	PublicGetAssetListDtoTechnologyDUOPLANE                  PublicGetAssetListDtoTechnology = "DUOPLANE"
+	PublicGetAssetListDtoTechnologyEASYPOST                  PublicGetAssetListDtoTechnology = "EASY_POST"
+	PublicGetAssetListDtoTechnologyECONOMIC                  PublicGetAssetListDtoTechnology = "E_CONOMIC"
+	PublicGetAssetListDtoTechnologyELASTICSEARCH             PublicGetAssetListDtoTechnology = "ELASTICSEARCH"
+	PublicGetAssetListDtoTechnologyELEMENTARY                PublicGetAssetListDtoTechnology = "ELEMENTARY"
+	PublicGetAssetListDtoTechnologyELLUCIAN                  PublicGetAssetListDtoTechnology = "ELLUCIAN"
+	PublicGetAssetListDtoTechnologyELOQUA                    PublicGetAssetListDtoTechnology = "ELOQUA"
+	PublicGetAssetListDtoTechnologyEMAIL                     PublicGetAssetListDtoTechnology = "EMAIL"
+	PublicGetAssetListDtoTechnologyEMPLOYMENTHERO            PublicGetAssetListDtoTechnology = "EMPLOYMENT_HERO"
+	PublicGetAssetListDtoTechnologyEPICORPROPHET21           PublicGetAssetListDtoTechnology = "EPICOR_PROPHET_21"
+	PublicGetAssetListDtoTechnologyEVENTBRITE                PublicGetAssetListDtoTechnology = "EVENTBRITE"
+	PublicGetAssetListDtoTechnologyEVERHOUR                  PublicGetAssetListDtoTechnology = "EVERHOUR"
+	PublicGetAssetListDtoTechnologyEXCEL                     PublicGetAssetListDtoTechnology = "EXCEL"
+	PublicGetAssetListDtoTechnologyEXPENSIFY                 PublicGetAssetListDtoTechnology = "EXPENSIFY"
+	PublicGetAssetListDtoTechnologyFACEBOOK                  PublicGetAssetListDtoTechnology = "FACEBOOK"
+	PublicGetAssetListDtoTechnologyFIFTEENFIVE               PublicGetAssetListDtoTechnology = "FIFTEENFIVE"
+	PublicGetAssetListDtoTechnologyFIGMA                     PublicGetAssetListDtoTechnology = "FIGMA"
+	PublicGetAssetListDtoTechnologyFIREBASE                  PublicGetAssetListDtoTechnology = "FIREBASE"
+	PublicGetAssetListDtoTechnologyFIREBOLT                  PublicGetAssetListDtoTechnology = "FIREBOLT"
+	PublicGetAssetListDtoTechnologyFIVETRAN                  PublicGetAssetListDtoTechnology = "FIVETRAN"
+	PublicGetAssetListDtoTechnologyFLEXPORT                  PublicGetAssetListDtoTechnology = "FLEXPORT"
+	PublicGetAssetListDtoTechnologyFORJ                      PublicGetAssetListDtoTechnology = "FORJ"
+	PublicGetAssetListDtoTechnologyFOUNTAIN                  PublicGetAssetListDtoTechnology = "FOUNTAIN"
+	PublicGetAssetListDtoTechnologyFREIGHTVIEW               PublicGetAssetListDtoTechnology = "FREIGHTVIEW"
+	PublicGetAssetListDtoTechnologyFRESHBOOKS                PublicGetAssetListDtoTechnology = "FRESHBOOKS"
+	PublicGetAssetListDtoTechnologyFRESHCHAT                 PublicGetAssetListDtoTechnology = "FRESHCHAT"
+	PublicGetAssetListDtoTechnologyFRESHDESK                 PublicGetAssetListDtoTechnology = "FRESHDESK"
+	PublicGetAssetListDtoTechnologyFRESHDESKCONTACTCENTER    PublicGetAssetListDtoTechnology = "FRESHDESK_CONTACT_CENTER"
+	PublicGetAssetListDtoTechnologyFRESHSERVICE              PublicGetAssetListDtoTechnology = "FRESHSERVICE"
+	PublicGetAssetListDtoTechnologyFRESHSUCCESS              PublicGetAssetListDtoTechnology = "FRESHSUCCESS"
+	PublicGetAssetListDtoTechnologyFRESHTEAM                 PublicGetAssetListDtoTechnology = "FRESHTEAM"
+	PublicGetAssetListDtoTechnologyFRIENDBUY                 PublicGetAssetListDtoTechnology = "FRIENDBUY"
+	PublicGetAssetListDtoTechnologyFRONT                     PublicGetAssetListDtoTechnology = "FRONT"
+	PublicGetAssetListDtoTechnologyFTP                       PublicGetAssetListDtoTechnology = "FTP"
+	PublicGetAssetListDtoTechnologyFULLSTORY                 PublicGetAssetListDtoTechnology = "FULLSTORY"
+	PublicGetAssetListDtoTechnologyG2                        PublicGetAssetListDtoTechnology = "G2"
+	PublicGetAssetListDtoTechnologyGAINSIGHT                 PublicGetAssetListDtoTechnology = "GAINSIGHT"
+	PublicGetAssetListDtoTechnologyGEM                       PublicGetAssetListDtoTechnology = "GEM"
+	PublicGetAssetListDtoTechnologyGIT                       PublicGetAssetListDtoTechnology = "GIT"
+	PublicGetAssetListDtoTechnologyGITHUB                    PublicGetAssetListDtoTechnology = "GITHUB"
+	PublicGetAssetListDtoTechnologyGITLAB                    PublicGetAssetListDtoTechnology = "GITLAB"
+	PublicGetAssetListDtoTechnologyGLADLY                    PublicGetAssetListDtoTechnology = "GLADLY"
+	PublicGetAssetListDtoTechnologyGOCARDLESS                PublicGetAssetListDtoTechnology = "GOCARDLESS"
+	PublicGetAssetListDtoTechnologyGONG                      PublicGetAssetListDtoTechnology = "GONG"
+	PublicGetAssetListDtoTechnologyGOOGLE                    PublicGetAssetListDtoTechnology = "GOOGLE"
+	PublicGetAssetListDtoTechnologyGOOGLEADMANAGER           PublicGetAssetListDtoTechnology = "GOOGLE_AD_MANAGER"
+	PublicGetAssetListDtoTechnologyGOOGLEADS                 PublicGetAssetListDtoTechnology = "GOOGLE_ADS"
+	PublicGetAssetListDtoTechnologyGOOGLEANALYTICS           PublicGetAssetListDtoTechnology = "GOOGLE_ANALYTICS"
+	PublicGetAssetListDtoTechnologyGOOGLECALENDAR            PublicGetAssetListDtoTechnology = "GOOGLE_CALENDAR"
+	PublicGetAssetListDtoTechnologyGOOGLECAMPAIGNMANAGER     PublicGetAssetListDtoTechnology = "GOOGLE_CAMPAIGN_MANAGER"
+	PublicGetAssetListDtoTechnologyGOOGLECHROME              PublicGetAssetListDtoTechnology = "GOOGLE_CHROME"
+	PublicGetAssetListDtoTechnologyGOOGLECLOUD               PublicGetAssetListDtoTechnology = "GOOGLE_CLOUD"
+	PublicGetAssetListDtoTechnologyGOOGLECLOUDSTORAGE        PublicGetAssetListDtoTechnology = "GOOGLE_CLOUD_STORAGE"
+	PublicGetAssetListDtoTechnologyGOOGLEDISPLAY             PublicGetAssetListDtoTechnology = "GOOGLE_DISPLAY"
+	PublicGetAssetListDtoTechnologyGOOGLEDRIVE               PublicGetAssetListDtoTechnology = "GOOGLE_DRIVE"
+	PublicGetAssetListDtoTechnologyGOOGLEPLAY                PublicGetAssetListDtoTechnology = "GOOGLE_PLAY"
+	PublicGetAssetListDtoTechnologyGOOGLESEARCHADS360        PublicGetAssetListDtoTechnology = "GOOGLE_SEARCH_ADS_360"
+	PublicGetAssetListDtoTechnologyGOOGLESEARCHCONSOLE       PublicGetAssetListDtoTechnology = "GOOGLE_SEARCH_CONSOLE"
+	PublicGetAssetListDtoTechnologyGOOGLESHEETS              PublicGetAssetListDtoTechnology = "GOOGLE_SHEETS"
+	PublicGetAssetListDtoTechnologyGOOGLETASKS               PublicGetAssetListDtoTechnology = "GOOGLE_TASKS"
+	PublicGetAssetListDtoTechnologyGORGIAS                   PublicGetAssetListDtoTechnology = "GORGIAS"
+	PublicGetAssetListDtoTechnologyGREENHOUSE                PublicGetAssetListDtoTechnology = "GREENHOUSE"
+	PublicGetAssetListDtoTechnologyGREENPLUM                 PublicGetAssetListDtoTechnology = "GREENPLUM"
+	PublicGetAssetListDtoTechnologyGREENPOWERMONITOR         PublicGetAssetListDtoTechnology = "GREEN_POWER_MONITOR"
+	PublicGetAssetListDtoTechnologyGREPSR                    PublicGetAssetListDtoTechnology = "GREPSR"
+	PublicGetAssetListDtoTechnologyGRIN                      PublicGetAssetListDtoTechnology = "GRIN"
+	PublicGetAssetListDtoTechnologyGURU                      PublicGetAssetListDtoTechnology = "GURU"
+	PublicGetAssetListDtoTechnologyH2                        PublicGetAssetListDtoTechnology = "H2"
+	PublicGetAssetListDtoTechnologyHARVEST                   PublicGetAssetListDtoTechnology = "HARVEST"
+	PublicGetAssetListDtoTechnologyHDFS                      PublicGetAssetListDtoTechnology = "HDFS"
+	PublicGetAssetListDtoTechnologyHEAP                      PublicGetAssetListDtoTechnology = "HEAP"
+	PublicGetAssetListDtoTechnologyHEIGHT                    PublicGetAssetListDtoTechnology = "HEIGHT"
+	PublicGetAssetListDtoTechnologyHELPSCOUT                 PublicGetAssetListDtoTechnology = "HELP_SCOUT"
+	PublicGetAssetListDtoTechnologyHELPSHIFT                 PublicGetAssetListDtoTechnology = "HELPSHIFT"
+	PublicGetAssetListDtoTechnologyHEROKUKAFKA               PublicGetAssetListDtoTechnology = "HEROKU_KAFKA"
+	PublicGetAssetListDtoTechnologyHEX                       PublicGetAssetListDtoTechnology = "HEX"
+	PublicGetAssetListDtoTechnologyHIBOB                     PublicGetAssetListDtoTechnology = "HIBOB"
+	PublicGetAssetListDtoTechnologyHIGHTOUCH                 PublicGetAssetListDtoTechnology = "HIGH_TOUCH"
+	PublicGetAssetListDtoTechnologyHOPIN                     PublicGetAssetListDtoTechnology = "HOPIN"
+	PublicGetAssetListDtoTechnologyHUBSPOT                   PublicGetAssetListDtoTechnology = "HUBSPOT"
+	PublicGetAssetListDtoTechnologyIMPACT                    PublicGetAssetListDtoTechnology = "IMPACT"
+	PublicGetAssetListDtoTechnologyINCIDENTIO                PublicGetAssetListDtoTechnology = "INCIDENT_IO"
+	PublicGetAssetListDtoTechnologyINFOBIP                   PublicGetAssetListDtoTechnology = "INFOBIP"
+	PublicGetAssetListDtoTechnologyINFORMATICA               PublicGetAssetListDtoTechnology = "INFORMATICA"
+	PublicGetAssetListDtoTechnologyINSIGHTLY                 PublicGetAssetListDtoTechnology = "INSIGHTLY"
+	PublicGetAssetListDtoTechnologyINSTAGRAM                 PublicGetAssetListDtoTechnology = "INSTAGRAM"
+	PublicGetAssetListDtoTechnologyINTERCOM                  PublicGetAssetListDtoTechnology = "INTERCOM"
+	PublicGetAssetListDtoTechnologyINVESTOPEDIA              PublicGetAssetListDtoTechnology = "INVESTOPEDIA"
+	PublicGetAssetListDtoTechnologyIRONCLAD                  PublicGetAssetListDtoTechnology = "IRONCLAD"
+	PublicGetAssetListDtoTechnologyIRONSOURCE                PublicGetAssetListDtoTechnology = "IRONSOURCE"
+	PublicGetAssetListDtoTechnologyITERABLE                  PublicGetAssetListDtoTechnology = "ITERABLE"
+	PublicGetAssetListDtoTechnologyJAVA                      PublicGetAssetListDtoTechnology = "JAVA"
+	PublicGetAssetListDtoTechnologyJENKINS                   PublicGetAssetListDtoTechnology = "JENKINS"
+	PublicGetAssetListDtoTechnologyJUSTCALL                  PublicGetAssetListDtoTechnology = "JUSTCALL"
+	PublicGetAssetListDtoTechnologyKANDJI                    PublicGetAssetListDtoTechnology = "KANDJI"
+	PublicGetAssetListDtoTechnologyKENSU                     PublicGetAssetListDtoTechnology = "KENSU"
+	PublicGetAssetListDtoTechnologyKHOROSCARE                PublicGetAssetListDtoTechnology = "KHOROS_CARE"
+	PublicGetAssetListDtoTechnologyKISSMETRICS               PublicGetAssetListDtoTechnology = "KISSMETRICS"
+	PublicGetAssetListDtoTechnologyKLAVIYO                   PublicGetAssetListDtoTechnology = "KLAVIYO"
+	PublicGetAssetListDtoTechnologyKNOWBE4                   PublicGetAssetListDtoTechnology = "KNOWBE4"
+	PublicGetAssetListDtoTechnologyKONNECTINSIGHTS           PublicGetAssetListDtoTechnology = "KONNECT_INSIGHTS"
+	PublicGetAssetListDtoTechnologyKUSTOMER                  PublicGetAssetListDtoTechnology = "KUSTOMER"
+	PublicGetAssetListDtoTechnologyLARIATDATA                PublicGetAssetListDtoTechnology = "LARIAT_DATA"
+	PublicGetAssetListDtoTechnologyLATTICE                   PublicGetAssetListDtoTechnology = "LATTICE"
+	PublicGetAssetListDtoTechnologyLAUNCHDARKLY              PublicGetAssetListDtoTechnology = "LAUNCH_DARKLY"
+	PublicGetAssetListDtoTechnologyLEARNUPON                 PublicGetAssetListDtoTechnology = "LEARN_UPON"
+	PublicGetAssetListDtoTechnologyLESSONLY                  PublicGetAssetListDtoTechnology = "LESSONLY"
+	PublicGetAssetListDtoTechnologyLEVER                     PublicGetAssetListDtoTechnology = "LEVER"
+	PublicGetAssetListDtoTechnologyLIFTOFF                   PublicGetAssetListDtoTechnology = "LIFTOFF"
+	PublicGetAssetListDtoTechnologyLIGHTDASH                 PublicGetAssetListDtoTechnology = "LIGHTDASH"
+	PublicGetAssetListDtoTechnologyLIGHTSPEED                PublicGetAssetListDtoTechnology = "LIGHTSPEED"
+	PublicGetAssetListDtoTechnologyLIGHTSUP                  PublicGetAssetListDtoTechnology = "LIGHTSUP"
+	PublicGetAssetListDtoTechnologyLINEAR                    PublicGetAssetListDtoTechnology = "LINEAR"
+	PublicGetAssetListDtoTechnologyLINKEDIN                  PublicGetAssetListDtoTechnology = "LINKEDIN"
+	PublicGetAssetListDtoTechnologyLIVECHAT                  PublicGetAssetListDtoTechnology = "LIVECHAT"
+	PublicGetAssetListDtoTechnologyLOADEDCOMMERCE            PublicGetAssetListDtoTechnology = "LOADED_COMMERCE"
+	PublicGetAssetListDtoTechnologyLOB                       PublicGetAssetListDtoTechnology = "LOB"
+	PublicGetAssetListDtoTechnologyLOOKER                    PublicGetAssetListDtoTechnology = "LOOKER"
+	PublicGetAssetListDtoTechnologyLOOP                      PublicGetAssetListDtoTechnology = "LOOP"
+	PublicGetAssetListDtoTechnologyLOOPIO                    PublicGetAssetListDtoTechnology = "LOOPIO"
+	PublicGetAssetListDtoTechnologyLUMA                      PublicGetAssetListDtoTechnology = "LUMA"
+	PublicGetAssetListDtoTechnologyMAGENTO                   PublicGetAssetListDtoTechnology = "MAGENTO"
+	PublicGetAssetListDtoTechnologyMAILCHIMP                 PublicGetAssetListDtoTechnology = "MAILCHIMP"
+	PublicGetAssetListDtoTechnologyMAILGUN                   PublicGetAssetListDtoTechnology = "MAILGUN"
+	PublicGetAssetListDtoTechnologyMANDRILL                  PublicGetAssetListDtoTechnology = "MANDRILL"
+	PublicGetAssetListDtoTechnologyMANTA                     PublicGetAssetListDtoTechnology = "MANTA"
+	PublicGetAssetListDtoTechnologyMARIADB                   PublicGetAssetListDtoTechnology = "MARIADB"
+	PublicGetAssetListDtoTechnologyMARINSOFTWARE             PublicGetAssetListDtoTechnology = "MARIN_SOFTWARE"
+	PublicGetAssetListDtoTechnologyMARKETO                   PublicGetAssetListDtoTechnology = "MARKETO"
+	PublicGetAssetListDtoTechnologyMATTERMOST                PublicGetAssetListDtoTechnology = "MATTERMOST"
+	PublicGetAssetListDtoTechnologyMAVENLINK                 PublicGetAssetListDtoTechnology = "MAVENLINK"
+	PublicGetAssetListDtoTechnologyMAXIO                     PublicGetAssetListDtoTechnology = "MAXIO"
+	PublicGetAssetListDtoTechnologyMEDALLIA                  PublicGetAssetListDtoTechnology = "MEDALLIA"
+	PublicGetAssetListDtoTechnologyMETA                      PublicGetAssetListDtoTechnology = "META"
+	PublicGetAssetListDtoTechnologyMETABASE                  PublicGetAssetListDtoTechnology = "METABASE"
+	PublicGetAssetListDtoTechnologyMETAPHOR                  PublicGetAssetListDtoTechnology = "METAPHOR"
+	PublicGetAssetListDtoTechnologyMETAPLANE                 PublicGetAssetListDtoTechnology = "METAPLANE"
+	PublicGetAssetListDtoTechnologyMICROSOFT                 PublicGetAssetListDtoTechnology = "MICROSOFT"
+	PublicGetAssetListDtoTechnologyMICROSOFTAZUREBLOBSTORAGE PublicGetAssetListDtoTechnology = "MICROSOFT_AZURE_BLOB_STORAGE"
+	PublicGetAssetListDtoTechnologyMICROSOFTAZUREML          PublicGetAssetListDtoTechnology = "MICROSOFT_AZURE_ML"
+	PublicGetAssetListDtoTechnologyMICROSOFTDYNAMICS         PublicGetAssetListDtoTechnology = "MICROSOFT_DYNAMICS"
+	PublicGetAssetListDtoTechnologyMICROSOFTONEDRIVE         PublicGetAssetListDtoTechnology = "MICROSOFT_ONEDRIVE"
+	PublicGetAssetListDtoTechnologyMICROSOFTPURVIEW          PublicGetAssetListDtoTechnology = "MICROSOFT_PURVIEW"
+	PublicGetAssetListDtoTechnologyMICROSOFTTEAMS            PublicGetAssetListDtoTechnology = "MICROSOFT_TEAMS"
+	PublicGetAssetListDtoTechnologyMICROSTRATEGY             PublicGetAssetListDtoTechnology = "MICROSTRATEGY"
+	PublicGetAssetListDtoTechnologyMIXMAX                    PublicGetAssetListDtoTechnology = "MIXMAX"
+	PublicGetAssetListDtoTechnologyMIXPANEL                  PublicGetAssetListDtoTechnology = "MIXPANEL"
+	PublicGetAssetListDtoTechnologyMONDAYCOM                 PublicGetAssetListDtoTechnology = "MONDAY_COM"
+	PublicGetAssetListDtoTechnologyMONGODB                   PublicGetAssetListDtoTechnology = "MONGODB"
+	PublicGetAssetListDtoTechnologyMONTECARLO                PublicGetAssetListDtoTechnology = "MONTE_CARLO"
+	PublicGetAssetListDtoTechnologyMOUNTAIN                  PublicGetAssetListDtoTechnology = "MOUNTAIN"
+	PublicGetAssetListDtoTechnologyMSSQL                     PublicGetAssetListDtoTechnology = "MSSQL"
+	PublicGetAssetListDtoTechnologyMULESOFT                  PublicGetAssetListDtoTechnology = "MULESOFT"
+	PublicGetAssetListDtoTechnologyMUX                       PublicGetAssetListDtoTechnology = "MUX"
+	PublicGetAssetListDtoTechnologyMWAA                      PublicGetAssetListDtoTechnology = "MWAA"
+	PublicGetAssetListDtoTechnologyMYSQL                     PublicGetAssetListDtoTechnology = "MYSQL"
+	PublicGetAssetListDtoTechnologyNAMELY                    PublicGetAssetListDtoTechnology = "NAMELY"
+	PublicGetAssetListDtoTechnologyNCINO                     PublicGetAssetListDtoTechnology = "NCINO"
+	PublicGetAssetListDtoTechnologyNETSUITEANALYTICS         PublicGetAssetListDtoTechnology = "NETSUITE_ANALYTICS"
+	PublicGetAssetListDtoTechnologyNEWRELIC                  PublicGetAssetListDtoTechnology = "NEW_RELIC"
+	PublicGetAssetListDtoTechnologyNOTION                    PublicGetAssetListDtoTechnology = "NOTION"
+	PublicGetAssetListDtoTechnologyNYLAS                     PublicGetAssetListDtoTechnology = "NYLAS"
+	PublicGetAssetListDtoTechnologyOBSERVE                   PublicGetAssetListDtoTechnology = "OBSERVE"
+	PublicGetAssetListDtoTechnologyOCTOPAI                   PublicGetAssetListDtoTechnology = "OCTOPAI"
+	PublicGetAssetListDtoTechnologyOKTA                      PublicGetAssetListDtoTechnology = "OKTA"
+	PublicGetAssetListDtoTechnologyOPENAI                    PublicGetAssetListDtoTechnology = "OPEN_AI"
+	PublicGetAssetListDtoTechnologyOPENDATADC                PublicGetAssetListDtoTechnology = "OPEN_DATA_DC"
+	PublicGetAssetListDtoTechnologyOPENEXCHANGESRATES        PublicGetAssetListDtoTechnology = "OPEN_EXCHANGES_RATES"
+	PublicGetAssetListDtoTechnologyOPENSEARCH                PublicGetAssetListDtoTechnology = "OPEN_SEARCH"
+	PublicGetAssetListDtoTechnologyOPTIMIZELY                PublicGetAssetListDtoTechnology = "OPTIMIZELY"
+	PublicGetAssetListDtoTechnologyORACLE                    PublicGetAssetListDtoTechnology = "ORACLE"
+	PublicGetAssetListDtoTechnologyORBITCOMMUNITYPLATFORM    PublicGetAssetListDtoTechnology = "ORBIT_COMMUNITY_PLATFORM"
+	PublicGetAssetListDtoTechnologyORDWAY                    PublicGetAssetListDtoTechnology = "ORDWAY"
+	PublicGetAssetListDtoTechnologyORTTO                     PublicGetAssetListDtoTechnology = "ORTTO"
+	PublicGetAssetListDtoTechnologyOSCOMMERCE                PublicGetAssetListDtoTechnology = "OS_COMMERCE"
+	PublicGetAssetListDtoTechnologyOUTBRAIN                  PublicGetAssetListDtoTechnology = "OUTBRAIN"
+	PublicGetAssetListDtoTechnologyOUTREACH                  PublicGetAssetListDtoTechnology = "OUTREACH"
+	PublicGetAssetListDtoTechnologyOVALEDGE                  PublicGetAssetListDtoTechnology = "OVALEDGE"
+	PublicGetAssetListDtoTechnologyPAGERDUTY                 PublicGetAssetListDtoTechnology = "PAGERDUTY"
+	PublicGetAssetListDtoTechnologyPAGERSHIFT                PublicGetAssetListDtoTechnology = "PAGERSHIFT"
+	PublicGetAssetListDtoTechnologyPAYPAL                    PublicGetAssetListDtoTechnology = "PAYPAL"
+	PublicGetAssetListDtoTechnologyPENDO                     PublicGetAssetListDtoTechnology = "PENDO"
+	PublicGetAssetListDtoTechnologyPINGDOM                   PublicGetAssetListDtoTechnology = "PINGDOM"
+	PublicGetAssetListDtoTechnologyPINTEREST                 PublicGetAssetListDtoTechnology = "PINTEREST"
+	PublicGetAssetListDtoTechnologyPIPE17                    PublicGetAssetListDtoTechnology = "PIPE17"
+	PublicGetAssetListDtoTechnologyPIPEDRIVE                 PublicGetAssetListDtoTechnology = "PIPEDRIVE"
+	PublicGetAssetListDtoTechnologyPIVOTALTRACKER            PublicGetAssetListDtoTechnology = "PIVOTAL_TRACKER"
+	PublicGetAssetListDtoTechnologyPLAYVOX                   PublicGetAssetListDtoTechnology = "PLAYVOX"
+	PublicGetAssetListDtoTechnologyPOSTGRES                  PublicGetAssetListDtoTechnology = "POSTGRES"
+	PublicGetAssetListDtoTechnologyPOSTHOG                   PublicGetAssetListDtoTechnology = "POSTHOG"
+	PublicGetAssetListDtoTechnologyPOWERBI                   PublicGetAssetListDtoTechnology = "POWER_BI"
+	PublicGetAssetListDtoTechnologyPOWERSCHOOL               PublicGetAssetListDtoTechnology = "POWERSCHOOL"
+	PublicGetAssetListDtoTechnologyPREFECT                   PublicGetAssetListDtoTechnology = "PREFECT"
+	PublicGetAssetListDtoTechnologyPRESTASHOP                PublicGetAssetListDtoTechnology = "PRESTASHOP"
+	PublicGetAssetListDtoTechnologyPRESTO                    PublicGetAssetListDtoTechnology = "PRESTO"
+	PublicGetAssetListDtoTechnologyPRODUCTBOARD              PublicGetAssetListDtoTechnology = "PRODUCTBOARD"
+	PublicGetAssetListDtoTechnologyPYTHON                    PublicGetAssetListDtoTechnology = "PYTHON"
+	PublicGetAssetListDtoTechnologyQLIK                      PublicGetAssetListDtoTechnology = "QLIK"
+	PublicGetAssetListDtoTechnologyQUALAROO                  PublicGetAssetListDtoTechnology = "QUALAROO"
+	PublicGetAssetListDtoTechnologyQUALTRICS                 PublicGetAssetListDtoTechnology = "QUALTRICS"
+	PublicGetAssetListDtoTechnologyQUICKBOOKS                PublicGetAssetListDtoTechnology = "QUICKBOOKS"
+	PublicGetAssetListDtoTechnologyQUICKSIGHT                PublicGetAssetListDtoTechnology = "QUICKSIGHT"
+	PublicGetAssetListDtoTechnologyRAMP                      PublicGetAssetListDtoTechnology = "RAMP"
+	PublicGetAssetListDtoTechnologyRARIBLE                   PublicGetAssetListDtoTechnology = "RARIBLE"
+	PublicGetAssetListDtoTechnologyRECHARGE                  PublicGetAssetListDtoTechnology = "RECHARGE"
+	PublicGetAssetListDtoTechnologyRECURLY                   PublicGetAssetListDtoTechnology = "RECURLY"
+	PublicGetAssetListDtoTechnologyREDDIT                    PublicGetAssetListDtoTechnology = "REDDIT"
+	PublicGetAssetListDtoTechnologyREDSHIFT                  PublicGetAssetListDtoTechnology = "REDSHIFT"
+	PublicGetAssetListDtoTechnologyRELTIO                    PublicGetAssetListDtoTechnology = "RELTIO"
+	PublicGetAssetListDtoTechnologyREPLYIO                   PublicGetAssetListDtoTechnology = "REPLY_IO"
+	PublicGetAssetListDtoTechnologyRETAILNEXT                PublicGetAssetListDtoTechnology = "RETAILNEXT"
+	PublicGetAssetListDtoTechnologyRETENTLY                  PublicGetAssetListDtoTechnology = "RETENTLY"
+	PublicGetAssetListDtoTechnologyREVELSYSTEMS              PublicGetAssetListDtoTechnology = "REVEL_SYSTEMS"
+	PublicGetAssetListDtoTechnologyRINGCENTRAL               PublicGetAssetListDtoTechnology = "RINGCENTRAL"
+	PublicGetAssetListDtoTechnologyRIPPLING                  PublicGetAssetListDtoTechnology = "RIPPLING"
+	PublicGetAssetListDtoTechnologyROLLBAR                   PublicGetAssetListDtoTechnology = "ROLLBAR"
+	PublicGetAssetListDtoTechnologyROOTLY                    PublicGetAssetListDtoTechnology = "ROOTLY"
+	PublicGetAssetListDtoTechnologyS3                        PublicGetAssetListDtoTechnology = "S3"
+	PublicGetAssetListDtoTechnologySAGEHR                    PublicGetAssetListDtoTechnology = "SAGE_HR"
+	PublicGetAssetListDtoTechnologySAGEINTACCT               PublicGetAssetListDtoTechnology = "SAGE_INTACCT"
+	PublicGetAssetListDtoTechnologySAILTHRU                  PublicGetAssetListDtoTechnology = "SAILTHRU"
+	PublicGetAssetListDtoTechnologySALESFORCE                PublicGetAssetListDtoTechnology = "SALESFORCE"
+	PublicGetAssetListDtoTechnologySALESLOFT                 PublicGetAssetListDtoTechnology = "SALESLOFT"
+	PublicGetAssetListDtoTechnologySALSIFY                   PublicGetAssetListDtoTechnology = "SALSIFY"
+	PublicGetAssetListDtoTechnologySAMSARA                   PublicGetAssetListDtoTechnology = "SAMSARA"
+	PublicGetAssetListDtoTechnologySAP                       PublicGetAssetListDtoTechnology = "SAP"
+	PublicGetAssetListDtoTechnologySAPCONCUR                 PublicGetAssetListDtoTechnology = "SAP_CONCUR"
+	PublicGetAssetListDtoTechnologySCORM                     PublicGetAssetListDtoTechnology = "SCORM"
+	PublicGetAssetListDtoTechnologySECODA                    PublicGetAssetListDtoTechnology = "SECODA"
+	PublicGetAssetListDtoTechnologySECURITYJOURNEY           PublicGetAssetListDtoTechnology = "SECURITY_JOURNEY"
+	PublicGetAssetListDtoTechnologySEGMENT                   PublicGetAssetListDtoTechnology = "SEGMENT"
+	PublicGetAssetListDtoTechnologySELECTSTAR                PublicGetAssetListDtoTechnology = "SELECT_STAR"
+	PublicGetAssetListDtoTechnologySENDGRID                  PublicGetAssetListDtoTechnology = "SENDGRID"
+	PublicGetAssetListDtoTechnologySERVICENOW                PublicGetAssetListDtoTechnology = "SERVICE_NOW"
+	PublicGetAssetListDtoTechnologySFTP                      PublicGetAssetListDtoTechnology = "SFTP"
+	PublicGetAssetListDtoTechnologySHAREPOINT                PublicGetAssetListDtoTechnology = "SHAREPOINT"
+	PublicGetAssetListDtoTechnologySHARETRIBE                PublicGetAssetListDtoTechnology = "SHARETRIBE"
+	PublicGetAssetListDtoTechnologySHIPHERO                  PublicGetAssetListDtoTechnology = "SHIPHERO"
+	PublicGetAssetListDtoTechnologySHIPSTATION               PublicGetAssetListDtoTechnology = "SHIPSTATION"
+	PublicGetAssetListDtoTechnologySHOPIFY                   PublicGetAssetListDtoTechnology = "SHOPIFY"
+	PublicGetAssetListDtoTechnologySHOPWARE                  PublicGetAssetListDtoTechnology = "SHOPWARE"
+	PublicGetAssetListDtoTechnologySHORTIO                   PublicGetAssetListDtoTechnology = "SHORT_IO"
+	PublicGetAssetListDtoTechnologySIFFLET                   PublicGetAssetListDtoTechnology = "SIFFLET"
+	PublicGetAssetListDtoTechnologySIGMA                     PublicGetAssetListDtoTechnology = "SIGMA"
+	PublicGetAssetListDtoTechnologySIMPLECAST                PublicGetAssetListDtoTechnology = "SIMPLECAST"
+	PublicGetAssetListDtoTechnologySIMPLESAT                 PublicGetAssetListDtoTechnology = "SIMPLESAT"
+	PublicGetAssetListDtoTechnologySINGLESTORE               PublicGetAssetListDtoTechnology = "SINGLESTORE"
+	PublicGetAssetListDtoTechnologySISENSE                   PublicGetAssetListDtoTechnology = "SISENSE"
+	PublicGetAssetListDtoTechnologySIXSENSE                  PublicGetAssetListDtoTechnology = "SIXSENSE"
+	PublicGetAssetListDtoTechnologySKILLJAR                  PublicGetAssetListDtoTechnology = "SKILLJAR"
+	PublicGetAssetListDtoTechnologySKUVAULT                  PublicGetAssetListDtoTechnology = "SKUVAULT"
+	PublicGetAssetListDtoTechnologySLAB                      PublicGetAssetListDtoTechnology = "SLAB"
+	PublicGetAssetListDtoTechnologySLACK                     PublicGetAssetListDtoTechnology = "SLACK"
+	PublicGetAssetListDtoTechnologySMADEX                    PublicGetAssetListDtoTechnology = "SMADEX"
+	PublicGetAssetListDtoTechnologySNAPCHAT                  PublicGetAssetListDtoTechnology = "SNAPCHAT"
+	PublicGetAssetListDtoTechnologySNOWFLAKE                 PublicGetAssetListDtoTechnology = "SNOWFLAKE"
+	PublicGetAssetListDtoTechnologySNOWPLOW                  PublicGetAssetListDtoTechnology = "SNOWPLOW"
+	PublicGetAssetListDtoTechnologySODA                      PublicGetAssetListDtoTechnology = "SODA"
+	PublicGetAssetListDtoTechnologySONARQUBE                 PublicGetAssetListDtoTechnology = "SONARQUBE"
+	PublicGetAssetListDtoTechnologySPLITIO                   PublicGetAssetListDtoTechnology = "SPLIT_IO"
+	PublicGetAssetListDtoTechnologySPLUNK                    PublicGetAssetListDtoTechnology = "SPLUNK"
+	PublicGetAssetListDtoTechnologySPOTIFY                   PublicGetAssetListDtoTechnology = "SPOTIFY"
+	PublicGetAssetListDtoTechnologySPREECOMMERCE             PublicGetAssetListDtoTechnology = "SPREE_COMMERCE"
+	PublicGetAssetListDtoTechnologySPROUTSOCIAL              PublicGetAssetListDtoTechnology = "SPROUT_SOCIAL"
+	PublicGetAssetListDtoTechnologySQUARE                    PublicGetAssetListDtoTechnology = "SQUARE"
+	PublicGetAssetListDtoTechnologySQUARESPACE               PublicGetAssetListDtoTechnology = "SQUARESPACE"
+	PublicGetAssetListDtoTechnologySTACKADAPT                PublicGetAssetListDtoTechnology = "STACK_ADAPT"
+	PublicGetAssetListDtoTechnologySTATSIG                   PublicGetAssetListDtoTechnology = "STATSIG"
+	PublicGetAssetListDtoTechnologySTITCH                    PublicGetAssetListDtoTechnology = "STITCH"
+	PublicGetAssetListDtoTechnologySTRIPE                    PublicGetAssetListDtoTechnology = "STRIPE"
+	PublicGetAssetListDtoTechnologySTYLIGHT                  PublicGetAssetListDtoTechnology = "STYLIGHT"
+	PublicGetAssetListDtoTechnologySUBSCRIPT                 PublicGetAssetListDtoTechnology = "SUBSCRIPT"
+	PublicGetAssetListDtoTechnologySYNAPSE                   PublicGetAssetListDtoTechnology = "SYNAPSE"
+	PublicGetAssetListDtoTechnologyTABLEAU                   PublicGetAssetListDtoTechnology = "TABLEAU"
+	PublicGetAssetListDtoTechnologyTABOOLA                   PublicGetAssetListDtoTechnology = "TABOOLA"
+	PublicGetAssetListDtoTechnologyTALEND                    PublicGetAssetListDtoTechnology = "TALEND"
+	PublicGetAssetListDtoTechnologyTALKDESK                  PublicGetAssetListDtoTechnology = "TALKDESK"
+	PublicGetAssetListDtoTechnologyTALKWALKER                PublicGetAssetListDtoTechnology = "TALKWALKER"
+	PublicGetAssetListDtoTechnologyTEAMWORKCOM               PublicGetAssetListDtoTechnology = "TEAMWORK_COM"
+	PublicGetAssetListDtoTechnologyTEMPOIO                   PublicGetAssetListDtoTechnology = "TEMPO_IO"
+	PublicGetAssetListDtoTechnologyTERADATA                  PublicGetAssetListDtoTechnology = "TERADATA"
+	PublicGetAssetListDtoTechnologyTERRAFORM                 PublicGetAssetListDtoTechnology = "TERRAFORM"
+	PublicGetAssetListDtoTechnologyTHETRADEDESK              PublicGetAssetListDtoTechnology = "THE_TRADE_DESK"
+	PublicGetAssetListDtoTechnologyTHOUGHTSPOT               PublicGetAssetListDtoTechnology = "THOUGHT_SPOT"
+	PublicGetAssetListDtoTechnologyTHREESIXTYLEARNING        PublicGetAssetListDtoTechnology = "THREESIXTYLEARNING"
+	PublicGetAssetListDtoTechnologyTIKTOK                    PublicGetAssetListDtoTechnology = "TIKTOK"
+	PublicGetAssetListDtoTechnologyTOGGL                     PublicGetAssetListDtoTechnology = "TOGGL"
+	PublicGetAssetListDtoTechnologyTRANSCEND                 PublicGetAssetListDtoTechnology = "TRANSCEND"
+	PublicGetAssetListDtoTechnologyTRELLO                    PublicGetAssetListDtoTechnology = "TRELLO"
+	PublicGetAssetListDtoTechnologyTRINET                    PublicGetAssetListDtoTechnology = "TRINET"
+	PublicGetAssetListDtoTechnologyTRISOLUTE                 PublicGetAssetListDtoTechnology = "TRISOLUTE"
+	PublicGetAssetListDtoTechnologyTWILIO                    PublicGetAssetListDtoTechnology = "TWILIO"
+	PublicGetAssetListDtoTechnologyTYPEFORM                  PublicGetAssetListDtoTechnology = "TYPEFORM"
+	PublicGetAssetListDtoTechnologyUNKNOWN                   PublicGetAssetListDtoTechnology = "UNKNOWN"
+	PublicGetAssetListDtoTechnologyUPLAND                    PublicGetAssetListDtoTechnology = "UPLAND"
+	PublicGetAssetListDtoTechnologyUSERVOICE                 PublicGetAssetListDtoTechnology = "USERVOICE"
+	PublicGetAssetListDtoTechnologyVALIDIO                   PublicGetAssetListDtoTechnology = "VALIDIO"
+	PublicGetAssetListDtoTechnologyVEEVA                     PublicGetAssetListDtoTechnology = "VEEVA"
+	PublicGetAssetListDtoTechnologyVERIZONMEDIA              PublicGetAssetListDtoTechnology = "VERIZON_MEDIA"
+	PublicGetAssetListDtoTechnologyVITALLY                   PublicGetAssetListDtoTechnology = "VITALLY"
+	PublicGetAssetListDtoTechnologyVONAGE                    PublicGetAssetListDtoTechnology = "VONAGE"
+	PublicGetAssetListDtoTechnologyVUETIFY                   PublicGetAssetListDtoTechnology = "VUETIFY"
+	PublicGetAssetListDtoTechnologyWEBHOOKS                  PublicGetAssetListDtoTechnology = "WEBHOOKS"
+	PublicGetAssetListDtoTechnologyWEBSCRAPER                PublicGetAssetListDtoTechnology = "WEB_SCRAPER"
+	PublicGetAssetListDtoTechnologyWHENIWORK                 PublicGetAssetListDtoTechnology = "WHEN_I_WORK"
+	PublicGetAssetListDtoTechnologyWHEREFOUR                 PublicGetAssetListDtoTechnology = "WHEREFOUR"
+	PublicGetAssetListDtoTechnologyWIKIPEDIA                 PublicGetAssetListDtoTechnology = "WIKIPEDIA"
+	PublicGetAssetListDtoTechnologyWOOCOMMERCE               PublicGetAssetListDtoTechnology = "WOOCOMMERCE"
+	PublicGetAssetListDtoTechnologyWORDPRESS                 PublicGetAssetListDtoTechnology = "WORDPRESS"
+	PublicGetAssetListDtoTechnologyWORKABLE                  PublicGetAssetListDtoTechnology = "WORKABLE"
+	PublicGetAssetListDtoTechnologyWORKDAY                   PublicGetAssetListDtoTechnology = "WORKDAY"
+	PublicGetAssetListDtoTechnologyWORKFLOWMAX               PublicGetAssetListDtoTechnology = "WORKFLOW_MAX"
+	PublicGetAssetListDtoTechnologyWRIKE                     PublicGetAssetListDtoTechnology = "WRIKE"
+	PublicGetAssetListDtoTechnologyX                         PublicGetAssetListDtoTechnology = "X"
+	PublicGetAssetListDtoTechnologyXERO                      PublicGetAssetListDtoTechnology = "XERO"
+	PublicGetAssetListDtoTechnologyXRAY                      PublicGetAssetListDtoTechnology = "XRAY"
+	PublicGetAssetListDtoTechnologyYAHOO                     PublicGetAssetListDtoTechnology = "YAHOO"
+	PublicGetAssetListDtoTechnologyYOTPO                     PublicGetAssetListDtoTechnology = "YOTPO"
+	PublicGetAssetListDtoTechnologyYOUTUBE                   PublicGetAssetListDtoTechnology = "YOUTUBE"
+	PublicGetAssetListDtoTechnologyZEENEA                    PublicGetAssetListDtoTechnology = "ZEENEA"
+	PublicGetAssetListDtoTechnologyZENCART                   PublicGetAssetListDtoTechnology = "ZEN_CART"
+	PublicGetAssetListDtoTechnologyZENDESKCHAT               PublicGetAssetListDtoTechnology = "ZENDESK_CHAT"
+	PublicGetAssetListDtoTechnologyZENDESKSELL               PublicGetAssetListDtoTechnology = "ZENDESK_SELL"
+	PublicGetAssetListDtoTechnologyZENDESKSUNSHINE           PublicGetAssetListDtoTechnology = "ZENDESK_SUNSHINE"
+	PublicGetAssetListDtoTechnologyZENDESKSUPPORT            PublicGetAssetListDtoTechnology = "ZENDESK_SUPPORT"
+	PublicGetAssetListDtoTechnologyZINGTREE                  PublicGetAssetListDtoTechnology = "ZINGTREE"
+	PublicGetAssetListDtoTechnologyZOHOBOOKS                 PublicGetAssetListDtoTechnology = "ZOHO_BOOKS"
+	PublicGetAssetListDtoTechnologyZOHOCAMPAIGNS             PublicGetAssetListDtoTechnology = "ZOHO_CAMPAIGNS"
+	PublicGetAssetListDtoTechnologyZOHOCRM                   PublicGetAssetListDtoTechnology = "ZOHO_CRM"
+	PublicGetAssetListDtoTechnologyZOOM                      PublicGetAssetListDtoTechnology = "ZOOM"
+	PublicGetAssetListDtoTechnologyZUORA                     PublicGetAssetListDtoTechnology = "ZUORA"
+)
+
+// Defines values for PublicGetAssetListDtoType.
+const (
+	PublicGetAssetListDtoTypeCONNECTOR        PublicGetAssetListDtoType = "CONNECTOR"
+	PublicGetAssetListDtoTypeDAG              PublicGetAssetListDtoType = "DAG"
+	PublicGetAssetListDtoTypeDASHBOARD        PublicGetAssetListDtoType = "DASHBOARD"
+	PublicGetAssetListDtoTypeEXTERNALTABLE    PublicGetAssetListDtoType = "EXTERNAL_TABLE"
+	PublicGetAssetListDtoTypeMATERIALIZEDVIEW PublicGetAssetListDtoType = "MATERIALIZED_VIEW"
+	PublicGetAssetListDtoTypeMLMODEL          PublicGetAssetListDtoType = "ML_MODEL"
+	PublicGetAssetListDtoTypeMODEL            PublicGetAssetListDtoType = "MODEL"
+	PublicGetAssetListDtoTypeORCHESTRATOR     PublicGetAssetListDtoType = "ORCHESTRATOR"
+	PublicGetAssetListDtoTypeOTHER            PublicGetAssetListDtoType = "OTHER"
+	PublicGetAssetListDtoTypePIPELINE         PublicGetAssetListDtoType = "PIPELINE"
+	PublicGetAssetListDtoTypeREPORT           PublicGetAssetListDtoType = "REPORT"
+	PublicGetAssetListDtoTypeSNOWFLAKESTREAM  PublicGetAssetListDtoType = "SNOWFLAKE_STREAM"
+	PublicGetAssetListDtoTypeTABLE            PublicGetAssetListDtoType = "TABLE"
+	PublicGetAssetListDtoTypeTRANSFORMATION   PublicGetAssetListDtoType = "TRANSFORMATION"
+	PublicGetAssetListDtoTypeVIEW             PublicGetAssetListDtoType = "VIEW"
+)
+
+// Defines values for PublicGetAssetListDtoUsage.
+const (
+	HIGH        PublicGetAssetListDtoUsage = "HIGH"
+	LOW         PublicGetAssetListDtoUsage = "LOW"
+	MEDIUM      PublicGetAssetListDtoUsage = "MEDIUM"
+	UNSUPPORTED PublicGetAssetListDtoUsage = "UNSUPPORTED"
 )
 
 // Defines values for PublicGetLastRunDtoStatus.
@@ -649,11 +2132,41 @@ const (
 	Tag            PublicTagReferenceDtoKind = "Tag"
 )
 
+// Defines values for PublicTagReferenceGetDtoKind.
+const (
+	PublicTagReferenceGetDtoKindBIGQUERYEXTERNAL  PublicTagReferenceGetDtoKind = "BIGQUERY_EXTERNAL"
+	PublicTagReferenceGetDtoKindCLASSIFICATION    PublicTagReferenceGetDtoKind = "CLASSIFICATION"
+	PublicTagReferenceGetDtoKindSNOWFLAKEEXTERNAL PublicTagReferenceGetDtoKind = "SNOWFLAKE_EXTERNAL"
+	PublicTagReferenceGetDtoKindTAG               PublicTagReferenceGetDtoKind = "TAG"
+)
+
+// Defines values for PublicTransformationRunDtoLastRunStatus.
+const (
+	PublicTransformationRunDtoLastRunStatusERROR          PublicTransformationRunDtoLastRunStatus = "ERROR"
+	PublicTransformationRunDtoLastRunStatusNOTTARGETED    PublicTransformationRunDtoLastRunStatus = "NOT_TARGETED"
+	PublicTransformationRunDtoLastRunStatusPARTIALSUCCESS PublicTransformationRunDtoLastRunStatus = "PARTIAL_SUCCESS"
+	PublicTransformationRunDtoLastRunStatusSKIPPED        PublicTransformationRunDtoLastRunStatus = "SKIPPED"
+	PublicTransformationRunDtoLastRunStatusSUCCESS        PublicTransformationRunDtoLastRunStatus = "SUCCESS"
+	PublicTransformationRunDtoLastRunStatusUNKNOWN        PublicTransformationRunDtoLastRunStatus = "UNKNOWN"
+)
+
+// Defines values for PublicUserCreateDtoAuthTypes.
+const (
+	PublicUserCreateDtoAuthTypesLOGINPASSWORD PublicUserCreateDtoAuthTypes = "LOGIN_PASSWORD"
+	PublicUserCreateDtoAuthTypesSAML2         PublicUserCreateDtoAuthTypes = "SAML2"
+)
+
 // Defines values for PublicUserCreateDtoRole.
 const (
 	PublicUserCreateDtoRoleADMIN  PublicUserCreateDtoRole = "ADMIN"
 	PublicUserCreateDtoRoleEDITOR PublicUserCreateDtoRole = "EDITOR"
 	PublicUserCreateDtoRoleVIEWER PublicUserCreateDtoRole = "VIEWER"
+)
+
+// Defines values for PublicUserGetDtoAuthTypes.
+const (
+	PublicUserGetDtoAuthTypesLOGINPASSWORD PublicUserGetDtoAuthTypes = "LOGIN_PASSWORD"
+	PublicUserGetDtoAuthTypesSAML2         PublicUserGetDtoAuthTypes = "SAML2"
 )
 
 // Defines values for PublicUserGetDtoRole.
@@ -669,6 +2182,12 @@ const (
 	PublicUserPermissionAssignmentDtoDomainRoleEDITOR           PublicUserPermissionAssignmentDtoDomainRole = "EDITOR"
 	PublicUserPermissionAssignmentDtoDomainRoleMONITORRESPONDER PublicUserPermissionAssignmentDtoDomainRole = "MONITOR_RESPONDER"
 	PublicUserPermissionAssignmentDtoDomainRoleVIEWER           PublicUserPermissionAssignmentDtoDomainRole = "VIEWER"
+)
+
+// Defines values for PublicUserUpdateDtoAuthTypes.
+const (
+	LOGINPASSWORD PublicUserUpdateDtoAuthTypes = "LOGIN_PASSWORD"
+	SAML2         PublicUserUpdateDtoAuthTypes = "SAML2"
 )
 
 // Defines values for PublicUserUpdateDtoRole.
@@ -701,6 +2220,14 @@ const (
 	RuleInfoDtoLastRunStatusTECHNICALERROR        RuleInfoDtoLastRunStatus = "TECHNICAL_ERROR"
 )
 
+// Defines values for RuleInfoDtoRuleStatus.
+const (
+	RuleInfoDtoRuleStatusFAILING        RuleInfoDtoRuleStatus = "FAILING"
+	RuleInfoDtoRuleStatusNEEDSATTENTION RuleInfoDtoRuleStatus = "NEEDS_ATTENTION"
+	RuleInfoDtoRuleStatusNOTEVALUATED   RuleInfoDtoRuleStatus = "NOT_EVALUATED"
+	RuleInfoDtoRuleStatusPASSING        RuleInfoDtoRuleStatus = "PASSING"
+)
+
 // Defines values for RuleInfoDtoSourcePlatform.
 const (
 	RuleInfoDtoSourcePlatformDBT     RuleInfoDtoSourcePlatform = "DBT"
@@ -731,9 +2258,18 @@ const (
 	SCHEDULED RuleRunDtoType = "SCHEDULED"
 )
 
+// Defines values for RuleStatusDtoRuleStatus.
+const (
+	RuleStatusDtoRuleStatusFAILING        RuleStatusDtoRuleStatus = "FAILING"
+	RuleStatusDtoRuleStatusNEEDSATTENTION RuleStatusDtoRuleStatus = "NEEDS_ATTENTION"
+	RuleStatusDtoRuleStatusNOTEVALUATED   RuleStatusDtoRuleStatus = "NOT_EVALUATED"
+	RuleStatusDtoRuleStatusPASSING        RuleStatusDtoRuleStatus = "PASSING"
+)
+
 // Defines values for TagDtoType.
 const (
 	TagDtoTypeBIGQUERYEXTERNAL          TagDtoType = "BIGQUERY_EXTERNAL"
+	TagDtoTypeDBTEXTERNAL               TagDtoType = "DBT_EXTERNAL"
 	TagDtoTypeGENERIC                   TagDtoType = "GENERIC"
 	TagDtoTypeHIDDENDATACLASSIFICATION  TagDtoType = "HIDDEN_DATA_CLASSIFICATION"
 	TagDtoTypeSNOWFLAKEEXTERNAL         TagDtoType = "SNOWFLAKE_EXTERNAL"
@@ -743,10 +2279,10 @@ const (
 
 // Defines values for UserProviderDtoType.
 const (
-	UserProviderDtoTypeACCESSTOKEN UserProviderDtoType = "ACCESS_TOKEN"
-	UserProviderDtoTypeDATASOURCE  UserProviderDtoType = "DATASOURCE"
-	UserProviderDtoTypeGENERIC     UserProviderDtoType = "GENERIC"
-	UserProviderDtoTypeUSER        UserProviderDtoType = "USER"
+	ACCESSTOKEN UserProviderDtoType = "ACCESS_TOKEN"
+	DATASOURCE  UserProviderDtoType = "DATASOURCE"
+	GENERIC     UserProviderDtoType = "GENERIC"
+	USER        UserProviderDtoType = "USER"
 )
 
 // Defines values for WorkspaceApplyObjectResponseDtoStatus.
@@ -776,14 +2312,22 @@ const (
 	GetAllRuleParamsLastRunStatusTECHNICALERROR        GetAllRuleParamsLastRunStatus = "TECHNICAL_ERROR"
 )
 
+// Defines values for GetAllRuleParamsRuleStatus.
+const (
+	FAILING        GetAllRuleParamsRuleStatus = "FAILING"
+	NEEDSATTENTION GetAllRuleParamsRuleStatus = "NEEDS_ATTENTION"
+	NOTEVALUATED   GetAllRuleParamsRuleStatus = "NOT_EVALUATED"
+	PASSING        GetAllRuleParamsRuleStatus = "PASSING"
+)
+
 // Defines values for GetSiffletRuleRunsParamsStatus.
 const (
-	GetSiffletRuleRunsParamsStatusFAILED                GetSiffletRuleRunsParamsStatus = "FAILED"
-	GetSiffletRuleRunsParamsStatusPENDING               GetSiffletRuleRunsParamsStatus = "PENDING"
-	GetSiffletRuleRunsParamsStatusREQUIRESYOURATTENTION GetSiffletRuleRunsParamsStatus = "REQUIRES_YOUR_ATTENTION"
-	GetSiffletRuleRunsParamsStatusRUNNING               GetSiffletRuleRunsParamsStatus = "RUNNING"
-	GetSiffletRuleRunsParamsStatusSUCCESS               GetSiffletRuleRunsParamsStatus = "SUCCESS"
-	GetSiffletRuleRunsParamsStatusTECHNICALERROR        GetSiffletRuleRunsParamsStatus = "TECHNICAL_ERROR"
+	FAILED                GetSiffletRuleRunsParamsStatus = "FAILED"
+	PENDING               GetSiffletRuleRunsParamsStatus = "PENDING"
+	REQUIRESYOURATTENTION GetSiffletRuleRunsParamsStatus = "REQUIRES_YOUR_ATTENTION"
+	RUNNING               GetSiffletRuleRunsParamsStatus = "RUNNING"
+	SUCCESS               GetSiffletRuleRunsParamsStatus = "SUCCESS"
+	TECHNICALERROR        GetSiffletRuleRunsParamsStatus = "TECHNICAL_ERROR"
 )
 
 // Defines values for GetSiffletRuleRunParamsExpand.
@@ -828,17 +2372,6 @@ type ApiProblemSchema struct {
 	Status   *int32  `json:"status,omitempty"`
 	Title    *string `json:"title,omitempty"`
 	Type     *string `json:"type,omitempty"`
-}
-
-// AutomationPlatformDto defines model for AutomationPlatformDto.
-type AutomationPlatformDto struct {
-	Metadata *AutomationPlatformMetadataDto `json:"metadata,omitempty"`
-	Type     *string                        `json:"type,omitempty"`
-}
-
-// AutomationPlatformMetadataDto defines model for AutomationPlatformMetadataDto.
-type AutomationPlatformMetadataDto struct {
-	PipelineName *string `json:"pipelineName,omitempty"`
 }
 
 // CalendarTimeslot defines model for CalendarTimeslot.
@@ -946,19 +2479,19 @@ type GitConnectionAuthType string
 
 // IncidentLightDto defines model for IncidentLightDto.
 type IncidentLightDto struct {
-	CollaborationToolItem *GetCollaborationToolItemDto  `json:"collaborationToolItem,omitempty"`
-	CompromisedAssets     int32                         `json:"compromisedAssets"`
-	Criticality           int32                         `json:"criticality"`
-	Datasets              []DatasetBriefDto             `json:"datasets"`
-	Id                    openapi_types.UUID            `json:"id"`
-	IssueNo               int32                         `json:"issueNo"`
-	LastModifiedDate      *int64                        `json:"lastModifiedDate,omitempty"`
-	LastOccurredDate      int64                         `json:"lastOccurredDate"`
-	Name                  string                        `json:"name"`
-	Owners                []UserDto                     `json:"owners"`
-	Qualification         IncidentLightDtoQualification `json:"qualification"`
-	Status                IncidentLightDtoStatus        `json:"status"`
-	TriggerTime           int64                         `json:"triggerTime"`
+	CollaborationToolItems []GetCollaborationToolItemDto `json:"collaborationToolItems"`
+	CompromisedAssets      int32                         `json:"compromisedAssets"`
+	Criticality            int32                         `json:"criticality"`
+	Datasets               []DatasetBriefDto             `json:"datasets"`
+	Id                     openapi_types.UUID            `json:"id"`
+	IssueNo                int32                         `json:"issueNo"`
+	LastModifiedDate       *int64                        `json:"lastModifiedDate,omitempty"`
+	LastOccurredDate       int64                         `json:"lastOccurredDate"`
+	Name                   string                        `json:"name"`
+	Owners                 []UserDto                     `json:"owners"`
+	Qualification          IncidentLightDtoQualification `json:"qualification"`
+	Status                 IncidentLightDtoStatus        `json:"status"`
+	TriggerTime            int64                         `json:"triggerTime"`
 }
 
 // IncidentLightDtoQualification defines model for IncidentLightDto.Qualification.
@@ -966,19 +2499,6 @@ type IncidentLightDtoQualification string
 
 // IncidentLightDtoStatus defines model for IncidentLightDto.Status.
 type IncidentLightDtoStatus string
-
-// JobDbtMetadataDto defines model for JobDbtMetadataDto.
-type JobDbtMetadataDto struct {
-	Model   *string `json:"model,omitempty"`
-	Project *string `json:"project,omitempty"`
-	Target  *string `json:"target,omitempty"`
-}
-
-// JobDto defines model for JobDto.
-type JobDto struct {
-	Metadata *JobDbtMetadataDto `json:"metadata,omitempty"`
-	Type     *string            `json:"type,omitempty"`
-}
 
 // JsonNode defines model for JsonNode.
 type JsonNode = map[string]interface{}
@@ -1014,12 +2534,6 @@ type ParameterizedQueryDto struct {
 	Query                string                   `json:"query"`
 }
 
-// PipelineDeclarativeLineageDto defines model for PipelineDeclarativeLineageDto.
-type PipelineDeclarativeLineageDto struct {
-	AutomationPlatform *AutomationPlatformDto `json:"automationPlatform,omitempty"`
-	Job                *JobDto                `json:"job,omitempty"`
-}
-
 // PositionalParameterDto defines model for PositionalParameterDto.
 type PositionalParameterDto struct {
 	Value *map[string]interface{} `json:"value,omitempty"`
@@ -1045,6 +2559,69 @@ type PublicAirflowParametersDto struct {
 
 // PublicAirflowParametersDtoType defines model for PublicAirflowParametersDto.Type.
 type PublicAirflowParametersDtoType string
+
+// PublicAssetFilterDto Filter to apply on the assets search
+type PublicAssetFilterDto struct {
+	// AssetType List of asset types to filter on. Valid values are TABLE_AND_VIEW, PIPELINE, DASHBOARD, ML_MODEL. For filtering declared assets with custom types, you can use the format declared-asset_{custom sub type}. For example: declared-asset_Storage
+	AssetType *[]string `json:"assetType,omitempty"`
+
+	// DomainId Domain to search on
+	DomainId *openapi_types.UUID `json:"domainId,omitempty"`
+
+	// HealthStatus List of health status to filter on
+	HealthStatus *[]PublicAssetFilterDtoHealthStatus `json:"healthStatus,omitempty"`
+
+	// IngestionMethod List of ingestion methods to filter on
+	IngestionMethod *[]PublicAssetFilterDtoIngestionMethod `json:"ingestionMethod,omitempty"`
+
+	// LevelOfUsage List of usage qualifications to filter on
+	LevelOfUsage *[]PublicAssetFilterDtoLevelOfUsage `json:"levelOfUsage,omitempty"`
+
+	// Owners List of owners to filter on
+	Owners *[]PublicReferenceByIdOrEmailDto `json:"owners,omitempty"`
+
+	// SourceId List of sources to filter on
+	SourceId *[]openapi_types.UUID `json:"sourceId,omitempty"`
+
+	// Tags List of tags to filter on
+	Tags *[]PublicTagReferenceDto `json:"tags,omitempty"`
+
+	// Terms List of terms to filter on
+	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
+
+	// TextSearch Text to match in the asset names
+	TextSearch *string `json:"textSearch,omitempty"`
+}
+
+// PublicAssetFilterDtoHealthStatus List of health status to filter on
+type PublicAssetFilterDtoHealthStatus string
+
+// PublicAssetFilterDtoIngestionMethod List of ingestion methods to filter on
+type PublicAssetFilterDtoIngestionMethod string
+
+// PublicAssetFilterDtoLevelOfUsage List of usage qualifications to filter on
+type PublicAssetFilterDtoLevelOfUsage string
+
+// PublicAssetPaginationDto Pagination to apply on the assets search
+type PublicAssetPaginationDto struct {
+	// ItemsPerPage Number of items per page. Value -1 returns all items.
+	ItemsPerPage *int32 `json:"itemsPerPage,omitempty"`
+
+	// Page Page number. Default value returns first page.
+	Page *int32 `json:"page,omitempty"`
+}
+
+// PublicAssetSearchCriteriaDto defines model for PublicAssetSearchCriteriaDto.
+type PublicAssetSearchCriteriaDto struct {
+	// Filter Filter to apply on the assets search
+	Filter *PublicAssetFilterDto `json:"filter,omitempty"`
+
+	// Pagination Pagination to apply on the assets search
+	Pagination *PublicAssetPaginationDto `json:"pagination,omitempty"`
+
+	// Sort Sort to apply on the assets search. Possible values for field are 'name' and 'relevance'
+	Sort *[]string `json:"sort,omitempty"`
+}
 
 // PublicAthenaParametersDto defines model for PublicAthenaParametersDto.
 type PublicAthenaParametersDto struct {
@@ -1323,6 +2900,21 @@ type PublicDeclarativeSourceDto struct {
 	Uri string `json:"uri"`
 }
 
+// PublicDescriptionDto Descriptions of the asset from external providers
+type PublicDescriptionDto struct {
+	Description *string                     `json:"description,omitempty"`
+	Origin      *PublicDescriptionDtoOrigin `json:"origin,omitempty"`
+}
+
+// PublicDescriptionDtoOrigin defines model for PublicDescriptionDto.Origin.
+type PublicDescriptionDtoOrigin string
+
+// PublicDomainGetDto Domains of the asset
+type PublicDomainGetDto struct {
+	Id   openapi_types.UUID `json:"id"`
+	Name string             `json:"name"`
+}
+
 // PublicFivetranParametersDto defines model for PublicFivetranParametersDto.
 type PublicFivetranParametersDto struct {
 	// Host Your Fivetran environment URL
@@ -1332,6 +2924,162 @@ type PublicFivetranParametersDto struct {
 
 // PublicFivetranParametersDtoType defines model for PublicFivetranParametersDto.Type.
 type PublicFivetranParametersDtoType string
+
+// PublicGetAssetColumnDto Fields of the asset
+type PublicGetAssetColumnDto struct {
+	// Description Description of the field
+	Description *string `json:"description,omitempty"`
+
+	// ExternalDescriptions Descriptions of the field from external providers
+	ExternalDescriptions *[]PublicDescriptionDto `json:"externalDescriptions,omitempty"`
+	Id                   openapi_types.UUID      `json:"id"`
+
+	// Name Name of the field
+	Name string `json:"name"`
+
+	// Tags Tags of the column
+	Tags *[]PublicTagReferenceGetDto `json:"tags,omitempty"`
+
+	// Terms Business glossaries of the field
+	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
+
+	// Type Type of the field
+	Type string `json:"type"`
+}
+
+// PublicGetAssetDto defines model for PublicGetAssetDto.
+type PublicGetAssetDto struct {
+	// Columns Fields of the asset
+	Columns *[]PublicGetAssetColumnDto `json:"columns,omitempty"`
+
+	// Description Description of the asset
+	Description *string `json:"description,omitempty"`
+
+	// Domains Domains of the asset
+	Domains []PublicDomainGetDto `json:"domains"`
+
+	// ExternalDescriptions Descriptions of the asset from external providers
+	ExternalDescriptions *[]PublicDescriptionDto `json:"externalDescriptions,omitempty"`
+
+	// HealthStatus Asset health status
+	HealthStatus PublicGetAssetDtoHealthStatus `json:"healthStatus"`
+	Id           openapi_types.UUID            `json:"id"`
+
+	// IngestionMethod Ingestion method of the asset
+	IngestionMethod PublicGetAssetDtoIngestionMethod `json:"ingestionMethod"`
+
+	// Name Name of the asset
+	Name string `json:"name"`
+
+	// Owners Owners of the asset
+	Owners *[]PublicReferenceByIdOrEmailDto `json:"owners,omitempty"`
+
+	// Tags Tags of the asset
+	Tags *[]PublicTagReferenceGetDto `json:"tags,omitempty"`
+
+	// Technology Technology of the asset
+	Technology PublicGetAssetDtoTechnology `json:"technology"`
+
+	// Terms Business glossaries of the asset
+	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
+
+	// TransformationRun Transformation associated to the asset
+	TransformationRun *PublicTransformationRunDto `json:"transformationRun,omitempty"`
+
+	// Type Type of the asset
+	Type PublicGetAssetDtoType `json:"type"`
+
+	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	Uri string `json:"uri"`
+
+	// Urn Internal Sifflet identifier for the asset
+	Urn string `json:"urn"`
+
+	// Usage Usage level of the asset
+	Usage PublicGetAssetDtoUsage `json:"usage"`
+}
+
+// PublicGetAssetDtoHealthStatus Asset health status
+type PublicGetAssetDtoHealthStatus string
+
+// PublicGetAssetDtoIngestionMethod Ingestion method of the asset
+type PublicGetAssetDtoIngestionMethod string
+
+// PublicGetAssetDtoTechnology Technology of the asset
+type PublicGetAssetDtoTechnology string
+
+// PublicGetAssetDtoType Type of the asset
+type PublicGetAssetDtoType string
+
+// PublicGetAssetDtoUsage Usage level of the asset
+type PublicGetAssetDtoUsage string
+
+// PublicGetAssetListDto defines model for PublicGetAssetListDto.
+type PublicGetAssetListDto struct {
+	// Description Description of the asset
+	Description *string `json:"description,omitempty"`
+
+	// ExternalDescriptions Descriptions of the asset from external providers
+	ExternalDescriptions *[]PublicDescriptionDto `json:"externalDescriptions,omitempty"`
+
+	// HealthStatus Asset health status
+	HealthStatus PublicGetAssetListDtoHealthStatus `json:"healthStatus"`
+	Id           openapi_types.UUID                `json:"id"`
+
+	// IngestionMethod Ingestion method of the asset
+	IngestionMethod PublicGetAssetListDtoIngestionMethod `json:"ingestionMethod"`
+
+	// Name Name of the asset
+	Name string `json:"name"`
+
+	// Owners Owners of the asset
+	Owners *[]PublicReferenceByIdOrEmailDto `json:"owners,omitempty"`
+
+	// Tags Tags of the asset
+	Tags *[]PublicTagReferenceGetDto `json:"tags,omitempty"`
+
+	// Technology Technology of the asset
+	Technology PublicGetAssetListDtoTechnology `json:"technology"`
+
+	// Terms Business glossaries of the asset
+	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
+
+	// TransformationRun Transformation associated to the asset
+	TransformationRun *PublicTransformationRunDto `json:"transformationRun,omitempty"`
+
+	// Type Type of the asset
+	Type PublicGetAssetListDtoType `json:"type"`
+
+	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	Uri string `json:"uri"`
+
+	// Urn Internal Sifflet identifier for the asset
+	Urn string `json:"urn"`
+
+	// Usage Usage level of the asset
+	Usage PublicGetAssetListDtoUsage `json:"usage"`
+}
+
+// PublicGetAssetListDtoHealthStatus Asset health status
+type PublicGetAssetListDtoHealthStatus string
+
+// PublicGetAssetListDtoIngestionMethod Ingestion method of the asset
+type PublicGetAssetListDtoIngestionMethod string
+
+// PublicGetAssetListDtoTechnology Technology of the asset
+type PublicGetAssetListDtoTechnology string
+
+// PublicGetAssetListDtoType Type of the asset
+type PublicGetAssetListDtoType string
+
+// PublicGetAssetListDtoUsage Usage level of the asset
+type PublicGetAssetListDtoUsage string
+
+// PublicGetAssetRequestDto defines model for PublicGetAssetRequestDto.
+type PublicGetAssetRequestDto struct {
+	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	Uri string `json:"uri"`
+}
 
 // PublicGetLastRunDto Information about the last run of the source
 type PublicGetLastRunDto struct {
@@ -1458,6 +3206,12 @@ type PublicOracleParametersDtoType string
 type PublicPageDtoPublicCalendarGetDto struct {
 	Data       []PublicCalendarGetDto `json:"data"`
 	TotalCount *int64                 `json:"totalCount,omitempty"`
+}
+
+// PublicPageDtoPublicGetAssetListDto defines model for PublicPageDtoPublicGetAssetListDto.
+type PublicPageDtoPublicGetAssetListDto struct {
+	Data       []PublicGetAssetListDto `json:"data"`
+	TotalCount *int64                  `json:"totalCount,omitempty"`
 }
 
 // PublicPageDtoPublicGetSourceDto defines model for PublicPageDtoPublicGetSourceDto.
@@ -1671,6 +3425,70 @@ type PublicTagReferenceDto struct {
 // PublicTagReferenceDtoKind Type of the referenced tag
 type PublicTagReferenceDtoKind string
 
+// PublicTagReferenceGetDto Tags of the asset
+type PublicTagReferenceGetDto struct {
+	// Id Id of the referenced object
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// Kind Type of the referenced tag
+	Kind *PublicTagReferenceGetDtoKind `json:"kind,omitempty"`
+
+	// Name Name of the referenced object
+	Name *string `json:"name,omitempty"`
+}
+
+// PublicTagReferenceGetDtoKind Type of the referenced tag
+type PublicTagReferenceGetDtoKind string
+
+// PublicTransformationRunDto Transformation associated to the asset
+type PublicTransformationRunDto struct {
+	// LastRunDate Last run date of the transformation
+	LastRunDate *int64 `json:"lastRunDate,omitempty"`
+
+	// LastRunStatus Last run status of the transformation
+	LastRunStatus *PublicTransformationRunDtoLastRunStatus `json:"lastRunStatus,omitempty"`
+
+	// Type Type of the transformation
+	Type *string `json:"type,omitempty"`
+}
+
+// PublicTransformationRunDtoLastRunStatus Last run status of the transformation
+type PublicTransformationRunDtoLastRunStatus string
+
+// PublicUpdateAssetColumnDto Fields of the asset
+type PublicUpdateAssetColumnDto struct {
+	// Description Description of the field
+	Description *string `json:"description,omitempty"`
+
+	// Name Name of the field
+	Name string `json:"name"`
+
+	// Tags Tags of the field
+	Tags *[]PublicTagReferenceDto `json:"tags,omitempty"`
+
+	// Terms Terms of the field
+	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
+}
+
+// PublicUpdateAssetDto defines model for PublicUpdateAssetDto.
+type PublicUpdateAssetDto struct {
+	// Columns Fields of the asset
+	Columns *[]PublicUpdateAssetColumnDto `json:"columns,omitempty"`
+
+	// Description Description of the asset
+	Description *string `json:"description,omitempty"`
+
+	// Owners Owners of the asset
+	Owners *[]PublicReferenceByIdOrEmailDto `json:"owners,omitempty"`
+	Tags   *[]PublicTagReferenceDto         `json:"tags,omitempty"`
+
+	// Terms Terms of the asset
+	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
+
+	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	Uri string `json:"uri"`
+}
+
 // PublicUpdateSourceDto defines model for PublicUpdateSourceDto.
 type PublicUpdateSourceDto struct {
 	// Credentials Credentials of the source. Required for all sources type except 'ATHENA', 'DBT', 'QUICKSIGHT'.
@@ -1698,23 +3516,31 @@ type PublicUpdateSourceDto_Parameters struct {
 
 // PublicUserCreateDto defines model for PublicUserCreateDto.
 type PublicUserCreateDto struct {
+	AuthTypes   *[]PublicUserCreateDtoAuthTypes     `json:"authTypes,omitempty"`
 	Email       string                              `json:"email"`
 	Name        string                              `json:"name"`
 	Permissions []PublicUserPermissionAssignmentDto `json:"permissions"`
 	Role        PublicUserCreateDtoRole             `json:"role"`
 }
 
+// PublicUserCreateDtoAuthTypes defines model for PublicUserCreateDto.AuthTypes.
+type PublicUserCreateDtoAuthTypes string
+
 // PublicUserCreateDtoRole defines model for PublicUserCreateDto.Role.
 type PublicUserCreateDtoRole string
 
 // PublicUserGetDto defines model for PublicUserGetDto.
 type PublicUserGetDto struct {
+	AuthTypes   []PublicUserGetDtoAuthTypes         `json:"authTypes"`
 	Email       string                              `json:"email"`
 	Id          openapi_types.UUID                  `json:"id"`
 	Name        string                              `json:"name"`
 	Permissions []PublicUserPermissionAssignmentDto `json:"permissions"`
 	Role        PublicUserGetDtoRole                `json:"role"`
 }
+
+// PublicUserGetDtoAuthTypes defines model for PublicUserGetDto.AuthTypes.
+type PublicUserGetDtoAuthTypes string
 
 // PublicUserGetDtoRole defines model for PublicUserGetDto.Role.
 type PublicUserGetDtoRole string
@@ -1735,17 +3561,21 @@ type PublicUserResetPasswordDto struct {
 
 // PublicUserUpdateDto defines model for PublicUserUpdateDto.
 type PublicUserUpdateDto struct {
+	AuthTypes   *[]PublicUserUpdateDtoAuthTypes     `json:"authTypes,omitempty"`
 	Name        string                              `json:"name"`
 	Permissions []PublicUserPermissionAssignmentDto `json:"permissions"`
 	Role        PublicUserUpdateDtoRole             `json:"role"`
 }
+
+// PublicUserUpdateDtoAuthTypes defines model for PublicUserUpdateDto.AuthTypes.
+type PublicUserUpdateDtoAuthTypes string
 
 // PublicUserUpdateDtoRole defines model for PublicUserUpdateDto.Role.
 type PublicUserUpdateDtoRole string
 
 // RuleCatalogAssetDto defines model for RuleCatalogAssetDto.
 type RuleCatalogAssetDto struct {
-	CanManuallyRun              *bool                             `json:"canManuallyRun,omitempty"`
+	CanManuallyRun              bool                              `json:"canManuallyRun"`
 	CreatedBy                   *UserDto                          `json:"createdBy,omitempty"`
 	Criticality                 int32                             `json:"criticality"`
 	DatasetFieldNames           []string                          `json:"datasetFieldNames"`
@@ -1753,24 +3583,25 @@ type RuleCatalogAssetDto struct {
 	Description                 *string                           `json:"description,omitempty"`
 	HasAiRecommendations        bool                              `json:"hasAiRecommendations"`
 	Id                          openapi_types.UUID                `json:"id"`
-	LastRunId                   *openapi_types.UUID               `json:"lastRunId,omitempty"`
+	LastRunId                   *openapi_types.UUID               `json:"lastRunId"`
 	LastRunStatus               *LastRunStatusDto                 `json:"lastRunStatus,omitempty"`
-	LastWeekStatuses            *[]LastRunStatusDto               `json:"lastWeekStatuses,omitempty"`
-	Mails                       *[]AlertingHookDto                `json:"mails,omitempty"`
-	MsTeams                     *[]AlertingHookDto                `json:"msTeams,omitempty"`
+	LastWeekStatuses            []LastRunStatusDto                `json:"lastWeekStatuses"`
+	Mails                       []AlertingHookDto                 `json:"mails"`
+	MsTeams                     []AlertingHookDto                 `json:"msTeams"`
 	MultiDimensional            bool                              `json:"multiDimensional"`
 	Name                        string                            `json:"name"`
 	Provider                    *RuleCatalogAssetDto_Provider     `json:"provider,omitempty"`
-	ReadOnly                    *bool                             `json:"readOnly,omitempty"`
+	ReadOnly                    bool                              `json:"readOnly"`
 	RuleLabel                   *string                           `json:"ruleLabel,omitempty"`
+	RuleStatus                  RuleStatusDto                     `json:"ruleStatus"`
 	RuleType                    RuleCatalogAssetDtoRuleType       `json:"ruleType"`
 	Schedule                    *string                           `json:"schedule,omitempty"`
 	Selectable                  bool                              `json:"selectable"`
-	SlackChannels               *[]AlertingHookDto                `json:"slackChannels,omitempty"`
+	SlackChannels               []AlertingHookDto                 `json:"slackChannels"`
 	SourcePlatform              RuleCatalogAssetDtoSourcePlatform `json:"sourcePlatform"`
 	SupportAsCodeYAMLConversion bool                              `json:"supportAsCodeYAMLConversion"`
-	Tags                        *[]TagDto                         `json:"tags,omitempty"`
-	Terms                       *[]TagDto                         `json:"terms,omitempty"`
+	Tags                        []TagDto                          `json:"tags"`
+	Terms                       []TagDto                          `json:"terms"`
 }
 
 // RuleCatalogAssetDto_Provider defines model for RuleCatalogAssetDto.Provider.
@@ -1821,19 +3652,23 @@ type RuleDetailsDto_Provider struct {
 
 // RuleInfoDto defines model for RuleInfoDto.
 type RuleInfoDto struct {
-	CanBeScheduled              bool                      `json:"canBeScheduled"`
-	CanManuallyRun              bool                      `json:"canManuallyRun"`
-	Criticality                 Criticality               `json:"criticality"`
-	Datasets                    *[]DatasetBriefDto        `json:"datasets,omitempty"`
-	Id                          openapi_types.UUID        `json:"id"`
+	CanBeQualified bool               `json:"canBeQualified"`
+	CanBeScheduled bool               `json:"canBeScheduled"`
+	CanManuallyRun bool               `json:"canManuallyRun"`
+	Criticality    Criticality        `json:"criticality"`
+	Datasets       *[]DatasetBriefDto `json:"datasets,omitempty"`
+	Id             openapi_types.UUID `json:"id"`
+	// Deprecated:
 	LastRunStatus               *RuleInfoDtoLastRunStatus `json:"lastRunStatus,omitempty"`
 	LastRunTimestamp            *int64                    `json:"lastRunTimestamp,omitempty"`
 	LastUnresolvedIncident      *IncidentLightDto         `json:"lastUnresolvedIncident,omitempty"`
 	Mails                       *[]AlertingHookDto        `json:"mails,omitempty"`
 	MsTeams                     *[]AlertingHookDto        `json:"msTeams,omitempty"`
+	Muted                       *bool                     `json:"muted,omitempty"`
 	Name                        string                    `json:"name"`
 	ReadOnly                    bool                      `json:"readOnly"`
 	RuleLabel                   string                    `json:"ruleLabel"`
+	RuleStatus                  RuleInfoDtoRuleStatus     `json:"ruleStatus"`
 	RuleTemplateName            string                    `json:"ruleTemplateName"`
 	Schedule                    *string                   `json:"schedule,omitempty"`
 	ScheduleTimezone            *TimeZoneDto              `json:"scheduleTimezone,omitempty"`
@@ -1847,6 +3682,9 @@ type RuleInfoDto struct {
 
 // RuleInfoDtoLastRunStatus defines model for RuleInfoDto.LastRunStatus.
 type RuleInfoDtoLastRunStatus string
+
+// RuleInfoDtoRuleStatus defines model for RuleInfoDto.RuleStatus.
+type RuleInfoDtoRuleStatus string
 
 // RuleInfoDtoSourcePlatform defines model for RuleInfoDto.SourcePlatform.
 type RuleInfoDtoSourcePlatform string
@@ -1898,6 +3736,15 @@ type RuleRunValuesDto struct {
 	Actual   *float32                  `json:"actual,omitempty"`
 	Expected *RuleRunExpectedValuesDto `json:"expected,omitempty"`
 }
+
+// RuleStatusDto defines model for RuleStatusDto.
+type RuleStatusDto struct {
+	LatestRunDate *int64                  `json:"latestRunDate,omitempty"`
+	RuleStatus    RuleStatusDtoRuleStatus `json:"ruleStatus"`
+}
+
+// RuleStatusDtoRuleStatus defines model for RuleStatusDto.RuleStatus.
+type RuleStatusDtoRuleStatus string
 
 // SearchCollectionRuleCatalogAssetDto defines model for SearchCollectionRuleCatalogAssetDto.
 type SearchCollectionRuleCatalogAssetDto struct {
@@ -1989,9 +3836,9 @@ type PublicDeleteWorkspaceParams struct {
 
 // UploadDbtMetadataFilesMultipartBody defines parameters for UploadDbtMetadataFiles.
 type UploadDbtMetadataFilesMultipartBody struct {
-	Catalog    openapi_types.File `json:"catalog"`
-	Manifest   openapi_types.File `json:"manifest"`
-	RunResults openapi_types.File `json:"run_results"`
+	Catalog    *openapi_types.File `json:"catalog,omitempty"`
+	Manifest   *openapi_types.File `json:"manifest,omitempty"`
+	RunResults *openapi_types.File `json:"run_results,omitempty"`
 }
 
 // GetAllRuleParams defines parameters for GetAllRule.
@@ -2004,6 +3851,9 @@ type GetAllRuleParams struct {
 
 	// LastRunStatus Filter on given last run statuses
 	LastRunStatus *[]GetAllRuleParamsLastRunStatus `form:"lastRunStatus,omitempty" json:"lastRunStatus,omitempty"`
+
+	// RuleStatus Filter on given rule status
+	RuleStatus *[]GetAllRuleParamsRuleStatus `form:"ruleStatus,omitempty" json:"ruleStatus,omitempty"`
 
 	// Dataset Filter on given dataset ids
 	Dataset *[]openapi_types.UUID `form:"dataset,omitempty" json:"dataset,omitempty"`
@@ -2030,6 +3880,9 @@ type GetAllRuleParams struct {
 
 // GetAllRuleParamsLastRunStatus defines parameters for GetAllRule.
 type GetAllRuleParamsLastRunStatus string
+
+// GetAllRuleParamsRuleStatus defines parameters for GetAllRule.
+type GetAllRuleParamsRuleStatus string
 
 // GetSiffletRuleRunsParams defines parameters for GetSiffletRuleRuns.
 type GetSiffletRuleRunsParams struct {
@@ -2066,6 +3919,15 @@ type PublicGetUsersParams struct {
 	ItemsPerPage *int32 `form:"itemsPerPage,omitempty" json:"itemsPerPage,omitempty"`
 }
 
+// PublicEditAssetJSONRequestBody defines body for PublicEditAsset for application/json ContentType.
+type PublicEditAssetJSONRequestBody = PublicUpdateAssetDto
+
+// PublicGetAssetJSONRequestBody defines body for PublicGetAsset for application/json ContentType.
+type PublicGetAssetJSONRequestBody = PublicGetAssetRequestDto
+
+// PublicGetAssetsJSONRequestBody defines body for PublicGetAssets for application/json ContentType.
+type PublicGetAssetsJSONRequestBody = PublicAssetSearchCriteriaDto
+
 // PublicSyncAssetsJSONRequestBody defines body for PublicSyncAssets for application/json ContentType.
 type PublicSyncAssetsJSONRequestBody = PublicDeclarativePayloadDto
 
@@ -2080,12 +3942,6 @@ type PublicCreateCredentialsJSONRequestBody = PublicCredentialsCreateDto
 
 // PublicUpdateCredentialsJSONRequestBody defines body for PublicUpdateCredentials for application/json ContentType.
 type PublicUpdateCredentialsJSONRequestBody = PublicCredentialsPatchDto
-
-// CreatePipelineDeclarativeLineageJSONRequestBody defines body for CreatePipelineDeclarativeLineage for application/json ContentType.
-type CreatePipelineDeclarativeLineageJSONRequestBody = PipelineDeclarativeLineageDto
-
-// RemovePipelineDeclarativeLineageJSONRequestBody defines body for RemovePipelineDeclarativeLineage for application/json ContentType.
-type RemovePipelineDeclarativeLineageJSONRequestBody = PipelineDeclarativeLineageDto
 
 // UploadDbtMetadataFilesMultipartRequestBody defines body for UploadDbtMetadataFiles for multipart/form-data ContentType.
 type UploadDbtMetadataFilesMultipartRequestBody UploadDbtMetadataFilesMultipartBody
@@ -4149,6 +6005,21 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 
 // The interface specification for the client above.
 type ClientInterface interface {
+	// PublicEditAssetWithBody request with any body
+	PublicEditAssetWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PublicEditAsset(ctx context.Context, body PublicEditAssetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicGetAssetWithBody request with any body
+	PublicGetAssetWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PublicGetAsset(ctx context.Context, body PublicGetAssetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicGetAssetsWithBody request with any body
+	PublicGetAssetsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PublicGetAssets(ctx context.Context, body PublicGetAssetsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// PublicSyncAssetsWithBody request with any body
 	PublicSyncAssetsWithBody(ctx context.Context, params *PublicSyncAssetsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -4194,16 +6065,6 @@ type ClientInterface interface {
 	PublicUpdateCredentialsWithBody(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	PublicUpdateCredentials(ctx context.Context, name string, body PublicUpdateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// CreatePipelineDeclarativeLineageWithBody request with any body
-	CreatePipelineDeclarativeLineageWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	CreatePipelineDeclarativeLineage(ctx context.Context, body CreatePipelineDeclarativeLineageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// RemovePipelineDeclarativeLineageWithBody request with any body
-	RemovePipelineDeclarativeLineageWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	RemovePipelineDeclarativeLineage(ctx context.Context, body RemovePipelineDeclarativeLineageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UploadDbtMetadataFilesWithBody request with any body
 	UploadDbtMetadataFilesWithBody(ctx context.Context, projectName string, target string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -4279,6 +6140,78 @@ type ClientInterface interface {
 
 	// PublicResetUserPassword request
 	PublicResetUserPassword(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+}
+
+func (c *Client) PublicEditAssetWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicEditAssetRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicEditAsset(ctx context.Context, body PublicEditAssetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicEditAssetRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicGetAssetWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetAssetRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicGetAsset(ctx context.Context, body PublicGetAssetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetAssetRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicGetAssetsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetAssetsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicGetAssets(ctx context.Context, body PublicGetAssetsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetAssetsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
 }
 
 func (c *Client) PublicSyncAssetsWithBody(ctx context.Context, params *PublicSyncAssetsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -4475,54 +6408,6 @@ func (c *Client) PublicUpdateCredentialsWithBody(ctx context.Context, name strin
 
 func (c *Client) PublicUpdateCredentials(ctx context.Context, name string, body PublicUpdateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPublicUpdateCredentialsRequest(c.Server, name, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) CreatePipelineDeclarativeLineageWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreatePipelineDeclarativeLineageRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) CreatePipelineDeclarativeLineage(ctx context.Context, body CreatePipelineDeclarativeLineageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCreatePipelineDeclarativeLineageRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) RemovePipelineDeclarativeLineageWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRemovePipelineDeclarativeLineageRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) RemovePipelineDeclarativeLineage(ctx context.Context, body RemovePipelineDeclarativeLineageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRemovePipelineDeclarativeLineageRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -4855,6 +6740,126 @@ func (c *Client) PublicResetUserPassword(ctx context.Context, id openapi_types.U
 		return nil, err
 	}
 	return c.Client.Do(req)
+}
+
+// NewPublicEditAssetRequest calls the generic PublicEditAsset builder with application/json body
+func NewPublicEditAssetRequest(server string, body PublicEditAssetJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPublicEditAssetRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPublicEditAssetRequestWithBody generates requests for PublicEditAsset with any type of body
+func NewPublicEditAssetRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/assets")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPublicGetAssetRequest calls the generic PublicGetAsset builder with application/json body
+func NewPublicGetAssetRequest(server string, body PublicGetAssetJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPublicGetAssetRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPublicGetAssetRequestWithBody generates requests for PublicGetAsset with any type of body
+func NewPublicGetAssetRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/assets/get-asset-with-uri")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPublicGetAssetsRequest calls the generic PublicGetAssets builder with application/json body
+func NewPublicGetAssetsRequest(server string, body PublicGetAssetsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPublicGetAssetsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPublicGetAssetsRequestWithBody generates requests for PublicGetAssets with any type of body
+func NewPublicGetAssetsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/assets/search")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
 }
 
 // NewPublicSyncAssetsRequest calls the generic PublicSyncAssets builder with application/json body
@@ -5339,86 +7344,6 @@ func NewPublicUpdateCredentialsRequestWithBody(server string, name string, conte
 	return req, nil
 }
 
-// NewCreatePipelineDeclarativeLineageRequest calls the generic CreatePipelineDeclarativeLineage builder with application/json body
-func NewCreatePipelineDeclarativeLineageRequest(server string, body CreatePipelineDeclarativeLineageJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewCreatePipelineDeclarativeLineageRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewCreatePipelineDeclarativeLineageRequestWithBody generates requests for CreatePipelineDeclarativeLineage with any type of body
-func NewCreatePipelineDeclarativeLineageRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/lineages/_create")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewRemovePipelineDeclarativeLineageRequest calls the generic RemovePipelineDeclarativeLineage builder with application/json body
-func NewRemovePipelineDeclarativeLineageRequest(server string, body RemovePipelineDeclarativeLineageJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewRemovePipelineDeclarativeLineageRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewRemovePipelineDeclarativeLineageRequestWithBody generates requests for RemovePipelineDeclarativeLineage with any type of body
-func NewRemovePipelineDeclarativeLineageRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/v1/lineages/_remove")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewUploadDbtMetadataFilesRequestWithBody generates requests for UploadDbtMetadataFiles with any type of body
 func NewUploadDbtMetadataFilesRequestWithBody(server string, projectName string, target string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -5519,6 +7444,22 @@ func NewGetAllRuleRequest(server string, params *GetAllRuleParams) (*http.Reques
 		if params.LastRunStatus != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "lastRunStatus", runtime.ParamLocationQuery, *params.LastRunStatus); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RuleStatus != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "ruleStatus", runtime.ParamLocationQuery, *params.RuleStatus); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -6540,6 +8481,21 @@ func WithBaseURL(baseURL string) ClientOption {
 
 // ClientWithResponsesInterface is the interface specification for the client with responses above.
 type ClientWithResponsesInterface interface {
+	// PublicEditAssetWithBodyWithResponse request with any body
+	PublicEditAssetWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicEditAssetResponse, error)
+
+	PublicEditAssetWithResponse(ctx context.Context, body PublicEditAssetJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicEditAssetResponse, error)
+
+	// PublicGetAssetWithBodyWithResponse request with any body
+	PublicGetAssetWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicGetAssetResponse, error)
+
+	PublicGetAssetWithResponse(ctx context.Context, body PublicGetAssetJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicGetAssetResponse, error)
+
+	// PublicGetAssetsWithBodyWithResponse request with any body
+	PublicGetAssetsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicGetAssetsResponse, error)
+
+	PublicGetAssetsWithResponse(ctx context.Context, body PublicGetAssetsJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicGetAssetsResponse, error)
+
 	// PublicSyncAssetsWithBodyWithResponse request with any body
 	PublicSyncAssetsWithBodyWithResponse(ctx context.Context, params *PublicSyncAssetsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicSyncAssetsResponse, error)
 
@@ -6585,16 +8541,6 @@ type ClientWithResponsesInterface interface {
 	PublicUpdateCredentialsWithBodyWithResponse(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialsResponse, error)
 
 	PublicUpdateCredentialsWithResponse(ctx context.Context, name string, body PublicUpdateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialsResponse, error)
-
-	// CreatePipelineDeclarativeLineageWithBodyWithResponse request with any body
-	CreatePipelineDeclarativeLineageWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePipelineDeclarativeLineageResponse, error)
-
-	CreatePipelineDeclarativeLineageWithResponse(ctx context.Context, body CreatePipelineDeclarativeLineageJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePipelineDeclarativeLineageResponse, error)
-
-	// RemovePipelineDeclarativeLineageWithBodyWithResponse request with any body
-	RemovePipelineDeclarativeLineageWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RemovePipelineDeclarativeLineageResponse, error)
-
-	RemovePipelineDeclarativeLineageWithResponse(ctx context.Context, body RemovePipelineDeclarativeLineageJSONRequestBody, reqEditors ...RequestEditorFn) (*RemovePipelineDeclarativeLineageResponse, error)
 
 	// UploadDbtMetadataFilesWithBodyWithResponse request with any body
 	UploadDbtMetadataFilesWithBodyWithResponse(ctx context.Context, projectName string, target string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UploadDbtMetadataFilesResponse, error)
@@ -6670,6 +8616,87 @@ type ClientWithResponsesInterface interface {
 
 	// PublicResetUserPasswordWithResponse request
 	PublicResetUserPasswordWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicResetUserPasswordResponse, error)
+}
+
+type PublicEditAssetResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *PublicGetAssetDto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicEditAssetResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicEditAssetResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicGetAssetResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *PublicGetAssetDto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicGetAssetResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicGetAssetResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicGetAssetsResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *PublicPageDtoPublicGetAssetListDto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicGetAssetsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicGetAssetsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
 }
 
 type PublicSyncAssetsResponse struct {
@@ -6983,58 +9010,6 @@ func (r PublicUpdateCredentialsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r PublicUpdateCredentialsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type CreatePipelineDeclarativeLineageResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *ApiProblemSchema
-	ApplicationproblemJSON401 *ApiProblemSchema
-	ApplicationproblemJSON403 *ApiProblemSchema
-	ApplicationproblemJSON409 *ApiProblemSchema
-	ApplicationproblemJSON500 *ApiProblemSchema
-}
-
-// Status returns HTTPResponse.Status
-func (r CreatePipelineDeclarativeLineageResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r CreatePipelineDeclarativeLineageResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type RemovePipelineDeclarativeLineageResponse struct {
-	Body                      []byte
-	HTTPResponse              *http.Response
-	ApplicationproblemJSON400 *ApiProblemSchema
-	ApplicationproblemJSON401 *ApiProblemSchema
-	ApplicationproblemJSON403 *ApiProblemSchema
-	ApplicationproblemJSON409 *ApiProblemSchema
-	ApplicationproblemJSON500 *ApiProblemSchema
-}
-
-// Status returns HTTPResponse.Status
-func (r RemovePipelineDeclarativeLineageResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r RemovePipelineDeclarativeLineageResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -7601,6 +9576,57 @@ func (r PublicResetUserPasswordResponse) StatusCode() int {
 	return 0
 }
 
+// PublicEditAssetWithBodyWithResponse request with arbitrary body returning *PublicEditAssetResponse
+func (c *ClientWithResponses) PublicEditAssetWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicEditAssetResponse, error) {
+	rsp, err := c.PublicEditAssetWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicEditAssetResponse(rsp)
+}
+
+func (c *ClientWithResponses) PublicEditAssetWithResponse(ctx context.Context, body PublicEditAssetJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicEditAssetResponse, error) {
+	rsp, err := c.PublicEditAsset(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicEditAssetResponse(rsp)
+}
+
+// PublicGetAssetWithBodyWithResponse request with arbitrary body returning *PublicGetAssetResponse
+func (c *ClientWithResponses) PublicGetAssetWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicGetAssetResponse, error) {
+	rsp, err := c.PublicGetAssetWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicGetAssetResponse(rsp)
+}
+
+func (c *ClientWithResponses) PublicGetAssetWithResponse(ctx context.Context, body PublicGetAssetJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicGetAssetResponse, error) {
+	rsp, err := c.PublicGetAsset(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicGetAssetResponse(rsp)
+}
+
+// PublicGetAssetsWithBodyWithResponse request with arbitrary body returning *PublicGetAssetsResponse
+func (c *ClientWithResponses) PublicGetAssetsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicGetAssetsResponse, error) {
+	rsp, err := c.PublicGetAssetsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicGetAssetsResponse(rsp)
+}
+
+func (c *ClientWithResponses) PublicGetAssetsWithResponse(ctx context.Context, body PublicGetAssetsJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicGetAssetsResponse, error) {
+	rsp, err := c.PublicGetAssets(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicGetAssetsResponse(rsp)
+}
+
 // PublicSyncAssetsWithBodyWithResponse request with arbitrary body returning *PublicSyncAssetsResponse
 func (c *ClientWithResponses) PublicSyncAssetsWithBodyWithResponse(ctx context.Context, params *PublicSyncAssetsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicSyncAssetsResponse, error) {
 	rsp, err := c.PublicSyncAssetsWithBody(ctx, params, contentType, body, reqEditors...)
@@ -7747,40 +9773,6 @@ func (c *ClientWithResponses) PublicUpdateCredentialsWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParsePublicUpdateCredentialsResponse(rsp)
-}
-
-// CreatePipelineDeclarativeLineageWithBodyWithResponse request with arbitrary body returning *CreatePipelineDeclarativeLineageResponse
-func (c *ClientWithResponses) CreatePipelineDeclarativeLineageWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CreatePipelineDeclarativeLineageResponse, error) {
-	rsp, err := c.CreatePipelineDeclarativeLineageWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseCreatePipelineDeclarativeLineageResponse(rsp)
-}
-
-func (c *ClientWithResponses) CreatePipelineDeclarativeLineageWithResponse(ctx context.Context, body CreatePipelineDeclarativeLineageJSONRequestBody, reqEditors ...RequestEditorFn) (*CreatePipelineDeclarativeLineageResponse, error) {
-	rsp, err := c.CreatePipelineDeclarativeLineage(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseCreatePipelineDeclarativeLineageResponse(rsp)
-}
-
-// RemovePipelineDeclarativeLineageWithBodyWithResponse request with arbitrary body returning *RemovePipelineDeclarativeLineageResponse
-func (c *ClientWithResponses) RemovePipelineDeclarativeLineageWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RemovePipelineDeclarativeLineageResponse, error) {
-	rsp, err := c.RemovePipelineDeclarativeLineageWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseRemovePipelineDeclarativeLineageResponse(rsp)
-}
-
-func (c *ClientWithResponses) RemovePipelineDeclarativeLineageWithResponse(ctx context.Context, body RemovePipelineDeclarativeLineageJSONRequestBody, reqEditors ...RequestEditorFn) (*RemovePipelineDeclarativeLineageResponse, error) {
-	rsp, err := c.RemovePipelineDeclarativeLineage(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseRemovePipelineDeclarativeLineageResponse(rsp)
 }
 
 // UploadDbtMetadataFilesWithBodyWithResponse request with arbitrary body returning *UploadDbtMetadataFilesResponse
@@ -8018,6 +10010,189 @@ func (c *ClientWithResponses) PublicResetUserPasswordWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParsePublicResetUserPasswordResponse(rsp)
+}
+
+// ParsePublicEditAssetResponse parses an HTTP response from a PublicEditAssetWithResponse call
+func ParsePublicEditAssetResponse(rsp *http.Response) (*PublicEditAssetResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicEditAssetResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicGetAssetDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicGetAssetResponse parses an HTTP response from a PublicGetAssetWithResponse call
+func ParsePublicGetAssetResponse(rsp *http.Response) (*PublicGetAssetResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicGetAssetResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicGetAssetDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicGetAssetsResponse parses an HTTP response from a PublicGetAssetsWithResponse call
+func ParsePublicGetAssetsResponse(rsp *http.Response) (*PublicGetAssetsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicGetAssetsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicPageDtoPublicGetAssetListDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
 }
 
 // ParsePublicSyncAssetsResponse parses an HTTP response from a PublicSyncAssetsWithResponse call
@@ -8690,114 +10865,6 @@ func ParsePublicUpdateCredentialsResponse(rsp *http.Response) (*PublicUpdateCred
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest ApiProblemSchema
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON500 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseCreatePipelineDeclarativeLineageResponse parses an HTTP response from a CreatePipelineDeclarativeLineageWithResponse call
-func ParseCreatePipelineDeclarativeLineageResponse(rsp *http.Response) (*CreatePipelineDeclarativeLineageResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &CreatePipelineDeclarativeLineageResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest ApiProblemSchema
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
-		var dest ApiProblemSchema
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON401 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest ApiProblemSchema
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
-		var dest ApiProblemSchema
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON409 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest ApiProblemSchema
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON500 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseRemovePipelineDeclarativeLineageResponse parses an HTTP response from a RemovePipelineDeclarativeLineageWithResponse call
-func ParseRemovePipelineDeclarativeLineageResponse(rsp *http.Response) (*RemovePipelineDeclarativeLineageResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &RemovePipelineDeclarativeLineageResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest ApiProblemSchema
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
-		var dest ApiProblemSchema
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON401 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
-		var dest ApiProblemSchema
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON403 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
-		var dest ApiProblemSchema
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.ApplicationproblemJSON409 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest ApiProblemSchema
