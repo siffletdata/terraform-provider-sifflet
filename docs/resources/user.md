@@ -4,11 +4,14 @@ page_title: "sifflet_user Resource - terraform-provider-sifflet"
 subcategory: ""
 description: |-
   Manage a Sifflet user. See the Sifflet documentation about access control https://docs.siffletdata.com/docs/access-control for more information.
+  Warning: creating a user will send an email to the specified email address giving them instructions on how to connect to the Sifflet environment.
 ---
 
 # sifflet_user (Resource)
 
 Manage a Sifflet user. See the [Sifflet documentation about access control](https://docs.siffletdata.com/docs/access-control) for more information.
+
+Warning: creating a user will send an email to the specified email address giving them instructions on how to connect to the Sifflet environment.
 
 ## Example Usage
 
@@ -34,6 +37,10 @@ resource "sifflet_user" "example" {
 - `name` (String) User full name.
 - `permissions` (Attributes List) Per-domain user permissions. Can not be empty. (see [below for nested schema](#nestedatt--permissions))
 - `role` (String) User system role. Determines a user's access and permissions over Sifflet-level settings. One of 'ADMIN', 'EDITOR', 'VIEWER'.
+
+### Optional
+
+- `auth_types` (Set of String) Authorized authentication types for the user. Possible values are 'SAML2' and 'LOGIN_PASSWORD'. Default is ['SAML2'] if your Sifflet instance has SSO enabled, and ['LOGIN_PASSWORD', 'SAML2'] otherwise.
 
 ### Read-Only
 

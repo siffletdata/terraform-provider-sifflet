@@ -9,12 +9,16 @@ import (
 	sifflet "terraform-provider-sifflet/internal/client"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/setvalidator"
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/setplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
+	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
 var (
@@ -38,7 +42,7 @@ func (r *userResource) Metadata(_ context.Context, req resource.MetadataRequest,
 func userResourceSchema() schema.Schema {
 	return schema.Schema{
 		Description:         "Manage a Sifflet user.",
-		MarkdownDescription: "Manage a Sifflet user. See the [Sifflet documentation about access control](https://docs.siffletdata.com/docs/access-control) for more information.",
+		MarkdownDescription: "Manage a Sifflet user. See the [Sifflet documentation about access control](https://docs.siffletdata.com/docs/access-control) for more information.\n\nWarning: creating a user will send an email to the specified email address giving them instructions on how to connect to the Sifflet environment.",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				Description: "User ID.",
@@ -81,6 +85,21 @@ func userResourceSchema() schema.Schema {
 				// The API will return an error if the list is empty. It's an easy mistake to make, so add client-side validation.
 				Validators: []validator.List{
 					listvalidator.SizeAtLeast(1),
+				},
+			},
+			"auth_types": schema.SetAttribute{
+				ElementType: types.StringType,
+				Description: "Authorized authentication types for the user. Possible values are 'SAML2' and 'LOGIN_PASSWORD'. Default is ['SAML2'] if your Sifflet instance has SSO enabled, and ['LOGIN_PASSWORD', 'SAML2'] otherwise.",
+				Optional:    true,
+				Computed:    true,
+				Validators: []validator.Set{
+					setvalidator.SizeAtLeast(1),
+					setvalidator.ValueStringsAre(
+						stringvalidator.OneOf("SAML2", "LOGIN_PASSWORD"),
+					),
+				},
+				PlanModifiers: []planmodifier.Set{
+					setplanmodifier.UseStateForUnknown(),
 				},
 			},
 		},
