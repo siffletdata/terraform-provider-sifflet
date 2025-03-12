@@ -3,7 +3,6 @@ package user
 import (
 	"context"
 
-	"terraform-provider-sifflet/internal/client"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/model"
 	"terraform-provider-sifflet/internal/tfutils"
@@ -20,6 +19,7 @@ type userModel struct {
 	Email       types.String `tfsdk:"email"`
 	Role        types.String `tfsdk:"role"`
 	Permissions types.List   `tfsdk:"permissions"`
+	AuthTypes   types.Set    `tfsdk:"auth_types"`
 }
 
 var (
@@ -41,6 +41,12 @@ func (m userModel) getPermissionsModel() ([]permissionModel, diag.Diagnostics) {
 	return permissions, diags
 }
 
+func (m userModel) getAuthTypesModel() ([]types.String, diag.Diagnostics) {
+	authTypes := make([]types.String, 0, len(m.AuthTypes.Elements()))
+	diags := m.AuthTypes.ElementsAs(context.Background(), &authTypes, false)
+	return authTypes, diags
+}
+
 func (m userModel) ToCreateDto(_ context.Context) (sifflet.PublicUserCreateDto, diag.Diagnostics) {
 	permissionsModel, diags := m.getPermissionsModel()
 	if diags.HasError() {
@@ -56,11 +62,24 @@ func (m userModel) ToCreateDto(_ context.Context) (sifflet.PublicUserCreateDto, 
 		permissionsDto[i] = dto
 	}
 
+	var authTypes []sifflet.PublicUserCreateDtoAuthTypes
+	if !m.AuthTypes.IsNull() && !m.AuthTypes.IsUnknown() {
+		authTypesModel, diags := m.getAuthTypesModel()
+		if diags.HasError() {
+			return sifflet.PublicUserCreateDto{}, diags
+		}
+		authTypes = make([]sifflet.PublicUserCreateDtoAuthTypes, len(authTypesModel))
+		for i, authType := range authTypesModel {
+			authTypes[i] = sifflet.PublicUserCreateDtoAuthTypes(authType.ValueString())
+		}
+	}
+
 	return sifflet.PublicUserCreateDto{
 		Email:       m.Email.ValueString(),
 		Name:        m.Name.ValueString(),
 		Role:        sifflet.PublicUserCreateDtoRole(m.Role.ValueString()),
 		Permissions: permissionsDto,
+		AuthTypes:   &authTypes,
 	}, diag.Diagnostics{}
 
 }
@@ -80,18 +99,36 @@ func (m userModel) ToUpdateDto(_ context.Context) (sifflet.PublicUserUpdateDto, 
 		permissionsDto[i] = dto
 	}
 
+	var authTypes []sifflet.PublicUserUpdateDtoAuthTypes
+	if !m.AuthTypes.IsNull() && !m.AuthTypes.IsUnknown() {
+		authTypesModel, diags := m.getAuthTypesModel()
+		if diags.HasError() {
+			return sifflet.PublicUserUpdateDto{}, diags
+		}
+		authTypes = make([]sifflet.PublicUserUpdateDtoAuthTypes, len(authTypesModel))
+		for i, authType := range authTypesModel {
+			authTypes[i] = sifflet.PublicUserUpdateDtoAuthTypes(authType.ValueString())
+		}
+	}
+
 	return sifflet.PublicUserUpdateDto{
 		Name:        m.Name.ValueString(),
 		Role:        sifflet.PublicUserUpdateDtoRole(m.Role.ValueString()),
 		Permissions: permissionsDto,
+		AuthTypes:   &authTypes,
 	}, diag.Diagnostics{}
 }
 
 func (m *userModel) FromDto(ctx context.Context, userDto sifflet.PublicUserGetDto) diag.Diagnostics {
 	permissionsList, diags := model.NewModelListFromDto(
 		ctx, userDto.Permissions,
-		func() model.InnerModel[client.PublicUserPermissionAssignmentDto] { return &permissionModel{} },
+		func() model.InnerModel[sifflet.PublicUserPermissionAssignmentDto] { return &permissionModel{} },
 	)
+	if diags.HasError() {
+		return diags
+	}
+
+	authTypes, diags := types.SetValueFrom(ctx, types.StringType, userDto.AuthTypes)
 	if diags.HasError() {
 		return diags
 	}
@@ -101,6 +138,7 @@ func (m *userModel) FromDto(ctx context.Context, userDto sifflet.PublicUserGetDt
 	m.Email = types.StringValue(userDto.Email)
 	m.Role = types.StringValue(string(userDto.Role))
 	m.Permissions = permissionsList
+	m.AuthTypes = authTypes
 	return diag.Diagnostics{}
 }
 
