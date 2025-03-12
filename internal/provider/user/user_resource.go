@@ -10,7 +10,6 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/setvalidator"
-	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
@@ -94,9 +93,6 @@ func userResourceSchema() schema.Schema {
 				Computed:    true,
 				Validators: []validator.Set{
 					setvalidator.SizeAtLeast(1),
-					setvalidator.ValueStringsAre(
-						stringvalidator.OneOf("SAML2", "LOGIN_PASSWORD"),
-					),
 				},
 				PlanModifiers: []planmodifier.Set{
 					setplanmodifier.UseStateForUnknown(),

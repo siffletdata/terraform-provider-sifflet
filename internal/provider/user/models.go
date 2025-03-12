@@ -128,12 +128,17 @@ func (m *userModel) FromDto(ctx context.Context, userDto sifflet.PublicUserGetDt
 		return diags
 	}
 
+	authTypes, diags := types.SetValueFrom(ctx, types.StringType, userDto.AuthTypes)
+	if diags.HasError() {
+		return diags
+	}
+
 	m.Id = types.StringValue(userDto.Id.String())
 	m.Name = types.StringValue(userDto.Name)
 	m.Email = types.StringValue(userDto.Email)
 	m.Role = types.StringValue(string(userDto.Role))
 	m.Permissions = permissionsList
-	m.AuthTypes, _ = types.SetValueFrom(ctx, types.StringType, userDto.AuthTypes)
+	m.AuthTypes = authTypes
 	return diag.Diagnostics{}
 }
 
