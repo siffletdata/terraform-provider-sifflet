@@ -1,14 +1,49 @@
 package credentials_test
 
 import (
+	"context"
 	"fmt"
 	"regexp"
+	"strings"
 	"terraform-provider-sifflet/internal/provider"
 	"terraform-provider-sifflet/internal/provider/providertests"
+
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 )
+
+func init() {
+	resource.AddTestSweepers("sifflet_credentials", &resource.Sweeper{
+		Name: "sifflet_credentials",
+		F: func(region string) error {
+			ctx := context.Background()
+			client, err := provider.ClientForSweepers(ctx)
+			if err != nil {
+				return fmt.Errorf("Error creating HTTP client: %s", err)
+			}
+
+			// List all credentials
+			credentials, err := client.PublicGetAllCredentialsWithResponse(ctx)
+			if err != nil {
+				return fmt.Errorf("Error listing credentials: %s", err)
+			}
+			if credentials.StatusCode() != 200 {
+				return fmt.Errorf("Error listing credentials: status code %s", credentials.Status())
+			}
+			for _, creds := range credentials.JSON200.Data {
+				if strings.HasPrefix(creds.Name, providertests.AcceptanceTestPrefix()) {
+					_, err := client.PublicDeleteCredentialsWithResponse(ctx, creds.Name)
+					if err != nil {
+						return fmt.Errorf("Error deleting credential %s: %s", creds.Name, err)
+					}
+					fmt.Printf("Deleted dangling credential %s\n", creds.Name)
+				}
+			}
+			return nil
+		},
+	})
+}
 
 func TestAccCredentialResourceBasic(t *testing.T) {
 	credentialsName := providertests.RandomCredentialsName()

@@ -23,6 +23,17 @@ Acceptance tests for each resource or data source should be implemented in the s
 data source. The test should be in a file named `*_test.go`.
 These files should belong to a `*_test` package to avoid dependency cycles (see existing tests for examples).
 
+### Sweepers
+
+Sweepers are used to delete resources left over by any acceptance test (from any test session).
+
+To implement a new sweeper:
+* create a file named `sweepers_test.go` in the module exercising the resources to clean
+* add a `TestMain` function to this file (see existing files for examples)
+* add a `init` function to the acceptance test file (see existing files for examples)
+
+See `README.md` for usage.
+
 ## Models, DTOs and Terraform types
 
 The code manipulates three concepts everywhere:
