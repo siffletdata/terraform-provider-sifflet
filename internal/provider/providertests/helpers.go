@@ -1,14 +1,20 @@
 package providertests
 
 import (
-	"fmt"
-
 	"github.com/hashicorp/terraform-plugin-testing/helper/acctest"
 )
 
-var testSessionPrefix = fmt.Sprintf("tf-acc-test-%s", acctest.RandStringFromCharSet(5, acctest.CharSetAlphaNum))
+var staticPrefix = "tf-acc-test-"
+var testSessionPrefix = staticPrefix + acctest.RandStringFromCharSet(5, acctest.CharSetAlphaNum)
 
-// SessionPrefix returns a prefix that can be used to create unique names for test resources created during Terraform acceptance tests.
+// AcceptanceTestPrefix returns a prefix used for naming resources created during Terraform acceptance tests. This prefix is common to all test
+// sessions (not unique to a single test session).
+func AcceptanceTestPrefix() string {
+	return staticPrefix
+}
+
+// SessionPrefix returns a prefix used for naming resources created during a single test session. This prefix is unique to the test session and is generated
+// using known prefix and a random string. It is used to avoid name collisions between different test sessions.
 func SessionPrefix() string {
 	return testSessionPrefix
 }
