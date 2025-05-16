@@ -2,12 +2,11 @@ package source
 
 import (
 	"context"
-	"terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/model"
 	"terraform-provider-sifflet/internal/provider/source/parameters"
 	"terraform-provider-sifflet/internal/tfutils"
 
-	sifflet "terraform-provider-sifflet/internal/client"
+	"terraform-provider-sifflet/internal/client"
 
 	"github.com/google/uuid"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
@@ -28,8 +27,8 @@ type sourceModel struct {
 }
 
 var (
-	_ model.FullModel[sifflet.PublicGetSourceDto, sifflet.PublicCreateSourceDto, sifflet.PublicEditSourceJSONRequestBody] = &sourceModel{}
-	_ model.ModelWithId[uuid.UUID]                                                                                        = sourceModel{}
+	_ model.FullModel[client.PublicGetSourceDto, client.PublicCreateSourceDto, client.PublicEditSourceJSONRequestBody] = &sourceModel{}
+	_ model.ModelWithId[uuid.UUID]                                                                                     = sourceModel{}
 )
 
 func (m sourceModel) AttributeTypes() map[string]attr.Type {
@@ -111,8 +110,8 @@ func (m sourceModel) getCredentialsName(ctx context.Context) (*string, diag.Diag
 	return credentials, diag.Diagnostics{}
 }
 
-func parametersDtoToModel(ctx context.Context, dto sifflet.PublicGetSourceDto_Parameters) (parameters.ParametersModel, diag.Diagnostics) {
-	sourceType, err := sifflet.GetSourceType(dto)
+func parametersDtoToModel(ctx context.Context, dto client.PublicGetSourceDto_Parameters) (parameters.ParametersModel, diag.Diagnostics) {
+	sourceType, err := client.GetSourceType(dto)
 	if err != nil {
 		return parameters.ParametersModel{}, tfutils.ErrToDiags("Unable to read source", err)
 	}
@@ -132,7 +131,7 @@ func parametersDtoToModel(ctx context.Context, dto sifflet.PublicGetSourceDto_Pa
 	return out, diag.Diagnostics{}
 }
 
-func (m *sourceModel) FromDto(ctx context.Context, dto sifflet.PublicGetSourceDto) diag.Diagnostics {
+func (m *sourceModel) FromDto(ctx context.Context, dto client.PublicGetSourceDto) diag.Diagnostics {
 	tags, diags := model.NewModelListFromDto(ctx, *dto.Tags,
 		func() model.InnerModel[client.PublicTagReferenceDto] { return &tagModel{} },
 	)
@@ -160,38 +159,38 @@ func (m *sourceModel) FromDto(ctx context.Context, dto sifflet.PublicGetSourceDt
 	return diag.Diagnostics{}
 }
 
-func (m sourceModel) ToCreateDto(ctx context.Context) (sifflet.PublicCreateSourceDto, diag.Diagnostics) {
+func (m sourceModel) ToCreateDto(ctx context.Context) (client.PublicCreateSourceDto, diag.Diagnostics) {
 	tagsModel, diags := m.getTags()
 	if diags.HasError() {
-		return sifflet.PublicCreateSourceDto{}, diags
+		return client.PublicCreateSourceDto{}, diags
 	}
 
 	tagsDto, diags := tfutils.MapWithDiagnostics(
 		tagsModel,
-		func(tagModel tagModel) (sifflet.PublicTagReferenceDto, diag.Diagnostics) {
+		func(tagModel tagModel) (client.PublicTagReferenceDto, diag.Diagnostics) {
 			return tagModel.ToDto()
 		},
 	)
 	if diags.HasError() {
-		return sifflet.PublicCreateSourceDto{}, diags
+		return client.PublicCreateSourceDto{}, diags
 	}
 
 	parametersModel, diags := m.getParameters(ctx)
 	if diags.HasError() {
-		return sifflet.PublicCreateSourceDto{}, diags
+		return client.PublicCreateSourceDto{}, diags
 	}
 
 	credentialsName, diags := m.getCredentialsName(ctx)
 	if diags.HasError() {
-		return sifflet.PublicCreateSourceDto{}, diags
+		return client.PublicCreateSourceDto{}, diags
 	}
 
 	parametersDto, diags := parametersModel.AsCreateSourceDto(ctx)
 	if diags.HasError() {
-		return sifflet.PublicCreateSourceDto{}, diags
+		return client.PublicCreateSourceDto{}, diags
 	}
 
-	return sifflet.PublicCreateSourceDto{
+	return client.PublicCreateSourceDto{
 		Name:        m.Name.ValueString(),
 		Description: m.Description.ValueStringPointer(),
 		Credentials: credentialsName,
@@ -202,35 +201,35 @@ func (m sourceModel) ToCreateDto(ctx context.Context) (sifflet.PublicCreateSourc
 	}, diag.Diagnostics{}
 }
 
-func (m sourceModel) ToUpdateDto(ctx context.Context) (sifflet.PublicEditSourceJSONRequestBody, diag.Diagnostics) {
+func (m sourceModel) ToUpdateDto(ctx context.Context) (client.PublicEditSourceJSONRequestBody, diag.Diagnostics) {
 	credentialsName, diags := m.getCredentialsName(ctx)
 	if diags.HasError() {
-		return sifflet.PublicEditSourceJSONRequestBody{}, diags
+		return client.PublicEditSourceJSONRequestBody{}, diags
 	}
 
 	tagsModel, diags := m.getTags()
 	if diags.HasError() {
-		return sifflet.PublicEditSourceJSONRequestBody{}, diags
+		return client.PublicEditSourceJSONRequestBody{}, diags
 	}
 	tagsDto, diags := tfutils.MapWithDiagnostics(tagsModel,
-		func(tagModel tagModel) (sifflet.PublicTagReferenceDto, diag.Diagnostics) {
+		func(tagModel tagModel) (client.PublicTagReferenceDto, diag.Diagnostics) {
 			return tagModel.ToDto()
 		},
 	)
 	if diags.HasError() {
-		return sifflet.PublicEditSourceJSONRequestBody{}, diags
+		return client.PublicEditSourceJSONRequestBody{}, diags
 	}
 
 	parametersModel, diags := m.getParameters(ctx)
 	if diags.HasError() {
-		return sifflet.PublicEditSourceJSONRequestBody{}, diags
+		return client.PublicEditSourceJSONRequestBody{}, diags
 	}
 	parametersDto, diags := parametersModel.AsUpdateSourceDto(ctx)
 	if diags.HasError() {
-		return sifflet.PublicEditSourceJSONRequestBody{}, diags
+		return client.PublicEditSourceJSONRequestBody{}, diags
 	}
 
-	return sifflet.PublicEditSourceJSONRequestBody{
+	return client.PublicEditSourceJSONRequestBody{
 		Description: m.Description.ValueStringPointer(),
 		Credentials: credentialsName,
 		Schedule:    m.Schedule.ValueStringPointer(),
@@ -248,18 +247,18 @@ type tagModel struct {
 }
 
 var (
-	_ model.InnerModel[sifflet.PublicTagReferenceDto] = &tagModel{}
+	_ model.InnerModel[client.PublicTagReferenceDto] = &tagModel{}
 )
 
-func (m tagModel) ToDto() (sifflet.PublicTagReferenceDto, diag.Diagnostics) {
+func (m tagModel) ToDto() (client.PublicTagReferenceDto, diag.Diagnostics) {
 	var id *uuid.UUID
-	var kind *sifflet.PublicTagReferenceDtoKind
+	var kind *client.PublicTagReferenceDtoKind
 	var name *string
 	if !m.ID.IsNull() && m.ID.ValueString() != "" {
 		// If an ID was provided, the DTO should not include a name or kind
 		idv, err := uuid.Parse(m.ID.ValueString())
 		if err != nil {
-			return sifflet.PublicTagReferenceDto{}, diag.Diagnostics{
+			return client.PublicTagReferenceDto{}, diag.Diagnostics{
 				diag.NewErrorDiagnostic("Tag ID is not a valid UUID", err.Error()),
 			}
 		}
@@ -268,25 +267,25 @@ func (m tagModel) ToDto() (sifflet.PublicTagReferenceDto, diag.Diagnostics) {
 		// If an ID is not provided, then a name was provided (enforced by the schema)
 		// Let's double check that here for clarity.
 		if m.Name.IsNull() || m.Name.ValueString() == "" {
-			return sifflet.PublicTagReferenceDto{}, diag.Diagnostics{
+			return client.PublicTagReferenceDto{}, diag.Diagnostics{
 				diag.NewErrorDiagnostic("Tag name is required when an ID is not provided", ""),
 			}
 		}
 		name = m.Name.ValueStringPointer()
 		if !m.Kind.IsNull() && m.Kind.ValueString() != "" {
-			t := sifflet.PublicTagReferenceDtoKind(m.Kind.ValueString())
+			t := client.PublicTagReferenceDtoKind(m.Kind.ValueString())
 			kind = &t
 		}
 	}
 
-	return sifflet.PublicTagReferenceDto{
+	return client.PublicTagReferenceDto{
 		Id:   id,
 		Name: name,
 		Kind: kind,
 	}, diag.Diagnostics{}
 }
 
-func (m *tagModel) FromDto(_ context.Context, dto sifflet.PublicTagReferenceDto) diag.Diagnostics {
+func (m *tagModel) FromDto(_ context.Context, dto client.PublicTagReferenceDto) diag.Diagnostics {
 	m.ID = types.StringValue(dto.Id.String())
 	m.Name = types.StringPointerValue(dto.Name)
 	kind := "Tag"
