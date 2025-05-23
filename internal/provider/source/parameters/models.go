@@ -155,7 +155,7 @@ func ParamsImplFromSchemaName(sourceType string) (SourceParameters, error) {
 	if sourceParamsBuilder, ok := allSourceTypes[sourceType]; ok {
 		return sourceParamsBuilder(), nil
 	}
-	return nil, fmt.Errorf("Unknown source type %s", sourceType)
+	return nil, fmt.Errorf("unknown source type %s", sourceType)
 }
 
 // ParamsImplFromApiResponseName returns the SourceParameters implementation for the given source type.
@@ -281,5 +281,5 @@ func (m ParametersModel) GetSourceType() (SourceParameters, error) {
 			return t, nil
 		}
 	}
-	return nil, fmt.Errorf("Could not determine source type from the provided configuration (the parameters don't match any known type). This is a bug in the provider.")
+	return nil, fmt.Errorf("could not determine source type from the provided configuration (the parameters don't match any known type), this is a bug in the provider")
 }

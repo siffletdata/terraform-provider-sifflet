@@ -312,7 +312,8 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		SecretID:       types.StringValue(*result.SecretId),
 	}
 
-	if result.Type == "bigquery" {
+	switch result.Type {
+	case "bigquery":
 		resultParams, _ := result.Params.AsBigQueryParams()
 
 		result_timezone := TimeZoneDto{
@@ -329,7 +330,7 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		}
 
 		state.BigQuery = &result_bq
-	} else if result.Type == "dbt" {
+	case "dbt":
 		resultParams, _ := result.Params.AsDBTParams()
 
 		result_timezone := TimeZoneDto{
@@ -345,7 +346,7 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		}
 
 		state.DBT = &result_dbt
-	} else if result.Type == "snowflake" {
+	case "snowflake":
 		resultParams, _ := result.Params.AsSnowflakeParams()
 
 		result_timezone := TimeZoneDto{
@@ -363,6 +364,12 @@ func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest,
 		}
 
 		state.Snowflake = &result_snowflake
+	default:
+		resp.Diagnostics.AddError(
+			"Unsupported datasource type",
+			fmt.Sprintf("Data source type %q is not supported.", result.Type),
+		)
+		return
 	}
 
 	var result_tags []basetypes.StringValue

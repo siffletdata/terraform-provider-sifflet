@@ -126,8 +126,8 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 			Id:               &idString,
 		}
 
-		if data.Type == "bigquery" {
-
+		switch data.Type {
+		case "bigquery":
 			resultParams, _ := data.Params.AsBigQueryParams()
 
 			result_timezone := TimeZoneDto{
@@ -143,7 +143,7 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 				TimezoneData:     &result_timezone,
 			}
 			data_source_catalog_asset.BigQuery = &result_bq
-		} else if data.Type == "dbt" {
+		case "dbt":
 			resultParams, _ := data.Params.AsDBTParams()
 
 			result_timezone := TimeZoneDto{
@@ -159,7 +159,7 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 			}
 
 			data_source_catalog_asset.DBT = &result_dbt
-		} else if data.Type == "snowflake" {
+		case "snowflake":
 			resultParams, _ := data.Params.AsSnowflakeParams()
 
 			result_timezone := TimeZoneDto{
@@ -177,6 +177,12 @@ func (d *datasourcesDataSource) Read(ctx context.Context, req datasource.ReadReq
 			}
 
 			data_source_catalog_asset.Snowflake = &result_snowflake
+		default:
+			resp.Diagnostics.AddError(
+				"Unsupported data source type",
+				fmt.Sprintf("Data source type %q is not supported.", data.Type),
+			)
+			return
 		}
 
 		*state.SearchRules.Data = append(*state.SearchRules.Data, data_source_catalog_asset)
