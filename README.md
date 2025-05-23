@@ -25,7 +25,7 @@ Also see `CODING.md` for high-level guidelines.
 - [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.0
 - [Go](https://golang.org/doc/install) >= 1.23
 
-### Building The provider
+### Building the provider
 
 1. Clone the repository
 1. Enter the repository directory
@@ -116,6 +116,19 @@ SIFFLET_HOST="https://yourinstance.siffletdata.com/api" TF_ACC=1 go test -v ./..
 
 **Important**: tests create and delete resources in your Sifflet instance. When tests fail or are interrupted, they can leave
 dangling resources behind them. Avoid using a production instance for testing.
+
+### Sweepers
+
+Sweepers are used to delete dangling resources after acceptance tests. They are not run automatically, as doing so could interfere with other test
+sessions currently running.
+
+Sweepers are not implemented for all resources.
+
+To run sweepers:
+
+```
+SIFFLET_HOST="https://yourinstance.siffletdata.com/api" TF_ACC=1 go test -v ./internal/provider/... -sweep=all
+```
 
 ### Run linters
 
