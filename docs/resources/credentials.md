@@ -37,6 +37,8 @@ resource "sifflet_credentials" "example" {
 
 Import is supported using the following syntax:
 
+The [`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import) can be used, for example:
+
 ```shell
 # Due to API limitations, Terraform can't detect changes on imported credentials.
 # Importing credentials will always generate a diff during the first apply, even
