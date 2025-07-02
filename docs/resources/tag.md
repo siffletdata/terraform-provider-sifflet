@@ -41,6 +41,8 @@ resource "sifflet_tag" "super_tag" {
 
 Import is supported using the following syntax:
 
+The [`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import) can be used, for example:
+
 ```shell
 terraform import sifflet_tag.example 'ad7b0951-318c-4950-932b-4614621b9bed'
 ```

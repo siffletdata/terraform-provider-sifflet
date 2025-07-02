@@ -58,6 +58,8 @@ Required:
 
 Import is supported using the following syntax:
 
+The [`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import) can be used, for example:
+
 ```shell
 terraform import sifflet_user.example '7411f861-c6d5-43b8-ab02-72811bdc8940'
 ```
