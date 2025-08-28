@@ -292,6 +292,15 @@ func (m *tagModel) FromDto(_ context.Context, dto client.PublicTagReferenceDto) 
 	if dto.Kind != nil {
 		kind = string(*dto.Kind)
 	}
+	// Backwards compatibility. At some point, the API
+	// started returning "TAG", but the resource schema
+	// expects "Tag".
+	if kind == "TAG" {
+		kind = "Tag"
+	}
+	if kind == "CLASSIFICATION" {
+		kind = "Classification"
+	}
 	m.Kind = types.StringValue(kind)
 	return diag.Diagnostics{}
 }
