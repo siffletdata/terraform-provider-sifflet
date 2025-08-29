@@ -76,6 +76,7 @@ resource "sifflet_source" "complex" {
 - `description` (String) Source description.
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
 - `tags` (Attributes List) Tags for the source. For each tag, you can provide either: an ID, a name, or a name + a kind (when the name alone is ambiguous). It's recommended to use tag IDs (coming from a `sifflet_tag` resource or data source) most of the time, but directly providing tag names can simplify some configurations. (see [below for nested schema](#nestedatt--tags))
+- `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 - `timezone` (String) Timezone for the source. If empty, defaults to UTC.
 
 ### Read-Only
@@ -341,6 +342,17 @@ Optional:
 - `id` (String) Tag ID. If provided, name and kind must be omitted.
 - `kind` (String) Tag kind. If provided, name must be provided. Use this field for disambiguation when the tag name matches both a regular and a classification tag. Use 'Tag' to match a regular, user-managed tag. Use 'Classification' to match a tag that was automatically created by Sifflet. See the Sifflet documentation for more about tag types.
 - `name` (String) Tag name. If provided, id must be omitted.
+
+
+<a id="nestedatt--timeouts"></a>
+### Nested Schema for `timeouts`
+
+Optional:
+
+- `create` (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+- `delete` (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+- `read` (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+- `update` (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 
 ## Import
 
