@@ -182,11 +182,7 @@ func (m *baseSourceModel) FromDto(ctx context.Context, dto client.PublicGetSourc
 }
 
 func (m *sourceModel) FromDto(ctx context.Context, dto client.PublicGetSourceDto) diag.Diagnostics {
-	diags := m.baseSourceModel.FromDto(ctx, dto)
-	if diags.HasError() {
-		return diags
-	}
-	return diags
+	return m.baseSourceModel.FromDto(ctx, dto)
 }
 
 func (m sourceModel) ToCreateDto(ctx context.Context) (client.PublicCreateSourceDto, diag.Diagnostics) {
