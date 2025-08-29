@@ -485,6 +485,15 @@ func (r *sourceResource) MoveState(ctx context.Context) []resource.StateMover {
 					return
 				}
 
+				t := types.ObjectNull(
+					map[string]attr.Type{
+						"create": types.StringType,
+						"read":   types.StringType,
+						"update": types.StringType,
+						"delete": types.StringType,
+					},
+				)
+
 				targetStateData := sourceModel{
 					baseSourceModel: baseSourceModel{
 						ID:          sourceStateData.ID,
@@ -496,6 +505,7 @@ func (r *sourceResource) MoveState(ctx context.Context) []resource.StateMover {
 						Tags:        tags,
 						Parameters:  parameters,
 					},
+					Timeouts: timeouts.Value{Object: t},
 				}
 
 				resp.Diagnostics.Append(resp.TargetState.Set(ctx, targetStateData)...)
