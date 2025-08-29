@@ -106,7 +106,7 @@ func TestAccSourceBasic(t *testing.T) {
 				),
 				ConfigPlanChecks: resource.ConfigPlanChecks{
 					PreApply: []plancheck.PlanCheck{
-						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionNoop),
+						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionUpdate),
 					},
 				},
 			},
@@ -132,7 +132,7 @@ func TestAccSourceBasic(t *testing.T) {
 				),
 				ConfigPlanChecks: resource.ConfigPlanChecks{
 					PreApply: []plancheck.PlanCheck{
-						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionNoop),
+						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionUpdate),
 					},
 				},
 			},
