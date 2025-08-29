@@ -9,13 +9,14 @@ import (
 	"terraform-provider-sifflet/internal/client"
 
 	"github.com/google/uuid"
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 )
 
-type sourceModel struct {
+type baseSourceModel struct {
 	ID          types.String `tfsdk:"id"`
 	Name        types.String `tfsdk:"name"`
 	Description types.String `tfsdk:"description"`
@@ -26,12 +27,18 @@ type sourceModel struct {
 	Tags        types.List   `tfsdk:"tags"`
 }
 
+type sourceModel struct {
+	baseSourceModel
+	Timeouts timeouts.Value `tfsdk:"timeouts"`
+}
+
 var (
 	_ model.FullModel[client.PublicGetSourceDto, client.PublicCreateSourceDto, client.PublicEditSourceJSONRequestBody] = &sourceModel{}
 	_ model.ModelWithId[uuid.UUID]                                                                                     = sourceModel{}
+	_ model.ReadableModel[client.PublicGetSourceDto]                                                                   = &baseSourceModel{}
 )
 
-func (m sourceModel) AttributeTypes() map[string]attr.Type {
+func (m baseSourceModel) AttributeTypes() map[string]attr.Type {
 	return map[string]attr.Type{
 		"id":          types.StringType,
 		"name":        types.StringType,
@@ -48,6 +55,21 @@ func (m sourceModel) AttributeTypes() map[string]attr.Type {
 			},
 		},
 	}
+}
+
+func (m sourceModel) AttributeTypes() map[string]attr.Type {
+	attrs := m.baseSourceModel.AttributeTypes()
+	attrs["timeouts"] = timeouts.Type{
+		ObjectType: types.ObjectType{
+			AttrTypes: map[string]attr.Type{
+				"create": types.StringType,
+				"read":   types.StringType,
+				"update": types.StringType,
+				"delete": types.StringType,
+			},
+		},
+	}
+	return attrs
 }
 
 func (m sourceModel) ModelId() (uuid.UUID, diag.Diagnostics) {
@@ -131,7 +153,7 @@ func parametersDtoToModel(ctx context.Context, dto client.PublicGetSourceDto_Par
 	return out, diag.Diagnostics{}
 }
 
-func (m *sourceModel) FromDto(ctx context.Context, dto client.PublicGetSourceDto) diag.Diagnostics {
+func (m *baseSourceModel) FromDto(ctx context.Context, dto client.PublicGetSourceDto) diag.Diagnostics {
 	tags, diags := model.NewModelListFromDto(ctx, *dto.Tags,
 		func() model.InnerModel[client.PublicTagReferenceDto] { return &tagModel{} },
 	)
@@ -157,6 +179,14 @@ func (m *sourceModel) FromDto(ctx context.Context, dto client.PublicGetSourceDto
 	m.Parameters = parameters
 	m.Tags = tags
 	return diag.Diagnostics{}
+}
+
+func (m *sourceModel) FromDto(ctx context.Context, dto client.PublicGetSourceDto) diag.Diagnostics {
+	diags := m.baseSourceModel.FromDto(ctx, dto)
+	if diags.HasError() {
+		return diags
+	}
+	return diags
 }
 
 func (m sourceModel) ToCreateDto(ctx context.Context) (client.PublicCreateSourceDto, diag.Diagnostics) {

@@ -60,6 +60,12 @@ func TestAccSourceBasic(t *testing.T) {
 									billing_project_id = "dataset"
 								}
 							}
+							timeouts = {
+								create = "1m"
+								read = "1m"
+								update = "1m"
+								delete = "1m"
+							}
 						}
 						`, sourceName, projectId),
 				// Check that the source_type attribute is known even before the source is created

@@ -237,7 +237,7 @@ func (d *sourcesDataSource) Read(ctx context.Context, req datasource.ReadRequest
 		// Set a default
 		remainingResults = 1000
 	}
-	results := make([]sourceModel, 0)
+	results := make([]baseSourceModel, 0)
 
 	for ; ; page++ {
 		if remainingResults <= itemsPerPage {
@@ -273,17 +273,17 @@ func (d *sourcesDataSource) Read(ctx context.Context, req datasource.ReadRequest
 			break
 		}
 		for _, data := range responseDto.Data {
-			var sourceModel sourceModel
-			diags := sourceModel.FromDto(ctx, data)
+			var baseSourceModel baseSourceModel
+			diags := baseSourceModel.FromDto(ctx, data)
 			resp.Diagnostics.Append(diags...)
 			if diags.HasError() {
 				return
 			}
-			results = append(results, sourceModel)
+			results = append(results, baseSourceModel)
 		}
 	}
 
-	data.Results, diags = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: sourceModel{}.AttributeTypes()}, results)
+	data.Results, diags = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: baseSourceModel{}.AttributeTypes()}, results)
 	resp.Diagnostics.Append(diags...)
 	if diags.HasError() {
 		return
