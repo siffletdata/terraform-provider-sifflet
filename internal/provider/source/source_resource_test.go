@@ -60,6 +60,12 @@ func TestAccSourceBasic(t *testing.T) {
 									billing_project_id = "dataset"
 								}
 							}
+							timeouts = {
+								create = "1m"
+								read = "1m"
+								update = "1m"
+								delete = "1m"
+							}
 						}
 						`, sourceName, projectId),
 				// Check that the source_type attribute is known even before the source is created
@@ -940,6 +946,41 @@ func TestAccMoveFromSnowflakeDatasource(t *testing.T) {
 						plancheck.ExpectResourceAction("sifflet_source.test", plancheck.ResourceActionNoop),
 					},
 				},
+			},
+		},
+	})
+}
+
+func TestAccSourceTimeout(t *testing.T) {
+	sourceName := randomSourceName()
+	projectId := providertests.RandomName()
+	credName := providertests.RandomCredentialsName()
+
+	resource.Test(t, resource.TestCase{
+		ProtoV6ProviderFactories: provider.TestAccProtoV6ProviderFactories,
+		Steps: []resource.TestStep{
+			{
+				Config: baseConfig(credName) + fmt.Sprintf(`
+					resource "sifflet_source" "timeout_test" {
+						name = "%s"
+						description = "Testing timeout behavior"
+						credentials = sifflet_credentials.test.name
+						parameters = {
+							bigquery = {
+								project_id = "%s"
+								dataset_id = "dataset"
+								billing_project_id = "dataset"
+							}
+						}
+						timeouts = {
+							create = "1ms"  # Extremely short timeout to trigger timeout behavior
+							read = "1ms"
+							update = "1ms"
+							delete = "1ms"
+						}
+					}
+					`, sourceName, projectId),
+				ExpectError: regexp.MustCompile("context deadline exceeded|timeout"),
 			},
 		},
 	})

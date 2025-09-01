@@ -4,12 +4,14 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"time"
 
 	"terraform-provider-sifflet/internal/apiclients"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/provider/datasource"
 	"terraform-provider-sifflet/internal/provider/source/parameters"
 
+	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-validators/resourcevalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
@@ -93,6 +95,12 @@ func SourceResourceSchema(ctx context.Context) schema.Schema {
 					stringplanmodifier.UseStateForUnknown(),
 				},
 			},
+			"timeouts": timeouts.Attributes(ctx, timeouts.Opts{
+				Create: true,
+				Read:   true,
+				Update: true,
+				Delete: true,
+			}),
 			"credentials": schema.StringAttribute{
 				Description: "Name of the credentials used to connect to the source. Required for most datasources, except for 'athena', 'dbt' and 'quicksight' sources.",
 				Optional:    true,
@@ -174,6 +182,15 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 		return
 	}
 
+	createTimeout, diags := plan.Timeouts.Create(ctx, 2*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, createTimeout)
+	defer cancel()
+
 	sourceDto, diags := plan.ToCreateDto(ctx)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -200,6 +217,8 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 		return
 	}
 
+	newState.Timeouts = plan.Timeouts
+
 	diags = resp.State.Set(ctx, newState)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -214,6 +233,15 @@ func (r *sourceResource) Read(ctx context.Context, req resource.ReadRequest, res
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	readTimeout, diags := state.Timeouts.Read(ctx, 2*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, readTimeout)
+	defer cancel()
 
 	id, diags := state.ModelId()
 	resp.Diagnostics.Append(diags...)
@@ -240,6 +268,8 @@ func (r *sourceResource) Read(ctx context.Context, req resource.ReadRequest, res
 		return
 	}
 
+	newState.Timeouts = state.Timeouts
+
 	diags = resp.State.Set(ctx, newState)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -254,6 +284,15 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	updateTimeout, diags := plan.Timeouts.Update(ctx, 2*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, updateTimeout)
+	defer cancel()
 
 	id, diags := plan.ModelId()
 	resp.Diagnostics.Append(diags...)
@@ -287,6 +326,8 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
+	newState.Timeouts = plan.Timeouts
+
 	diags = resp.State.Set(ctx, newState)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -301,6 +342,15 @@ func (r *sourceResource) Delete(ctx context.Context, req resource.DeleteRequest,
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
+	deleteTimeout, diags := state.Timeouts.Delete(ctx, 2*time.Minute)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, deleteTimeout)
+	defer cancel()
 
 	id, diags := state.ModelId()
 	resp.Diagnostics.Append(diags...)
@@ -435,15 +485,27 @@ func (r *sourceResource) MoveState(ctx context.Context) []resource.StateMover {
 					return
 				}
 
+				t := types.ObjectNull(
+					map[string]attr.Type{
+						"create": types.StringType,
+						"read":   types.StringType,
+						"update": types.StringType,
+						"delete": types.StringType,
+					},
+				)
+
 				targetStateData := sourceModel{
-					ID:   sourceStateData.ID,
-					Name: sourceStateData.Name,
-					// Description not available in the sifflet_datasource resource.
-					Credentials: sourceStateData.SecretID,
-					Schedule:    types.StringPointerValue(sourceStateData.CronExpression),
-					Timezone:    timezone,
-					Tags:        tags,
-					Parameters:  parameters,
+					baseSourceModel: baseSourceModel{
+						ID:          sourceStateData.ID,
+						Name:        sourceStateData.Name,
+						Description: types.StringNull(), // Description not available in the sifflet_datasource resource.
+						Credentials: sourceStateData.SecretID,
+						Schedule:    types.StringPointerValue(sourceStateData.CronExpression),
+						Timezone:    timezone,
+						Tags:        tags,
+						Parameters:  parameters,
+					},
+					Timeouts: timeouts.Value{Object: t},
 				}
 
 				resp.Diagnostics.Append(resp.TargetState.Set(ctx, targetStateData)...)
