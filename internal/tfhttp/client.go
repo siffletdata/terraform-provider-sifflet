@@ -12,6 +12,8 @@ import (
 	"github.com/hashicorp/go-retryablehttp"
 )
 
+const applicationName = "terraform-provider-sifflet"
+
 // newTerraformHttpClient creates a new http.Client with additional configuration for use in the Terraform provider.
 // It can log HTTP requests and responses.
 func NewTerraformHttpClient(ctx context.Context, tfVersion string, providerVersion string) *http.Client {
@@ -24,7 +26,8 @@ func NewTerraformHttpClient(ctx context.Context, tfVersion string, providerVersi
 	transport := contentTypeValidatorRoundTripper{
 		next: headersRoundTripper{
 			headers: map[string]string{
-				"User-Agent": userAgent(tfVersion, providerVersion),
+				"User-Agent":         userAgent(tfVersion, providerVersion),
+				"X-Application-Name": applicationName,
 			},
 			next: &rt,
 		},
@@ -37,11 +40,11 @@ func NewTerraformHttpClient(ctx context.Context, tfVersion string, providerVersi
 }
 
 func userAgent(tfVersion string, providerVersion string) string {
-	header := fmt.Sprintf("Terraform/%s (+https://www.terraform.io) terraform-provider-sifflet/%s", tfVersion, providerVersion)
+	headerValue := fmt.Sprintf("Terraform/%s (+https://www.terraform.io) %s/%s", tfVersion, applicationName, providerVersion)
 	if u := os.Getenv("TF_APPEND_USER_AGENT"); u != "" {
-		header = fmt.Sprintf("%s %s", header, u)
+		headerValue = fmt.Sprintf("%s %s", headerValue, u)
 	}
-	return header
+	return headerValue
 }
 
 // contentTypeValidatorRoundTripper is an http.RoundTripper that ensures that the Content-Type header of the response contains a given string.
