@@ -69,7 +69,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 	if plan.BigQuery != nil {
 		connect_type = "bigquery"
 
-		jsonData = []byte(fmt.Sprintf(`
+		jsonData = fmt.Appendf(nil, `
 	{
 		"type": "%s",
 		"billingProjectId": %s,
@@ -87,12 +87,12 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 			plan.BigQuery.ProjectID,
 			plan.BigQuery.TimezoneData.TimeZone,
 			plan.BigQuery.TimezoneData.UtcOffset,
-		))
+		)
 		tflog.Debug(ctx, "Params:  "+string(jsonData))
 	} else if plan.DBT != nil {
 		connect_type = "dbt"
 
-		jsonData = []byte(fmt.Sprintf(`
+		jsonData = fmt.Appendf(nil, `
 	{
 		"type": "%s",
 		"projectName": %s,
@@ -108,12 +108,12 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 			plan.DBT.Target,
 			plan.DBT.TimezoneData.TimeZone,
 			plan.DBT.TimezoneData.UtcOffset,
-		))
+		)
 		tflog.Debug(ctx, "Params:  "+string(jsonData))
 	} else if plan.Snowflake != nil {
 		connect_type = "snowflake"
 
-		jsonData = []byte(fmt.Sprintf(`
+		jsonData = fmt.Appendf(nil, `
 	{
 		"type": "%s",
 		"accountIdentifier": %s,
@@ -133,7 +133,7 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 			plan.Snowflake.Warehouse,
 			plan.Snowflake.TimezoneData.TimeZone,
 			plan.Snowflake.TimezoneData.UtcOffset,
-		))
+		)
 		tflog.Debug(ctx, "Params:  "+string(jsonData))
 	}
 
