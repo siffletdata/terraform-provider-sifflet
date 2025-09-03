@@ -12,6 +12,7 @@ import (
 
 	sifflet "terraform-provider-sifflet/internal/alphaclient"
 	"terraform-provider-sifflet/internal/apiclients"
+	"terraform-provider-sifflet/internal/tfutils"
 
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -50,6 +51,8 @@ func (r *datasourceResource) Schema(ctx context.Context, _ resource.SchemaReques
 
 // Create creates the resource and sets the initial Terraform state.
 func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	ctx, cancel := tfutils.WithDefaultCreateTimeout(ctx)
+	defer cancel()
 
 	// TODO: Datasources is not tested, can be create with anythings as value
 
@@ -247,6 +250,9 @@ func (r *datasourceResource) Create(ctx context.Context, req resource.CreateRequ
 
 // Read refreshes the Terraform state with the latest data.
 func (r *datasourceResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+	ctx, cancel := tfutils.WithDefaultReadTimeout(ctx)
+	defer cancel()
+
 	var state CreateDatasourceDto
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -394,6 +400,8 @@ func (r *datasourceResource) Update(ctx context.Context, req resource.UpdateRequ
 
 // Delete deletes the resource and removes the Terraform state on success.
 func (r *datasourceResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+	ctx, cancel := tfutils.WithDefaultDeleteTimeout(ctx)
+	defer cancel()
 
 	var state CreateDatasourceDto
 	diags := req.State.Get(ctx, &state)

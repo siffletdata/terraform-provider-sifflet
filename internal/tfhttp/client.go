@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"os"
 	"strings"
-	"time"
 
 	"github.com/hashicorp/go-retryablehttp"
 )
@@ -35,7 +34,7 @@ func NewTerraformHttpClient(ctx context.Context, tfVersion string, providerVersi
 	}
 	return &http.Client{
 		Transport: transport,
-		Timeout:   time.Second * 60,
+		// timeouts are provided by contexts, no global timeout here (since it's not possible to override it when a longer timeout would be needed)
 	}
 }
 
