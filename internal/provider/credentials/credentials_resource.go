@@ -9,6 +9,7 @@ import (
 
 	"terraform-provider-sifflet/internal/apiclients"
 	sifflet "terraform-provider-sifflet/internal/client"
+	"terraform-provider-sifflet/internal/tfutils"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -78,6 +79,9 @@ func (r *credentialsResource) Schema(ctx context.Context, _ resource.SchemaReque
 }
 
 func (r *credentialsResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	ctx, cancel := tfutils.WithDefaultCreateTimeout(ctx)
+	defer cancel()
+
 	var plan credentialModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
@@ -144,6 +148,9 @@ func (r *credentialsResource) Create(ctx context.Context, req resource.CreateReq
 }
 
 func (r *credentialsResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+	ctx, cancel := tfutils.WithDefaultReadTimeout(ctx)
+	defer cancel()
+
 	var state credentialModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -206,6 +213,9 @@ func (r *credentialsResource) Read(ctx context.Context, req resource.ReadRequest
 }
 
 func (r *credentialsResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	ctx, cancel := tfutils.WithDefaultUpdateTimeout(ctx)
+	defer cancel()
+
 	var plan credentialModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
@@ -283,6 +293,9 @@ func (r *credentialsResource) Update(ctx context.Context, req resource.UpdateReq
 }
 
 func (r *credentialsResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+	ctx, cancel := tfutils.WithDefaultDeleteTimeout(ctx)
+	defer cancel()
+
 	var state credentialModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)

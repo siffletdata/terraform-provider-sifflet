@@ -49,6 +49,11 @@ The code manipulates three concepts everywhere:
   variables inside functions. Avoid method signatures that use them as arguments or return values, prefer
   using models instead.
 
+## Timeouts
+
+Use the helper functions `tfutils.WithDefaultCreateTimeout` and similar to add timeouts to all operations.
+For resources where it makes sense, you can add a `timeout` nested attribute to allow the user to override these default timeouts.
+
 ## Resource example
 
 The `sifflet_user` resource is a simple resource that showcases the basic patterns used in the provider.

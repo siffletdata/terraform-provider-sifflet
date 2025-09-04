@@ -8,6 +8,7 @@ import (
 	sifflet "terraform-provider-sifflet/internal/alphaclient"
 	"terraform-provider-sifflet/internal/apiclients"
 	"terraform-provider-sifflet/internal/client"
+	"terraform-provider-sifflet/internal/tfutils"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -74,6 +75,9 @@ This resource manages 'regular' tags. See the [Sifflet documentation](https://do
 }
 
 func (r *tagResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	ctx, cancel := tfutils.WithDefaultCreateTimeout(ctx)
+	defer cancel()
+
 	var plan tagModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
@@ -111,6 +115,9 @@ func (r *tagResource) Create(ctx context.Context, req resource.CreateRequest, re
 }
 
 func (r *tagResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+	ctx, cancel := tfutils.WithDefaultReadTimeout(ctx)
+	defer cancel()
+
 	var state tagModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -152,6 +159,9 @@ func (r *tagResource) Read(ctx context.Context, req resource.ReadRequest, resp *
 }
 
 func (r *tagResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	ctx, cancel := tfutils.WithDefaultUpdateTimeout(ctx)
+	defer cancel()
+
 	var plan tagModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
@@ -199,6 +209,9 @@ func (r *tagResource) Update(ctx context.Context, req resource.UpdateRequest, re
 }
 
 func (r *tagResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+	ctx, cancel := tfutils.WithDefaultDeleteTimeout(ctx)
+	defer cancel()
+
 	var state tagModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)

@@ -10,6 +10,7 @@ import (
 
 	sifflet "terraform-provider-sifflet/internal/alphaclient"
 	"terraform-provider-sifflet/internal/apiclients"
+	"terraform-provider-sifflet/internal/tfutils"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -57,6 +58,9 @@ func (d *tagDataSource) Schema(_ context.Context, _ datasource.SchemaRequest, re
 }
 
 func (d *tagDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	ctx, cancel := tfutils.WithDefaultReadTimeout(ctx)
+	defer cancel()
+
 	var state SearchCollectionTagDto
 
 	ItemsPerPage := int32(-1)

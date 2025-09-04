@@ -210,6 +210,9 @@ func (m FilterModel) ToDto(ctx context.Context) (sifflet.PublicSourceFilterDto, 
 }
 
 func (d *sourcesDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	ctx, cancel := tfutils.WithDefaultReadTimeout(ctx)
+	defer cancel()
+
 	var data SourcesDataSourceModel
 	diags := req.Config.Get(ctx, &data)
 	if diags.HasError() {

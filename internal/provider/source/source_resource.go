@@ -4,12 +4,12 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"time"
 
 	"terraform-provider-sifflet/internal/apiclients"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/provider/datasource"
 	"terraform-provider-sifflet/internal/provider/source/parameters"
+	"terraform-provider-sifflet/internal/tfutils"
 
 	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-validators/resourcevalidator"
@@ -175,6 +175,8 @@ func (r *sourceResource) Schema(ctx context.Context, _ resource.SchemaRequest, r
 }
 
 func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	// No default timeout, this resource implements its own timeouts.
+
 	var plan sourceModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
@@ -182,7 +184,7 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 		return
 	}
 
-	createTimeout, diags := plan.Timeouts.Create(ctx, 2*time.Minute)
+	createTimeout, diags := plan.Timeouts.Create(ctx, tfutils.DefaultTimeouts.Create)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -227,6 +229,8 @@ func (r *sourceResource) Create(ctx context.Context, req resource.CreateRequest,
 }
 
 func (r *sourceResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+	// No default timeout, this resource implements its own timeouts.
+
 	var state sourceModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -234,7 +238,7 @@ func (r *sourceResource) Read(ctx context.Context, req resource.ReadRequest, res
 		return
 	}
 
-	readTimeout, diags := state.Timeouts.Read(ctx, 2*time.Minute)
+	readTimeout, diags := state.Timeouts.Read(ctx, tfutils.DefaultTimeouts.Read)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -278,6 +282,8 @@ func (r *sourceResource) Read(ctx context.Context, req resource.ReadRequest, res
 }
 
 func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	// No default timeout, this resource implements its own timeouts.
+
 	var plan sourceModel
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
@@ -285,7 +291,7 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 		return
 	}
 
-	updateTimeout, diags := plan.Timeouts.Update(ctx, 2*time.Minute)
+	updateTimeout, diags := plan.Timeouts.Update(ctx, tfutils.DefaultTimeouts.Update)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
@@ -336,6 +342,8 @@ func (r *sourceResource) Update(ctx context.Context, req resource.UpdateRequest,
 }
 
 func (r *sourceResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+	// No default timeout, this resource implements its own timeouts.
+
 	var state sourceModel
 	diags := req.State.Get(ctx, &state)
 	resp.Diagnostics.Append(diags...)
@@ -343,7 +351,7 @@ func (r *sourceResource) Delete(ctx context.Context, req resource.DeleteRequest,
 		return
 	}
 
-	deleteTimeout, diags := state.Timeouts.Delete(ctx, 2*time.Minute)
+	deleteTimeout, diags := state.Timeouts.Delete(ctx, tfutils.DefaultTimeouts.Delete)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
 		return
