@@ -64,9 +64,9 @@ func (m MysqlParametersModel) AttributeTypes() map[string]attr.Type {
 func parseMysqlTlsVersion(v string) (sifflet.PublicMysqlParametersDtoMysqlTlsVersion, error) {
 	switch v {
 	case "TLS_V_1_2":
-		return sifflet.TLSV12, nil
+		return sifflet.PublicMysqlParametersDtoMysqlTlsVersionTLSV12, nil
 	case "TLS_V_1_3":
-		return sifflet.TLSV13, nil
+		return sifflet.PublicMysqlParametersDtoMysqlTlsVersionTLSV13, nil
 	default:
 		return "", fmt.Errorf("unsupported value for MySQL TLS version: %s", v)
 	}
@@ -74,9 +74,9 @@ func parseMysqlTlsVersion(v string) (sifflet.PublicMysqlParametersDtoMysqlTlsVer
 
 func mysqlTlsVersionToString(v sifflet.PublicMysqlParametersDtoMysqlTlsVersion) (string, error) {
 	switch v {
-	case sifflet.TLSV12:
+	case sifflet.PublicMysqlParametersDtoMysqlTlsVersionTLSV12:
 		return "TLS_V_1_2", nil
-	case sifflet.TLSV13:
+	case sifflet.PublicMysqlParametersDtoMysqlTlsVersionTLSV13:
 		return "TLS_V_1_3", nil
 	default:
 		return "", fmt.Errorf("unsupported value for MySQL TLS version: %s", v)
