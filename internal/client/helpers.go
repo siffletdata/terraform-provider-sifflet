@@ -49,7 +49,7 @@ func GetSourceType(dto PublicGetSourceDto_Parameters) (string, error) {
 	// This function must live in this package, in order to be able to access the private
 	// dto.union field.
 
-	m := make(map[string]interface{})
+	m := make(map[string]any)
 	if err := json.Unmarshal(dto.union, &m); err != nil {
 		return "", fmt.Errorf("couldn't parse parameters as JSON: %s", err)
 	}

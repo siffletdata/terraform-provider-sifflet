@@ -123,7 +123,7 @@ func (r *credentialsResource) Create(ctx context.Context, req resource.CreateReq
 	// Since the credentials API is eventually consistent, we wait until we can read back the credentials that we created.
 	// Otherwise, further operations with these credentials (such as "create a datasource referencing these credentials") might fail.
 	maxAttempts := 20
-	for attempt := 0; attempt < maxAttempts; attempt++ {
+	for range maxAttempts {
 		_, err = r.client.PublicGetCredentialsWithResponse(ctx, credentialsDto.Name)
 
 		if err != nil {
@@ -160,7 +160,7 @@ func (r *credentialsResource) Read(ctx context.Context, req resource.ReadRequest
 	maxAttempts := 20
 	var err error
 	var credentialsResponse *sifflet.PublicGetCredentialsResponse
-	for attempt := 0; attempt < maxAttempts; attempt++ {
+	for attempt := range maxAttempts {
 		credentialsResponse, err = r.client.PublicGetCredentialsWithResponse(ctx, id)
 
 		if err != nil {
@@ -245,7 +245,7 @@ func (r *credentialsResource) Update(ctx context.Context, req resource.UpdateReq
 	// See PLTE-901.
 	maxAttempts := 30
 	var credentialsResponse *sifflet.PublicGetCredentialsResponse
-	for attempt := 0; attempt < maxAttempts; attempt++ {
+	for range maxAttempts {
 		credentialsResponse, err = r.client.PublicGetCredentialsWithResponse(ctx, id)
 
 		if err != nil {
