@@ -358,7 +358,11 @@ func (r *sourceResource) Delete(ctx context.Context, req resource.DeleteRequest,
 		return
 	}
 
-	credentialResponse, _ := r.client.PublicDeleteSourceByIdWithResponse(ctx, id)
+	credentialResponse, err := r.client.PublicDeleteSourceByIdWithResponse(ctx, id)
+	if err != nil {
+		resp.Diagnostics.AddError("Unable to delete source", err.Error())
+		return
+	}
 
 	if credentialResponse.StatusCode() != http.StatusNoContent {
 		sifflet.HandleHttpErrorAsProblem(
