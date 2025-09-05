@@ -1,8 +1,11 @@
 package source_test
 
 import (
+	"context"
 	"fmt"
 	"regexp"
+	"strings"
+	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/provider"
 	"terraform-provider-sifflet/internal/provider/providertests"
 	"testing"
@@ -13,6 +16,80 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/tfjsonpath"
 	"github.com/hashicorp/terraform-plugin-testing/tfversion"
 )
+
+func init() {
+	resource.AddTestSweepers("sifflet_source", &resource.Sweeper{
+		Name: "sifflet_source",
+		F: func(region string) error {
+			ctx := context.Background()
+			client, err := provider.ClientForSweepers(ctx)
+			if err != nil {
+				return fmt.Errorf("Error creating HTTP client: %s", err)
+			}
+
+			prefix := providertests.AcceptanceTestPrefix()
+			filterDto := sifflet.PublicSourceFilterDto{
+				TextSearch: &prefix,
+			}
+			var page int32 = 0
+			var itemsPerPage int32 = 10
+
+			paginationDto := sifflet.PublicSourcePaginationDto{
+				ItemsPerPage: &itemsPerPage,
+				Page:         &page,
+			}
+			requestDto := sifflet.PublicSourceSearchCriteriaDto{
+				Filter:     &filterDto,
+				Pagination: &paginationDto,
+			}
+
+			// Call get sources API a first time to get number of sources to delete
+			searchResponse, err := client.PublicGetSourcesWithResponse(ctx, requestDto)
+			if err != nil {
+				return fmt.Errorf("Error listing sources: %s", err)
+			}
+			if searchResponse.StatusCode() != 200 {
+				return fmt.Errorf("Error listing sources: status code %s", searchResponse.Status())
+			}
+
+			totalDanglingSources := int32(*searchResponse.JSON200.TotalCount)
+			fmt.Printf("Found %d sources to delete\n", totalDanglingSources)
+			if totalDanglingSources == 0 {
+				return nil
+			}
+
+			// Delete sources, with a maximum of 500 sources at a time
+			itemsPerPage = min(totalDanglingSources, 500)
+
+			paginationDto = sifflet.PublicSourcePaginationDto{
+				ItemsPerPage: &itemsPerPage,
+				Page:         &page,
+			}
+			requestDto = sifflet.PublicSourceSearchCriteriaDto{
+				Filter:     &filterDto,
+				Pagination: &paginationDto,
+			}
+
+			searchResponse, err = client.PublicGetSourcesWithResponse(ctx, requestDto)
+			if err != nil {
+				return fmt.Errorf("Error listing sources: %s", err)
+			}
+			if searchResponse.StatusCode() != 200 {
+				return fmt.Errorf("Error listing sources: status code %s", searchResponse.Status())
+			}
+			for _, source := range searchResponse.JSON200.Data {
+				if strings.HasPrefix(source.Name, providertests.AcceptanceTestPrefix()) {
+					_, err = client.PublicDeleteSourceByIdWithResponse(ctx, source.Id)
+					if err != nil {
+						return fmt.Errorf("Error deleting source %s: %s", source.Name, err)
+					}
+					fmt.Printf("Deleted dangling source %s\n", source.Name)
+				}
+			}
+			return nil
+		},
+	})
+}
 
 func randomSourceName() string {
 	return providertests.RandomName()
