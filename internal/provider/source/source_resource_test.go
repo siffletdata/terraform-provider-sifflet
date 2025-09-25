@@ -1,8 +1,12 @@
 package source_test
 
 import (
+	"context"
 	"fmt"
+	"net/http"
 	"regexp"
+	"strings"
+	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/provider"
 	"terraform-provider-sifflet/internal/provider/providertests"
 	"testing"
@@ -13,6 +17,54 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/tfjsonpath"
 	"github.com/hashicorp/terraform-plugin-testing/tfversion"
 )
+
+func init() {
+	resource.AddTestSweepers("sifflet_source", &resource.Sweeper{
+		Name: "sifflet_source",
+		F: func(region string) error {
+			ctx := context.Background()
+			client, err := provider.ClientForSweepers(ctx)
+			if err != nil {
+				return fmt.Errorf("Error creating HTTP client: %s", err)
+			}
+
+			prefix := providertests.AcceptanceTestPrefix()
+			filterDto := sifflet.PublicSourceFilterDto{
+				TextSearch: &prefix,
+			}
+			var page int32 = 0
+			var itemsPerPage int32 = 100
+
+			paginationDto := sifflet.PublicSourcePaginationDto{
+				ItemsPerPage: &itemsPerPage,
+				Page:         &page,
+			}
+			requestDto := sifflet.PublicSourceSearchCriteriaDto{
+				Filter:     &filterDto,
+				Pagination: &paginationDto,
+			}
+
+			// Call get sources API a first time to get number of sources to delete
+			searchResponse, err := client.PublicGetSourcesWithResponse(ctx, requestDto)
+			if err != nil {
+				return fmt.Errorf("Error listing sources: %s", err)
+			}
+			if searchResponse.StatusCode() != http.StatusOK {
+				return fmt.Errorf("Error listing sources: status code %d", searchResponse.StatusCode())
+			}
+			for _, source := range searchResponse.JSON200.Data {
+				if strings.HasPrefix(source.Name, providertests.AcceptanceTestPrefix()) {
+					_, err = client.PublicDeleteSourceByIdWithResponse(ctx, source.Id)
+					if err != nil {
+						return fmt.Errorf("Error deleting source %s: %s", source.Name, err)
+					}
+					fmt.Printf("Deleted dangling source %s\n", source.Name)
+				}
+			}
+			return nil
+		},
+	})
+}
 
 func randomSourceName() string {
 	return providertests.RandomName()
