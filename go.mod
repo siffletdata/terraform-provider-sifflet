@@ -14,6 +14,8 @@ require (
 	github.com/hashicorp/terraform-plugin-testing v1.13.3
 	github.com/oapi-codegen/oapi-codegen/v2 v2.5.0
 	github.com/oapi-codegen/runtime v1.1.2
+	gopkg.in/validator.v2 v2.0.1
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
@@ -98,6 +100,5 @@ require (
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250707201910-8d1bb00bc6a7 // indirect
 	google.golang.org/grpc v1.75.1 // indirect
 	google.golang.org/protobuf v1.36.9 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
