@@ -21,6 +21,7 @@ import (
 	"terraform-provider-sifflet/internal/provider/credentials"
 	sifflet_datasource "terraform-provider-sifflet/internal/provider/datasource"
 	"terraform-provider-sifflet/internal/provider/source"
+	"terraform-provider-sifflet/internal/provider/source_v2"
 	"terraform-provider-sifflet/internal/provider/tag"
 	"terraform-provider-sifflet/internal/provider/user"
 )
@@ -200,6 +201,7 @@ func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.Dat
 		credentials.DataSources(),
 		sifflet_datasource.DataSources(),
 		source.DataSources(),
+		source_v2.DataSources(),
 		tag.DataSources(),
 		user.DataSources(),
 	)
@@ -211,6 +213,7 @@ func (p *siffletProvider) Resources(_ context.Context) []func() resource.Resourc
 		credentials.Resources(),
 		sifflet_datasource.Resources(),
 		source.Resources(),
+		source_v2.Resources(),
 		tag.Resources(),
 		user.Resources(),
 	)
