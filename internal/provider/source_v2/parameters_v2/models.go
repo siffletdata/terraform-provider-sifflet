@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"strings"
 
-	// "terraform-provider-sifflet/internal/clientv2/openapi"
 	"terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/tfutils"
 
@@ -202,7 +201,7 @@ func (m ParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 	}
 	for _, factory := range allSourceTypes {
 		t := factory()
-		// A resource-level validator ensure that only one type of parameters is provided
+		// A resource-level validator ensure that only one type of parameters is provided.
 		attributes[t.SchemaSourceType()] = t.TerraformSchema()
 	}
 
@@ -213,7 +212,7 @@ func (m ParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 		PlanModifiers: []planmodifier.Object{
 			objectplanmodifier.RequiresReplaceIf(
 				func(ctx context.Context, req planmodifier.ObjectRequest, resp *objectplanmodifier.RequiresReplaceIfFuncResponse) {
-					// If the source type changes, the resource must be replaced (the API will reject a type change)
+					// If the source type changes, the resource must be replaced (the API will reject a type change).
 					resp.RequiresReplace = true
 
 					var state ParametersModel
@@ -289,7 +288,7 @@ func (m ParametersModel) GetSourceParameter(ctx context.Context) (SourceParamete
 		{m.Tableau, func() SourceParameters { return &TableauParametersModel{} }},
 	}
 
-	// Iterate through the fields and return the first non-null one
+	// Iterate through the fields and return the first non-null one.
 	for _, field := range parameterFields {
 		if !field.value.IsNull() {
 			sourceParams := field.model()

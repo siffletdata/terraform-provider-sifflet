@@ -2,7 +2,6 @@ package source_v2
 
 import (
 	"context"
-	// "encoding/json"
 	"fmt"
 	"net/http"
 
@@ -30,7 +29,7 @@ var (
 
 // ModifyPlan sets the computed source_type attribute based on the parameters
 // This allows users to see the detected source type in terraform plan output
-// before the resource is created or updated
+// before the resource is created or updated.
 func (r sourceV2Resource) ModifyPlan(ctx context.Context, req resource.ModifyPlanRequest, resp *resource.ModifyPlanResponse) {
 	if req.Plan.Raw.IsNull() {
 		// If the request is planned for destruction, do nothing.
@@ -365,7 +364,7 @@ func (r *sourceV2Resource) Configure(_ context.Context, req resource.ConfigureRe
 
 // ConfigValidators ensures exactly one source type is configured in parameters
 // This prevents users from accidentally configuring multiple source types
-// which would result in ambiguous behavior
+// which would result in ambiguous behavior.
 func (r sourceV2Resource) ConfigValidators(ctx context.Context) []resource.ConfigValidator {
 	types := parameters.GetAllSourceTypes()
 	paths := make([]path.Expression, len(types))

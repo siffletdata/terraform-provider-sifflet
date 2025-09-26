@@ -10,18 +10,18 @@ import (
 )
 
 // Needed to create a PublicCreateSourceV2JSONBody, as union is a private field we cannot set it
-// outside of this package without this helper
+// outside of this package without this helper.
 
 func (b *PublicCreateSourceV2JSONBody) SetRawMessage(message json.RawMessage) {
 	b.union = message
 }
 
 // This method is added so that NewPublicCreateSourceV2Request works
-// Otherwise, the `json.Marshal(body)` call returns an empty body
+// Otherwise, the `json.Marshal(body)` call returns an empty body.
 // The MarshalJSON method is usually implemented by the generator
 // (see PublicCreateSourceDto_Parameters for example), but we have to create it ourselves
 // for PublicCreateSourceV2JSONRequestBody because PublicCreateSourceV2Dto is a polymorphic object
-// directly returned by the API and the oapi-codegen generator doesn't handle this case well
+// directly returned by the API and the oapi-codegen generator doesn't handle this case well.
 
 func (t PublicCreateSourceV2JSONRequestBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
@@ -29,14 +29,14 @@ func (t PublicCreateSourceV2JSONRequestBody) MarshalJSON() ([]byte, error) {
 }
 
 // Needed to create a PublicEditSourceV2JSONBody, as union is a private field we cannot set it
-// outside of this package without this helper
+// outside of this package without this helper.
 
 func (b *PublicEditSourceV2JSONBody) SetRawMessage(message json.RawMessage) {
 	b.union = message
 }
 
 // This method is added so that NewPublicEditSourceV2Request works
-// Otherwise, the call to `json.Marshal(body)` returns an empty body
+// Otherwise, the call to `json.Marshal(body)` returns an empty body.
 
 func (t PublicEditSourceV2JSONRequestBody) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
@@ -44,7 +44,7 @@ func (t PublicEditSourceV2JSONRequestBody) MarshalJSON() ([]byte, error) {
 }
 
 // Interface for parameters that are common to
-// all DTOs returned by the PublicGetSourceV2 route
+// all DTOs returned by the PublicGetSourceV2 route.
 type PublicGetSourceV2 interface {
 	GetType() string
 	GetId() types.UUID
@@ -380,7 +380,7 @@ func (obj PublicGetTableauSourceV2Dto) GetTimezone() *string {
 	return obj.Timezone
 }
 
-// SiffletPublicGetSourceV2Dto reprensents the `oneOf` structure of the PublicGetSourceV2Dto object
+// SiffletPublicGetSourceV2Dto reprensents the `oneOf` structure of the PublicGetSourceV2Dto object.
 type SiffletPublicGetSourceV2Dto struct {
 	PublicGetAirflowSourceV2Dto       *PublicGetAirflowSourceV2Dto
 	PublicGetAthenaSourceV2Dto        *PublicGetAthenaSourceV2Dto
@@ -404,7 +404,7 @@ type SiffletPublicGetSourceV2Dto struct {
 	PublicGetTableauSourceV2Dto       *PublicGetTableauSourceV2Dto
 }
 
-// Unmarshal JSON data into one and only one of the pointers in the struct
+// Unmarshal JSON data into one and only one of the pointers in the struct.
 func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
@@ -427,7 +427,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 		dst.PublicGetAirflowSourceV2Dto = nil
 	}
 
-	// try to unmarshal data into PublicGetAthenaSourceV2Dto
+	// try to unmarshal data into PublicGetAthenaSourceV2Dto.
 	err = json.NewDecoder(bytes.NewBuffer(data)).Decode(&dst.PublicGetAthenaSourceV2Dto)
 	if err == nil {
 		jsonPublicGetAthenaSourceV2Dto, _ := json.Marshal(dst.PublicGetAthenaSourceV2Dto)
@@ -465,7 +465,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 		dst.PublicGetBigQuerySourceV2Dto = nil
 	}
 
-	// try to unmarshal data into PublicGetDatabricksSourceV2Dto
+	// try to unmarshal data into PublicGetDatabricksSourceV2Dto.
 	err = json.NewDecoder(bytes.NewBuffer(data)).Decode(&dst.PublicGetDatabricksSourceV2Dto)
 	if err == nil {
 		jsonPublicGetDatabricksSourceV2Dto, _ := json.Marshal(dst.PublicGetDatabricksSourceV2Dto)
@@ -503,7 +503,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 		dst.PublicGetDbtCloudSourceV2Dto = nil
 	}
 
-	// try to unmarshal data into PublicGetDbtSourceV2Dto
+	// try to unmarshal data into PublicGetDbtSourceV2Dto.
 	err = json.NewDecoder(bytes.NewBuffer(data)).Decode(&dst.PublicGetDbtSourceV2Dto)
 	if err == nil {
 		jsonPublicGetDbtSourceV2Dto, _ := json.Marshal(dst.PublicGetDbtSourceV2Dto)
@@ -541,7 +541,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 		dst.PublicGetFivetranSourceV2Dto = nil
 	}
 
-	// try to unmarshal data into PublicGetLookerSourceV2Dto
+	// try to unmarshal data into PublicGetLookerSourceV2Dto.
 	err = json.NewDecoder(bytes.NewBuffer(data)).Decode(&dst.PublicGetLookerSourceV2Dto)
 	if err == nil {
 		jsonPublicGetLookerSourceV2Dto, _ := json.Marshal(dst.PublicGetLookerSourceV2Dto)
@@ -579,7 +579,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 		dst.PublicGetMicrostrategySourceV2Dto = nil
 	}
 
-	// try to unmarshal data into PublicGetMssqlSourceV2Dto
+	// try to unmarshal data into PublicGetMssqlSourceV2Dto.
 	err = json.NewDecoder(bytes.NewBuffer(data)).Decode(&dst.PublicGetMssqlSourceV2Dto)
 	if err == nil {
 		jsonPublicGetMssqlSourceV2Dto, _ := json.Marshal(dst.PublicGetMssqlSourceV2Dto)
@@ -617,7 +617,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 		dst.PublicGetMysqlSourceV2Dto = nil
 	}
 
-	// try to unmarshal data into PublicGetOracleSourceV2Dto
+	// try to unmarshal data into PublicGetOracleSourceV2Dto.
 	err = json.NewDecoder(bytes.NewBuffer(data)).Decode(&dst.PublicGetOracleSourceV2Dto)
 	if err == nil {
 		jsonPublicGetOracleSourceV2Dto, _ := json.Marshal(dst.PublicGetOracleSourceV2Dto)
@@ -655,7 +655,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 		dst.PublicGetPostgresqlSourceV2Dto = nil
 	}
 
-	// try to unmarshal data into PublicGetPowerBiSourceV2Dto
+	// try to unmarshal data into PublicGetPowerBiSourceV2Dto.
 	err = json.NewDecoder(bytes.NewBuffer(data)).Decode(&dst.PublicGetPowerBiSourceV2Dto)
 	if err == nil {
 		jsonPublicGetPowerBiSourceV2Dto, _ := json.Marshal(dst.PublicGetPowerBiSourceV2Dto)
@@ -693,7 +693,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 		dst.PublicGetQlikSourceV2Dto = nil
 	}
 
-	// try to unmarshal data into PublicGetQuicksightSourceV2Dto
+	// try to unmarshal data into PublicGetQuicksightSourceV2Dto.
 	err = json.NewDecoder(bytes.NewBuffer(data)).Decode(&dst.PublicGetQuicksightSourceV2Dto)
 	if err == nil {
 		jsonPublicGetQuicksightSourceV2Dto, _ := json.Marshal(dst.PublicGetQuicksightSourceV2Dto)
@@ -731,7 +731,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 		dst.PublicGetRedshiftSourceV2Dto = nil
 	}
 
-	// try to unmarshal data into PublicGetSnowflakeSourceV2Dto
+	// try to unmarshal data into PublicGetSnowflakeSourceV2Dto.
 	err = json.NewDecoder(bytes.NewBuffer(data)).Decode(&dst.PublicGetSnowflakeSourceV2Dto)
 	if err == nil {
 		jsonPublicGetSnowflakeSourceV2Dto, _ := json.Marshal(dst.PublicGetSnowflakeSourceV2Dto)
@@ -769,7 +769,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 		dst.PublicGetSynapseSourceV2Dto = nil
 	}
 
-	// try to unmarshal data into PublicGetTableauSourceV2Dto
+	// try to unmarshal data into PublicGetTableauSourceV2Dto.
 	err = json.NewDecoder(bytes.NewBuffer(data)).Decode(&dst.PublicGetTableauSourceV2Dto)
 	if err == nil {
 		jsonPublicGetTableauSourceV2Dto, _ := json.Marshal(dst.PublicGetTableauSourceV2Dto)
@@ -788,8 +788,8 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 		dst.PublicGetTableauSourceV2Dto = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
+	if match > 1 {
+		// If more than 1 match, reset all the pointers to nil.
 		dst.PublicGetAirflowSourceV2Dto = nil
 		dst.PublicGetAthenaSourceV2Dto = nil
 		dst.PublicGetBigQuerySourceV2Dto = nil
@@ -813,13 +813,13 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 
 		return fmt.Errorf("data matches more than one schema in oneOf(PublicCreateSourceV2201Response)")
 	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
+		return nil
+	} else {
 		return fmt.Errorf("data failed to match schemas in oneOf(PublicCreateSourceV2201Response)")
 	}
 }
 
-// Gets the specific source dto from the SiffletPublicGetSourceV2Dto, that implements the PublicGetSourceV2 interface
+// Gets the specific source dto from the SiffletPublicGetSourceV2Dto, that implements the PublicGetSourceV2 interface.
 func (obj SiffletPublicGetSourceV2Dto) GetSourceDto() (PublicGetSourceV2, error) {
 	if obj.PublicGetAirflowSourceV2Dto != nil {
 		return *obj.PublicGetAirflowSourceV2Dto, nil
@@ -904,7 +904,7 @@ func (obj SiffletPublicGetSourceV2Dto) GetSourceDto() (PublicGetSourceV2, error)
 	return nil, fmt.Errorf("data failed to match schemas in oneOf(PublicCreateSourceV2201Response)")
 }
 
-// Creates a SiffletPublicGetSourceV2Dto from a PublicPageDtoPublicGetSourceV2Dto_Data_Item
+// Creates a SiffletPublicGetSourceV2Dto from a PublicPageDtoPublicGetSourceV2Dto_Data_Item.
 func (dst *SiffletPublicGetSourceV2Dto) FromPublicPageDtoPublicGetSourceV2DtoDataItem(dto PublicPageDtoPublicGetSourceV2Dto_Data_Item) error {
 	return dst.UnmarshalJSON(dto.union)
 }
