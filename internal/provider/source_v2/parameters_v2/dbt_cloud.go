@@ -20,7 +20,7 @@ type DbtCloudParametersModel struct {
 }
 
 func (m DbtCloudParametersModel) SchemaSourceType() string {
-	return "dbt_cloud"
+	return "dbtcloud"
 }
 
 func (m DbtCloudParametersModel) TerraformSchema() schema.SingleNestedAttribute {

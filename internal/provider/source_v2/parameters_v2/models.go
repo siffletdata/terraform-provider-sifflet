@@ -63,7 +63,7 @@ type ParametersModel struct {
 	BigQuery   types.Object `tfsdk:"bigquery"`
 	Databricks types.Object `tfsdk:"databricks"`
 	Dbt        types.Object `tfsdk:"dbt"`
-	DbtCloud   types.Object `tfsdk:"dbt_cloud"`
+	DbtCloud   types.Object `tfsdk:"dbtcloud"`
 	Fivetran   types.Object `tfsdk:"fivetran"`
 	Looker     types.Object `tfsdk:"looker"`
 	Mssql      types.Object `tfsdk:"mssql"`

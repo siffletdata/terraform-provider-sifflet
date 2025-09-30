@@ -437,7 +437,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetAthenaSourceV2Dto); err != nil {
 				dst.PublicGetAthenaSourceV2Dto = nil
 			} else if dst.PublicGetAthenaSourceV2Dto.Type != PublicGetAthenaSourceV2DtoTypeATHENA {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetAthenaSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -456,7 +456,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetBigQuerySourceV2Dto); err != nil {
 				dst.PublicGetBigQuerySourceV2Dto = nil
 			} else if dst.PublicGetBigQuerySourceV2Dto.Type != PublicGetBigQuerySourceV2DtoTypeBIGQUERY {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetBigQuerySourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -475,7 +475,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetDatabricksSourceV2Dto); err != nil {
 				dst.PublicGetDatabricksSourceV2Dto = nil
 			} else if dst.PublicGetDatabricksSourceV2Dto.Type != PublicGetDatabricksSourceV2DtoTypeDATABRICKS {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetDatabricksSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -494,7 +494,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetDbtCloudSourceV2Dto); err != nil {
 				dst.PublicGetDbtCloudSourceV2Dto = nil
 			} else if dst.PublicGetDbtCloudSourceV2Dto.Type != PublicGetDbtCloudSourceV2DtoTypeDBTCLOUD {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetDbtCloudSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -513,7 +513,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetDbtSourceV2Dto); err != nil {
 				dst.PublicGetDbtSourceV2Dto = nil
 			} else if dst.PublicGetDbtSourceV2Dto.Type != PublicGetDbtSourceV2DtoTypeDBT {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetDbtSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -532,7 +532,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetFivetranSourceV2Dto); err != nil {
 				dst.PublicGetFivetranSourceV2Dto = nil
 			} else if dst.PublicGetFivetranSourceV2Dto.Type != PublicGetFivetranSourceV2DtoTypeFIVETRAN {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetFivetranSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -551,7 +551,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetLookerSourceV2Dto); err != nil {
 				dst.PublicGetLookerSourceV2Dto = nil
 			} else if dst.PublicGetLookerSourceV2Dto.Type != PublicGetLookerSourceV2DtoTypeLOOKER {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetLookerSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -570,7 +570,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetMicrostrategySourceV2Dto); err != nil {
 				dst.PublicGetMicrostrategySourceV2Dto = nil
 			} else if dst.PublicGetMicrostrategySourceV2Dto.Type != PublicGetMicrostrategySourceV2DtoTypeMICROSTRATEGY {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetMicrostrategySourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -589,7 +589,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetMssqlSourceV2Dto); err != nil {
 				dst.PublicGetMssqlSourceV2Dto = nil
 			} else if dst.PublicGetMssqlSourceV2Dto.Type != PublicGetMssqlSourceV2DtoTypeMSSQL {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetMssqlSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -608,7 +608,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetMysqlSourceV2Dto); err != nil {
 				dst.PublicGetMysqlSourceV2Dto = nil
 			} else if dst.PublicGetMysqlSourceV2Dto.Type != PublicGetMysqlSourceV2DtoTypeMYSQL {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetMysqlSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -627,7 +627,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetOracleSourceV2Dto); err != nil {
 				dst.PublicGetOracleSourceV2Dto = nil
 			} else if dst.PublicGetOracleSourceV2Dto.Type != PublicGetOracleSourceV2DtoTypeORACLE {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetOracleSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -646,7 +646,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetPostgresqlSourceV2Dto); err != nil {
 				dst.PublicGetPostgresqlSourceV2Dto = nil
 			} else if dst.PublicGetPostgresqlSourceV2Dto.Type != PublicGetPostgresqlSourceV2DtoTypePOSTGRESQL {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetPostgresqlSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -665,7 +665,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetPowerBiSourceV2Dto); err != nil {
 				dst.PublicGetPowerBiSourceV2Dto = nil
 			} else if dst.PublicGetPowerBiSourceV2Dto.Type != PublicGetPowerBiSourceV2DtoTypePOWERBI {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetPowerBiSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -684,7 +684,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetQlikSourceV2Dto); err != nil {
 				dst.PublicGetQlikSourceV2Dto = nil
 			} else if dst.PublicGetQlikSourceV2Dto.Type != PublicGetQlikSourceV2DtoTypeQLIK {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetQlikSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -703,7 +703,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetQuicksightSourceV2Dto); err != nil {
 				dst.PublicGetQuicksightSourceV2Dto = nil
 			} else if dst.PublicGetQuicksightSourceV2Dto.Type != PublicGetQuicksightSourceV2DtoTypeQUICKSIGHT {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetQuicksightSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -722,7 +722,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetRedshiftSourceV2Dto); err != nil {
 				dst.PublicGetRedshiftSourceV2Dto = nil
 			} else if dst.PublicGetRedshiftSourceV2Dto.Type != PublicGetRedshiftSourceV2DtoTypeREDSHIFT {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetRedshiftSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -741,7 +741,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetSnowflakeSourceV2Dto); err != nil {
 				dst.PublicGetSnowflakeSourceV2Dto = nil
 			} else if dst.PublicGetSnowflakeSourceV2Dto.Type != PublicGetSnowflakeSourceV2DtoTypeSNOWFLAKE {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetSnowflakeSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -760,7 +760,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetSynapseSourceV2Dto); err != nil {
 				dst.PublicGetSynapseSourceV2Dto = nil
 			} else if dst.PublicGetSynapseSourceV2Dto.Type != PublicGetSynapseSourceV2DtoTypeSYNAPSE {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetSynapseSourceV2Dto = nil
 			} else {
 				match++
 			}
@@ -779,7 +779,7 @@ func (dst *SiffletPublicGetSourceV2Dto) UnmarshalJSON(data []byte) error {
 			if err = validator.Validate(dst.PublicGetTableauSourceV2Dto); err != nil {
 				dst.PublicGetTableauSourceV2Dto = nil
 			} else if dst.PublicGetTableauSourceV2Dto.Type != PublicGetTableauSourceV2DtoTypeTABLEAU {
-				dst.PublicGetAirflowSourceV2Dto = nil
+				dst.PublicGetTableauSourceV2Dto = nil
 			} else {
 				match++
 			}
