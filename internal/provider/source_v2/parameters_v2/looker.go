@@ -5,13 +5,13 @@ import (
 	"encoding/json"
 	"fmt"
 	sifflet "terraform-provider-sifflet/internal/client"
-	"terraform-provider-sifflet/internal/provider/source_v2/parameters_v2/scope"
 	"terraform-provider-sifflet/internal/tfutils"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
@@ -39,7 +39,6 @@ type LookerParametersModel struct {
 	GitConnections types.List   `tfsdk:"git_connections"`
 	Host           types.String `tfsdk:"host"`
 	Credentials    types.String `tfsdk:"credentials"`
-	Scope          types.Object `tfsdk:"scope"`
 	Schedule       types.String `tfsdk:"schedule"`
 }
 
@@ -67,11 +66,9 @@ func (m LookerParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 						"branch": schema.StringAttribute{
 							Description: "Branch of the Git repository to use. If omitted, the default branch is used.",
 							Optional:    true,
-							// If we don't send a branch, the API will set it to an empty string. To be consistent with the plan, we change empty strings to nil values.
-							// We disallow setting empty strings because they will be interpreted as nil values by terraform which would create inconsistent results.
-							Validators: []validator.String{
-								stringvalidator.LengthAtLeast(1),
-							},
+							Computed:    true,
+							// If we don't send a branch, the API will set it to an empty string. To be consistent with the plan, we change nil values to empty strings.
+							Default: stringdefault.StaticString(""),
 						},
 						"secret_id": schema.StringAttribute{
 							Description: "Secret (credential) ID to use for authentication. The secret contents must match the chosen authentication type: access token for 'HTTP_AUTHORIZATION_HEADER' or 'USER_PASSWORD', or private SSH key for 'SSH'. See the Sifflet docs for more details.",
@@ -96,25 +93,6 @@ func (m LookerParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 				Description: "Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.",
 				Optional:    true,
 			},
-			"scope": schema.SingleNestedAttribute{
-				Description: "Workspaces to include or exclude. If not specified, all the workspaces will be included (including future ones).",
-				Optional:    true,
-				Computed:    true,
-				Attributes: map[string]schema.Attribute{
-					"type": schema.StringAttribute{
-						Description: "Whether to include or exclude the specified workspaces. One of INCLUSION or EXCLUSION.",
-						Required:    true,
-						Validators: []validator.String{
-							stringvalidator.OneOf("INCLUSION", "EXCLUSION"),
-						},
-					},
-					"workspaces": schema.ListAttribute{
-						ElementType: types.StringType,
-						Required:    true,
-						Description: "The workspaces to either include or exclude.",
-					},
-				},
-			},
 		},
 	}
 }
@@ -125,7 +103,6 @@ func (m LookerParametersModel) AttributeTypes() map[string]attr.Type {
 		"host":            types.StringType,
 		"credentials":     types.StringType,
 		"schedule":        types.StringType,
-		"scope":           scope.WorkspacesScopeTypeAttributes,
 	}
 }
 
@@ -186,10 +163,6 @@ func makeGitConnectionsDto(ctx context.Context, m LookerParametersModel) ([]siff
 				diag.NewErrorDiagnostic("Unable to create Looker source", err.Error()),
 			}
 		}
-		// If someone sets the branch to an empty string, set it to nil so that Terraform doesn't try to update the branch.
-		if gitConnectionModel.Branch.ValueString() == "" {
-			gitConnectionModel.Branch = types.StringNull()
-		}
 		gitConnections[i] = sifflet.GitConnection{
 			AuthType: authType,
 			Branch:   gitConnectionModel.Branch.ValueStringPointer(),
@@ -211,11 +184,6 @@ func (m LookerParametersModel) ToCreateDto(ctx context.Context, name string, tim
 		Host:           m.Host.ValueString(),
 	}
 
-	scopeDto, diags := scope.ToPublicWorkspacesScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicCreateSourceV2JSONBody{}, diags
-	}
-
 	lookerCreateDto := &sifflet.PublicCreateLookerSourceV2Dto{
 		Name:              name,
 		Timezone:          &timezone,
@@ -223,7 +191,6 @@ func (m LookerParametersModel) ToCreateDto(ctx context.Context, name string, tim
 		LookerInformation: &lookerInformation,
 		Credentials:       m.Credentials.ValueStringPointer(),
 		Schedule:          m.Schedule.ValueStringPointer(),
-		Scope:             scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -249,11 +216,6 @@ func (m LookerParametersModel) ToUpdateDto(ctx context.Context, name string, tim
 		Host:           m.Host.ValueString(),
 	}
 
-	scopeDto, diags := scope.ToPublicWorkspacesScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicEditSourceV2JSONBody{}, diags
-	}
-
 	lookerUpdateDto := &sifflet.PublicUpdateLookerSourceV2Dto{
 		Name:              &name,
 		Timezone:          &timezone,
@@ -261,7 +223,6 @@ func (m LookerParametersModel) ToUpdateDto(ctx context.Context, name string, tim
 		LookerInformation: lookerInformation,
 		Credentials:       m.Credentials.ValueString(),
 		Schedule:          m.Schedule.ValueStringPointer(),
-		Scope:             scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -289,10 +250,6 @@ func (m *LookerParametersModel) ModelFromDto(ctx context.Context, d sifflet.Siff
 		if err != nil {
 			return diag.Diagnostics{diag.NewErrorDiagnostic("Unable to read Looker source", err.Error())}
 		}
-		// If we don't send a branch, the API will set it to an empty string. Change it to nil so that Terraform doesn't try to update the branch.
-		if gitConnectionDto.Branch == nil || *gitConnectionDto.Branch == "" {
-			gitConnectionDto.Branch = nil
-		}
 		gitConnectionModels[i] = gitConnectionModel{
 			AuthType: types.StringValue(authType),
 			Branch:   types.StringPointerValue(gitConnectionDto.Branch),
@@ -310,10 +267,5 @@ func (m *LookerParametersModel) ModelFromDto(ctx context.Context, d sifflet.Siff
 	m.Host = types.StringValue(lookerDto.LookerInformation.Host)
 	m.Credentials = types.StringPointerValue(lookerDto.Credentials)
 	m.Schedule = types.StringPointerValue(lookerDto.Schedule)
-	scopeObject, diags := scope.FromPublicWorkspacesScopeDto(ctx, lookerDto.Scope)
-	if diags.HasError() {
-		return diags
-	}
-	m.Scope = scopeObject
 	return diag.Diagnostics{}
 }

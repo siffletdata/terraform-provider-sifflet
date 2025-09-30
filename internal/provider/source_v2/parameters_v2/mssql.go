@@ -4,15 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	sifflet "terraform-provider-sifflet/internal/client"
-	"terraform-provider-sifflet/internal/provider/source_v2/parameters_v2/scope"
 	"terraform-provider-sifflet/internal/tfutils"
 
-	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -22,7 +19,6 @@ type MssqlParametersModel struct {
 	Port        types.Int32  `tfsdk:"port"`
 	Ssl         types.Bool   `tfsdk:"ssl"`
 	Credentials types.String `tfsdk:"credentials"`
-	Scope       types.Object `tfsdk:"scope"`
 	Schedule    types.String `tfsdk:"schedule"`
 }
 
@@ -61,25 +57,6 @@ func (m MssqlParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 				Description: "Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.",
 				Optional:    true,
 			},
-			"scope": schema.SingleNestedAttribute{
-				Description: "Schemas to include or exclude. If not specified, all the schemas will be included (including future ones).",
-				Optional:    true,
-				Computed:    true,
-				Attributes: map[string]schema.Attribute{
-					"type": schema.StringAttribute{
-						Description: "Whether to include or exclude the specified schemas. One of INCLUSION or EXCLUSION.",
-						Required:    true,
-						Validators: []validator.String{
-							stringvalidator.OneOf("INCLUSION", "EXCLUSION"),
-						},
-					},
-					"schemas": schema.ListAttribute{
-						ElementType: types.StringType,
-						Required:    true,
-						Description: "The schemas to either include or exclude.",
-					},
-				},
-			},
 		},
 	}
 }
@@ -92,7 +69,6 @@ func (m MssqlParametersModel) AttributeTypes() map[string]attr.Type {
 		"credentials": types.StringType,
 		"ssl":         types.BoolType,
 		"schedule":    types.StringType,
-		"scope":       scope.SchemasScopeTypeAttributes,
 	}
 }
 
@@ -114,11 +90,6 @@ func (m MssqlParametersModel) ToCreateDto(ctx context.Context, name string, time
 		Ssl:      m.Ssl.ValueBool(),
 	}
 
-	scopeDto, diags := scope.ToPublicSchemasScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicCreateSourceV2JSONBody{}, diags
-	}
-
 	mssqlCreateDto := &sifflet.PublicCreateMssqlSourceV2Dto{
 		Name:             name,
 		Timezone:         &timezone,
@@ -126,7 +97,6 @@ func (m MssqlParametersModel) ToCreateDto(ctx context.Context, name string, time
 		MssqlInformation: &mssqlInformation,
 		Credentials:      m.Credentials.ValueStringPointer(),
 		Schedule:         m.Schedule.ValueStringPointer(),
-		Scope:            scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -149,11 +119,6 @@ func (m MssqlParametersModel) ToUpdateDto(ctx context.Context, name string, time
 		Ssl:      m.Ssl.ValueBool(),
 	}
 
-	scopeDto, diags := scope.ToPublicSchemasScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicEditSourceV2JSONBody{}, diags
-	}
-
 	mssqlUpdateDto := &sifflet.PublicUpdateMssqlSourceV2Dto{
 		Name:             &name,
 		Timezone:         &timezone,
@@ -161,7 +126,6 @@ func (m MssqlParametersModel) ToUpdateDto(ctx context.Context, name string, time
 		MssqlInformation: mssqlInformation,
 		Credentials:      m.Credentials.ValueString(),
 		Schedule:         m.Schedule.ValueStringPointer(),
-		Scope:            scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -188,10 +152,5 @@ func (m *MssqlParametersModel) ModelFromDto(ctx context.Context, d sifflet.Siffl
 	m.Ssl = types.BoolValue(mssqlDto.MssqlInformation.Ssl)
 	m.Credentials = types.StringPointerValue(mssqlDto.Credentials)
 	m.Schedule = types.StringPointerValue(mssqlDto.Schedule)
-	scopeObject, diags := scope.FromPublicSchemasScopeDto(ctx, mssqlDto.Scope)
-	if diags.HasError() {
-		return diags
-	}
-	m.Scope = scopeObject
 	return diag.Diagnostics{}
 }

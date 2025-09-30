@@ -868,6 +868,35 @@ const (
 	AsCodeMetadataFreshnessMonitorParamsDtoV1KindVolume                AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "Volume"
 )
 
+// Defines values for AsCodeMetadataFreshnessMonitorParamsDtoV2Kind.
+const (
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindCompleteness          AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Completeness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindConditional           AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Conditional"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindCorrelatedMetrics     AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "CorrelatedMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindCustomMetrics         AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "CustomMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindDistribution          AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Distribution"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindDuplicates            AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Duplicates"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindDynamicFieldProfiling AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "DynamicFieldProfiling"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindDynamicMetrics        AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "DynamicMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFieldDuplicates       AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "FieldDuplicates"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFieldFormat           AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "FieldFormat"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFieldInList           AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "FieldInList"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFieldNulls            AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "FieldNulls"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFieldUniqueness       AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "FieldUniqueness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFreshness             AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Freshness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindMetadataFreshness     AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "MetadataFreshness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindMetrics               AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Metrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindReferentialIntegrity  AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "ReferentialIntegrity"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindRowDuplicates         AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "RowDuplicates"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindSchemaChange          AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "SchemaChange"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindSql                   AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Sql"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindStaticCompleteness    AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "StaticCompleteness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "StaticFieldProfiling"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindStaticMetrics         AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "StaticMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindValueRange            AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "ValueRange"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindVolume                AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Volume"
+)
+
 // Defines values for AsCodeMetricsMonitorParamsDtoKind.
 const (
 	AsCodeMetricsMonitorParamsDtoKindCompleteness          AsCodeMetricsMonitorParamsDtoKind = "Completeness"
@@ -1380,31 +1409,31 @@ const (
 
 // Defines values for AsCodeVolumeMonitorParamsDtoKind.
 const (
-	AsCodeVolumeMonitorParamsDtoKindCompleteness          AsCodeVolumeMonitorParamsDtoKind = "Completeness"
-	AsCodeVolumeMonitorParamsDtoKindConditional           AsCodeVolumeMonitorParamsDtoKind = "Conditional"
-	AsCodeVolumeMonitorParamsDtoKindCorrelatedMetrics     AsCodeVolumeMonitorParamsDtoKind = "CorrelatedMetrics"
-	AsCodeVolumeMonitorParamsDtoKindCustomMetrics         AsCodeVolumeMonitorParamsDtoKind = "CustomMetrics"
-	AsCodeVolumeMonitorParamsDtoKindDistribution          AsCodeVolumeMonitorParamsDtoKind = "Distribution"
-	AsCodeVolumeMonitorParamsDtoKindDuplicates            AsCodeVolumeMonitorParamsDtoKind = "Duplicates"
-	AsCodeVolumeMonitorParamsDtoKindDynamicFieldProfiling AsCodeVolumeMonitorParamsDtoKind = "DynamicFieldProfiling"
-	AsCodeVolumeMonitorParamsDtoKindDynamicMetrics        AsCodeVolumeMonitorParamsDtoKind = "DynamicMetrics"
-	AsCodeVolumeMonitorParamsDtoKindFieldDuplicates       AsCodeVolumeMonitorParamsDtoKind = "FieldDuplicates"
-	AsCodeVolumeMonitorParamsDtoKindFieldFormat           AsCodeVolumeMonitorParamsDtoKind = "FieldFormat"
-	AsCodeVolumeMonitorParamsDtoKindFieldInList           AsCodeVolumeMonitorParamsDtoKind = "FieldInList"
-	AsCodeVolumeMonitorParamsDtoKindFieldNulls            AsCodeVolumeMonitorParamsDtoKind = "FieldNulls"
-	AsCodeVolumeMonitorParamsDtoKindFieldUniqueness       AsCodeVolumeMonitorParamsDtoKind = "FieldUniqueness"
-	AsCodeVolumeMonitorParamsDtoKindFreshness             AsCodeVolumeMonitorParamsDtoKind = "Freshness"
-	AsCodeVolumeMonitorParamsDtoKindMetadataFreshness     AsCodeVolumeMonitorParamsDtoKind = "MetadataFreshness"
-	AsCodeVolumeMonitorParamsDtoKindMetrics               AsCodeVolumeMonitorParamsDtoKind = "Metrics"
-	AsCodeVolumeMonitorParamsDtoKindReferentialIntegrity  AsCodeVolumeMonitorParamsDtoKind = "ReferentialIntegrity"
-	AsCodeVolumeMonitorParamsDtoKindRowDuplicates         AsCodeVolumeMonitorParamsDtoKind = "RowDuplicates"
-	AsCodeVolumeMonitorParamsDtoKindSchemaChange          AsCodeVolumeMonitorParamsDtoKind = "SchemaChange"
-	AsCodeVolumeMonitorParamsDtoKindSql                   AsCodeVolumeMonitorParamsDtoKind = "Sql"
-	AsCodeVolumeMonitorParamsDtoKindStaticCompleteness    AsCodeVolumeMonitorParamsDtoKind = "StaticCompleteness"
-	AsCodeVolumeMonitorParamsDtoKindStaticFieldProfiling  AsCodeVolumeMonitorParamsDtoKind = "StaticFieldProfiling"
-	AsCodeVolumeMonitorParamsDtoKindStaticMetrics         AsCodeVolumeMonitorParamsDtoKind = "StaticMetrics"
-	AsCodeVolumeMonitorParamsDtoKindValueRange            AsCodeVolumeMonitorParamsDtoKind = "ValueRange"
-	AsCodeVolumeMonitorParamsDtoKindVolume                AsCodeVolumeMonitorParamsDtoKind = "Volume"
+	Completeness          AsCodeVolumeMonitorParamsDtoKind = "Completeness"
+	Conditional           AsCodeVolumeMonitorParamsDtoKind = "Conditional"
+	CorrelatedMetrics     AsCodeVolumeMonitorParamsDtoKind = "CorrelatedMetrics"
+	CustomMetrics         AsCodeVolumeMonitorParamsDtoKind = "CustomMetrics"
+	Distribution          AsCodeVolumeMonitorParamsDtoKind = "Distribution"
+	Duplicates            AsCodeVolumeMonitorParamsDtoKind = "Duplicates"
+	DynamicFieldProfiling AsCodeVolumeMonitorParamsDtoKind = "DynamicFieldProfiling"
+	DynamicMetrics        AsCodeVolumeMonitorParamsDtoKind = "DynamicMetrics"
+	FieldDuplicates       AsCodeVolumeMonitorParamsDtoKind = "FieldDuplicates"
+	FieldFormat           AsCodeVolumeMonitorParamsDtoKind = "FieldFormat"
+	FieldInList           AsCodeVolumeMonitorParamsDtoKind = "FieldInList"
+	FieldNulls            AsCodeVolumeMonitorParamsDtoKind = "FieldNulls"
+	FieldUniqueness       AsCodeVolumeMonitorParamsDtoKind = "FieldUniqueness"
+	Freshness             AsCodeVolumeMonitorParamsDtoKind = "Freshness"
+	MetadataFreshness     AsCodeVolumeMonitorParamsDtoKind = "MetadataFreshness"
+	Metrics               AsCodeVolumeMonitorParamsDtoKind = "Metrics"
+	ReferentialIntegrity  AsCodeVolumeMonitorParamsDtoKind = "ReferentialIntegrity"
+	RowDuplicates         AsCodeVolumeMonitorParamsDtoKind = "RowDuplicates"
+	SchemaChange          AsCodeVolumeMonitorParamsDtoKind = "SchemaChange"
+	Sql                   AsCodeVolumeMonitorParamsDtoKind = "Sql"
+	StaticCompleteness    AsCodeVolumeMonitorParamsDtoKind = "StaticCompleteness"
+	StaticFieldProfiling  AsCodeVolumeMonitorParamsDtoKind = "StaticFieldProfiling"
+	StaticMetrics         AsCodeVolumeMonitorParamsDtoKind = "StaticMetrics"
+	ValueRange            AsCodeVolumeMonitorParamsDtoKind = "ValueRange"
+	Volume                AsCodeVolumeMonitorParamsDtoKind = "Volume"
 )
 
 // Defines values for ChangeDtoType.
@@ -1650,535 +1679,576 @@ const (
 	PublicCalendarGetDtoStandardCalendarWEEKENDS                  PublicCalendarGetDtoStandardCalendar = "WEEKENDS"
 )
 
-// Defines values for PublicCatalogSchemasScopeDtoType.
-const (
-	PublicCatalogSchemasScopeDtoTypeEXCLUSION PublicCatalogSchemasScopeDtoType = "EXCLUSION"
-	PublicCatalogSchemasScopeDtoTypeINCLUSION PublicCatalogSchemasScopeDtoType = "INCLUSION"
-)
-
 // Defines values for PublicCreateAirflowSourceV2DtoType.
 const (
-	PublicCreateAirflowSourceV2DtoTypeAIRFLOW       PublicCreateAirflowSourceV2DtoType = "AIRFLOW"
-	PublicCreateAirflowSourceV2DtoTypeATHENA        PublicCreateAirflowSourceV2DtoType = "ATHENA"
-	PublicCreateAirflowSourceV2DtoTypeBIGQUERY      PublicCreateAirflowSourceV2DtoType = "BIGQUERY"
-	PublicCreateAirflowSourceV2DtoTypeDATABRICKS    PublicCreateAirflowSourceV2DtoType = "DATABRICKS"
-	PublicCreateAirflowSourceV2DtoTypeDBT           PublicCreateAirflowSourceV2DtoType = "DBT"
-	PublicCreateAirflowSourceV2DtoTypeDBTCLOUD      PublicCreateAirflowSourceV2DtoType = "DBTCLOUD"
-	PublicCreateAirflowSourceV2DtoTypeDECLARATIVE   PublicCreateAirflowSourceV2DtoType = "DECLARATIVE"
-	PublicCreateAirflowSourceV2DtoTypeFIVETRAN      PublicCreateAirflowSourceV2DtoType = "FIVETRAN"
-	PublicCreateAirflowSourceV2DtoTypeLOOKER        PublicCreateAirflowSourceV2DtoType = "LOOKER"
-	PublicCreateAirflowSourceV2DtoTypeMICROSTRATEGY PublicCreateAirflowSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateAirflowSourceV2DtoTypeMSSQL         PublicCreateAirflowSourceV2DtoType = "MSSQL"
-	PublicCreateAirflowSourceV2DtoTypeMYSQL         PublicCreateAirflowSourceV2DtoType = "MYSQL"
-	PublicCreateAirflowSourceV2DtoTypeORACLE        PublicCreateAirflowSourceV2DtoType = "ORACLE"
-	PublicCreateAirflowSourceV2DtoTypePOSTGRESQL    PublicCreateAirflowSourceV2DtoType = "POSTGRESQL"
-	PublicCreateAirflowSourceV2DtoTypePOWERBI       PublicCreateAirflowSourceV2DtoType = "POWER_BI"
-	PublicCreateAirflowSourceV2DtoTypeQLIK          PublicCreateAirflowSourceV2DtoType = "QLIK"
-	PublicCreateAirflowSourceV2DtoTypeQUICKSIGHT    PublicCreateAirflowSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateAirflowSourceV2DtoTypeREDSHIFT      PublicCreateAirflowSourceV2DtoType = "REDSHIFT"
-	PublicCreateAirflowSourceV2DtoTypeSNOWFLAKE     PublicCreateAirflowSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateAirflowSourceV2DtoTypeSYNAPSE       PublicCreateAirflowSourceV2DtoType = "SYNAPSE"
-	PublicCreateAirflowSourceV2DtoTypeTABLEAU       PublicCreateAirflowSourceV2DtoType = "TABLEAU"
+	PublicCreateAirflowSourceV2DtoTypeAIRFLOW        PublicCreateAirflowSourceV2DtoType = "AIRFLOW"
+	PublicCreateAirflowSourceV2DtoTypeATHENA         PublicCreateAirflowSourceV2DtoType = "ATHENA"
+	PublicCreateAirflowSourceV2DtoTypeBIGQUERY       PublicCreateAirflowSourceV2DtoType = "BIGQUERY"
+	PublicCreateAirflowSourceV2DtoTypeDATABRICKS     PublicCreateAirflowSourceV2DtoType = "DATABRICKS"
+	PublicCreateAirflowSourceV2DtoTypeDATABRICKSJOBS PublicCreateAirflowSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateAirflowSourceV2DtoTypeDBT            PublicCreateAirflowSourceV2DtoType = "DBT"
+	PublicCreateAirflowSourceV2DtoTypeDBTCLOUD       PublicCreateAirflowSourceV2DtoType = "DBTCLOUD"
+	PublicCreateAirflowSourceV2DtoTypeDECLARATIVE    PublicCreateAirflowSourceV2DtoType = "DECLARATIVE"
+	PublicCreateAirflowSourceV2DtoTypeFIVETRAN       PublicCreateAirflowSourceV2DtoType = "FIVETRAN"
+	PublicCreateAirflowSourceV2DtoTypeLOOKER         PublicCreateAirflowSourceV2DtoType = "LOOKER"
+	PublicCreateAirflowSourceV2DtoTypeMICROSTRATEGY  PublicCreateAirflowSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateAirflowSourceV2DtoTypeMSSQL          PublicCreateAirflowSourceV2DtoType = "MSSQL"
+	PublicCreateAirflowSourceV2DtoTypeMYSQL          PublicCreateAirflowSourceV2DtoType = "MYSQL"
+	PublicCreateAirflowSourceV2DtoTypeORACLE         PublicCreateAirflowSourceV2DtoType = "ORACLE"
+	PublicCreateAirflowSourceV2DtoTypePOSTGRESQL     PublicCreateAirflowSourceV2DtoType = "POSTGRESQL"
+	PublicCreateAirflowSourceV2DtoTypePOWERBI        PublicCreateAirflowSourceV2DtoType = "POWER_BI"
+	PublicCreateAirflowSourceV2DtoTypeQLIK           PublicCreateAirflowSourceV2DtoType = "QLIK"
+	PublicCreateAirflowSourceV2DtoTypeQUICKSIGHT     PublicCreateAirflowSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateAirflowSourceV2DtoTypeREDSHIFT       PublicCreateAirflowSourceV2DtoType = "REDSHIFT"
+	PublicCreateAirflowSourceV2DtoTypeSNOWFLAKE      PublicCreateAirflowSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateAirflowSourceV2DtoTypeSYNAPSE        PublicCreateAirflowSourceV2DtoType = "SYNAPSE"
+	PublicCreateAirflowSourceV2DtoTypeTABLEAU        PublicCreateAirflowSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateAthenaSourceV2DtoType.
 const (
-	PublicCreateAthenaSourceV2DtoTypeAIRFLOW       PublicCreateAthenaSourceV2DtoType = "AIRFLOW"
-	PublicCreateAthenaSourceV2DtoTypeATHENA        PublicCreateAthenaSourceV2DtoType = "ATHENA"
-	PublicCreateAthenaSourceV2DtoTypeBIGQUERY      PublicCreateAthenaSourceV2DtoType = "BIGQUERY"
-	PublicCreateAthenaSourceV2DtoTypeDATABRICKS    PublicCreateAthenaSourceV2DtoType = "DATABRICKS"
-	PublicCreateAthenaSourceV2DtoTypeDBT           PublicCreateAthenaSourceV2DtoType = "DBT"
-	PublicCreateAthenaSourceV2DtoTypeDBTCLOUD      PublicCreateAthenaSourceV2DtoType = "DBTCLOUD"
-	PublicCreateAthenaSourceV2DtoTypeDECLARATIVE   PublicCreateAthenaSourceV2DtoType = "DECLARATIVE"
-	PublicCreateAthenaSourceV2DtoTypeFIVETRAN      PublicCreateAthenaSourceV2DtoType = "FIVETRAN"
-	PublicCreateAthenaSourceV2DtoTypeLOOKER        PublicCreateAthenaSourceV2DtoType = "LOOKER"
-	PublicCreateAthenaSourceV2DtoTypeMICROSTRATEGY PublicCreateAthenaSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateAthenaSourceV2DtoTypeMSSQL         PublicCreateAthenaSourceV2DtoType = "MSSQL"
-	PublicCreateAthenaSourceV2DtoTypeMYSQL         PublicCreateAthenaSourceV2DtoType = "MYSQL"
-	PublicCreateAthenaSourceV2DtoTypeORACLE        PublicCreateAthenaSourceV2DtoType = "ORACLE"
-	PublicCreateAthenaSourceV2DtoTypePOSTGRESQL    PublicCreateAthenaSourceV2DtoType = "POSTGRESQL"
-	PublicCreateAthenaSourceV2DtoTypePOWERBI       PublicCreateAthenaSourceV2DtoType = "POWER_BI"
-	PublicCreateAthenaSourceV2DtoTypeQLIK          PublicCreateAthenaSourceV2DtoType = "QLIK"
-	PublicCreateAthenaSourceV2DtoTypeQUICKSIGHT    PublicCreateAthenaSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateAthenaSourceV2DtoTypeREDSHIFT      PublicCreateAthenaSourceV2DtoType = "REDSHIFT"
-	PublicCreateAthenaSourceV2DtoTypeSNOWFLAKE     PublicCreateAthenaSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateAthenaSourceV2DtoTypeSYNAPSE       PublicCreateAthenaSourceV2DtoType = "SYNAPSE"
-	PublicCreateAthenaSourceV2DtoTypeTABLEAU       PublicCreateAthenaSourceV2DtoType = "TABLEAU"
+	PublicCreateAthenaSourceV2DtoTypeAIRFLOW        PublicCreateAthenaSourceV2DtoType = "AIRFLOW"
+	PublicCreateAthenaSourceV2DtoTypeATHENA         PublicCreateAthenaSourceV2DtoType = "ATHENA"
+	PublicCreateAthenaSourceV2DtoTypeBIGQUERY       PublicCreateAthenaSourceV2DtoType = "BIGQUERY"
+	PublicCreateAthenaSourceV2DtoTypeDATABRICKS     PublicCreateAthenaSourceV2DtoType = "DATABRICKS"
+	PublicCreateAthenaSourceV2DtoTypeDATABRICKSJOBS PublicCreateAthenaSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateAthenaSourceV2DtoTypeDBT            PublicCreateAthenaSourceV2DtoType = "DBT"
+	PublicCreateAthenaSourceV2DtoTypeDBTCLOUD       PublicCreateAthenaSourceV2DtoType = "DBTCLOUD"
+	PublicCreateAthenaSourceV2DtoTypeDECLARATIVE    PublicCreateAthenaSourceV2DtoType = "DECLARATIVE"
+	PublicCreateAthenaSourceV2DtoTypeFIVETRAN       PublicCreateAthenaSourceV2DtoType = "FIVETRAN"
+	PublicCreateAthenaSourceV2DtoTypeLOOKER         PublicCreateAthenaSourceV2DtoType = "LOOKER"
+	PublicCreateAthenaSourceV2DtoTypeMICROSTRATEGY  PublicCreateAthenaSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateAthenaSourceV2DtoTypeMSSQL          PublicCreateAthenaSourceV2DtoType = "MSSQL"
+	PublicCreateAthenaSourceV2DtoTypeMYSQL          PublicCreateAthenaSourceV2DtoType = "MYSQL"
+	PublicCreateAthenaSourceV2DtoTypeORACLE         PublicCreateAthenaSourceV2DtoType = "ORACLE"
+	PublicCreateAthenaSourceV2DtoTypePOSTGRESQL     PublicCreateAthenaSourceV2DtoType = "POSTGRESQL"
+	PublicCreateAthenaSourceV2DtoTypePOWERBI        PublicCreateAthenaSourceV2DtoType = "POWER_BI"
+	PublicCreateAthenaSourceV2DtoTypeQLIK           PublicCreateAthenaSourceV2DtoType = "QLIK"
+	PublicCreateAthenaSourceV2DtoTypeQUICKSIGHT     PublicCreateAthenaSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateAthenaSourceV2DtoTypeREDSHIFT       PublicCreateAthenaSourceV2DtoType = "REDSHIFT"
+	PublicCreateAthenaSourceV2DtoTypeSNOWFLAKE      PublicCreateAthenaSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateAthenaSourceV2DtoTypeSYNAPSE        PublicCreateAthenaSourceV2DtoType = "SYNAPSE"
+	PublicCreateAthenaSourceV2DtoTypeTABLEAU        PublicCreateAthenaSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateBigQuerySourceV2DtoType.
 const (
-	PublicCreateBigQuerySourceV2DtoTypeAIRFLOW       PublicCreateBigQuerySourceV2DtoType = "AIRFLOW"
-	PublicCreateBigQuerySourceV2DtoTypeATHENA        PublicCreateBigQuerySourceV2DtoType = "ATHENA"
-	PublicCreateBigQuerySourceV2DtoTypeBIGQUERY      PublicCreateBigQuerySourceV2DtoType = "BIGQUERY"
-	PublicCreateBigQuerySourceV2DtoTypeDATABRICKS    PublicCreateBigQuerySourceV2DtoType = "DATABRICKS"
-	PublicCreateBigQuerySourceV2DtoTypeDBT           PublicCreateBigQuerySourceV2DtoType = "DBT"
-	PublicCreateBigQuerySourceV2DtoTypeDBTCLOUD      PublicCreateBigQuerySourceV2DtoType = "DBTCLOUD"
-	PublicCreateBigQuerySourceV2DtoTypeDECLARATIVE   PublicCreateBigQuerySourceV2DtoType = "DECLARATIVE"
-	PublicCreateBigQuerySourceV2DtoTypeFIVETRAN      PublicCreateBigQuerySourceV2DtoType = "FIVETRAN"
-	PublicCreateBigQuerySourceV2DtoTypeLOOKER        PublicCreateBigQuerySourceV2DtoType = "LOOKER"
-	PublicCreateBigQuerySourceV2DtoTypeMICROSTRATEGY PublicCreateBigQuerySourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateBigQuerySourceV2DtoTypeMSSQL         PublicCreateBigQuerySourceV2DtoType = "MSSQL"
-	PublicCreateBigQuerySourceV2DtoTypeMYSQL         PublicCreateBigQuerySourceV2DtoType = "MYSQL"
-	PublicCreateBigQuerySourceV2DtoTypeORACLE        PublicCreateBigQuerySourceV2DtoType = "ORACLE"
-	PublicCreateBigQuerySourceV2DtoTypePOSTGRESQL    PublicCreateBigQuerySourceV2DtoType = "POSTGRESQL"
-	PublicCreateBigQuerySourceV2DtoTypePOWERBI       PublicCreateBigQuerySourceV2DtoType = "POWER_BI"
-	PublicCreateBigQuerySourceV2DtoTypeQLIK          PublicCreateBigQuerySourceV2DtoType = "QLIK"
-	PublicCreateBigQuerySourceV2DtoTypeQUICKSIGHT    PublicCreateBigQuerySourceV2DtoType = "QUICKSIGHT"
-	PublicCreateBigQuerySourceV2DtoTypeREDSHIFT      PublicCreateBigQuerySourceV2DtoType = "REDSHIFT"
-	PublicCreateBigQuerySourceV2DtoTypeSNOWFLAKE     PublicCreateBigQuerySourceV2DtoType = "SNOWFLAKE"
-	PublicCreateBigQuerySourceV2DtoTypeSYNAPSE       PublicCreateBigQuerySourceV2DtoType = "SYNAPSE"
-	PublicCreateBigQuerySourceV2DtoTypeTABLEAU       PublicCreateBigQuerySourceV2DtoType = "TABLEAU"
+	PublicCreateBigQuerySourceV2DtoTypeAIRFLOW        PublicCreateBigQuerySourceV2DtoType = "AIRFLOW"
+	PublicCreateBigQuerySourceV2DtoTypeATHENA         PublicCreateBigQuerySourceV2DtoType = "ATHENA"
+	PublicCreateBigQuerySourceV2DtoTypeBIGQUERY       PublicCreateBigQuerySourceV2DtoType = "BIGQUERY"
+	PublicCreateBigQuerySourceV2DtoTypeDATABRICKS     PublicCreateBigQuerySourceV2DtoType = "DATABRICKS"
+	PublicCreateBigQuerySourceV2DtoTypeDATABRICKSJOBS PublicCreateBigQuerySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateBigQuerySourceV2DtoTypeDBT            PublicCreateBigQuerySourceV2DtoType = "DBT"
+	PublicCreateBigQuerySourceV2DtoTypeDBTCLOUD       PublicCreateBigQuerySourceV2DtoType = "DBTCLOUD"
+	PublicCreateBigQuerySourceV2DtoTypeDECLARATIVE    PublicCreateBigQuerySourceV2DtoType = "DECLARATIVE"
+	PublicCreateBigQuerySourceV2DtoTypeFIVETRAN       PublicCreateBigQuerySourceV2DtoType = "FIVETRAN"
+	PublicCreateBigQuerySourceV2DtoTypeLOOKER         PublicCreateBigQuerySourceV2DtoType = "LOOKER"
+	PublicCreateBigQuerySourceV2DtoTypeMICROSTRATEGY  PublicCreateBigQuerySourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateBigQuerySourceV2DtoTypeMSSQL          PublicCreateBigQuerySourceV2DtoType = "MSSQL"
+	PublicCreateBigQuerySourceV2DtoTypeMYSQL          PublicCreateBigQuerySourceV2DtoType = "MYSQL"
+	PublicCreateBigQuerySourceV2DtoTypeORACLE         PublicCreateBigQuerySourceV2DtoType = "ORACLE"
+	PublicCreateBigQuerySourceV2DtoTypePOSTGRESQL     PublicCreateBigQuerySourceV2DtoType = "POSTGRESQL"
+	PublicCreateBigQuerySourceV2DtoTypePOWERBI        PublicCreateBigQuerySourceV2DtoType = "POWER_BI"
+	PublicCreateBigQuerySourceV2DtoTypeQLIK           PublicCreateBigQuerySourceV2DtoType = "QLIK"
+	PublicCreateBigQuerySourceV2DtoTypeQUICKSIGHT     PublicCreateBigQuerySourceV2DtoType = "QUICKSIGHT"
+	PublicCreateBigQuerySourceV2DtoTypeREDSHIFT       PublicCreateBigQuerySourceV2DtoType = "REDSHIFT"
+	PublicCreateBigQuerySourceV2DtoTypeSNOWFLAKE      PublicCreateBigQuerySourceV2DtoType = "SNOWFLAKE"
+	PublicCreateBigQuerySourceV2DtoTypeSYNAPSE        PublicCreateBigQuerySourceV2DtoType = "SYNAPSE"
+	PublicCreateBigQuerySourceV2DtoTypeTABLEAU        PublicCreateBigQuerySourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateDatabricksJobsSourceV2DtoType.
+const (
+	PublicCreateDatabricksJobsSourceV2DtoTypeAIRFLOW        PublicCreateDatabricksJobsSourceV2DtoType = "AIRFLOW"
+	PublicCreateDatabricksJobsSourceV2DtoTypeATHENA         PublicCreateDatabricksJobsSourceV2DtoType = "ATHENA"
+	PublicCreateDatabricksJobsSourceV2DtoTypeBIGQUERY       PublicCreateDatabricksJobsSourceV2DtoType = "BIGQUERY"
+	PublicCreateDatabricksJobsSourceV2DtoTypeDATABRICKS     PublicCreateDatabricksJobsSourceV2DtoType = "DATABRICKS"
+	PublicCreateDatabricksJobsSourceV2DtoTypeDATABRICKSJOBS PublicCreateDatabricksJobsSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateDatabricksJobsSourceV2DtoTypeDBT            PublicCreateDatabricksJobsSourceV2DtoType = "DBT"
+	PublicCreateDatabricksJobsSourceV2DtoTypeDBTCLOUD       PublicCreateDatabricksJobsSourceV2DtoType = "DBTCLOUD"
+	PublicCreateDatabricksJobsSourceV2DtoTypeDECLARATIVE    PublicCreateDatabricksJobsSourceV2DtoType = "DECLARATIVE"
+	PublicCreateDatabricksJobsSourceV2DtoTypeFIVETRAN       PublicCreateDatabricksJobsSourceV2DtoType = "FIVETRAN"
+	PublicCreateDatabricksJobsSourceV2DtoTypeLOOKER         PublicCreateDatabricksJobsSourceV2DtoType = "LOOKER"
+	PublicCreateDatabricksJobsSourceV2DtoTypeMICROSTRATEGY  PublicCreateDatabricksJobsSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateDatabricksJobsSourceV2DtoTypeMSSQL          PublicCreateDatabricksJobsSourceV2DtoType = "MSSQL"
+	PublicCreateDatabricksJobsSourceV2DtoTypeMYSQL          PublicCreateDatabricksJobsSourceV2DtoType = "MYSQL"
+	PublicCreateDatabricksJobsSourceV2DtoTypeORACLE         PublicCreateDatabricksJobsSourceV2DtoType = "ORACLE"
+	PublicCreateDatabricksJobsSourceV2DtoTypePOSTGRESQL     PublicCreateDatabricksJobsSourceV2DtoType = "POSTGRESQL"
+	PublicCreateDatabricksJobsSourceV2DtoTypePOWERBI        PublicCreateDatabricksJobsSourceV2DtoType = "POWER_BI"
+	PublicCreateDatabricksJobsSourceV2DtoTypeQLIK           PublicCreateDatabricksJobsSourceV2DtoType = "QLIK"
+	PublicCreateDatabricksJobsSourceV2DtoTypeQUICKSIGHT     PublicCreateDatabricksJobsSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateDatabricksJobsSourceV2DtoTypeREDSHIFT       PublicCreateDatabricksJobsSourceV2DtoType = "REDSHIFT"
+	PublicCreateDatabricksJobsSourceV2DtoTypeSNOWFLAKE      PublicCreateDatabricksJobsSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateDatabricksJobsSourceV2DtoTypeSYNAPSE        PublicCreateDatabricksJobsSourceV2DtoType = "SYNAPSE"
+	PublicCreateDatabricksJobsSourceV2DtoTypeTABLEAU        PublicCreateDatabricksJobsSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateDatabricksSourceV2DtoType.
 const (
-	PublicCreateDatabricksSourceV2DtoTypeAIRFLOW       PublicCreateDatabricksSourceV2DtoType = "AIRFLOW"
-	PublicCreateDatabricksSourceV2DtoTypeATHENA        PublicCreateDatabricksSourceV2DtoType = "ATHENA"
-	PublicCreateDatabricksSourceV2DtoTypeBIGQUERY      PublicCreateDatabricksSourceV2DtoType = "BIGQUERY"
-	PublicCreateDatabricksSourceV2DtoTypeDATABRICKS    PublicCreateDatabricksSourceV2DtoType = "DATABRICKS"
-	PublicCreateDatabricksSourceV2DtoTypeDBT           PublicCreateDatabricksSourceV2DtoType = "DBT"
-	PublicCreateDatabricksSourceV2DtoTypeDBTCLOUD      PublicCreateDatabricksSourceV2DtoType = "DBTCLOUD"
-	PublicCreateDatabricksSourceV2DtoTypeDECLARATIVE   PublicCreateDatabricksSourceV2DtoType = "DECLARATIVE"
-	PublicCreateDatabricksSourceV2DtoTypeFIVETRAN      PublicCreateDatabricksSourceV2DtoType = "FIVETRAN"
-	PublicCreateDatabricksSourceV2DtoTypeLOOKER        PublicCreateDatabricksSourceV2DtoType = "LOOKER"
-	PublicCreateDatabricksSourceV2DtoTypeMICROSTRATEGY PublicCreateDatabricksSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateDatabricksSourceV2DtoTypeMSSQL         PublicCreateDatabricksSourceV2DtoType = "MSSQL"
-	PublicCreateDatabricksSourceV2DtoTypeMYSQL         PublicCreateDatabricksSourceV2DtoType = "MYSQL"
-	PublicCreateDatabricksSourceV2DtoTypeORACLE        PublicCreateDatabricksSourceV2DtoType = "ORACLE"
-	PublicCreateDatabricksSourceV2DtoTypePOSTGRESQL    PublicCreateDatabricksSourceV2DtoType = "POSTGRESQL"
-	PublicCreateDatabricksSourceV2DtoTypePOWERBI       PublicCreateDatabricksSourceV2DtoType = "POWER_BI"
-	PublicCreateDatabricksSourceV2DtoTypeQLIK          PublicCreateDatabricksSourceV2DtoType = "QLIK"
-	PublicCreateDatabricksSourceV2DtoTypeQUICKSIGHT    PublicCreateDatabricksSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateDatabricksSourceV2DtoTypeREDSHIFT      PublicCreateDatabricksSourceV2DtoType = "REDSHIFT"
-	PublicCreateDatabricksSourceV2DtoTypeSNOWFLAKE     PublicCreateDatabricksSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateDatabricksSourceV2DtoTypeSYNAPSE       PublicCreateDatabricksSourceV2DtoType = "SYNAPSE"
-	PublicCreateDatabricksSourceV2DtoTypeTABLEAU       PublicCreateDatabricksSourceV2DtoType = "TABLEAU"
+	PublicCreateDatabricksSourceV2DtoTypeAIRFLOW        PublicCreateDatabricksSourceV2DtoType = "AIRFLOW"
+	PublicCreateDatabricksSourceV2DtoTypeATHENA         PublicCreateDatabricksSourceV2DtoType = "ATHENA"
+	PublicCreateDatabricksSourceV2DtoTypeBIGQUERY       PublicCreateDatabricksSourceV2DtoType = "BIGQUERY"
+	PublicCreateDatabricksSourceV2DtoTypeDATABRICKS     PublicCreateDatabricksSourceV2DtoType = "DATABRICKS"
+	PublicCreateDatabricksSourceV2DtoTypeDATABRICKSJOBS PublicCreateDatabricksSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateDatabricksSourceV2DtoTypeDBT            PublicCreateDatabricksSourceV2DtoType = "DBT"
+	PublicCreateDatabricksSourceV2DtoTypeDBTCLOUD       PublicCreateDatabricksSourceV2DtoType = "DBTCLOUD"
+	PublicCreateDatabricksSourceV2DtoTypeDECLARATIVE    PublicCreateDatabricksSourceV2DtoType = "DECLARATIVE"
+	PublicCreateDatabricksSourceV2DtoTypeFIVETRAN       PublicCreateDatabricksSourceV2DtoType = "FIVETRAN"
+	PublicCreateDatabricksSourceV2DtoTypeLOOKER         PublicCreateDatabricksSourceV2DtoType = "LOOKER"
+	PublicCreateDatabricksSourceV2DtoTypeMICROSTRATEGY  PublicCreateDatabricksSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateDatabricksSourceV2DtoTypeMSSQL          PublicCreateDatabricksSourceV2DtoType = "MSSQL"
+	PublicCreateDatabricksSourceV2DtoTypeMYSQL          PublicCreateDatabricksSourceV2DtoType = "MYSQL"
+	PublicCreateDatabricksSourceV2DtoTypeORACLE         PublicCreateDatabricksSourceV2DtoType = "ORACLE"
+	PublicCreateDatabricksSourceV2DtoTypePOSTGRESQL     PublicCreateDatabricksSourceV2DtoType = "POSTGRESQL"
+	PublicCreateDatabricksSourceV2DtoTypePOWERBI        PublicCreateDatabricksSourceV2DtoType = "POWER_BI"
+	PublicCreateDatabricksSourceV2DtoTypeQLIK           PublicCreateDatabricksSourceV2DtoType = "QLIK"
+	PublicCreateDatabricksSourceV2DtoTypeQUICKSIGHT     PublicCreateDatabricksSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateDatabricksSourceV2DtoTypeREDSHIFT       PublicCreateDatabricksSourceV2DtoType = "REDSHIFT"
+	PublicCreateDatabricksSourceV2DtoTypeSNOWFLAKE      PublicCreateDatabricksSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateDatabricksSourceV2DtoTypeSYNAPSE        PublicCreateDatabricksSourceV2DtoType = "SYNAPSE"
+	PublicCreateDatabricksSourceV2DtoTypeTABLEAU        PublicCreateDatabricksSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateDbtCloudSourceV2DtoType.
 const (
-	PublicCreateDbtCloudSourceV2DtoTypeAIRFLOW       PublicCreateDbtCloudSourceV2DtoType = "AIRFLOW"
-	PublicCreateDbtCloudSourceV2DtoTypeATHENA        PublicCreateDbtCloudSourceV2DtoType = "ATHENA"
-	PublicCreateDbtCloudSourceV2DtoTypeBIGQUERY      PublicCreateDbtCloudSourceV2DtoType = "BIGQUERY"
-	PublicCreateDbtCloudSourceV2DtoTypeDATABRICKS    PublicCreateDbtCloudSourceV2DtoType = "DATABRICKS"
-	PublicCreateDbtCloudSourceV2DtoTypeDBT           PublicCreateDbtCloudSourceV2DtoType = "DBT"
-	PublicCreateDbtCloudSourceV2DtoTypeDBTCLOUD      PublicCreateDbtCloudSourceV2DtoType = "DBTCLOUD"
-	PublicCreateDbtCloudSourceV2DtoTypeDECLARATIVE   PublicCreateDbtCloudSourceV2DtoType = "DECLARATIVE"
-	PublicCreateDbtCloudSourceV2DtoTypeFIVETRAN      PublicCreateDbtCloudSourceV2DtoType = "FIVETRAN"
-	PublicCreateDbtCloudSourceV2DtoTypeLOOKER        PublicCreateDbtCloudSourceV2DtoType = "LOOKER"
-	PublicCreateDbtCloudSourceV2DtoTypeMICROSTRATEGY PublicCreateDbtCloudSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateDbtCloudSourceV2DtoTypeMSSQL         PublicCreateDbtCloudSourceV2DtoType = "MSSQL"
-	PublicCreateDbtCloudSourceV2DtoTypeMYSQL         PublicCreateDbtCloudSourceV2DtoType = "MYSQL"
-	PublicCreateDbtCloudSourceV2DtoTypeORACLE        PublicCreateDbtCloudSourceV2DtoType = "ORACLE"
-	PublicCreateDbtCloudSourceV2DtoTypePOSTGRESQL    PublicCreateDbtCloudSourceV2DtoType = "POSTGRESQL"
-	PublicCreateDbtCloudSourceV2DtoTypePOWERBI       PublicCreateDbtCloudSourceV2DtoType = "POWER_BI"
-	PublicCreateDbtCloudSourceV2DtoTypeQLIK          PublicCreateDbtCloudSourceV2DtoType = "QLIK"
-	PublicCreateDbtCloudSourceV2DtoTypeQUICKSIGHT    PublicCreateDbtCloudSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateDbtCloudSourceV2DtoTypeREDSHIFT      PublicCreateDbtCloudSourceV2DtoType = "REDSHIFT"
-	PublicCreateDbtCloudSourceV2DtoTypeSNOWFLAKE     PublicCreateDbtCloudSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateDbtCloudSourceV2DtoTypeSYNAPSE       PublicCreateDbtCloudSourceV2DtoType = "SYNAPSE"
-	PublicCreateDbtCloudSourceV2DtoTypeTABLEAU       PublicCreateDbtCloudSourceV2DtoType = "TABLEAU"
+	PublicCreateDbtCloudSourceV2DtoTypeAIRFLOW        PublicCreateDbtCloudSourceV2DtoType = "AIRFLOW"
+	PublicCreateDbtCloudSourceV2DtoTypeATHENA         PublicCreateDbtCloudSourceV2DtoType = "ATHENA"
+	PublicCreateDbtCloudSourceV2DtoTypeBIGQUERY       PublicCreateDbtCloudSourceV2DtoType = "BIGQUERY"
+	PublicCreateDbtCloudSourceV2DtoTypeDATABRICKS     PublicCreateDbtCloudSourceV2DtoType = "DATABRICKS"
+	PublicCreateDbtCloudSourceV2DtoTypeDATABRICKSJOBS PublicCreateDbtCloudSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateDbtCloudSourceV2DtoTypeDBT            PublicCreateDbtCloudSourceV2DtoType = "DBT"
+	PublicCreateDbtCloudSourceV2DtoTypeDBTCLOUD       PublicCreateDbtCloudSourceV2DtoType = "DBTCLOUD"
+	PublicCreateDbtCloudSourceV2DtoTypeDECLARATIVE    PublicCreateDbtCloudSourceV2DtoType = "DECLARATIVE"
+	PublicCreateDbtCloudSourceV2DtoTypeFIVETRAN       PublicCreateDbtCloudSourceV2DtoType = "FIVETRAN"
+	PublicCreateDbtCloudSourceV2DtoTypeLOOKER         PublicCreateDbtCloudSourceV2DtoType = "LOOKER"
+	PublicCreateDbtCloudSourceV2DtoTypeMICROSTRATEGY  PublicCreateDbtCloudSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateDbtCloudSourceV2DtoTypeMSSQL          PublicCreateDbtCloudSourceV2DtoType = "MSSQL"
+	PublicCreateDbtCloudSourceV2DtoTypeMYSQL          PublicCreateDbtCloudSourceV2DtoType = "MYSQL"
+	PublicCreateDbtCloudSourceV2DtoTypeORACLE         PublicCreateDbtCloudSourceV2DtoType = "ORACLE"
+	PublicCreateDbtCloudSourceV2DtoTypePOSTGRESQL     PublicCreateDbtCloudSourceV2DtoType = "POSTGRESQL"
+	PublicCreateDbtCloudSourceV2DtoTypePOWERBI        PublicCreateDbtCloudSourceV2DtoType = "POWER_BI"
+	PublicCreateDbtCloudSourceV2DtoTypeQLIK           PublicCreateDbtCloudSourceV2DtoType = "QLIK"
+	PublicCreateDbtCloudSourceV2DtoTypeQUICKSIGHT     PublicCreateDbtCloudSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateDbtCloudSourceV2DtoTypeREDSHIFT       PublicCreateDbtCloudSourceV2DtoType = "REDSHIFT"
+	PublicCreateDbtCloudSourceV2DtoTypeSNOWFLAKE      PublicCreateDbtCloudSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateDbtCloudSourceV2DtoTypeSYNAPSE        PublicCreateDbtCloudSourceV2DtoType = "SYNAPSE"
+	PublicCreateDbtCloudSourceV2DtoTypeTABLEAU        PublicCreateDbtCloudSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateDbtSourceV2DtoType.
 const (
-	PublicCreateDbtSourceV2DtoTypeAIRFLOW       PublicCreateDbtSourceV2DtoType = "AIRFLOW"
-	PublicCreateDbtSourceV2DtoTypeATHENA        PublicCreateDbtSourceV2DtoType = "ATHENA"
-	PublicCreateDbtSourceV2DtoTypeBIGQUERY      PublicCreateDbtSourceV2DtoType = "BIGQUERY"
-	PublicCreateDbtSourceV2DtoTypeDATABRICKS    PublicCreateDbtSourceV2DtoType = "DATABRICKS"
-	PublicCreateDbtSourceV2DtoTypeDBT           PublicCreateDbtSourceV2DtoType = "DBT"
-	PublicCreateDbtSourceV2DtoTypeDBTCLOUD      PublicCreateDbtSourceV2DtoType = "DBTCLOUD"
-	PublicCreateDbtSourceV2DtoTypeDECLARATIVE   PublicCreateDbtSourceV2DtoType = "DECLARATIVE"
-	PublicCreateDbtSourceV2DtoTypeFIVETRAN      PublicCreateDbtSourceV2DtoType = "FIVETRAN"
-	PublicCreateDbtSourceV2DtoTypeLOOKER        PublicCreateDbtSourceV2DtoType = "LOOKER"
-	PublicCreateDbtSourceV2DtoTypeMICROSTRATEGY PublicCreateDbtSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateDbtSourceV2DtoTypeMSSQL         PublicCreateDbtSourceV2DtoType = "MSSQL"
-	PublicCreateDbtSourceV2DtoTypeMYSQL         PublicCreateDbtSourceV2DtoType = "MYSQL"
-	PublicCreateDbtSourceV2DtoTypeORACLE        PublicCreateDbtSourceV2DtoType = "ORACLE"
-	PublicCreateDbtSourceV2DtoTypePOSTGRESQL    PublicCreateDbtSourceV2DtoType = "POSTGRESQL"
-	PublicCreateDbtSourceV2DtoTypePOWERBI       PublicCreateDbtSourceV2DtoType = "POWER_BI"
-	PublicCreateDbtSourceV2DtoTypeQLIK          PublicCreateDbtSourceV2DtoType = "QLIK"
-	PublicCreateDbtSourceV2DtoTypeQUICKSIGHT    PublicCreateDbtSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateDbtSourceV2DtoTypeREDSHIFT      PublicCreateDbtSourceV2DtoType = "REDSHIFT"
-	PublicCreateDbtSourceV2DtoTypeSNOWFLAKE     PublicCreateDbtSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateDbtSourceV2DtoTypeSYNAPSE       PublicCreateDbtSourceV2DtoType = "SYNAPSE"
-	PublicCreateDbtSourceV2DtoTypeTABLEAU       PublicCreateDbtSourceV2DtoType = "TABLEAU"
+	PublicCreateDbtSourceV2DtoTypeAIRFLOW        PublicCreateDbtSourceV2DtoType = "AIRFLOW"
+	PublicCreateDbtSourceV2DtoTypeATHENA         PublicCreateDbtSourceV2DtoType = "ATHENA"
+	PublicCreateDbtSourceV2DtoTypeBIGQUERY       PublicCreateDbtSourceV2DtoType = "BIGQUERY"
+	PublicCreateDbtSourceV2DtoTypeDATABRICKS     PublicCreateDbtSourceV2DtoType = "DATABRICKS"
+	PublicCreateDbtSourceV2DtoTypeDATABRICKSJOBS PublicCreateDbtSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateDbtSourceV2DtoTypeDBT            PublicCreateDbtSourceV2DtoType = "DBT"
+	PublicCreateDbtSourceV2DtoTypeDBTCLOUD       PublicCreateDbtSourceV2DtoType = "DBTCLOUD"
+	PublicCreateDbtSourceV2DtoTypeDECLARATIVE    PublicCreateDbtSourceV2DtoType = "DECLARATIVE"
+	PublicCreateDbtSourceV2DtoTypeFIVETRAN       PublicCreateDbtSourceV2DtoType = "FIVETRAN"
+	PublicCreateDbtSourceV2DtoTypeLOOKER         PublicCreateDbtSourceV2DtoType = "LOOKER"
+	PublicCreateDbtSourceV2DtoTypeMICROSTRATEGY  PublicCreateDbtSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateDbtSourceV2DtoTypeMSSQL          PublicCreateDbtSourceV2DtoType = "MSSQL"
+	PublicCreateDbtSourceV2DtoTypeMYSQL          PublicCreateDbtSourceV2DtoType = "MYSQL"
+	PublicCreateDbtSourceV2DtoTypeORACLE         PublicCreateDbtSourceV2DtoType = "ORACLE"
+	PublicCreateDbtSourceV2DtoTypePOSTGRESQL     PublicCreateDbtSourceV2DtoType = "POSTGRESQL"
+	PublicCreateDbtSourceV2DtoTypePOWERBI        PublicCreateDbtSourceV2DtoType = "POWER_BI"
+	PublicCreateDbtSourceV2DtoTypeQLIK           PublicCreateDbtSourceV2DtoType = "QLIK"
+	PublicCreateDbtSourceV2DtoTypeQUICKSIGHT     PublicCreateDbtSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateDbtSourceV2DtoTypeREDSHIFT       PublicCreateDbtSourceV2DtoType = "REDSHIFT"
+	PublicCreateDbtSourceV2DtoTypeSNOWFLAKE      PublicCreateDbtSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateDbtSourceV2DtoTypeSYNAPSE        PublicCreateDbtSourceV2DtoType = "SYNAPSE"
+	PublicCreateDbtSourceV2DtoTypeTABLEAU        PublicCreateDbtSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateFivetranSourceV2DtoType.
 const (
-	PublicCreateFivetranSourceV2DtoTypeAIRFLOW       PublicCreateFivetranSourceV2DtoType = "AIRFLOW"
-	PublicCreateFivetranSourceV2DtoTypeATHENA        PublicCreateFivetranSourceV2DtoType = "ATHENA"
-	PublicCreateFivetranSourceV2DtoTypeBIGQUERY      PublicCreateFivetranSourceV2DtoType = "BIGQUERY"
-	PublicCreateFivetranSourceV2DtoTypeDATABRICKS    PublicCreateFivetranSourceV2DtoType = "DATABRICKS"
-	PublicCreateFivetranSourceV2DtoTypeDBT           PublicCreateFivetranSourceV2DtoType = "DBT"
-	PublicCreateFivetranSourceV2DtoTypeDBTCLOUD      PublicCreateFivetranSourceV2DtoType = "DBTCLOUD"
-	PublicCreateFivetranSourceV2DtoTypeDECLARATIVE   PublicCreateFivetranSourceV2DtoType = "DECLARATIVE"
-	PublicCreateFivetranSourceV2DtoTypeFIVETRAN      PublicCreateFivetranSourceV2DtoType = "FIVETRAN"
-	PublicCreateFivetranSourceV2DtoTypeLOOKER        PublicCreateFivetranSourceV2DtoType = "LOOKER"
-	PublicCreateFivetranSourceV2DtoTypeMICROSTRATEGY PublicCreateFivetranSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateFivetranSourceV2DtoTypeMSSQL         PublicCreateFivetranSourceV2DtoType = "MSSQL"
-	PublicCreateFivetranSourceV2DtoTypeMYSQL         PublicCreateFivetranSourceV2DtoType = "MYSQL"
-	PublicCreateFivetranSourceV2DtoTypeORACLE        PublicCreateFivetranSourceV2DtoType = "ORACLE"
-	PublicCreateFivetranSourceV2DtoTypePOSTGRESQL    PublicCreateFivetranSourceV2DtoType = "POSTGRESQL"
-	PublicCreateFivetranSourceV2DtoTypePOWERBI       PublicCreateFivetranSourceV2DtoType = "POWER_BI"
-	PublicCreateFivetranSourceV2DtoTypeQLIK          PublicCreateFivetranSourceV2DtoType = "QLIK"
-	PublicCreateFivetranSourceV2DtoTypeQUICKSIGHT    PublicCreateFivetranSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateFivetranSourceV2DtoTypeREDSHIFT      PublicCreateFivetranSourceV2DtoType = "REDSHIFT"
-	PublicCreateFivetranSourceV2DtoTypeSNOWFLAKE     PublicCreateFivetranSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateFivetranSourceV2DtoTypeSYNAPSE       PublicCreateFivetranSourceV2DtoType = "SYNAPSE"
-	PublicCreateFivetranSourceV2DtoTypeTABLEAU       PublicCreateFivetranSourceV2DtoType = "TABLEAU"
+	PublicCreateFivetranSourceV2DtoTypeAIRFLOW        PublicCreateFivetranSourceV2DtoType = "AIRFLOW"
+	PublicCreateFivetranSourceV2DtoTypeATHENA         PublicCreateFivetranSourceV2DtoType = "ATHENA"
+	PublicCreateFivetranSourceV2DtoTypeBIGQUERY       PublicCreateFivetranSourceV2DtoType = "BIGQUERY"
+	PublicCreateFivetranSourceV2DtoTypeDATABRICKS     PublicCreateFivetranSourceV2DtoType = "DATABRICKS"
+	PublicCreateFivetranSourceV2DtoTypeDATABRICKSJOBS PublicCreateFivetranSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateFivetranSourceV2DtoTypeDBT            PublicCreateFivetranSourceV2DtoType = "DBT"
+	PublicCreateFivetranSourceV2DtoTypeDBTCLOUD       PublicCreateFivetranSourceV2DtoType = "DBTCLOUD"
+	PublicCreateFivetranSourceV2DtoTypeDECLARATIVE    PublicCreateFivetranSourceV2DtoType = "DECLARATIVE"
+	PublicCreateFivetranSourceV2DtoTypeFIVETRAN       PublicCreateFivetranSourceV2DtoType = "FIVETRAN"
+	PublicCreateFivetranSourceV2DtoTypeLOOKER         PublicCreateFivetranSourceV2DtoType = "LOOKER"
+	PublicCreateFivetranSourceV2DtoTypeMICROSTRATEGY  PublicCreateFivetranSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateFivetranSourceV2DtoTypeMSSQL          PublicCreateFivetranSourceV2DtoType = "MSSQL"
+	PublicCreateFivetranSourceV2DtoTypeMYSQL          PublicCreateFivetranSourceV2DtoType = "MYSQL"
+	PublicCreateFivetranSourceV2DtoTypeORACLE         PublicCreateFivetranSourceV2DtoType = "ORACLE"
+	PublicCreateFivetranSourceV2DtoTypePOSTGRESQL     PublicCreateFivetranSourceV2DtoType = "POSTGRESQL"
+	PublicCreateFivetranSourceV2DtoTypePOWERBI        PublicCreateFivetranSourceV2DtoType = "POWER_BI"
+	PublicCreateFivetranSourceV2DtoTypeQLIK           PublicCreateFivetranSourceV2DtoType = "QLIK"
+	PublicCreateFivetranSourceV2DtoTypeQUICKSIGHT     PublicCreateFivetranSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateFivetranSourceV2DtoTypeREDSHIFT       PublicCreateFivetranSourceV2DtoType = "REDSHIFT"
+	PublicCreateFivetranSourceV2DtoTypeSNOWFLAKE      PublicCreateFivetranSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateFivetranSourceV2DtoTypeSYNAPSE        PublicCreateFivetranSourceV2DtoType = "SYNAPSE"
+	PublicCreateFivetranSourceV2DtoTypeTABLEAU        PublicCreateFivetranSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateLookerSourceV2DtoType.
 const (
-	PublicCreateLookerSourceV2DtoTypeAIRFLOW       PublicCreateLookerSourceV2DtoType = "AIRFLOW"
-	PublicCreateLookerSourceV2DtoTypeATHENA        PublicCreateLookerSourceV2DtoType = "ATHENA"
-	PublicCreateLookerSourceV2DtoTypeBIGQUERY      PublicCreateLookerSourceV2DtoType = "BIGQUERY"
-	PublicCreateLookerSourceV2DtoTypeDATABRICKS    PublicCreateLookerSourceV2DtoType = "DATABRICKS"
-	PublicCreateLookerSourceV2DtoTypeDBT           PublicCreateLookerSourceV2DtoType = "DBT"
-	PublicCreateLookerSourceV2DtoTypeDBTCLOUD      PublicCreateLookerSourceV2DtoType = "DBTCLOUD"
-	PublicCreateLookerSourceV2DtoTypeDECLARATIVE   PublicCreateLookerSourceV2DtoType = "DECLARATIVE"
-	PublicCreateLookerSourceV2DtoTypeFIVETRAN      PublicCreateLookerSourceV2DtoType = "FIVETRAN"
-	PublicCreateLookerSourceV2DtoTypeLOOKER        PublicCreateLookerSourceV2DtoType = "LOOKER"
-	PublicCreateLookerSourceV2DtoTypeMICROSTRATEGY PublicCreateLookerSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateLookerSourceV2DtoTypeMSSQL         PublicCreateLookerSourceV2DtoType = "MSSQL"
-	PublicCreateLookerSourceV2DtoTypeMYSQL         PublicCreateLookerSourceV2DtoType = "MYSQL"
-	PublicCreateLookerSourceV2DtoTypeORACLE        PublicCreateLookerSourceV2DtoType = "ORACLE"
-	PublicCreateLookerSourceV2DtoTypePOSTGRESQL    PublicCreateLookerSourceV2DtoType = "POSTGRESQL"
-	PublicCreateLookerSourceV2DtoTypePOWERBI       PublicCreateLookerSourceV2DtoType = "POWER_BI"
-	PublicCreateLookerSourceV2DtoTypeQLIK          PublicCreateLookerSourceV2DtoType = "QLIK"
-	PublicCreateLookerSourceV2DtoTypeQUICKSIGHT    PublicCreateLookerSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateLookerSourceV2DtoTypeREDSHIFT      PublicCreateLookerSourceV2DtoType = "REDSHIFT"
-	PublicCreateLookerSourceV2DtoTypeSNOWFLAKE     PublicCreateLookerSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateLookerSourceV2DtoTypeSYNAPSE       PublicCreateLookerSourceV2DtoType = "SYNAPSE"
-	PublicCreateLookerSourceV2DtoTypeTABLEAU       PublicCreateLookerSourceV2DtoType = "TABLEAU"
+	PublicCreateLookerSourceV2DtoTypeAIRFLOW        PublicCreateLookerSourceV2DtoType = "AIRFLOW"
+	PublicCreateLookerSourceV2DtoTypeATHENA         PublicCreateLookerSourceV2DtoType = "ATHENA"
+	PublicCreateLookerSourceV2DtoTypeBIGQUERY       PublicCreateLookerSourceV2DtoType = "BIGQUERY"
+	PublicCreateLookerSourceV2DtoTypeDATABRICKS     PublicCreateLookerSourceV2DtoType = "DATABRICKS"
+	PublicCreateLookerSourceV2DtoTypeDATABRICKSJOBS PublicCreateLookerSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateLookerSourceV2DtoTypeDBT            PublicCreateLookerSourceV2DtoType = "DBT"
+	PublicCreateLookerSourceV2DtoTypeDBTCLOUD       PublicCreateLookerSourceV2DtoType = "DBTCLOUD"
+	PublicCreateLookerSourceV2DtoTypeDECLARATIVE    PublicCreateLookerSourceV2DtoType = "DECLARATIVE"
+	PublicCreateLookerSourceV2DtoTypeFIVETRAN       PublicCreateLookerSourceV2DtoType = "FIVETRAN"
+	PublicCreateLookerSourceV2DtoTypeLOOKER         PublicCreateLookerSourceV2DtoType = "LOOKER"
+	PublicCreateLookerSourceV2DtoTypeMICROSTRATEGY  PublicCreateLookerSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateLookerSourceV2DtoTypeMSSQL          PublicCreateLookerSourceV2DtoType = "MSSQL"
+	PublicCreateLookerSourceV2DtoTypeMYSQL          PublicCreateLookerSourceV2DtoType = "MYSQL"
+	PublicCreateLookerSourceV2DtoTypeORACLE         PublicCreateLookerSourceV2DtoType = "ORACLE"
+	PublicCreateLookerSourceV2DtoTypePOSTGRESQL     PublicCreateLookerSourceV2DtoType = "POSTGRESQL"
+	PublicCreateLookerSourceV2DtoTypePOWERBI        PublicCreateLookerSourceV2DtoType = "POWER_BI"
+	PublicCreateLookerSourceV2DtoTypeQLIK           PublicCreateLookerSourceV2DtoType = "QLIK"
+	PublicCreateLookerSourceV2DtoTypeQUICKSIGHT     PublicCreateLookerSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateLookerSourceV2DtoTypeREDSHIFT       PublicCreateLookerSourceV2DtoType = "REDSHIFT"
+	PublicCreateLookerSourceV2DtoTypeSNOWFLAKE      PublicCreateLookerSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateLookerSourceV2DtoTypeSYNAPSE        PublicCreateLookerSourceV2DtoType = "SYNAPSE"
+	PublicCreateLookerSourceV2DtoTypeTABLEAU        PublicCreateLookerSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateMicrostrategySourceV2DtoType.
 const (
-	PublicCreateMicrostrategySourceV2DtoTypeAIRFLOW       PublicCreateMicrostrategySourceV2DtoType = "AIRFLOW"
-	PublicCreateMicrostrategySourceV2DtoTypeATHENA        PublicCreateMicrostrategySourceV2DtoType = "ATHENA"
-	PublicCreateMicrostrategySourceV2DtoTypeBIGQUERY      PublicCreateMicrostrategySourceV2DtoType = "BIGQUERY"
-	PublicCreateMicrostrategySourceV2DtoTypeDATABRICKS    PublicCreateMicrostrategySourceV2DtoType = "DATABRICKS"
-	PublicCreateMicrostrategySourceV2DtoTypeDBT           PublicCreateMicrostrategySourceV2DtoType = "DBT"
-	PublicCreateMicrostrategySourceV2DtoTypeDBTCLOUD      PublicCreateMicrostrategySourceV2DtoType = "DBTCLOUD"
-	PublicCreateMicrostrategySourceV2DtoTypeDECLARATIVE   PublicCreateMicrostrategySourceV2DtoType = "DECLARATIVE"
-	PublicCreateMicrostrategySourceV2DtoTypeFIVETRAN      PublicCreateMicrostrategySourceV2DtoType = "FIVETRAN"
-	PublicCreateMicrostrategySourceV2DtoTypeLOOKER        PublicCreateMicrostrategySourceV2DtoType = "LOOKER"
-	PublicCreateMicrostrategySourceV2DtoTypeMICROSTRATEGY PublicCreateMicrostrategySourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateMicrostrategySourceV2DtoTypeMSSQL         PublicCreateMicrostrategySourceV2DtoType = "MSSQL"
-	PublicCreateMicrostrategySourceV2DtoTypeMYSQL         PublicCreateMicrostrategySourceV2DtoType = "MYSQL"
-	PublicCreateMicrostrategySourceV2DtoTypeORACLE        PublicCreateMicrostrategySourceV2DtoType = "ORACLE"
-	PublicCreateMicrostrategySourceV2DtoTypePOSTGRESQL    PublicCreateMicrostrategySourceV2DtoType = "POSTGRESQL"
-	PublicCreateMicrostrategySourceV2DtoTypePOWERBI       PublicCreateMicrostrategySourceV2DtoType = "POWER_BI"
-	PublicCreateMicrostrategySourceV2DtoTypeQLIK          PublicCreateMicrostrategySourceV2DtoType = "QLIK"
-	PublicCreateMicrostrategySourceV2DtoTypeQUICKSIGHT    PublicCreateMicrostrategySourceV2DtoType = "QUICKSIGHT"
-	PublicCreateMicrostrategySourceV2DtoTypeREDSHIFT      PublicCreateMicrostrategySourceV2DtoType = "REDSHIFT"
-	PublicCreateMicrostrategySourceV2DtoTypeSNOWFLAKE     PublicCreateMicrostrategySourceV2DtoType = "SNOWFLAKE"
-	PublicCreateMicrostrategySourceV2DtoTypeSYNAPSE       PublicCreateMicrostrategySourceV2DtoType = "SYNAPSE"
-	PublicCreateMicrostrategySourceV2DtoTypeTABLEAU       PublicCreateMicrostrategySourceV2DtoType = "TABLEAU"
+	PublicCreateMicrostrategySourceV2DtoTypeAIRFLOW        PublicCreateMicrostrategySourceV2DtoType = "AIRFLOW"
+	PublicCreateMicrostrategySourceV2DtoTypeATHENA         PublicCreateMicrostrategySourceV2DtoType = "ATHENA"
+	PublicCreateMicrostrategySourceV2DtoTypeBIGQUERY       PublicCreateMicrostrategySourceV2DtoType = "BIGQUERY"
+	PublicCreateMicrostrategySourceV2DtoTypeDATABRICKS     PublicCreateMicrostrategySourceV2DtoType = "DATABRICKS"
+	PublicCreateMicrostrategySourceV2DtoTypeDATABRICKSJOBS PublicCreateMicrostrategySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateMicrostrategySourceV2DtoTypeDBT            PublicCreateMicrostrategySourceV2DtoType = "DBT"
+	PublicCreateMicrostrategySourceV2DtoTypeDBTCLOUD       PublicCreateMicrostrategySourceV2DtoType = "DBTCLOUD"
+	PublicCreateMicrostrategySourceV2DtoTypeDECLARATIVE    PublicCreateMicrostrategySourceV2DtoType = "DECLARATIVE"
+	PublicCreateMicrostrategySourceV2DtoTypeFIVETRAN       PublicCreateMicrostrategySourceV2DtoType = "FIVETRAN"
+	PublicCreateMicrostrategySourceV2DtoTypeLOOKER         PublicCreateMicrostrategySourceV2DtoType = "LOOKER"
+	PublicCreateMicrostrategySourceV2DtoTypeMICROSTRATEGY  PublicCreateMicrostrategySourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateMicrostrategySourceV2DtoTypeMSSQL          PublicCreateMicrostrategySourceV2DtoType = "MSSQL"
+	PublicCreateMicrostrategySourceV2DtoTypeMYSQL          PublicCreateMicrostrategySourceV2DtoType = "MYSQL"
+	PublicCreateMicrostrategySourceV2DtoTypeORACLE         PublicCreateMicrostrategySourceV2DtoType = "ORACLE"
+	PublicCreateMicrostrategySourceV2DtoTypePOSTGRESQL     PublicCreateMicrostrategySourceV2DtoType = "POSTGRESQL"
+	PublicCreateMicrostrategySourceV2DtoTypePOWERBI        PublicCreateMicrostrategySourceV2DtoType = "POWER_BI"
+	PublicCreateMicrostrategySourceV2DtoTypeQLIK           PublicCreateMicrostrategySourceV2DtoType = "QLIK"
+	PublicCreateMicrostrategySourceV2DtoTypeQUICKSIGHT     PublicCreateMicrostrategySourceV2DtoType = "QUICKSIGHT"
+	PublicCreateMicrostrategySourceV2DtoTypeREDSHIFT       PublicCreateMicrostrategySourceV2DtoType = "REDSHIFT"
+	PublicCreateMicrostrategySourceV2DtoTypeSNOWFLAKE      PublicCreateMicrostrategySourceV2DtoType = "SNOWFLAKE"
+	PublicCreateMicrostrategySourceV2DtoTypeSYNAPSE        PublicCreateMicrostrategySourceV2DtoType = "SYNAPSE"
+	PublicCreateMicrostrategySourceV2DtoTypeTABLEAU        PublicCreateMicrostrategySourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateMssqlSourceV2DtoType.
 const (
-	PublicCreateMssqlSourceV2DtoTypeAIRFLOW       PublicCreateMssqlSourceV2DtoType = "AIRFLOW"
-	PublicCreateMssqlSourceV2DtoTypeATHENA        PublicCreateMssqlSourceV2DtoType = "ATHENA"
-	PublicCreateMssqlSourceV2DtoTypeBIGQUERY      PublicCreateMssqlSourceV2DtoType = "BIGQUERY"
-	PublicCreateMssqlSourceV2DtoTypeDATABRICKS    PublicCreateMssqlSourceV2DtoType = "DATABRICKS"
-	PublicCreateMssqlSourceV2DtoTypeDBT           PublicCreateMssqlSourceV2DtoType = "DBT"
-	PublicCreateMssqlSourceV2DtoTypeDBTCLOUD      PublicCreateMssqlSourceV2DtoType = "DBTCLOUD"
-	PublicCreateMssqlSourceV2DtoTypeDECLARATIVE   PublicCreateMssqlSourceV2DtoType = "DECLARATIVE"
-	PublicCreateMssqlSourceV2DtoTypeFIVETRAN      PublicCreateMssqlSourceV2DtoType = "FIVETRAN"
-	PublicCreateMssqlSourceV2DtoTypeLOOKER        PublicCreateMssqlSourceV2DtoType = "LOOKER"
-	PublicCreateMssqlSourceV2DtoTypeMICROSTRATEGY PublicCreateMssqlSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateMssqlSourceV2DtoTypeMSSQL         PublicCreateMssqlSourceV2DtoType = "MSSQL"
-	PublicCreateMssqlSourceV2DtoTypeMYSQL         PublicCreateMssqlSourceV2DtoType = "MYSQL"
-	PublicCreateMssqlSourceV2DtoTypeORACLE        PublicCreateMssqlSourceV2DtoType = "ORACLE"
-	PublicCreateMssqlSourceV2DtoTypePOSTGRESQL    PublicCreateMssqlSourceV2DtoType = "POSTGRESQL"
-	PublicCreateMssqlSourceV2DtoTypePOWERBI       PublicCreateMssqlSourceV2DtoType = "POWER_BI"
-	PublicCreateMssqlSourceV2DtoTypeQLIK          PublicCreateMssqlSourceV2DtoType = "QLIK"
-	PublicCreateMssqlSourceV2DtoTypeQUICKSIGHT    PublicCreateMssqlSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateMssqlSourceV2DtoTypeREDSHIFT      PublicCreateMssqlSourceV2DtoType = "REDSHIFT"
-	PublicCreateMssqlSourceV2DtoTypeSNOWFLAKE     PublicCreateMssqlSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateMssqlSourceV2DtoTypeSYNAPSE       PublicCreateMssqlSourceV2DtoType = "SYNAPSE"
-	PublicCreateMssqlSourceV2DtoTypeTABLEAU       PublicCreateMssqlSourceV2DtoType = "TABLEAU"
+	PublicCreateMssqlSourceV2DtoTypeAIRFLOW        PublicCreateMssqlSourceV2DtoType = "AIRFLOW"
+	PublicCreateMssqlSourceV2DtoTypeATHENA         PublicCreateMssqlSourceV2DtoType = "ATHENA"
+	PublicCreateMssqlSourceV2DtoTypeBIGQUERY       PublicCreateMssqlSourceV2DtoType = "BIGQUERY"
+	PublicCreateMssqlSourceV2DtoTypeDATABRICKS     PublicCreateMssqlSourceV2DtoType = "DATABRICKS"
+	PublicCreateMssqlSourceV2DtoTypeDATABRICKSJOBS PublicCreateMssqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateMssqlSourceV2DtoTypeDBT            PublicCreateMssqlSourceV2DtoType = "DBT"
+	PublicCreateMssqlSourceV2DtoTypeDBTCLOUD       PublicCreateMssqlSourceV2DtoType = "DBTCLOUD"
+	PublicCreateMssqlSourceV2DtoTypeDECLARATIVE    PublicCreateMssqlSourceV2DtoType = "DECLARATIVE"
+	PublicCreateMssqlSourceV2DtoTypeFIVETRAN       PublicCreateMssqlSourceV2DtoType = "FIVETRAN"
+	PublicCreateMssqlSourceV2DtoTypeLOOKER         PublicCreateMssqlSourceV2DtoType = "LOOKER"
+	PublicCreateMssqlSourceV2DtoTypeMICROSTRATEGY  PublicCreateMssqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateMssqlSourceV2DtoTypeMSSQL          PublicCreateMssqlSourceV2DtoType = "MSSQL"
+	PublicCreateMssqlSourceV2DtoTypeMYSQL          PublicCreateMssqlSourceV2DtoType = "MYSQL"
+	PublicCreateMssqlSourceV2DtoTypeORACLE         PublicCreateMssqlSourceV2DtoType = "ORACLE"
+	PublicCreateMssqlSourceV2DtoTypePOSTGRESQL     PublicCreateMssqlSourceV2DtoType = "POSTGRESQL"
+	PublicCreateMssqlSourceV2DtoTypePOWERBI        PublicCreateMssqlSourceV2DtoType = "POWER_BI"
+	PublicCreateMssqlSourceV2DtoTypeQLIK           PublicCreateMssqlSourceV2DtoType = "QLIK"
+	PublicCreateMssqlSourceV2DtoTypeQUICKSIGHT     PublicCreateMssqlSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateMssqlSourceV2DtoTypeREDSHIFT       PublicCreateMssqlSourceV2DtoType = "REDSHIFT"
+	PublicCreateMssqlSourceV2DtoTypeSNOWFLAKE      PublicCreateMssqlSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateMssqlSourceV2DtoTypeSYNAPSE        PublicCreateMssqlSourceV2DtoType = "SYNAPSE"
+	PublicCreateMssqlSourceV2DtoTypeTABLEAU        PublicCreateMssqlSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateMysqlSourceV2DtoType.
 const (
-	PublicCreateMysqlSourceV2DtoTypeAIRFLOW       PublicCreateMysqlSourceV2DtoType = "AIRFLOW"
-	PublicCreateMysqlSourceV2DtoTypeATHENA        PublicCreateMysqlSourceV2DtoType = "ATHENA"
-	PublicCreateMysqlSourceV2DtoTypeBIGQUERY      PublicCreateMysqlSourceV2DtoType = "BIGQUERY"
-	PublicCreateMysqlSourceV2DtoTypeDATABRICKS    PublicCreateMysqlSourceV2DtoType = "DATABRICKS"
-	PublicCreateMysqlSourceV2DtoTypeDBT           PublicCreateMysqlSourceV2DtoType = "DBT"
-	PublicCreateMysqlSourceV2DtoTypeDBTCLOUD      PublicCreateMysqlSourceV2DtoType = "DBTCLOUD"
-	PublicCreateMysqlSourceV2DtoTypeDECLARATIVE   PublicCreateMysqlSourceV2DtoType = "DECLARATIVE"
-	PublicCreateMysqlSourceV2DtoTypeFIVETRAN      PublicCreateMysqlSourceV2DtoType = "FIVETRAN"
-	PublicCreateMysqlSourceV2DtoTypeLOOKER        PublicCreateMysqlSourceV2DtoType = "LOOKER"
-	PublicCreateMysqlSourceV2DtoTypeMICROSTRATEGY PublicCreateMysqlSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateMysqlSourceV2DtoTypeMSSQL         PublicCreateMysqlSourceV2DtoType = "MSSQL"
-	PublicCreateMysqlSourceV2DtoTypeMYSQL         PublicCreateMysqlSourceV2DtoType = "MYSQL"
-	PublicCreateMysqlSourceV2DtoTypeORACLE        PublicCreateMysqlSourceV2DtoType = "ORACLE"
-	PublicCreateMysqlSourceV2DtoTypePOSTGRESQL    PublicCreateMysqlSourceV2DtoType = "POSTGRESQL"
-	PublicCreateMysqlSourceV2DtoTypePOWERBI       PublicCreateMysqlSourceV2DtoType = "POWER_BI"
-	PublicCreateMysqlSourceV2DtoTypeQLIK          PublicCreateMysqlSourceV2DtoType = "QLIK"
-	PublicCreateMysqlSourceV2DtoTypeQUICKSIGHT    PublicCreateMysqlSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateMysqlSourceV2DtoTypeREDSHIFT      PublicCreateMysqlSourceV2DtoType = "REDSHIFT"
-	PublicCreateMysqlSourceV2DtoTypeSNOWFLAKE     PublicCreateMysqlSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateMysqlSourceV2DtoTypeSYNAPSE       PublicCreateMysqlSourceV2DtoType = "SYNAPSE"
-	PublicCreateMysqlSourceV2DtoTypeTABLEAU       PublicCreateMysqlSourceV2DtoType = "TABLEAU"
+	PublicCreateMysqlSourceV2DtoTypeAIRFLOW        PublicCreateMysqlSourceV2DtoType = "AIRFLOW"
+	PublicCreateMysqlSourceV2DtoTypeATHENA         PublicCreateMysqlSourceV2DtoType = "ATHENA"
+	PublicCreateMysqlSourceV2DtoTypeBIGQUERY       PublicCreateMysqlSourceV2DtoType = "BIGQUERY"
+	PublicCreateMysqlSourceV2DtoTypeDATABRICKS     PublicCreateMysqlSourceV2DtoType = "DATABRICKS"
+	PublicCreateMysqlSourceV2DtoTypeDATABRICKSJOBS PublicCreateMysqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateMysqlSourceV2DtoTypeDBT            PublicCreateMysqlSourceV2DtoType = "DBT"
+	PublicCreateMysqlSourceV2DtoTypeDBTCLOUD       PublicCreateMysqlSourceV2DtoType = "DBTCLOUD"
+	PublicCreateMysqlSourceV2DtoTypeDECLARATIVE    PublicCreateMysqlSourceV2DtoType = "DECLARATIVE"
+	PublicCreateMysqlSourceV2DtoTypeFIVETRAN       PublicCreateMysqlSourceV2DtoType = "FIVETRAN"
+	PublicCreateMysqlSourceV2DtoTypeLOOKER         PublicCreateMysqlSourceV2DtoType = "LOOKER"
+	PublicCreateMysqlSourceV2DtoTypeMICROSTRATEGY  PublicCreateMysqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateMysqlSourceV2DtoTypeMSSQL          PublicCreateMysqlSourceV2DtoType = "MSSQL"
+	PublicCreateMysqlSourceV2DtoTypeMYSQL          PublicCreateMysqlSourceV2DtoType = "MYSQL"
+	PublicCreateMysqlSourceV2DtoTypeORACLE         PublicCreateMysqlSourceV2DtoType = "ORACLE"
+	PublicCreateMysqlSourceV2DtoTypePOSTGRESQL     PublicCreateMysqlSourceV2DtoType = "POSTGRESQL"
+	PublicCreateMysqlSourceV2DtoTypePOWERBI        PublicCreateMysqlSourceV2DtoType = "POWER_BI"
+	PublicCreateMysqlSourceV2DtoTypeQLIK           PublicCreateMysqlSourceV2DtoType = "QLIK"
+	PublicCreateMysqlSourceV2DtoTypeQUICKSIGHT     PublicCreateMysqlSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateMysqlSourceV2DtoTypeREDSHIFT       PublicCreateMysqlSourceV2DtoType = "REDSHIFT"
+	PublicCreateMysqlSourceV2DtoTypeSNOWFLAKE      PublicCreateMysqlSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateMysqlSourceV2DtoTypeSYNAPSE        PublicCreateMysqlSourceV2DtoType = "SYNAPSE"
+	PublicCreateMysqlSourceV2DtoTypeTABLEAU        PublicCreateMysqlSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateOracleSourceV2DtoType.
 const (
-	PublicCreateOracleSourceV2DtoTypeAIRFLOW       PublicCreateOracleSourceV2DtoType = "AIRFLOW"
-	PublicCreateOracleSourceV2DtoTypeATHENA        PublicCreateOracleSourceV2DtoType = "ATHENA"
-	PublicCreateOracleSourceV2DtoTypeBIGQUERY      PublicCreateOracleSourceV2DtoType = "BIGQUERY"
-	PublicCreateOracleSourceV2DtoTypeDATABRICKS    PublicCreateOracleSourceV2DtoType = "DATABRICKS"
-	PublicCreateOracleSourceV2DtoTypeDBT           PublicCreateOracleSourceV2DtoType = "DBT"
-	PublicCreateOracleSourceV2DtoTypeDBTCLOUD      PublicCreateOracleSourceV2DtoType = "DBTCLOUD"
-	PublicCreateOracleSourceV2DtoTypeDECLARATIVE   PublicCreateOracleSourceV2DtoType = "DECLARATIVE"
-	PublicCreateOracleSourceV2DtoTypeFIVETRAN      PublicCreateOracleSourceV2DtoType = "FIVETRAN"
-	PublicCreateOracleSourceV2DtoTypeLOOKER        PublicCreateOracleSourceV2DtoType = "LOOKER"
-	PublicCreateOracleSourceV2DtoTypeMICROSTRATEGY PublicCreateOracleSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateOracleSourceV2DtoTypeMSSQL         PublicCreateOracleSourceV2DtoType = "MSSQL"
-	PublicCreateOracleSourceV2DtoTypeMYSQL         PublicCreateOracleSourceV2DtoType = "MYSQL"
-	PublicCreateOracleSourceV2DtoTypeORACLE        PublicCreateOracleSourceV2DtoType = "ORACLE"
-	PublicCreateOracleSourceV2DtoTypePOSTGRESQL    PublicCreateOracleSourceV2DtoType = "POSTGRESQL"
-	PublicCreateOracleSourceV2DtoTypePOWERBI       PublicCreateOracleSourceV2DtoType = "POWER_BI"
-	PublicCreateOracleSourceV2DtoTypeQLIK          PublicCreateOracleSourceV2DtoType = "QLIK"
-	PublicCreateOracleSourceV2DtoTypeQUICKSIGHT    PublicCreateOracleSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateOracleSourceV2DtoTypeREDSHIFT      PublicCreateOracleSourceV2DtoType = "REDSHIFT"
-	PublicCreateOracleSourceV2DtoTypeSNOWFLAKE     PublicCreateOracleSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateOracleSourceV2DtoTypeSYNAPSE       PublicCreateOracleSourceV2DtoType = "SYNAPSE"
-	PublicCreateOracleSourceV2DtoTypeTABLEAU       PublicCreateOracleSourceV2DtoType = "TABLEAU"
+	PublicCreateOracleSourceV2DtoTypeAIRFLOW        PublicCreateOracleSourceV2DtoType = "AIRFLOW"
+	PublicCreateOracleSourceV2DtoTypeATHENA         PublicCreateOracleSourceV2DtoType = "ATHENA"
+	PublicCreateOracleSourceV2DtoTypeBIGQUERY       PublicCreateOracleSourceV2DtoType = "BIGQUERY"
+	PublicCreateOracleSourceV2DtoTypeDATABRICKS     PublicCreateOracleSourceV2DtoType = "DATABRICKS"
+	PublicCreateOracleSourceV2DtoTypeDATABRICKSJOBS PublicCreateOracleSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateOracleSourceV2DtoTypeDBT            PublicCreateOracleSourceV2DtoType = "DBT"
+	PublicCreateOracleSourceV2DtoTypeDBTCLOUD       PublicCreateOracleSourceV2DtoType = "DBTCLOUD"
+	PublicCreateOracleSourceV2DtoTypeDECLARATIVE    PublicCreateOracleSourceV2DtoType = "DECLARATIVE"
+	PublicCreateOracleSourceV2DtoTypeFIVETRAN       PublicCreateOracleSourceV2DtoType = "FIVETRAN"
+	PublicCreateOracleSourceV2DtoTypeLOOKER         PublicCreateOracleSourceV2DtoType = "LOOKER"
+	PublicCreateOracleSourceV2DtoTypeMICROSTRATEGY  PublicCreateOracleSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateOracleSourceV2DtoTypeMSSQL          PublicCreateOracleSourceV2DtoType = "MSSQL"
+	PublicCreateOracleSourceV2DtoTypeMYSQL          PublicCreateOracleSourceV2DtoType = "MYSQL"
+	PublicCreateOracleSourceV2DtoTypeORACLE         PublicCreateOracleSourceV2DtoType = "ORACLE"
+	PublicCreateOracleSourceV2DtoTypePOSTGRESQL     PublicCreateOracleSourceV2DtoType = "POSTGRESQL"
+	PublicCreateOracleSourceV2DtoTypePOWERBI        PublicCreateOracleSourceV2DtoType = "POWER_BI"
+	PublicCreateOracleSourceV2DtoTypeQLIK           PublicCreateOracleSourceV2DtoType = "QLIK"
+	PublicCreateOracleSourceV2DtoTypeQUICKSIGHT     PublicCreateOracleSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateOracleSourceV2DtoTypeREDSHIFT       PublicCreateOracleSourceV2DtoType = "REDSHIFT"
+	PublicCreateOracleSourceV2DtoTypeSNOWFLAKE      PublicCreateOracleSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateOracleSourceV2DtoTypeSYNAPSE        PublicCreateOracleSourceV2DtoType = "SYNAPSE"
+	PublicCreateOracleSourceV2DtoTypeTABLEAU        PublicCreateOracleSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreatePostgresqlSourceV2DtoType.
 const (
-	PublicCreatePostgresqlSourceV2DtoTypeAIRFLOW       PublicCreatePostgresqlSourceV2DtoType = "AIRFLOW"
-	PublicCreatePostgresqlSourceV2DtoTypeATHENA        PublicCreatePostgresqlSourceV2DtoType = "ATHENA"
-	PublicCreatePostgresqlSourceV2DtoTypeBIGQUERY      PublicCreatePostgresqlSourceV2DtoType = "BIGQUERY"
-	PublicCreatePostgresqlSourceV2DtoTypeDATABRICKS    PublicCreatePostgresqlSourceV2DtoType = "DATABRICKS"
-	PublicCreatePostgresqlSourceV2DtoTypeDBT           PublicCreatePostgresqlSourceV2DtoType = "DBT"
-	PublicCreatePostgresqlSourceV2DtoTypeDBTCLOUD      PublicCreatePostgresqlSourceV2DtoType = "DBTCLOUD"
-	PublicCreatePostgresqlSourceV2DtoTypeDECLARATIVE   PublicCreatePostgresqlSourceV2DtoType = "DECLARATIVE"
-	PublicCreatePostgresqlSourceV2DtoTypeFIVETRAN      PublicCreatePostgresqlSourceV2DtoType = "FIVETRAN"
-	PublicCreatePostgresqlSourceV2DtoTypeLOOKER        PublicCreatePostgresqlSourceV2DtoType = "LOOKER"
-	PublicCreatePostgresqlSourceV2DtoTypeMICROSTRATEGY PublicCreatePostgresqlSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreatePostgresqlSourceV2DtoTypeMSSQL         PublicCreatePostgresqlSourceV2DtoType = "MSSQL"
-	PublicCreatePostgresqlSourceV2DtoTypeMYSQL         PublicCreatePostgresqlSourceV2DtoType = "MYSQL"
-	PublicCreatePostgresqlSourceV2DtoTypeORACLE        PublicCreatePostgresqlSourceV2DtoType = "ORACLE"
-	PublicCreatePostgresqlSourceV2DtoTypePOSTGRESQL    PublicCreatePostgresqlSourceV2DtoType = "POSTGRESQL"
-	PublicCreatePostgresqlSourceV2DtoTypePOWERBI       PublicCreatePostgresqlSourceV2DtoType = "POWER_BI"
-	PublicCreatePostgresqlSourceV2DtoTypeQLIK          PublicCreatePostgresqlSourceV2DtoType = "QLIK"
-	PublicCreatePostgresqlSourceV2DtoTypeQUICKSIGHT    PublicCreatePostgresqlSourceV2DtoType = "QUICKSIGHT"
-	PublicCreatePostgresqlSourceV2DtoTypeREDSHIFT      PublicCreatePostgresqlSourceV2DtoType = "REDSHIFT"
-	PublicCreatePostgresqlSourceV2DtoTypeSNOWFLAKE     PublicCreatePostgresqlSourceV2DtoType = "SNOWFLAKE"
-	PublicCreatePostgresqlSourceV2DtoTypeSYNAPSE       PublicCreatePostgresqlSourceV2DtoType = "SYNAPSE"
-	PublicCreatePostgresqlSourceV2DtoTypeTABLEAU       PublicCreatePostgresqlSourceV2DtoType = "TABLEAU"
+	PublicCreatePostgresqlSourceV2DtoTypeAIRFLOW        PublicCreatePostgresqlSourceV2DtoType = "AIRFLOW"
+	PublicCreatePostgresqlSourceV2DtoTypeATHENA         PublicCreatePostgresqlSourceV2DtoType = "ATHENA"
+	PublicCreatePostgresqlSourceV2DtoTypeBIGQUERY       PublicCreatePostgresqlSourceV2DtoType = "BIGQUERY"
+	PublicCreatePostgresqlSourceV2DtoTypeDATABRICKS     PublicCreatePostgresqlSourceV2DtoType = "DATABRICKS"
+	PublicCreatePostgresqlSourceV2DtoTypeDATABRICKSJOBS PublicCreatePostgresqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreatePostgresqlSourceV2DtoTypeDBT            PublicCreatePostgresqlSourceV2DtoType = "DBT"
+	PublicCreatePostgresqlSourceV2DtoTypeDBTCLOUD       PublicCreatePostgresqlSourceV2DtoType = "DBTCLOUD"
+	PublicCreatePostgresqlSourceV2DtoTypeDECLARATIVE    PublicCreatePostgresqlSourceV2DtoType = "DECLARATIVE"
+	PublicCreatePostgresqlSourceV2DtoTypeFIVETRAN       PublicCreatePostgresqlSourceV2DtoType = "FIVETRAN"
+	PublicCreatePostgresqlSourceV2DtoTypeLOOKER         PublicCreatePostgresqlSourceV2DtoType = "LOOKER"
+	PublicCreatePostgresqlSourceV2DtoTypeMICROSTRATEGY  PublicCreatePostgresqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreatePostgresqlSourceV2DtoTypeMSSQL          PublicCreatePostgresqlSourceV2DtoType = "MSSQL"
+	PublicCreatePostgresqlSourceV2DtoTypeMYSQL          PublicCreatePostgresqlSourceV2DtoType = "MYSQL"
+	PublicCreatePostgresqlSourceV2DtoTypeORACLE         PublicCreatePostgresqlSourceV2DtoType = "ORACLE"
+	PublicCreatePostgresqlSourceV2DtoTypePOSTGRESQL     PublicCreatePostgresqlSourceV2DtoType = "POSTGRESQL"
+	PublicCreatePostgresqlSourceV2DtoTypePOWERBI        PublicCreatePostgresqlSourceV2DtoType = "POWER_BI"
+	PublicCreatePostgresqlSourceV2DtoTypeQLIK           PublicCreatePostgresqlSourceV2DtoType = "QLIK"
+	PublicCreatePostgresqlSourceV2DtoTypeQUICKSIGHT     PublicCreatePostgresqlSourceV2DtoType = "QUICKSIGHT"
+	PublicCreatePostgresqlSourceV2DtoTypeREDSHIFT       PublicCreatePostgresqlSourceV2DtoType = "REDSHIFT"
+	PublicCreatePostgresqlSourceV2DtoTypeSNOWFLAKE      PublicCreatePostgresqlSourceV2DtoType = "SNOWFLAKE"
+	PublicCreatePostgresqlSourceV2DtoTypeSYNAPSE        PublicCreatePostgresqlSourceV2DtoType = "SYNAPSE"
+	PublicCreatePostgresqlSourceV2DtoTypeTABLEAU        PublicCreatePostgresqlSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreatePowerBiSourceV2DtoType.
 const (
-	PublicCreatePowerBiSourceV2DtoTypeAIRFLOW       PublicCreatePowerBiSourceV2DtoType = "AIRFLOW"
-	PublicCreatePowerBiSourceV2DtoTypeATHENA        PublicCreatePowerBiSourceV2DtoType = "ATHENA"
-	PublicCreatePowerBiSourceV2DtoTypeBIGQUERY      PublicCreatePowerBiSourceV2DtoType = "BIGQUERY"
-	PublicCreatePowerBiSourceV2DtoTypeDATABRICKS    PublicCreatePowerBiSourceV2DtoType = "DATABRICKS"
-	PublicCreatePowerBiSourceV2DtoTypeDBT           PublicCreatePowerBiSourceV2DtoType = "DBT"
-	PublicCreatePowerBiSourceV2DtoTypeDBTCLOUD      PublicCreatePowerBiSourceV2DtoType = "DBTCLOUD"
-	PublicCreatePowerBiSourceV2DtoTypeDECLARATIVE   PublicCreatePowerBiSourceV2DtoType = "DECLARATIVE"
-	PublicCreatePowerBiSourceV2DtoTypeFIVETRAN      PublicCreatePowerBiSourceV2DtoType = "FIVETRAN"
-	PublicCreatePowerBiSourceV2DtoTypeLOOKER        PublicCreatePowerBiSourceV2DtoType = "LOOKER"
-	PublicCreatePowerBiSourceV2DtoTypeMICROSTRATEGY PublicCreatePowerBiSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreatePowerBiSourceV2DtoTypeMSSQL         PublicCreatePowerBiSourceV2DtoType = "MSSQL"
-	PublicCreatePowerBiSourceV2DtoTypeMYSQL         PublicCreatePowerBiSourceV2DtoType = "MYSQL"
-	PublicCreatePowerBiSourceV2DtoTypeORACLE        PublicCreatePowerBiSourceV2DtoType = "ORACLE"
-	PublicCreatePowerBiSourceV2DtoTypePOSTGRESQL    PublicCreatePowerBiSourceV2DtoType = "POSTGRESQL"
-	PublicCreatePowerBiSourceV2DtoTypePOWERBI       PublicCreatePowerBiSourceV2DtoType = "POWER_BI"
-	PublicCreatePowerBiSourceV2DtoTypeQLIK          PublicCreatePowerBiSourceV2DtoType = "QLIK"
-	PublicCreatePowerBiSourceV2DtoTypeQUICKSIGHT    PublicCreatePowerBiSourceV2DtoType = "QUICKSIGHT"
-	PublicCreatePowerBiSourceV2DtoTypeREDSHIFT      PublicCreatePowerBiSourceV2DtoType = "REDSHIFT"
-	PublicCreatePowerBiSourceV2DtoTypeSNOWFLAKE     PublicCreatePowerBiSourceV2DtoType = "SNOWFLAKE"
-	PublicCreatePowerBiSourceV2DtoTypeSYNAPSE       PublicCreatePowerBiSourceV2DtoType = "SYNAPSE"
-	PublicCreatePowerBiSourceV2DtoTypeTABLEAU       PublicCreatePowerBiSourceV2DtoType = "TABLEAU"
+	PublicCreatePowerBiSourceV2DtoTypeAIRFLOW        PublicCreatePowerBiSourceV2DtoType = "AIRFLOW"
+	PublicCreatePowerBiSourceV2DtoTypeATHENA         PublicCreatePowerBiSourceV2DtoType = "ATHENA"
+	PublicCreatePowerBiSourceV2DtoTypeBIGQUERY       PublicCreatePowerBiSourceV2DtoType = "BIGQUERY"
+	PublicCreatePowerBiSourceV2DtoTypeDATABRICKS     PublicCreatePowerBiSourceV2DtoType = "DATABRICKS"
+	PublicCreatePowerBiSourceV2DtoTypeDATABRICKSJOBS PublicCreatePowerBiSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreatePowerBiSourceV2DtoTypeDBT            PublicCreatePowerBiSourceV2DtoType = "DBT"
+	PublicCreatePowerBiSourceV2DtoTypeDBTCLOUD       PublicCreatePowerBiSourceV2DtoType = "DBTCLOUD"
+	PublicCreatePowerBiSourceV2DtoTypeDECLARATIVE    PublicCreatePowerBiSourceV2DtoType = "DECLARATIVE"
+	PublicCreatePowerBiSourceV2DtoTypeFIVETRAN       PublicCreatePowerBiSourceV2DtoType = "FIVETRAN"
+	PublicCreatePowerBiSourceV2DtoTypeLOOKER         PublicCreatePowerBiSourceV2DtoType = "LOOKER"
+	PublicCreatePowerBiSourceV2DtoTypeMICROSTRATEGY  PublicCreatePowerBiSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreatePowerBiSourceV2DtoTypeMSSQL          PublicCreatePowerBiSourceV2DtoType = "MSSQL"
+	PublicCreatePowerBiSourceV2DtoTypeMYSQL          PublicCreatePowerBiSourceV2DtoType = "MYSQL"
+	PublicCreatePowerBiSourceV2DtoTypeORACLE         PublicCreatePowerBiSourceV2DtoType = "ORACLE"
+	PublicCreatePowerBiSourceV2DtoTypePOSTGRESQL     PublicCreatePowerBiSourceV2DtoType = "POSTGRESQL"
+	PublicCreatePowerBiSourceV2DtoTypePOWERBI        PublicCreatePowerBiSourceV2DtoType = "POWER_BI"
+	PublicCreatePowerBiSourceV2DtoTypeQLIK           PublicCreatePowerBiSourceV2DtoType = "QLIK"
+	PublicCreatePowerBiSourceV2DtoTypeQUICKSIGHT     PublicCreatePowerBiSourceV2DtoType = "QUICKSIGHT"
+	PublicCreatePowerBiSourceV2DtoTypeREDSHIFT       PublicCreatePowerBiSourceV2DtoType = "REDSHIFT"
+	PublicCreatePowerBiSourceV2DtoTypeSNOWFLAKE      PublicCreatePowerBiSourceV2DtoType = "SNOWFLAKE"
+	PublicCreatePowerBiSourceV2DtoTypeSYNAPSE        PublicCreatePowerBiSourceV2DtoType = "SYNAPSE"
+	PublicCreatePowerBiSourceV2DtoTypeTABLEAU        PublicCreatePowerBiSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateQlikSourceV2DtoType.
 const (
-	PublicCreateQlikSourceV2DtoTypeAIRFLOW       PublicCreateQlikSourceV2DtoType = "AIRFLOW"
-	PublicCreateQlikSourceV2DtoTypeATHENA        PublicCreateQlikSourceV2DtoType = "ATHENA"
-	PublicCreateQlikSourceV2DtoTypeBIGQUERY      PublicCreateQlikSourceV2DtoType = "BIGQUERY"
-	PublicCreateQlikSourceV2DtoTypeDATABRICKS    PublicCreateQlikSourceV2DtoType = "DATABRICKS"
-	PublicCreateQlikSourceV2DtoTypeDBT           PublicCreateQlikSourceV2DtoType = "DBT"
-	PublicCreateQlikSourceV2DtoTypeDBTCLOUD      PublicCreateQlikSourceV2DtoType = "DBTCLOUD"
-	PublicCreateQlikSourceV2DtoTypeDECLARATIVE   PublicCreateQlikSourceV2DtoType = "DECLARATIVE"
-	PublicCreateQlikSourceV2DtoTypeFIVETRAN      PublicCreateQlikSourceV2DtoType = "FIVETRAN"
-	PublicCreateQlikSourceV2DtoTypeLOOKER        PublicCreateQlikSourceV2DtoType = "LOOKER"
-	PublicCreateQlikSourceV2DtoTypeMICROSTRATEGY PublicCreateQlikSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateQlikSourceV2DtoTypeMSSQL         PublicCreateQlikSourceV2DtoType = "MSSQL"
-	PublicCreateQlikSourceV2DtoTypeMYSQL         PublicCreateQlikSourceV2DtoType = "MYSQL"
-	PublicCreateQlikSourceV2DtoTypeORACLE        PublicCreateQlikSourceV2DtoType = "ORACLE"
-	PublicCreateQlikSourceV2DtoTypePOSTGRESQL    PublicCreateQlikSourceV2DtoType = "POSTGRESQL"
-	PublicCreateQlikSourceV2DtoTypePOWERBI       PublicCreateQlikSourceV2DtoType = "POWER_BI"
-	PublicCreateQlikSourceV2DtoTypeQLIK          PublicCreateQlikSourceV2DtoType = "QLIK"
-	PublicCreateQlikSourceV2DtoTypeQUICKSIGHT    PublicCreateQlikSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateQlikSourceV2DtoTypeREDSHIFT      PublicCreateQlikSourceV2DtoType = "REDSHIFT"
-	PublicCreateQlikSourceV2DtoTypeSNOWFLAKE     PublicCreateQlikSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateQlikSourceV2DtoTypeSYNAPSE       PublicCreateQlikSourceV2DtoType = "SYNAPSE"
-	PublicCreateQlikSourceV2DtoTypeTABLEAU       PublicCreateQlikSourceV2DtoType = "TABLEAU"
+	PublicCreateQlikSourceV2DtoTypeAIRFLOW        PublicCreateQlikSourceV2DtoType = "AIRFLOW"
+	PublicCreateQlikSourceV2DtoTypeATHENA         PublicCreateQlikSourceV2DtoType = "ATHENA"
+	PublicCreateQlikSourceV2DtoTypeBIGQUERY       PublicCreateQlikSourceV2DtoType = "BIGQUERY"
+	PublicCreateQlikSourceV2DtoTypeDATABRICKS     PublicCreateQlikSourceV2DtoType = "DATABRICKS"
+	PublicCreateQlikSourceV2DtoTypeDATABRICKSJOBS PublicCreateQlikSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateQlikSourceV2DtoTypeDBT            PublicCreateQlikSourceV2DtoType = "DBT"
+	PublicCreateQlikSourceV2DtoTypeDBTCLOUD       PublicCreateQlikSourceV2DtoType = "DBTCLOUD"
+	PublicCreateQlikSourceV2DtoTypeDECLARATIVE    PublicCreateQlikSourceV2DtoType = "DECLARATIVE"
+	PublicCreateQlikSourceV2DtoTypeFIVETRAN       PublicCreateQlikSourceV2DtoType = "FIVETRAN"
+	PublicCreateQlikSourceV2DtoTypeLOOKER         PublicCreateQlikSourceV2DtoType = "LOOKER"
+	PublicCreateQlikSourceV2DtoTypeMICROSTRATEGY  PublicCreateQlikSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateQlikSourceV2DtoTypeMSSQL          PublicCreateQlikSourceV2DtoType = "MSSQL"
+	PublicCreateQlikSourceV2DtoTypeMYSQL          PublicCreateQlikSourceV2DtoType = "MYSQL"
+	PublicCreateQlikSourceV2DtoTypeORACLE         PublicCreateQlikSourceV2DtoType = "ORACLE"
+	PublicCreateQlikSourceV2DtoTypePOSTGRESQL     PublicCreateQlikSourceV2DtoType = "POSTGRESQL"
+	PublicCreateQlikSourceV2DtoTypePOWERBI        PublicCreateQlikSourceV2DtoType = "POWER_BI"
+	PublicCreateQlikSourceV2DtoTypeQLIK           PublicCreateQlikSourceV2DtoType = "QLIK"
+	PublicCreateQlikSourceV2DtoTypeQUICKSIGHT     PublicCreateQlikSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateQlikSourceV2DtoTypeREDSHIFT       PublicCreateQlikSourceV2DtoType = "REDSHIFT"
+	PublicCreateQlikSourceV2DtoTypeSNOWFLAKE      PublicCreateQlikSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateQlikSourceV2DtoTypeSYNAPSE        PublicCreateQlikSourceV2DtoType = "SYNAPSE"
+	PublicCreateQlikSourceV2DtoTypeTABLEAU        PublicCreateQlikSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateQuicksightSourceV2DtoType.
 const (
-	PublicCreateQuicksightSourceV2DtoTypeAIRFLOW       PublicCreateQuicksightSourceV2DtoType = "AIRFLOW"
-	PublicCreateQuicksightSourceV2DtoTypeATHENA        PublicCreateQuicksightSourceV2DtoType = "ATHENA"
-	PublicCreateQuicksightSourceV2DtoTypeBIGQUERY      PublicCreateQuicksightSourceV2DtoType = "BIGQUERY"
-	PublicCreateQuicksightSourceV2DtoTypeDATABRICKS    PublicCreateQuicksightSourceV2DtoType = "DATABRICKS"
-	PublicCreateQuicksightSourceV2DtoTypeDBT           PublicCreateQuicksightSourceV2DtoType = "DBT"
-	PublicCreateQuicksightSourceV2DtoTypeDBTCLOUD      PublicCreateQuicksightSourceV2DtoType = "DBTCLOUD"
-	PublicCreateQuicksightSourceV2DtoTypeDECLARATIVE   PublicCreateQuicksightSourceV2DtoType = "DECLARATIVE"
-	PublicCreateQuicksightSourceV2DtoTypeFIVETRAN      PublicCreateQuicksightSourceV2DtoType = "FIVETRAN"
-	PublicCreateQuicksightSourceV2DtoTypeLOOKER        PublicCreateQuicksightSourceV2DtoType = "LOOKER"
-	PublicCreateQuicksightSourceV2DtoTypeMICROSTRATEGY PublicCreateQuicksightSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateQuicksightSourceV2DtoTypeMSSQL         PublicCreateQuicksightSourceV2DtoType = "MSSQL"
-	PublicCreateQuicksightSourceV2DtoTypeMYSQL         PublicCreateQuicksightSourceV2DtoType = "MYSQL"
-	PublicCreateQuicksightSourceV2DtoTypeORACLE        PublicCreateQuicksightSourceV2DtoType = "ORACLE"
-	PublicCreateQuicksightSourceV2DtoTypePOSTGRESQL    PublicCreateQuicksightSourceV2DtoType = "POSTGRESQL"
-	PublicCreateQuicksightSourceV2DtoTypePOWERBI       PublicCreateQuicksightSourceV2DtoType = "POWER_BI"
-	PublicCreateQuicksightSourceV2DtoTypeQLIK          PublicCreateQuicksightSourceV2DtoType = "QLIK"
-	PublicCreateQuicksightSourceV2DtoTypeQUICKSIGHT    PublicCreateQuicksightSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateQuicksightSourceV2DtoTypeREDSHIFT      PublicCreateQuicksightSourceV2DtoType = "REDSHIFT"
-	PublicCreateQuicksightSourceV2DtoTypeSNOWFLAKE     PublicCreateQuicksightSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateQuicksightSourceV2DtoTypeSYNAPSE       PublicCreateQuicksightSourceV2DtoType = "SYNAPSE"
-	PublicCreateQuicksightSourceV2DtoTypeTABLEAU       PublicCreateQuicksightSourceV2DtoType = "TABLEAU"
+	PublicCreateQuicksightSourceV2DtoTypeAIRFLOW        PublicCreateQuicksightSourceV2DtoType = "AIRFLOW"
+	PublicCreateQuicksightSourceV2DtoTypeATHENA         PublicCreateQuicksightSourceV2DtoType = "ATHENA"
+	PublicCreateQuicksightSourceV2DtoTypeBIGQUERY       PublicCreateQuicksightSourceV2DtoType = "BIGQUERY"
+	PublicCreateQuicksightSourceV2DtoTypeDATABRICKS     PublicCreateQuicksightSourceV2DtoType = "DATABRICKS"
+	PublicCreateQuicksightSourceV2DtoTypeDATABRICKSJOBS PublicCreateQuicksightSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateQuicksightSourceV2DtoTypeDBT            PublicCreateQuicksightSourceV2DtoType = "DBT"
+	PublicCreateQuicksightSourceV2DtoTypeDBTCLOUD       PublicCreateQuicksightSourceV2DtoType = "DBTCLOUD"
+	PublicCreateQuicksightSourceV2DtoTypeDECLARATIVE    PublicCreateQuicksightSourceV2DtoType = "DECLARATIVE"
+	PublicCreateQuicksightSourceV2DtoTypeFIVETRAN       PublicCreateQuicksightSourceV2DtoType = "FIVETRAN"
+	PublicCreateQuicksightSourceV2DtoTypeLOOKER         PublicCreateQuicksightSourceV2DtoType = "LOOKER"
+	PublicCreateQuicksightSourceV2DtoTypeMICROSTRATEGY  PublicCreateQuicksightSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateQuicksightSourceV2DtoTypeMSSQL          PublicCreateQuicksightSourceV2DtoType = "MSSQL"
+	PublicCreateQuicksightSourceV2DtoTypeMYSQL          PublicCreateQuicksightSourceV2DtoType = "MYSQL"
+	PublicCreateQuicksightSourceV2DtoTypeORACLE         PublicCreateQuicksightSourceV2DtoType = "ORACLE"
+	PublicCreateQuicksightSourceV2DtoTypePOSTGRESQL     PublicCreateQuicksightSourceV2DtoType = "POSTGRESQL"
+	PublicCreateQuicksightSourceV2DtoTypePOWERBI        PublicCreateQuicksightSourceV2DtoType = "POWER_BI"
+	PublicCreateQuicksightSourceV2DtoTypeQLIK           PublicCreateQuicksightSourceV2DtoType = "QLIK"
+	PublicCreateQuicksightSourceV2DtoTypeQUICKSIGHT     PublicCreateQuicksightSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateQuicksightSourceV2DtoTypeREDSHIFT       PublicCreateQuicksightSourceV2DtoType = "REDSHIFT"
+	PublicCreateQuicksightSourceV2DtoTypeSNOWFLAKE      PublicCreateQuicksightSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateQuicksightSourceV2DtoTypeSYNAPSE        PublicCreateQuicksightSourceV2DtoType = "SYNAPSE"
+	PublicCreateQuicksightSourceV2DtoTypeTABLEAU        PublicCreateQuicksightSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateRedshiftSourceV2DtoType.
 const (
-	PublicCreateRedshiftSourceV2DtoTypeAIRFLOW       PublicCreateRedshiftSourceV2DtoType = "AIRFLOW"
-	PublicCreateRedshiftSourceV2DtoTypeATHENA        PublicCreateRedshiftSourceV2DtoType = "ATHENA"
-	PublicCreateRedshiftSourceV2DtoTypeBIGQUERY      PublicCreateRedshiftSourceV2DtoType = "BIGQUERY"
-	PublicCreateRedshiftSourceV2DtoTypeDATABRICKS    PublicCreateRedshiftSourceV2DtoType = "DATABRICKS"
-	PublicCreateRedshiftSourceV2DtoTypeDBT           PublicCreateRedshiftSourceV2DtoType = "DBT"
-	PublicCreateRedshiftSourceV2DtoTypeDBTCLOUD      PublicCreateRedshiftSourceV2DtoType = "DBTCLOUD"
-	PublicCreateRedshiftSourceV2DtoTypeDECLARATIVE   PublicCreateRedshiftSourceV2DtoType = "DECLARATIVE"
-	PublicCreateRedshiftSourceV2DtoTypeFIVETRAN      PublicCreateRedshiftSourceV2DtoType = "FIVETRAN"
-	PublicCreateRedshiftSourceV2DtoTypeLOOKER        PublicCreateRedshiftSourceV2DtoType = "LOOKER"
-	PublicCreateRedshiftSourceV2DtoTypeMICROSTRATEGY PublicCreateRedshiftSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateRedshiftSourceV2DtoTypeMSSQL         PublicCreateRedshiftSourceV2DtoType = "MSSQL"
-	PublicCreateRedshiftSourceV2DtoTypeMYSQL         PublicCreateRedshiftSourceV2DtoType = "MYSQL"
-	PublicCreateRedshiftSourceV2DtoTypeORACLE        PublicCreateRedshiftSourceV2DtoType = "ORACLE"
-	PublicCreateRedshiftSourceV2DtoTypePOSTGRESQL    PublicCreateRedshiftSourceV2DtoType = "POSTGRESQL"
-	PublicCreateRedshiftSourceV2DtoTypePOWERBI       PublicCreateRedshiftSourceV2DtoType = "POWER_BI"
-	PublicCreateRedshiftSourceV2DtoTypeQLIK          PublicCreateRedshiftSourceV2DtoType = "QLIK"
-	PublicCreateRedshiftSourceV2DtoTypeQUICKSIGHT    PublicCreateRedshiftSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateRedshiftSourceV2DtoTypeREDSHIFT      PublicCreateRedshiftSourceV2DtoType = "REDSHIFT"
-	PublicCreateRedshiftSourceV2DtoTypeSNOWFLAKE     PublicCreateRedshiftSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateRedshiftSourceV2DtoTypeSYNAPSE       PublicCreateRedshiftSourceV2DtoType = "SYNAPSE"
-	PublicCreateRedshiftSourceV2DtoTypeTABLEAU       PublicCreateRedshiftSourceV2DtoType = "TABLEAU"
+	PublicCreateRedshiftSourceV2DtoTypeAIRFLOW        PublicCreateRedshiftSourceV2DtoType = "AIRFLOW"
+	PublicCreateRedshiftSourceV2DtoTypeATHENA         PublicCreateRedshiftSourceV2DtoType = "ATHENA"
+	PublicCreateRedshiftSourceV2DtoTypeBIGQUERY       PublicCreateRedshiftSourceV2DtoType = "BIGQUERY"
+	PublicCreateRedshiftSourceV2DtoTypeDATABRICKS     PublicCreateRedshiftSourceV2DtoType = "DATABRICKS"
+	PublicCreateRedshiftSourceV2DtoTypeDATABRICKSJOBS PublicCreateRedshiftSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateRedshiftSourceV2DtoTypeDBT            PublicCreateRedshiftSourceV2DtoType = "DBT"
+	PublicCreateRedshiftSourceV2DtoTypeDBTCLOUD       PublicCreateRedshiftSourceV2DtoType = "DBTCLOUD"
+	PublicCreateRedshiftSourceV2DtoTypeDECLARATIVE    PublicCreateRedshiftSourceV2DtoType = "DECLARATIVE"
+	PublicCreateRedshiftSourceV2DtoTypeFIVETRAN       PublicCreateRedshiftSourceV2DtoType = "FIVETRAN"
+	PublicCreateRedshiftSourceV2DtoTypeLOOKER         PublicCreateRedshiftSourceV2DtoType = "LOOKER"
+	PublicCreateRedshiftSourceV2DtoTypeMICROSTRATEGY  PublicCreateRedshiftSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateRedshiftSourceV2DtoTypeMSSQL          PublicCreateRedshiftSourceV2DtoType = "MSSQL"
+	PublicCreateRedshiftSourceV2DtoTypeMYSQL          PublicCreateRedshiftSourceV2DtoType = "MYSQL"
+	PublicCreateRedshiftSourceV2DtoTypeORACLE         PublicCreateRedshiftSourceV2DtoType = "ORACLE"
+	PublicCreateRedshiftSourceV2DtoTypePOSTGRESQL     PublicCreateRedshiftSourceV2DtoType = "POSTGRESQL"
+	PublicCreateRedshiftSourceV2DtoTypePOWERBI        PublicCreateRedshiftSourceV2DtoType = "POWER_BI"
+	PublicCreateRedshiftSourceV2DtoTypeQLIK           PublicCreateRedshiftSourceV2DtoType = "QLIK"
+	PublicCreateRedshiftSourceV2DtoTypeQUICKSIGHT     PublicCreateRedshiftSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateRedshiftSourceV2DtoTypeREDSHIFT       PublicCreateRedshiftSourceV2DtoType = "REDSHIFT"
+	PublicCreateRedshiftSourceV2DtoTypeSNOWFLAKE      PublicCreateRedshiftSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateRedshiftSourceV2DtoTypeSYNAPSE        PublicCreateRedshiftSourceV2DtoType = "SYNAPSE"
+	PublicCreateRedshiftSourceV2DtoTypeTABLEAU        PublicCreateRedshiftSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateSnowflakeSourceV2DtoType.
 const (
-	PublicCreateSnowflakeSourceV2DtoTypeAIRFLOW       PublicCreateSnowflakeSourceV2DtoType = "AIRFLOW"
-	PublicCreateSnowflakeSourceV2DtoTypeATHENA        PublicCreateSnowflakeSourceV2DtoType = "ATHENA"
-	PublicCreateSnowflakeSourceV2DtoTypeBIGQUERY      PublicCreateSnowflakeSourceV2DtoType = "BIGQUERY"
-	PublicCreateSnowflakeSourceV2DtoTypeDATABRICKS    PublicCreateSnowflakeSourceV2DtoType = "DATABRICKS"
-	PublicCreateSnowflakeSourceV2DtoTypeDBT           PublicCreateSnowflakeSourceV2DtoType = "DBT"
-	PublicCreateSnowflakeSourceV2DtoTypeDBTCLOUD      PublicCreateSnowflakeSourceV2DtoType = "DBTCLOUD"
-	PublicCreateSnowflakeSourceV2DtoTypeDECLARATIVE   PublicCreateSnowflakeSourceV2DtoType = "DECLARATIVE"
-	PublicCreateSnowflakeSourceV2DtoTypeFIVETRAN      PublicCreateSnowflakeSourceV2DtoType = "FIVETRAN"
-	PublicCreateSnowflakeSourceV2DtoTypeLOOKER        PublicCreateSnowflakeSourceV2DtoType = "LOOKER"
-	PublicCreateSnowflakeSourceV2DtoTypeMICROSTRATEGY PublicCreateSnowflakeSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateSnowflakeSourceV2DtoTypeMSSQL         PublicCreateSnowflakeSourceV2DtoType = "MSSQL"
-	PublicCreateSnowflakeSourceV2DtoTypeMYSQL         PublicCreateSnowflakeSourceV2DtoType = "MYSQL"
-	PublicCreateSnowflakeSourceV2DtoTypeORACLE        PublicCreateSnowflakeSourceV2DtoType = "ORACLE"
-	PublicCreateSnowflakeSourceV2DtoTypePOSTGRESQL    PublicCreateSnowflakeSourceV2DtoType = "POSTGRESQL"
-	PublicCreateSnowflakeSourceV2DtoTypePOWERBI       PublicCreateSnowflakeSourceV2DtoType = "POWER_BI"
-	PublicCreateSnowflakeSourceV2DtoTypeQLIK          PublicCreateSnowflakeSourceV2DtoType = "QLIK"
-	PublicCreateSnowflakeSourceV2DtoTypeQUICKSIGHT    PublicCreateSnowflakeSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateSnowflakeSourceV2DtoTypeREDSHIFT      PublicCreateSnowflakeSourceV2DtoType = "REDSHIFT"
-	PublicCreateSnowflakeSourceV2DtoTypeSNOWFLAKE     PublicCreateSnowflakeSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateSnowflakeSourceV2DtoTypeSYNAPSE       PublicCreateSnowflakeSourceV2DtoType = "SYNAPSE"
-	PublicCreateSnowflakeSourceV2DtoTypeTABLEAU       PublicCreateSnowflakeSourceV2DtoType = "TABLEAU"
+	PublicCreateSnowflakeSourceV2DtoTypeAIRFLOW        PublicCreateSnowflakeSourceV2DtoType = "AIRFLOW"
+	PublicCreateSnowflakeSourceV2DtoTypeATHENA         PublicCreateSnowflakeSourceV2DtoType = "ATHENA"
+	PublicCreateSnowflakeSourceV2DtoTypeBIGQUERY       PublicCreateSnowflakeSourceV2DtoType = "BIGQUERY"
+	PublicCreateSnowflakeSourceV2DtoTypeDATABRICKS     PublicCreateSnowflakeSourceV2DtoType = "DATABRICKS"
+	PublicCreateSnowflakeSourceV2DtoTypeDATABRICKSJOBS PublicCreateSnowflakeSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateSnowflakeSourceV2DtoTypeDBT            PublicCreateSnowflakeSourceV2DtoType = "DBT"
+	PublicCreateSnowflakeSourceV2DtoTypeDBTCLOUD       PublicCreateSnowflakeSourceV2DtoType = "DBTCLOUD"
+	PublicCreateSnowflakeSourceV2DtoTypeDECLARATIVE    PublicCreateSnowflakeSourceV2DtoType = "DECLARATIVE"
+	PublicCreateSnowflakeSourceV2DtoTypeFIVETRAN       PublicCreateSnowflakeSourceV2DtoType = "FIVETRAN"
+	PublicCreateSnowflakeSourceV2DtoTypeLOOKER         PublicCreateSnowflakeSourceV2DtoType = "LOOKER"
+	PublicCreateSnowflakeSourceV2DtoTypeMICROSTRATEGY  PublicCreateSnowflakeSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateSnowflakeSourceV2DtoTypeMSSQL          PublicCreateSnowflakeSourceV2DtoType = "MSSQL"
+	PublicCreateSnowflakeSourceV2DtoTypeMYSQL          PublicCreateSnowflakeSourceV2DtoType = "MYSQL"
+	PublicCreateSnowflakeSourceV2DtoTypeORACLE         PublicCreateSnowflakeSourceV2DtoType = "ORACLE"
+	PublicCreateSnowflakeSourceV2DtoTypePOSTGRESQL     PublicCreateSnowflakeSourceV2DtoType = "POSTGRESQL"
+	PublicCreateSnowflakeSourceV2DtoTypePOWERBI        PublicCreateSnowflakeSourceV2DtoType = "POWER_BI"
+	PublicCreateSnowflakeSourceV2DtoTypeQLIK           PublicCreateSnowflakeSourceV2DtoType = "QLIK"
+	PublicCreateSnowflakeSourceV2DtoTypeQUICKSIGHT     PublicCreateSnowflakeSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateSnowflakeSourceV2DtoTypeREDSHIFT       PublicCreateSnowflakeSourceV2DtoType = "REDSHIFT"
+	PublicCreateSnowflakeSourceV2DtoTypeSNOWFLAKE      PublicCreateSnowflakeSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateSnowflakeSourceV2DtoTypeSYNAPSE        PublicCreateSnowflakeSourceV2DtoType = "SYNAPSE"
+	PublicCreateSnowflakeSourceV2DtoTypeTABLEAU        PublicCreateSnowflakeSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateSourceV2DtoType.
 const (
-	PublicCreateSourceV2DtoTypeAIRFLOW       PublicCreateSourceV2DtoType = "AIRFLOW"
-	PublicCreateSourceV2DtoTypeATHENA        PublicCreateSourceV2DtoType = "ATHENA"
-	PublicCreateSourceV2DtoTypeBIGQUERY      PublicCreateSourceV2DtoType = "BIGQUERY"
-	PublicCreateSourceV2DtoTypeDATABRICKS    PublicCreateSourceV2DtoType = "DATABRICKS"
-	PublicCreateSourceV2DtoTypeDBT           PublicCreateSourceV2DtoType = "DBT"
-	PublicCreateSourceV2DtoTypeDBTCLOUD      PublicCreateSourceV2DtoType = "DBTCLOUD"
-	PublicCreateSourceV2DtoTypeDECLARATIVE   PublicCreateSourceV2DtoType = "DECLARATIVE"
-	PublicCreateSourceV2DtoTypeFIVETRAN      PublicCreateSourceV2DtoType = "FIVETRAN"
-	PublicCreateSourceV2DtoTypeLOOKER        PublicCreateSourceV2DtoType = "LOOKER"
-	PublicCreateSourceV2DtoTypeMICROSTRATEGY PublicCreateSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateSourceV2DtoTypeMSSQL         PublicCreateSourceV2DtoType = "MSSQL"
-	PublicCreateSourceV2DtoTypeMYSQL         PublicCreateSourceV2DtoType = "MYSQL"
-	PublicCreateSourceV2DtoTypeORACLE        PublicCreateSourceV2DtoType = "ORACLE"
-	PublicCreateSourceV2DtoTypePOSTGRESQL    PublicCreateSourceV2DtoType = "POSTGRESQL"
-	PublicCreateSourceV2DtoTypePOWERBI       PublicCreateSourceV2DtoType = "POWER_BI"
-	PublicCreateSourceV2DtoTypeQLIK          PublicCreateSourceV2DtoType = "QLIK"
-	PublicCreateSourceV2DtoTypeQUICKSIGHT    PublicCreateSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateSourceV2DtoTypeREDSHIFT      PublicCreateSourceV2DtoType = "REDSHIFT"
-	PublicCreateSourceV2DtoTypeSNOWFLAKE     PublicCreateSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateSourceV2DtoTypeSYNAPSE       PublicCreateSourceV2DtoType = "SYNAPSE"
-	PublicCreateSourceV2DtoTypeTABLEAU       PublicCreateSourceV2DtoType = "TABLEAU"
+	PublicCreateSourceV2DtoTypeAIRFLOW        PublicCreateSourceV2DtoType = "AIRFLOW"
+	PublicCreateSourceV2DtoTypeATHENA         PublicCreateSourceV2DtoType = "ATHENA"
+	PublicCreateSourceV2DtoTypeBIGQUERY       PublicCreateSourceV2DtoType = "BIGQUERY"
+	PublicCreateSourceV2DtoTypeDATABRICKS     PublicCreateSourceV2DtoType = "DATABRICKS"
+	PublicCreateSourceV2DtoTypeDATABRICKSJOBS PublicCreateSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateSourceV2DtoTypeDBT            PublicCreateSourceV2DtoType = "DBT"
+	PublicCreateSourceV2DtoTypeDBTCLOUD       PublicCreateSourceV2DtoType = "DBTCLOUD"
+	PublicCreateSourceV2DtoTypeDECLARATIVE    PublicCreateSourceV2DtoType = "DECLARATIVE"
+	PublicCreateSourceV2DtoTypeFIVETRAN       PublicCreateSourceV2DtoType = "FIVETRAN"
+	PublicCreateSourceV2DtoTypeLOOKER         PublicCreateSourceV2DtoType = "LOOKER"
+	PublicCreateSourceV2DtoTypeMICROSTRATEGY  PublicCreateSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateSourceV2DtoTypeMSSQL          PublicCreateSourceV2DtoType = "MSSQL"
+	PublicCreateSourceV2DtoTypeMYSQL          PublicCreateSourceV2DtoType = "MYSQL"
+	PublicCreateSourceV2DtoTypeORACLE         PublicCreateSourceV2DtoType = "ORACLE"
+	PublicCreateSourceV2DtoTypePOSTGRESQL     PublicCreateSourceV2DtoType = "POSTGRESQL"
+	PublicCreateSourceV2DtoTypePOWERBI        PublicCreateSourceV2DtoType = "POWER_BI"
+	PublicCreateSourceV2DtoTypeQLIK           PublicCreateSourceV2DtoType = "QLIK"
+	PublicCreateSourceV2DtoTypeQUICKSIGHT     PublicCreateSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateSourceV2DtoTypeREDSHIFT       PublicCreateSourceV2DtoType = "REDSHIFT"
+	PublicCreateSourceV2DtoTypeSNOWFLAKE      PublicCreateSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateSourceV2DtoTypeSYNAPSE        PublicCreateSourceV2DtoType = "SYNAPSE"
+	PublicCreateSourceV2DtoTypeTABLEAU        PublicCreateSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateSynapseSourceV2DtoType.
 const (
-	PublicCreateSynapseSourceV2DtoTypeAIRFLOW       PublicCreateSynapseSourceV2DtoType = "AIRFLOW"
-	PublicCreateSynapseSourceV2DtoTypeATHENA        PublicCreateSynapseSourceV2DtoType = "ATHENA"
-	PublicCreateSynapseSourceV2DtoTypeBIGQUERY      PublicCreateSynapseSourceV2DtoType = "BIGQUERY"
-	PublicCreateSynapseSourceV2DtoTypeDATABRICKS    PublicCreateSynapseSourceV2DtoType = "DATABRICKS"
-	PublicCreateSynapseSourceV2DtoTypeDBT           PublicCreateSynapseSourceV2DtoType = "DBT"
-	PublicCreateSynapseSourceV2DtoTypeDBTCLOUD      PublicCreateSynapseSourceV2DtoType = "DBTCLOUD"
-	PublicCreateSynapseSourceV2DtoTypeDECLARATIVE   PublicCreateSynapseSourceV2DtoType = "DECLARATIVE"
-	PublicCreateSynapseSourceV2DtoTypeFIVETRAN      PublicCreateSynapseSourceV2DtoType = "FIVETRAN"
-	PublicCreateSynapseSourceV2DtoTypeLOOKER        PublicCreateSynapseSourceV2DtoType = "LOOKER"
-	PublicCreateSynapseSourceV2DtoTypeMICROSTRATEGY PublicCreateSynapseSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateSynapseSourceV2DtoTypeMSSQL         PublicCreateSynapseSourceV2DtoType = "MSSQL"
-	PublicCreateSynapseSourceV2DtoTypeMYSQL         PublicCreateSynapseSourceV2DtoType = "MYSQL"
-	PublicCreateSynapseSourceV2DtoTypeORACLE        PublicCreateSynapseSourceV2DtoType = "ORACLE"
-	PublicCreateSynapseSourceV2DtoTypePOSTGRESQL    PublicCreateSynapseSourceV2DtoType = "POSTGRESQL"
-	PublicCreateSynapseSourceV2DtoTypePOWERBI       PublicCreateSynapseSourceV2DtoType = "POWER_BI"
-	PublicCreateSynapseSourceV2DtoTypeQLIK          PublicCreateSynapseSourceV2DtoType = "QLIK"
-	PublicCreateSynapseSourceV2DtoTypeQUICKSIGHT    PublicCreateSynapseSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateSynapseSourceV2DtoTypeREDSHIFT      PublicCreateSynapseSourceV2DtoType = "REDSHIFT"
-	PublicCreateSynapseSourceV2DtoTypeSNOWFLAKE     PublicCreateSynapseSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateSynapseSourceV2DtoTypeSYNAPSE       PublicCreateSynapseSourceV2DtoType = "SYNAPSE"
-	PublicCreateSynapseSourceV2DtoTypeTABLEAU       PublicCreateSynapseSourceV2DtoType = "TABLEAU"
+	PublicCreateSynapseSourceV2DtoTypeAIRFLOW        PublicCreateSynapseSourceV2DtoType = "AIRFLOW"
+	PublicCreateSynapseSourceV2DtoTypeATHENA         PublicCreateSynapseSourceV2DtoType = "ATHENA"
+	PublicCreateSynapseSourceV2DtoTypeBIGQUERY       PublicCreateSynapseSourceV2DtoType = "BIGQUERY"
+	PublicCreateSynapseSourceV2DtoTypeDATABRICKS     PublicCreateSynapseSourceV2DtoType = "DATABRICKS"
+	PublicCreateSynapseSourceV2DtoTypeDATABRICKSJOBS PublicCreateSynapseSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateSynapseSourceV2DtoTypeDBT            PublicCreateSynapseSourceV2DtoType = "DBT"
+	PublicCreateSynapseSourceV2DtoTypeDBTCLOUD       PublicCreateSynapseSourceV2DtoType = "DBTCLOUD"
+	PublicCreateSynapseSourceV2DtoTypeDECLARATIVE    PublicCreateSynapseSourceV2DtoType = "DECLARATIVE"
+	PublicCreateSynapseSourceV2DtoTypeFIVETRAN       PublicCreateSynapseSourceV2DtoType = "FIVETRAN"
+	PublicCreateSynapseSourceV2DtoTypeLOOKER         PublicCreateSynapseSourceV2DtoType = "LOOKER"
+	PublicCreateSynapseSourceV2DtoTypeMICROSTRATEGY  PublicCreateSynapseSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateSynapseSourceV2DtoTypeMSSQL          PublicCreateSynapseSourceV2DtoType = "MSSQL"
+	PublicCreateSynapseSourceV2DtoTypeMYSQL          PublicCreateSynapseSourceV2DtoType = "MYSQL"
+	PublicCreateSynapseSourceV2DtoTypeORACLE         PublicCreateSynapseSourceV2DtoType = "ORACLE"
+	PublicCreateSynapseSourceV2DtoTypePOSTGRESQL     PublicCreateSynapseSourceV2DtoType = "POSTGRESQL"
+	PublicCreateSynapseSourceV2DtoTypePOWERBI        PublicCreateSynapseSourceV2DtoType = "POWER_BI"
+	PublicCreateSynapseSourceV2DtoTypeQLIK           PublicCreateSynapseSourceV2DtoType = "QLIK"
+	PublicCreateSynapseSourceV2DtoTypeQUICKSIGHT     PublicCreateSynapseSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateSynapseSourceV2DtoTypeREDSHIFT       PublicCreateSynapseSourceV2DtoType = "REDSHIFT"
+	PublicCreateSynapseSourceV2DtoTypeSNOWFLAKE      PublicCreateSynapseSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateSynapseSourceV2DtoTypeSYNAPSE        PublicCreateSynapseSourceV2DtoType = "SYNAPSE"
+	PublicCreateSynapseSourceV2DtoTypeTABLEAU        PublicCreateSynapseSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCreateTableauSourceV2DtoType.
 const (
-	PublicCreateTableauSourceV2DtoTypeAIRFLOW       PublicCreateTableauSourceV2DtoType = "AIRFLOW"
-	PublicCreateTableauSourceV2DtoTypeATHENA        PublicCreateTableauSourceV2DtoType = "ATHENA"
-	PublicCreateTableauSourceV2DtoTypeBIGQUERY      PublicCreateTableauSourceV2DtoType = "BIGQUERY"
-	PublicCreateTableauSourceV2DtoTypeDATABRICKS    PublicCreateTableauSourceV2DtoType = "DATABRICKS"
-	PublicCreateTableauSourceV2DtoTypeDBT           PublicCreateTableauSourceV2DtoType = "DBT"
-	PublicCreateTableauSourceV2DtoTypeDBTCLOUD      PublicCreateTableauSourceV2DtoType = "DBTCLOUD"
-	PublicCreateTableauSourceV2DtoTypeDECLARATIVE   PublicCreateTableauSourceV2DtoType = "DECLARATIVE"
-	PublicCreateTableauSourceV2DtoTypeFIVETRAN      PublicCreateTableauSourceV2DtoType = "FIVETRAN"
-	PublicCreateTableauSourceV2DtoTypeLOOKER        PublicCreateTableauSourceV2DtoType = "LOOKER"
-	PublicCreateTableauSourceV2DtoTypeMICROSTRATEGY PublicCreateTableauSourceV2DtoType = "MICROSTRATEGY"
-	PublicCreateTableauSourceV2DtoTypeMSSQL         PublicCreateTableauSourceV2DtoType = "MSSQL"
-	PublicCreateTableauSourceV2DtoTypeMYSQL         PublicCreateTableauSourceV2DtoType = "MYSQL"
-	PublicCreateTableauSourceV2DtoTypeORACLE        PublicCreateTableauSourceV2DtoType = "ORACLE"
-	PublicCreateTableauSourceV2DtoTypePOSTGRESQL    PublicCreateTableauSourceV2DtoType = "POSTGRESQL"
-	PublicCreateTableauSourceV2DtoTypePOWERBI       PublicCreateTableauSourceV2DtoType = "POWER_BI"
-	PublicCreateTableauSourceV2DtoTypeQLIK          PublicCreateTableauSourceV2DtoType = "QLIK"
-	PublicCreateTableauSourceV2DtoTypeQUICKSIGHT    PublicCreateTableauSourceV2DtoType = "QUICKSIGHT"
-	PublicCreateTableauSourceV2DtoTypeREDSHIFT      PublicCreateTableauSourceV2DtoType = "REDSHIFT"
-	PublicCreateTableauSourceV2DtoTypeSNOWFLAKE     PublicCreateTableauSourceV2DtoType = "SNOWFLAKE"
-	PublicCreateTableauSourceV2DtoTypeSYNAPSE       PublicCreateTableauSourceV2DtoType = "SYNAPSE"
-	PublicCreateTableauSourceV2DtoTypeTABLEAU       PublicCreateTableauSourceV2DtoType = "TABLEAU"
+	PublicCreateTableauSourceV2DtoTypeAIRFLOW        PublicCreateTableauSourceV2DtoType = "AIRFLOW"
+	PublicCreateTableauSourceV2DtoTypeATHENA         PublicCreateTableauSourceV2DtoType = "ATHENA"
+	PublicCreateTableauSourceV2DtoTypeBIGQUERY       PublicCreateTableauSourceV2DtoType = "BIGQUERY"
+	PublicCreateTableauSourceV2DtoTypeDATABRICKS     PublicCreateTableauSourceV2DtoType = "DATABRICKS"
+	PublicCreateTableauSourceV2DtoTypeDATABRICKSJOBS PublicCreateTableauSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateTableauSourceV2DtoTypeDBT            PublicCreateTableauSourceV2DtoType = "DBT"
+	PublicCreateTableauSourceV2DtoTypeDBTCLOUD       PublicCreateTableauSourceV2DtoType = "DBTCLOUD"
+	PublicCreateTableauSourceV2DtoTypeDECLARATIVE    PublicCreateTableauSourceV2DtoType = "DECLARATIVE"
+	PublicCreateTableauSourceV2DtoTypeFIVETRAN       PublicCreateTableauSourceV2DtoType = "FIVETRAN"
+	PublicCreateTableauSourceV2DtoTypeLOOKER         PublicCreateTableauSourceV2DtoType = "LOOKER"
+	PublicCreateTableauSourceV2DtoTypeMICROSTRATEGY  PublicCreateTableauSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateTableauSourceV2DtoTypeMSSQL          PublicCreateTableauSourceV2DtoType = "MSSQL"
+	PublicCreateTableauSourceV2DtoTypeMYSQL          PublicCreateTableauSourceV2DtoType = "MYSQL"
+	PublicCreateTableauSourceV2DtoTypeORACLE         PublicCreateTableauSourceV2DtoType = "ORACLE"
+	PublicCreateTableauSourceV2DtoTypePOSTGRESQL     PublicCreateTableauSourceV2DtoType = "POSTGRESQL"
+	PublicCreateTableauSourceV2DtoTypePOWERBI        PublicCreateTableauSourceV2DtoType = "POWER_BI"
+	PublicCreateTableauSourceV2DtoTypeQLIK           PublicCreateTableauSourceV2DtoType = "QLIK"
+	PublicCreateTableauSourceV2DtoTypeQUICKSIGHT     PublicCreateTableauSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateTableauSourceV2DtoTypeREDSHIFT       PublicCreateTableauSourceV2DtoType = "REDSHIFT"
+	PublicCreateTableauSourceV2DtoTypeSNOWFLAKE      PublicCreateTableauSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateTableauSourceV2DtoTypeSYNAPSE        PublicCreateTableauSourceV2DtoType = "SYNAPSE"
+	PublicCreateTableauSourceV2DtoTypeTABLEAU        PublicCreateTableauSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicCustomMetadataEntryLabelReferenceDtoType.
@@ -2209,18 +2279,6 @@ const (
 	PublicCustomMetadataEntryUserReferenceDtoTypeUSER   PublicCustomMetadataEntryUserReferenceDtoType = "USER"
 )
 
-// Defines values for PublicDatabaseSchemasScopeDtoType.
-const (
-	PublicDatabaseSchemasScopeDtoTypeEXCLUSION PublicDatabaseSchemasScopeDtoType = "EXCLUSION"
-	PublicDatabaseSchemasScopeDtoTypeINCLUSION PublicDatabaseSchemasScopeDtoType = "INCLUSION"
-)
-
-// Defines values for PublicDatabasesScopeDtoType.
-const (
-	PublicDatabasesScopeDtoTypeEXCLUSION PublicDatabasesScopeDtoType = "EXCLUSION"
-	PublicDatabasesScopeDtoTypeINCLUSION PublicDatabasesScopeDtoType = "INCLUSION"
-)
-
 // Defines values for PublicDatabricksParametersDtoType.
 const (
 	PublicDatabricksParametersDtoTypeAIRFLOW           PublicDatabricksParametersDtoType = "AIRFLOW"
@@ -2243,12 +2301,6 @@ const (
 	PublicDatabricksParametersDtoTypeSYNAPSE           PublicDatabricksParametersDtoType = "SYNAPSE"
 	PublicDatabricksParametersDtoTypeTABLEAU           PublicDatabricksParametersDtoType = "TABLEAU"
 	PublicDatabricksParametersDtoTypeUnderscoreUNKNOWN PublicDatabricksParametersDtoType = "_UNKNOWN_"
-)
-
-// Defines values for PublicDatasetsScopeDtoType.
-const (
-	PublicDatasetsScopeDtoTypeEXCLUSION PublicDatasetsScopeDtoType = "EXCLUSION"
-	PublicDatasetsScopeDtoTypeINCLUSION PublicDatasetsScopeDtoType = "INCLUSION"
 )
 
 // Defines values for PublicDbtCloudParametersDtoType.
@@ -2411,6 +2463,7 @@ const (
 	PublicDescriptionDtoOriginDAGSTER                   PublicDescriptionDtoOrigin = "DAGSTER"
 	PublicDescriptionDtoOriginDATABAND                  PublicDescriptionDtoOrigin = "DATABAND"
 	PublicDescriptionDtoOriginDATABRICKS                PublicDescriptionDtoOrigin = "DATABRICKS"
+	PublicDescriptionDtoOriginDATABRICKSJOBS            PublicDescriptionDtoOrigin = "DATABRICKS_JOBS"
 	PublicDescriptionDtoOriginDATADOG                   PublicDescriptionDtoOrigin = "DATADOG"
 	PublicDescriptionDtoOriginDATAEDO                   PublicDescriptionDtoOrigin = "DATAEDO"
 	PublicDescriptionDtoOriginDATAFOLD                  PublicDescriptionDtoOrigin = "DATAFOLD"
@@ -2798,35 +2851,30 @@ const (
 	PublicFivetranParametersDtoTypeUnderscoreUNKNOWN PublicFivetranParametersDtoType = "_UNKNOWN_"
 )
 
-// Defines values for PublicFoldersScopeDtoType.
-const (
-	PublicFoldersScopeDtoTypeEXCLUSION PublicFoldersScopeDtoType = "EXCLUSION"
-	PublicFoldersScopeDtoTypeINCLUSION PublicFoldersScopeDtoType = "INCLUSION"
-)
-
 // Defines values for PublicGetAirflowSourceV2DtoType.
 const (
-	PublicGetAirflowSourceV2DtoTypeAIRFLOW       PublicGetAirflowSourceV2DtoType = "AIRFLOW"
-	PublicGetAirflowSourceV2DtoTypeATHENA        PublicGetAirflowSourceV2DtoType = "ATHENA"
-	PublicGetAirflowSourceV2DtoTypeBIGQUERY      PublicGetAirflowSourceV2DtoType = "BIGQUERY"
-	PublicGetAirflowSourceV2DtoTypeDATABRICKS    PublicGetAirflowSourceV2DtoType = "DATABRICKS"
-	PublicGetAirflowSourceV2DtoTypeDBT           PublicGetAirflowSourceV2DtoType = "DBT"
-	PublicGetAirflowSourceV2DtoTypeDBTCLOUD      PublicGetAirflowSourceV2DtoType = "DBTCLOUD"
-	PublicGetAirflowSourceV2DtoTypeDECLARATIVE   PublicGetAirflowSourceV2DtoType = "DECLARATIVE"
-	PublicGetAirflowSourceV2DtoTypeFIVETRAN      PublicGetAirflowSourceV2DtoType = "FIVETRAN"
-	PublicGetAirflowSourceV2DtoTypeLOOKER        PublicGetAirflowSourceV2DtoType = "LOOKER"
-	PublicGetAirflowSourceV2DtoTypeMICROSTRATEGY PublicGetAirflowSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetAirflowSourceV2DtoTypeMSSQL         PublicGetAirflowSourceV2DtoType = "MSSQL"
-	PublicGetAirflowSourceV2DtoTypeMYSQL         PublicGetAirflowSourceV2DtoType = "MYSQL"
-	PublicGetAirflowSourceV2DtoTypeORACLE        PublicGetAirflowSourceV2DtoType = "ORACLE"
-	PublicGetAirflowSourceV2DtoTypePOSTGRESQL    PublicGetAirflowSourceV2DtoType = "POSTGRESQL"
-	PublicGetAirflowSourceV2DtoTypePOWERBI       PublicGetAirflowSourceV2DtoType = "POWER_BI"
-	PublicGetAirflowSourceV2DtoTypeQLIK          PublicGetAirflowSourceV2DtoType = "QLIK"
-	PublicGetAirflowSourceV2DtoTypeQUICKSIGHT    PublicGetAirflowSourceV2DtoType = "QUICKSIGHT"
-	PublicGetAirflowSourceV2DtoTypeREDSHIFT      PublicGetAirflowSourceV2DtoType = "REDSHIFT"
-	PublicGetAirflowSourceV2DtoTypeSNOWFLAKE     PublicGetAirflowSourceV2DtoType = "SNOWFLAKE"
-	PublicGetAirflowSourceV2DtoTypeSYNAPSE       PublicGetAirflowSourceV2DtoType = "SYNAPSE"
-	PublicGetAirflowSourceV2DtoTypeTABLEAU       PublicGetAirflowSourceV2DtoType = "TABLEAU"
+	PublicGetAirflowSourceV2DtoTypeAIRFLOW        PublicGetAirflowSourceV2DtoType = "AIRFLOW"
+	PublicGetAirflowSourceV2DtoTypeATHENA         PublicGetAirflowSourceV2DtoType = "ATHENA"
+	PublicGetAirflowSourceV2DtoTypeBIGQUERY       PublicGetAirflowSourceV2DtoType = "BIGQUERY"
+	PublicGetAirflowSourceV2DtoTypeDATABRICKS     PublicGetAirflowSourceV2DtoType = "DATABRICKS"
+	PublicGetAirflowSourceV2DtoTypeDATABRICKSJOBS PublicGetAirflowSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetAirflowSourceV2DtoTypeDBT            PublicGetAirflowSourceV2DtoType = "DBT"
+	PublicGetAirflowSourceV2DtoTypeDBTCLOUD       PublicGetAirflowSourceV2DtoType = "DBTCLOUD"
+	PublicGetAirflowSourceV2DtoTypeDECLARATIVE    PublicGetAirflowSourceV2DtoType = "DECLARATIVE"
+	PublicGetAirflowSourceV2DtoTypeFIVETRAN       PublicGetAirflowSourceV2DtoType = "FIVETRAN"
+	PublicGetAirflowSourceV2DtoTypeLOOKER         PublicGetAirflowSourceV2DtoType = "LOOKER"
+	PublicGetAirflowSourceV2DtoTypeMICROSTRATEGY  PublicGetAirflowSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetAirflowSourceV2DtoTypeMSSQL          PublicGetAirflowSourceV2DtoType = "MSSQL"
+	PublicGetAirflowSourceV2DtoTypeMYSQL          PublicGetAirflowSourceV2DtoType = "MYSQL"
+	PublicGetAirflowSourceV2DtoTypeORACLE         PublicGetAirflowSourceV2DtoType = "ORACLE"
+	PublicGetAirflowSourceV2DtoTypePOSTGRESQL     PublicGetAirflowSourceV2DtoType = "POSTGRESQL"
+	PublicGetAirflowSourceV2DtoTypePOWERBI        PublicGetAirflowSourceV2DtoType = "POWER_BI"
+	PublicGetAirflowSourceV2DtoTypeQLIK           PublicGetAirflowSourceV2DtoType = "QLIK"
+	PublicGetAirflowSourceV2DtoTypeQUICKSIGHT     PublicGetAirflowSourceV2DtoType = "QUICKSIGHT"
+	PublicGetAirflowSourceV2DtoTypeREDSHIFT       PublicGetAirflowSourceV2DtoType = "REDSHIFT"
+	PublicGetAirflowSourceV2DtoTypeSNOWFLAKE      PublicGetAirflowSourceV2DtoType = "SNOWFLAKE"
+	PublicGetAirflowSourceV2DtoTypeSYNAPSE        PublicGetAirflowSourceV2DtoType = "SYNAPSE"
+	PublicGetAirflowSourceV2DtoTypeTABLEAU        PublicGetAirflowSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetAssetDtoHealthStatus.
@@ -2947,6 +2995,7 @@ const (
 	PublicGetAssetDtoTechnologyDAGSTER                   PublicGetAssetDtoTechnology = "DAGSTER"
 	PublicGetAssetDtoTechnologyDATABAND                  PublicGetAssetDtoTechnology = "DATABAND"
 	PublicGetAssetDtoTechnologyDATABRICKS                PublicGetAssetDtoTechnology = "DATABRICKS"
+	PublicGetAssetDtoTechnologyDATABRICKSJOBS            PublicGetAssetDtoTechnology = "DATABRICKS_JOBS"
 	PublicGetAssetDtoTechnologyDATADOG                   PublicGetAssetDtoTechnology = "DATADOG"
 	PublicGetAssetDtoTechnologyDATAEDO                   PublicGetAssetDtoTechnology = "DATAEDO"
 	PublicGetAssetDtoTechnologyDATAFOLD                  PublicGetAssetDtoTechnology = "DATAFOLD"
@@ -3447,6 +3496,7 @@ const (
 	PublicGetAssetListDtoTechnologyDAGSTER                   PublicGetAssetListDtoTechnology = "DAGSTER"
 	PublicGetAssetListDtoTechnologyDATABAND                  PublicGetAssetListDtoTechnology = "DATABAND"
 	PublicGetAssetListDtoTechnologyDATABRICKS                PublicGetAssetListDtoTechnology = "DATABRICKS"
+	PublicGetAssetListDtoTechnologyDATABRICKSJOBS            PublicGetAssetListDtoTechnology = "DATABRICKS_JOBS"
 	PublicGetAssetListDtoTechnologyDATADOG                   PublicGetAssetListDtoTechnology = "DATADOG"
 	PublicGetAssetListDtoTechnologyDATAEDO                   PublicGetAssetListDtoTechnology = "DATAEDO"
 	PublicGetAssetListDtoTechnologyDATAFOLD                  PublicGetAssetListDtoTechnology = "DATAFOLD"
@@ -3831,52 +3881,54 @@ const (
 
 // Defines values for PublicGetAthenaSourceV2DtoType.
 const (
-	PublicGetAthenaSourceV2DtoTypeAIRFLOW       PublicGetAthenaSourceV2DtoType = "AIRFLOW"
-	PublicGetAthenaSourceV2DtoTypeATHENA        PublicGetAthenaSourceV2DtoType = "ATHENA"
-	PublicGetAthenaSourceV2DtoTypeBIGQUERY      PublicGetAthenaSourceV2DtoType = "BIGQUERY"
-	PublicGetAthenaSourceV2DtoTypeDATABRICKS    PublicGetAthenaSourceV2DtoType = "DATABRICKS"
-	PublicGetAthenaSourceV2DtoTypeDBT           PublicGetAthenaSourceV2DtoType = "DBT"
-	PublicGetAthenaSourceV2DtoTypeDBTCLOUD      PublicGetAthenaSourceV2DtoType = "DBTCLOUD"
-	PublicGetAthenaSourceV2DtoTypeDECLARATIVE   PublicGetAthenaSourceV2DtoType = "DECLARATIVE"
-	PublicGetAthenaSourceV2DtoTypeFIVETRAN      PublicGetAthenaSourceV2DtoType = "FIVETRAN"
-	PublicGetAthenaSourceV2DtoTypeLOOKER        PublicGetAthenaSourceV2DtoType = "LOOKER"
-	PublicGetAthenaSourceV2DtoTypeMICROSTRATEGY PublicGetAthenaSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetAthenaSourceV2DtoTypeMSSQL         PublicGetAthenaSourceV2DtoType = "MSSQL"
-	PublicGetAthenaSourceV2DtoTypeMYSQL         PublicGetAthenaSourceV2DtoType = "MYSQL"
-	PublicGetAthenaSourceV2DtoTypeORACLE        PublicGetAthenaSourceV2DtoType = "ORACLE"
-	PublicGetAthenaSourceV2DtoTypePOSTGRESQL    PublicGetAthenaSourceV2DtoType = "POSTGRESQL"
-	PublicGetAthenaSourceV2DtoTypePOWERBI       PublicGetAthenaSourceV2DtoType = "POWER_BI"
-	PublicGetAthenaSourceV2DtoTypeQLIK          PublicGetAthenaSourceV2DtoType = "QLIK"
-	PublicGetAthenaSourceV2DtoTypeQUICKSIGHT    PublicGetAthenaSourceV2DtoType = "QUICKSIGHT"
-	PublicGetAthenaSourceV2DtoTypeREDSHIFT      PublicGetAthenaSourceV2DtoType = "REDSHIFT"
-	PublicGetAthenaSourceV2DtoTypeSNOWFLAKE     PublicGetAthenaSourceV2DtoType = "SNOWFLAKE"
-	PublicGetAthenaSourceV2DtoTypeSYNAPSE       PublicGetAthenaSourceV2DtoType = "SYNAPSE"
-	PublicGetAthenaSourceV2DtoTypeTABLEAU       PublicGetAthenaSourceV2DtoType = "TABLEAU"
+	PublicGetAthenaSourceV2DtoTypeAIRFLOW        PublicGetAthenaSourceV2DtoType = "AIRFLOW"
+	PublicGetAthenaSourceV2DtoTypeATHENA         PublicGetAthenaSourceV2DtoType = "ATHENA"
+	PublicGetAthenaSourceV2DtoTypeBIGQUERY       PublicGetAthenaSourceV2DtoType = "BIGQUERY"
+	PublicGetAthenaSourceV2DtoTypeDATABRICKS     PublicGetAthenaSourceV2DtoType = "DATABRICKS"
+	PublicGetAthenaSourceV2DtoTypeDATABRICKSJOBS PublicGetAthenaSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetAthenaSourceV2DtoTypeDBT            PublicGetAthenaSourceV2DtoType = "DBT"
+	PublicGetAthenaSourceV2DtoTypeDBTCLOUD       PublicGetAthenaSourceV2DtoType = "DBTCLOUD"
+	PublicGetAthenaSourceV2DtoTypeDECLARATIVE    PublicGetAthenaSourceV2DtoType = "DECLARATIVE"
+	PublicGetAthenaSourceV2DtoTypeFIVETRAN       PublicGetAthenaSourceV2DtoType = "FIVETRAN"
+	PublicGetAthenaSourceV2DtoTypeLOOKER         PublicGetAthenaSourceV2DtoType = "LOOKER"
+	PublicGetAthenaSourceV2DtoTypeMICROSTRATEGY  PublicGetAthenaSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetAthenaSourceV2DtoTypeMSSQL          PublicGetAthenaSourceV2DtoType = "MSSQL"
+	PublicGetAthenaSourceV2DtoTypeMYSQL          PublicGetAthenaSourceV2DtoType = "MYSQL"
+	PublicGetAthenaSourceV2DtoTypeORACLE         PublicGetAthenaSourceV2DtoType = "ORACLE"
+	PublicGetAthenaSourceV2DtoTypePOSTGRESQL     PublicGetAthenaSourceV2DtoType = "POSTGRESQL"
+	PublicGetAthenaSourceV2DtoTypePOWERBI        PublicGetAthenaSourceV2DtoType = "POWER_BI"
+	PublicGetAthenaSourceV2DtoTypeQLIK           PublicGetAthenaSourceV2DtoType = "QLIK"
+	PublicGetAthenaSourceV2DtoTypeQUICKSIGHT     PublicGetAthenaSourceV2DtoType = "QUICKSIGHT"
+	PublicGetAthenaSourceV2DtoTypeREDSHIFT       PublicGetAthenaSourceV2DtoType = "REDSHIFT"
+	PublicGetAthenaSourceV2DtoTypeSNOWFLAKE      PublicGetAthenaSourceV2DtoType = "SNOWFLAKE"
+	PublicGetAthenaSourceV2DtoTypeSYNAPSE        PublicGetAthenaSourceV2DtoType = "SYNAPSE"
+	PublicGetAthenaSourceV2DtoTypeTABLEAU        PublicGetAthenaSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetBigQuerySourceV2DtoType.
 const (
-	PublicGetBigQuerySourceV2DtoTypeAIRFLOW       PublicGetBigQuerySourceV2DtoType = "AIRFLOW"
-	PublicGetBigQuerySourceV2DtoTypeATHENA        PublicGetBigQuerySourceV2DtoType = "ATHENA"
-	PublicGetBigQuerySourceV2DtoTypeBIGQUERY      PublicGetBigQuerySourceV2DtoType = "BIGQUERY"
-	PublicGetBigQuerySourceV2DtoTypeDATABRICKS    PublicGetBigQuerySourceV2DtoType = "DATABRICKS"
-	PublicGetBigQuerySourceV2DtoTypeDBT           PublicGetBigQuerySourceV2DtoType = "DBT"
-	PublicGetBigQuerySourceV2DtoTypeDBTCLOUD      PublicGetBigQuerySourceV2DtoType = "DBTCLOUD"
-	PublicGetBigQuerySourceV2DtoTypeDECLARATIVE   PublicGetBigQuerySourceV2DtoType = "DECLARATIVE"
-	PublicGetBigQuerySourceV2DtoTypeFIVETRAN      PublicGetBigQuerySourceV2DtoType = "FIVETRAN"
-	PublicGetBigQuerySourceV2DtoTypeLOOKER        PublicGetBigQuerySourceV2DtoType = "LOOKER"
-	PublicGetBigQuerySourceV2DtoTypeMICROSTRATEGY PublicGetBigQuerySourceV2DtoType = "MICROSTRATEGY"
-	PublicGetBigQuerySourceV2DtoTypeMSSQL         PublicGetBigQuerySourceV2DtoType = "MSSQL"
-	PublicGetBigQuerySourceV2DtoTypeMYSQL         PublicGetBigQuerySourceV2DtoType = "MYSQL"
-	PublicGetBigQuerySourceV2DtoTypeORACLE        PublicGetBigQuerySourceV2DtoType = "ORACLE"
-	PublicGetBigQuerySourceV2DtoTypePOSTGRESQL    PublicGetBigQuerySourceV2DtoType = "POSTGRESQL"
-	PublicGetBigQuerySourceV2DtoTypePOWERBI       PublicGetBigQuerySourceV2DtoType = "POWER_BI"
-	PublicGetBigQuerySourceV2DtoTypeQLIK          PublicGetBigQuerySourceV2DtoType = "QLIK"
-	PublicGetBigQuerySourceV2DtoTypeQUICKSIGHT    PublicGetBigQuerySourceV2DtoType = "QUICKSIGHT"
-	PublicGetBigQuerySourceV2DtoTypeREDSHIFT      PublicGetBigQuerySourceV2DtoType = "REDSHIFT"
-	PublicGetBigQuerySourceV2DtoTypeSNOWFLAKE     PublicGetBigQuerySourceV2DtoType = "SNOWFLAKE"
-	PublicGetBigQuerySourceV2DtoTypeSYNAPSE       PublicGetBigQuerySourceV2DtoType = "SYNAPSE"
-	PublicGetBigQuerySourceV2DtoTypeTABLEAU       PublicGetBigQuerySourceV2DtoType = "TABLEAU"
+	PublicGetBigQuerySourceV2DtoTypeAIRFLOW        PublicGetBigQuerySourceV2DtoType = "AIRFLOW"
+	PublicGetBigQuerySourceV2DtoTypeATHENA         PublicGetBigQuerySourceV2DtoType = "ATHENA"
+	PublicGetBigQuerySourceV2DtoTypeBIGQUERY       PublicGetBigQuerySourceV2DtoType = "BIGQUERY"
+	PublicGetBigQuerySourceV2DtoTypeDATABRICKS     PublicGetBigQuerySourceV2DtoType = "DATABRICKS"
+	PublicGetBigQuerySourceV2DtoTypeDATABRICKSJOBS PublicGetBigQuerySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetBigQuerySourceV2DtoTypeDBT            PublicGetBigQuerySourceV2DtoType = "DBT"
+	PublicGetBigQuerySourceV2DtoTypeDBTCLOUD       PublicGetBigQuerySourceV2DtoType = "DBTCLOUD"
+	PublicGetBigQuerySourceV2DtoTypeDECLARATIVE    PublicGetBigQuerySourceV2DtoType = "DECLARATIVE"
+	PublicGetBigQuerySourceV2DtoTypeFIVETRAN       PublicGetBigQuerySourceV2DtoType = "FIVETRAN"
+	PublicGetBigQuerySourceV2DtoTypeLOOKER         PublicGetBigQuerySourceV2DtoType = "LOOKER"
+	PublicGetBigQuerySourceV2DtoTypeMICROSTRATEGY  PublicGetBigQuerySourceV2DtoType = "MICROSTRATEGY"
+	PublicGetBigQuerySourceV2DtoTypeMSSQL          PublicGetBigQuerySourceV2DtoType = "MSSQL"
+	PublicGetBigQuerySourceV2DtoTypeMYSQL          PublicGetBigQuerySourceV2DtoType = "MYSQL"
+	PublicGetBigQuerySourceV2DtoTypeORACLE         PublicGetBigQuerySourceV2DtoType = "ORACLE"
+	PublicGetBigQuerySourceV2DtoTypePOSTGRESQL     PublicGetBigQuerySourceV2DtoType = "POSTGRESQL"
+	PublicGetBigQuerySourceV2DtoTypePOWERBI        PublicGetBigQuerySourceV2DtoType = "POWER_BI"
+	PublicGetBigQuerySourceV2DtoTypeQLIK           PublicGetBigQuerySourceV2DtoType = "QLIK"
+	PublicGetBigQuerySourceV2DtoTypeQUICKSIGHT     PublicGetBigQuerySourceV2DtoType = "QUICKSIGHT"
+	PublicGetBigQuerySourceV2DtoTypeREDSHIFT       PublicGetBigQuerySourceV2DtoType = "REDSHIFT"
+	PublicGetBigQuerySourceV2DtoTypeSNOWFLAKE      PublicGetBigQuerySourceV2DtoType = "SNOWFLAKE"
+	PublicGetBigQuerySourceV2DtoTypeSYNAPSE        PublicGetBigQuerySourceV2DtoType = "SYNAPSE"
+	PublicGetBigQuerySourceV2DtoTypeTABLEAU        PublicGetBigQuerySourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetCustomMetadataEntryDtoType.
@@ -3909,102 +3961,106 @@ const (
 
 // Defines values for PublicGetDatabricksSourceV2DtoType.
 const (
-	PublicGetDatabricksSourceV2DtoTypeAIRFLOW       PublicGetDatabricksSourceV2DtoType = "AIRFLOW"
-	PublicGetDatabricksSourceV2DtoTypeATHENA        PublicGetDatabricksSourceV2DtoType = "ATHENA"
-	PublicGetDatabricksSourceV2DtoTypeBIGQUERY      PublicGetDatabricksSourceV2DtoType = "BIGQUERY"
-	PublicGetDatabricksSourceV2DtoTypeDATABRICKS    PublicGetDatabricksSourceV2DtoType = "DATABRICKS"
-	PublicGetDatabricksSourceV2DtoTypeDBT           PublicGetDatabricksSourceV2DtoType = "DBT"
-	PublicGetDatabricksSourceV2DtoTypeDBTCLOUD      PublicGetDatabricksSourceV2DtoType = "DBTCLOUD"
-	PublicGetDatabricksSourceV2DtoTypeDECLARATIVE   PublicGetDatabricksSourceV2DtoType = "DECLARATIVE"
-	PublicGetDatabricksSourceV2DtoTypeFIVETRAN      PublicGetDatabricksSourceV2DtoType = "FIVETRAN"
-	PublicGetDatabricksSourceV2DtoTypeLOOKER        PublicGetDatabricksSourceV2DtoType = "LOOKER"
-	PublicGetDatabricksSourceV2DtoTypeMICROSTRATEGY PublicGetDatabricksSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetDatabricksSourceV2DtoTypeMSSQL         PublicGetDatabricksSourceV2DtoType = "MSSQL"
-	PublicGetDatabricksSourceV2DtoTypeMYSQL         PublicGetDatabricksSourceV2DtoType = "MYSQL"
-	PublicGetDatabricksSourceV2DtoTypeORACLE        PublicGetDatabricksSourceV2DtoType = "ORACLE"
-	PublicGetDatabricksSourceV2DtoTypePOSTGRESQL    PublicGetDatabricksSourceV2DtoType = "POSTGRESQL"
-	PublicGetDatabricksSourceV2DtoTypePOWERBI       PublicGetDatabricksSourceV2DtoType = "POWER_BI"
-	PublicGetDatabricksSourceV2DtoTypeQLIK          PublicGetDatabricksSourceV2DtoType = "QLIK"
-	PublicGetDatabricksSourceV2DtoTypeQUICKSIGHT    PublicGetDatabricksSourceV2DtoType = "QUICKSIGHT"
-	PublicGetDatabricksSourceV2DtoTypeREDSHIFT      PublicGetDatabricksSourceV2DtoType = "REDSHIFT"
-	PublicGetDatabricksSourceV2DtoTypeSNOWFLAKE     PublicGetDatabricksSourceV2DtoType = "SNOWFLAKE"
-	PublicGetDatabricksSourceV2DtoTypeSYNAPSE       PublicGetDatabricksSourceV2DtoType = "SYNAPSE"
-	PublicGetDatabricksSourceV2DtoTypeTABLEAU       PublicGetDatabricksSourceV2DtoType = "TABLEAU"
+	PublicGetDatabricksSourceV2DtoTypeAIRFLOW        PublicGetDatabricksSourceV2DtoType = "AIRFLOW"
+	PublicGetDatabricksSourceV2DtoTypeATHENA         PublicGetDatabricksSourceV2DtoType = "ATHENA"
+	PublicGetDatabricksSourceV2DtoTypeBIGQUERY       PublicGetDatabricksSourceV2DtoType = "BIGQUERY"
+	PublicGetDatabricksSourceV2DtoTypeDATABRICKS     PublicGetDatabricksSourceV2DtoType = "DATABRICKS"
+	PublicGetDatabricksSourceV2DtoTypeDATABRICKSJOBS PublicGetDatabricksSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetDatabricksSourceV2DtoTypeDBT            PublicGetDatabricksSourceV2DtoType = "DBT"
+	PublicGetDatabricksSourceV2DtoTypeDBTCLOUD       PublicGetDatabricksSourceV2DtoType = "DBTCLOUD"
+	PublicGetDatabricksSourceV2DtoTypeDECLARATIVE    PublicGetDatabricksSourceV2DtoType = "DECLARATIVE"
+	PublicGetDatabricksSourceV2DtoTypeFIVETRAN       PublicGetDatabricksSourceV2DtoType = "FIVETRAN"
+	PublicGetDatabricksSourceV2DtoTypeLOOKER         PublicGetDatabricksSourceV2DtoType = "LOOKER"
+	PublicGetDatabricksSourceV2DtoTypeMICROSTRATEGY  PublicGetDatabricksSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetDatabricksSourceV2DtoTypeMSSQL          PublicGetDatabricksSourceV2DtoType = "MSSQL"
+	PublicGetDatabricksSourceV2DtoTypeMYSQL          PublicGetDatabricksSourceV2DtoType = "MYSQL"
+	PublicGetDatabricksSourceV2DtoTypeORACLE         PublicGetDatabricksSourceV2DtoType = "ORACLE"
+	PublicGetDatabricksSourceV2DtoTypePOSTGRESQL     PublicGetDatabricksSourceV2DtoType = "POSTGRESQL"
+	PublicGetDatabricksSourceV2DtoTypePOWERBI        PublicGetDatabricksSourceV2DtoType = "POWER_BI"
+	PublicGetDatabricksSourceV2DtoTypeQLIK           PublicGetDatabricksSourceV2DtoType = "QLIK"
+	PublicGetDatabricksSourceV2DtoTypeQUICKSIGHT     PublicGetDatabricksSourceV2DtoType = "QUICKSIGHT"
+	PublicGetDatabricksSourceV2DtoTypeREDSHIFT       PublicGetDatabricksSourceV2DtoType = "REDSHIFT"
+	PublicGetDatabricksSourceV2DtoTypeSNOWFLAKE      PublicGetDatabricksSourceV2DtoType = "SNOWFLAKE"
+	PublicGetDatabricksSourceV2DtoTypeSYNAPSE        PublicGetDatabricksSourceV2DtoType = "SYNAPSE"
+	PublicGetDatabricksSourceV2DtoTypeTABLEAU        PublicGetDatabricksSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetDbtCloudSourceV2DtoType.
 const (
-	PublicGetDbtCloudSourceV2DtoTypeAIRFLOW       PublicGetDbtCloudSourceV2DtoType = "AIRFLOW"
-	PublicGetDbtCloudSourceV2DtoTypeATHENA        PublicGetDbtCloudSourceV2DtoType = "ATHENA"
-	PublicGetDbtCloudSourceV2DtoTypeBIGQUERY      PublicGetDbtCloudSourceV2DtoType = "BIGQUERY"
-	PublicGetDbtCloudSourceV2DtoTypeDATABRICKS    PublicGetDbtCloudSourceV2DtoType = "DATABRICKS"
-	PublicGetDbtCloudSourceV2DtoTypeDBT           PublicGetDbtCloudSourceV2DtoType = "DBT"
-	PublicGetDbtCloudSourceV2DtoTypeDBTCLOUD      PublicGetDbtCloudSourceV2DtoType = "DBTCLOUD"
-	PublicGetDbtCloudSourceV2DtoTypeDECLARATIVE   PublicGetDbtCloudSourceV2DtoType = "DECLARATIVE"
-	PublicGetDbtCloudSourceV2DtoTypeFIVETRAN      PublicGetDbtCloudSourceV2DtoType = "FIVETRAN"
-	PublicGetDbtCloudSourceV2DtoTypeLOOKER        PublicGetDbtCloudSourceV2DtoType = "LOOKER"
-	PublicGetDbtCloudSourceV2DtoTypeMICROSTRATEGY PublicGetDbtCloudSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetDbtCloudSourceV2DtoTypeMSSQL         PublicGetDbtCloudSourceV2DtoType = "MSSQL"
-	PublicGetDbtCloudSourceV2DtoTypeMYSQL         PublicGetDbtCloudSourceV2DtoType = "MYSQL"
-	PublicGetDbtCloudSourceV2DtoTypeORACLE        PublicGetDbtCloudSourceV2DtoType = "ORACLE"
-	PublicGetDbtCloudSourceV2DtoTypePOSTGRESQL    PublicGetDbtCloudSourceV2DtoType = "POSTGRESQL"
-	PublicGetDbtCloudSourceV2DtoTypePOWERBI       PublicGetDbtCloudSourceV2DtoType = "POWER_BI"
-	PublicGetDbtCloudSourceV2DtoTypeQLIK          PublicGetDbtCloudSourceV2DtoType = "QLIK"
-	PublicGetDbtCloudSourceV2DtoTypeQUICKSIGHT    PublicGetDbtCloudSourceV2DtoType = "QUICKSIGHT"
-	PublicGetDbtCloudSourceV2DtoTypeREDSHIFT      PublicGetDbtCloudSourceV2DtoType = "REDSHIFT"
-	PublicGetDbtCloudSourceV2DtoTypeSNOWFLAKE     PublicGetDbtCloudSourceV2DtoType = "SNOWFLAKE"
-	PublicGetDbtCloudSourceV2DtoTypeSYNAPSE       PublicGetDbtCloudSourceV2DtoType = "SYNAPSE"
-	PublicGetDbtCloudSourceV2DtoTypeTABLEAU       PublicGetDbtCloudSourceV2DtoType = "TABLEAU"
+	PublicGetDbtCloudSourceV2DtoTypeAIRFLOW        PublicGetDbtCloudSourceV2DtoType = "AIRFLOW"
+	PublicGetDbtCloudSourceV2DtoTypeATHENA         PublicGetDbtCloudSourceV2DtoType = "ATHENA"
+	PublicGetDbtCloudSourceV2DtoTypeBIGQUERY       PublicGetDbtCloudSourceV2DtoType = "BIGQUERY"
+	PublicGetDbtCloudSourceV2DtoTypeDATABRICKS     PublicGetDbtCloudSourceV2DtoType = "DATABRICKS"
+	PublicGetDbtCloudSourceV2DtoTypeDATABRICKSJOBS PublicGetDbtCloudSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetDbtCloudSourceV2DtoTypeDBT            PublicGetDbtCloudSourceV2DtoType = "DBT"
+	PublicGetDbtCloudSourceV2DtoTypeDBTCLOUD       PublicGetDbtCloudSourceV2DtoType = "DBTCLOUD"
+	PublicGetDbtCloudSourceV2DtoTypeDECLARATIVE    PublicGetDbtCloudSourceV2DtoType = "DECLARATIVE"
+	PublicGetDbtCloudSourceV2DtoTypeFIVETRAN       PublicGetDbtCloudSourceV2DtoType = "FIVETRAN"
+	PublicGetDbtCloudSourceV2DtoTypeLOOKER         PublicGetDbtCloudSourceV2DtoType = "LOOKER"
+	PublicGetDbtCloudSourceV2DtoTypeMICROSTRATEGY  PublicGetDbtCloudSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetDbtCloudSourceV2DtoTypeMSSQL          PublicGetDbtCloudSourceV2DtoType = "MSSQL"
+	PublicGetDbtCloudSourceV2DtoTypeMYSQL          PublicGetDbtCloudSourceV2DtoType = "MYSQL"
+	PublicGetDbtCloudSourceV2DtoTypeORACLE         PublicGetDbtCloudSourceV2DtoType = "ORACLE"
+	PublicGetDbtCloudSourceV2DtoTypePOSTGRESQL     PublicGetDbtCloudSourceV2DtoType = "POSTGRESQL"
+	PublicGetDbtCloudSourceV2DtoTypePOWERBI        PublicGetDbtCloudSourceV2DtoType = "POWER_BI"
+	PublicGetDbtCloudSourceV2DtoTypeQLIK           PublicGetDbtCloudSourceV2DtoType = "QLIK"
+	PublicGetDbtCloudSourceV2DtoTypeQUICKSIGHT     PublicGetDbtCloudSourceV2DtoType = "QUICKSIGHT"
+	PublicGetDbtCloudSourceV2DtoTypeREDSHIFT       PublicGetDbtCloudSourceV2DtoType = "REDSHIFT"
+	PublicGetDbtCloudSourceV2DtoTypeSNOWFLAKE      PublicGetDbtCloudSourceV2DtoType = "SNOWFLAKE"
+	PublicGetDbtCloudSourceV2DtoTypeSYNAPSE        PublicGetDbtCloudSourceV2DtoType = "SYNAPSE"
+	PublicGetDbtCloudSourceV2DtoTypeTABLEAU        PublicGetDbtCloudSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetDbtSourceV2DtoType.
 const (
-	PublicGetDbtSourceV2DtoTypeAIRFLOW       PublicGetDbtSourceV2DtoType = "AIRFLOW"
-	PublicGetDbtSourceV2DtoTypeATHENA        PublicGetDbtSourceV2DtoType = "ATHENA"
-	PublicGetDbtSourceV2DtoTypeBIGQUERY      PublicGetDbtSourceV2DtoType = "BIGQUERY"
-	PublicGetDbtSourceV2DtoTypeDATABRICKS    PublicGetDbtSourceV2DtoType = "DATABRICKS"
-	PublicGetDbtSourceV2DtoTypeDBT           PublicGetDbtSourceV2DtoType = "DBT"
-	PublicGetDbtSourceV2DtoTypeDBTCLOUD      PublicGetDbtSourceV2DtoType = "DBTCLOUD"
-	PublicGetDbtSourceV2DtoTypeDECLARATIVE   PublicGetDbtSourceV2DtoType = "DECLARATIVE"
-	PublicGetDbtSourceV2DtoTypeFIVETRAN      PublicGetDbtSourceV2DtoType = "FIVETRAN"
-	PublicGetDbtSourceV2DtoTypeLOOKER        PublicGetDbtSourceV2DtoType = "LOOKER"
-	PublicGetDbtSourceV2DtoTypeMICROSTRATEGY PublicGetDbtSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetDbtSourceV2DtoTypeMSSQL         PublicGetDbtSourceV2DtoType = "MSSQL"
-	PublicGetDbtSourceV2DtoTypeMYSQL         PublicGetDbtSourceV2DtoType = "MYSQL"
-	PublicGetDbtSourceV2DtoTypeORACLE        PublicGetDbtSourceV2DtoType = "ORACLE"
-	PublicGetDbtSourceV2DtoTypePOSTGRESQL    PublicGetDbtSourceV2DtoType = "POSTGRESQL"
-	PublicGetDbtSourceV2DtoTypePOWERBI       PublicGetDbtSourceV2DtoType = "POWER_BI"
-	PublicGetDbtSourceV2DtoTypeQLIK          PublicGetDbtSourceV2DtoType = "QLIK"
-	PublicGetDbtSourceV2DtoTypeQUICKSIGHT    PublicGetDbtSourceV2DtoType = "QUICKSIGHT"
-	PublicGetDbtSourceV2DtoTypeREDSHIFT      PublicGetDbtSourceV2DtoType = "REDSHIFT"
-	PublicGetDbtSourceV2DtoTypeSNOWFLAKE     PublicGetDbtSourceV2DtoType = "SNOWFLAKE"
-	PublicGetDbtSourceV2DtoTypeSYNAPSE       PublicGetDbtSourceV2DtoType = "SYNAPSE"
-	PublicGetDbtSourceV2DtoTypeTABLEAU       PublicGetDbtSourceV2DtoType = "TABLEAU"
+	PublicGetDbtSourceV2DtoTypeAIRFLOW        PublicGetDbtSourceV2DtoType = "AIRFLOW"
+	PublicGetDbtSourceV2DtoTypeATHENA         PublicGetDbtSourceV2DtoType = "ATHENA"
+	PublicGetDbtSourceV2DtoTypeBIGQUERY       PublicGetDbtSourceV2DtoType = "BIGQUERY"
+	PublicGetDbtSourceV2DtoTypeDATABRICKS     PublicGetDbtSourceV2DtoType = "DATABRICKS"
+	PublicGetDbtSourceV2DtoTypeDATABRICKSJOBS PublicGetDbtSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetDbtSourceV2DtoTypeDBT            PublicGetDbtSourceV2DtoType = "DBT"
+	PublicGetDbtSourceV2DtoTypeDBTCLOUD       PublicGetDbtSourceV2DtoType = "DBTCLOUD"
+	PublicGetDbtSourceV2DtoTypeDECLARATIVE    PublicGetDbtSourceV2DtoType = "DECLARATIVE"
+	PublicGetDbtSourceV2DtoTypeFIVETRAN       PublicGetDbtSourceV2DtoType = "FIVETRAN"
+	PublicGetDbtSourceV2DtoTypeLOOKER         PublicGetDbtSourceV2DtoType = "LOOKER"
+	PublicGetDbtSourceV2DtoTypeMICROSTRATEGY  PublicGetDbtSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetDbtSourceV2DtoTypeMSSQL          PublicGetDbtSourceV2DtoType = "MSSQL"
+	PublicGetDbtSourceV2DtoTypeMYSQL          PublicGetDbtSourceV2DtoType = "MYSQL"
+	PublicGetDbtSourceV2DtoTypeORACLE         PublicGetDbtSourceV2DtoType = "ORACLE"
+	PublicGetDbtSourceV2DtoTypePOSTGRESQL     PublicGetDbtSourceV2DtoType = "POSTGRESQL"
+	PublicGetDbtSourceV2DtoTypePOWERBI        PublicGetDbtSourceV2DtoType = "POWER_BI"
+	PublicGetDbtSourceV2DtoTypeQLIK           PublicGetDbtSourceV2DtoType = "QLIK"
+	PublicGetDbtSourceV2DtoTypeQUICKSIGHT     PublicGetDbtSourceV2DtoType = "QUICKSIGHT"
+	PublicGetDbtSourceV2DtoTypeREDSHIFT       PublicGetDbtSourceV2DtoType = "REDSHIFT"
+	PublicGetDbtSourceV2DtoTypeSNOWFLAKE      PublicGetDbtSourceV2DtoType = "SNOWFLAKE"
+	PublicGetDbtSourceV2DtoTypeSYNAPSE        PublicGetDbtSourceV2DtoType = "SYNAPSE"
+	PublicGetDbtSourceV2DtoTypeTABLEAU        PublicGetDbtSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetFivetranSourceV2DtoType.
 const (
-	PublicGetFivetranSourceV2DtoTypeAIRFLOW       PublicGetFivetranSourceV2DtoType = "AIRFLOW"
-	PublicGetFivetranSourceV2DtoTypeATHENA        PublicGetFivetranSourceV2DtoType = "ATHENA"
-	PublicGetFivetranSourceV2DtoTypeBIGQUERY      PublicGetFivetranSourceV2DtoType = "BIGQUERY"
-	PublicGetFivetranSourceV2DtoTypeDATABRICKS    PublicGetFivetranSourceV2DtoType = "DATABRICKS"
-	PublicGetFivetranSourceV2DtoTypeDBT           PublicGetFivetranSourceV2DtoType = "DBT"
-	PublicGetFivetranSourceV2DtoTypeDBTCLOUD      PublicGetFivetranSourceV2DtoType = "DBTCLOUD"
-	PublicGetFivetranSourceV2DtoTypeDECLARATIVE   PublicGetFivetranSourceV2DtoType = "DECLARATIVE"
-	PublicGetFivetranSourceV2DtoTypeFIVETRAN      PublicGetFivetranSourceV2DtoType = "FIVETRAN"
-	PublicGetFivetranSourceV2DtoTypeLOOKER        PublicGetFivetranSourceV2DtoType = "LOOKER"
-	PublicGetFivetranSourceV2DtoTypeMICROSTRATEGY PublicGetFivetranSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetFivetranSourceV2DtoTypeMSSQL         PublicGetFivetranSourceV2DtoType = "MSSQL"
-	PublicGetFivetranSourceV2DtoTypeMYSQL         PublicGetFivetranSourceV2DtoType = "MYSQL"
-	PublicGetFivetranSourceV2DtoTypeORACLE        PublicGetFivetranSourceV2DtoType = "ORACLE"
-	PublicGetFivetranSourceV2DtoTypePOSTGRESQL    PublicGetFivetranSourceV2DtoType = "POSTGRESQL"
-	PublicGetFivetranSourceV2DtoTypePOWERBI       PublicGetFivetranSourceV2DtoType = "POWER_BI"
-	PublicGetFivetranSourceV2DtoTypeQLIK          PublicGetFivetranSourceV2DtoType = "QLIK"
-	PublicGetFivetranSourceV2DtoTypeQUICKSIGHT    PublicGetFivetranSourceV2DtoType = "QUICKSIGHT"
-	PublicGetFivetranSourceV2DtoTypeREDSHIFT      PublicGetFivetranSourceV2DtoType = "REDSHIFT"
-	PublicGetFivetranSourceV2DtoTypeSNOWFLAKE     PublicGetFivetranSourceV2DtoType = "SNOWFLAKE"
-	PublicGetFivetranSourceV2DtoTypeSYNAPSE       PublicGetFivetranSourceV2DtoType = "SYNAPSE"
-	PublicGetFivetranSourceV2DtoTypeTABLEAU       PublicGetFivetranSourceV2DtoType = "TABLEAU"
+	PublicGetFivetranSourceV2DtoTypeAIRFLOW        PublicGetFivetranSourceV2DtoType = "AIRFLOW"
+	PublicGetFivetranSourceV2DtoTypeATHENA         PublicGetFivetranSourceV2DtoType = "ATHENA"
+	PublicGetFivetranSourceV2DtoTypeBIGQUERY       PublicGetFivetranSourceV2DtoType = "BIGQUERY"
+	PublicGetFivetranSourceV2DtoTypeDATABRICKS     PublicGetFivetranSourceV2DtoType = "DATABRICKS"
+	PublicGetFivetranSourceV2DtoTypeDATABRICKSJOBS PublicGetFivetranSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetFivetranSourceV2DtoTypeDBT            PublicGetFivetranSourceV2DtoType = "DBT"
+	PublicGetFivetranSourceV2DtoTypeDBTCLOUD       PublicGetFivetranSourceV2DtoType = "DBTCLOUD"
+	PublicGetFivetranSourceV2DtoTypeDECLARATIVE    PublicGetFivetranSourceV2DtoType = "DECLARATIVE"
+	PublicGetFivetranSourceV2DtoTypeFIVETRAN       PublicGetFivetranSourceV2DtoType = "FIVETRAN"
+	PublicGetFivetranSourceV2DtoTypeLOOKER         PublicGetFivetranSourceV2DtoType = "LOOKER"
+	PublicGetFivetranSourceV2DtoTypeMICROSTRATEGY  PublicGetFivetranSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetFivetranSourceV2DtoTypeMSSQL          PublicGetFivetranSourceV2DtoType = "MSSQL"
+	PublicGetFivetranSourceV2DtoTypeMYSQL          PublicGetFivetranSourceV2DtoType = "MYSQL"
+	PublicGetFivetranSourceV2DtoTypeORACLE         PublicGetFivetranSourceV2DtoType = "ORACLE"
+	PublicGetFivetranSourceV2DtoTypePOSTGRESQL     PublicGetFivetranSourceV2DtoType = "POSTGRESQL"
+	PublicGetFivetranSourceV2DtoTypePOWERBI        PublicGetFivetranSourceV2DtoType = "POWER_BI"
+	PublicGetFivetranSourceV2DtoTypeQLIK           PublicGetFivetranSourceV2DtoType = "QLIK"
+	PublicGetFivetranSourceV2DtoTypeQUICKSIGHT     PublicGetFivetranSourceV2DtoType = "QUICKSIGHT"
+	PublicGetFivetranSourceV2DtoTypeREDSHIFT       PublicGetFivetranSourceV2DtoType = "REDSHIFT"
+	PublicGetFivetranSourceV2DtoTypeSNOWFLAKE      PublicGetFivetranSourceV2DtoType = "SNOWFLAKE"
+	PublicGetFivetranSourceV2DtoTypeSYNAPSE        PublicGetFivetranSourceV2DtoType = "SYNAPSE"
+	PublicGetFivetranSourceV2DtoTypeTABLEAU        PublicGetFivetranSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetLastRunDtoStatus.
@@ -4025,352 +4081,366 @@ const (
 
 // Defines values for PublicGetLookerSourceV2DtoType.
 const (
-	PublicGetLookerSourceV2DtoTypeAIRFLOW       PublicGetLookerSourceV2DtoType = "AIRFLOW"
-	PublicGetLookerSourceV2DtoTypeATHENA        PublicGetLookerSourceV2DtoType = "ATHENA"
-	PublicGetLookerSourceV2DtoTypeBIGQUERY      PublicGetLookerSourceV2DtoType = "BIGQUERY"
-	PublicGetLookerSourceV2DtoTypeDATABRICKS    PublicGetLookerSourceV2DtoType = "DATABRICKS"
-	PublicGetLookerSourceV2DtoTypeDBT           PublicGetLookerSourceV2DtoType = "DBT"
-	PublicGetLookerSourceV2DtoTypeDBTCLOUD      PublicGetLookerSourceV2DtoType = "DBTCLOUD"
-	PublicGetLookerSourceV2DtoTypeDECLARATIVE   PublicGetLookerSourceV2DtoType = "DECLARATIVE"
-	PublicGetLookerSourceV2DtoTypeFIVETRAN      PublicGetLookerSourceV2DtoType = "FIVETRAN"
-	PublicGetLookerSourceV2DtoTypeLOOKER        PublicGetLookerSourceV2DtoType = "LOOKER"
-	PublicGetLookerSourceV2DtoTypeMICROSTRATEGY PublicGetLookerSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetLookerSourceV2DtoTypeMSSQL         PublicGetLookerSourceV2DtoType = "MSSQL"
-	PublicGetLookerSourceV2DtoTypeMYSQL         PublicGetLookerSourceV2DtoType = "MYSQL"
-	PublicGetLookerSourceV2DtoTypeORACLE        PublicGetLookerSourceV2DtoType = "ORACLE"
-	PublicGetLookerSourceV2DtoTypePOSTGRESQL    PublicGetLookerSourceV2DtoType = "POSTGRESQL"
-	PublicGetLookerSourceV2DtoTypePOWERBI       PublicGetLookerSourceV2DtoType = "POWER_BI"
-	PublicGetLookerSourceV2DtoTypeQLIK          PublicGetLookerSourceV2DtoType = "QLIK"
-	PublicGetLookerSourceV2DtoTypeQUICKSIGHT    PublicGetLookerSourceV2DtoType = "QUICKSIGHT"
-	PublicGetLookerSourceV2DtoTypeREDSHIFT      PublicGetLookerSourceV2DtoType = "REDSHIFT"
-	PublicGetLookerSourceV2DtoTypeSNOWFLAKE     PublicGetLookerSourceV2DtoType = "SNOWFLAKE"
-	PublicGetLookerSourceV2DtoTypeSYNAPSE       PublicGetLookerSourceV2DtoType = "SYNAPSE"
-	PublicGetLookerSourceV2DtoTypeTABLEAU       PublicGetLookerSourceV2DtoType = "TABLEAU"
+	PublicGetLookerSourceV2DtoTypeAIRFLOW        PublicGetLookerSourceV2DtoType = "AIRFLOW"
+	PublicGetLookerSourceV2DtoTypeATHENA         PublicGetLookerSourceV2DtoType = "ATHENA"
+	PublicGetLookerSourceV2DtoTypeBIGQUERY       PublicGetLookerSourceV2DtoType = "BIGQUERY"
+	PublicGetLookerSourceV2DtoTypeDATABRICKS     PublicGetLookerSourceV2DtoType = "DATABRICKS"
+	PublicGetLookerSourceV2DtoTypeDATABRICKSJOBS PublicGetLookerSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetLookerSourceV2DtoTypeDBT            PublicGetLookerSourceV2DtoType = "DBT"
+	PublicGetLookerSourceV2DtoTypeDBTCLOUD       PublicGetLookerSourceV2DtoType = "DBTCLOUD"
+	PublicGetLookerSourceV2DtoTypeDECLARATIVE    PublicGetLookerSourceV2DtoType = "DECLARATIVE"
+	PublicGetLookerSourceV2DtoTypeFIVETRAN       PublicGetLookerSourceV2DtoType = "FIVETRAN"
+	PublicGetLookerSourceV2DtoTypeLOOKER         PublicGetLookerSourceV2DtoType = "LOOKER"
+	PublicGetLookerSourceV2DtoTypeMICROSTRATEGY  PublicGetLookerSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetLookerSourceV2DtoTypeMSSQL          PublicGetLookerSourceV2DtoType = "MSSQL"
+	PublicGetLookerSourceV2DtoTypeMYSQL          PublicGetLookerSourceV2DtoType = "MYSQL"
+	PublicGetLookerSourceV2DtoTypeORACLE         PublicGetLookerSourceV2DtoType = "ORACLE"
+	PublicGetLookerSourceV2DtoTypePOSTGRESQL     PublicGetLookerSourceV2DtoType = "POSTGRESQL"
+	PublicGetLookerSourceV2DtoTypePOWERBI        PublicGetLookerSourceV2DtoType = "POWER_BI"
+	PublicGetLookerSourceV2DtoTypeQLIK           PublicGetLookerSourceV2DtoType = "QLIK"
+	PublicGetLookerSourceV2DtoTypeQUICKSIGHT     PublicGetLookerSourceV2DtoType = "QUICKSIGHT"
+	PublicGetLookerSourceV2DtoTypeREDSHIFT       PublicGetLookerSourceV2DtoType = "REDSHIFT"
+	PublicGetLookerSourceV2DtoTypeSNOWFLAKE      PublicGetLookerSourceV2DtoType = "SNOWFLAKE"
+	PublicGetLookerSourceV2DtoTypeSYNAPSE        PublicGetLookerSourceV2DtoType = "SYNAPSE"
+	PublicGetLookerSourceV2DtoTypeTABLEAU        PublicGetLookerSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetMicrostrategySourceV2DtoType.
 const (
-	PublicGetMicrostrategySourceV2DtoTypeAIRFLOW       PublicGetMicrostrategySourceV2DtoType = "AIRFLOW"
-	PublicGetMicrostrategySourceV2DtoTypeATHENA        PublicGetMicrostrategySourceV2DtoType = "ATHENA"
-	PublicGetMicrostrategySourceV2DtoTypeBIGQUERY      PublicGetMicrostrategySourceV2DtoType = "BIGQUERY"
-	PublicGetMicrostrategySourceV2DtoTypeDATABRICKS    PublicGetMicrostrategySourceV2DtoType = "DATABRICKS"
-	PublicGetMicrostrategySourceV2DtoTypeDBT           PublicGetMicrostrategySourceV2DtoType = "DBT"
-	PublicGetMicrostrategySourceV2DtoTypeDBTCLOUD      PublicGetMicrostrategySourceV2DtoType = "DBTCLOUD"
-	PublicGetMicrostrategySourceV2DtoTypeDECLARATIVE   PublicGetMicrostrategySourceV2DtoType = "DECLARATIVE"
-	PublicGetMicrostrategySourceV2DtoTypeFIVETRAN      PublicGetMicrostrategySourceV2DtoType = "FIVETRAN"
-	PublicGetMicrostrategySourceV2DtoTypeLOOKER        PublicGetMicrostrategySourceV2DtoType = "LOOKER"
-	PublicGetMicrostrategySourceV2DtoTypeMICROSTRATEGY PublicGetMicrostrategySourceV2DtoType = "MICROSTRATEGY"
-	PublicGetMicrostrategySourceV2DtoTypeMSSQL         PublicGetMicrostrategySourceV2DtoType = "MSSQL"
-	PublicGetMicrostrategySourceV2DtoTypeMYSQL         PublicGetMicrostrategySourceV2DtoType = "MYSQL"
-	PublicGetMicrostrategySourceV2DtoTypeORACLE        PublicGetMicrostrategySourceV2DtoType = "ORACLE"
-	PublicGetMicrostrategySourceV2DtoTypePOSTGRESQL    PublicGetMicrostrategySourceV2DtoType = "POSTGRESQL"
-	PublicGetMicrostrategySourceV2DtoTypePOWERBI       PublicGetMicrostrategySourceV2DtoType = "POWER_BI"
-	PublicGetMicrostrategySourceV2DtoTypeQLIK          PublicGetMicrostrategySourceV2DtoType = "QLIK"
-	PublicGetMicrostrategySourceV2DtoTypeQUICKSIGHT    PublicGetMicrostrategySourceV2DtoType = "QUICKSIGHT"
-	PublicGetMicrostrategySourceV2DtoTypeREDSHIFT      PublicGetMicrostrategySourceV2DtoType = "REDSHIFT"
-	PublicGetMicrostrategySourceV2DtoTypeSNOWFLAKE     PublicGetMicrostrategySourceV2DtoType = "SNOWFLAKE"
-	PublicGetMicrostrategySourceV2DtoTypeSYNAPSE       PublicGetMicrostrategySourceV2DtoType = "SYNAPSE"
-	PublicGetMicrostrategySourceV2DtoTypeTABLEAU       PublicGetMicrostrategySourceV2DtoType = "TABLEAU"
+	PublicGetMicrostrategySourceV2DtoTypeAIRFLOW        PublicGetMicrostrategySourceV2DtoType = "AIRFLOW"
+	PublicGetMicrostrategySourceV2DtoTypeATHENA         PublicGetMicrostrategySourceV2DtoType = "ATHENA"
+	PublicGetMicrostrategySourceV2DtoTypeBIGQUERY       PublicGetMicrostrategySourceV2DtoType = "BIGQUERY"
+	PublicGetMicrostrategySourceV2DtoTypeDATABRICKS     PublicGetMicrostrategySourceV2DtoType = "DATABRICKS"
+	PublicGetMicrostrategySourceV2DtoTypeDATABRICKSJOBS PublicGetMicrostrategySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetMicrostrategySourceV2DtoTypeDBT            PublicGetMicrostrategySourceV2DtoType = "DBT"
+	PublicGetMicrostrategySourceV2DtoTypeDBTCLOUD       PublicGetMicrostrategySourceV2DtoType = "DBTCLOUD"
+	PublicGetMicrostrategySourceV2DtoTypeDECLARATIVE    PublicGetMicrostrategySourceV2DtoType = "DECLARATIVE"
+	PublicGetMicrostrategySourceV2DtoTypeFIVETRAN       PublicGetMicrostrategySourceV2DtoType = "FIVETRAN"
+	PublicGetMicrostrategySourceV2DtoTypeLOOKER         PublicGetMicrostrategySourceV2DtoType = "LOOKER"
+	PublicGetMicrostrategySourceV2DtoTypeMICROSTRATEGY  PublicGetMicrostrategySourceV2DtoType = "MICROSTRATEGY"
+	PublicGetMicrostrategySourceV2DtoTypeMSSQL          PublicGetMicrostrategySourceV2DtoType = "MSSQL"
+	PublicGetMicrostrategySourceV2DtoTypeMYSQL          PublicGetMicrostrategySourceV2DtoType = "MYSQL"
+	PublicGetMicrostrategySourceV2DtoTypeORACLE         PublicGetMicrostrategySourceV2DtoType = "ORACLE"
+	PublicGetMicrostrategySourceV2DtoTypePOSTGRESQL     PublicGetMicrostrategySourceV2DtoType = "POSTGRESQL"
+	PublicGetMicrostrategySourceV2DtoTypePOWERBI        PublicGetMicrostrategySourceV2DtoType = "POWER_BI"
+	PublicGetMicrostrategySourceV2DtoTypeQLIK           PublicGetMicrostrategySourceV2DtoType = "QLIK"
+	PublicGetMicrostrategySourceV2DtoTypeQUICKSIGHT     PublicGetMicrostrategySourceV2DtoType = "QUICKSIGHT"
+	PublicGetMicrostrategySourceV2DtoTypeREDSHIFT       PublicGetMicrostrategySourceV2DtoType = "REDSHIFT"
+	PublicGetMicrostrategySourceV2DtoTypeSNOWFLAKE      PublicGetMicrostrategySourceV2DtoType = "SNOWFLAKE"
+	PublicGetMicrostrategySourceV2DtoTypeSYNAPSE        PublicGetMicrostrategySourceV2DtoType = "SYNAPSE"
+	PublicGetMicrostrategySourceV2DtoTypeTABLEAU        PublicGetMicrostrategySourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetMssqlSourceV2DtoType.
 const (
-	PublicGetMssqlSourceV2DtoTypeAIRFLOW       PublicGetMssqlSourceV2DtoType = "AIRFLOW"
-	PublicGetMssqlSourceV2DtoTypeATHENA        PublicGetMssqlSourceV2DtoType = "ATHENA"
-	PublicGetMssqlSourceV2DtoTypeBIGQUERY      PublicGetMssqlSourceV2DtoType = "BIGQUERY"
-	PublicGetMssqlSourceV2DtoTypeDATABRICKS    PublicGetMssqlSourceV2DtoType = "DATABRICKS"
-	PublicGetMssqlSourceV2DtoTypeDBT           PublicGetMssqlSourceV2DtoType = "DBT"
-	PublicGetMssqlSourceV2DtoTypeDBTCLOUD      PublicGetMssqlSourceV2DtoType = "DBTCLOUD"
-	PublicGetMssqlSourceV2DtoTypeDECLARATIVE   PublicGetMssqlSourceV2DtoType = "DECLARATIVE"
-	PublicGetMssqlSourceV2DtoTypeFIVETRAN      PublicGetMssqlSourceV2DtoType = "FIVETRAN"
-	PublicGetMssqlSourceV2DtoTypeLOOKER        PublicGetMssqlSourceV2DtoType = "LOOKER"
-	PublicGetMssqlSourceV2DtoTypeMICROSTRATEGY PublicGetMssqlSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetMssqlSourceV2DtoTypeMSSQL         PublicGetMssqlSourceV2DtoType = "MSSQL"
-	PublicGetMssqlSourceV2DtoTypeMYSQL         PublicGetMssqlSourceV2DtoType = "MYSQL"
-	PublicGetMssqlSourceV2DtoTypeORACLE        PublicGetMssqlSourceV2DtoType = "ORACLE"
-	PublicGetMssqlSourceV2DtoTypePOSTGRESQL    PublicGetMssqlSourceV2DtoType = "POSTGRESQL"
-	PublicGetMssqlSourceV2DtoTypePOWERBI       PublicGetMssqlSourceV2DtoType = "POWER_BI"
-	PublicGetMssqlSourceV2DtoTypeQLIK          PublicGetMssqlSourceV2DtoType = "QLIK"
-	PublicGetMssqlSourceV2DtoTypeQUICKSIGHT    PublicGetMssqlSourceV2DtoType = "QUICKSIGHT"
-	PublicGetMssqlSourceV2DtoTypeREDSHIFT      PublicGetMssqlSourceV2DtoType = "REDSHIFT"
-	PublicGetMssqlSourceV2DtoTypeSNOWFLAKE     PublicGetMssqlSourceV2DtoType = "SNOWFLAKE"
-	PublicGetMssqlSourceV2DtoTypeSYNAPSE       PublicGetMssqlSourceV2DtoType = "SYNAPSE"
-	PublicGetMssqlSourceV2DtoTypeTABLEAU       PublicGetMssqlSourceV2DtoType = "TABLEAU"
+	PublicGetMssqlSourceV2DtoTypeAIRFLOW        PublicGetMssqlSourceV2DtoType = "AIRFLOW"
+	PublicGetMssqlSourceV2DtoTypeATHENA         PublicGetMssqlSourceV2DtoType = "ATHENA"
+	PublicGetMssqlSourceV2DtoTypeBIGQUERY       PublicGetMssqlSourceV2DtoType = "BIGQUERY"
+	PublicGetMssqlSourceV2DtoTypeDATABRICKS     PublicGetMssqlSourceV2DtoType = "DATABRICKS"
+	PublicGetMssqlSourceV2DtoTypeDATABRICKSJOBS PublicGetMssqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetMssqlSourceV2DtoTypeDBT            PublicGetMssqlSourceV2DtoType = "DBT"
+	PublicGetMssqlSourceV2DtoTypeDBTCLOUD       PublicGetMssqlSourceV2DtoType = "DBTCLOUD"
+	PublicGetMssqlSourceV2DtoTypeDECLARATIVE    PublicGetMssqlSourceV2DtoType = "DECLARATIVE"
+	PublicGetMssqlSourceV2DtoTypeFIVETRAN       PublicGetMssqlSourceV2DtoType = "FIVETRAN"
+	PublicGetMssqlSourceV2DtoTypeLOOKER         PublicGetMssqlSourceV2DtoType = "LOOKER"
+	PublicGetMssqlSourceV2DtoTypeMICROSTRATEGY  PublicGetMssqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetMssqlSourceV2DtoTypeMSSQL          PublicGetMssqlSourceV2DtoType = "MSSQL"
+	PublicGetMssqlSourceV2DtoTypeMYSQL          PublicGetMssqlSourceV2DtoType = "MYSQL"
+	PublicGetMssqlSourceV2DtoTypeORACLE         PublicGetMssqlSourceV2DtoType = "ORACLE"
+	PublicGetMssqlSourceV2DtoTypePOSTGRESQL     PublicGetMssqlSourceV2DtoType = "POSTGRESQL"
+	PublicGetMssqlSourceV2DtoTypePOWERBI        PublicGetMssqlSourceV2DtoType = "POWER_BI"
+	PublicGetMssqlSourceV2DtoTypeQLIK           PublicGetMssqlSourceV2DtoType = "QLIK"
+	PublicGetMssqlSourceV2DtoTypeQUICKSIGHT     PublicGetMssqlSourceV2DtoType = "QUICKSIGHT"
+	PublicGetMssqlSourceV2DtoTypeREDSHIFT       PublicGetMssqlSourceV2DtoType = "REDSHIFT"
+	PublicGetMssqlSourceV2DtoTypeSNOWFLAKE      PublicGetMssqlSourceV2DtoType = "SNOWFLAKE"
+	PublicGetMssqlSourceV2DtoTypeSYNAPSE        PublicGetMssqlSourceV2DtoType = "SYNAPSE"
+	PublicGetMssqlSourceV2DtoTypeTABLEAU        PublicGetMssqlSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetMysqlSourceV2DtoType.
 const (
-	PublicGetMysqlSourceV2DtoTypeAIRFLOW       PublicGetMysqlSourceV2DtoType = "AIRFLOW"
-	PublicGetMysqlSourceV2DtoTypeATHENA        PublicGetMysqlSourceV2DtoType = "ATHENA"
-	PublicGetMysqlSourceV2DtoTypeBIGQUERY      PublicGetMysqlSourceV2DtoType = "BIGQUERY"
-	PublicGetMysqlSourceV2DtoTypeDATABRICKS    PublicGetMysqlSourceV2DtoType = "DATABRICKS"
-	PublicGetMysqlSourceV2DtoTypeDBT           PublicGetMysqlSourceV2DtoType = "DBT"
-	PublicGetMysqlSourceV2DtoTypeDBTCLOUD      PublicGetMysqlSourceV2DtoType = "DBTCLOUD"
-	PublicGetMysqlSourceV2DtoTypeDECLARATIVE   PublicGetMysqlSourceV2DtoType = "DECLARATIVE"
-	PublicGetMysqlSourceV2DtoTypeFIVETRAN      PublicGetMysqlSourceV2DtoType = "FIVETRAN"
-	PublicGetMysqlSourceV2DtoTypeLOOKER        PublicGetMysqlSourceV2DtoType = "LOOKER"
-	PublicGetMysqlSourceV2DtoTypeMICROSTRATEGY PublicGetMysqlSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetMysqlSourceV2DtoTypeMSSQL         PublicGetMysqlSourceV2DtoType = "MSSQL"
-	PublicGetMysqlSourceV2DtoTypeMYSQL         PublicGetMysqlSourceV2DtoType = "MYSQL"
-	PublicGetMysqlSourceV2DtoTypeORACLE        PublicGetMysqlSourceV2DtoType = "ORACLE"
-	PublicGetMysqlSourceV2DtoTypePOSTGRESQL    PublicGetMysqlSourceV2DtoType = "POSTGRESQL"
-	PublicGetMysqlSourceV2DtoTypePOWERBI       PublicGetMysqlSourceV2DtoType = "POWER_BI"
-	PublicGetMysqlSourceV2DtoTypeQLIK          PublicGetMysqlSourceV2DtoType = "QLIK"
-	PublicGetMysqlSourceV2DtoTypeQUICKSIGHT    PublicGetMysqlSourceV2DtoType = "QUICKSIGHT"
-	PublicGetMysqlSourceV2DtoTypeREDSHIFT      PublicGetMysqlSourceV2DtoType = "REDSHIFT"
-	PublicGetMysqlSourceV2DtoTypeSNOWFLAKE     PublicGetMysqlSourceV2DtoType = "SNOWFLAKE"
-	PublicGetMysqlSourceV2DtoTypeSYNAPSE       PublicGetMysqlSourceV2DtoType = "SYNAPSE"
-	PublicGetMysqlSourceV2DtoTypeTABLEAU       PublicGetMysqlSourceV2DtoType = "TABLEAU"
+	PublicGetMysqlSourceV2DtoTypeAIRFLOW        PublicGetMysqlSourceV2DtoType = "AIRFLOW"
+	PublicGetMysqlSourceV2DtoTypeATHENA         PublicGetMysqlSourceV2DtoType = "ATHENA"
+	PublicGetMysqlSourceV2DtoTypeBIGQUERY       PublicGetMysqlSourceV2DtoType = "BIGQUERY"
+	PublicGetMysqlSourceV2DtoTypeDATABRICKS     PublicGetMysqlSourceV2DtoType = "DATABRICKS"
+	PublicGetMysqlSourceV2DtoTypeDATABRICKSJOBS PublicGetMysqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetMysqlSourceV2DtoTypeDBT            PublicGetMysqlSourceV2DtoType = "DBT"
+	PublicGetMysqlSourceV2DtoTypeDBTCLOUD       PublicGetMysqlSourceV2DtoType = "DBTCLOUD"
+	PublicGetMysqlSourceV2DtoTypeDECLARATIVE    PublicGetMysqlSourceV2DtoType = "DECLARATIVE"
+	PublicGetMysqlSourceV2DtoTypeFIVETRAN       PublicGetMysqlSourceV2DtoType = "FIVETRAN"
+	PublicGetMysqlSourceV2DtoTypeLOOKER         PublicGetMysqlSourceV2DtoType = "LOOKER"
+	PublicGetMysqlSourceV2DtoTypeMICROSTRATEGY  PublicGetMysqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetMysqlSourceV2DtoTypeMSSQL          PublicGetMysqlSourceV2DtoType = "MSSQL"
+	PublicGetMysqlSourceV2DtoTypeMYSQL          PublicGetMysqlSourceV2DtoType = "MYSQL"
+	PublicGetMysqlSourceV2DtoTypeORACLE         PublicGetMysqlSourceV2DtoType = "ORACLE"
+	PublicGetMysqlSourceV2DtoTypePOSTGRESQL     PublicGetMysqlSourceV2DtoType = "POSTGRESQL"
+	PublicGetMysqlSourceV2DtoTypePOWERBI        PublicGetMysqlSourceV2DtoType = "POWER_BI"
+	PublicGetMysqlSourceV2DtoTypeQLIK           PublicGetMysqlSourceV2DtoType = "QLIK"
+	PublicGetMysqlSourceV2DtoTypeQUICKSIGHT     PublicGetMysqlSourceV2DtoType = "QUICKSIGHT"
+	PublicGetMysqlSourceV2DtoTypeREDSHIFT       PublicGetMysqlSourceV2DtoType = "REDSHIFT"
+	PublicGetMysqlSourceV2DtoTypeSNOWFLAKE      PublicGetMysqlSourceV2DtoType = "SNOWFLAKE"
+	PublicGetMysqlSourceV2DtoTypeSYNAPSE        PublicGetMysqlSourceV2DtoType = "SYNAPSE"
+	PublicGetMysqlSourceV2DtoTypeTABLEAU        PublicGetMysqlSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetOracleSourceV2DtoType.
 const (
-	PublicGetOracleSourceV2DtoTypeAIRFLOW       PublicGetOracleSourceV2DtoType = "AIRFLOW"
-	PublicGetOracleSourceV2DtoTypeATHENA        PublicGetOracleSourceV2DtoType = "ATHENA"
-	PublicGetOracleSourceV2DtoTypeBIGQUERY      PublicGetOracleSourceV2DtoType = "BIGQUERY"
-	PublicGetOracleSourceV2DtoTypeDATABRICKS    PublicGetOracleSourceV2DtoType = "DATABRICKS"
-	PublicGetOracleSourceV2DtoTypeDBT           PublicGetOracleSourceV2DtoType = "DBT"
-	PublicGetOracleSourceV2DtoTypeDBTCLOUD      PublicGetOracleSourceV2DtoType = "DBTCLOUD"
-	PublicGetOracleSourceV2DtoTypeDECLARATIVE   PublicGetOracleSourceV2DtoType = "DECLARATIVE"
-	PublicGetOracleSourceV2DtoTypeFIVETRAN      PublicGetOracleSourceV2DtoType = "FIVETRAN"
-	PublicGetOracleSourceV2DtoTypeLOOKER        PublicGetOracleSourceV2DtoType = "LOOKER"
-	PublicGetOracleSourceV2DtoTypeMICROSTRATEGY PublicGetOracleSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetOracleSourceV2DtoTypeMSSQL         PublicGetOracleSourceV2DtoType = "MSSQL"
-	PublicGetOracleSourceV2DtoTypeMYSQL         PublicGetOracleSourceV2DtoType = "MYSQL"
-	PublicGetOracleSourceV2DtoTypeORACLE        PublicGetOracleSourceV2DtoType = "ORACLE"
-	PublicGetOracleSourceV2DtoTypePOSTGRESQL    PublicGetOracleSourceV2DtoType = "POSTGRESQL"
-	PublicGetOracleSourceV2DtoTypePOWERBI       PublicGetOracleSourceV2DtoType = "POWER_BI"
-	PublicGetOracleSourceV2DtoTypeQLIK          PublicGetOracleSourceV2DtoType = "QLIK"
-	PublicGetOracleSourceV2DtoTypeQUICKSIGHT    PublicGetOracleSourceV2DtoType = "QUICKSIGHT"
-	PublicGetOracleSourceV2DtoTypeREDSHIFT      PublicGetOracleSourceV2DtoType = "REDSHIFT"
-	PublicGetOracleSourceV2DtoTypeSNOWFLAKE     PublicGetOracleSourceV2DtoType = "SNOWFLAKE"
-	PublicGetOracleSourceV2DtoTypeSYNAPSE       PublicGetOracleSourceV2DtoType = "SYNAPSE"
-	PublicGetOracleSourceV2DtoTypeTABLEAU       PublicGetOracleSourceV2DtoType = "TABLEAU"
+	PublicGetOracleSourceV2DtoTypeAIRFLOW        PublicGetOracleSourceV2DtoType = "AIRFLOW"
+	PublicGetOracleSourceV2DtoTypeATHENA         PublicGetOracleSourceV2DtoType = "ATHENA"
+	PublicGetOracleSourceV2DtoTypeBIGQUERY       PublicGetOracleSourceV2DtoType = "BIGQUERY"
+	PublicGetOracleSourceV2DtoTypeDATABRICKS     PublicGetOracleSourceV2DtoType = "DATABRICKS"
+	PublicGetOracleSourceV2DtoTypeDATABRICKSJOBS PublicGetOracleSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetOracleSourceV2DtoTypeDBT            PublicGetOracleSourceV2DtoType = "DBT"
+	PublicGetOracleSourceV2DtoTypeDBTCLOUD       PublicGetOracleSourceV2DtoType = "DBTCLOUD"
+	PublicGetOracleSourceV2DtoTypeDECLARATIVE    PublicGetOracleSourceV2DtoType = "DECLARATIVE"
+	PublicGetOracleSourceV2DtoTypeFIVETRAN       PublicGetOracleSourceV2DtoType = "FIVETRAN"
+	PublicGetOracleSourceV2DtoTypeLOOKER         PublicGetOracleSourceV2DtoType = "LOOKER"
+	PublicGetOracleSourceV2DtoTypeMICROSTRATEGY  PublicGetOracleSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetOracleSourceV2DtoTypeMSSQL          PublicGetOracleSourceV2DtoType = "MSSQL"
+	PublicGetOracleSourceV2DtoTypeMYSQL          PublicGetOracleSourceV2DtoType = "MYSQL"
+	PublicGetOracleSourceV2DtoTypeORACLE         PublicGetOracleSourceV2DtoType = "ORACLE"
+	PublicGetOracleSourceV2DtoTypePOSTGRESQL     PublicGetOracleSourceV2DtoType = "POSTGRESQL"
+	PublicGetOracleSourceV2DtoTypePOWERBI        PublicGetOracleSourceV2DtoType = "POWER_BI"
+	PublicGetOracleSourceV2DtoTypeQLIK           PublicGetOracleSourceV2DtoType = "QLIK"
+	PublicGetOracleSourceV2DtoTypeQUICKSIGHT     PublicGetOracleSourceV2DtoType = "QUICKSIGHT"
+	PublicGetOracleSourceV2DtoTypeREDSHIFT       PublicGetOracleSourceV2DtoType = "REDSHIFT"
+	PublicGetOracleSourceV2DtoTypeSNOWFLAKE      PublicGetOracleSourceV2DtoType = "SNOWFLAKE"
+	PublicGetOracleSourceV2DtoTypeSYNAPSE        PublicGetOracleSourceV2DtoType = "SYNAPSE"
+	PublicGetOracleSourceV2DtoTypeTABLEAU        PublicGetOracleSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetPostgresqlSourceV2DtoType.
 const (
-	PublicGetPostgresqlSourceV2DtoTypeAIRFLOW       PublicGetPostgresqlSourceV2DtoType = "AIRFLOW"
-	PublicGetPostgresqlSourceV2DtoTypeATHENA        PublicGetPostgresqlSourceV2DtoType = "ATHENA"
-	PublicGetPostgresqlSourceV2DtoTypeBIGQUERY      PublicGetPostgresqlSourceV2DtoType = "BIGQUERY"
-	PublicGetPostgresqlSourceV2DtoTypeDATABRICKS    PublicGetPostgresqlSourceV2DtoType = "DATABRICKS"
-	PublicGetPostgresqlSourceV2DtoTypeDBT           PublicGetPostgresqlSourceV2DtoType = "DBT"
-	PublicGetPostgresqlSourceV2DtoTypeDBTCLOUD      PublicGetPostgresqlSourceV2DtoType = "DBTCLOUD"
-	PublicGetPostgresqlSourceV2DtoTypeDECLARATIVE   PublicGetPostgresqlSourceV2DtoType = "DECLARATIVE"
-	PublicGetPostgresqlSourceV2DtoTypeFIVETRAN      PublicGetPostgresqlSourceV2DtoType = "FIVETRAN"
-	PublicGetPostgresqlSourceV2DtoTypeLOOKER        PublicGetPostgresqlSourceV2DtoType = "LOOKER"
-	PublicGetPostgresqlSourceV2DtoTypeMICROSTRATEGY PublicGetPostgresqlSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetPostgresqlSourceV2DtoTypeMSSQL         PublicGetPostgresqlSourceV2DtoType = "MSSQL"
-	PublicGetPostgresqlSourceV2DtoTypeMYSQL         PublicGetPostgresqlSourceV2DtoType = "MYSQL"
-	PublicGetPostgresqlSourceV2DtoTypeORACLE        PublicGetPostgresqlSourceV2DtoType = "ORACLE"
-	PublicGetPostgresqlSourceV2DtoTypePOSTGRESQL    PublicGetPostgresqlSourceV2DtoType = "POSTGRESQL"
-	PublicGetPostgresqlSourceV2DtoTypePOWERBI       PublicGetPostgresqlSourceV2DtoType = "POWER_BI"
-	PublicGetPostgresqlSourceV2DtoTypeQLIK          PublicGetPostgresqlSourceV2DtoType = "QLIK"
-	PublicGetPostgresqlSourceV2DtoTypeQUICKSIGHT    PublicGetPostgresqlSourceV2DtoType = "QUICKSIGHT"
-	PublicGetPostgresqlSourceV2DtoTypeREDSHIFT      PublicGetPostgresqlSourceV2DtoType = "REDSHIFT"
-	PublicGetPostgresqlSourceV2DtoTypeSNOWFLAKE     PublicGetPostgresqlSourceV2DtoType = "SNOWFLAKE"
-	PublicGetPostgresqlSourceV2DtoTypeSYNAPSE       PublicGetPostgresqlSourceV2DtoType = "SYNAPSE"
-	PublicGetPostgresqlSourceV2DtoTypeTABLEAU       PublicGetPostgresqlSourceV2DtoType = "TABLEAU"
+	PublicGetPostgresqlSourceV2DtoTypeAIRFLOW        PublicGetPostgresqlSourceV2DtoType = "AIRFLOW"
+	PublicGetPostgresqlSourceV2DtoTypeATHENA         PublicGetPostgresqlSourceV2DtoType = "ATHENA"
+	PublicGetPostgresqlSourceV2DtoTypeBIGQUERY       PublicGetPostgresqlSourceV2DtoType = "BIGQUERY"
+	PublicGetPostgresqlSourceV2DtoTypeDATABRICKS     PublicGetPostgresqlSourceV2DtoType = "DATABRICKS"
+	PublicGetPostgresqlSourceV2DtoTypeDATABRICKSJOBS PublicGetPostgresqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetPostgresqlSourceV2DtoTypeDBT            PublicGetPostgresqlSourceV2DtoType = "DBT"
+	PublicGetPostgresqlSourceV2DtoTypeDBTCLOUD       PublicGetPostgresqlSourceV2DtoType = "DBTCLOUD"
+	PublicGetPostgresqlSourceV2DtoTypeDECLARATIVE    PublicGetPostgresqlSourceV2DtoType = "DECLARATIVE"
+	PublicGetPostgresqlSourceV2DtoTypeFIVETRAN       PublicGetPostgresqlSourceV2DtoType = "FIVETRAN"
+	PublicGetPostgresqlSourceV2DtoTypeLOOKER         PublicGetPostgresqlSourceV2DtoType = "LOOKER"
+	PublicGetPostgresqlSourceV2DtoTypeMICROSTRATEGY  PublicGetPostgresqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetPostgresqlSourceV2DtoTypeMSSQL          PublicGetPostgresqlSourceV2DtoType = "MSSQL"
+	PublicGetPostgresqlSourceV2DtoTypeMYSQL          PublicGetPostgresqlSourceV2DtoType = "MYSQL"
+	PublicGetPostgresqlSourceV2DtoTypeORACLE         PublicGetPostgresqlSourceV2DtoType = "ORACLE"
+	PublicGetPostgresqlSourceV2DtoTypePOSTGRESQL     PublicGetPostgresqlSourceV2DtoType = "POSTGRESQL"
+	PublicGetPostgresqlSourceV2DtoTypePOWERBI        PublicGetPostgresqlSourceV2DtoType = "POWER_BI"
+	PublicGetPostgresqlSourceV2DtoTypeQLIK           PublicGetPostgresqlSourceV2DtoType = "QLIK"
+	PublicGetPostgresqlSourceV2DtoTypeQUICKSIGHT     PublicGetPostgresqlSourceV2DtoType = "QUICKSIGHT"
+	PublicGetPostgresqlSourceV2DtoTypeREDSHIFT       PublicGetPostgresqlSourceV2DtoType = "REDSHIFT"
+	PublicGetPostgresqlSourceV2DtoTypeSNOWFLAKE      PublicGetPostgresqlSourceV2DtoType = "SNOWFLAKE"
+	PublicGetPostgresqlSourceV2DtoTypeSYNAPSE        PublicGetPostgresqlSourceV2DtoType = "SYNAPSE"
+	PublicGetPostgresqlSourceV2DtoTypeTABLEAU        PublicGetPostgresqlSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetPowerBiSourceV2DtoType.
 const (
-	PublicGetPowerBiSourceV2DtoTypeAIRFLOW       PublicGetPowerBiSourceV2DtoType = "AIRFLOW"
-	PublicGetPowerBiSourceV2DtoTypeATHENA        PublicGetPowerBiSourceV2DtoType = "ATHENA"
-	PublicGetPowerBiSourceV2DtoTypeBIGQUERY      PublicGetPowerBiSourceV2DtoType = "BIGQUERY"
-	PublicGetPowerBiSourceV2DtoTypeDATABRICKS    PublicGetPowerBiSourceV2DtoType = "DATABRICKS"
-	PublicGetPowerBiSourceV2DtoTypeDBT           PublicGetPowerBiSourceV2DtoType = "DBT"
-	PublicGetPowerBiSourceV2DtoTypeDBTCLOUD      PublicGetPowerBiSourceV2DtoType = "DBTCLOUD"
-	PublicGetPowerBiSourceV2DtoTypeDECLARATIVE   PublicGetPowerBiSourceV2DtoType = "DECLARATIVE"
-	PublicGetPowerBiSourceV2DtoTypeFIVETRAN      PublicGetPowerBiSourceV2DtoType = "FIVETRAN"
-	PublicGetPowerBiSourceV2DtoTypeLOOKER        PublicGetPowerBiSourceV2DtoType = "LOOKER"
-	PublicGetPowerBiSourceV2DtoTypeMICROSTRATEGY PublicGetPowerBiSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetPowerBiSourceV2DtoTypeMSSQL         PublicGetPowerBiSourceV2DtoType = "MSSQL"
-	PublicGetPowerBiSourceV2DtoTypeMYSQL         PublicGetPowerBiSourceV2DtoType = "MYSQL"
-	PublicGetPowerBiSourceV2DtoTypeORACLE        PublicGetPowerBiSourceV2DtoType = "ORACLE"
-	PublicGetPowerBiSourceV2DtoTypePOSTGRESQL    PublicGetPowerBiSourceV2DtoType = "POSTGRESQL"
-	PublicGetPowerBiSourceV2DtoTypePOWERBI       PublicGetPowerBiSourceV2DtoType = "POWER_BI"
-	PublicGetPowerBiSourceV2DtoTypeQLIK          PublicGetPowerBiSourceV2DtoType = "QLIK"
-	PublicGetPowerBiSourceV2DtoTypeQUICKSIGHT    PublicGetPowerBiSourceV2DtoType = "QUICKSIGHT"
-	PublicGetPowerBiSourceV2DtoTypeREDSHIFT      PublicGetPowerBiSourceV2DtoType = "REDSHIFT"
-	PublicGetPowerBiSourceV2DtoTypeSNOWFLAKE     PublicGetPowerBiSourceV2DtoType = "SNOWFLAKE"
-	PublicGetPowerBiSourceV2DtoTypeSYNAPSE       PublicGetPowerBiSourceV2DtoType = "SYNAPSE"
-	PublicGetPowerBiSourceV2DtoTypeTABLEAU       PublicGetPowerBiSourceV2DtoType = "TABLEAU"
+	PublicGetPowerBiSourceV2DtoTypeAIRFLOW        PublicGetPowerBiSourceV2DtoType = "AIRFLOW"
+	PublicGetPowerBiSourceV2DtoTypeATHENA         PublicGetPowerBiSourceV2DtoType = "ATHENA"
+	PublicGetPowerBiSourceV2DtoTypeBIGQUERY       PublicGetPowerBiSourceV2DtoType = "BIGQUERY"
+	PublicGetPowerBiSourceV2DtoTypeDATABRICKS     PublicGetPowerBiSourceV2DtoType = "DATABRICKS"
+	PublicGetPowerBiSourceV2DtoTypeDATABRICKSJOBS PublicGetPowerBiSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetPowerBiSourceV2DtoTypeDBT            PublicGetPowerBiSourceV2DtoType = "DBT"
+	PublicGetPowerBiSourceV2DtoTypeDBTCLOUD       PublicGetPowerBiSourceV2DtoType = "DBTCLOUD"
+	PublicGetPowerBiSourceV2DtoTypeDECLARATIVE    PublicGetPowerBiSourceV2DtoType = "DECLARATIVE"
+	PublicGetPowerBiSourceV2DtoTypeFIVETRAN       PublicGetPowerBiSourceV2DtoType = "FIVETRAN"
+	PublicGetPowerBiSourceV2DtoTypeLOOKER         PublicGetPowerBiSourceV2DtoType = "LOOKER"
+	PublicGetPowerBiSourceV2DtoTypeMICROSTRATEGY  PublicGetPowerBiSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetPowerBiSourceV2DtoTypeMSSQL          PublicGetPowerBiSourceV2DtoType = "MSSQL"
+	PublicGetPowerBiSourceV2DtoTypeMYSQL          PublicGetPowerBiSourceV2DtoType = "MYSQL"
+	PublicGetPowerBiSourceV2DtoTypeORACLE         PublicGetPowerBiSourceV2DtoType = "ORACLE"
+	PublicGetPowerBiSourceV2DtoTypePOSTGRESQL     PublicGetPowerBiSourceV2DtoType = "POSTGRESQL"
+	PublicGetPowerBiSourceV2DtoTypePOWERBI        PublicGetPowerBiSourceV2DtoType = "POWER_BI"
+	PublicGetPowerBiSourceV2DtoTypeQLIK           PublicGetPowerBiSourceV2DtoType = "QLIK"
+	PublicGetPowerBiSourceV2DtoTypeQUICKSIGHT     PublicGetPowerBiSourceV2DtoType = "QUICKSIGHT"
+	PublicGetPowerBiSourceV2DtoTypeREDSHIFT       PublicGetPowerBiSourceV2DtoType = "REDSHIFT"
+	PublicGetPowerBiSourceV2DtoTypeSNOWFLAKE      PublicGetPowerBiSourceV2DtoType = "SNOWFLAKE"
+	PublicGetPowerBiSourceV2DtoTypeSYNAPSE        PublicGetPowerBiSourceV2DtoType = "SYNAPSE"
+	PublicGetPowerBiSourceV2DtoTypeTABLEAU        PublicGetPowerBiSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetQlikSourceV2DtoType.
 const (
-	PublicGetQlikSourceV2DtoTypeAIRFLOW       PublicGetQlikSourceV2DtoType = "AIRFLOW"
-	PublicGetQlikSourceV2DtoTypeATHENA        PublicGetQlikSourceV2DtoType = "ATHENA"
-	PublicGetQlikSourceV2DtoTypeBIGQUERY      PublicGetQlikSourceV2DtoType = "BIGQUERY"
-	PublicGetQlikSourceV2DtoTypeDATABRICKS    PublicGetQlikSourceV2DtoType = "DATABRICKS"
-	PublicGetQlikSourceV2DtoTypeDBT           PublicGetQlikSourceV2DtoType = "DBT"
-	PublicGetQlikSourceV2DtoTypeDBTCLOUD      PublicGetQlikSourceV2DtoType = "DBTCLOUD"
-	PublicGetQlikSourceV2DtoTypeDECLARATIVE   PublicGetQlikSourceV2DtoType = "DECLARATIVE"
-	PublicGetQlikSourceV2DtoTypeFIVETRAN      PublicGetQlikSourceV2DtoType = "FIVETRAN"
-	PublicGetQlikSourceV2DtoTypeLOOKER        PublicGetQlikSourceV2DtoType = "LOOKER"
-	PublicGetQlikSourceV2DtoTypeMICROSTRATEGY PublicGetQlikSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetQlikSourceV2DtoTypeMSSQL         PublicGetQlikSourceV2DtoType = "MSSQL"
-	PublicGetQlikSourceV2DtoTypeMYSQL         PublicGetQlikSourceV2DtoType = "MYSQL"
-	PublicGetQlikSourceV2DtoTypeORACLE        PublicGetQlikSourceV2DtoType = "ORACLE"
-	PublicGetQlikSourceV2DtoTypePOSTGRESQL    PublicGetQlikSourceV2DtoType = "POSTGRESQL"
-	PublicGetQlikSourceV2DtoTypePOWERBI       PublicGetQlikSourceV2DtoType = "POWER_BI"
-	PublicGetQlikSourceV2DtoTypeQLIK          PublicGetQlikSourceV2DtoType = "QLIK"
-	PublicGetQlikSourceV2DtoTypeQUICKSIGHT    PublicGetQlikSourceV2DtoType = "QUICKSIGHT"
-	PublicGetQlikSourceV2DtoTypeREDSHIFT      PublicGetQlikSourceV2DtoType = "REDSHIFT"
-	PublicGetQlikSourceV2DtoTypeSNOWFLAKE     PublicGetQlikSourceV2DtoType = "SNOWFLAKE"
-	PublicGetQlikSourceV2DtoTypeSYNAPSE       PublicGetQlikSourceV2DtoType = "SYNAPSE"
-	PublicGetQlikSourceV2DtoTypeTABLEAU       PublicGetQlikSourceV2DtoType = "TABLEAU"
+	PublicGetQlikSourceV2DtoTypeAIRFLOW        PublicGetQlikSourceV2DtoType = "AIRFLOW"
+	PublicGetQlikSourceV2DtoTypeATHENA         PublicGetQlikSourceV2DtoType = "ATHENA"
+	PublicGetQlikSourceV2DtoTypeBIGQUERY       PublicGetQlikSourceV2DtoType = "BIGQUERY"
+	PublicGetQlikSourceV2DtoTypeDATABRICKS     PublicGetQlikSourceV2DtoType = "DATABRICKS"
+	PublicGetQlikSourceV2DtoTypeDATABRICKSJOBS PublicGetQlikSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetQlikSourceV2DtoTypeDBT            PublicGetQlikSourceV2DtoType = "DBT"
+	PublicGetQlikSourceV2DtoTypeDBTCLOUD       PublicGetQlikSourceV2DtoType = "DBTCLOUD"
+	PublicGetQlikSourceV2DtoTypeDECLARATIVE    PublicGetQlikSourceV2DtoType = "DECLARATIVE"
+	PublicGetQlikSourceV2DtoTypeFIVETRAN       PublicGetQlikSourceV2DtoType = "FIVETRAN"
+	PublicGetQlikSourceV2DtoTypeLOOKER         PublicGetQlikSourceV2DtoType = "LOOKER"
+	PublicGetQlikSourceV2DtoTypeMICROSTRATEGY  PublicGetQlikSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetQlikSourceV2DtoTypeMSSQL          PublicGetQlikSourceV2DtoType = "MSSQL"
+	PublicGetQlikSourceV2DtoTypeMYSQL          PublicGetQlikSourceV2DtoType = "MYSQL"
+	PublicGetQlikSourceV2DtoTypeORACLE         PublicGetQlikSourceV2DtoType = "ORACLE"
+	PublicGetQlikSourceV2DtoTypePOSTGRESQL     PublicGetQlikSourceV2DtoType = "POSTGRESQL"
+	PublicGetQlikSourceV2DtoTypePOWERBI        PublicGetQlikSourceV2DtoType = "POWER_BI"
+	PublicGetQlikSourceV2DtoTypeQLIK           PublicGetQlikSourceV2DtoType = "QLIK"
+	PublicGetQlikSourceV2DtoTypeQUICKSIGHT     PublicGetQlikSourceV2DtoType = "QUICKSIGHT"
+	PublicGetQlikSourceV2DtoTypeREDSHIFT       PublicGetQlikSourceV2DtoType = "REDSHIFT"
+	PublicGetQlikSourceV2DtoTypeSNOWFLAKE      PublicGetQlikSourceV2DtoType = "SNOWFLAKE"
+	PublicGetQlikSourceV2DtoTypeSYNAPSE        PublicGetQlikSourceV2DtoType = "SYNAPSE"
+	PublicGetQlikSourceV2DtoTypeTABLEAU        PublicGetQlikSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetQuicksightSourceV2DtoType.
 const (
-	PublicGetQuicksightSourceV2DtoTypeAIRFLOW       PublicGetQuicksightSourceV2DtoType = "AIRFLOW"
-	PublicGetQuicksightSourceV2DtoTypeATHENA        PublicGetQuicksightSourceV2DtoType = "ATHENA"
-	PublicGetQuicksightSourceV2DtoTypeBIGQUERY      PublicGetQuicksightSourceV2DtoType = "BIGQUERY"
-	PublicGetQuicksightSourceV2DtoTypeDATABRICKS    PublicGetQuicksightSourceV2DtoType = "DATABRICKS"
-	PublicGetQuicksightSourceV2DtoTypeDBT           PublicGetQuicksightSourceV2DtoType = "DBT"
-	PublicGetQuicksightSourceV2DtoTypeDBTCLOUD      PublicGetQuicksightSourceV2DtoType = "DBTCLOUD"
-	PublicGetQuicksightSourceV2DtoTypeDECLARATIVE   PublicGetQuicksightSourceV2DtoType = "DECLARATIVE"
-	PublicGetQuicksightSourceV2DtoTypeFIVETRAN      PublicGetQuicksightSourceV2DtoType = "FIVETRAN"
-	PublicGetQuicksightSourceV2DtoTypeLOOKER        PublicGetQuicksightSourceV2DtoType = "LOOKER"
-	PublicGetQuicksightSourceV2DtoTypeMICROSTRATEGY PublicGetQuicksightSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetQuicksightSourceV2DtoTypeMSSQL         PublicGetQuicksightSourceV2DtoType = "MSSQL"
-	PublicGetQuicksightSourceV2DtoTypeMYSQL         PublicGetQuicksightSourceV2DtoType = "MYSQL"
-	PublicGetQuicksightSourceV2DtoTypeORACLE        PublicGetQuicksightSourceV2DtoType = "ORACLE"
-	PublicGetQuicksightSourceV2DtoTypePOSTGRESQL    PublicGetQuicksightSourceV2DtoType = "POSTGRESQL"
-	PublicGetQuicksightSourceV2DtoTypePOWERBI       PublicGetQuicksightSourceV2DtoType = "POWER_BI"
-	PublicGetQuicksightSourceV2DtoTypeQLIK          PublicGetQuicksightSourceV2DtoType = "QLIK"
-	PublicGetQuicksightSourceV2DtoTypeQUICKSIGHT    PublicGetQuicksightSourceV2DtoType = "QUICKSIGHT"
-	PublicGetQuicksightSourceV2DtoTypeREDSHIFT      PublicGetQuicksightSourceV2DtoType = "REDSHIFT"
-	PublicGetQuicksightSourceV2DtoTypeSNOWFLAKE     PublicGetQuicksightSourceV2DtoType = "SNOWFLAKE"
-	PublicGetQuicksightSourceV2DtoTypeSYNAPSE       PublicGetQuicksightSourceV2DtoType = "SYNAPSE"
-	PublicGetQuicksightSourceV2DtoTypeTABLEAU       PublicGetQuicksightSourceV2DtoType = "TABLEAU"
+	PublicGetQuicksightSourceV2DtoTypeAIRFLOW        PublicGetQuicksightSourceV2DtoType = "AIRFLOW"
+	PublicGetQuicksightSourceV2DtoTypeATHENA         PublicGetQuicksightSourceV2DtoType = "ATHENA"
+	PublicGetQuicksightSourceV2DtoTypeBIGQUERY       PublicGetQuicksightSourceV2DtoType = "BIGQUERY"
+	PublicGetQuicksightSourceV2DtoTypeDATABRICKS     PublicGetQuicksightSourceV2DtoType = "DATABRICKS"
+	PublicGetQuicksightSourceV2DtoTypeDATABRICKSJOBS PublicGetQuicksightSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetQuicksightSourceV2DtoTypeDBT            PublicGetQuicksightSourceV2DtoType = "DBT"
+	PublicGetQuicksightSourceV2DtoTypeDBTCLOUD       PublicGetQuicksightSourceV2DtoType = "DBTCLOUD"
+	PublicGetQuicksightSourceV2DtoTypeDECLARATIVE    PublicGetQuicksightSourceV2DtoType = "DECLARATIVE"
+	PublicGetQuicksightSourceV2DtoTypeFIVETRAN       PublicGetQuicksightSourceV2DtoType = "FIVETRAN"
+	PublicGetQuicksightSourceV2DtoTypeLOOKER         PublicGetQuicksightSourceV2DtoType = "LOOKER"
+	PublicGetQuicksightSourceV2DtoTypeMICROSTRATEGY  PublicGetQuicksightSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetQuicksightSourceV2DtoTypeMSSQL          PublicGetQuicksightSourceV2DtoType = "MSSQL"
+	PublicGetQuicksightSourceV2DtoTypeMYSQL          PublicGetQuicksightSourceV2DtoType = "MYSQL"
+	PublicGetQuicksightSourceV2DtoTypeORACLE         PublicGetQuicksightSourceV2DtoType = "ORACLE"
+	PublicGetQuicksightSourceV2DtoTypePOSTGRESQL     PublicGetQuicksightSourceV2DtoType = "POSTGRESQL"
+	PublicGetQuicksightSourceV2DtoTypePOWERBI        PublicGetQuicksightSourceV2DtoType = "POWER_BI"
+	PublicGetQuicksightSourceV2DtoTypeQLIK           PublicGetQuicksightSourceV2DtoType = "QLIK"
+	PublicGetQuicksightSourceV2DtoTypeQUICKSIGHT     PublicGetQuicksightSourceV2DtoType = "QUICKSIGHT"
+	PublicGetQuicksightSourceV2DtoTypeREDSHIFT       PublicGetQuicksightSourceV2DtoType = "REDSHIFT"
+	PublicGetQuicksightSourceV2DtoTypeSNOWFLAKE      PublicGetQuicksightSourceV2DtoType = "SNOWFLAKE"
+	PublicGetQuicksightSourceV2DtoTypeSYNAPSE        PublicGetQuicksightSourceV2DtoType = "SYNAPSE"
+	PublicGetQuicksightSourceV2DtoTypeTABLEAU        PublicGetQuicksightSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetRedshiftSourceV2DtoType.
 const (
-	PublicGetRedshiftSourceV2DtoTypeAIRFLOW       PublicGetRedshiftSourceV2DtoType = "AIRFLOW"
-	PublicGetRedshiftSourceV2DtoTypeATHENA        PublicGetRedshiftSourceV2DtoType = "ATHENA"
-	PublicGetRedshiftSourceV2DtoTypeBIGQUERY      PublicGetRedshiftSourceV2DtoType = "BIGQUERY"
-	PublicGetRedshiftSourceV2DtoTypeDATABRICKS    PublicGetRedshiftSourceV2DtoType = "DATABRICKS"
-	PublicGetRedshiftSourceV2DtoTypeDBT           PublicGetRedshiftSourceV2DtoType = "DBT"
-	PublicGetRedshiftSourceV2DtoTypeDBTCLOUD      PublicGetRedshiftSourceV2DtoType = "DBTCLOUD"
-	PublicGetRedshiftSourceV2DtoTypeDECLARATIVE   PublicGetRedshiftSourceV2DtoType = "DECLARATIVE"
-	PublicGetRedshiftSourceV2DtoTypeFIVETRAN      PublicGetRedshiftSourceV2DtoType = "FIVETRAN"
-	PublicGetRedshiftSourceV2DtoTypeLOOKER        PublicGetRedshiftSourceV2DtoType = "LOOKER"
-	PublicGetRedshiftSourceV2DtoTypeMICROSTRATEGY PublicGetRedshiftSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetRedshiftSourceV2DtoTypeMSSQL         PublicGetRedshiftSourceV2DtoType = "MSSQL"
-	PublicGetRedshiftSourceV2DtoTypeMYSQL         PublicGetRedshiftSourceV2DtoType = "MYSQL"
-	PublicGetRedshiftSourceV2DtoTypeORACLE        PublicGetRedshiftSourceV2DtoType = "ORACLE"
-	PublicGetRedshiftSourceV2DtoTypePOSTGRESQL    PublicGetRedshiftSourceV2DtoType = "POSTGRESQL"
-	PublicGetRedshiftSourceV2DtoTypePOWERBI       PublicGetRedshiftSourceV2DtoType = "POWER_BI"
-	PublicGetRedshiftSourceV2DtoTypeQLIK          PublicGetRedshiftSourceV2DtoType = "QLIK"
-	PublicGetRedshiftSourceV2DtoTypeQUICKSIGHT    PublicGetRedshiftSourceV2DtoType = "QUICKSIGHT"
-	PublicGetRedshiftSourceV2DtoTypeREDSHIFT      PublicGetRedshiftSourceV2DtoType = "REDSHIFT"
-	PublicGetRedshiftSourceV2DtoTypeSNOWFLAKE     PublicGetRedshiftSourceV2DtoType = "SNOWFLAKE"
-	PublicGetRedshiftSourceV2DtoTypeSYNAPSE       PublicGetRedshiftSourceV2DtoType = "SYNAPSE"
-	PublicGetRedshiftSourceV2DtoTypeTABLEAU       PublicGetRedshiftSourceV2DtoType = "TABLEAU"
+	PublicGetRedshiftSourceV2DtoTypeAIRFLOW        PublicGetRedshiftSourceV2DtoType = "AIRFLOW"
+	PublicGetRedshiftSourceV2DtoTypeATHENA         PublicGetRedshiftSourceV2DtoType = "ATHENA"
+	PublicGetRedshiftSourceV2DtoTypeBIGQUERY       PublicGetRedshiftSourceV2DtoType = "BIGQUERY"
+	PublicGetRedshiftSourceV2DtoTypeDATABRICKS     PublicGetRedshiftSourceV2DtoType = "DATABRICKS"
+	PublicGetRedshiftSourceV2DtoTypeDATABRICKSJOBS PublicGetRedshiftSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetRedshiftSourceV2DtoTypeDBT            PublicGetRedshiftSourceV2DtoType = "DBT"
+	PublicGetRedshiftSourceV2DtoTypeDBTCLOUD       PublicGetRedshiftSourceV2DtoType = "DBTCLOUD"
+	PublicGetRedshiftSourceV2DtoTypeDECLARATIVE    PublicGetRedshiftSourceV2DtoType = "DECLARATIVE"
+	PublicGetRedshiftSourceV2DtoTypeFIVETRAN       PublicGetRedshiftSourceV2DtoType = "FIVETRAN"
+	PublicGetRedshiftSourceV2DtoTypeLOOKER         PublicGetRedshiftSourceV2DtoType = "LOOKER"
+	PublicGetRedshiftSourceV2DtoTypeMICROSTRATEGY  PublicGetRedshiftSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetRedshiftSourceV2DtoTypeMSSQL          PublicGetRedshiftSourceV2DtoType = "MSSQL"
+	PublicGetRedshiftSourceV2DtoTypeMYSQL          PublicGetRedshiftSourceV2DtoType = "MYSQL"
+	PublicGetRedshiftSourceV2DtoTypeORACLE         PublicGetRedshiftSourceV2DtoType = "ORACLE"
+	PublicGetRedshiftSourceV2DtoTypePOSTGRESQL     PublicGetRedshiftSourceV2DtoType = "POSTGRESQL"
+	PublicGetRedshiftSourceV2DtoTypePOWERBI        PublicGetRedshiftSourceV2DtoType = "POWER_BI"
+	PublicGetRedshiftSourceV2DtoTypeQLIK           PublicGetRedshiftSourceV2DtoType = "QLIK"
+	PublicGetRedshiftSourceV2DtoTypeQUICKSIGHT     PublicGetRedshiftSourceV2DtoType = "QUICKSIGHT"
+	PublicGetRedshiftSourceV2DtoTypeREDSHIFT       PublicGetRedshiftSourceV2DtoType = "REDSHIFT"
+	PublicGetRedshiftSourceV2DtoTypeSNOWFLAKE      PublicGetRedshiftSourceV2DtoType = "SNOWFLAKE"
+	PublicGetRedshiftSourceV2DtoTypeSYNAPSE        PublicGetRedshiftSourceV2DtoType = "SYNAPSE"
+	PublicGetRedshiftSourceV2DtoTypeTABLEAU        PublicGetRedshiftSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetSnowflakeSourceV2DtoType.
 const (
-	PublicGetSnowflakeSourceV2DtoTypeAIRFLOW       PublicGetSnowflakeSourceV2DtoType = "AIRFLOW"
-	PublicGetSnowflakeSourceV2DtoTypeATHENA        PublicGetSnowflakeSourceV2DtoType = "ATHENA"
-	PublicGetSnowflakeSourceV2DtoTypeBIGQUERY      PublicGetSnowflakeSourceV2DtoType = "BIGQUERY"
-	PublicGetSnowflakeSourceV2DtoTypeDATABRICKS    PublicGetSnowflakeSourceV2DtoType = "DATABRICKS"
-	PublicGetSnowflakeSourceV2DtoTypeDBT           PublicGetSnowflakeSourceV2DtoType = "DBT"
-	PublicGetSnowflakeSourceV2DtoTypeDBTCLOUD      PublicGetSnowflakeSourceV2DtoType = "DBTCLOUD"
-	PublicGetSnowflakeSourceV2DtoTypeDECLARATIVE   PublicGetSnowflakeSourceV2DtoType = "DECLARATIVE"
-	PublicGetSnowflakeSourceV2DtoTypeFIVETRAN      PublicGetSnowflakeSourceV2DtoType = "FIVETRAN"
-	PublicGetSnowflakeSourceV2DtoTypeLOOKER        PublicGetSnowflakeSourceV2DtoType = "LOOKER"
-	PublicGetSnowflakeSourceV2DtoTypeMICROSTRATEGY PublicGetSnowflakeSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetSnowflakeSourceV2DtoTypeMSSQL         PublicGetSnowflakeSourceV2DtoType = "MSSQL"
-	PublicGetSnowflakeSourceV2DtoTypeMYSQL         PublicGetSnowflakeSourceV2DtoType = "MYSQL"
-	PublicGetSnowflakeSourceV2DtoTypeORACLE        PublicGetSnowflakeSourceV2DtoType = "ORACLE"
-	PublicGetSnowflakeSourceV2DtoTypePOSTGRESQL    PublicGetSnowflakeSourceV2DtoType = "POSTGRESQL"
-	PublicGetSnowflakeSourceV2DtoTypePOWERBI       PublicGetSnowflakeSourceV2DtoType = "POWER_BI"
-	PublicGetSnowflakeSourceV2DtoTypeQLIK          PublicGetSnowflakeSourceV2DtoType = "QLIK"
-	PublicGetSnowflakeSourceV2DtoTypeQUICKSIGHT    PublicGetSnowflakeSourceV2DtoType = "QUICKSIGHT"
-	PublicGetSnowflakeSourceV2DtoTypeREDSHIFT      PublicGetSnowflakeSourceV2DtoType = "REDSHIFT"
-	PublicGetSnowflakeSourceV2DtoTypeSNOWFLAKE     PublicGetSnowflakeSourceV2DtoType = "SNOWFLAKE"
-	PublicGetSnowflakeSourceV2DtoTypeSYNAPSE       PublicGetSnowflakeSourceV2DtoType = "SYNAPSE"
-	PublicGetSnowflakeSourceV2DtoTypeTABLEAU       PublicGetSnowflakeSourceV2DtoType = "TABLEAU"
+	PublicGetSnowflakeSourceV2DtoTypeAIRFLOW        PublicGetSnowflakeSourceV2DtoType = "AIRFLOW"
+	PublicGetSnowflakeSourceV2DtoTypeATHENA         PublicGetSnowflakeSourceV2DtoType = "ATHENA"
+	PublicGetSnowflakeSourceV2DtoTypeBIGQUERY       PublicGetSnowflakeSourceV2DtoType = "BIGQUERY"
+	PublicGetSnowflakeSourceV2DtoTypeDATABRICKS     PublicGetSnowflakeSourceV2DtoType = "DATABRICKS"
+	PublicGetSnowflakeSourceV2DtoTypeDATABRICKSJOBS PublicGetSnowflakeSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetSnowflakeSourceV2DtoTypeDBT            PublicGetSnowflakeSourceV2DtoType = "DBT"
+	PublicGetSnowflakeSourceV2DtoTypeDBTCLOUD       PublicGetSnowflakeSourceV2DtoType = "DBTCLOUD"
+	PublicGetSnowflakeSourceV2DtoTypeDECLARATIVE    PublicGetSnowflakeSourceV2DtoType = "DECLARATIVE"
+	PublicGetSnowflakeSourceV2DtoTypeFIVETRAN       PublicGetSnowflakeSourceV2DtoType = "FIVETRAN"
+	PublicGetSnowflakeSourceV2DtoTypeLOOKER         PublicGetSnowflakeSourceV2DtoType = "LOOKER"
+	PublicGetSnowflakeSourceV2DtoTypeMICROSTRATEGY  PublicGetSnowflakeSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetSnowflakeSourceV2DtoTypeMSSQL          PublicGetSnowflakeSourceV2DtoType = "MSSQL"
+	PublicGetSnowflakeSourceV2DtoTypeMYSQL          PublicGetSnowflakeSourceV2DtoType = "MYSQL"
+	PublicGetSnowflakeSourceV2DtoTypeORACLE         PublicGetSnowflakeSourceV2DtoType = "ORACLE"
+	PublicGetSnowflakeSourceV2DtoTypePOSTGRESQL     PublicGetSnowflakeSourceV2DtoType = "POSTGRESQL"
+	PublicGetSnowflakeSourceV2DtoTypePOWERBI        PublicGetSnowflakeSourceV2DtoType = "POWER_BI"
+	PublicGetSnowflakeSourceV2DtoTypeQLIK           PublicGetSnowflakeSourceV2DtoType = "QLIK"
+	PublicGetSnowflakeSourceV2DtoTypeQUICKSIGHT     PublicGetSnowflakeSourceV2DtoType = "QUICKSIGHT"
+	PublicGetSnowflakeSourceV2DtoTypeREDSHIFT       PublicGetSnowflakeSourceV2DtoType = "REDSHIFT"
+	PublicGetSnowflakeSourceV2DtoTypeSNOWFLAKE      PublicGetSnowflakeSourceV2DtoType = "SNOWFLAKE"
+	PublicGetSnowflakeSourceV2DtoTypeSYNAPSE        PublicGetSnowflakeSourceV2DtoType = "SYNAPSE"
+	PublicGetSnowflakeSourceV2DtoTypeTABLEAU        PublicGetSnowflakeSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetSourceV2DtoType.
 const (
-	PublicGetSourceV2DtoTypeAIRFLOW       PublicGetSourceV2DtoType = "AIRFLOW"
-	PublicGetSourceV2DtoTypeATHENA        PublicGetSourceV2DtoType = "ATHENA"
-	PublicGetSourceV2DtoTypeBIGQUERY      PublicGetSourceV2DtoType = "BIGQUERY"
-	PublicGetSourceV2DtoTypeDATABRICKS    PublicGetSourceV2DtoType = "DATABRICKS"
-	PublicGetSourceV2DtoTypeDBT           PublicGetSourceV2DtoType = "DBT"
-	PublicGetSourceV2DtoTypeDBTCLOUD      PublicGetSourceV2DtoType = "DBTCLOUD"
-	PublicGetSourceV2DtoTypeDECLARATIVE   PublicGetSourceV2DtoType = "DECLARATIVE"
-	PublicGetSourceV2DtoTypeFIVETRAN      PublicGetSourceV2DtoType = "FIVETRAN"
-	PublicGetSourceV2DtoTypeLOOKER        PublicGetSourceV2DtoType = "LOOKER"
-	PublicGetSourceV2DtoTypeMICROSTRATEGY PublicGetSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetSourceV2DtoTypeMSSQL         PublicGetSourceV2DtoType = "MSSQL"
-	PublicGetSourceV2DtoTypeMYSQL         PublicGetSourceV2DtoType = "MYSQL"
-	PublicGetSourceV2DtoTypeORACLE        PublicGetSourceV2DtoType = "ORACLE"
-	PublicGetSourceV2DtoTypePOSTGRESQL    PublicGetSourceV2DtoType = "POSTGRESQL"
-	PublicGetSourceV2DtoTypePOWERBI       PublicGetSourceV2DtoType = "POWER_BI"
-	PublicGetSourceV2DtoTypeQLIK          PublicGetSourceV2DtoType = "QLIK"
-	PublicGetSourceV2DtoTypeQUICKSIGHT    PublicGetSourceV2DtoType = "QUICKSIGHT"
-	PublicGetSourceV2DtoTypeREDSHIFT      PublicGetSourceV2DtoType = "REDSHIFT"
-	PublicGetSourceV2DtoTypeSNOWFLAKE     PublicGetSourceV2DtoType = "SNOWFLAKE"
-	PublicGetSourceV2DtoTypeSYNAPSE       PublicGetSourceV2DtoType = "SYNAPSE"
-	PublicGetSourceV2DtoTypeTABLEAU       PublicGetSourceV2DtoType = "TABLEAU"
+	PublicGetSourceV2DtoTypeAIRFLOW        PublicGetSourceV2DtoType = "AIRFLOW"
+	PublicGetSourceV2DtoTypeATHENA         PublicGetSourceV2DtoType = "ATHENA"
+	PublicGetSourceV2DtoTypeBIGQUERY       PublicGetSourceV2DtoType = "BIGQUERY"
+	PublicGetSourceV2DtoTypeDATABRICKS     PublicGetSourceV2DtoType = "DATABRICKS"
+	PublicGetSourceV2DtoTypeDATABRICKSJOBS PublicGetSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetSourceV2DtoTypeDBT            PublicGetSourceV2DtoType = "DBT"
+	PublicGetSourceV2DtoTypeDBTCLOUD       PublicGetSourceV2DtoType = "DBTCLOUD"
+	PublicGetSourceV2DtoTypeDECLARATIVE    PublicGetSourceV2DtoType = "DECLARATIVE"
+	PublicGetSourceV2DtoTypeFIVETRAN       PublicGetSourceV2DtoType = "FIVETRAN"
+	PublicGetSourceV2DtoTypeLOOKER         PublicGetSourceV2DtoType = "LOOKER"
+	PublicGetSourceV2DtoTypeMICROSTRATEGY  PublicGetSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetSourceV2DtoTypeMSSQL          PublicGetSourceV2DtoType = "MSSQL"
+	PublicGetSourceV2DtoTypeMYSQL          PublicGetSourceV2DtoType = "MYSQL"
+	PublicGetSourceV2DtoTypeORACLE         PublicGetSourceV2DtoType = "ORACLE"
+	PublicGetSourceV2DtoTypePOSTGRESQL     PublicGetSourceV2DtoType = "POSTGRESQL"
+	PublicGetSourceV2DtoTypePOWERBI        PublicGetSourceV2DtoType = "POWER_BI"
+	PublicGetSourceV2DtoTypeQLIK           PublicGetSourceV2DtoType = "QLIK"
+	PublicGetSourceV2DtoTypeQUICKSIGHT     PublicGetSourceV2DtoType = "QUICKSIGHT"
+	PublicGetSourceV2DtoTypeREDSHIFT       PublicGetSourceV2DtoType = "REDSHIFT"
+	PublicGetSourceV2DtoTypeSNOWFLAKE      PublicGetSourceV2DtoType = "SNOWFLAKE"
+	PublicGetSourceV2DtoTypeSYNAPSE        PublicGetSourceV2DtoType = "SYNAPSE"
+	PublicGetSourceV2DtoTypeTABLEAU        PublicGetSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetSynapseSourceV2DtoType.
 const (
-	PublicGetSynapseSourceV2DtoTypeAIRFLOW       PublicGetSynapseSourceV2DtoType = "AIRFLOW"
-	PublicGetSynapseSourceV2DtoTypeATHENA        PublicGetSynapseSourceV2DtoType = "ATHENA"
-	PublicGetSynapseSourceV2DtoTypeBIGQUERY      PublicGetSynapseSourceV2DtoType = "BIGQUERY"
-	PublicGetSynapseSourceV2DtoTypeDATABRICKS    PublicGetSynapseSourceV2DtoType = "DATABRICKS"
-	PublicGetSynapseSourceV2DtoTypeDBT           PublicGetSynapseSourceV2DtoType = "DBT"
-	PublicGetSynapseSourceV2DtoTypeDBTCLOUD      PublicGetSynapseSourceV2DtoType = "DBTCLOUD"
-	PublicGetSynapseSourceV2DtoTypeDECLARATIVE   PublicGetSynapseSourceV2DtoType = "DECLARATIVE"
-	PublicGetSynapseSourceV2DtoTypeFIVETRAN      PublicGetSynapseSourceV2DtoType = "FIVETRAN"
-	PublicGetSynapseSourceV2DtoTypeLOOKER        PublicGetSynapseSourceV2DtoType = "LOOKER"
-	PublicGetSynapseSourceV2DtoTypeMICROSTRATEGY PublicGetSynapseSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetSynapseSourceV2DtoTypeMSSQL         PublicGetSynapseSourceV2DtoType = "MSSQL"
-	PublicGetSynapseSourceV2DtoTypeMYSQL         PublicGetSynapseSourceV2DtoType = "MYSQL"
-	PublicGetSynapseSourceV2DtoTypeORACLE        PublicGetSynapseSourceV2DtoType = "ORACLE"
-	PublicGetSynapseSourceV2DtoTypePOSTGRESQL    PublicGetSynapseSourceV2DtoType = "POSTGRESQL"
-	PublicGetSynapseSourceV2DtoTypePOWERBI       PublicGetSynapseSourceV2DtoType = "POWER_BI"
-	PublicGetSynapseSourceV2DtoTypeQLIK          PublicGetSynapseSourceV2DtoType = "QLIK"
-	PublicGetSynapseSourceV2DtoTypeQUICKSIGHT    PublicGetSynapseSourceV2DtoType = "QUICKSIGHT"
-	PublicGetSynapseSourceV2DtoTypeREDSHIFT      PublicGetSynapseSourceV2DtoType = "REDSHIFT"
-	PublicGetSynapseSourceV2DtoTypeSNOWFLAKE     PublicGetSynapseSourceV2DtoType = "SNOWFLAKE"
-	PublicGetSynapseSourceV2DtoTypeSYNAPSE       PublicGetSynapseSourceV2DtoType = "SYNAPSE"
-	PublicGetSynapseSourceV2DtoTypeTABLEAU       PublicGetSynapseSourceV2DtoType = "TABLEAU"
+	PublicGetSynapseSourceV2DtoTypeAIRFLOW        PublicGetSynapseSourceV2DtoType = "AIRFLOW"
+	PublicGetSynapseSourceV2DtoTypeATHENA         PublicGetSynapseSourceV2DtoType = "ATHENA"
+	PublicGetSynapseSourceV2DtoTypeBIGQUERY       PublicGetSynapseSourceV2DtoType = "BIGQUERY"
+	PublicGetSynapseSourceV2DtoTypeDATABRICKS     PublicGetSynapseSourceV2DtoType = "DATABRICKS"
+	PublicGetSynapseSourceV2DtoTypeDATABRICKSJOBS PublicGetSynapseSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetSynapseSourceV2DtoTypeDBT            PublicGetSynapseSourceV2DtoType = "DBT"
+	PublicGetSynapseSourceV2DtoTypeDBTCLOUD       PublicGetSynapseSourceV2DtoType = "DBTCLOUD"
+	PublicGetSynapseSourceV2DtoTypeDECLARATIVE    PublicGetSynapseSourceV2DtoType = "DECLARATIVE"
+	PublicGetSynapseSourceV2DtoTypeFIVETRAN       PublicGetSynapseSourceV2DtoType = "FIVETRAN"
+	PublicGetSynapseSourceV2DtoTypeLOOKER         PublicGetSynapseSourceV2DtoType = "LOOKER"
+	PublicGetSynapseSourceV2DtoTypeMICROSTRATEGY  PublicGetSynapseSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetSynapseSourceV2DtoTypeMSSQL          PublicGetSynapseSourceV2DtoType = "MSSQL"
+	PublicGetSynapseSourceV2DtoTypeMYSQL          PublicGetSynapseSourceV2DtoType = "MYSQL"
+	PublicGetSynapseSourceV2DtoTypeORACLE         PublicGetSynapseSourceV2DtoType = "ORACLE"
+	PublicGetSynapseSourceV2DtoTypePOSTGRESQL     PublicGetSynapseSourceV2DtoType = "POSTGRESQL"
+	PublicGetSynapseSourceV2DtoTypePOWERBI        PublicGetSynapseSourceV2DtoType = "POWER_BI"
+	PublicGetSynapseSourceV2DtoTypeQLIK           PublicGetSynapseSourceV2DtoType = "QLIK"
+	PublicGetSynapseSourceV2DtoTypeQUICKSIGHT     PublicGetSynapseSourceV2DtoType = "QUICKSIGHT"
+	PublicGetSynapseSourceV2DtoTypeREDSHIFT       PublicGetSynapseSourceV2DtoType = "REDSHIFT"
+	PublicGetSynapseSourceV2DtoTypeSNOWFLAKE      PublicGetSynapseSourceV2DtoType = "SNOWFLAKE"
+	PublicGetSynapseSourceV2DtoTypeSYNAPSE        PublicGetSynapseSourceV2DtoType = "SYNAPSE"
+	PublicGetSynapseSourceV2DtoTypeTABLEAU        PublicGetSynapseSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetTableauSourceV2DtoType.
 const (
-	PublicGetTableauSourceV2DtoTypeAIRFLOW       PublicGetTableauSourceV2DtoType = "AIRFLOW"
-	PublicGetTableauSourceV2DtoTypeATHENA        PublicGetTableauSourceV2DtoType = "ATHENA"
-	PublicGetTableauSourceV2DtoTypeBIGQUERY      PublicGetTableauSourceV2DtoType = "BIGQUERY"
-	PublicGetTableauSourceV2DtoTypeDATABRICKS    PublicGetTableauSourceV2DtoType = "DATABRICKS"
-	PublicGetTableauSourceV2DtoTypeDBT           PublicGetTableauSourceV2DtoType = "DBT"
-	PublicGetTableauSourceV2DtoTypeDBTCLOUD      PublicGetTableauSourceV2DtoType = "DBTCLOUD"
-	PublicGetTableauSourceV2DtoTypeDECLARATIVE   PublicGetTableauSourceV2DtoType = "DECLARATIVE"
-	PublicGetTableauSourceV2DtoTypeFIVETRAN      PublicGetTableauSourceV2DtoType = "FIVETRAN"
-	PublicGetTableauSourceV2DtoTypeLOOKER        PublicGetTableauSourceV2DtoType = "LOOKER"
-	PublicGetTableauSourceV2DtoTypeMICROSTRATEGY PublicGetTableauSourceV2DtoType = "MICROSTRATEGY"
-	PublicGetTableauSourceV2DtoTypeMSSQL         PublicGetTableauSourceV2DtoType = "MSSQL"
-	PublicGetTableauSourceV2DtoTypeMYSQL         PublicGetTableauSourceV2DtoType = "MYSQL"
-	PublicGetTableauSourceV2DtoTypeORACLE        PublicGetTableauSourceV2DtoType = "ORACLE"
-	PublicGetTableauSourceV2DtoTypePOSTGRESQL    PublicGetTableauSourceV2DtoType = "POSTGRESQL"
-	PublicGetTableauSourceV2DtoTypePOWERBI       PublicGetTableauSourceV2DtoType = "POWER_BI"
-	PublicGetTableauSourceV2DtoTypeQLIK          PublicGetTableauSourceV2DtoType = "QLIK"
-	PublicGetTableauSourceV2DtoTypeQUICKSIGHT    PublicGetTableauSourceV2DtoType = "QUICKSIGHT"
-	PublicGetTableauSourceV2DtoTypeREDSHIFT      PublicGetTableauSourceV2DtoType = "REDSHIFT"
-	PublicGetTableauSourceV2DtoTypeSNOWFLAKE     PublicGetTableauSourceV2DtoType = "SNOWFLAKE"
-	PublicGetTableauSourceV2DtoTypeSYNAPSE       PublicGetTableauSourceV2DtoType = "SYNAPSE"
-	PublicGetTableauSourceV2DtoTypeTABLEAU       PublicGetTableauSourceV2DtoType = "TABLEAU"
+	PublicGetTableauSourceV2DtoTypeAIRFLOW        PublicGetTableauSourceV2DtoType = "AIRFLOW"
+	PublicGetTableauSourceV2DtoTypeATHENA         PublicGetTableauSourceV2DtoType = "ATHENA"
+	PublicGetTableauSourceV2DtoTypeBIGQUERY       PublicGetTableauSourceV2DtoType = "BIGQUERY"
+	PublicGetTableauSourceV2DtoTypeDATABRICKS     PublicGetTableauSourceV2DtoType = "DATABRICKS"
+	PublicGetTableauSourceV2DtoTypeDATABRICKSJOBS PublicGetTableauSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetTableauSourceV2DtoTypeDBT            PublicGetTableauSourceV2DtoType = "DBT"
+	PublicGetTableauSourceV2DtoTypeDBTCLOUD       PublicGetTableauSourceV2DtoType = "DBTCLOUD"
+	PublicGetTableauSourceV2DtoTypeDECLARATIVE    PublicGetTableauSourceV2DtoType = "DECLARATIVE"
+	PublicGetTableauSourceV2DtoTypeFIVETRAN       PublicGetTableauSourceV2DtoType = "FIVETRAN"
+	PublicGetTableauSourceV2DtoTypeLOOKER         PublicGetTableauSourceV2DtoType = "LOOKER"
+	PublicGetTableauSourceV2DtoTypeMICROSTRATEGY  PublicGetTableauSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetTableauSourceV2DtoTypeMSSQL          PublicGetTableauSourceV2DtoType = "MSSQL"
+	PublicGetTableauSourceV2DtoTypeMYSQL          PublicGetTableauSourceV2DtoType = "MYSQL"
+	PublicGetTableauSourceV2DtoTypeORACLE         PublicGetTableauSourceV2DtoType = "ORACLE"
+	PublicGetTableauSourceV2DtoTypePOSTGRESQL     PublicGetTableauSourceV2DtoType = "POSTGRESQL"
+	PublicGetTableauSourceV2DtoTypePOWERBI        PublicGetTableauSourceV2DtoType = "POWER_BI"
+	PublicGetTableauSourceV2DtoTypeQLIK           PublicGetTableauSourceV2DtoType = "QLIK"
+	PublicGetTableauSourceV2DtoTypeQUICKSIGHT     PublicGetTableauSourceV2DtoType = "QUICKSIGHT"
+	PublicGetTableauSourceV2DtoTypeREDSHIFT       PublicGetTableauSourceV2DtoType = "REDSHIFT"
+	PublicGetTableauSourceV2DtoTypeSNOWFLAKE      PublicGetTableauSourceV2DtoType = "SNOWFLAKE"
+	PublicGetTableauSourceV2DtoTypeSYNAPSE        PublicGetTableauSourceV2DtoType = "SYNAPSE"
+	PublicGetTableauSourceV2DtoTypeTABLEAU        PublicGetTableauSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicLookerParametersDtoType.
@@ -4523,12 +4593,6 @@ const (
 	PublicPowerBiParametersDtoTypeUnderscoreUNKNOWN PublicPowerBiParametersDtoType = "_UNKNOWN_"
 )
 
-// Defines values for PublicProjectsScopeDtoType.
-const (
-	PublicProjectsScopeDtoTypeEXCLUSION PublicProjectsScopeDtoType = "EXCLUSION"
-	PublicProjectsScopeDtoTypeINCLUSION PublicProjectsScopeDtoType = "INCLUSION"
-)
-
 // Defines values for PublicQuicksightParametersDtoType.
 const (
 	PublicQuicksightParametersDtoTypeAIRFLOW           PublicQuicksightParametersDtoType = "AIRFLOW"
@@ -4575,12 +4639,6 @@ const (
 	PublicRedshiftParametersDtoTypeSYNAPSE           PublicRedshiftParametersDtoType = "SYNAPSE"
 	PublicRedshiftParametersDtoTypeTABLEAU           PublicRedshiftParametersDtoType = "TABLEAU"
 	PublicRedshiftParametersDtoTypeUnderscoreUNKNOWN PublicRedshiftParametersDtoType = "_UNKNOWN_"
-)
-
-// Defines values for PublicSchemasScopeDtoType.
-const (
-	PublicSchemasScopeDtoTypeEXCLUSION PublicSchemasScopeDtoType = "EXCLUSION"
-	PublicSchemasScopeDtoTypeINCLUSION PublicSchemasScopeDtoType = "INCLUSION"
 )
 
 // Defines values for PublicSnowflakeParametersDtoType.
@@ -4655,12 +4713,6 @@ const (
 	PublicSourceParametersDtoTypeUnderscoreUNKNOWN PublicSourceParametersDtoType = "_UNKNOWN_"
 )
 
-// Defines values for PublicSpacesScopeDtoType.
-const (
-	PublicSpacesScopeDtoTypeEXCLUSION PublicSpacesScopeDtoType = "EXCLUSION"
-	PublicSpacesScopeDtoTypeINCLUSION PublicSpacesScopeDtoType = "INCLUSION"
-)
-
 // Defines values for PublicSynapseParametersDtoType.
 const (
 	PublicSynapseParametersDtoTypeAIRFLOW           PublicSynapseParametersDtoType = "AIRFLOW"
@@ -4727,502 +4779,548 @@ const (
 
 // Defines values for PublicUpdateAirflowSourceV2DtoType.
 const (
-	PublicUpdateAirflowSourceV2DtoTypeAIRFLOW       PublicUpdateAirflowSourceV2DtoType = "AIRFLOW"
-	PublicUpdateAirflowSourceV2DtoTypeATHENA        PublicUpdateAirflowSourceV2DtoType = "ATHENA"
-	PublicUpdateAirflowSourceV2DtoTypeBIGQUERY      PublicUpdateAirflowSourceV2DtoType = "BIGQUERY"
-	PublicUpdateAirflowSourceV2DtoTypeDATABRICKS    PublicUpdateAirflowSourceV2DtoType = "DATABRICKS"
-	PublicUpdateAirflowSourceV2DtoTypeDBT           PublicUpdateAirflowSourceV2DtoType = "DBT"
-	PublicUpdateAirflowSourceV2DtoTypeDBTCLOUD      PublicUpdateAirflowSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateAirflowSourceV2DtoTypeDECLARATIVE   PublicUpdateAirflowSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateAirflowSourceV2DtoTypeFIVETRAN      PublicUpdateAirflowSourceV2DtoType = "FIVETRAN"
-	PublicUpdateAirflowSourceV2DtoTypeLOOKER        PublicUpdateAirflowSourceV2DtoType = "LOOKER"
-	PublicUpdateAirflowSourceV2DtoTypeMICROSTRATEGY PublicUpdateAirflowSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateAirflowSourceV2DtoTypeMSSQL         PublicUpdateAirflowSourceV2DtoType = "MSSQL"
-	PublicUpdateAirflowSourceV2DtoTypeMYSQL         PublicUpdateAirflowSourceV2DtoType = "MYSQL"
-	PublicUpdateAirflowSourceV2DtoTypeORACLE        PublicUpdateAirflowSourceV2DtoType = "ORACLE"
-	PublicUpdateAirflowSourceV2DtoTypePOSTGRESQL    PublicUpdateAirflowSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateAirflowSourceV2DtoTypePOWERBI       PublicUpdateAirflowSourceV2DtoType = "POWER_BI"
-	PublicUpdateAirflowSourceV2DtoTypeQLIK          PublicUpdateAirflowSourceV2DtoType = "QLIK"
-	PublicUpdateAirflowSourceV2DtoTypeQUICKSIGHT    PublicUpdateAirflowSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateAirflowSourceV2DtoTypeREDSHIFT      PublicUpdateAirflowSourceV2DtoType = "REDSHIFT"
-	PublicUpdateAirflowSourceV2DtoTypeSNOWFLAKE     PublicUpdateAirflowSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateAirflowSourceV2DtoTypeSYNAPSE       PublicUpdateAirflowSourceV2DtoType = "SYNAPSE"
-	PublicUpdateAirflowSourceV2DtoTypeTABLEAU       PublicUpdateAirflowSourceV2DtoType = "TABLEAU"
+	PublicUpdateAirflowSourceV2DtoTypeAIRFLOW        PublicUpdateAirflowSourceV2DtoType = "AIRFLOW"
+	PublicUpdateAirflowSourceV2DtoTypeATHENA         PublicUpdateAirflowSourceV2DtoType = "ATHENA"
+	PublicUpdateAirflowSourceV2DtoTypeBIGQUERY       PublicUpdateAirflowSourceV2DtoType = "BIGQUERY"
+	PublicUpdateAirflowSourceV2DtoTypeDATABRICKS     PublicUpdateAirflowSourceV2DtoType = "DATABRICKS"
+	PublicUpdateAirflowSourceV2DtoTypeDATABRICKSJOBS PublicUpdateAirflowSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateAirflowSourceV2DtoTypeDBT            PublicUpdateAirflowSourceV2DtoType = "DBT"
+	PublicUpdateAirflowSourceV2DtoTypeDBTCLOUD       PublicUpdateAirflowSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateAirflowSourceV2DtoTypeDECLARATIVE    PublicUpdateAirflowSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateAirflowSourceV2DtoTypeFIVETRAN       PublicUpdateAirflowSourceV2DtoType = "FIVETRAN"
+	PublicUpdateAirflowSourceV2DtoTypeLOOKER         PublicUpdateAirflowSourceV2DtoType = "LOOKER"
+	PublicUpdateAirflowSourceV2DtoTypeMICROSTRATEGY  PublicUpdateAirflowSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateAirflowSourceV2DtoTypeMSSQL          PublicUpdateAirflowSourceV2DtoType = "MSSQL"
+	PublicUpdateAirflowSourceV2DtoTypeMYSQL          PublicUpdateAirflowSourceV2DtoType = "MYSQL"
+	PublicUpdateAirflowSourceV2DtoTypeORACLE         PublicUpdateAirflowSourceV2DtoType = "ORACLE"
+	PublicUpdateAirflowSourceV2DtoTypePOSTGRESQL     PublicUpdateAirflowSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateAirflowSourceV2DtoTypePOWERBI        PublicUpdateAirflowSourceV2DtoType = "POWER_BI"
+	PublicUpdateAirflowSourceV2DtoTypeQLIK           PublicUpdateAirflowSourceV2DtoType = "QLIK"
+	PublicUpdateAirflowSourceV2DtoTypeQUICKSIGHT     PublicUpdateAirflowSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateAirflowSourceV2DtoTypeREDSHIFT       PublicUpdateAirflowSourceV2DtoType = "REDSHIFT"
+	PublicUpdateAirflowSourceV2DtoTypeSNOWFLAKE      PublicUpdateAirflowSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateAirflowSourceV2DtoTypeSYNAPSE        PublicUpdateAirflowSourceV2DtoType = "SYNAPSE"
+	PublicUpdateAirflowSourceV2DtoTypeTABLEAU        PublicUpdateAirflowSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateAthenaSourceV2DtoType.
 const (
-	PublicUpdateAthenaSourceV2DtoTypeAIRFLOW       PublicUpdateAthenaSourceV2DtoType = "AIRFLOW"
-	PublicUpdateAthenaSourceV2DtoTypeATHENA        PublicUpdateAthenaSourceV2DtoType = "ATHENA"
-	PublicUpdateAthenaSourceV2DtoTypeBIGQUERY      PublicUpdateAthenaSourceV2DtoType = "BIGQUERY"
-	PublicUpdateAthenaSourceV2DtoTypeDATABRICKS    PublicUpdateAthenaSourceV2DtoType = "DATABRICKS"
-	PublicUpdateAthenaSourceV2DtoTypeDBT           PublicUpdateAthenaSourceV2DtoType = "DBT"
-	PublicUpdateAthenaSourceV2DtoTypeDBTCLOUD      PublicUpdateAthenaSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateAthenaSourceV2DtoTypeDECLARATIVE   PublicUpdateAthenaSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateAthenaSourceV2DtoTypeFIVETRAN      PublicUpdateAthenaSourceV2DtoType = "FIVETRAN"
-	PublicUpdateAthenaSourceV2DtoTypeLOOKER        PublicUpdateAthenaSourceV2DtoType = "LOOKER"
-	PublicUpdateAthenaSourceV2DtoTypeMICROSTRATEGY PublicUpdateAthenaSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateAthenaSourceV2DtoTypeMSSQL         PublicUpdateAthenaSourceV2DtoType = "MSSQL"
-	PublicUpdateAthenaSourceV2DtoTypeMYSQL         PublicUpdateAthenaSourceV2DtoType = "MYSQL"
-	PublicUpdateAthenaSourceV2DtoTypeORACLE        PublicUpdateAthenaSourceV2DtoType = "ORACLE"
-	PublicUpdateAthenaSourceV2DtoTypePOSTGRESQL    PublicUpdateAthenaSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateAthenaSourceV2DtoTypePOWERBI       PublicUpdateAthenaSourceV2DtoType = "POWER_BI"
-	PublicUpdateAthenaSourceV2DtoTypeQLIK          PublicUpdateAthenaSourceV2DtoType = "QLIK"
-	PublicUpdateAthenaSourceV2DtoTypeQUICKSIGHT    PublicUpdateAthenaSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateAthenaSourceV2DtoTypeREDSHIFT      PublicUpdateAthenaSourceV2DtoType = "REDSHIFT"
-	PublicUpdateAthenaSourceV2DtoTypeSNOWFLAKE     PublicUpdateAthenaSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateAthenaSourceV2DtoTypeSYNAPSE       PublicUpdateAthenaSourceV2DtoType = "SYNAPSE"
-	PublicUpdateAthenaSourceV2DtoTypeTABLEAU       PublicUpdateAthenaSourceV2DtoType = "TABLEAU"
+	PublicUpdateAthenaSourceV2DtoTypeAIRFLOW        PublicUpdateAthenaSourceV2DtoType = "AIRFLOW"
+	PublicUpdateAthenaSourceV2DtoTypeATHENA         PublicUpdateAthenaSourceV2DtoType = "ATHENA"
+	PublicUpdateAthenaSourceV2DtoTypeBIGQUERY       PublicUpdateAthenaSourceV2DtoType = "BIGQUERY"
+	PublicUpdateAthenaSourceV2DtoTypeDATABRICKS     PublicUpdateAthenaSourceV2DtoType = "DATABRICKS"
+	PublicUpdateAthenaSourceV2DtoTypeDATABRICKSJOBS PublicUpdateAthenaSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateAthenaSourceV2DtoTypeDBT            PublicUpdateAthenaSourceV2DtoType = "DBT"
+	PublicUpdateAthenaSourceV2DtoTypeDBTCLOUD       PublicUpdateAthenaSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateAthenaSourceV2DtoTypeDECLARATIVE    PublicUpdateAthenaSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateAthenaSourceV2DtoTypeFIVETRAN       PublicUpdateAthenaSourceV2DtoType = "FIVETRAN"
+	PublicUpdateAthenaSourceV2DtoTypeLOOKER         PublicUpdateAthenaSourceV2DtoType = "LOOKER"
+	PublicUpdateAthenaSourceV2DtoTypeMICROSTRATEGY  PublicUpdateAthenaSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateAthenaSourceV2DtoTypeMSSQL          PublicUpdateAthenaSourceV2DtoType = "MSSQL"
+	PublicUpdateAthenaSourceV2DtoTypeMYSQL          PublicUpdateAthenaSourceV2DtoType = "MYSQL"
+	PublicUpdateAthenaSourceV2DtoTypeORACLE         PublicUpdateAthenaSourceV2DtoType = "ORACLE"
+	PublicUpdateAthenaSourceV2DtoTypePOSTGRESQL     PublicUpdateAthenaSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateAthenaSourceV2DtoTypePOWERBI        PublicUpdateAthenaSourceV2DtoType = "POWER_BI"
+	PublicUpdateAthenaSourceV2DtoTypeQLIK           PublicUpdateAthenaSourceV2DtoType = "QLIK"
+	PublicUpdateAthenaSourceV2DtoTypeQUICKSIGHT     PublicUpdateAthenaSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateAthenaSourceV2DtoTypeREDSHIFT       PublicUpdateAthenaSourceV2DtoType = "REDSHIFT"
+	PublicUpdateAthenaSourceV2DtoTypeSNOWFLAKE      PublicUpdateAthenaSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateAthenaSourceV2DtoTypeSYNAPSE        PublicUpdateAthenaSourceV2DtoType = "SYNAPSE"
+	PublicUpdateAthenaSourceV2DtoTypeTABLEAU        PublicUpdateAthenaSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateBigQuerySourceV2DtoType.
 const (
-	PublicUpdateBigQuerySourceV2DtoTypeAIRFLOW       PublicUpdateBigQuerySourceV2DtoType = "AIRFLOW"
-	PublicUpdateBigQuerySourceV2DtoTypeATHENA        PublicUpdateBigQuerySourceV2DtoType = "ATHENA"
-	PublicUpdateBigQuerySourceV2DtoTypeBIGQUERY      PublicUpdateBigQuerySourceV2DtoType = "BIGQUERY"
-	PublicUpdateBigQuerySourceV2DtoTypeDATABRICKS    PublicUpdateBigQuerySourceV2DtoType = "DATABRICKS"
-	PublicUpdateBigQuerySourceV2DtoTypeDBT           PublicUpdateBigQuerySourceV2DtoType = "DBT"
-	PublicUpdateBigQuerySourceV2DtoTypeDBTCLOUD      PublicUpdateBigQuerySourceV2DtoType = "DBTCLOUD"
-	PublicUpdateBigQuerySourceV2DtoTypeDECLARATIVE   PublicUpdateBigQuerySourceV2DtoType = "DECLARATIVE"
-	PublicUpdateBigQuerySourceV2DtoTypeFIVETRAN      PublicUpdateBigQuerySourceV2DtoType = "FIVETRAN"
-	PublicUpdateBigQuerySourceV2DtoTypeLOOKER        PublicUpdateBigQuerySourceV2DtoType = "LOOKER"
-	PublicUpdateBigQuerySourceV2DtoTypeMICROSTRATEGY PublicUpdateBigQuerySourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateBigQuerySourceV2DtoTypeMSSQL         PublicUpdateBigQuerySourceV2DtoType = "MSSQL"
-	PublicUpdateBigQuerySourceV2DtoTypeMYSQL         PublicUpdateBigQuerySourceV2DtoType = "MYSQL"
-	PublicUpdateBigQuerySourceV2DtoTypeORACLE        PublicUpdateBigQuerySourceV2DtoType = "ORACLE"
-	PublicUpdateBigQuerySourceV2DtoTypePOSTGRESQL    PublicUpdateBigQuerySourceV2DtoType = "POSTGRESQL"
-	PublicUpdateBigQuerySourceV2DtoTypePOWERBI       PublicUpdateBigQuerySourceV2DtoType = "POWER_BI"
-	PublicUpdateBigQuerySourceV2DtoTypeQLIK          PublicUpdateBigQuerySourceV2DtoType = "QLIK"
-	PublicUpdateBigQuerySourceV2DtoTypeQUICKSIGHT    PublicUpdateBigQuerySourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateBigQuerySourceV2DtoTypeREDSHIFT      PublicUpdateBigQuerySourceV2DtoType = "REDSHIFT"
-	PublicUpdateBigQuerySourceV2DtoTypeSNOWFLAKE     PublicUpdateBigQuerySourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateBigQuerySourceV2DtoTypeSYNAPSE       PublicUpdateBigQuerySourceV2DtoType = "SYNAPSE"
-	PublicUpdateBigQuerySourceV2DtoTypeTABLEAU       PublicUpdateBigQuerySourceV2DtoType = "TABLEAU"
+	PublicUpdateBigQuerySourceV2DtoTypeAIRFLOW        PublicUpdateBigQuerySourceV2DtoType = "AIRFLOW"
+	PublicUpdateBigQuerySourceV2DtoTypeATHENA         PublicUpdateBigQuerySourceV2DtoType = "ATHENA"
+	PublicUpdateBigQuerySourceV2DtoTypeBIGQUERY       PublicUpdateBigQuerySourceV2DtoType = "BIGQUERY"
+	PublicUpdateBigQuerySourceV2DtoTypeDATABRICKS     PublicUpdateBigQuerySourceV2DtoType = "DATABRICKS"
+	PublicUpdateBigQuerySourceV2DtoTypeDATABRICKSJOBS PublicUpdateBigQuerySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateBigQuerySourceV2DtoTypeDBT            PublicUpdateBigQuerySourceV2DtoType = "DBT"
+	PublicUpdateBigQuerySourceV2DtoTypeDBTCLOUD       PublicUpdateBigQuerySourceV2DtoType = "DBTCLOUD"
+	PublicUpdateBigQuerySourceV2DtoTypeDECLARATIVE    PublicUpdateBigQuerySourceV2DtoType = "DECLARATIVE"
+	PublicUpdateBigQuerySourceV2DtoTypeFIVETRAN       PublicUpdateBigQuerySourceV2DtoType = "FIVETRAN"
+	PublicUpdateBigQuerySourceV2DtoTypeLOOKER         PublicUpdateBigQuerySourceV2DtoType = "LOOKER"
+	PublicUpdateBigQuerySourceV2DtoTypeMICROSTRATEGY  PublicUpdateBigQuerySourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateBigQuerySourceV2DtoTypeMSSQL          PublicUpdateBigQuerySourceV2DtoType = "MSSQL"
+	PublicUpdateBigQuerySourceV2DtoTypeMYSQL          PublicUpdateBigQuerySourceV2DtoType = "MYSQL"
+	PublicUpdateBigQuerySourceV2DtoTypeORACLE         PublicUpdateBigQuerySourceV2DtoType = "ORACLE"
+	PublicUpdateBigQuerySourceV2DtoTypePOSTGRESQL     PublicUpdateBigQuerySourceV2DtoType = "POSTGRESQL"
+	PublicUpdateBigQuerySourceV2DtoTypePOWERBI        PublicUpdateBigQuerySourceV2DtoType = "POWER_BI"
+	PublicUpdateBigQuerySourceV2DtoTypeQLIK           PublicUpdateBigQuerySourceV2DtoType = "QLIK"
+	PublicUpdateBigQuerySourceV2DtoTypeQUICKSIGHT     PublicUpdateBigQuerySourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateBigQuerySourceV2DtoTypeREDSHIFT       PublicUpdateBigQuerySourceV2DtoType = "REDSHIFT"
+	PublicUpdateBigQuerySourceV2DtoTypeSNOWFLAKE      PublicUpdateBigQuerySourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateBigQuerySourceV2DtoTypeSYNAPSE        PublicUpdateBigQuerySourceV2DtoType = "SYNAPSE"
+	PublicUpdateBigQuerySourceV2DtoTypeTABLEAU        PublicUpdateBigQuerySourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateDatabricksJobsSourceV2DtoType.
+const (
+	PublicUpdateDatabricksJobsSourceV2DtoTypeAIRFLOW        PublicUpdateDatabricksJobsSourceV2DtoType = "AIRFLOW"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeATHENA         PublicUpdateDatabricksJobsSourceV2DtoType = "ATHENA"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeBIGQUERY       PublicUpdateDatabricksJobsSourceV2DtoType = "BIGQUERY"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeDATABRICKS     PublicUpdateDatabricksJobsSourceV2DtoType = "DATABRICKS"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeDATABRICKSJOBS PublicUpdateDatabricksJobsSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeDBT            PublicUpdateDatabricksJobsSourceV2DtoType = "DBT"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeDBTCLOUD       PublicUpdateDatabricksJobsSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeDECLARATIVE    PublicUpdateDatabricksJobsSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeFIVETRAN       PublicUpdateDatabricksJobsSourceV2DtoType = "FIVETRAN"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeLOOKER         PublicUpdateDatabricksJobsSourceV2DtoType = "LOOKER"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeMICROSTRATEGY  PublicUpdateDatabricksJobsSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeMSSQL          PublicUpdateDatabricksJobsSourceV2DtoType = "MSSQL"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeMYSQL          PublicUpdateDatabricksJobsSourceV2DtoType = "MYSQL"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeORACLE         PublicUpdateDatabricksJobsSourceV2DtoType = "ORACLE"
+	PublicUpdateDatabricksJobsSourceV2DtoTypePOSTGRESQL     PublicUpdateDatabricksJobsSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateDatabricksJobsSourceV2DtoTypePOWERBI        PublicUpdateDatabricksJobsSourceV2DtoType = "POWER_BI"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeQLIK           PublicUpdateDatabricksJobsSourceV2DtoType = "QLIK"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeQUICKSIGHT     PublicUpdateDatabricksJobsSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeREDSHIFT       PublicUpdateDatabricksJobsSourceV2DtoType = "REDSHIFT"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeSNOWFLAKE      PublicUpdateDatabricksJobsSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeSYNAPSE        PublicUpdateDatabricksJobsSourceV2DtoType = "SYNAPSE"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeTABLEAU        PublicUpdateDatabricksJobsSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateDatabricksSourceV2DtoType.
 const (
-	PublicUpdateDatabricksSourceV2DtoTypeAIRFLOW       PublicUpdateDatabricksSourceV2DtoType = "AIRFLOW"
-	PublicUpdateDatabricksSourceV2DtoTypeATHENA        PublicUpdateDatabricksSourceV2DtoType = "ATHENA"
-	PublicUpdateDatabricksSourceV2DtoTypeBIGQUERY      PublicUpdateDatabricksSourceV2DtoType = "BIGQUERY"
-	PublicUpdateDatabricksSourceV2DtoTypeDATABRICKS    PublicUpdateDatabricksSourceV2DtoType = "DATABRICKS"
-	PublicUpdateDatabricksSourceV2DtoTypeDBT           PublicUpdateDatabricksSourceV2DtoType = "DBT"
-	PublicUpdateDatabricksSourceV2DtoTypeDBTCLOUD      PublicUpdateDatabricksSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateDatabricksSourceV2DtoTypeDECLARATIVE   PublicUpdateDatabricksSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateDatabricksSourceV2DtoTypeFIVETRAN      PublicUpdateDatabricksSourceV2DtoType = "FIVETRAN"
-	PublicUpdateDatabricksSourceV2DtoTypeLOOKER        PublicUpdateDatabricksSourceV2DtoType = "LOOKER"
-	PublicUpdateDatabricksSourceV2DtoTypeMICROSTRATEGY PublicUpdateDatabricksSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateDatabricksSourceV2DtoTypeMSSQL         PublicUpdateDatabricksSourceV2DtoType = "MSSQL"
-	PublicUpdateDatabricksSourceV2DtoTypeMYSQL         PublicUpdateDatabricksSourceV2DtoType = "MYSQL"
-	PublicUpdateDatabricksSourceV2DtoTypeORACLE        PublicUpdateDatabricksSourceV2DtoType = "ORACLE"
-	PublicUpdateDatabricksSourceV2DtoTypePOSTGRESQL    PublicUpdateDatabricksSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateDatabricksSourceV2DtoTypePOWERBI       PublicUpdateDatabricksSourceV2DtoType = "POWER_BI"
-	PublicUpdateDatabricksSourceV2DtoTypeQLIK          PublicUpdateDatabricksSourceV2DtoType = "QLIK"
-	PublicUpdateDatabricksSourceV2DtoTypeQUICKSIGHT    PublicUpdateDatabricksSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateDatabricksSourceV2DtoTypeREDSHIFT      PublicUpdateDatabricksSourceV2DtoType = "REDSHIFT"
-	PublicUpdateDatabricksSourceV2DtoTypeSNOWFLAKE     PublicUpdateDatabricksSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateDatabricksSourceV2DtoTypeSYNAPSE       PublicUpdateDatabricksSourceV2DtoType = "SYNAPSE"
-	PublicUpdateDatabricksSourceV2DtoTypeTABLEAU       PublicUpdateDatabricksSourceV2DtoType = "TABLEAU"
+	PublicUpdateDatabricksSourceV2DtoTypeAIRFLOW        PublicUpdateDatabricksSourceV2DtoType = "AIRFLOW"
+	PublicUpdateDatabricksSourceV2DtoTypeATHENA         PublicUpdateDatabricksSourceV2DtoType = "ATHENA"
+	PublicUpdateDatabricksSourceV2DtoTypeBIGQUERY       PublicUpdateDatabricksSourceV2DtoType = "BIGQUERY"
+	PublicUpdateDatabricksSourceV2DtoTypeDATABRICKS     PublicUpdateDatabricksSourceV2DtoType = "DATABRICKS"
+	PublicUpdateDatabricksSourceV2DtoTypeDATABRICKSJOBS PublicUpdateDatabricksSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateDatabricksSourceV2DtoTypeDBT            PublicUpdateDatabricksSourceV2DtoType = "DBT"
+	PublicUpdateDatabricksSourceV2DtoTypeDBTCLOUD       PublicUpdateDatabricksSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateDatabricksSourceV2DtoTypeDECLARATIVE    PublicUpdateDatabricksSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateDatabricksSourceV2DtoTypeFIVETRAN       PublicUpdateDatabricksSourceV2DtoType = "FIVETRAN"
+	PublicUpdateDatabricksSourceV2DtoTypeLOOKER         PublicUpdateDatabricksSourceV2DtoType = "LOOKER"
+	PublicUpdateDatabricksSourceV2DtoTypeMICROSTRATEGY  PublicUpdateDatabricksSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateDatabricksSourceV2DtoTypeMSSQL          PublicUpdateDatabricksSourceV2DtoType = "MSSQL"
+	PublicUpdateDatabricksSourceV2DtoTypeMYSQL          PublicUpdateDatabricksSourceV2DtoType = "MYSQL"
+	PublicUpdateDatabricksSourceV2DtoTypeORACLE         PublicUpdateDatabricksSourceV2DtoType = "ORACLE"
+	PublicUpdateDatabricksSourceV2DtoTypePOSTGRESQL     PublicUpdateDatabricksSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateDatabricksSourceV2DtoTypePOWERBI        PublicUpdateDatabricksSourceV2DtoType = "POWER_BI"
+	PublicUpdateDatabricksSourceV2DtoTypeQLIK           PublicUpdateDatabricksSourceV2DtoType = "QLIK"
+	PublicUpdateDatabricksSourceV2DtoTypeQUICKSIGHT     PublicUpdateDatabricksSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateDatabricksSourceV2DtoTypeREDSHIFT       PublicUpdateDatabricksSourceV2DtoType = "REDSHIFT"
+	PublicUpdateDatabricksSourceV2DtoTypeSNOWFLAKE      PublicUpdateDatabricksSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateDatabricksSourceV2DtoTypeSYNAPSE        PublicUpdateDatabricksSourceV2DtoType = "SYNAPSE"
+	PublicUpdateDatabricksSourceV2DtoTypeTABLEAU        PublicUpdateDatabricksSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateDbtCloudSourceV2DtoType.
 const (
-	PublicUpdateDbtCloudSourceV2DtoTypeAIRFLOW       PublicUpdateDbtCloudSourceV2DtoType = "AIRFLOW"
-	PublicUpdateDbtCloudSourceV2DtoTypeATHENA        PublicUpdateDbtCloudSourceV2DtoType = "ATHENA"
-	PublicUpdateDbtCloudSourceV2DtoTypeBIGQUERY      PublicUpdateDbtCloudSourceV2DtoType = "BIGQUERY"
-	PublicUpdateDbtCloudSourceV2DtoTypeDATABRICKS    PublicUpdateDbtCloudSourceV2DtoType = "DATABRICKS"
-	PublicUpdateDbtCloudSourceV2DtoTypeDBT           PublicUpdateDbtCloudSourceV2DtoType = "DBT"
-	PublicUpdateDbtCloudSourceV2DtoTypeDBTCLOUD      PublicUpdateDbtCloudSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateDbtCloudSourceV2DtoTypeDECLARATIVE   PublicUpdateDbtCloudSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateDbtCloudSourceV2DtoTypeFIVETRAN      PublicUpdateDbtCloudSourceV2DtoType = "FIVETRAN"
-	PublicUpdateDbtCloudSourceV2DtoTypeLOOKER        PublicUpdateDbtCloudSourceV2DtoType = "LOOKER"
-	PublicUpdateDbtCloudSourceV2DtoTypeMICROSTRATEGY PublicUpdateDbtCloudSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateDbtCloudSourceV2DtoTypeMSSQL         PublicUpdateDbtCloudSourceV2DtoType = "MSSQL"
-	PublicUpdateDbtCloudSourceV2DtoTypeMYSQL         PublicUpdateDbtCloudSourceV2DtoType = "MYSQL"
-	PublicUpdateDbtCloudSourceV2DtoTypeORACLE        PublicUpdateDbtCloudSourceV2DtoType = "ORACLE"
-	PublicUpdateDbtCloudSourceV2DtoTypePOSTGRESQL    PublicUpdateDbtCloudSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateDbtCloudSourceV2DtoTypePOWERBI       PublicUpdateDbtCloudSourceV2DtoType = "POWER_BI"
-	PublicUpdateDbtCloudSourceV2DtoTypeQLIK          PublicUpdateDbtCloudSourceV2DtoType = "QLIK"
-	PublicUpdateDbtCloudSourceV2DtoTypeQUICKSIGHT    PublicUpdateDbtCloudSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateDbtCloudSourceV2DtoTypeREDSHIFT      PublicUpdateDbtCloudSourceV2DtoType = "REDSHIFT"
-	PublicUpdateDbtCloudSourceV2DtoTypeSNOWFLAKE     PublicUpdateDbtCloudSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateDbtCloudSourceV2DtoTypeSYNAPSE       PublicUpdateDbtCloudSourceV2DtoType = "SYNAPSE"
-	PublicUpdateDbtCloudSourceV2DtoTypeTABLEAU       PublicUpdateDbtCloudSourceV2DtoType = "TABLEAU"
+	PublicUpdateDbtCloudSourceV2DtoTypeAIRFLOW        PublicUpdateDbtCloudSourceV2DtoType = "AIRFLOW"
+	PublicUpdateDbtCloudSourceV2DtoTypeATHENA         PublicUpdateDbtCloudSourceV2DtoType = "ATHENA"
+	PublicUpdateDbtCloudSourceV2DtoTypeBIGQUERY       PublicUpdateDbtCloudSourceV2DtoType = "BIGQUERY"
+	PublicUpdateDbtCloudSourceV2DtoTypeDATABRICKS     PublicUpdateDbtCloudSourceV2DtoType = "DATABRICKS"
+	PublicUpdateDbtCloudSourceV2DtoTypeDATABRICKSJOBS PublicUpdateDbtCloudSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateDbtCloudSourceV2DtoTypeDBT            PublicUpdateDbtCloudSourceV2DtoType = "DBT"
+	PublicUpdateDbtCloudSourceV2DtoTypeDBTCLOUD       PublicUpdateDbtCloudSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateDbtCloudSourceV2DtoTypeDECLARATIVE    PublicUpdateDbtCloudSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateDbtCloudSourceV2DtoTypeFIVETRAN       PublicUpdateDbtCloudSourceV2DtoType = "FIVETRAN"
+	PublicUpdateDbtCloudSourceV2DtoTypeLOOKER         PublicUpdateDbtCloudSourceV2DtoType = "LOOKER"
+	PublicUpdateDbtCloudSourceV2DtoTypeMICROSTRATEGY  PublicUpdateDbtCloudSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateDbtCloudSourceV2DtoTypeMSSQL          PublicUpdateDbtCloudSourceV2DtoType = "MSSQL"
+	PublicUpdateDbtCloudSourceV2DtoTypeMYSQL          PublicUpdateDbtCloudSourceV2DtoType = "MYSQL"
+	PublicUpdateDbtCloudSourceV2DtoTypeORACLE         PublicUpdateDbtCloudSourceV2DtoType = "ORACLE"
+	PublicUpdateDbtCloudSourceV2DtoTypePOSTGRESQL     PublicUpdateDbtCloudSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateDbtCloudSourceV2DtoTypePOWERBI        PublicUpdateDbtCloudSourceV2DtoType = "POWER_BI"
+	PublicUpdateDbtCloudSourceV2DtoTypeQLIK           PublicUpdateDbtCloudSourceV2DtoType = "QLIK"
+	PublicUpdateDbtCloudSourceV2DtoTypeQUICKSIGHT     PublicUpdateDbtCloudSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateDbtCloudSourceV2DtoTypeREDSHIFT       PublicUpdateDbtCloudSourceV2DtoType = "REDSHIFT"
+	PublicUpdateDbtCloudSourceV2DtoTypeSNOWFLAKE      PublicUpdateDbtCloudSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateDbtCloudSourceV2DtoTypeSYNAPSE        PublicUpdateDbtCloudSourceV2DtoType = "SYNAPSE"
+	PublicUpdateDbtCloudSourceV2DtoTypeTABLEAU        PublicUpdateDbtCloudSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateDbtSourceV2DtoType.
 const (
-	PublicUpdateDbtSourceV2DtoTypeAIRFLOW       PublicUpdateDbtSourceV2DtoType = "AIRFLOW"
-	PublicUpdateDbtSourceV2DtoTypeATHENA        PublicUpdateDbtSourceV2DtoType = "ATHENA"
-	PublicUpdateDbtSourceV2DtoTypeBIGQUERY      PublicUpdateDbtSourceV2DtoType = "BIGQUERY"
-	PublicUpdateDbtSourceV2DtoTypeDATABRICKS    PublicUpdateDbtSourceV2DtoType = "DATABRICKS"
-	PublicUpdateDbtSourceV2DtoTypeDBT           PublicUpdateDbtSourceV2DtoType = "DBT"
-	PublicUpdateDbtSourceV2DtoTypeDBTCLOUD      PublicUpdateDbtSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateDbtSourceV2DtoTypeDECLARATIVE   PublicUpdateDbtSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateDbtSourceV2DtoTypeFIVETRAN      PublicUpdateDbtSourceV2DtoType = "FIVETRAN"
-	PublicUpdateDbtSourceV2DtoTypeLOOKER        PublicUpdateDbtSourceV2DtoType = "LOOKER"
-	PublicUpdateDbtSourceV2DtoTypeMICROSTRATEGY PublicUpdateDbtSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateDbtSourceV2DtoTypeMSSQL         PublicUpdateDbtSourceV2DtoType = "MSSQL"
-	PublicUpdateDbtSourceV2DtoTypeMYSQL         PublicUpdateDbtSourceV2DtoType = "MYSQL"
-	PublicUpdateDbtSourceV2DtoTypeORACLE        PublicUpdateDbtSourceV2DtoType = "ORACLE"
-	PublicUpdateDbtSourceV2DtoTypePOSTGRESQL    PublicUpdateDbtSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateDbtSourceV2DtoTypePOWERBI       PublicUpdateDbtSourceV2DtoType = "POWER_BI"
-	PublicUpdateDbtSourceV2DtoTypeQLIK          PublicUpdateDbtSourceV2DtoType = "QLIK"
-	PublicUpdateDbtSourceV2DtoTypeQUICKSIGHT    PublicUpdateDbtSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateDbtSourceV2DtoTypeREDSHIFT      PublicUpdateDbtSourceV2DtoType = "REDSHIFT"
-	PublicUpdateDbtSourceV2DtoTypeSNOWFLAKE     PublicUpdateDbtSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateDbtSourceV2DtoTypeSYNAPSE       PublicUpdateDbtSourceV2DtoType = "SYNAPSE"
-	PublicUpdateDbtSourceV2DtoTypeTABLEAU       PublicUpdateDbtSourceV2DtoType = "TABLEAU"
+	PublicUpdateDbtSourceV2DtoTypeAIRFLOW        PublicUpdateDbtSourceV2DtoType = "AIRFLOW"
+	PublicUpdateDbtSourceV2DtoTypeATHENA         PublicUpdateDbtSourceV2DtoType = "ATHENA"
+	PublicUpdateDbtSourceV2DtoTypeBIGQUERY       PublicUpdateDbtSourceV2DtoType = "BIGQUERY"
+	PublicUpdateDbtSourceV2DtoTypeDATABRICKS     PublicUpdateDbtSourceV2DtoType = "DATABRICKS"
+	PublicUpdateDbtSourceV2DtoTypeDATABRICKSJOBS PublicUpdateDbtSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateDbtSourceV2DtoTypeDBT            PublicUpdateDbtSourceV2DtoType = "DBT"
+	PublicUpdateDbtSourceV2DtoTypeDBTCLOUD       PublicUpdateDbtSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateDbtSourceV2DtoTypeDECLARATIVE    PublicUpdateDbtSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateDbtSourceV2DtoTypeFIVETRAN       PublicUpdateDbtSourceV2DtoType = "FIVETRAN"
+	PublicUpdateDbtSourceV2DtoTypeLOOKER         PublicUpdateDbtSourceV2DtoType = "LOOKER"
+	PublicUpdateDbtSourceV2DtoTypeMICROSTRATEGY  PublicUpdateDbtSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateDbtSourceV2DtoTypeMSSQL          PublicUpdateDbtSourceV2DtoType = "MSSQL"
+	PublicUpdateDbtSourceV2DtoTypeMYSQL          PublicUpdateDbtSourceV2DtoType = "MYSQL"
+	PublicUpdateDbtSourceV2DtoTypeORACLE         PublicUpdateDbtSourceV2DtoType = "ORACLE"
+	PublicUpdateDbtSourceV2DtoTypePOSTGRESQL     PublicUpdateDbtSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateDbtSourceV2DtoTypePOWERBI        PublicUpdateDbtSourceV2DtoType = "POWER_BI"
+	PublicUpdateDbtSourceV2DtoTypeQLIK           PublicUpdateDbtSourceV2DtoType = "QLIK"
+	PublicUpdateDbtSourceV2DtoTypeQUICKSIGHT     PublicUpdateDbtSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateDbtSourceV2DtoTypeREDSHIFT       PublicUpdateDbtSourceV2DtoType = "REDSHIFT"
+	PublicUpdateDbtSourceV2DtoTypeSNOWFLAKE      PublicUpdateDbtSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateDbtSourceV2DtoTypeSYNAPSE        PublicUpdateDbtSourceV2DtoType = "SYNAPSE"
+	PublicUpdateDbtSourceV2DtoTypeTABLEAU        PublicUpdateDbtSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateFivetranSourceV2DtoType.
 const (
-	PublicUpdateFivetranSourceV2DtoTypeAIRFLOW       PublicUpdateFivetranSourceV2DtoType = "AIRFLOW"
-	PublicUpdateFivetranSourceV2DtoTypeATHENA        PublicUpdateFivetranSourceV2DtoType = "ATHENA"
-	PublicUpdateFivetranSourceV2DtoTypeBIGQUERY      PublicUpdateFivetranSourceV2DtoType = "BIGQUERY"
-	PublicUpdateFivetranSourceV2DtoTypeDATABRICKS    PublicUpdateFivetranSourceV2DtoType = "DATABRICKS"
-	PublicUpdateFivetranSourceV2DtoTypeDBT           PublicUpdateFivetranSourceV2DtoType = "DBT"
-	PublicUpdateFivetranSourceV2DtoTypeDBTCLOUD      PublicUpdateFivetranSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateFivetranSourceV2DtoTypeDECLARATIVE   PublicUpdateFivetranSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateFivetranSourceV2DtoTypeFIVETRAN      PublicUpdateFivetranSourceV2DtoType = "FIVETRAN"
-	PublicUpdateFivetranSourceV2DtoTypeLOOKER        PublicUpdateFivetranSourceV2DtoType = "LOOKER"
-	PublicUpdateFivetranSourceV2DtoTypeMICROSTRATEGY PublicUpdateFivetranSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateFivetranSourceV2DtoTypeMSSQL         PublicUpdateFivetranSourceV2DtoType = "MSSQL"
-	PublicUpdateFivetranSourceV2DtoTypeMYSQL         PublicUpdateFivetranSourceV2DtoType = "MYSQL"
-	PublicUpdateFivetranSourceV2DtoTypeORACLE        PublicUpdateFivetranSourceV2DtoType = "ORACLE"
-	PublicUpdateFivetranSourceV2DtoTypePOSTGRESQL    PublicUpdateFivetranSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateFivetranSourceV2DtoTypePOWERBI       PublicUpdateFivetranSourceV2DtoType = "POWER_BI"
-	PublicUpdateFivetranSourceV2DtoTypeQLIK          PublicUpdateFivetranSourceV2DtoType = "QLIK"
-	PublicUpdateFivetranSourceV2DtoTypeQUICKSIGHT    PublicUpdateFivetranSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateFivetranSourceV2DtoTypeREDSHIFT      PublicUpdateFivetranSourceV2DtoType = "REDSHIFT"
-	PublicUpdateFivetranSourceV2DtoTypeSNOWFLAKE     PublicUpdateFivetranSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateFivetranSourceV2DtoTypeSYNAPSE       PublicUpdateFivetranSourceV2DtoType = "SYNAPSE"
-	PublicUpdateFivetranSourceV2DtoTypeTABLEAU       PublicUpdateFivetranSourceV2DtoType = "TABLEAU"
+	PublicUpdateFivetranSourceV2DtoTypeAIRFLOW        PublicUpdateFivetranSourceV2DtoType = "AIRFLOW"
+	PublicUpdateFivetranSourceV2DtoTypeATHENA         PublicUpdateFivetranSourceV2DtoType = "ATHENA"
+	PublicUpdateFivetranSourceV2DtoTypeBIGQUERY       PublicUpdateFivetranSourceV2DtoType = "BIGQUERY"
+	PublicUpdateFivetranSourceV2DtoTypeDATABRICKS     PublicUpdateFivetranSourceV2DtoType = "DATABRICKS"
+	PublicUpdateFivetranSourceV2DtoTypeDATABRICKSJOBS PublicUpdateFivetranSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateFivetranSourceV2DtoTypeDBT            PublicUpdateFivetranSourceV2DtoType = "DBT"
+	PublicUpdateFivetranSourceV2DtoTypeDBTCLOUD       PublicUpdateFivetranSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateFivetranSourceV2DtoTypeDECLARATIVE    PublicUpdateFivetranSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateFivetranSourceV2DtoTypeFIVETRAN       PublicUpdateFivetranSourceV2DtoType = "FIVETRAN"
+	PublicUpdateFivetranSourceV2DtoTypeLOOKER         PublicUpdateFivetranSourceV2DtoType = "LOOKER"
+	PublicUpdateFivetranSourceV2DtoTypeMICROSTRATEGY  PublicUpdateFivetranSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateFivetranSourceV2DtoTypeMSSQL          PublicUpdateFivetranSourceV2DtoType = "MSSQL"
+	PublicUpdateFivetranSourceV2DtoTypeMYSQL          PublicUpdateFivetranSourceV2DtoType = "MYSQL"
+	PublicUpdateFivetranSourceV2DtoTypeORACLE         PublicUpdateFivetranSourceV2DtoType = "ORACLE"
+	PublicUpdateFivetranSourceV2DtoTypePOSTGRESQL     PublicUpdateFivetranSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateFivetranSourceV2DtoTypePOWERBI        PublicUpdateFivetranSourceV2DtoType = "POWER_BI"
+	PublicUpdateFivetranSourceV2DtoTypeQLIK           PublicUpdateFivetranSourceV2DtoType = "QLIK"
+	PublicUpdateFivetranSourceV2DtoTypeQUICKSIGHT     PublicUpdateFivetranSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateFivetranSourceV2DtoTypeREDSHIFT       PublicUpdateFivetranSourceV2DtoType = "REDSHIFT"
+	PublicUpdateFivetranSourceV2DtoTypeSNOWFLAKE      PublicUpdateFivetranSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateFivetranSourceV2DtoTypeSYNAPSE        PublicUpdateFivetranSourceV2DtoType = "SYNAPSE"
+	PublicUpdateFivetranSourceV2DtoTypeTABLEAU        PublicUpdateFivetranSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateLookerSourceV2DtoType.
 const (
-	PublicUpdateLookerSourceV2DtoTypeAIRFLOW       PublicUpdateLookerSourceV2DtoType = "AIRFLOW"
-	PublicUpdateLookerSourceV2DtoTypeATHENA        PublicUpdateLookerSourceV2DtoType = "ATHENA"
-	PublicUpdateLookerSourceV2DtoTypeBIGQUERY      PublicUpdateLookerSourceV2DtoType = "BIGQUERY"
-	PublicUpdateLookerSourceV2DtoTypeDATABRICKS    PublicUpdateLookerSourceV2DtoType = "DATABRICKS"
-	PublicUpdateLookerSourceV2DtoTypeDBT           PublicUpdateLookerSourceV2DtoType = "DBT"
-	PublicUpdateLookerSourceV2DtoTypeDBTCLOUD      PublicUpdateLookerSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateLookerSourceV2DtoTypeDECLARATIVE   PublicUpdateLookerSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateLookerSourceV2DtoTypeFIVETRAN      PublicUpdateLookerSourceV2DtoType = "FIVETRAN"
-	PublicUpdateLookerSourceV2DtoTypeLOOKER        PublicUpdateLookerSourceV2DtoType = "LOOKER"
-	PublicUpdateLookerSourceV2DtoTypeMICROSTRATEGY PublicUpdateLookerSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateLookerSourceV2DtoTypeMSSQL         PublicUpdateLookerSourceV2DtoType = "MSSQL"
-	PublicUpdateLookerSourceV2DtoTypeMYSQL         PublicUpdateLookerSourceV2DtoType = "MYSQL"
-	PublicUpdateLookerSourceV2DtoTypeORACLE        PublicUpdateLookerSourceV2DtoType = "ORACLE"
-	PublicUpdateLookerSourceV2DtoTypePOSTGRESQL    PublicUpdateLookerSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateLookerSourceV2DtoTypePOWERBI       PublicUpdateLookerSourceV2DtoType = "POWER_BI"
-	PublicUpdateLookerSourceV2DtoTypeQLIK          PublicUpdateLookerSourceV2DtoType = "QLIK"
-	PublicUpdateLookerSourceV2DtoTypeQUICKSIGHT    PublicUpdateLookerSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateLookerSourceV2DtoTypeREDSHIFT      PublicUpdateLookerSourceV2DtoType = "REDSHIFT"
-	PublicUpdateLookerSourceV2DtoTypeSNOWFLAKE     PublicUpdateLookerSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateLookerSourceV2DtoTypeSYNAPSE       PublicUpdateLookerSourceV2DtoType = "SYNAPSE"
-	PublicUpdateLookerSourceV2DtoTypeTABLEAU       PublicUpdateLookerSourceV2DtoType = "TABLEAU"
+	PublicUpdateLookerSourceV2DtoTypeAIRFLOW        PublicUpdateLookerSourceV2DtoType = "AIRFLOW"
+	PublicUpdateLookerSourceV2DtoTypeATHENA         PublicUpdateLookerSourceV2DtoType = "ATHENA"
+	PublicUpdateLookerSourceV2DtoTypeBIGQUERY       PublicUpdateLookerSourceV2DtoType = "BIGQUERY"
+	PublicUpdateLookerSourceV2DtoTypeDATABRICKS     PublicUpdateLookerSourceV2DtoType = "DATABRICKS"
+	PublicUpdateLookerSourceV2DtoTypeDATABRICKSJOBS PublicUpdateLookerSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateLookerSourceV2DtoTypeDBT            PublicUpdateLookerSourceV2DtoType = "DBT"
+	PublicUpdateLookerSourceV2DtoTypeDBTCLOUD       PublicUpdateLookerSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateLookerSourceV2DtoTypeDECLARATIVE    PublicUpdateLookerSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateLookerSourceV2DtoTypeFIVETRAN       PublicUpdateLookerSourceV2DtoType = "FIVETRAN"
+	PublicUpdateLookerSourceV2DtoTypeLOOKER         PublicUpdateLookerSourceV2DtoType = "LOOKER"
+	PublicUpdateLookerSourceV2DtoTypeMICROSTRATEGY  PublicUpdateLookerSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateLookerSourceV2DtoTypeMSSQL          PublicUpdateLookerSourceV2DtoType = "MSSQL"
+	PublicUpdateLookerSourceV2DtoTypeMYSQL          PublicUpdateLookerSourceV2DtoType = "MYSQL"
+	PublicUpdateLookerSourceV2DtoTypeORACLE         PublicUpdateLookerSourceV2DtoType = "ORACLE"
+	PublicUpdateLookerSourceV2DtoTypePOSTGRESQL     PublicUpdateLookerSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateLookerSourceV2DtoTypePOWERBI        PublicUpdateLookerSourceV2DtoType = "POWER_BI"
+	PublicUpdateLookerSourceV2DtoTypeQLIK           PublicUpdateLookerSourceV2DtoType = "QLIK"
+	PublicUpdateLookerSourceV2DtoTypeQUICKSIGHT     PublicUpdateLookerSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateLookerSourceV2DtoTypeREDSHIFT       PublicUpdateLookerSourceV2DtoType = "REDSHIFT"
+	PublicUpdateLookerSourceV2DtoTypeSNOWFLAKE      PublicUpdateLookerSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateLookerSourceV2DtoTypeSYNAPSE        PublicUpdateLookerSourceV2DtoType = "SYNAPSE"
+	PublicUpdateLookerSourceV2DtoTypeTABLEAU        PublicUpdateLookerSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateMicrostrategySourceV2DtoType.
 const (
-	PublicUpdateMicrostrategySourceV2DtoTypeAIRFLOW       PublicUpdateMicrostrategySourceV2DtoType = "AIRFLOW"
-	PublicUpdateMicrostrategySourceV2DtoTypeATHENA        PublicUpdateMicrostrategySourceV2DtoType = "ATHENA"
-	PublicUpdateMicrostrategySourceV2DtoTypeBIGQUERY      PublicUpdateMicrostrategySourceV2DtoType = "BIGQUERY"
-	PublicUpdateMicrostrategySourceV2DtoTypeDATABRICKS    PublicUpdateMicrostrategySourceV2DtoType = "DATABRICKS"
-	PublicUpdateMicrostrategySourceV2DtoTypeDBT           PublicUpdateMicrostrategySourceV2DtoType = "DBT"
-	PublicUpdateMicrostrategySourceV2DtoTypeDBTCLOUD      PublicUpdateMicrostrategySourceV2DtoType = "DBTCLOUD"
-	PublicUpdateMicrostrategySourceV2DtoTypeDECLARATIVE   PublicUpdateMicrostrategySourceV2DtoType = "DECLARATIVE"
-	PublicUpdateMicrostrategySourceV2DtoTypeFIVETRAN      PublicUpdateMicrostrategySourceV2DtoType = "FIVETRAN"
-	PublicUpdateMicrostrategySourceV2DtoTypeLOOKER        PublicUpdateMicrostrategySourceV2DtoType = "LOOKER"
-	PublicUpdateMicrostrategySourceV2DtoTypeMICROSTRATEGY PublicUpdateMicrostrategySourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateMicrostrategySourceV2DtoTypeMSSQL         PublicUpdateMicrostrategySourceV2DtoType = "MSSQL"
-	PublicUpdateMicrostrategySourceV2DtoTypeMYSQL         PublicUpdateMicrostrategySourceV2DtoType = "MYSQL"
-	PublicUpdateMicrostrategySourceV2DtoTypeORACLE        PublicUpdateMicrostrategySourceV2DtoType = "ORACLE"
-	PublicUpdateMicrostrategySourceV2DtoTypePOSTGRESQL    PublicUpdateMicrostrategySourceV2DtoType = "POSTGRESQL"
-	PublicUpdateMicrostrategySourceV2DtoTypePOWERBI       PublicUpdateMicrostrategySourceV2DtoType = "POWER_BI"
-	PublicUpdateMicrostrategySourceV2DtoTypeQLIK          PublicUpdateMicrostrategySourceV2DtoType = "QLIK"
-	PublicUpdateMicrostrategySourceV2DtoTypeQUICKSIGHT    PublicUpdateMicrostrategySourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateMicrostrategySourceV2DtoTypeREDSHIFT      PublicUpdateMicrostrategySourceV2DtoType = "REDSHIFT"
-	PublicUpdateMicrostrategySourceV2DtoTypeSNOWFLAKE     PublicUpdateMicrostrategySourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateMicrostrategySourceV2DtoTypeSYNAPSE       PublicUpdateMicrostrategySourceV2DtoType = "SYNAPSE"
-	PublicUpdateMicrostrategySourceV2DtoTypeTABLEAU       PublicUpdateMicrostrategySourceV2DtoType = "TABLEAU"
+	PublicUpdateMicrostrategySourceV2DtoTypeAIRFLOW        PublicUpdateMicrostrategySourceV2DtoType = "AIRFLOW"
+	PublicUpdateMicrostrategySourceV2DtoTypeATHENA         PublicUpdateMicrostrategySourceV2DtoType = "ATHENA"
+	PublicUpdateMicrostrategySourceV2DtoTypeBIGQUERY       PublicUpdateMicrostrategySourceV2DtoType = "BIGQUERY"
+	PublicUpdateMicrostrategySourceV2DtoTypeDATABRICKS     PublicUpdateMicrostrategySourceV2DtoType = "DATABRICKS"
+	PublicUpdateMicrostrategySourceV2DtoTypeDATABRICKSJOBS PublicUpdateMicrostrategySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateMicrostrategySourceV2DtoTypeDBT            PublicUpdateMicrostrategySourceV2DtoType = "DBT"
+	PublicUpdateMicrostrategySourceV2DtoTypeDBTCLOUD       PublicUpdateMicrostrategySourceV2DtoType = "DBTCLOUD"
+	PublicUpdateMicrostrategySourceV2DtoTypeDECLARATIVE    PublicUpdateMicrostrategySourceV2DtoType = "DECLARATIVE"
+	PublicUpdateMicrostrategySourceV2DtoTypeFIVETRAN       PublicUpdateMicrostrategySourceV2DtoType = "FIVETRAN"
+	PublicUpdateMicrostrategySourceV2DtoTypeLOOKER         PublicUpdateMicrostrategySourceV2DtoType = "LOOKER"
+	PublicUpdateMicrostrategySourceV2DtoTypeMICROSTRATEGY  PublicUpdateMicrostrategySourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateMicrostrategySourceV2DtoTypeMSSQL          PublicUpdateMicrostrategySourceV2DtoType = "MSSQL"
+	PublicUpdateMicrostrategySourceV2DtoTypeMYSQL          PublicUpdateMicrostrategySourceV2DtoType = "MYSQL"
+	PublicUpdateMicrostrategySourceV2DtoTypeORACLE         PublicUpdateMicrostrategySourceV2DtoType = "ORACLE"
+	PublicUpdateMicrostrategySourceV2DtoTypePOSTGRESQL     PublicUpdateMicrostrategySourceV2DtoType = "POSTGRESQL"
+	PublicUpdateMicrostrategySourceV2DtoTypePOWERBI        PublicUpdateMicrostrategySourceV2DtoType = "POWER_BI"
+	PublicUpdateMicrostrategySourceV2DtoTypeQLIK           PublicUpdateMicrostrategySourceV2DtoType = "QLIK"
+	PublicUpdateMicrostrategySourceV2DtoTypeQUICKSIGHT     PublicUpdateMicrostrategySourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateMicrostrategySourceV2DtoTypeREDSHIFT       PublicUpdateMicrostrategySourceV2DtoType = "REDSHIFT"
+	PublicUpdateMicrostrategySourceV2DtoTypeSNOWFLAKE      PublicUpdateMicrostrategySourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateMicrostrategySourceV2DtoTypeSYNAPSE        PublicUpdateMicrostrategySourceV2DtoType = "SYNAPSE"
+	PublicUpdateMicrostrategySourceV2DtoTypeTABLEAU        PublicUpdateMicrostrategySourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateMssqlSourceV2DtoType.
 const (
-	PublicUpdateMssqlSourceV2DtoTypeAIRFLOW       PublicUpdateMssqlSourceV2DtoType = "AIRFLOW"
-	PublicUpdateMssqlSourceV2DtoTypeATHENA        PublicUpdateMssqlSourceV2DtoType = "ATHENA"
-	PublicUpdateMssqlSourceV2DtoTypeBIGQUERY      PublicUpdateMssqlSourceV2DtoType = "BIGQUERY"
-	PublicUpdateMssqlSourceV2DtoTypeDATABRICKS    PublicUpdateMssqlSourceV2DtoType = "DATABRICKS"
-	PublicUpdateMssqlSourceV2DtoTypeDBT           PublicUpdateMssqlSourceV2DtoType = "DBT"
-	PublicUpdateMssqlSourceV2DtoTypeDBTCLOUD      PublicUpdateMssqlSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateMssqlSourceV2DtoTypeDECLARATIVE   PublicUpdateMssqlSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateMssqlSourceV2DtoTypeFIVETRAN      PublicUpdateMssqlSourceV2DtoType = "FIVETRAN"
-	PublicUpdateMssqlSourceV2DtoTypeLOOKER        PublicUpdateMssqlSourceV2DtoType = "LOOKER"
-	PublicUpdateMssqlSourceV2DtoTypeMICROSTRATEGY PublicUpdateMssqlSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateMssqlSourceV2DtoTypeMSSQL         PublicUpdateMssqlSourceV2DtoType = "MSSQL"
-	PublicUpdateMssqlSourceV2DtoTypeMYSQL         PublicUpdateMssqlSourceV2DtoType = "MYSQL"
-	PublicUpdateMssqlSourceV2DtoTypeORACLE        PublicUpdateMssqlSourceV2DtoType = "ORACLE"
-	PublicUpdateMssqlSourceV2DtoTypePOSTGRESQL    PublicUpdateMssqlSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateMssqlSourceV2DtoTypePOWERBI       PublicUpdateMssqlSourceV2DtoType = "POWER_BI"
-	PublicUpdateMssqlSourceV2DtoTypeQLIK          PublicUpdateMssqlSourceV2DtoType = "QLIK"
-	PublicUpdateMssqlSourceV2DtoTypeQUICKSIGHT    PublicUpdateMssqlSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateMssqlSourceV2DtoTypeREDSHIFT      PublicUpdateMssqlSourceV2DtoType = "REDSHIFT"
-	PublicUpdateMssqlSourceV2DtoTypeSNOWFLAKE     PublicUpdateMssqlSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateMssqlSourceV2DtoTypeSYNAPSE       PublicUpdateMssqlSourceV2DtoType = "SYNAPSE"
-	PublicUpdateMssqlSourceV2DtoTypeTABLEAU       PublicUpdateMssqlSourceV2DtoType = "TABLEAU"
+	PublicUpdateMssqlSourceV2DtoTypeAIRFLOW        PublicUpdateMssqlSourceV2DtoType = "AIRFLOW"
+	PublicUpdateMssqlSourceV2DtoTypeATHENA         PublicUpdateMssqlSourceV2DtoType = "ATHENA"
+	PublicUpdateMssqlSourceV2DtoTypeBIGQUERY       PublicUpdateMssqlSourceV2DtoType = "BIGQUERY"
+	PublicUpdateMssqlSourceV2DtoTypeDATABRICKS     PublicUpdateMssqlSourceV2DtoType = "DATABRICKS"
+	PublicUpdateMssqlSourceV2DtoTypeDATABRICKSJOBS PublicUpdateMssqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateMssqlSourceV2DtoTypeDBT            PublicUpdateMssqlSourceV2DtoType = "DBT"
+	PublicUpdateMssqlSourceV2DtoTypeDBTCLOUD       PublicUpdateMssqlSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateMssqlSourceV2DtoTypeDECLARATIVE    PublicUpdateMssqlSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateMssqlSourceV2DtoTypeFIVETRAN       PublicUpdateMssqlSourceV2DtoType = "FIVETRAN"
+	PublicUpdateMssqlSourceV2DtoTypeLOOKER         PublicUpdateMssqlSourceV2DtoType = "LOOKER"
+	PublicUpdateMssqlSourceV2DtoTypeMICROSTRATEGY  PublicUpdateMssqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateMssqlSourceV2DtoTypeMSSQL          PublicUpdateMssqlSourceV2DtoType = "MSSQL"
+	PublicUpdateMssqlSourceV2DtoTypeMYSQL          PublicUpdateMssqlSourceV2DtoType = "MYSQL"
+	PublicUpdateMssqlSourceV2DtoTypeORACLE         PublicUpdateMssqlSourceV2DtoType = "ORACLE"
+	PublicUpdateMssqlSourceV2DtoTypePOSTGRESQL     PublicUpdateMssqlSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateMssqlSourceV2DtoTypePOWERBI        PublicUpdateMssqlSourceV2DtoType = "POWER_BI"
+	PublicUpdateMssqlSourceV2DtoTypeQLIK           PublicUpdateMssqlSourceV2DtoType = "QLIK"
+	PublicUpdateMssqlSourceV2DtoTypeQUICKSIGHT     PublicUpdateMssqlSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateMssqlSourceV2DtoTypeREDSHIFT       PublicUpdateMssqlSourceV2DtoType = "REDSHIFT"
+	PublicUpdateMssqlSourceV2DtoTypeSNOWFLAKE      PublicUpdateMssqlSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateMssqlSourceV2DtoTypeSYNAPSE        PublicUpdateMssqlSourceV2DtoType = "SYNAPSE"
+	PublicUpdateMssqlSourceV2DtoTypeTABLEAU        PublicUpdateMssqlSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateMysqlSourceV2DtoType.
 const (
-	PublicUpdateMysqlSourceV2DtoTypeAIRFLOW       PublicUpdateMysqlSourceV2DtoType = "AIRFLOW"
-	PublicUpdateMysqlSourceV2DtoTypeATHENA        PublicUpdateMysqlSourceV2DtoType = "ATHENA"
-	PublicUpdateMysqlSourceV2DtoTypeBIGQUERY      PublicUpdateMysqlSourceV2DtoType = "BIGQUERY"
-	PublicUpdateMysqlSourceV2DtoTypeDATABRICKS    PublicUpdateMysqlSourceV2DtoType = "DATABRICKS"
-	PublicUpdateMysqlSourceV2DtoTypeDBT           PublicUpdateMysqlSourceV2DtoType = "DBT"
-	PublicUpdateMysqlSourceV2DtoTypeDBTCLOUD      PublicUpdateMysqlSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateMysqlSourceV2DtoTypeDECLARATIVE   PublicUpdateMysqlSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateMysqlSourceV2DtoTypeFIVETRAN      PublicUpdateMysqlSourceV2DtoType = "FIVETRAN"
-	PublicUpdateMysqlSourceV2DtoTypeLOOKER        PublicUpdateMysqlSourceV2DtoType = "LOOKER"
-	PublicUpdateMysqlSourceV2DtoTypeMICROSTRATEGY PublicUpdateMysqlSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateMysqlSourceV2DtoTypeMSSQL         PublicUpdateMysqlSourceV2DtoType = "MSSQL"
-	PublicUpdateMysqlSourceV2DtoTypeMYSQL         PublicUpdateMysqlSourceV2DtoType = "MYSQL"
-	PublicUpdateMysqlSourceV2DtoTypeORACLE        PublicUpdateMysqlSourceV2DtoType = "ORACLE"
-	PublicUpdateMysqlSourceV2DtoTypePOSTGRESQL    PublicUpdateMysqlSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateMysqlSourceV2DtoTypePOWERBI       PublicUpdateMysqlSourceV2DtoType = "POWER_BI"
-	PublicUpdateMysqlSourceV2DtoTypeQLIK          PublicUpdateMysqlSourceV2DtoType = "QLIK"
-	PublicUpdateMysqlSourceV2DtoTypeQUICKSIGHT    PublicUpdateMysqlSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateMysqlSourceV2DtoTypeREDSHIFT      PublicUpdateMysqlSourceV2DtoType = "REDSHIFT"
-	PublicUpdateMysqlSourceV2DtoTypeSNOWFLAKE     PublicUpdateMysqlSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateMysqlSourceV2DtoTypeSYNAPSE       PublicUpdateMysqlSourceV2DtoType = "SYNAPSE"
-	PublicUpdateMysqlSourceV2DtoTypeTABLEAU       PublicUpdateMysqlSourceV2DtoType = "TABLEAU"
+	PublicUpdateMysqlSourceV2DtoTypeAIRFLOW        PublicUpdateMysqlSourceV2DtoType = "AIRFLOW"
+	PublicUpdateMysqlSourceV2DtoTypeATHENA         PublicUpdateMysqlSourceV2DtoType = "ATHENA"
+	PublicUpdateMysqlSourceV2DtoTypeBIGQUERY       PublicUpdateMysqlSourceV2DtoType = "BIGQUERY"
+	PublicUpdateMysqlSourceV2DtoTypeDATABRICKS     PublicUpdateMysqlSourceV2DtoType = "DATABRICKS"
+	PublicUpdateMysqlSourceV2DtoTypeDATABRICKSJOBS PublicUpdateMysqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateMysqlSourceV2DtoTypeDBT            PublicUpdateMysqlSourceV2DtoType = "DBT"
+	PublicUpdateMysqlSourceV2DtoTypeDBTCLOUD       PublicUpdateMysqlSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateMysqlSourceV2DtoTypeDECLARATIVE    PublicUpdateMysqlSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateMysqlSourceV2DtoTypeFIVETRAN       PublicUpdateMysqlSourceV2DtoType = "FIVETRAN"
+	PublicUpdateMysqlSourceV2DtoTypeLOOKER         PublicUpdateMysqlSourceV2DtoType = "LOOKER"
+	PublicUpdateMysqlSourceV2DtoTypeMICROSTRATEGY  PublicUpdateMysqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateMysqlSourceV2DtoTypeMSSQL          PublicUpdateMysqlSourceV2DtoType = "MSSQL"
+	PublicUpdateMysqlSourceV2DtoTypeMYSQL          PublicUpdateMysqlSourceV2DtoType = "MYSQL"
+	PublicUpdateMysqlSourceV2DtoTypeORACLE         PublicUpdateMysqlSourceV2DtoType = "ORACLE"
+	PublicUpdateMysqlSourceV2DtoTypePOSTGRESQL     PublicUpdateMysqlSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateMysqlSourceV2DtoTypePOWERBI        PublicUpdateMysqlSourceV2DtoType = "POWER_BI"
+	PublicUpdateMysqlSourceV2DtoTypeQLIK           PublicUpdateMysqlSourceV2DtoType = "QLIK"
+	PublicUpdateMysqlSourceV2DtoTypeQUICKSIGHT     PublicUpdateMysqlSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateMysqlSourceV2DtoTypeREDSHIFT       PublicUpdateMysqlSourceV2DtoType = "REDSHIFT"
+	PublicUpdateMysqlSourceV2DtoTypeSNOWFLAKE      PublicUpdateMysqlSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateMysqlSourceV2DtoTypeSYNAPSE        PublicUpdateMysqlSourceV2DtoType = "SYNAPSE"
+	PublicUpdateMysqlSourceV2DtoTypeTABLEAU        PublicUpdateMysqlSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateOracleSourceV2DtoType.
 const (
-	PublicUpdateOracleSourceV2DtoTypeAIRFLOW       PublicUpdateOracleSourceV2DtoType = "AIRFLOW"
-	PublicUpdateOracleSourceV2DtoTypeATHENA        PublicUpdateOracleSourceV2DtoType = "ATHENA"
-	PublicUpdateOracleSourceV2DtoTypeBIGQUERY      PublicUpdateOracleSourceV2DtoType = "BIGQUERY"
-	PublicUpdateOracleSourceV2DtoTypeDATABRICKS    PublicUpdateOracleSourceV2DtoType = "DATABRICKS"
-	PublicUpdateOracleSourceV2DtoTypeDBT           PublicUpdateOracleSourceV2DtoType = "DBT"
-	PublicUpdateOracleSourceV2DtoTypeDBTCLOUD      PublicUpdateOracleSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateOracleSourceV2DtoTypeDECLARATIVE   PublicUpdateOracleSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateOracleSourceV2DtoTypeFIVETRAN      PublicUpdateOracleSourceV2DtoType = "FIVETRAN"
-	PublicUpdateOracleSourceV2DtoTypeLOOKER        PublicUpdateOracleSourceV2DtoType = "LOOKER"
-	PublicUpdateOracleSourceV2DtoTypeMICROSTRATEGY PublicUpdateOracleSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateOracleSourceV2DtoTypeMSSQL         PublicUpdateOracleSourceV2DtoType = "MSSQL"
-	PublicUpdateOracleSourceV2DtoTypeMYSQL         PublicUpdateOracleSourceV2DtoType = "MYSQL"
-	PublicUpdateOracleSourceV2DtoTypeORACLE        PublicUpdateOracleSourceV2DtoType = "ORACLE"
-	PublicUpdateOracleSourceV2DtoTypePOSTGRESQL    PublicUpdateOracleSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateOracleSourceV2DtoTypePOWERBI       PublicUpdateOracleSourceV2DtoType = "POWER_BI"
-	PublicUpdateOracleSourceV2DtoTypeQLIK          PublicUpdateOracleSourceV2DtoType = "QLIK"
-	PublicUpdateOracleSourceV2DtoTypeQUICKSIGHT    PublicUpdateOracleSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateOracleSourceV2DtoTypeREDSHIFT      PublicUpdateOracleSourceV2DtoType = "REDSHIFT"
-	PublicUpdateOracleSourceV2DtoTypeSNOWFLAKE     PublicUpdateOracleSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateOracleSourceV2DtoTypeSYNAPSE       PublicUpdateOracleSourceV2DtoType = "SYNAPSE"
-	PublicUpdateOracleSourceV2DtoTypeTABLEAU       PublicUpdateOracleSourceV2DtoType = "TABLEAU"
+	PublicUpdateOracleSourceV2DtoTypeAIRFLOW        PublicUpdateOracleSourceV2DtoType = "AIRFLOW"
+	PublicUpdateOracleSourceV2DtoTypeATHENA         PublicUpdateOracleSourceV2DtoType = "ATHENA"
+	PublicUpdateOracleSourceV2DtoTypeBIGQUERY       PublicUpdateOracleSourceV2DtoType = "BIGQUERY"
+	PublicUpdateOracleSourceV2DtoTypeDATABRICKS     PublicUpdateOracleSourceV2DtoType = "DATABRICKS"
+	PublicUpdateOracleSourceV2DtoTypeDATABRICKSJOBS PublicUpdateOracleSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateOracleSourceV2DtoTypeDBT            PublicUpdateOracleSourceV2DtoType = "DBT"
+	PublicUpdateOracleSourceV2DtoTypeDBTCLOUD       PublicUpdateOracleSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateOracleSourceV2DtoTypeDECLARATIVE    PublicUpdateOracleSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateOracleSourceV2DtoTypeFIVETRAN       PublicUpdateOracleSourceV2DtoType = "FIVETRAN"
+	PublicUpdateOracleSourceV2DtoTypeLOOKER         PublicUpdateOracleSourceV2DtoType = "LOOKER"
+	PublicUpdateOracleSourceV2DtoTypeMICROSTRATEGY  PublicUpdateOracleSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateOracleSourceV2DtoTypeMSSQL          PublicUpdateOracleSourceV2DtoType = "MSSQL"
+	PublicUpdateOracleSourceV2DtoTypeMYSQL          PublicUpdateOracleSourceV2DtoType = "MYSQL"
+	PublicUpdateOracleSourceV2DtoTypeORACLE         PublicUpdateOracleSourceV2DtoType = "ORACLE"
+	PublicUpdateOracleSourceV2DtoTypePOSTGRESQL     PublicUpdateOracleSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateOracleSourceV2DtoTypePOWERBI        PublicUpdateOracleSourceV2DtoType = "POWER_BI"
+	PublicUpdateOracleSourceV2DtoTypeQLIK           PublicUpdateOracleSourceV2DtoType = "QLIK"
+	PublicUpdateOracleSourceV2DtoTypeQUICKSIGHT     PublicUpdateOracleSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateOracleSourceV2DtoTypeREDSHIFT       PublicUpdateOracleSourceV2DtoType = "REDSHIFT"
+	PublicUpdateOracleSourceV2DtoTypeSNOWFLAKE      PublicUpdateOracleSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateOracleSourceV2DtoTypeSYNAPSE        PublicUpdateOracleSourceV2DtoType = "SYNAPSE"
+	PublicUpdateOracleSourceV2DtoTypeTABLEAU        PublicUpdateOracleSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdatePostgresqlSourceV2DtoType.
 const (
-	PublicUpdatePostgresqlSourceV2DtoTypeAIRFLOW       PublicUpdatePostgresqlSourceV2DtoType = "AIRFLOW"
-	PublicUpdatePostgresqlSourceV2DtoTypeATHENA        PublicUpdatePostgresqlSourceV2DtoType = "ATHENA"
-	PublicUpdatePostgresqlSourceV2DtoTypeBIGQUERY      PublicUpdatePostgresqlSourceV2DtoType = "BIGQUERY"
-	PublicUpdatePostgresqlSourceV2DtoTypeDATABRICKS    PublicUpdatePostgresqlSourceV2DtoType = "DATABRICKS"
-	PublicUpdatePostgresqlSourceV2DtoTypeDBT           PublicUpdatePostgresqlSourceV2DtoType = "DBT"
-	PublicUpdatePostgresqlSourceV2DtoTypeDBTCLOUD      PublicUpdatePostgresqlSourceV2DtoType = "DBTCLOUD"
-	PublicUpdatePostgresqlSourceV2DtoTypeDECLARATIVE   PublicUpdatePostgresqlSourceV2DtoType = "DECLARATIVE"
-	PublicUpdatePostgresqlSourceV2DtoTypeFIVETRAN      PublicUpdatePostgresqlSourceV2DtoType = "FIVETRAN"
-	PublicUpdatePostgresqlSourceV2DtoTypeLOOKER        PublicUpdatePostgresqlSourceV2DtoType = "LOOKER"
-	PublicUpdatePostgresqlSourceV2DtoTypeMICROSTRATEGY PublicUpdatePostgresqlSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdatePostgresqlSourceV2DtoTypeMSSQL         PublicUpdatePostgresqlSourceV2DtoType = "MSSQL"
-	PublicUpdatePostgresqlSourceV2DtoTypeMYSQL         PublicUpdatePostgresqlSourceV2DtoType = "MYSQL"
-	PublicUpdatePostgresqlSourceV2DtoTypeORACLE        PublicUpdatePostgresqlSourceV2DtoType = "ORACLE"
-	PublicUpdatePostgresqlSourceV2DtoTypePOSTGRESQL    PublicUpdatePostgresqlSourceV2DtoType = "POSTGRESQL"
-	PublicUpdatePostgresqlSourceV2DtoTypePOWERBI       PublicUpdatePostgresqlSourceV2DtoType = "POWER_BI"
-	PublicUpdatePostgresqlSourceV2DtoTypeQLIK          PublicUpdatePostgresqlSourceV2DtoType = "QLIK"
-	PublicUpdatePostgresqlSourceV2DtoTypeQUICKSIGHT    PublicUpdatePostgresqlSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdatePostgresqlSourceV2DtoTypeREDSHIFT      PublicUpdatePostgresqlSourceV2DtoType = "REDSHIFT"
-	PublicUpdatePostgresqlSourceV2DtoTypeSNOWFLAKE     PublicUpdatePostgresqlSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdatePostgresqlSourceV2DtoTypeSYNAPSE       PublicUpdatePostgresqlSourceV2DtoType = "SYNAPSE"
-	PublicUpdatePostgresqlSourceV2DtoTypeTABLEAU       PublicUpdatePostgresqlSourceV2DtoType = "TABLEAU"
+	PublicUpdatePostgresqlSourceV2DtoTypeAIRFLOW        PublicUpdatePostgresqlSourceV2DtoType = "AIRFLOW"
+	PublicUpdatePostgresqlSourceV2DtoTypeATHENA         PublicUpdatePostgresqlSourceV2DtoType = "ATHENA"
+	PublicUpdatePostgresqlSourceV2DtoTypeBIGQUERY       PublicUpdatePostgresqlSourceV2DtoType = "BIGQUERY"
+	PublicUpdatePostgresqlSourceV2DtoTypeDATABRICKS     PublicUpdatePostgresqlSourceV2DtoType = "DATABRICKS"
+	PublicUpdatePostgresqlSourceV2DtoTypeDATABRICKSJOBS PublicUpdatePostgresqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdatePostgresqlSourceV2DtoTypeDBT            PublicUpdatePostgresqlSourceV2DtoType = "DBT"
+	PublicUpdatePostgresqlSourceV2DtoTypeDBTCLOUD       PublicUpdatePostgresqlSourceV2DtoType = "DBTCLOUD"
+	PublicUpdatePostgresqlSourceV2DtoTypeDECLARATIVE    PublicUpdatePostgresqlSourceV2DtoType = "DECLARATIVE"
+	PublicUpdatePostgresqlSourceV2DtoTypeFIVETRAN       PublicUpdatePostgresqlSourceV2DtoType = "FIVETRAN"
+	PublicUpdatePostgresqlSourceV2DtoTypeLOOKER         PublicUpdatePostgresqlSourceV2DtoType = "LOOKER"
+	PublicUpdatePostgresqlSourceV2DtoTypeMICROSTRATEGY  PublicUpdatePostgresqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdatePostgresqlSourceV2DtoTypeMSSQL          PublicUpdatePostgresqlSourceV2DtoType = "MSSQL"
+	PublicUpdatePostgresqlSourceV2DtoTypeMYSQL          PublicUpdatePostgresqlSourceV2DtoType = "MYSQL"
+	PublicUpdatePostgresqlSourceV2DtoTypeORACLE         PublicUpdatePostgresqlSourceV2DtoType = "ORACLE"
+	PublicUpdatePostgresqlSourceV2DtoTypePOSTGRESQL     PublicUpdatePostgresqlSourceV2DtoType = "POSTGRESQL"
+	PublicUpdatePostgresqlSourceV2DtoTypePOWERBI        PublicUpdatePostgresqlSourceV2DtoType = "POWER_BI"
+	PublicUpdatePostgresqlSourceV2DtoTypeQLIK           PublicUpdatePostgresqlSourceV2DtoType = "QLIK"
+	PublicUpdatePostgresqlSourceV2DtoTypeQUICKSIGHT     PublicUpdatePostgresqlSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdatePostgresqlSourceV2DtoTypeREDSHIFT       PublicUpdatePostgresqlSourceV2DtoType = "REDSHIFT"
+	PublicUpdatePostgresqlSourceV2DtoTypeSNOWFLAKE      PublicUpdatePostgresqlSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdatePostgresqlSourceV2DtoTypeSYNAPSE        PublicUpdatePostgresqlSourceV2DtoType = "SYNAPSE"
+	PublicUpdatePostgresqlSourceV2DtoTypeTABLEAU        PublicUpdatePostgresqlSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdatePowerBiSourceV2DtoType.
 const (
-	PublicUpdatePowerBiSourceV2DtoTypeAIRFLOW       PublicUpdatePowerBiSourceV2DtoType = "AIRFLOW"
-	PublicUpdatePowerBiSourceV2DtoTypeATHENA        PublicUpdatePowerBiSourceV2DtoType = "ATHENA"
-	PublicUpdatePowerBiSourceV2DtoTypeBIGQUERY      PublicUpdatePowerBiSourceV2DtoType = "BIGQUERY"
-	PublicUpdatePowerBiSourceV2DtoTypeDATABRICKS    PublicUpdatePowerBiSourceV2DtoType = "DATABRICKS"
-	PublicUpdatePowerBiSourceV2DtoTypeDBT           PublicUpdatePowerBiSourceV2DtoType = "DBT"
-	PublicUpdatePowerBiSourceV2DtoTypeDBTCLOUD      PublicUpdatePowerBiSourceV2DtoType = "DBTCLOUD"
-	PublicUpdatePowerBiSourceV2DtoTypeDECLARATIVE   PublicUpdatePowerBiSourceV2DtoType = "DECLARATIVE"
-	PublicUpdatePowerBiSourceV2DtoTypeFIVETRAN      PublicUpdatePowerBiSourceV2DtoType = "FIVETRAN"
-	PublicUpdatePowerBiSourceV2DtoTypeLOOKER        PublicUpdatePowerBiSourceV2DtoType = "LOOKER"
-	PublicUpdatePowerBiSourceV2DtoTypeMICROSTRATEGY PublicUpdatePowerBiSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdatePowerBiSourceV2DtoTypeMSSQL         PublicUpdatePowerBiSourceV2DtoType = "MSSQL"
-	PublicUpdatePowerBiSourceV2DtoTypeMYSQL         PublicUpdatePowerBiSourceV2DtoType = "MYSQL"
-	PublicUpdatePowerBiSourceV2DtoTypeORACLE        PublicUpdatePowerBiSourceV2DtoType = "ORACLE"
-	PublicUpdatePowerBiSourceV2DtoTypePOSTGRESQL    PublicUpdatePowerBiSourceV2DtoType = "POSTGRESQL"
-	PublicUpdatePowerBiSourceV2DtoTypePOWERBI       PublicUpdatePowerBiSourceV2DtoType = "POWER_BI"
-	PublicUpdatePowerBiSourceV2DtoTypeQLIK          PublicUpdatePowerBiSourceV2DtoType = "QLIK"
-	PublicUpdatePowerBiSourceV2DtoTypeQUICKSIGHT    PublicUpdatePowerBiSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdatePowerBiSourceV2DtoTypeREDSHIFT      PublicUpdatePowerBiSourceV2DtoType = "REDSHIFT"
-	PublicUpdatePowerBiSourceV2DtoTypeSNOWFLAKE     PublicUpdatePowerBiSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdatePowerBiSourceV2DtoTypeSYNAPSE       PublicUpdatePowerBiSourceV2DtoType = "SYNAPSE"
-	PublicUpdatePowerBiSourceV2DtoTypeTABLEAU       PublicUpdatePowerBiSourceV2DtoType = "TABLEAU"
+	PublicUpdatePowerBiSourceV2DtoTypeAIRFLOW        PublicUpdatePowerBiSourceV2DtoType = "AIRFLOW"
+	PublicUpdatePowerBiSourceV2DtoTypeATHENA         PublicUpdatePowerBiSourceV2DtoType = "ATHENA"
+	PublicUpdatePowerBiSourceV2DtoTypeBIGQUERY       PublicUpdatePowerBiSourceV2DtoType = "BIGQUERY"
+	PublicUpdatePowerBiSourceV2DtoTypeDATABRICKS     PublicUpdatePowerBiSourceV2DtoType = "DATABRICKS"
+	PublicUpdatePowerBiSourceV2DtoTypeDATABRICKSJOBS PublicUpdatePowerBiSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdatePowerBiSourceV2DtoTypeDBT            PublicUpdatePowerBiSourceV2DtoType = "DBT"
+	PublicUpdatePowerBiSourceV2DtoTypeDBTCLOUD       PublicUpdatePowerBiSourceV2DtoType = "DBTCLOUD"
+	PublicUpdatePowerBiSourceV2DtoTypeDECLARATIVE    PublicUpdatePowerBiSourceV2DtoType = "DECLARATIVE"
+	PublicUpdatePowerBiSourceV2DtoTypeFIVETRAN       PublicUpdatePowerBiSourceV2DtoType = "FIVETRAN"
+	PublicUpdatePowerBiSourceV2DtoTypeLOOKER         PublicUpdatePowerBiSourceV2DtoType = "LOOKER"
+	PublicUpdatePowerBiSourceV2DtoTypeMICROSTRATEGY  PublicUpdatePowerBiSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdatePowerBiSourceV2DtoTypeMSSQL          PublicUpdatePowerBiSourceV2DtoType = "MSSQL"
+	PublicUpdatePowerBiSourceV2DtoTypeMYSQL          PublicUpdatePowerBiSourceV2DtoType = "MYSQL"
+	PublicUpdatePowerBiSourceV2DtoTypeORACLE         PublicUpdatePowerBiSourceV2DtoType = "ORACLE"
+	PublicUpdatePowerBiSourceV2DtoTypePOSTGRESQL     PublicUpdatePowerBiSourceV2DtoType = "POSTGRESQL"
+	PublicUpdatePowerBiSourceV2DtoTypePOWERBI        PublicUpdatePowerBiSourceV2DtoType = "POWER_BI"
+	PublicUpdatePowerBiSourceV2DtoTypeQLIK           PublicUpdatePowerBiSourceV2DtoType = "QLIK"
+	PublicUpdatePowerBiSourceV2DtoTypeQUICKSIGHT     PublicUpdatePowerBiSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdatePowerBiSourceV2DtoTypeREDSHIFT       PublicUpdatePowerBiSourceV2DtoType = "REDSHIFT"
+	PublicUpdatePowerBiSourceV2DtoTypeSNOWFLAKE      PublicUpdatePowerBiSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdatePowerBiSourceV2DtoTypeSYNAPSE        PublicUpdatePowerBiSourceV2DtoType = "SYNAPSE"
+	PublicUpdatePowerBiSourceV2DtoTypeTABLEAU        PublicUpdatePowerBiSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateQlikSourceV2DtoType.
 const (
-	PublicUpdateQlikSourceV2DtoTypeAIRFLOW       PublicUpdateQlikSourceV2DtoType = "AIRFLOW"
-	PublicUpdateQlikSourceV2DtoTypeATHENA        PublicUpdateQlikSourceV2DtoType = "ATHENA"
-	PublicUpdateQlikSourceV2DtoTypeBIGQUERY      PublicUpdateQlikSourceV2DtoType = "BIGQUERY"
-	PublicUpdateQlikSourceV2DtoTypeDATABRICKS    PublicUpdateQlikSourceV2DtoType = "DATABRICKS"
-	PublicUpdateQlikSourceV2DtoTypeDBT           PublicUpdateQlikSourceV2DtoType = "DBT"
-	PublicUpdateQlikSourceV2DtoTypeDBTCLOUD      PublicUpdateQlikSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateQlikSourceV2DtoTypeDECLARATIVE   PublicUpdateQlikSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateQlikSourceV2DtoTypeFIVETRAN      PublicUpdateQlikSourceV2DtoType = "FIVETRAN"
-	PublicUpdateQlikSourceV2DtoTypeLOOKER        PublicUpdateQlikSourceV2DtoType = "LOOKER"
-	PublicUpdateQlikSourceV2DtoTypeMICROSTRATEGY PublicUpdateQlikSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateQlikSourceV2DtoTypeMSSQL         PublicUpdateQlikSourceV2DtoType = "MSSQL"
-	PublicUpdateQlikSourceV2DtoTypeMYSQL         PublicUpdateQlikSourceV2DtoType = "MYSQL"
-	PublicUpdateQlikSourceV2DtoTypeORACLE        PublicUpdateQlikSourceV2DtoType = "ORACLE"
-	PublicUpdateQlikSourceV2DtoTypePOSTGRESQL    PublicUpdateQlikSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateQlikSourceV2DtoTypePOWERBI       PublicUpdateQlikSourceV2DtoType = "POWER_BI"
-	PublicUpdateQlikSourceV2DtoTypeQLIK          PublicUpdateQlikSourceV2DtoType = "QLIK"
-	PublicUpdateQlikSourceV2DtoTypeQUICKSIGHT    PublicUpdateQlikSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateQlikSourceV2DtoTypeREDSHIFT      PublicUpdateQlikSourceV2DtoType = "REDSHIFT"
-	PublicUpdateQlikSourceV2DtoTypeSNOWFLAKE     PublicUpdateQlikSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateQlikSourceV2DtoTypeSYNAPSE       PublicUpdateQlikSourceV2DtoType = "SYNAPSE"
-	PublicUpdateQlikSourceV2DtoTypeTABLEAU       PublicUpdateQlikSourceV2DtoType = "TABLEAU"
+	PublicUpdateQlikSourceV2DtoTypeAIRFLOW        PublicUpdateQlikSourceV2DtoType = "AIRFLOW"
+	PublicUpdateQlikSourceV2DtoTypeATHENA         PublicUpdateQlikSourceV2DtoType = "ATHENA"
+	PublicUpdateQlikSourceV2DtoTypeBIGQUERY       PublicUpdateQlikSourceV2DtoType = "BIGQUERY"
+	PublicUpdateQlikSourceV2DtoTypeDATABRICKS     PublicUpdateQlikSourceV2DtoType = "DATABRICKS"
+	PublicUpdateQlikSourceV2DtoTypeDATABRICKSJOBS PublicUpdateQlikSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateQlikSourceV2DtoTypeDBT            PublicUpdateQlikSourceV2DtoType = "DBT"
+	PublicUpdateQlikSourceV2DtoTypeDBTCLOUD       PublicUpdateQlikSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateQlikSourceV2DtoTypeDECLARATIVE    PublicUpdateQlikSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateQlikSourceV2DtoTypeFIVETRAN       PublicUpdateQlikSourceV2DtoType = "FIVETRAN"
+	PublicUpdateQlikSourceV2DtoTypeLOOKER         PublicUpdateQlikSourceV2DtoType = "LOOKER"
+	PublicUpdateQlikSourceV2DtoTypeMICROSTRATEGY  PublicUpdateQlikSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateQlikSourceV2DtoTypeMSSQL          PublicUpdateQlikSourceV2DtoType = "MSSQL"
+	PublicUpdateQlikSourceV2DtoTypeMYSQL          PublicUpdateQlikSourceV2DtoType = "MYSQL"
+	PublicUpdateQlikSourceV2DtoTypeORACLE         PublicUpdateQlikSourceV2DtoType = "ORACLE"
+	PublicUpdateQlikSourceV2DtoTypePOSTGRESQL     PublicUpdateQlikSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateQlikSourceV2DtoTypePOWERBI        PublicUpdateQlikSourceV2DtoType = "POWER_BI"
+	PublicUpdateQlikSourceV2DtoTypeQLIK           PublicUpdateQlikSourceV2DtoType = "QLIK"
+	PublicUpdateQlikSourceV2DtoTypeQUICKSIGHT     PublicUpdateQlikSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateQlikSourceV2DtoTypeREDSHIFT       PublicUpdateQlikSourceV2DtoType = "REDSHIFT"
+	PublicUpdateQlikSourceV2DtoTypeSNOWFLAKE      PublicUpdateQlikSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateQlikSourceV2DtoTypeSYNAPSE        PublicUpdateQlikSourceV2DtoType = "SYNAPSE"
+	PublicUpdateQlikSourceV2DtoTypeTABLEAU        PublicUpdateQlikSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateQuicksightSourceV2DtoType.
 const (
-	PublicUpdateQuicksightSourceV2DtoTypeAIRFLOW       PublicUpdateQuicksightSourceV2DtoType = "AIRFLOW"
-	PublicUpdateQuicksightSourceV2DtoTypeATHENA        PublicUpdateQuicksightSourceV2DtoType = "ATHENA"
-	PublicUpdateQuicksightSourceV2DtoTypeBIGQUERY      PublicUpdateQuicksightSourceV2DtoType = "BIGQUERY"
-	PublicUpdateQuicksightSourceV2DtoTypeDATABRICKS    PublicUpdateQuicksightSourceV2DtoType = "DATABRICKS"
-	PublicUpdateQuicksightSourceV2DtoTypeDBT           PublicUpdateQuicksightSourceV2DtoType = "DBT"
-	PublicUpdateQuicksightSourceV2DtoTypeDBTCLOUD      PublicUpdateQuicksightSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateQuicksightSourceV2DtoTypeDECLARATIVE   PublicUpdateQuicksightSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateQuicksightSourceV2DtoTypeFIVETRAN      PublicUpdateQuicksightSourceV2DtoType = "FIVETRAN"
-	PublicUpdateQuicksightSourceV2DtoTypeLOOKER        PublicUpdateQuicksightSourceV2DtoType = "LOOKER"
-	PublicUpdateQuicksightSourceV2DtoTypeMICROSTRATEGY PublicUpdateQuicksightSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateQuicksightSourceV2DtoTypeMSSQL         PublicUpdateQuicksightSourceV2DtoType = "MSSQL"
-	PublicUpdateQuicksightSourceV2DtoTypeMYSQL         PublicUpdateQuicksightSourceV2DtoType = "MYSQL"
-	PublicUpdateQuicksightSourceV2DtoTypeORACLE        PublicUpdateQuicksightSourceV2DtoType = "ORACLE"
-	PublicUpdateQuicksightSourceV2DtoTypePOSTGRESQL    PublicUpdateQuicksightSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateQuicksightSourceV2DtoTypePOWERBI       PublicUpdateQuicksightSourceV2DtoType = "POWER_BI"
-	PublicUpdateQuicksightSourceV2DtoTypeQLIK          PublicUpdateQuicksightSourceV2DtoType = "QLIK"
-	PublicUpdateQuicksightSourceV2DtoTypeQUICKSIGHT    PublicUpdateQuicksightSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateQuicksightSourceV2DtoTypeREDSHIFT      PublicUpdateQuicksightSourceV2DtoType = "REDSHIFT"
-	PublicUpdateQuicksightSourceV2DtoTypeSNOWFLAKE     PublicUpdateQuicksightSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateQuicksightSourceV2DtoTypeSYNAPSE       PublicUpdateQuicksightSourceV2DtoType = "SYNAPSE"
-	PublicUpdateQuicksightSourceV2DtoTypeTABLEAU       PublicUpdateQuicksightSourceV2DtoType = "TABLEAU"
+	PublicUpdateQuicksightSourceV2DtoTypeAIRFLOW        PublicUpdateQuicksightSourceV2DtoType = "AIRFLOW"
+	PublicUpdateQuicksightSourceV2DtoTypeATHENA         PublicUpdateQuicksightSourceV2DtoType = "ATHENA"
+	PublicUpdateQuicksightSourceV2DtoTypeBIGQUERY       PublicUpdateQuicksightSourceV2DtoType = "BIGQUERY"
+	PublicUpdateQuicksightSourceV2DtoTypeDATABRICKS     PublicUpdateQuicksightSourceV2DtoType = "DATABRICKS"
+	PublicUpdateQuicksightSourceV2DtoTypeDATABRICKSJOBS PublicUpdateQuicksightSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateQuicksightSourceV2DtoTypeDBT            PublicUpdateQuicksightSourceV2DtoType = "DBT"
+	PublicUpdateQuicksightSourceV2DtoTypeDBTCLOUD       PublicUpdateQuicksightSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateQuicksightSourceV2DtoTypeDECLARATIVE    PublicUpdateQuicksightSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateQuicksightSourceV2DtoTypeFIVETRAN       PublicUpdateQuicksightSourceV2DtoType = "FIVETRAN"
+	PublicUpdateQuicksightSourceV2DtoTypeLOOKER         PublicUpdateQuicksightSourceV2DtoType = "LOOKER"
+	PublicUpdateQuicksightSourceV2DtoTypeMICROSTRATEGY  PublicUpdateQuicksightSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateQuicksightSourceV2DtoTypeMSSQL          PublicUpdateQuicksightSourceV2DtoType = "MSSQL"
+	PublicUpdateQuicksightSourceV2DtoTypeMYSQL          PublicUpdateQuicksightSourceV2DtoType = "MYSQL"
+	PublicUpdateQuicksightSourceV2DtoTypeORACLE         PublicUpdateQuicksightSourceV2DtoType = "ORACLE"
+	PublicUpdateQuicksightSourceV2DtoTypePOSTGRESQL     PublicUpdateQuicksightSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateQuicksightSourceV2DtoTypePOWERBI        PublicUpdateQuicksightSourceV2DtoType = "POWER_BI"
+	PublicUpdateQuicksightSourceV2DtoTypeQLIK           PublicUpdateQuicksightSourceV2DtoType = "QLIK"
+	PublicUpdateQuicksightSourceV2DtoTypeQUICKSIGHT     PublicUpdateQuicksightSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateQuicksightSourceV2DtoTypeREDSHIFT       PublicUpdateQuicksightSourceV2DtoType = "REDSHIFT"
+	PublicUpdateQuicksightSourceV2DtoTypeSNOWFLAKE      PublicUpdateQuicksightSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateQuicksightSourceV2DtoTypeSYNAPSE        PublicUpdateQuicksightSourceV2DtoType = "SYNAPSE"
+	PublicUpdateQuicksightSourceV2DtoTypeTABLEAU        PublicUpdateQuicksightSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateRedshiftSourceV2DtoType.
 const (
-	PublicUpdateRedshiftSourceV2DtoTypeAIRFLOW       PublicUpdateRedshiftSourceV2DtoType = "AIRFLOW"
-	PublicUpdateRedshiftSourceV2DtoTypeATHENA        PublicUpdateRedshiftSourceV2DtoType = "ATHENA"
-	PublicUpdateRedshiftSourceV2DtoTypeBIGQUERY      PublicUpdateRedshiftSourceV2DtoType = "BIGQUERY"
-	PublicUpdateRedshiftSourceV2DtoTypeDATABRICKS    PublicUpdateRedshiftSourceV2DtoType = "DATABRICKS"
-	PublicUpdateRedshiftSourceV2DtoTypeDBT           PublicUpdateRedshiftSourceV2DtoType = "DBT"
-	PublicUpdateRedshiftSourceV2DtoTypeDBTCLOUD      PublicUpdateRedshiftSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateRedshiftSourceV2DtoTypeDECLARATIVE   PublicUpdateRedshiftSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateRedshiftSourceV2DtoTypeFIVETRAN      PublicUpdateRedshiftSourceV2DtoType = "FIVETRAN"
-	PublicUpdateRedshiftSourceV2DtoTypeLOOKER        PublicUpdateRedshiftSourceV2DtoType = "LOOKER"
-	PublicUpdateRedshiftSourceV2DtoTypeMICROSTRATEGY PublicUpdateRedshiftSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateRedshiftSourceV2DtoTypeMSSQL         PublicUpdateRedshiftSourceV2DtoType = "MSSQL"
-	PublicUpdateRedshiftSourceV2DtoTypeMYSQL         PublicUpdateRedshiftSourceV2DtoType = "MYSQL"
-	PublicUpdateRedshiftSourceV2DtoTypeORACLE        PublicUpdateRedshiftSourceV2DtoType = "ORACLE"
-	PublicUpdateRedshiftSourceV2DtoTypePOSTGRESQL    PublicUpdateRedshiftSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateRedshiftSourceV2DtoTypePOWERBI       PublicUpdateRedshiftSourceV2DtoType = "POWER_BI"
-	PublicUpdateRedshiftSourceV2DtoTypeQLIK          PublicUpdateRedshiftSourceV2DtoType = "QLIK"
-	PublicUpdateRedshiftSourceV2DtoTypeQUICKSIGHT    PublicUpdateRedshiftSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateRedshiftSourceV2DtoTypeREDSHIFT      PublicUpdateRedshiftSourceV2DtoType = "REDSHIFT"
-	PublicUpdateRedshiftSourceV2DtoTypeSNOWFLAKE     PublicUpdateRedshiftSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateRedshiftSourceV2DtoTypeSYNAPSE       PublicUpdateRedshiftSourceV2DtoType = "SYNAPSE"
-	PublicUpdateRedshiftSourceV2DtoTypeTABLEAU       PublicUpdateRedshiftSourceV2DtoType = "TABLEAU"
+	PublicUpdateRedshiftSourceV2DtoTypeAIRFLOW        PublicUpdateRedshiftSourceV2DtoType = "AIRFLOW"
+	PublicUpdateRedshiftSourceV2DtoTypeATHENA         PublicUpdateRedshiftSourceV2DtoType = "ATHENA"
+	PublicUpdateRedshiftSourceV2DtoTypeBIGQUERY       PublicUpdateRedshiftSourceV2DtoType = "BIGQUERY"
+	PublicUpdateRedshiftSourceV2DtoTypeDATABRICKS     PublicUpdateRedshiftSourceV2DtoType = "DATABRICKS"
+	PublicUpdateRedshiftSourceV2DtoTypeDATABRICKSJOBS PublicUpdateRedshiftSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateRedshiftSourceV2DtoTypeDBT            PublicUpdateRedshiftSourceV2DtoType = "DBT"
+	PublicUpdateRedshiftSourceV2DtoTypeDBTCLOUD       PublicUpdateRedshiftSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateRedshiftSourceV2DtoTypeDECLARATIVE    PublicUpdateRedshiftSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateRedshiftSourceV2DtoTypeFIVETRAN       PublicUpdateRedshiftSourceV2DtoType = "FIVETRAN"
+	PublicUpdateRedshiftSourceV2DtoTypeLOOKER         PublicUpdateRedshiftSourceV2DtoType = "LOOKER"
+	PublicUpdateRedshiftSourceV2DtoTypeMICROSTRATEGY  PublicUpdateRedshiftSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateRedshiftSourceV2DtoTypeMSSQL          PublicUpdateRedshiftSourceV2DtoType = "MSSQL"
+	PublicUpdateRedshiftSourceV2DtoTypeMYSQL          PublicUpdateRedshiftSourceV2DtoType = "MYSQL"
+	PublicUpdateRedshiftSourceV2DtoTypeORACLE         PublicUpdateRedshiftSourceV2DtoType = "ORACLE"
+	PublicUpdateRedshiftSourceV2DtoTypePOSTGRESQL     PublicUpdateRedshiftSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateRedshiftSourceV2DtoTypePOWERBI        PublicUpdateRedshiftSourceV2DtoType = "POWER_BI"
+	PublicUpdateRedshiftSourceV2DtoTypeQLIK           PublicUpdateRedshiftSourceV2DtoType = "QLIK"
+	PublicUpdateRedshiftSourceV2DtoTypeQUICKSIGHT     PublicUpdateRedshiftSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateRedshiftSourceV2DtoTypeREDSHIFT       PublicUpdateRedshiftSourceV2DtoType = "REDSHIFT"
+	PublicUpdateRedshiftSourceV2DtoTypeSNOWFLAKE      PublicUpdateRedshiftSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateRedshiftSourceV2DtoTypeSYNAPSE        PublicUpdateRedshiftSourceV2DtoType = "SYNAPSE"
+	PublicUpdateRedshiftSourceV2DtoTypeTABLEAU        PublicUpdateRedshiftSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateSnowflakeSourceV2DtoType.
 const (
-	PublicUpdateSnowflakeSourceV2DtoTypeAIRFLOW       PublicUpdateSnowflakeSourceV2DtoType = "AIRFLOW"
-	PublicUpdateSnowflakeSourceV2DtoTypeATHENA        PublicUpdateSnowflakeSourceV2DtoType = "ATHENA"
-	PublicUpdateSnowflakeSourceV2DtoTypeBIGQUERY      PublicUpdateSnowflakeSourceV2DtoType = "BIGQUERY"
-	PublicUpdateSnowflakeSourceV2DtoTypeDATABRICKS    PublicUpdateSnowflakeSourceV2DtoType = "DATABRICKS"
-	PublicUpdateSnowflakeSourceV2DtoTypeDBT           PublicUpdateSnowflakeSourceV2DtoType = "DBT"
-	PublicUpdateSnowflakeSourceV2DtoTypeDBTCLOUD      PublicUpdateSnowflakeSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateSnowflakeSourceV2DtoTypeDECLARATIVE   PublicUpdateSnowflakeSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateSnowflakeSourceV2DtoTypeFIVETRAN      PublicUpdateSnowflakeSourceV2DtoType = "FIVETRAN"
-	PublicUpdateSnowflakeSourceV2DtoTypeLOOKER        PublicUpdateSnowflakeSourceV2DtoType = "LOOKER"
-	PublicUpdateSnowflakeSourceV2DtoTypeMICROSTRATEGY PublicUpdateSnowflakeSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateSnowflakeSourceV2DtoTypeMSSQL         PublicUpdateSnowflakeSourceV2DtoType = "MSSQL"
-	PublicUpdateSnowflakeSourceV2DtoTypeMYSQL         PublicUpdateSnowflakeSourceV2DtoType = "MYSQL"
-	PublicUpdateSnowflakeSourceV2DtoTypeORACLE        PublicUpdateSnowflakeSourceV2DtoType = "ORACLE"
-	PublicUpdateSnowflakeSourceV2DtoTypePOSTGRESQL    PublicUpdateSnowflakeSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateSnowflakeSourceV2DtoTypePOWERBI       PublicUpdateSnowflakeSourceV2DtoType = "POWER_BI"
-	PublicUpdateSnowflakeSourceV2DtoTypeQLIK          PublicUpdateSnowflakeSourceV2DtoType = "QLIK"
-	PublicUpdateSnowflakeSourceV2DtoTypeQUICKSIGHT    PublicUpdateSnowflakeSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateSnowflakeSourceV2DtoTypeREDSHIFT      PublicUpdateSnowflakeSourceV2DtoType = "REDSHIFT"
-	PublicUpdateSnowflakeSourceV2DtoTypeSNOWFLAKE     PublicUpdateSnowflakeSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateSnowflakeSourceV2DtoTypeSYNAPSE       PublicUpdateSnowflakeSourceV2DtoType = "SYNAPSE"
-	PublicUpdateSnowflakeSourceV2DtoTypeTABLEAU       PublicUpdateSnowflakeSourceV2DtoType = "TABLEAU"
+	PublicUpdateSnowflakeSourceV2DtoTypeAIRFLOW        PublicUpdateSnowflakeSourceV2DtoType = "AIRFLOW"
+	PublicUpdateSnowflakeSourceV2DtoTypeATHENA         PublicUpdateSnowflakeSourceV2DtoType = "ATHENA"
+	PublicUpdateSnowflakeSourceV2DtoTypeBIGQUERY       PublicUpdateSnowflakeSourceV2DtoType = "BIGQUERY"
+	PublicUpdateSnowflakeSourceV2DtoTypeDATABRICKS     PublicUpdateSnowflakeSourceV2DtoType = "DATABRICKS"
+	PublicUpdateSnowflakeSourceV2DtoTypeDATABRICKSJOBS PublicUpdateSnowflakeSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateSnowflakeSourceV2DtoTypeDBT            PublicUpdateSnowflakeSourceV2DtoType = "DBT"
+	PublicUpdateSnowflakeSourceV2DtoTypeDBTCLOUD       PublicUpdateSnowflakeSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateSnowflakeSourceV2DtoTypeDECLARATIVE    PublicUpdateSnowflakeSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateSnowflakeSourceV2DtoTypeFIVETRAN       PublicUpdateSnowflakeSourceV2DtoType = "FIVETRAN"
+	PublicUpdateSnowflakeSourceV2DtoTypeLOOKER         PublicUpdateSnowflakeSourceV2DtoType = "LOOKER"
+	PublicUpdateSnowflakeSourceV2DtoTypeMICROSTRATEGY  PublicUpdateSnowflakeSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateSnowflakeSourceV2DtoTypeMSSQL          PublicUpdateSnowflakeSourceV2DtoType = "MSSQL"
+	PublicUpdateSnowflakeSourceV2DtoTypeMYSQL          PublicUpdateSnowflakeSourceV2DtoType = "MYSQL"
+	PublicUpdateSnowflakeSourceV2DtoTypeORACLE         PublicUpdateSnowflakeSourceV2DtoType = "ORACLE"
+	PublicUpdateSnowflakeSourceV2DtoTypePOSTGRESQL     PublicUpdateSnowflakeSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateSnowflakeSourceV2DtoTypePOWERBI        PublicUpdateSnowflakeSourceV2DtoType = "POWER_BI"
+	PublicUpdateSnowflakeSourceV2DtoTypeQLIK           PublicUpdateSnowflakeSourceV2DtoType = "QLIK"
+	PublicUpdateSnowflakeSourceV2DtoTypeQUICKSIGHT     PublicUpdateSnowflakeSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateSnowflakeSourceV2DtoTypeREDSHIFT       PublicUpdateSnowflakeSourceV2DtoType = "REDSHIFT"
+	PublicUpdateSnowflakeSourceV2DtoTypeSNOWFLAKE      PublicUpdateSnowflakeSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateSnowflakeSourceV2DtoTypeSYNAPSE        PublicUpdateSnowflakeSourceV2DtoType = "SYNAPSE"
+	PublicUpdateSnowflakeSourceV2DtoTypeTABLEAU        PublicUpdateSnowflakeSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateSynapseSourceV2DtoType.
 const (
-	PublicUpdateSynapseSourceV2DtoTypeAIRFLOW       PublicUpdateSynapseSourceV2DtoType = "AIRFLOW"
-	PublicUpdateSynapseSourceV2DtoTypeATHENA        PublicUpdateSynapseSourceV2DtoType = "ATHENA"
-	PublicUpdateSynapseSourceV2DtoTypeBIGQUERY      PublicUpdateSynapseSourceV2DtoType = "BIGQUERY"
-	PublicUpdateSynapseSourceV2DtoTypeDATABRICKS    PublicUpdateSynapseSourceV2DtoType = "DATABRICKS"
-	PublicUpdateSynapseSourceV2DtoTypeDBT           PublicUpdateSynapseSourceV2DtoType = "DBT"
-	PublicUpdateSynapseSourceV2DtoTypeDBTCLOUD      PublicUpdateSynapseSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateSynapseSourceV2DtoTypeDECLARATIVE   PublicUpdateSynapseSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateSynapseSourceV2DtoTypeFIVETRAN      PublicUpdateSynapseSourceV2DtoType = "FIVETRAN"
-	PublicUpdateSynapseSourceV2DtoTypeLOOKER        PublicUpdateSynapseSourceV2DtoType = "LOOKER"
-	PublicUpdateSynapseSourceV2DtoTypeMICROSTRATEGY PublicUpdateSynapseSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateSynapseSourceV2DtoTypeMSSQL         PublicUpdateSynapseSourceV2DtoType = "MSSQL"
-	PublicUpdateSynapseSourceV2DtoTypeMYSQL         PublicUpdateSynapseSourceV2DtoType = "MYSQL"
-	PublicUpdateSynapseSourceV2DtoTypeORACLE        PublicUpdateSynapseSourceV2DtoType = "ORACLE"
-	PublicUpdateSynapseSourceV2DtoTypePOSTGRESQL    PublicUpdateSynapseSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateSynapseSourceV2DtoTypePOWERBI       PublicUpdateSynapseSourceV2DtoType = "POWER_BI"
-	PublicUpdateSynapseSourceV2DtoTypeQLIK          PublicUpdateSynapseSourceV2DtoType = "QLIK"
-	PublicUpdateSynapseSourceV2DtoTypeQUICKSIGHT    PublicUpdateSynapseSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateSynapseSourceV2DtoTypeREDSHIFT      PublicUpdateSynapseSourceV2DtoType = "REDSHIFT"
-	PublicUpdateSynapseSourceV2DtoTypeSNOWFLAKE     PublicUpdateSynapseSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateSynapseSourceV2DtoTypeSYNAPSE       PublicUpdateSynapseSourceV2DtoType = "SYNAPSE"
-	PublicUpdateSynapseSourceV2DtoTypeTABLEAU       PublicUpdateSynapseSourceV2DtoType = "TABLEAU"
+	PublicUpdateSynapseSourceV2DtoTypeAIRFLOW        PublicUpdateSynapseSourceV2DtoType = "AIRFLOW"
+	PublicUpdateSynapseSourceV2DtoTypeATHENA         PublicUpdateSynapseSourceV2DtoType = "ATHENA"
+	PublicUpdateSynapseSourceV2DtoTypeBIGQUERY       PublicUpdateSynapseSourceV2DtoType = "BIGQUERY"
+	PublicUpdateSynapseSourceV2DtoTypeDATABRICKS     PublicUpdateSynapseSourceV2DtoType = "DATABRICKS"
+	PublicUpdateSynapseSourceV2DtoTypeDATABRICKSJOBS PublicUpdateSynapseSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateSynapseSourceV2DtoTypeDBT            PublicUpdateSynapseSourceV2DtoType = "DBT"
+	PublicUpdateSynapseSourceV2DtoTypeDBTCLOUD       PublicUpdateSynapseSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateSynapseSourceV2DtoTypeDECLARATIVE    PublicUpdateSynapseSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateSynapseSourceV2DtoTypeFIVETRAN       PublicUpdateSynapseSourceV2DtoType = "FIVETRAN"
+	PublicUpdateSynapseSourceV2DtoTypeLOOKER         PublicUpdateSynapseSourceV2DtoType = "LOOKER"
+	PublicUpdateSynapseSourceV2DtoTypeMICROSTRATEGY  PublicUpdateSynapseSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateSynapseSourceV2DtoTypeMSSQL          PublicUpdateSynapseSourceV2DtoType = "MSSQL"
+	PublicUpdateSynapseSourceV2DtoTypeMYSQL          PublicUpdateSynapseSourceV2DtoType = "MYSQL"
+	PublicUpdateSynapseSourceV2DtoTypeORACLE         PublicUpdateSynapseSourceV2DtoType = "ORACLE"
+	PublicUpdateSynapseSourceV2DtoTypePOSTGRESQL     PublicUpdateSynapseSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateSynapseSourceV2DtoTypePOWERBI        PublicUpdateSynapseSourceV2DtoType = "POWER_BI"
+	PublicUpdateSynapseSourceV2DtoTypeQLIK           PublicUpdateSynapseSourceV2DtoType = "QLIK"
+	PublicUpdateSynapseSourceV2DtoTypeQUICKSIGHT     PublicUpdateSynapseSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateSynapseSourceV2DtoTypeREDSHIFT       PublicUpdateSynapseSourceV2DtoType = "REDSHIFT"
+	PublicUpdateSynapseSourceV2DtoTypeSNOWFLAKE      PublicUpdateSynapseSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateSynapseSourceV2DtoTypeSYNAPSE        PublicUpdateSynapseSourceV2DtoType = "SYNAPSE"
+	PublicUpdateSynapseSourceV2DtoTypeTABLEAU        PublicUpdateSynapseSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUpdateTableauSourceV2DtoType.
 const (
-	PublicUpdateTableauSourceV2DtoTypeAIRFLOW       PublicUpdateTableauSourceV2DtoType = "AIRFLOW"
-	PublicUpdateTableauSourceV2DtoTypeATHENA        PublicUpdateTableauSourceV2DtoType = "ATHENA"
-	PublicUpdateTableauSourceV2DtoTypeBIGQUERY      PublicUpdateTableauSourceV2DtoType = "BIGQUERY"
-	PublicUpdateTableauSourceV2DtoTypeDATABRICKS    PublicUpdateTableauSourceV2DtoType = "DATABRICKS"
-	PublicUpdateTableauSourceV2DtoTypeDBT           PublicUpdateTableauSourceV2DtoType = "DBT"
-	PublicUpdateTableauSourceV2DtoTypeDBTCLOUD      PublicUpdateTableauSourceV2DtoType = "DBTCLOUD"
-	PublicUpdateTableauSourceV2DtoTypeDECLARATIVE   PublicUpdateTableauSourceV2DtoType = "DECLARATIVE"
-	PublicUpdateTableauSourceV2DtoTypeFIVETRAN      PublicUpdateTableauSourceV2DtoType = "FIVETRAN"
-	PublicUpdateTableauSourceV2DtoTypeLOOKER        PublicUpdateTableauSourceV2DtoType = "LOOKER"
-	PublicUpdateTableauSourceV2DtoTypeMICROSTRATEGY PublicUpdateTableauSourceV2DtoType = "MICROSTRATEGY"
-	PublicUpdateTableauSourceV2DtoTypeMSSQL         PublicUpdateTableauSourceV2DtoType = "MSSQL"
-	PublicUpdateTableauSourceV2DtoTypeMYSQL         PublicUpdateTableauSourceV2DtoType = "MYSQL"
-	PublicUpdateTableauSourceV2DtoTypeORACLE        PublicUpdateTableauSourceV2DtoType = "ORACLE"
-	PublicUpdateTableauSourceV2DtoTypePOSTGRESQL    PublicUpdateTableauSourceV2DtoType = "POSTGRESQL"
-	PublicUpdateTableauSourceV2DtoTypePOWERBI       PublicUpdateTableauSourceV2DtoType = "POWER_BI"
-	PublicUpdateTableauSourceV2DtoTypeQLIK          PublicUpdateTableauSourceV2DtoType = "QLIK"
-	PublicUpdateTableauSourceV2DtoTypeQUICKSIGHT    PublicUpdateTableauSourceV2DtoType = "QUICKSIGHT"
-	PublicUpdateTableauSourceV2DtoTypeREDSHIFT      PublicUpdateTableauSourceV2DtoType = "REDSHIFT"
-	PublicUpdateTableauSourceV2DtoTypeSNOWFLAKE     PublicUpdateTableauSourceV2DtoType = "SNOWFLAKE"
-	PublicUpdateTableauSourceV2DtoTypeSYNAPSE       PublicUpdateTableauSourceV2DtoType = "SYNAPSE"
-	PublicUpdateTableauSourceV2DtoTypeTABLEAU       PublicUpdateTableauSourceV2DtoType = "TABLEAU"
+	PublicUpdateTableauSourceV2DtoTypeAIRFLOW        PublicUpdateTableauSourceV2DtoType = "AIRFLOW"
+	PublicUpdateTableauSourceV2DtoTypeATHENA         PublicUpdateTableauSourceV2DtoType = "ATHENA"
+	PublicUpdateTableauSourceV2DtoTypeBIGQUERY       PublicUpdateTableauSourceV2DtoType = "BIGQUERY"
+	PublicUpdateTableauSourceV2DtoTypeDATABRICKS     PublicUpdateTableauSourceV2DtoType = "DATABRICKS"
+	PublicUpdateTableauSourceV2DtoTypeDATABRICKSJOBS PublicUpdateTableauSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateTableauSourceV2DtoTypeDBT            PublicUpdateTableauSourceV2DtoType = "DBT"
+	PublicUpdateTableauSourceV2DtoTypeDBTCLOUD       PublicUpdateTableauSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateTableauSourceV2DtoTypeDECLARATIVE    PublicUpdateTableauSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateTableauSourceV2DtoTypeFIVETRAN       PublicUpdateTableauSourceV2DtoType = "FIVETRAN"
+	PublicUpdateTableauSourceV2DtoTypeLOOKER         PublicUpdateTableauSourceV2DtoType = "LOOKER"
+	PublicUpdateTableauSourceV2DtoTypeMICROSTRATEGY  PublicUpdateTableauSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateTableauSourceV2DtoTypeMSSQL          PublicUpdateTableauSourceV2DtoType = "MSSQL"
+	PublicUpdateTableauSourceV2DtoTypeMYSQL          PublicUpdateTableauSourceV2DtoType = "MYSQL"
+	PublicUpdateTableauSourceV2DtoTypeORACLE         PublicUpdateTableauSourceV2DtoType = "ORACLE"
+	PublicUpdateTableauSourceV2DtoTypePOSTGRESQL     PublicUpdateTableauSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateTableauSourceV2DtoTypePOWERBI        PublicUpdateTableauSourceV2DtoType = "POWER_BI"
+	PublicUpdateTableauSourceV2DtoTypeQLIK           PublicUpdateTableauSourceV2DtoType = "QLIK"
+	PublicUpdateTableauSourceV2DtoTypeQUICKSIGHT     PublicUpdateTableauSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateTableauSourceV2DtoTypeREDSHIFT       PublicUpdateTableauSourceV2DtoType = "REDSHIFT"
+	PublicUpdateTableauSourceV2DtoTypeSNOWFLAKE      PublicUpdateTableauSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateTableauSourceV2DtoTypeSYNAPSE        PublicUpdateTableauSourceV2DtoType = "SYNAPSE"
+	PublicUpdateTableauSourceV2DtoTypeTABLEAU        PublicUpdateTableauSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUserCreateDtoAuthTypes.
@@ -5270,12 +5368,6 @@ const (
 	PublicUserUpdateDtoRoleADMIN  PublicUserUpdateDtoRole = "ADMIN"
 	PublicUserUpdateDtoRoleEDITOR PublicUserUpdateDtoRole = "EDITOR"
 	PublicUserUpdateDtoRoleVIEWER PublicUserUpdateDtoRole = "VIEWER"
-)
-
-// Defines values for PublicWorkspacesScopeDtoType.
-const (
-	EXCLUSION PublicWorkspacesScopeDtoType = "EXCLUSION"
-	INCLUSION PublicWorkspacesScopeDtoType = "INCLUSION"
 )
 
 // Defines values for RuleCatalogAssetDtoRuleType.
@@ -6261,7 +6353,18 @@ type AsCodeMetadataFreshnessMonitorParamsDtoV1 struct {
 type AsCodeMetadataFreshnessMonitorParamsDtoV1Kind string
 
 // AsCodeMetadataFreshnessMonitorParamsDtoV2 defines model for AsCodeMetadataFreshnessMonitorParamsDtoV2.
-type AsCodeMetadataFreshnessMonitorParamsDtoV2 = AsCodeMonitorParamsDto
+type AsCodeMetadataFreshnessMonitorParamsDtoV2 struct {
+	Kind      *AsCodeMetadataFreshnessMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
+	Threshold *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+}
+
+// AsCodeMetadataFreshnessMonitorParamsDtoV2Kind defines model for AsCodeMetadataFreshnessMonitorParamsDtoV2.Kind.
+type AsCodeMetadataFreshnessMonitorParamsDtoV2Kind string
+
+// AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold defines model for AsCodeMetadataFreshnessMonitorParamsDtoV2.Threshold.
+type AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold struct {
+	union json.RawMessage
+}
 
 // AsCodeMetricClauseDto defines model for AsCodeMetricClauseDto.
 type AsCodeMetricClauseDto struct {
@@ -6903,12 +7006,6 @@ type CatalogFilterDto struct {
 	Query    *string             `json:"query,omitempty"`
 }
 
-// CatalogSchema List of catalogues and schemas to include or exclude
-type CatalogSchema struct {
-	Name    string    `json:"name"`
-	Schemas *[]string `json:"schemas,omitempty"`
-}
-
 // ChangeDto defines model for ChangeDto.
 type ChangeDto struct {
 	From            *JsonNode           `json:"from,omitempty"`
@@ -6930,12 +7027,6 @@ type CustomHeader struct {
 	Value *string `json:"value,omitempty"`
 }
 
-// DatabaseSchema List of databases and schemas to include or exclude
-type DatabaseSchema struct {
-	Name    string    `json:"name"`
-	Schemas *[]string `json:"schemas,omitempty"`
-}
-
 // DatabricksInformation Databricks connection settings
 type DatabricksInformation struct {
 	// Host Your Databricks server hostname
@@ -6945,6 +7036,18 @@ type DatabricksInformation struct {
 	HttpPath string `json:"httpPath"`
 
 	// Port Your Databricks server port
+	Port int32 `json:"port"`
+}
+
+// DatabricksJobsInformation Databricks Jobs connection settings
+type DatabricksJobsInformation struct {
+	// Host Your Databricks Jobs server hostname
+	Host string `json:"host"`
+
+	// HttpPath Your Databricks Jobs HTTP path
+	HttpPath string `json:"httpPath"`
+
+	// Port Your Databricks Jobs server port
 	Port int32 `json:"port"`
 }
 
@@ -7433,18 +7536,6 @@ type PublicCalendarUpdateDto struct {
 	Timeslots   []CalendarTimeslot `json:"timeslots"`
 }
 
-// PublicCatalogSchemasScopeDto Catalogues and schemas to include or exclude. If not specified, all the catalogues and schemas will be included (including future ones).
-type PublicCatalogSchemasScopeDto struct {
-	// Catalogs List of catalogues and schemas to include or exclude
-	Catalogs []CatalogSchema `json:"catalogs"`
-
-	// Type Whether to include or exclude the listed elements
-	Type PublicCatalogSchemasScopeDtoType `json:"type"`
-}
-
-// PublicCatalogSchemasScopeDtoType Whether to include or exclude the listed elements
-type PublicCatalogSchemasScopeDtoType string
-
 // PublicCreateAirflowSourceV2Dto defines model for PublicCreateAirflowSourceV2Dto.
 type PublicCreateAirflowSourceV2Dto struct {
 	// AirflowInformation Airflow connection settings
@@ -7474,17 +7565,11 @@ type PublicCreateAthenaSourceV2Dto struct {
 	// AthenaInformation Athena connection settings
 	AthenaInformation *AthenaInformation `json:"athenaInformation,omitempty"`
 
-	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
-
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Databases to include or exclude. If not specified, all the databases will be included (including future ones).
-	Scope *PublicDatabasesScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -7510,9 +7595,6 @@ type PublicCreateBigQuerySourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatasetsScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -7522,6 +7604,30 @@ type PublicCreateBigQuerySourceV2Dto struct {
 
 // PublicCreateBigQuerySourceV2DtoType Source type
 type PublicCreateBigQuerySourceV2DtoType string
+
+// PublicCreateDatabricksJobsSourceV2Dto defines model for PublicCreateDatabricksJobsSourceV2Dto.
+type PublicCreateDatabricksJobsSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// DatabricksJobsInformation Databricks Jobs connection settings
+	DatabricksJobsInformation *DatabricksJobsInformation `json:"databricksJobsInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
+	Timezone *string `json:"timezone,omitempty"`
+
+	// Type Source type
+	Type PublicCreateDatabricksJobsSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateDatabricksJobsSourceV2DtoType Source type
+type PublicCreateDatabricksJobsSourceV2DtoType string
 
 // PublicCreateDatabricksSourceV2Dto defines model for PublicCreateDatabricksSourceV2Dto.
 type PublicCreateDatabricksSourceV2Dto struct {
@@ -7536,9 +7642,6 @@ type PublicCreateDatabricksSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Catalogues and schemas to include or exclude. If not specified, all the catalogues and schemas will be included (including future ones).
-	Scope *PublicCatalogSchemasScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -7563,9 +7666,6 @@ type PublicCreateDbtCloudSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicProjectsScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -7633,9 +7733,6 @@ type PublicCreateLookerSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Workspaces to include or exclude. If not specified, all the workspaces will be included (including future ones).
-	Scope *PublicWorkspacesScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -7684,9 +7781,6 @@ type PublicCreateMssqlSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -7710,9 +7804,6 @@ type PublicCreateMysqlSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -7738,9 +7829,6 @@ type PublicCreateOracleSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -7764,9 +7852,6 @@ type PublicCreatePostgresqlSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -7792,9 +7877,6 @@ type PublicCreatePowerBiSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Workspaces to include or exclude. If not specified, all the workspaces will be included (including future ones).
-	Scope *PublicWorkspacesScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -7819,9 +7901,6 @@ type PublicCreateQlikSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Spaces to include or exclude. If not specified, all the spaces will be included (including future ones).
-	Scope *PublicSpacesScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -7834,9 +7913,6 @@ type PublicCreateQlikSourceV2DtoType string
 
 // PublicCreateQuicksightSourceV2Dto defines model for PublicCreateQuicksightSourceV2Dto.
 type PublicCreateQuicksightSourceV2Dto struct {
-	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
-
 	// Name Name of the source
 	Name string `json:"name"`
 
@@ -7870,9 +7946,6 @@ type PublicCreateRedshiftSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatabaseSchemasScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -7893,9 +7966,6 @@ type PublicCreateSnowflakeSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatabaseSchemasScopeDto `json:"scope"`
 
 	// SnowflakeInformation Snowflake connection settings
 	SnowflakeInformation *SnowflakeInformation `json:"snowflakeInformation,omitempty"`
@@ -7961,9 +8031,6 @@ type PublicCreateSynapseSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatabaseSchemasScopeDto `json:"scope"`
-
 	// SynapseInformation Synapse connection settings
 	SynapseInformation *SynapseInformation `json:"synapseInformation,omitempty"`
 
@@ -7987,9 +8054,6 @@ type PublicCreateTableauSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Folders to include or exclude. If not specified, all the folders will be included (including future ones).
-	Scope *PublicFoldersScopeDto `json:"scope"`
 
 	// TableauInformation Tableau connection settings
 	TableauInformation *TableauInformation `json:"tableauInformation,omitempty"`
@@ -8091,29 +8155,6 @@ type PublicCustomMetadataEntryUserReferenceDto struct {
 // PublicCustomMetadataEntryUserReferenceDtoType defines model for PublicCustomMetadataEntryUserReferenceDto.Type.
 type PublicCustomMetadataEntryUserReferenceDtoType string
 
-// PublicDatabaseSchemasScopeDto Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-type PublicDatabaseSchemasScopeDto struct {
-	// Databases List of databases and schemas to include or exclude
-	Databases []DatabaseSchema `json:"databases"`
-
-	// Type Whether to include or exclude the listed elements
-	Type PublicDatabaseSchemasScopeDtoType `json:"type"`
-}
-
-// PublicDatabaseSchemasScopeDtoType Whether to include or exclude the listed elements
-type PublicDatabaseSchemasScopeDtoType string
-
-// PublicDatabasesScopeDto Databases to include or exclude. If not specified, all the databases will be included (including future ones).
-type PublicDatabasesScopeDto struct {
-	Databases *[]string `json:"databases,omitempty"`
-
-	// Type Whether to include or exclude the listed elements
-	Type PublicDatabasesScopeDtoType `json:"type"`
-}
-
-// PublicDatabasesScopeDtoType Whether to include or exclude the listed elements
-type PublicDatabasesScopeDtoType string
-
 // PublicDatabricksParametersDto defines model for PublicDatabricksParametersDto.
 type PublicDatabricksParametersDto struct {
 	// Catalog Your Databricks catalog
@@ -8135,17 +8176,6 @@ type PublicDatabricksParametersDto struct {
 
 // PublicDatabricksParametersDtoType defines model for PublicDatabricksParametersDto.Type.
 type PublicDatabricksParametersDtoType string
-
-// PublicDatasetsScopeDto Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-type PublicDatasetsScopeDto struct {
-	Datasets *[]string `json:"datasets,omitempty"`
-
-	// Type Whether to include or exclude the listed elements
-	Type PublicDatasetsScopeDtoType `json:"type"`
-}
-
-// PublicDatasetsScopeDtoType Whether to include or exclude the listed elements
-type PublicDatasetsScopeDtoType string
 
 // PublicDbtCloudParametersDto defines model for PublicDbtCloudParametersDto.
 type PublicDbtCloudParametersDto struct {
@@ -8315,17 +8345,6 @@ type PublicFivetranParametersDto struct {
 
 // PublicFivetranParametersDtoType defines model for PublicFivetranParametersDto.Type.
 type PublicFivetranParametersDtoType string
-
-// PublicFoldersScopeDto Folders to include or exclude. If not specified, all the folders will be included (including future ones).
-type PublicFoldersScopeDto struct {
-	Folders *[]string `json:"folders,omitempty"`
-
-	// Type Whether to include or exclude the listed elements
-	Type PublicFoldersScopeDtoType `json:"type"`
-}
-
-// PublicFoldersScopeDtoType Whether to include or exclude the listed elements
-type PublicFoldersScopeDtoType string
 
 // PublicGetAirflowSourceV2Dto defines model for PublicGetAirflowSourceV2Dto.
 type PublicGetAirflowSourceV2Dto struct {
@@ -8535,9 +8554,6 @@ type PublicGetAthenaSourceV2Dto struct {
 	// AthenaInformation Athena connection settings
 	AthenaInformation *AthenaInformation `json:"athenaInformation,omitempty"`
 
-	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
-
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
 
@@ -8549,9 +8565,6 @@ type PublicGetAthenaSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Databases to include or exclude. If not specified, all the databases will be included (including future ones).
-	Scope *PublicDatabasesScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -8582,9 +8595,6 @@ type PublicGetBigQuerySourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatasetsScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -8659,9 +8669,6 @@ type PublicGetDatabricksSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Catalogues and schemas to include or exclude. If not specified, all the catalogues and schemas will be included (including future ones).
-	Scope *PublicCatalogSchemasScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -8691,9 +8698,6 @@ type PublicGetDbtCloudSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicProjectsScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -8803,9 +8807,6 @@ type PublicGetLookerSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Workspaces to include or exclude. If not specified, all the workspaces will be included (including future ones).
-	Scope *PublicWorkspacesScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -8866,9 +8867,6 @@ type PublicGetMssqlSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -8898,9 +8896,6 @@ type PublicGetMysqlSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -8932,9 +8927,6 @@ type PublicGetOracleSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -8964,9 +8956,6 @@ type PublicGetPostgresqlSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -8998,9 +8987,6 @@ type PublicGetPowerBiSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Workspaces to include or exclude. If not specified, all the workspaces will be included (including future ones).
-	Scope *PublicWorkspacesScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -9031,9 +9017,6 @@ type PublicGetQlikSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Spaces to include or exclude. If not specified, all the spaces will be included (including future ones).
-	Scope *PublicSpacesScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -9046,9 +9029,6 @@ type PublicGetQlikSourceV2DtoType string
 
 // PublicGetQuicksightSourceV2Dto defines model for PublicGetQuicksightSourceV2Dto.
 type PublicGetQuicksightSourceV2Dto struct {
-	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
-
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
 
@@ -9094,9 +9074,6 @@ type PublicGetRedshiftSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatabaseSchemasScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -9123,9 +9100,6 @@ type PublicGetSnowflakeSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatabaseSchemasScopeDto `json:"scope"`
 
 	// SnowflakeInformation Snowflake connection settings
 	SnowflakeInformation *SnowflakeInformation `json:"snowflakeInformation,omitempty"`
@@ -9209,9 +9183,6 @@ type PublicGetSynapseSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatabaseSchemasScopeDto `json:"scope"`
-
 	// SynapseInformation Synapse connection settings
 	SynapseInformation *SynapseInformation `json:"synapseInformation,omitempty"`
 
@@ -9241,9 +9212,6 @@ type PublicGetTableauSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Folders to include or exclude. If not specified, all the folders will be included (including future ones).
-	Scope *PublicFoldersScopeDto `json:"scope"`
 
 	// TableauInformation Tableau connection settings
 	TableauInformation *TableauInformation `json:"tableauInformation,omitempty"`
@@ -9406,17 +9374,6 @@ type PublicPowerBiParametersDto struct {
 // PublicPowerBiParametersDtoType defines model for PublicPowerBiParametersDto.Type.
 type PublicPowerBiParametersDtoType string
 
-// PublicProjectsScopeDto Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-type PublicProjectsScopeDto struct {
-	Projects *[]string `json:"projects,omitempty"`
-
-	// Type Whether to include or exclude the listed elements
-	Type PublicProjectsScopeDtoType `json:"type"`
-}
-
-// PublicProjectsScopeDtoType Whether to include or exclude the listed elements
-type PublicProjectsScopeDtoType string
-
 // PublicQuicksightParametersDto defines model for PublicQuicksightParametersDto.
 type PublicQuicksightParametersDto struct {
 	// AccountId Your AWS account ID
@@ -9472,17 +9429,6 @@ type PublicReferenceByIdOrNameDto struct {
 	// Name Name of the referenced object
 	Name *string `json:"name,omitempty"`
 }
-
-// PublicSchemasScopeDto Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-type PublicSchemasScopeDto struct {
-	Schemas *[]string `json:"schemas,omitempty"`
-
-	// Type Whether to include or exclude the listed elements
-	Type PublicSchemasScopeDtoType `json:"type"`
-}
-
-// PublicSchemasScopeDtoType Whether to include or exclude the listed elements
-type PublicSchemasScopeDtoType string
 
 // PublicSnowflakeParametersDto defines model for PublicSnowflakeParametersDto.
 type PublicSnowflakeParametersDto struct {
@@ -9544,17 +9490,6 @@ type PublicSourceSearchCriteriaDto struct {
 	// Sort Sort to apply on the sources search
 	Sort *[]string `json:"sort,omitempty"`
 }
-
-// PublicSpacesScopeDto Spaces to include or exclude. If not specified, all the spaces will be included (including future ones).
-type PublicSpacesScopeDto struct {
-	Spaces *[]string `json:"spaces,omitempty"`
-
-	// Type Whether to include or exclude the listed elements
-	Type PublicSpacesScopeDtoType `json:"type"`
-}
-
-// PublicSpacesScopeDtoType Whether to include or exclude the listed elements
-type PublicSpacesScopeDtoType string
 
 // PublicSynapseParametersDto defines model for PublicSynapseParametersDto.
 type PublicSynapseParametersDto struct {
@@ -9689,17 +9624,11 @@ type PublicUpdateAthenaSourceV2Dto struct {
 	// AthenaInformation Athena connection settings
 	AthenaInformation AthenaInformation `json:"athenaInformation"`
 
-	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
-
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Databases to include or exclude. If not specified, all the databases will be included (including future ones).
-	Scope *PublicDatabasesScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -9725,9 +9654,6 @@ type PublicUpdateBigQuerySourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatasetsScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -9737,6 +9663,30 @@ type PublicUpdateBigQuerySourceV2Dto struct {
 
 // PublicUpdateBigQuerySourceV2DtoType Source type
 type PublicUpdateBigQuerySourceV2DtoType string
+
+// PublicUpdateDatabricksJobsSourceV2Dto defines model for PublicUpdateDatabricksJobsSourceV2Dto.
+type PublicUpdateDatabricksJobsSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// DatabricksJobsInformation Databricks Jobs connection settings
+	DatabricksJobsInformation DatabricksJobsInformation `json:"databricksJobsInformation"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
+	Timezone *string `json:"timezone,omitempty"`
+
+	// Type Source type
+	Type PublicUpdateDatabricksJobsSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateDatabricksJobsSourceV2DtoType Source type
+type PublicUpdateDatabricksJobsSourceV2DtoType string
 
 // PublicUpdateDatabricksSourceV2Dto defines model for PublicUpdateDatabricksSourceV2Dto.
 type PublicUpdateDatabricksSourceV2Dto struct {
@@ -9751,9 +9701,6 @@ type PublicUpdateDatabricksSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Catalogues and schemas to include or exclude. If not specified, all the catalogues and schemas will be included (including future ones).
-	Scope *PublicCatalogSchemasScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -9778,9 +9725,6 @@ type PublicUpdateDbtCloudSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicProjectsScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -9848,9 +9792,6 @@ type PublicUpdateLookerSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Workspaces to include or exclude. If not specified, all the workspaces will be included (including future ones).
-	Scope *PublicWorkspacesScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -9899,9 +9840,6 @@ type PublicUpdateMssqlSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -9925,9 +9863,6 @@ type PublicUpdateMysqlSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -9953,9 +9888,6 @@ type PublicUpdateOracleSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -9979,9 +9911,6 @@ type PublicUpdatePostgresqlSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Projects to include or exclude. If not specified, all the projects will be included (including future ones).
-	Scope *PublicSchemasScopeDto `json:"scope"`
 
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
@@ -10007,9 +9936,6 @@ type PublicUpdatePowerBiSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Workspaces to include or exclude. If not specified, all the workspaces will be included (including future ones).
-	Scope *PublicWorkspacesScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -10034,9 +9960,6 @@ type PublicUpdateQlikSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Spaces to include or exclude. If not specified, all the spaces will be included (including future ones).
-	Scope *PublicSpacesScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -10049,9 +9972,6 @@ type PublicUpdateQlikSourceV2DtoType string
 
 // PublicUpdateQuicksightSourceV2Dto defines model for PublicUpdateQuicksightSourceV2Dto.
 type PublicUpdateQuicksightSourceV2Dto struct {
-	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
-
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
@@ -10085,9 +10005,6 @@ type PublicUpdateRedshiftSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatabaseSchemasScopeDto `json:"scope"`
-
 	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
 	Timezone *string `json:"timezone,omitempty"`
 
@@ -10108,9 +10025,6 @@ type PublicUpdateSnowflakeSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatabaseSchemasScopeDto `json:"scope"`
 
 	// SnowflakeInformation Snowflake connection settings
 	SnowflakeInformation SnowflakeInformation `json:"snowflakeInformation"`
@@ -10161,9 +10075,6 @@ type PublicUpdateSynapseSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Scope Databases and schemas to include or exclude. If not specified, all the databases and schemas will be included (including future ones).
-	Scope *PublicDatabaseSchemasScopeDto `json:"scope"`
-
 	// SynapseInformation Synapse connection settings
 	SynapseInformation SynapseInformation `json:"synapseInformation"`
 
@@ -10187,9 +10098,6 @@ type PublicUpdateTableauSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Scope Folders to include or exclude. If not specified, all the folders will be included (including future ones).
-	Scope *PublicFoldersScopeDto `json:"scope"`
 
 	// TableauInformation Tableau connection settings
 	TableauInformation TableauInformation `json:"tableauInformation"`
@@ -10262,16 +10170,6 @@ type PublicUserUpdateDtoAuthTypes string
 
 // PublicUserUpdateDtoRole defines model for PublicUserUpdateDto.Role.
 type PublicUserUpdateDtoRole string
-
-// PublicWorkspacesScopeDto Workspaces to include or exclude. If not specified, all the workspaces will be included (including future ones).
-type PublicWorkspacesScopeDto struct {
-	// Type Whether to include or exclude the listed elements
-	Type       PublicWorkspacesScopeDtoType `json:"type"`
-	Workspaces *[]string                    `json:"workspaces,omitempty"`
-}
-
-// PublicWorkspacesScopeDtoType Whether to include or exclude the listed elements
-type PublicWorkspacesScopeDtoType string
 
 // QlikInformation Qlik connection settings
 type QlikInformation struct {
@@ -10384,14 +10282,15 @@ type RuleDetailsDto_Provider struct {
 
 // RuleInfoDto defines model for RuleInfoDto.
 type RuleInfoDto struct {
-	CanBeQualified bool                       `json:"canBeQualified"`
-	CanBeScheduled bool                       `json:"canBeScheduled"`
-	CanManuallyRun bool                       `json:"canManuallyRun"`
-	Criticality    Criticality                `json:"criticality"`
-	CustomMetadata *[]EntityCustomMetadataDto `json:"customMetadata,omitempty"`
-	Datasets       *[]DatasetBriefDto         `json:"datasets,omitempty"`
-	Id             openapi_types.UUID         `json:"id"`
-	LastIncident   *IncidentLightDto          `json:"lastIncident,omitempty"`
+	CanBeQualified     bool                       `json:"canBeQualified"`
+	CanBeScheduled     bool                       `json:"canBeScheduled"`
+	CanHaveFailingRows bool                       `json:"canHaveFailingRows"`
+	CanManuallyRun     bool                       `json:"canManuallyRun"`
+	Criticality        Criticality                `json:"criticality"`
+	CustomMetadata     *[]EntityCustomMetadataDto `json:"customMetadata,omitempty"`
+	Datasets           *[]DatasetBriefDto         `json:"datasets,omitempty"`
+	Id                 openapi_types.UUID         `json:"id"`
+	LastIncident       *IncidentLightDto          `json:"lastIncident,omitempty"`
 	// Deprecated: this property has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 	LastRunStatus               *RuleInfoDtoLastRunStatus `json:"lastRunStatus,omitempty"`
 	LastRunTimestamp            *int64                    `json:"lastRunTimestamp,omitempty"`
@@ -10430,6 +10329,7 @@ type RuleOverviewDto struct {
 
 // RuleRunDto defines model for RuleRunDto.
 type RuleRunDto struct {
+	// Deprecated: this property has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 	CanShowFailingRows bool                      `json:"canShowFailingRows"`
 	CreatedBy          *string                   `json:"createdBy,omitempty"`
 	CreatedDate        *int64                    `json:"createdDate,omitempty"`
@@ -13483,6 +13383,68 @@ func (t AsCodeJoinDto_JoinCondition) MarshalJSON() ([]byte, error) {
 }
 
 func (t *AsCodeJoinDto_JoinCondition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }

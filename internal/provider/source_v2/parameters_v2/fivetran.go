@@ -9,6 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -27,8 +28,10 @@ func (m FivetranParametersModel) TerraformSchema() schema.SingleNestedAttribute 
 		Optional: true,
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Description: "Your Fivetran environment URL",
-				Required:    true,
+				Description: "Fivetran host. Defaults to https://api.fivetran.com.",
+				Optional:    true,
+				Default:     stringdefault.StaticString("https://api.fivetran.com"),
+				Computed:    true,
 			},
 			"credentials": schema.StringAttribute{
 				Description: "Name of the credentials used to connect to the source.",

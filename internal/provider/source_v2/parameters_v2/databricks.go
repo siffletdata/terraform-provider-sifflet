@@ -4,16 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	sifflet "terraform-provider-sifflet/internal/client"
-	"terraform-provider-sifflet/internal/provider/source_v2/parameters_v2/scope"
 	"terraform-provider-sifflet/internal/tfutils"
 
-	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/objectplanmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -23,7 +18,6 @@ type DatabricksParametersModel struct {
 	Port        types.Int32  `tfsdk:"port"`
 	Credentials types.String `tfsdk:"credentials"`
 	Schedule    types.String `tfsdk:"schedule"`
-	Scope       types.Object `tfsdk:"scope"`
 }
 
 func (m DatabricksParametersModel) SchemaSourceType() string {
@@ -54,39 +48,6 @@ func (m DatabricksParametersModel) TerraformSchema() schema.SingleNestedAttribut
 				Description: "Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.",
 				Optional:    true,
 			},
-			"scope": schema.SingleNestedAttribute{
-				Description: "Catalogs and schemas to include or exclude. If not specified, all the catalogs and schemas will be included (including future ones).",
-				Optional:    true,
-				Computed:    true,
-				PlanModifiers: []planmodifier.Object{
-					objectplanmodifier.UseStateForUnknown(),
-				},
-				Attributes: map[string]schema.Attribute{
-					"type": schema.StringAttribute{
-						Description: "Whether to include or exclude the specified catalogs and schemas. One of INCLUSION or EXCLUSION.",
-						Required:    true,
-						Validators: []validator.String{
-							stringvalidator.OneOf("INCLUSION", "EXCLUSION"),
-						},
-					},
-					"catalogs": schema.ListNestedAttribute{
-						Required:    true,
-						Description: "The catalogs to either include or exclude.",
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"name": schema.StringAttribute{
-									Description: "Name of the catalog.",
-									Required:    true,
-								},
-								"schemas": schema.ListAttribute{
-									ElementType: types.StringType,
-									Required:    true,
-								},
-							},
-						},
-					},
-				},
-			},
 		},
 	}
 }
@@ -98,7 +59,6 @@ func (m DatabricksParametersModel) AttributeTypes() map[string]attr.Type {
 		"port":        types.Int32Type,
 		"credentials": types.StringType,
 		"schedule":    types.StringType,
-		"scope":       scope.CatalogSchemasScopeTypeAttributes,
 	}
 }
 
@@ -119,11 +79,6 @@ func (m DatabricksParametersModel) ToCreateDto(ctx context.Context, name string,
 		Port:     m.Port.ValueInt32(),
 	}
 
-	scopeDto, diags := scope.ToPublicCatalogSchemasScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicCreateSourceV2JSONBody{}, diags
-	}
-
 	databricksCreateDto := &sifflet.PublicCreateDatabricksSourceV2Dto{
 		Name:                  name,
 		Timezone:              &timezone,
@@ -131,7 +86,6 @@ func (m DatabricksParametersModel) ToCreateDto(ctx context.Context, name string,
 		DatabricksInformation: &databricksInformation,
 		Credentials:           m.Credentials.ValueStringPointer(),
 		Schedule:              m.Schedule.ValueStringPointer(),
-		Scope:                 scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -153,11 +107,6 @@ func (m DatabricksParametersModel) ToUpdateDto(ctx context.Context, name string,
 		Port:     m.Port.ValueInt32(),
 	}
 
-	scopeDto, diags := scope.ToPublicCatalogSchemasScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicEditSourceV2JSONBody{}, diags
-	}
-
 	databricksUpdateDto := &sifflet.PublicUpdateDatabricksSourceV2Dto{
 		Name:                  &name,
 		Timezone:              &timezone,
@@ -165,7 +114,6 @@ func (m DatabricksParametersModel) ToUpdateDto(ctx context.Context, name string,
 		DatabricksInformation: databricksInformation,
 		Credentials:           m.Credentials.ValueString(),
 		Schedule:              m.Schedule.ValueStringPointer(),
-		Scope:                 scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -191,10 +139,5 @@ func (m *DatabricksParametersModel) ModelFromDto(ctx context.Context, d sifflet.
 	m.Port = types.Int32Value(databricksDto.DatabricksInformation.Port)
 	m.Credentials = types.StringPointerValue(databricksDto.Credentials)
 	m.Schedule = types.StringPointerValue(databricksDto.Schedule)
-	scopeObject, diags := scope.FromPublicCatalogSchemasScopeDto(ctx, databricksDto.Scope)
-	if diags.HasError() {
-		return diags
-	}
-	m.Scope = scopeObject
 	return diag.Diagnostics{}
 }

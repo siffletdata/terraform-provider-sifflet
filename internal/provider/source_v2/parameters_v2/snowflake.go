@@ -4,14 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	sifflet "terraform-provider-sifflet/internal/client"
-	"terraform-provider-sifflet/internal/provider/source_v2/parameters_v2/scope"
 	"terraform-provider-sifflet/internal/tfutils"
 
-	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -19,7 +16,6 @@ type SnowflakeParametersModel struct {
 	AccountIdentifier types.String `tfsdk:"account_identifier"`
 	Warehouse         types.String `tfsdk:"warehouse"`
 	Credentials       types.String `tfsdk:"credentials"`
-	Scope             types.Object `tfsdk:"scope"`
 	Schedule          types.String `tfsdk:"schedule"`
 }
 
@@ -47,37 +43,6 @@ func (m SnowflakeParametersModel) TerraformSchema() schema.SingleNestedAttribute
 				Description: "Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.",
 				Optional:    true,
 			},
-			"scope": schema.SingleNestedAttribute{
-				Description: "Database schemas to include or exclude. If not specified, all the database schemas will be included (including future ones).",
-				Optional:    true,
-				Computed:    true,
-				Attributes: map[string]schema.Attribute{
-					"type": schema.StringAttribute{
-						Description: "Whether to include or exclude the specified database schemas. One of INCLUSION or EXCLUSION.",
-						Required:    true,
-						Validators: []validator.String{
-							stringvalidator.OneOf("INCLUSION", "EXCLUSION"),
-						},
-					},
-					"databases": schema.ListNestedAttribute{
-						Description: "The database schemas to either include or exclude.",
-						Required:    true,
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"name": schema.StringAttribute{
-									Description: "Database name",
-									Required:    true,
-								},
-								"schemas": schema.ListAttribute{
-									ElementType: types.StringType,
-									Required:    true,
-									Description: "List of schema names within this database",
-								},
-							},
-						},
-					},
-				},
-			},
 		},
 	}
 }
@@ -88,7 +53,6 @@ func (m SnowflakeParametersModel) AttributeTypes() map[string]attr.Type {
 		"warehouse":          types.StringType,
 		"credentials":        types.StringType,
 		"schedule":           types.StringType,
-		"scope":              scope.DatabaseSchemasScopeTypeAttributes,
 	}
 }
 
@@ -108,11 +72,6 @@ func (m SnowflakeParametersModel) ToCreateDto(ctx context.Context, name string, 
 		Warehouse:         m.Warehouse.ValueString(),
 	}
 
-	scopeDto, diags := scope.ToPublicDatabasesSchemasScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicCreateSourceV2JSONBody{}, diags
-	}
-
 	snowflakeCreateDto := &sifflet.PublicCreateSnowflakeSourceV2Dto{
 		Name:                 name,
 		Timezone:             &timezone,
@@ -120,7 +79,6 @@ func (m SnowflakeParametersModel) ToCreateDto(ctx context.Context, name string, 
 		SnowflakeInformation: &snowflakeInformation,
 		Credentials:          m.Credentials.ValueStringPointer(),
 		Schedule:             m.Schedule.ValueStringPointer(),
-		Scope:                scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -141,11 +99,6 @@ func (m SnowflakeParametersModel) ToUpdateDto(ctx context.Context, name string, 
 		Warehouse:         m.Warehouse.ValueString(),
 	}
 
-	scopeDto, diags := scope.ToPublicDatabasesSchemasScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicEditSourceV2JSONBody{}, diags
-	}
-
 	snowflakeUpdateDto := &sifflet.PublicUpdateSnowflakeSourceV2Dto{
 		Name:                 &name,
 		Timezone:             &timezone,
@@ -153,7 +106,6 @@ func (m SnowflakeParametersModel) ToUpdateDto(ctx context.Context, name string, 
 		SnowflakeInformation: snowflakeInformation,
 		Credentials:          m.Credentials.ValueString(),
 		Schedule:             m.Schedule.ValueStringPointer(),
-		Scope:                scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -178,10 +130,5 @@ func (m *SnowflakeParametersModel) ModelFromDto(ctx context.Context, d sifflet.S
 	m.Warehouse = types.StringValue(snowflakeDto.SnowflakeInformation.Warehouse)
 	m.Credentials = types.StringPointerValue(snowflakeDto.Credentials)
 	m.Schedule = types.StringPointerValue(snowflakeDto.Schedule)
-	scopeObject, diags := scope.FromPublicDatabasesSchemasScopeDto(ctx, snowflakeDto.Scope)
-	if diags.HasError() {
-		return diags
-	}
-	m.Scope = scopeObject
 	return diag.Diagnostics{}
 }

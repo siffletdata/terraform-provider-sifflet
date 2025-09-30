@@ -4,14 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	sifflet "terraform-provider-sifflet/internal/client"
-	"terraform-provider-sifflet/internal/provider/source_v2/parameters_v2/scope"
 	"terraform-provider-sifflet/internal/tfutils"
 
-	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -19,7 +16,6 @@ type DbtCloudParametersModel struct {
 	AccountId   types.String `tfsdk:"account_id"`
 	BaseUrl     types.String `tfsdk:"base_url"`
 	Credentials types.String `tfsdk:"credentials"`
-	Scope       types.Object `tfsdk:"scope"`
 	Schedule    types.String `tfsdk:"schedule"`
 }
 
@@ -47,24 +43,6 @@ func (m DbtCloudParametersModel) TerraformSchema() schema.SingleNestedAttribute 
 				Description: "Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.",
 				Optional:    true,
 			},
-			"scope": schema.SingleNestedAttribute{
-				Description: "Projects to include or exclude. If not specified, all the projects will be included (including future ones).",
-				Optional:    true,
-				Attributes: map[string]schema.Attribute{
-					"type": schema.StringAttribute{
-						Description: "Whether to include or exclude the specified projects. One of INCLUSION or EXCLUSION.",
-						Required:    true,
-						Validators: []validator.String{
-							stringvalidator.OneOf("INCLUSION", "EXCLUSION"),
-						},
-					},
-					"projects": schema.ListAttribute{
-						ElementType: types.StringType,
-						Required:    true,
-						Description: "The projects to either include or exclude.",
-					},
-				},
-			},
 		},
 	}
 }
@@ -75,7 +53,6 @@ func (m DbtCloudParametersModel) AttributeTypes() map[string]attr.Type {
 		"base_url":    types.StringType,
 		"credentials": types.StringType,
 		"schedule":    types.StringType,
-		"scope":       scope.ProjectsScopeTypeAttributes,
 	}
 }
 
@@ -95,11 +72,6 @@ func (m DbtCloudParametersModel) ToCreateDto(ctx context.Context, name string, t
 		BaseUrl:   m.BaseUrl.ValueString(),
 	}
 
-	scopeDto, diags := scope.ToPublicProjectsScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicCreateSourceV2JSONBody{}, diags
-	}
-
 	dbtCloudCreateDto := &sifflet.PublicCreateDbtCloudSourceV2Dto{
 		Name:                name,
 		Timezone:            &timezone,
@@ -107,7 +79,6 @@ func (m DbtCloudParametersModel) ToCreateDto(ctx context.Context, name string, t
 		DbtCloudInformation: &dbtCloudInformation,
 		Credentials:         m.Credentials.ValueStringPointer(),
 		Schedule:            m.Schedule.ValueStringPointer(),
-		Scope:               scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -128,11 +99,6 @@ func (m DbtCloudParametersModel) ToUpdateDto(ctx context.Context, name string, t
 		BaseUrl:   m.BaseUrl.ValueString(),
 	}
 
-	scopeDto, diags := scope.ToPublicProjectsScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicEditSourceV2JSONBody{}, diags
-	}
-
 	dbtCloudUpdateDto := &sifflet.PublicUpdateDbtCloudSourceV2Dto{
 		Name:                &name,
 		Timezone:            &timezone,
@@ -140,7 +106,6 @@ func (m DbtCloudParametersModel) ToUpdateDto(ctx context.Context, name string, t
 		DbtCloudInformation: dbtCloudInformation,
 		Credentials:         m.Credentials.ValueString(),
 		Schedule:            m.Schedule.ValueStringPointer(),
-		Scope:               scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -165,10 +130,5 @@ func (m *DbtCloudParametersModel) ModelFromDto(ctx context.Context, d sifflet.Si
 	m.BaseUrl = types.StringValue(dbtCloudDto.DbtCloudInformation.BaseUrl)
 	m.Credentials = types.StringPointerValue(dbtCloudDto.Credentials)
 	m.Schedule = types.StringPointerValue(dbtCloudDto.Schedule)
-	scopeObject, diags := scope.FromPublicProjectsScopeDto(ctx, dbtCloudDto.Scope)
-	if diags.HasError() {
-		return diags
-	}
-	m.Scope = scopeObject
 	return diag.Diagnostics{}
 }

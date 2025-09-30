@@ -13,11 +13,10 @@ import (
 )
 
 type QuickSightParametersModel struct {
-	AccountId   types.String `tfsdk:"account_id"`
-	AwsRegion   types.String `tfsdk:"aws_region"`
-	RoleArn     types.String `tfsdk:"role_arn"`
-	Credentials types.String `tfsdk:"credentials"`
-	Schedule    types.String `tfsdk:"schedule"`
+	AccountId types.String `tfsdk:"account_id"`
+	AwsRegion types.String `tfsdk:"aws_region"`
+	RoleArn   types.String `tfsdk:"role_arn"`
+	Schedule  types.String `tfsdk:"schedule"`
 }
 
 func (m QuickSightParametersModel) SchemaSourceType() string {
@@ -40,10 +39,6 @@ func (m QuickSightParametersModel) TerraformSchema() schema.SingleNestedAttribut
 				Description: "The ARN for your QuickSight role",
 				Required:    true,
 			},
-			"credentials": schema.StringAttribute{
-				Description: "Name of the credentials used to connect to the source.",
-				Required:    true,
-			},
 			"schedule": schema.StringAttribute{
 				Description: "Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.",
 				Optional:    true,
@@ -54,11 +49,10 @@ func (m QuickSightParametersModel) TerraformSchema() schema.SingleNestedAttribut
 
 func (m QuickSightParametersModel) AttributeTypes() map[string]attr.Type {
 	return map[string]attr.Type{
-		"account_id":  types.StringType,
-		"aws_region":  types.StringType,
-		"role_arn":    types.StringType,
-		"credentials": types.StringType,
-		"schedule":    types.StringType,
+		"account_id": types.StringType,
+		"aws_region": types.StringType,
+		"role_arn":   types.StringType,
+		"schedule":   types.StringType,
 	}
 }
 
@@ -84,7 +78,6 @@ func (m QuickSightParametersModel) ToCreateDto(ctx context.Context, name string,
 		Timezone:              &timezone,
 		Type:                  sifflet.PublicCreateQuicksightSourceV2DtoTypeQUICKSIGHT,
 		QuicksightInformation: &quickSightInformation,
-		Credentials:           m.Credentials.ValueStringPointer(),
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 
@@ -112,7 +105,6 @@ func (m QuickSightParametersModel) ToUpdateDto(ctx context.Context, name string,
 		Timezone:              &timezone,
 		Type:                  sifflet.PublicUpdateQuicksightSourceV2DtoTypeQUICKSIGHT,
 		QuicksightInformation: quickSightInformation,
-		Credentials:           m.Credentials.ValueString(),
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 
@@ -137,7 +129,6 @@ func (m *QuickSightParametersModel) ModelFromDto(ctx context.Context, d sifflet.
 	m.AccountId = types.StringValue(quickSightDto.QuicksightInformation.AccountId)
 	m.AwsRegion = types.StringValue(quickSightDto.QuicksightInformation.AwsRegion)
 	m.RoleArn = types.StringValue(quickSightDto.QuicksightInformation.RoleArn)
-	m.Credentials = types.StringPointerValue(quickSightDto.Credentials)
 	m.Schedule = types.StringPointerValue(quickSightDto.Schedule)
 	return diag.Diagnostics{}
 }

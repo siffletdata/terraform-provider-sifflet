@@ -4,14 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	sifflet "terraform-provider-sifflet/internal/client"
-	"terraform-provider-sifflet/internal/provider/source_v2/parameters_v2/scope"
 	"terraform-provider-sifflet/internal/tfutils"
 
-	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -20,7 +17,6 @@ type BigQueryParametersModel struct {
 	BillingProjectId types.String `tfsdk:"billing_project_id"`
 	Credentials      types.String `tfsdk:"credentials"`
 	Schedule         types.String `tfsdk:"schedule"`
-	Scope            types.Object `tfsdk:"scope"`
 }
 
 func (m BigQueryParametersModel) SchemaSourceType() string {
@@ -47,25 +43,6 @@ func (m BigQueryParametersModel) TerraformSchema() schema.SingleNestedAttribute 
 				Description: "Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.",
 				Optional:    true,
 			},
-			"scope": schema.SingleNestedAttribute{
-				Description: "Datasets to include or exclude. If not specified, all the datasets will be included (including future ones).",
-				Optional:    true,
-				Computed:    true,
-				Attributes: map[string]schema.Attribute{
-					"type": schema.StringAttribute{
-						Description: "Whether to include or exclude the specified datasets. One of INCLUSION or EXCLUSION.",
-						Required:    true,
-						Validators: []validator.String{
-							stringvalidator.OneOf("INCLUSION", "EXCLUSION"),
-						},
-					},
-					"datasets": schema.ListAttribute{
-						ElementType: types.StringType,
-						Required:    true,
-						Description: "The datasets to either include or exclude.",
-					},
-				},
-			},
 		},
 	}
 }
@@ -76,7 +53,6 @@ func (m BigQueryParametersModel) AttributeTypes() map[string]attr.Type {
 		"billing_project_id": types.StringType,
 		"credentials":        types.StringType,
 		"schedule":           types.StringType,
-		"scope":              scope.DatasetsScopeTypeAttributes,
 	}
 }
 
@@ -96,11 +72,6 @@ func (m BigQueryParametersModel) ToCreateDto(ctx context.Context, name string, t
 		ProjectId:        m.ProjectId.ValueString(),
 	}
 
-	scopeDto, diags := scope.ToPublicDatasetsScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicCreateSourceV2JSONBody{}, diags
-	}
-
 	bigQueryCreateDto := &sifflet.PublicCreateBigQuerySourceV2Dto{
 		Name:                name,
 		Timezone:            &timezone,
@@ -108,7 +79,6 @@ func (m BigQueryParametersModel) ToCreateDto(ctx context.Context, name string, t
 		BigQueryInformation: &bigQueryInformation,
 		Credentials:         m.Credentials.ValueStringPointer(),
 		Schedule:            m.Schedule.ValueStringPointer(),
-		Scope:               scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -129,11 +99,6 @@ func (m BigQueryParametersModel) ToUpdateDto(ctx context.Context, name string, t
 		ProjectId:        m.ProjectId.ValueString(),
 	}
 
-	scopeDto, diags := scope.ToPublicDatasetsScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicEditSourceV2JSONBody{}, diags
-	}
-
 	bigQueryUpdateDto := &sifflet.PublicUpdateBigQuerySourceV2Dto{
 		Name:                &name,
 		Timezone:            &timezone,
@@ -141,7 +106,6 @@ func (m BigQueryParametersModel) ToUpdateDto(ctx context.Context, name string, t
 		BigQueryInformation: bigQueryInformation,
 		Credentials:         m.Credentials.ValueString(),
 		Schedule:            m.Schedule.ValueStringPointer(),
-		Scope:               scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -166,10 +130,5 @@ func (m *BigQueryParametersModel) ModelFromDto(ctx context.Context, d sifflet.Si
 	m.BillingProjectId = types.StringValue(*bigQueryDto.BigQueryInformation.BillingProjectId)
 	m.Credentials = types.StringPointerValue(bigQueryDto.Credentials)
 	m.Schedule = types.StringPointerValue(bigQueryDto.Schedule)
-	scopeObject, diags := scope.FromPublicDatasetsScopeDto(ctx, bigQueryDto.Scope)
-	if diags.HasError() {
-		return diags
-	}
-	m.Scope = scopeObject
 	return diag.Diagnostics{}
 }

@@ -4,14 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	sifflet "terraform-provider-sifflet/internal/client"
-	"terraform-provider-sifflet/internal/provider/source_v2/parameters_v2/scope"
 	"terraform-provider-sifflet/internal/tfutils"
 
-	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
@@ -22,9 +19,7 @@ type AthenaParametersModel struct {
 	S3OutputLocation types.String `tfsdk:"s3_output_location"`
 	VpcUrl           types.String `tfsdk:"vpc_url"`
 	Workgroup        types.String `tfsdk:"workgroup"`
-	Credentials      types.String `tfsdk:"credentials"`
 	Schedule         types.String `tfsdk:"schedule"`
-	Scope            types.Object `tfsdk:"scope"`
 }
 
 func (m AthenaParametersModel) SchemaSourceType() string {
@@ -59,32 +54,9 @@ func (m AthenaParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 				Description: "Athena workgroup name",
 				Required:    true,
 			},
-			"credentials": schema.StringAttribute{
-				Description: "Name of the credentials used to connect to the source.",
-				Required:    true,
-			},
 			"schedule": schema.StringAttribute{
 				Description: "Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.",
 				Optional:    true,
-			},
-			"scope": schema.SingleNestedAttribute{
-				Description: "Databases to include or exclude. If not specified, all the databases will be included (including future ones).",
-				Optional:    true,
-				Computed:    true,
-				Attributes: map[string]schema.Attribute{
-					"type": schema.StringAttribute{
-						Description: "Whether to include or exclude the specified databases. One of INCLUSION or EXCLUSION.",
-						Required:    true,
-						Validators: []validator.String{
-							stringvalidator.OneOf("INCLUSION", "EXCLUSION"),
-						},
-					},
-					"databases": schema.ListAttribute{
-						ElementType: types.StringType,
-						Required:    true,
-						Description: "The databases to either include or exclude.",
-					},
-				},
 			},
 		},
 	}
@@ -98,9 +70,7 @@ func (m AthenaParametersModel) AttributeTypes() map[string]attr.Type {
 		"s3_output_location": types.StringType,
 		"vpc_url":            types.StringType,
 		"workgroup":          types.StringType,
-		"credentials":        types.StringType,
 		"schedule":           types.StringType,
-		"scope":              scope.DatabasesScopeTypeAttributes,
 	}
 }
 
@@ -124,19 +94,12 @@ func (m AthenaParametersModel) ToCreateDto(ctx context.Context, name string, tim
 		Workgroup:        m.Workgroup.ValueString(),
 	}
 
-	scopeDto, diags := scope.ToPublicDatabasesScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicCreateSourceV2JSONBody{}, diags
-	}
-
 	athenaCreateDto := &sifflet.PublicCreateAthenaSourceV2Dto{
 		Name:              name,
 		Timezone:          &timezone,
 		Type:              sifflet.PublicCreateAthenaSourceV2DtoTypeATHENA,
 		AthenaInformation: &athenaInformation,
-		Credentials:       m.Credentials.ValueStringPointer(),
 		Schedule:          m.Schedule.ValueStringPointer(),
-		Scope:             scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -161,19 +124,12 @@ func (m AthenaParametersModel) ToUpdateDto(ctx context.Context, name string, tim
 		Workgroup:        m.Workgroup.ValueString(),
 	}
 
-	scopeDto, diags := scope.ToPublicDatabasesScopeDto(ctx, m.Scope)
-	if diags.HasError() {
-		return sifflet.PublicEditSourceV2JSONBody{}, diags
-	}
-
 	athenaUpdateDto := &sifflet.PublicUpdateAthenaSourceV2Dto{
 		Name:              &name,
 		Timezone:          &timezone,
 		Type:              sifflet.PublicUpdateAthenaSourceV2DtoTypeATHENA,
 		AthenaInformation: athenaInformation,
-		Credentials:       m.Credentials.ValueString(),
 		Schedule:          m.Schedule.ValueStringPointer(),
-		Scope:             scopeDto,
 	}
 
 	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
@@ -200,12 +156,6 @@ func (m *AthenaParametersModel) ModelFromDto(ctx context.Context, d sifflet.Siff
 	m.S3OutputLocation = types.StringValue(athenaDto.AthenaInformation.S3OutputLocation)
 	m.VpcUrl = types.StringPointerValue(athenaDto.AthenaInformation.VpcUrl)
 	m.Workgroup = types.StringValue(athenaDto.AthenaInformation.Workgroup)
-	m.Credentials = types.StringPointerValue(athenaDto.Credentials)
 	m.Schedule = types.StringPointerValue(athenaDto.Schedule)
-	scopeObject, diags := scope.FromPublicDatabasesScopeDto(ctx, athenaDto.Scope)
-	if diags.HasError() {
-		return diags
-	}
-	m.Scope = scopeObject
 	return diag.Diagnostics{}
 }

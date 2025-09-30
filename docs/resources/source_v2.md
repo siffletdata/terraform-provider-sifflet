@@ -79,7 +79,6 @@ Optional:
 
 Required:
 
-- `credentials` (String) Name of the credentials used to connect to the source.
 - `datasource` (String) Athena datasource name
 - `region` (String) AWS region in which the Athena database is located
 - `role_arn` (String) AWS IAM role ARN to use for Athena queries
@@ -89,17 +88,7 @@ Required:
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Databases to include or exclude. If not specified, all the databases will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--athena--scope))
 - `vpc_url` (String) VPC URL for Athena queries
-
-<a id="nestedatt--parameters--athena--scope"></a>
-### Nested Schema for `parameters.athena.scope`
-
-Required:
-
-- `databases` (List of String) The databases to either include or exclude.
-- `type` (String) Whether to include or exclude the specified databases. One of INCLUSION or EXCLUSION.
-
 
 
 <a id="nestedatt--parameters--bigquery"></a>
@@ -114,16 +103,6 @@ Optional:
 
 - `billing_project_id` (String) GCP billing project ID
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Datasets to include or exclude. If not specified, all the datasets will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--bigquery--scope))
-
-<a id="nestedatt--parameters--bigquery--scope"></a>
-### Nested Schema for `parameters.bigquery.scope`
-
-Required:
-
-- `datasets` (List of String) The datasets to either include or exclude.
-- `type` (String) Whether to include or exclude the specified datasets. One of INCLUSION or EXCLUSION.
-
 
 
 <a id="nestedatt--parameters--databricks"></a>
@@ -139,25 +118,6 @@ Required:
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Catalogs and schemas to include or exclude. If not specified, all the catalogs and schemas will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--databricks--scope))
-
-<a id="nestedatt--parameters--databricks--scope"></a>
-### Nested Schema for `parameters.databricks.scope`
-
-Required:
-
-- `catalogs` (Attributes List) The catalogs to either include or exclude. (see [below for nested schema](#nestedatt--parameters--databricks--scope--catalogs))
-- `type` (String) Whether to include or exclude the specified catalogs and schemas. One of INCLUSION or EXCLUSION.
-
-<a id="nestedatt--parameters--databricks--scope--catalogs"></a>
-### Nested Schema for `parameters.databricks.scope.catalogs`
-
-Required:
-
-- `name` (String) Name of the catalog.
-- `schemas` (List of String)
-
-
 
 
 <a id="nestedatt--parameters--dbt"></a>
@@ -181,16 +141,6 @@ Required:
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Projects to include or exclude. If not specified, all the projects will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--dbt_cloud--scope))
-
-<a id="nestedatt--parameters--dbt_cloud--scope"></a>
-### Nested Schema for `parameters.dbt_cloud.scope`
-
-Required:
-
-- `projects` (List of String) The projects to either include or exclude.
-- `type` (String) Whether to include or exclude the specified projects. One of INCLUSION or EXCLUSION.
-
 
 
 <a id="nestedatt--parameters--fivetran"></a>
@@ -199,10 +149,10 @@ Required:
 Required:
 
 - `credentials` (String) Name of the credentials used to connect to the source.
-- `host` (String) Your Fivetran environment URL
 
 Optional:
 
+- `host` (String) Fivetran host. Defaults to https://api.fivetran.com.
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
 
 
@@ -218,7 +168,6 @@ Required:
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Workspaces to include or exclude. If not specified, all the workspaces will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--looker--scope))
 
 <a id="nestedatt--parameters--looker--git_connections"></a>
 ### Nested Schema for `parameters.looker.git_connections`
@@ -232,15 +181,6 @@ Required:
 Optional:
 
 - `branch` (String) Branch of the Git repository to use. If omitted, the default branch is used.
-
-
-<a id="nestedatt--parameters--looker--scope"></a>
-### Nested Schema for `parameters.looker.scope`
-
-Required:
-
-- `type` (String) Whether to include or exclude the specified workspaces. One of INCLUSION or EXCLUSION.
-- `workspaces` (List of String) The workspaces to either include or exclude.
 
 
 
@@ -257,17 +197,7 @@ Required:
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Schemas to include or exclude. If not specified, all the schemas will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--mssql--scope))
 - `ssl` (Boolean, Deprecated) Use TLS to connect to Microsoft SQL Server.
-
-<a id="nestedatt--parameters--mssql--scope"></a>
-### Nested Schema for `parameters.mssql.scope`
-
-Required:
-
-- `schemas` (List of String) The schemas to either include or exclude.
-- `type` (String) Whether to include or exclude the specified schemas. One of INCLUSION or EXCLUSION.
-
 
 
 <a id="nestedatt--parameters--mysql"></a>
@@ -299,16 +229,6 @@ Required:
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Schemas to include or exclude. If not specified, all the schemas will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--oracle--scope))
-
-<a id="nestedatt--parameters--oracle--scope"></a>
-### Nested Schema for `parameters.oracle.scope`
-
-Required:
-
-- `schemas` (List of String) The schemas to either include or exclude.
-- `type` (String) Whether to include or exclude the specified schemas. One of INCLUSION or EXCLUSION.
-
 
 
 <a id="nestedatt--parameters--postgresql"></a>
@@ -324,16 +244,6 @@ Required:
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Schemas to include or exclude. If not specified, all the schemas will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--postgresql--scope))
-
-<a id="nestedatt--parameters--postgresql--scope"></a>
-### Nested Schema for `parameters.postgresql.scope`
-
-Required:
-
-- `schemas` (List of String) The schemas to either include or exclude.
-- `type` (String) Whether to include or exclude the specified schemas. One of INCLUSION or EXCLUSION.
-
 
 
 <a id="nestedatt--parameters--power_bi"></a>
@@ -348,16 +258,6 @@ Required:
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Workspaces to include or exclude. If not specified, all the workspaces will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--power_bi--scope))
-
-<a id="nestedatt--parameters--power_bi--scope"></a>
-### Nested Schema for `parameters.power_bi.scope`
-
-Required:
-
-- `type` (String) Whether to include or exclude the specified workspaces. One of INCLUSION or EXCLUSION.
-- `workspaces` (List of String) The workspaces to either include or exclude.
-
 
 
 <a id="nestedatt--parameters--quicksight"></a>
@@ -367,7 +267,6 @@ Required:
 
 - `account_id` (String) Your AWS account ID
 - `aws_region` (String) Your AWS region
-- `credentials` (String) Name of the credentials used to connect to the source.
 - `role_arn` (String) The ARN for your QuickSight role
 
 Optional:
@@ -383,30 +282,11 @@ Required:
 - `credentials` (String) Name of the credentials used to connect to the source.
 - `host` (String) Redshift cluster hostname
 - `port` (Number) Redshift cluster port
-- `ssl` (Boolean) Whether to use SSL to connect to your Redshift server
 
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Database schemas to include or exclude. If not specified, all the database schemas will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--redshift--scope))
-
-<a id="nestedatt--parameters--redshift--scope"></a>
-### Nested Schema for `parameters.redshift.scope`
-
-Required:
-
-- `databases` (Attributes List) The database schemas to either include or exclude. (see [below for nested schema](#nestedatt--parameters--redshift--scope--databases))
-- `type` (String) Whether to include or exclude the specified database schemas. One of INCLUSION or EXCLUSION.
-
-<a id="nestedatt--parameters--redshift--scope--databases"></a>
-### Nested Schema for `parameters.redshift.scope.databases`
-
-Required:
-
-- `name` (String) Database name
-- `schemas` (List of String) List of schema names within this database
-
-
+- `ssl` (Boolean) Whether to use SSL to connect to your Redshift server
 
 
 <a id="nestedatt--parameters--snowflake"></a>
@@ -421,25 +301,6 @@ Required:
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Database schemas to include or exclude. If not specified, all the database schemas will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--snowflake--scope))
-
-<a id="nestedatt--parameters--snowflake--scope"></a>
-### Nested Schema for `parameters.snowflake.scope`
-
-Required:
-
-- `databases` (Attributes List) The database schemas to either include or exclude. (see [below for nested schema](#nestedatt--parameters--snowflake--scope--databases))
-- `type` (String) Whether to include or exclude the specified database schemas. One of INCLUSION or EXCLUSION.
-
-<a id="nestedatt--parameters--snowflake--scope--databases"></a>
-### Nested Schema for `parameters.snowflake.scope.databases`
-
-Required:
-
-- `name` (String) Database name
-- `schemas` (List of String) List of schema names within this database
-
-
 
 
 <a id="nestedatt--parameters--synapse"></a>
@@ -454,25 +315,6 @@ Required:
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Database schemas to include or exclude. If not specified, all the database schemas will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--synapse--scope))
-
-<a id="nestedatt--parameters--synapse--scope"></a>
-### Nested Schema for `parameters.synapse.scope`
-
-Required:
-
-- `databases` (Attributes List) The database schemas to either include or exclude. (see [below for nested schema](#nestedatt--parameters--synapse--scope--databases))
-- `type` (String) Whether to include or exclude the specified database schemas. One of INCLUSION or EXCLUSION.
-
-<a id="nestedatt--parameters--synapse--scope--databases"></a>
-### Nested Schema for `parameters.synapse.scope.databases`
-
-Required:
-
-- `name` (String) Database name
-- `schemas` (List of String) List of schema names within this database
-
-
 
 
 <a id="nestedatt--parameters--tableau"></a>
@@ -482,21 +324,11 @@ Required:
 
 - `credentials` (String) Name of the credentials used to connect to the source.
 - `host` (String) Your Tableau Server hostname
-- `site` (String) Your Tableau Server site. Leave empty if your Tableau environment is using the Default Site.
 
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `scope` (Attributes) Folders to include or exclude. If not specified, all the folders will be included (including future ones). (see [below for nested schema](#nestedatt--parameters--tableau--scope))
-
-<a id="nestedatt--parameters--tableau--scope"></a>
-### Nested Schema for `parameters.tableau.scope`
-
-Required:
-
-- `folders` (List of String) The folders to either include or exclude.
-- `type` (String) Whether to include or exclude the specified folders. One of INCLUSION or EXCLUSION.
-
+- `site` (String) Your Tableau Server site. Leave empty if your Tableau environment is using the Default Site.
 
 
 
