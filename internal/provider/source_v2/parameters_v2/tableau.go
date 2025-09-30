@@ -29,11 +29,11 @@ func (m TableauParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 		Optional: true,
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Description: "Your Tableau Server hostname",
+				Description: "Tableau Server hostname",
 				Required:    true,
 			},
 			"site": schema.StringAttribute{
-				Description: "Your Tableau Server site. Leave empty if your Tableau environment is using the Default Site.",
+				Description: "Tableau Server site. Leave empty if your Tableau environment is using the Default Site.",
 				Optional:    true,
 				Computed:    true,
 				// If we don't send a branch, the API will set it to an empty string. To be consistent with the plan, we change nil values to empty strings.

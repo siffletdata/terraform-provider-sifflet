@@ -42,7 +42,7 @@ func (m MysqlParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 				Required:    true,
 			},
 			"port": schema.Int32Attribute{
-				Description: "MySQL port number",
+				Description: "MySQL server port",
 				Required:    true,
 			},
 			"mysql_tls_version": schema.StringAttribute{

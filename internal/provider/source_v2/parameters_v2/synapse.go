@@ -28,11 +28,11 @@ func (m SynapseParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 		Optional: true,
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Description: "The host of your Synapse server",
+				Description: "Synapse server host name",
 				Required:    true,
 			},
 			"port": schema.Int32Attribute{
-				Description: "Your Synapse server port",
+				Description: "Synapse server port",
 				Required:    true,
 			},
 			"credentials": schema.StringAttribute{

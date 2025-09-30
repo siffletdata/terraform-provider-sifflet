@@ -35,7 +35,7 @@ func (m AthenaParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 				Required:    true,
 			},
 			"region": schema.StringAttribute{
-				Description: "AWS region in which the Athena database is located",
+				Description: "AWS region in which the Athena instance is located",
 				Required:    true,
 			},
 			"role_arn": schema.StringAttribute{
@@ -43,11 +43,11 @@ func (m AthenaParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 				Required:    true,
 			},
 			"s3_output_location": schema.StringAttribute{
-				Description: "S3 location to store Athena query results",
+				Description: "The S3 location where Athena query results are stored",
 				Required:    true,
 			},
 			"vpc_url": schema.StringAttribute{
-				Description: "VPC URL for Athena queries",
+				Description: "VPC URL for Athena connection",
 				Optional:    true,
 			},
 			"workgroup": schema.StringAttribute{

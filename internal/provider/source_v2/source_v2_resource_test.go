@@ -184,7 +184,7 @@ func TestAccSourceV2Basic(t *testing.T) {
 	})
 }
 
-// Test all data source types
+// Test all data source types.
 func TestAccSourceInvalidConfigV2(t *testing.T) {
 	sourceName := randomSourceName()
 	hostId := providertests.RandomName()

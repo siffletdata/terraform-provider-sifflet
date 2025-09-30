@@ -47,7 +47,7 @@ func (m MssqlParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 				Required:    true,
 			},
 			"ssl": schema.BoolAttribute{
-				Description:        "Use TLS to connect to Microsoft SQL Server.",
+				Description:        "Whether to use SSL to connect to Microsoft SQL Server.",
 				Optional:           true,
 				Computed:           true,
 				Default:            booldefault.StaticBool(true),

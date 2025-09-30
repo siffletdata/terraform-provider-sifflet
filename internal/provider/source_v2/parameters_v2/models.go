@@ -230,12 +230,12 @@ func (m ParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 						return
 					}
 
-					previousSource, diags := state.GetSourceParameter(ctx)
+					previousSource, diags := state.GetSourceParameters(ctx)
 					if diags.HasError() {
 						resp.Diagnostics.Append(diags.Errors()...)
 						return
 					}
-					nextSource, diags := plan.GetSourceParameter(ctx)
+					nextSource, diags := plan.GetSourceParameters(ctx)
 					if diags.HasError() {
 						resp.Diagnostics.Append(diags.Errors()...)
 						return
@@ -253,7 +253,7 @@ func (m ParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 }
 
 func (m *ParametersModel) SetSourceType(ctx context.Context) diag.Diagnostics {
-	t, diags := m.GetSourceParameter(ctx)
+	t, diags := m.GetSourceParameters(ctx)
 	if diags != nil {
 		return diags
 	}
@@ -261,8 +261,8 @@ func (m *ParametersModel) SetSourceType(ctx context.Context) diag.Diagnostics {
 	return nil
 }
 
-// GetSourceParameter returns the SourceParameters implementation for the one source in the parameters block that is set in the ParametersModel.
-func (m ParametersModel) GetSourceParameter(ctx context.Context) (SourceParameters, diag.Diagnostics) {
+// GetSourceParameters returns the SourceParameters implementation for the one source in the parameters block that is set in the ParametersModel.
+func (m ParametersModel) GetSourceParameters(ctx context.Context) (SourceParameters, diag.Diagnostics) {
 	// Define a slice of parameter fields to check
 	parameterFields := []struct {
 		value types.Object
@@ -300,11 +300,11 @@ func (m ParametersModel) GetSourceParameter(ctx context.Context) (SourceParamete
 		}
 	}
 
-	return nil, diag.Diagnostics{diag.NewErrorDiagnostic("Could not build source object", "Could not determine source type from the provided configuration (the parameters don't match any known type), this is a bug in the provider")}
+	return nil, diag.Diagnostics{diag.NewErrorDiagnostic("Could not determine source parameters", "Could not determine source parameters from the provided configuration (the parameters don't match any known type), this is a bug in the provider")}
 }
 
 func (m ParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (client.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
-	sourceParams, diags := m.GetSourceParameter(ctx)
+	sourceParams, diags := m.GetSourceParameters(ctx)
 	if diags.HasError() {
 		return client.PublicCreateSourceV2JSONBody{}, diags
 	}
@@ -316,7 +316,7 @@ func (m ParametersModel) ToCreateDto(ctx context.Context, name string, timezone 
 }
 
 func (m ParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (client.PublicEditSourceV2JSONBody, diag.Diagnostics) {
-	sourceParams, diags := m.GetSourceParameter(ctx)
+	sourceParams, diags := m.GetSourceParameters(ctx)
 	if diags.HasError() {
 		return client.PublicEditSourceV2JSONBody{}, diags
 	}

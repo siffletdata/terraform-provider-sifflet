@@ -29,7 +29,7 @@ func (m OracleParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 		Optional: true,
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Description: "Oracle database host",
+				Description: "Oracle server host name",
 				Required:    true,
 			},
 			"database": schema.StringAttribute{
@@ -37,7 +37,7 @@ func (m OracleParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 				Required:    true,
 			},
 			"port": schema.Int32Attribute{
-				Description: "Oracle database port",
+				Description: "Oracle server port",
 				Required:    true,
 			},
 			"credentials": schema.StringAttribute{

@@ -93,7 +93,7 @@ func (m *baseSourceV2Model) FromDto(ctx context.Context, dto client.SiffletPubli
 
 	sourceDto, err := dto.GetSourceDto()
 	if err != nil {
-		return diag.Diagnostics{diag.NewErrorDiagnostic("Cannot read source", err.Error())}
+		return tfutils.ErrToDiags("Cannot read source", err)
 	}
 	m.ID = types.StringValue(sourceDto.GetId().String())
 	m.Name = types.StringValue(sourceDto.GetName())

@@ -29,7 +29,7 @@ func (m DatabricksParametersModel) TerraformSchema() schema.SingleNestedAttribut
 		Optional: true,
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Description: "Databricks host",
+				Description: "Databricks server host name",
 				Required:    true,
 			},
 			"http_path": schema.StringAttribute{

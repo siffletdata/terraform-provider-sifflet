@@ -29,11 +29,11 @@ func (m AirflowParametersModel) TerraformSchema() schema.SingleNestedAttribute {
 		Optional: true,
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Description: "Airflow API host",
+				Description: "Airflow server hostname",
 				Required:    true,
 			},
 			"port": schema.Int32Attribute{
-				Description: "Airflow API port",
+				Description: "Airflow server port",
 				Required:    true,
 			},
 			"credentials": schema.StringAttribute{
@@ -124,7 +124,7 @@ func (m AirflowParametersModel) ToUpdateDto(ctx context.Context, name string, ti
 func (m *AirflowParametersModel) ModelFromDto(ctx context.Context, d sifflet.SiffletPublicGetSourceV2Dto) diag.Diagnostics {
 	airflowDto := d.PublicGetAirflowSourceV2Dto
 	if airflowDto == nil {
-		return diag.Diagnostics{diag.NewErrorDiagnostic("Cannot read Airflow source", "Source does not contain Airflow params but was interpreted as a Airflow source")}
+		return diag.Diagnostics{diag.NewErrorDiagnostic("Cannot read Airflow source", "Source does not contain Airflow params but was interpreted as an Airflow source")}
 	}
 
 	m.Host = types.StringValue(airflowDto.AirflowInformation.Host)

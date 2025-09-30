@@ -30,11 +30,11 @@ func (m RedshiftParametersModel) TerraformSchema() schema.SingleNestedAttribute 
 		Optional: true,
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
-				Description: "Redshift cluster hostname",
+				Description: "Redshift server hostname",
 				Required:    true,
 			},
 			"port": schema.Int32Attribute{
-				Description: "Redshift cluster port",
+				Description: "Redshift server port",
 				Required:    true,
 			},
 			"ssl": schema.BoolAttribute{

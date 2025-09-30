@@ -49,7 +49,7 @@ func (r sourceV2Resource) ModifyPlan(ctx context.Context, req resource.ModifyPla
 		return
 	}
 
-	sourceType, diags := parametersModel.GetSourceParameter(ctx)
+	sourceType, diags := parametersModel.GetSourceParameters(ctx)
 	if diags.HasError() {
 		// not adding an error diagnostic here (the source type may still be unknown at that point, for instance if dynamic blocks are used).
 		return
@@ -79,6 +79,7 @@ func SourceV2ResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
 		Description: "A Sifflet source.",
 		MarkdownDescription: `A Sifflet source. A source is any system that's monitored by Sifflet.
+		The sifflet_source_v2 resource will create a source including all assets associated with that source, and discovery on future assets will be enabled.
 
 ~> Consider adding a ` + "`lifecycle { prevent_destroy = true }` to `sifflet_source_v2`" + ` resources once they are correctly configured. Deleting a source deletes all associated data, including monitors on that source.
 		`,
@@ -145,7 +146,7 @@ func (r *sourceV2Resource) Create(ctx context.Context, req resource.CreateReques
 	requestBody := sifflet.PublicCreateSourceV2JSONRequestBody(sourceBody)
 	sourceResponse, err := r.client.PublicCreateSourceV2WithResponse(ctx, requestBody)
 	if err != nil {
-		resp.Diagnostics.AddError("Unable to create source", err.Error())
+		resp.Diagnostics.AddError("Unable to create source: could not parse API response", err.Error())
 		return
 	}
 
@@ -267,7 +268,7 @@ func (r *sourceV2Resource) Update(ctx context.Context, req resource.UpdateReques
 	}
 	updateResponse, err := r.client.PublicEditSourceV2WithResponse(ctx, id, sifflet.PublicEditSourceV2JSONRequestBody(body))
 	if err != nil {
-		resp.Diagnostics.AddError("Unable to update source", err.Error())
+		resp.Diagnostics.AddError("Unable to update source: could not parse API response", err.Error())
 		return
 	}
 
@@ -326,7 +327,7 @@ func (r *sourceV2Resource) Delete(ctx context.Context, req resource.DeleteReques
 
 	deleteResponse, err := r.client.PublicDeleteSourceV2WithResponse(ctx, id)
 	if err != nil {
-		resp.Diagnostics.AddError("Unable to delete source", err.Error())
+		resp.Diagnostics.AddError("Unable to delete source: could not parse API response", err.Error())
 		return
 	}
 

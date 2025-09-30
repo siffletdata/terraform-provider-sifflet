@@ -4,12 +4,14 @@ page_title: "sifflet_source_v2 Resource - terraform-provider-sifflet"
 subcategory: ""
 description: |-
   A Sifflet source. A source is any system that's monitored by Sifflet.
+  The sifflet_source_v2 resource will create a source including all assets associated with that source, and discovery on future assets will be enabled.
   ~> Consider adding a lifecycle { prevent_destroy = true } to sifflet_source_v2 resources once they are correctly configured. Deleting a source deletes all associated data, including monitors on that source.
 ---
 
 # sifflet_source_v2 (Resource)
 
 A Sifflet source. A source is any system that's monitored by Sifflet.
+		The sifflet_source_v2 resource will create a source including all assets associated with that source, and discovery on future assets will be enabled.
 
 ~> Consider adding a `lifecycle { prevent_destroy = true }` to `sifflet_source_v2` resources once they are correctly configured. Deleting a source deletes all associated data, including monitors on that source.
 
@@ -42,7 +44,7 @@ Optional:
 - `bigquery` (Attributes) (see [below for nested schema](#nestedatt--parameters--bigquery))
 - `databricks` (Attributes) (see [below for nested schema](#nestedatt--parameters--databricks))
 - `dbt` (Attributes) (see [below for nested schema](#nestedatt--parameters--dbt))
-- `dbt_cloud` (Attributes) (see [below for nested schema](#nestedatt--parameters--dbt_cloud))
+- `dbtcloud` (Attributes) (see [below for nested schema](#nestedatt--parameters--dbtcloud))
 - `fivetran` (Attributes) (see [below for nested schema](#nestedatt--parameters--fivetran))
 - `looker` (Attributes) (see [below for nested schema](#nestedatt--parameters--looker))
 - `mssql` (Attributes) (see [below for nested schema](#nestedatt--parameters--mssql))
@@ -66,8 +68,8 @@ Read-Only:
 Required:
 
 - `credentials` (String) Name of the credentials used to connect to the source.
-- `host` (String) Airflow API host
-- `port` (Number) Airflow API port
+- `host` (String) Airflow server hostname
+- `port` (Number) Airflow server port
 
 Optional:
 
@@ -80,15 +82,15 @@ Optional:
 Required:
 
 - `datasource` (String) Athena datasource name
-- `region` (String) AWS region in which the Athena database is located
+- `region` (String) AWS region in which the Athena instance is located
 - `role_arn` (String) AWS IAM role ARN to use for Athena queries
-- `s3_output_location` (String) S3 location to store Athena query results
+- `s3_output_location` (String) The S3 location where Athena query results are stored
 - `workgroup` (String) Athena workgroup name
 
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `vpc_url` (String) VPC URL for Athena queries
+- `vpc_url` (String) VPC URL for Athena connection
 
 
 <a id="nestedatt--parameters--bigquery"></a>
@@ -111,7 +113,7 @@ Optional:
 Required:
 
 - `credentials` (String) Name of the credentials used to connect to the source.
-- `host` (String) Databricks host
+- `host` (String) Databricks server host name
 - `http_path` (String) Databricks HTTP path
 - `port` (Number) Databricks server port
 
@@ -129,8 +131,8 @@ Required:
 - `target` (String) Your dbt target name (the 'target' value in your profiles.yml file)
 
 
-<a id="nestedatt--parameters--dbt_cloud"></a>
-### Nested Schema for `parameters.dbt_cloud`
+<a id="nestedatt--parameters--dbtcloud"></a>
+### Nested Schema for `parameters.dbtcloud`
 
 Required:
 
@@ -197,7 +199,7 @@ Required:
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `ssl` (Boolean, Deprecated) Use TLS to connect to Microsoft SQL Server.
+- `ssl` (Boolean, Deprecated) Whether to use SSL to connect to Microsoft SQL Server.
 
 
 <a id="nestedatt--parameters--mysql"></a>
@@ -209,7 +211,7 @@ Required:
 - `database` (String) Database name
 - `host` (String) MySQL server hostname
 - `mysql_tls_version` (String) TLS version to use for MySQL connection. One of TLS_V_1_2 or TLS_V_1_3.
-- `port` (Number) MySQL port number
+- `port` (Number) MySQL server port
 
 Optional:
 
@@ -223,8 +225,8 @@ Required:
 
 - `credentials` (String) Name of the credentials used to connect to the source.
 - `database` (String) Oracle database name
-- `host` (String) Oracle database host
-- `port` (Number) Oracle database port
+- `host` (String) Oracle server host name
+- `port` (Number) Oracle server port
 
 Optional:
 
@@ -280,8 +282,8 @@ Optional:
 Required:
 
 - `credentials` (String) Name of the credentials used to connect to the source.
-- `host` (String) Redshift cluster hostname
-- `port` (Number) Redshift cluster port
+- `host` (String) Redshift server hostname
+- `port` (Number) Redshift server port
 
 Optional:
 
@@ -309,8 +311,8 @@ Optional:
 Required:
 
 - `credentials` (String) Name of the credentials used to connect to the source.
-- `host` (String) The host of your Synapse server
-- `port` (Number) Your Synapse server port
+- `host` (String) Synapse server host name
+- `port` (Number) Synapse server port
 
 Optional:
 
@@ -323,12 +325,12 @@ Optional:
 Required:
 
 - `credentials` (String) Name of the credentials used to connect to the source.
-- `host` (String) Your Tableau Server hostname
+- `host` (String) Tableau Server hostname
 
 Optional:
 
 - `schedule` (String) Schedule for the source. Must be a valid cron expression. If empty, the source will only be refreshed when manually triggered.
-- `site` (String) Your Tableau Server site. Leave empty if your Tableau environment is using the Default Site.
+- `site` (String) Tableau Server site. Leave empty if your Tableau environment is using the Default Site.
 
 
 
