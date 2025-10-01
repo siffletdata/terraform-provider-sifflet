@@ -2,7 +2,6 @@ package parameters_v2
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 
 	sifflet "terraform-provider-sifflet/internal/client"
@@ -128,14 +127,11 @@ func (m MysqlParametersModel) ToCreateDto(ctx context.Context, name string, time
 		Schedule:         m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(mysqlCreateDto)
+	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
+	err = createSourceJsonBody.FromAny(mysqlCreateDto)
 	if err != nil {
 		return sifflet.PublicCreateSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot create Mysql source", err)
 	}
-	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
-	createSourceJsonBody.SetRawMessage(buf)
 
 	return createSourceJsonBody, diag.Diagnostics{}
 }
@@ -161,14 +157,11 @@ func (m MysqlParametersModel) ToUpdateDto(ctx context.Context, name string, time
 		Schedule:         m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(mysqlUpdateDto)
+	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
+	err = editSourceJsonBody.FromAny(mysqlUpdateDto)
 	if err != nil {
 		return sifflet.PublicEditSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot update Mysql source", err)
 	}
-	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
-	editSourceJsonBody.SetRawMessage(buf)
 
 	return editSourceJsonBody, diag.Diagnostics{}
 }

@@ -2,7 +2,6 @@ package parameters_v2
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/tfutils"
@@ -193,14 +192,11 @@ func (m LookerParametersModel) ToCreateDto(ctx context.Context, name string, tim
 		Schedule:          m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(lookerCreateDto)
+	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
+	err := createSourceJsonBody.FromAny(lookerCreateDto)
 	if err != nil {
 		return sifflet.PublicCreateSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot create Looker source", err)
 	}
-	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
-	createSourceJsonBody.SetRawMessage(buf)
 
 	return createSourceJsonBody, diag.Diagnostics{}
 }
@@ -225,14 +221,11 @@ func (m LookerParametersModel) ToUpdateDto(ctx context.Context, name string, tim
 		Schedule:          m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(lookerUpdateDto)
+	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
+	err := editSourceJsonBody.FromAny(lookerUpdateDto)
 	if err != nil {
 		return sifflet.PublicEditSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot update Looker source", err)
 	}
-	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
-	editSourceJsonBody.SetRawMessage(buf)
 
 	return editSourceJsonBody, diag.Diagnostics{}
 }

@@ -12,8 +12,15 @@ import (
 // Needed to create a PublicCreateSourceV2JSONBody, as union is a private field we cannot set it
 // outside of this package without this helper.
 
-func (b *PublicCreateSourceV2JSONBody) SetRawMessage(message json.RawMessage) {
-	b.union = message
+func (b *PublicCreateSourceV2JSONBody) FromAny(v any) error {
+	// We marshal the DTO to JSON from any object since oapi-codegen doesn't generate helper methods
+	// for converting DTOs to request bodies when dealing with polymorphic API responses.
+	buf, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b.union = buf
+	return nil
 }
 
 // This method is added so that NewPublicCreateSourceV2Request works
@@ -31,8 +38,15 @@ func (t PublicCreateSourceV2JSONRequestBody) MarshalJSON() ([]byte, error) {
 // Needed to create a PublicEditSourceV2JSONBody, as union is a private field we cannot set it
 // outside of this package without this helper.
 
-func (b *PublicEditSourceV2JSONBody) SetRawMessage(message json.RawMessage) {
-	b.union = message
+func (b *PublicEditSourceV2JSONBody) FromAny(v any) error {
+	// We marshal the DTO to JSON from any object since oapi-codegen doesn't generate helper methods
+	// for converting DTOs to request bodies when dealing with polymorphic API responses.
+	buf, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b.union = buf
+	return nil
 }
 
 // This method is added so that NewPublicEditSourceV2Request works

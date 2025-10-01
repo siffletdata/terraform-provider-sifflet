@@ -2,7 +2,6 @@ package parameters_v2
 
 import (
 	"context"
-	"encoding/json"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/tfutils"
 
@@ -91,14 +90,11 @@ func (m RedshiftParametersModel) ToCreateDto(ctx context.Context, name string, t
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(redshiftCreateDto)
+	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
+	err := createSourceJsonBody.FromAny(redshiftCreateDto)
 	if err != nil {
 		return sifflet.PublicCreateSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot create Redshift source", err)
 	}
-	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
-	createSourceJsonBody.SetRawMessage(buf)
 
 	return createSourceJsonBody, diag.Diagnostics{}
 }
@@ -119,14 +115,11 @@ func (m RedshiftParametersModel) ToUpdateDto(ctx context.Context, name string, t
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(redshiftUpdateDto)
+	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
+	err := editSourceJsonBody.FromAny(redshiftUpdateDto)
 	if err != nil {
 		return sifflet.PublicEditSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot update Redshift source", err)
 	}
-	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
-	editSourceJsonBody.SetRawMessage(buf)
 
 	return editSourceJsonBody, diag.Diagnostics{}
 }

@@ -2,7 +2,6 @@ package parameters_v2
 
 import (
 	"context"
-	"encoding/json"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/tfutils"
 
@@ -67,14 +66,11 @@ func (m DbtParametersModel) ToCreateDto(ctx context.Context, name string, timezo
 		DbtInformation: &dbtInformation,
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(dbtCreateDto)
-	if err != nil {
-		return sifflet.PublicCreateSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot create DBT source", err)
-	}
 	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
-	createSourceJsonBody.SetRawMessage(buf)
+	err := createSourceJsonBody.FromAny(dbtCreateDto)
+	if err != nil {
+		return sifflet.PublicCreateSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot create dbt source", err)
+	}
 
 	return createSourceJsonBody, diag.Diagnostics{}
 }
@@ -92,14 +88,11 @@ func (m DbtParametersModel) ToUpdateDto(ctx context.Context, name string, timezo
 		DbtInformation: dbtInformation,
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(dbtUpdateDto)
-	if err != nil {
-		return sifflet.PublicEditSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot update DBT source", err)
-	}
 	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
-	editSourceJsonBody.SetRawMessage(buf)
+	err := editSourceJsonBody.FromAny(dbtUpdateDto)
+	if err != nil {
+		return sifflet.PublicEditSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot update dbt source", err)
+	}
 
 	return editSourceJsonBody, diag.Diagnostics{}
 }
@@ -107,7 +100,7 @@ func (m DbtParametersModel) ToUpdateDto(ctx context.Context, name string, timezo
 func (m *DbtParametersModel) ModelFromDto(ctx context.Context, d sifflet.SiffletPublicGetSourceV2Dto) diag.Diagnostics {
 	dbtDto := d.PublicGetDbtSourceV2Dto
 	if dbtDto == nil {
-		return diag.Diagnostics{diag.NewErrorDiagnostic("Cannot read DBT source", "Source does not contain DBT params but was interpreted as a DBT source")}
+		return diag.Diagnostics{diag.NewErrorDiagnostic("Cannot read dbt source", "Source does not contain dbt params but was interpreted as a dbt source")}
 	}
 
 	m.ProjectName = types.StringValue(dbtDto.DbtInformation.ProjectName)

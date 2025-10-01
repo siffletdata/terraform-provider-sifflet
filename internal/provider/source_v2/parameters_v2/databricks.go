@@ -2,7 +2,6 @@ package parameters_v2
 
 import (
 	"context"
-	"encoding/json"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/tfutils"
 
@@ -88,14 +87,11 @@ func (m DatabricksParametersModel) ToCreateDto(ctx context.Context, name string,
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(databricksCreateDto)
+	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
+	err := createSourceJsonBody.FromAny(databricksCreateDto)
 	if err != nil {
 		return sifflet.PublicCreateSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot create Databricks source", err)
 	}
-	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
-	createSourceJsonBody.SetRawMessage(buf)
 
 	return createSourceJsonBody, diag.Diagnostics{}
 }
@@ -116,14 +112,11 @@ func (m DatabricksParametersModel) ToUpdateDto(ctx context.Context, name string,
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(databricksUpdateDto)
+	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
+	err := editSourceJsonBody.FromAny(databricksUpdateDto)
 	if err != nil {
 		return sifflet.PublicEditSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot update Databricks source", err)
 	}
-	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
-	editSourceJsonBody.SetRawMessage(buf)
 
 	return editSourceJsonBody, diag.Diagnostics{}
 }

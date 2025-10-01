@@ -2,7 +2,6 @@ package parameters_v2
 
 import (
 	"context"
-	"encoding/json"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/tfutils"
 
@@ -81,14 +80,11 @@ func (m PowerBiParametersModel) ToCreateDto(ctx context.Context, name string, ti
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(powerBiCreateDto)
+	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
+	err := createSourceJsonBody.FromAny(powerBiCreateDto)
 	if err != nil {
 		return sifflet.PublicCreateSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot create Power BI source", err)
 	}
-	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
-	createSourceJsonBody.SetRawMessage(buf)
 
 	return createSourceJsonBody, diag.Diagnostics{}
 }
@@ -108,14 +104,11 @@ func (m PowerBiParametersModel) ToUpdateDto(ctx context.Context, name string, ti
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(powerBiUpdateDto)
+	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
+	err := editSourceJsonBody.FromAny(powerBiUpdateDto)
 	if err != nil {
 		return sifflet.PublicEditSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot update Power BI source", err)
 	}
-	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
-	editSourceJsonBody.SetRawMessage(buf)
 
 	return editSourceJsonBody, diag.Diagnostics{}
 }

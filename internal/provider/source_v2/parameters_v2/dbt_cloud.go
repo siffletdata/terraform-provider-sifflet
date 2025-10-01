@@ -2,7 +2,6 @@ package parameters_v2
 
 import (
 	"context"
-	"encoding/json"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/tfutils"
 
@@ -81,14 +80,11 @@ func (m DbtCloudParametersModel) ToCreateDto(ctx context.Context, name string, t
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(dbtCloudCreateDto)
-	if err != nil {
-		return sifflet.PublicCreateSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot create DBT Cloud source", err)
-	}
 	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
-	createSourceJsonBody.SetRawMessage(buf)
+	err := createSourceJsonBody.FromAny(dbtCloudCreateDto)
+	if err != nil {
+		return sifflet.PublicCreateSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot create dbt Cloud source", err)
+	}
 
 	return createSourceJsonBody, diag.Diagnostics{}
 }
@@ -108,14 +104,11 @@ func (m DbtCloudParametersModel) ToUpdateDto(ctx context.Context, name string, t
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
-	// We marshal the DTO to JSON manually since oapi-codegen doesn't generate helper methods
-	// for converting DTOs to request bodies when dealing with polymorphic API responses.
-	buf, err := json.Marshal(dbtCloudUpdateDto)
-	if err != nil {
-		return sifflet.PublicEditSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot update DBT Cloud source", err)
-	}
 	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody
-	editSourceJsonBody.SetRawMessage(buf)
+	err := editSourceJsonBody.FromAny(dbtCloudUpdateDto)
+	if err != nil {
+		return sifflet.PublicEditSourceV2JSONBody{}, tfutils.ErrToDiags("Cannot update dbt Cloud source", err)
+	}
 
 	return editSourceJsonBody, diag.Diagnostics{}
 }
@@ -123,7 +116,7 @@ func (m DbtCloudParametersModel) ToUpdateDto(ctx context.Context, name string, t
 func (m *DbtCloudParametersModel) ModelFromDto(ctx context.Context, d sifflet.SiffletPublicGetSourceV2Dto) diag.Diagnostics {
 	dbtCloudDto := d.PublicGetDbtCloudSourceV2Dto
 	if dbtCloudDto == nil {
-		return diag.Diagnostics{diag.NewErrorDiagnostic("Cannot read DBT Cloud source", "Source does not contain DBT Cloud params but was interpreted as a DBT Cloud source")}
+		return diag.Diagnostics{diag.NewErrorDiagnostic("Cannot read dbt Cloud source", "Source does not contain dbt Cloud params but was interpreted as a dbt Cloud source")}
 	}
 
 	m.AccountId = types.StringValue(dbtCloudDto.DbtCloudInformation.AccountId)
