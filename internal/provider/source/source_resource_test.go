@@ -32,6 +32,9 @@ func init() {
 			filterDto := sifflet.PublicSourceFilterDto{
 				TextSearch: &prefix,
 			}
+
+			// We only query the first page of results as there are not many dangling resources
+			// and we want to keep this sweeper simple.
 			var page int32 = 0
 			var itemsPerPage int32 = 100
 

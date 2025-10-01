@@ -3959,6 +3959,32 @@ const (
 	PublicGetCustomMetadataEntryUserDtoTypeUSER   PublicGetCustomMetadataEntryUserDtoType = "USER"
 )
 
+// Defines values for PublicGetDatabricksJobsSourceV2DtoType.
+const (
+	PublicGetDatabricksJobsSourceV2DtoTypeAIRFLOW        PublicGetDatabricksJobsSourceV2DtoType = "AIRFLOW"
+	PublicGetDatabricksJobsSourceV2DtoTypeATHENA         PublicGetDatabricksJobsSourceV2DtoType = "ATHENA"
+	PublicGetDatabricksJobsSourceV2DtoTypeBIGQUERY       PublicGetDatabricksJobsSourceV2DtoType = "BIGQUERY"
+	PublicGetDatabricksJobsSourceV2DtoTypeDATABRICKS     PublicGetDatabricksJobsSourceV2DtoType = "DATABRICKS"
+	PublicGetDatabricksJobsSourceV2DtoTypeDATABRICKSJOBS PublicGetDatabricksJobsSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetDatabricksJobsSourceV2DtoTypeDBT            PublicGetDatabricksJobsSourceV2DtoType = "DBT"
+	PublicGetDatabricksJobsSourceV2DtoTypeDBTCLOUD       PublicGetDatabricksJobsSourceV2DtoType = "DBTCLOUD"
+	PublicGetDatabricksJobsSourceV2DtoTypeDECLARATIVE    PublicGetDatabricksJobsSourceV2DtoType = "DECLARATIVE"
+	PublicGetDatabricksJobsSourceV2DtoTypeFIVETRAN       PublicGetDatabricksJobsSourceV2DtoType = "FIVETRAN"
+	PublicGetDatabricksJobsSourceV2DtoTypeLOOKER         PublicGetDatabricksJobsSourceV2DtoType = "LOOKER"
+	PublicGetDatabricksJobsSourceV2DtoTypeMICROSTRATEGY  PublicGetDatabricksJobsSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetDatabricksJobsSourceV2DtoTypeMSSQL          PublicGetDatabricksJobsSourceV2DtoType = "MSSQL"
+	PublicGetDatabricksJobsSourceV2DtoTypeMYSQL          PublicGetDatabricksJobsSourceV2DtoType = "MYSQL"
+	PublicGetDatabricksJobsSourceV2DtoTypeORACLE         PublicGetDatabricksJobsSourceV2DtoType = "ORACLE"
+	PublicGetDatabricksJobsSourceV2DtoTypePOSTGRESQL     PublicGetDatabricksJobsSourceV2DtoType = "POSTGRESQL"
+	PublicGetDatabricksJobsSourceV2DtoTypePOWERBI        PublicGetDatabricksJobsSourceV2DtoType = "POWER_BI"
+	PublicGetDatabricksJobsSourceV2DtoTypeQLIK           PublicGetDatabricksJobsSourceV2DtoType = "QLIK"
+	PublicGetDatabricksJobsSourceV2DtoTypeQUICKSIGHT     PublicGetDatabricksJobsSourceV2DtoType = "QUICKSIGHT"
+	PublicGetDatabricksJobsSourceV2DtoTypeREDSHIFT       PublicGetDatabricksJobsSourceV2DtoType = "REDSHIFT"
+	PublicGetDatabricksJobsSourceV2DtoTypeSNOWFLAKE      PublicGetDatabricksJobsSourceV2DtoType = "SNOWFLAKE"
+	PublicGetDatabricksJobsSourceV2DtoTypeSYNAPSE        PublicGetDatabricksJobsSourceV2DtoType = "SYNAPSE"
+	PublicGetDatabricksJobsSourceV2DtoTypeTABLEAU        PublicGetDatabricksJobsSourceV2DtoType = "TABLEAU"
+)
+
 // Defines values for PublicGetDatabricksSourceV2DtoType.
 const (
 	PublicGetDatabricksSourceV2DtoTypeAIRFLOW        PublicGetDatabricksSourceV2DtoType = "AIRFLOW"
@@ -5426,9 +5452,9 @@ const (
 
 // Defines values for RuleRunDtoType.
 const (
-	DBT       RuleRunDtoType = "DBT"
-	MANUAL    RuleRunDtoType = "MANUAL"
-	SCHEDULED RuleRunDtoType = "SCHEDULED"
+	RuleRunDtoTypeDBT       RuleRunDtoType = "DBT"
+	RuleRunDtoTypeMANUAL    RuleRunDtoType = "MANUAL"
+	RuleRunDtoTypeSCHEDULED RuleRunDtoType = "SCHEDULED"
 )
 
 // Defines values for RuleStatusDtoRuleStatus.
@@ -8649,6 +8675,36 @@ type PublicGetCustomMetadataEntryUserDto struct {
 // PublicGetCustomMetadataEntryUserDtoType defines model for PublicGetCustomMetadataEntryUserDto.Type.
 type PublicGetCustomMetadataEntryUserDtoType string
 
+// PublicGetDatabricksJobsSourceV2Dto defines model for PublicGetDatabricksJobsSourceV2Dto.
+type PublicGetDatabricksJobsSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// DatabricksJobsInformation Databricks Jobs connection settings
+	DatabricksJobsInformation *DatabricksJobsInformation `json:"databricksJobsInformation,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
+	Timezone *string `json:"timezone,omitempty"`
+
+	// Type Source type
+	Type PublicGetDatabricksJobsSourceV2DtoType `json:"type"`
+}
+
+// PublicGetDatabricksJobsSourceV2DtoType Source type
+type PublicGetDatabricksJobsSourceV2DtoType string
+
 // PublicGetDatabricksSourceV2Dto defines model for PublicGetDatabricksSourceV2Dto.
 type PublicGetDatabricksSourceV2Dto struct {
 	// Credentials Credentials of the source
@@ -10630,15 +10686,6 @@ type GetSiffletRuleRunParamsExpand string
 
 // PublicGetUsersParams defines parameters for PublicGetUsers.
 type PublicGetUsersParams struct {
-	// Page The page number to retrieve. Starts at 0.
-	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
-
-	// ItemsPerPage The number of elements to be returned inside the page.
-	ItemsPerPage *int32 `form:"itemsPerPage,omitempty" json:"itemsPerPage,omitempty"`
-}
-
-// PublicGetSourcesV2Params defines parameters for PublicGetSourcesV2.
-type PublicGetSourcesV2Params struct {
 	// Page The page number to retrieve. Starts at 0.
 	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
 
@@ -17415,6 +17462,32 @@ func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetBigQuerySour
 	return err
 }
 
+// AsPublicGetDatabricksJobsSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetDatabricksJobsSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetDatabricksJobsSourceV2Dto() (PublicGetDatabricksJobsSourceV2Dto, error) {
+	var body PublicGetDatabricksJobsSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetDatabricksJobsSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetDatabricksJobsSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetDatabricksJobsSourceV2Dto(v PublicGetDatabricksJobsSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetDatabricksJobsSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetDatabricksJobsSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetDatabricksJobsSourceV2Dto(v PublicGetDatabricksJobsSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsPublicGetDatabricksSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetDatabricksSourceV2Dto
 func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetDatabricksSourceV2Dto() (PublicGetDatabricksSourceV2Dto, error) {
 	var body PublicGetDatabricksSourceV2Dto
@@ -19134,7 +19207,7 @@ type ClientInterface interface {
 	PublicResetUserPassword(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PublicGetSourcesV2 request
-	PublicGetSourcesV2(ctx context.Context, params *PublicGetSourcesV2Params, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PublicGetSourcesV2(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PublicCreateSourceV2WithBody request with any body
 	PublicCreateSourceV2WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -19789,8 +19862,8 @@ func (c *Client) PublicResetUserPassword(ctx context.Context, id openapi_types.U
 	return c.Client.Do(req)
 }
 
-func (c *Client) PublicGetSourcesV2(ctx context.Context, params *PublicGetSourcesV2Params, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPublicGetSourcesV2Request(c.Server, params)
+func (c *Client) PublicGetSourcesV2(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetSourcesV2Request(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -21879,7 +21952,7 @@ func NewPublicResetUserPasswordRequest(server string, id openapi_types.UUID) (*h
 }
 
 // NewPublicGetSourcesV2Request generates requests for PublicGetSourcesV2
-func NewPublicGetSourcesV2Request(server string, params *PublicGetSourcesV2Params) (*http.Request, error) {
+func NewPublicGetSourcesV2Request(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -21895,44 +21968,6 @@ func NewPublicGetSourcesV2Request(server string, params *PublicGetSourcesV2Param
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.ItemsPerPage != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "itemsPerPage", runtime.ParamLocationQuery, *params.ItemsPerPage); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -22287,7 +22322,7 @@ type ClientWithResponsesInterface interface {
 	PublicResetUserPasswordWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicResetUserPasswordResponse, error)
 
 	// PublicGetSourcesV2WithResponse request
-	PublicGetSourcesV2WithResponse(ctx context.Context, params *PublicGetSourcesV2Params, reqEditors ...RequestEditorFn) (*PublicGetSourcesV2Response, error)
+	PublicGetSourcesV2WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PublicGetSourcesV2Response, error)
 
 	// PublicCreateSourceV2WithBodyWithResponse request with any body
 	PublicCreateSourceV2WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateSourceV2Response, error)
@@ -23956,8 +23991,8 @@ func (c *ClientWithResponses) PublicResetUserPasswordWithResponse(ctx context.Co
 }
 
 // PublicGetSourcesV2WithResponse request returning *PublicGetSourcesV2Response
-func (c *ClientWithResponses) PublicGetSourcesV2WithResponse(ctx context.Context, params *PublicGetSourcesV2Params, reqEditors ...RequestEditorFn) (*PublicGetSourcesV2Response, error) {
-	rsp, err := c.PublicGetSourcesV2(ctx, params, reqEditors...)
+func (c *ClientWithResponses) PublicGetSourcesV2WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PublicGetSourcesV2Response, error) {
+	rsp, err := c.PublicGetSourcesV2(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}

@@ -27,14 +27,7 @@ func init() {
 				return fmt.Errorf("Error creating HTTP client: %s", err)
 			}
 
-			var page int32 = 0
-			var itemsPerPage int32 = 100
-			params := sifflet.PublicGetSourcesV2Params{
-				Page:         &page,
-				ItemsPerPage: &itemsPerPage,
-			}
-
-			sources, err := client.PublicGetSourcesV2WithResponse(ctx, &params)
+			sources, err := client.PublicGetSourcesV2WithResponse(ctx)
 			if err != nil {
 				return fmt.Errorf("Error listing sources: %s", err)
 			}
@@ -95,7 +88,7 @@ func TestAccSourceV2Basic(t *testing.T) {
 			{
 				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source_v2" "test" {
-							name = "%s-1"
+							name = "%s"
 							parameters = {
 								mysql = {
 									host = "%s"
@@ -118,7 +111,7 @@ func TestAccSourceV2Basic(t *testing.T) {
 				},
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttrSet("sifflet_source_v2.test", "id"),
-					resource.TestCheckResourceAttr("sifflet_source_v2.test", "name", fmt.Sprintf("%s-1", sourceName)),
+					resource.TestCheckResourceAttr("sifflet_source_v2.test", "name", sourceName),
 					resource.TestCheckResourceAttr("sifflet_source_v2.test", "parameters.source_type", "mysql"),
 					resource.TestCheckResourceAttr("sifflet_source_v2.test", "parameters.mysql.host", hostId),
 				),
@@ -127,7 +120,7 @@ func TestAccSourceV2Basic(t *testing.T) {
 			{
 				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source_v2" "test" {
-							name = "%s-2"
+							name = "%s"
 							parameters = {
 								mysql = {
 									host = "%s"
@@ -150,11 +143,37 @@ func TestAccSourceV2Basic(t *testing.T) {
 					},
 				},
 			},
+			// Test name update, should not trigger replacement
+			{
+				Config: baseConfig(credName) + fmt.Sprintf(`
+						resource "sifflet_source_v2" "test" {
+							name = "%s-2"
+							parameters = {
+								mysql = {
+									host = "%s"
+									port = "3306"
+									database = "database_new"
+									mysql_tls_version = "TLS_V_1_2"
+									credentials = sifflet_credentials.test.name
+								}
+							}
+							timezone = "GMT"
+						}
+						`, sourceName, hostId),
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttr("sifflet_source_v2.test", "name", fmt.Sprintf("%s-2", sourceName)),
+				),
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectResourceAction("sifflet_source_v2.test", plancheck.ResourceActionUpdate),
+					},
+				},
+			},
 			// Test parameters update, different source (requires replacement)
 			{
 				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source_v2" "test" {
-							name = "%s-3"
+							name = "%s-2"
 							parameters = {
 								tableau = {
 									site = "%s"
