@@ -172,7 +172,7 @@ func makeGitConnectionsDto(ctx context.Context, m LookerParametersModel) ([]siff
 	return gitConnections, diag.Diagnostics{}
 }
 
-func (m LookerParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m LookerParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	gitConnections, diags := makeGitConnectionsDto(ctx, m)
 	if diags.HasError() {
 		return sifflet.PublicCreateSourceV2JSONBody{}, diags
@@ -185,7 +185,6 @@ func (m LookerParametersModel) ToCreateDto(ctx context.Context, name string, tim
 
 	lookerCreateDto := &sifflet.PublicCreateLookerSourceV2Dto{
 		Name:              name,
-		Timezone:          &timezone,
 		Type:              sifflet.PublicCreateLookerSourceV2DtoTypeLOOKER,
 		LookerInformation: &lookerInformation,
 		Credentials:       m.Credentials.ValueStringPointer(),
@@ -201,7 +200,7 @@ func (m LookerParametersModel) ToCreateDto(ctx context.Context, name string, tim
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m LookerParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m LookerParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	gitConnections, diags := makeGitConnectionsDto(ctx, m)
 	if diags.HasError() {
 		return sifflet.PublicEditSourceV2JSONBody{}, diags
@@ -214,7 +213,6 @@ func (m LookerParametersModel) ToUpdateDto(ctx context.Context, name string, tim
 
 	lookerUpdateDto := &sifflet.PublicUpdateLookerSourceV2Dto{
 		Name:              &name,
-		Timezone:          &timezone,
 		Type:              sifflet.PublicUpdateLookerSourceV2DtoTypeLOOKER,
 		LookerInformation: lookerInformation,
 		Credentials:       m.Credentials.ValueString(),

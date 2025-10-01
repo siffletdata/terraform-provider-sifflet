@@ -74,7 +74,7 @@ func (m RedshiftParametersModel) AsParametersModel(ctx context.Context) (Paramet
 	return o, diag.Diagnostics{}
 }
 
-func (m RedshiftParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m RedshiftParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	redshiftInformation := sifflet.RedshiftInformation{
 		Host: m.Host.ValueString(),
 		Port: m.Port.ValueInt32(),
@@ -83,7 +83,6 @@ func (m RedshiftParametersModel) ToCreateDto(ctx context.Context, name string, t
 
 	redshiftCreateDto := &sifflet.PublicCreateRedshiftSourceV2Dto{
 		Name:                name,
-		Timezone:            &timezone,
 		Type:                sifflet.PublicCreateRedshiftSourceV2DtoTypeREDSHIFT,
 		RedshiftInformation: &redshiftInformation,
 		Credentials:         m.Credentials.ValueStringPointer(),
@@ -99,7 +98,7 @@ func (m RedshiftParametersModel) ToCreateDto(ctx context.Context, name string, t
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m RedshiftParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m RedshiftParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	redshiftInformation := sifflet.RedshiftInformation{
 		Host: m.Host.ValueString(),
 		Port: m.Port.ValueInt32(),
@@ -108,7 +107,6 @@ func (m RedshiftParametersModel) ToUpdateDto(ctx context.Context, name string, t
 
 	redshiftUpdateDto := &sifflet.PublicUpdateRedshiftSourceV2Dto{
 		Name:                &name,
-		Timezone:            &timezone,
 		Type:                sifflet.PublicUpdateRedshiftSourceV2DtoTypeREDSHIFT,
 		RedshiftInformation: redshiftInformation,
 		Credentials:         m.Credentials.ValueString(),

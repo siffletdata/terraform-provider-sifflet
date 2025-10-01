@@ -65,7 +65,7 @@ func (m QuickSightParametersModel) AsParametersModel(ctx context.Context) (Param
 	return o, diag.Diagnostics{}
 }
 
-func (m QuickSightParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m QuickSightParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	quickSightInformation := sifflet.QuicksightInformation{
 		AccountId: m.AccountId.ValueString(),
 		AwsRegion: m.AwsRegion.ValueString(),
@@ -74,7 +74,6 @@ func (m QuickSightParametersModel) ToCreateDto(ctx context.Context, name string,
 
 	quickSightCreateDto := &sifflet.PublicCreateQuicksightSourceV2Dto{
 		Name:                  name,
-		Timezone:              &timezone,
 		Type:                  sifflet.PublicCreateQuicksightSourceV2DtoTypeQUICKSIGHT,
 		QuicksightInformation: &quickSightInformation,
 		Schedule:              m.Schedule.ValueStringPointer(),
@@ -89,7 +88,7 @@ func (m QuickSightParametersModel) ToCreateDto(ctx context.Context, name string,
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m QuickSightParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m QuickSightParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	quickSightInformation := sifflet.QuicksightInformation{
 		AccountId: m.AccountId.ValueString(),
 		AwsRegion: m.AwsRegion.ValueString(),
@@ -98,7 +97,6 @@ func (m QuickSightParametersModel) ToUpdateDto(ctx context.Context, name string,
 
 	quickSightUpdateDto := &sifflet.PublicUpdateQuicksightSourceV2Dto{
 		Name:                  &name,
-		Timezone:              &timezone,
 		Type:                  sifflet.PublicUpdateQuicksightSourceV2DtoTypeQUICKSIGHT,
 		QuicksightInformation: quickSightInformation,
 		Schedule:              m.Schedule.ValueStringPointer(),

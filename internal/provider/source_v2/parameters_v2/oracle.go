@@ -72,7 +72,7 @@ func (m OracleParametersModel) AsParametersModel(ctx context.Context) (Parameter
 	return o, diag.Diagnostics{}
 }
 
-func (m OracleParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m OracleParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	oracleInformation := sifflet.OracleInformation{
 		Host:     m.Host.ValueString(),
 		Database: m.Database.ValueString(),
@@ -81,7 +81,6 @@ func (m OracleParametersModel) ToCreateDto(ctx context.Context, name string, tim
 
 	oracleCreateDto := &sifflet.PublicCreateOracleSourceV2Dto{
 		Name:              name,
-		Timezone:          &timezone,
 		Type:              sifflet.PublicCreateOracleSourceV2DtoTypeORACLE,
 		OracleInformation: &oracleInformation,
 		Credentials:       m.Credentials.ValueStringPointer(),
@@ -97,7 +96,7 @@ func (m OracleParametersModel) ToCreateDto(ctx context.Context, name string, tim
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m OracleParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m OracleParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	oracleInformation := sifflet.OracleInformation{
 		Host:     m.Host.ValueString(),
 		Database: m.Database.ValueString(),
@@ -106,7 +105,6 @@ func (m OracleParametersModel) ToUpdateDto(ctx context.Context, name string, tim
 
 	oracleUpdateDto := &sifflet.PublicUpdateOracleSourceV2Dto{
 		Name:              &name,
-		Timezone:          &timezone,
 		Type:              sifflet.PublicUpdateOracleSourceV2DtoTypeORACLE,
 		OracleInformation: oracleInformation,
 		Credentials:       m.Credentials.ValueString(),

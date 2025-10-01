@@ -53,7 +53,7 @@ var allSourceTypes = map[string]func() SourceParameters{
 // The SourceType field is not guaranteed to be set before [SetSourceType] is called.
 //
 // Design note: ParametersModel doesn't implement the interfaces CreatableModel, UpdatableModel and so on, because we need information from the sourceV2Model
-// to create the DTOs needed for source creation and update (name and timezone which are not part of the parameters).
+// to create the DTOs needed for source creation and update (the source name which is not part of the parameters).
 // Instead, we rely on the SourceParameters interface to handle the conversion between the model and the DTO.
 // This results in code that's probably more complicated than needed - consider refactoring if working on this code.
 type ParametersModel struct {
@@ -107,7 +107,7 @@ func NewParametersModel() ParametersModel {
 // This interface allows the rest of the code to manipulate source parameters without knowing the specifics of each source type.
 //
 // Design notes: this interface doesn't extend CreatableModel, UpdatableModel, etc. because we need information from the sourceV2Model
-// to create the DTOs needed for source creation and update (name and timezone which are not part of the parameters). This results in
+// to create the DTOs needed for source creation and update (the source which is not part of the parameters). This results in
 // slightly different code conventions in this package. Consider refactoring that if working on this code.
 type SourceParameters interface {
 	// TerraformSchema returns the Terraform resource schema for this source type.
@@ -122,12 +122,12 @@ type SourceParameters interface {
 	AsParametersModel(ctx context.Context) (ParametersModel, diag.Diagnostics)
 
 	// ToCreateDto creates a DTO (data transfer object) that can be sent to the API to create a source.
-	// This method takes in input the name and timezone of the source, which are not part of the parameters but are needed for the DTO.
-	ToCreateDto(ctx context.Context, name string, timezone string) (client.PublicCreateSourceV2JSONBody, diag.Diagnostics)
+	// This method takes in input the name of the source, which is not part of the parameters but is needed for the DTO.
+	ToCreateDto(ctx context.Context, name string) (client.PublicCreateSourceV2JSONBody, diag.Diagnostics)
 
 	// ToUpdateDto creates a DTO (data transfer object) that can be sent to the API to update a source.
-	// This method takes in input the name and timezone of the source, which are not part of the parameters but are needed for the DTO.
-	ToUpdateDto(ctx context.Context, name string, timezone string) (client.PublicEditSourceV2JSONBody, diag.Diagnostics)
+	// This method takes in input the name of the source, which is not part of the parameters but is needed for the DTO.
+	ToUpdateDto(ctx context.Context, name string) (client.PublicEditSourceV2JSONBody, diag.Diagnostics)
 
 	// ModelFromDto populates the struct with the values from the given DTO.
 	// This method will error if the given DTO type does not match this source type.
@@ -303,24 +303,24 @@ func (m ParametersModel) GetSourceParameters(ctx context.Context) (SourceParamet
 	return nil, diag.Diagnostics{diag.NewErrorDiagnostic("Could not determine source parameters", "Could not determine source parameters from the provided configuration (the parameters don't match any known type), this is a bug in the provider")}
 }
 
-func (m ParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (client.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m ParametersModel) ToCreateDto(ctx context.Context, name string) (client.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	sourceParams, diags := m.GetSourceParameters(ctx)
 	if diags.HasError() {
 		return client.PublicCreateSourceV2JSONBody{}, diags
 	}
-	dto, diags := sourceParams.ToCreateDto(ctx, name, timezone)
+	dto, diags := sourceParams.ToCreateDto(ctx, name)
 	if diags.HasError() {
 		return client.PublicCreateSourceV2JSONBody{}, diags
 	}
 	return dto, diag.Diagnostics{}
 }
 
-func (m ParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (client.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m ParametersModel) ToUpdateDto(ctx context.Context, name string) (client.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	sourceParams, diags := m.GetSourceParameters(ctx)
 	if diags.HasError() {
 		return client.PublicEditSourceV2JSONBody{}, diags
 	}
-	dto, diags := sourceParams.ToUpdateDto(ctx, name, timezone)
+	dto, diags := sourceParams.ToUpdateDto(ctx, name)
 	if diags.HasError() {
 		return client.PublicEditSourceV2JSONBody{}, diags
 	}

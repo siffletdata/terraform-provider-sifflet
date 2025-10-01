@@ -16,7 +16,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 )
@@ -101,12 +100,6 @@ func SourceV2ResourceSchema(ctx context.Context) schema.Schema {
 			"name": schema.StringAttribute{
 				Description: "Source name.",
 				Required:    true,
-			},
-			"timezone": schema.StringAttribute{
-				Description: "Timezone for the source. If empty, defaults to UTC.",
-				Optional:    true,
-				Computed:    true,
-				Default:     stringdefault.StaticString("UTC"),
 			},
 			"parameters": parameters.ParametersModel{}.TerraformSchema(),
 		},

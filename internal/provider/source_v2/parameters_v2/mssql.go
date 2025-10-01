@@ -81,7 +81,7 @@ func (m MssqlParametersModel) AsParametersModel(ctx context.Context) (Parameters
 	return o, diag.Diagnostics{}
 }
 
-func (m MssqlParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m MssqlParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	mssqlInformation := sifflet.MssqlInformation{
 		Host:     m.Host.ValueString(),
 		Database: m.Database.ValueString(),
@@ -91,7 +91,6 @@ func (m MssqlParametersModel) ToCreateDto(ctx context.Context, name string, time
 
 	mssqlCreateDto := &sifflet.PublicCreateMssqlSourceV2Dto{
 		Name:             name,
-		Timezone:         &timezone,
 		Type:             sifflet.PublicCreateMssqlSourceV2DtoTypeMSSQL,
 		MssqlInformation: &mssqlInformation,
 		Credentials:      m.Credentials.ValueStringPointer(),
@@ -107,7 +106,7 @@ func (m MssqlParametersModel) ToCreateDto(ctx context.Context, name string, time
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m MssqlParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m MssqlParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	mssqlInformation := sifflet.MssqlInformation{
 		Host:     m.Host.ValueString(),
 		Database: m.Database.ValueString(),
@@ -117,7 +116,6 @@ func (m MssqlParametersModel) ToUpdateDto(ctx context.Context, name string, time
 
 	mssqlUpdateDto := &sifflet.PublicUpdateMssqlSourceV2Dto{
 		Name:             &name,
-		Timezone:         &timezone,
 		Type:             sifflet.PublicUpdateMssqlSourceV2DtoTypeMSSQL,
 		MssqlInformation: mssqlInformation,
 		Credentials:      m.Credentials.ValueString(),

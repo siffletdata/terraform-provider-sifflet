@@ -69,7 +69,7 @@ func (m TableauParametersModel) AsParametersModel(ctx context.Context) (Paramete
 	return o, diag.Diagnostics{}
 }
 
-func (m TableauParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m TableauParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	tableauInformation := sifflet.TableauInformation{
 		Host: m.Host.ValueString(),
 		Site: m.Site.ValueString(),
@@ -77,7 +77,6 @@ func (m TableauParametersModel) ToCreateDto(ctx context.Context, name string, ti
 
 	tableauCreateDto := &sifflet.PublicCreateTableauSourceV2Dto{
 		Name:               name,
-		Timezone:           &timezone,
 		Type:               sifflet.PublicCreateTableauSourceV2DtoTypeTABLEAU,
 		TableauInformation: &tableauInformation,
 		Credentials:        m.Credentials.ValueStringPointer(),
@@ -93,7 +92,7 @@ func (m TableauParametersModel) ToCreateDto(ctx context.Context, name string, ti
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m TableauParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m TableauParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	tableauInformation := sifflet.TableauInformation{
 		Host: m.Host.ValueString(),
 		Site: m.Site.ValueString(),
@@ -101,7 +100,6 @@ func (m TableauParametersModel) ToUpdateDto(ctx context.Context, name string, ti
 
 	tableauUpdateDto := &sifflet.PublicUpdateTableauSourceV2Dto{
 		Name:               &name,
-		Timezone:           &timezone,
 		Type:               sifflet.PublicUpdateTableauSourceV2DtoTypeTABLEAU,
 		TableauInformation: tableauInformation,
 		Credentials:        m.Credentials.ValueString(),

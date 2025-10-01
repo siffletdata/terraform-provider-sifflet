@@ -53,7 +53,7 @@ func (m DbtParametersModel) AsParametersModel(ctx context.Context) (ParametersMo
 	return o, diag.Diagnostics{}
 }
 
-func (m DbtParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m DbtParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	dbtInformation := sifflet.DbtInformation{
 		ProjectName: m.ProjectName.ValueString(),
 		Target:      m.Target.ValueString(),
@@ -61,7 +61,6 @@ func (m DbtParametersModel) ToCreateDto(ctx context.Context, name string, timezo
 
 	dbtCreateDto := &sifflet.PublicCreateDbtSourceV2Dto{
 		Name:           name,
-		Timezone:       &timezone,
 		Type:           sifflet.PublicCreateDbtSourceV2DtoTypeDBT,
 		DbtInformation: &dbtInformation,
 	}
@@ -75,7 +74,7 @@ func (m DbtParametersModel) ToCreateDto(ctx context.Context, name string, timezo
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m DbtParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m DbtParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	dbtInformation := sifflet.DbtInformation{
 		ProjectName: m.ProjectName.ValueString(),
 		Target:      m.Target.ValueString(),
@@ -83,7 +82,6 @@ func (m DbtParametersModel) ToUpdateDto(ctx context.Context, name string, timezo
 
 	dbtUpdateDto := &sifflet.PublicUpdateDbtSourceV2Dto{
 		Name:           &name,
-		Timezone:       &timezone,
 		Type:           sifflet.PublicUpdateDbtSourceV2DtoTypeDBT,
 		DbtInformation: dbtInformation,
 	}

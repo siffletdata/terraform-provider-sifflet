@@ -65,7 +65,7 @@ func (m BigQueryParametersModel) AsParametersModel(ctx context.Context) (Paramet
 	return o, diag.Diagnostics{}
 }
 
-func (m BigQueryParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m BigQueryParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	bigQueryInformation := sifflet.BigQueryInformation{
 		BillingProjectId: m.BillingProjectId.ValueStringPointer(),
 		ProjectId:        m.ProjectId.ValueString(),
@@ -73,7 +73,6 @@ func (m BigQueryParametersModel) ToCreateDto(ctx context.Context, name string, t
 
 	bigQueryCreateDto := &sifflet.PublicCreateBigQuerySourceV2Dto{
 		Name:                name,
-		Timezone:            &timezone,
 		Type:                sifflet.PublicCreateBigQuerySourceV2DtoTypeBIGQUERY,
 		BigQueryInformation: &bigQueryInformation,
 		Credentials:         m.Credentials.ValueStringPointer(),
@@ -89,7 +88,7 @@ func (m BigQueryParametersModel) ToCreateDto(ctx context.Context, name string, t
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m BigQueryParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m BigQueryParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	bigQueryInformation := sifflet.BigQueryInformation{
 		BillingProjectId: m.BillingProjectId.ValueStringPointer(),
 		ProjectId:        m.ProjectId.ValueString(),
@@ -97,7 +96,6 @@ func (m BigQueryParametersModel) ToUpdateDto(ctx context.Context, name string, t
 
 	bigQueryUpdateDto := &sifflet.PublicUpdateBigQuerySourceV2Dto{
 		Name:                &name,
-		Timezone:            &timezone,
 		Type:                sifflet.PublicUpdateBigQuerySourceV2DtoTypeBIGQUERY,
 		BigQueryInformation: bigQueryInformation,
 		Credentials:         m.Credentials.ValueString(),

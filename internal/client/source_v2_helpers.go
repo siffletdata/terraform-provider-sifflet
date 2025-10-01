@@ -63,7 +63,6 @@ type PublicGetSourceV2 interface {
 	GetType() string
 	GetId() types.UUID
 	GetName() string
-	GetTimezone() *string
 }
 
 // ID
@@ -310,88 +309,6 @@ func (obj PublicGetSynapseSourceV2Dto) GetName() string {
 
 func (obj PublicGetTableauSourceV2Dto) GetName() string {
 	return obj.Name
-}
-
-// Timezone
-
-func (obj PublicGetAirflowSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetAthenaSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetBigQuerySourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetDatabricksSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetDbtCloudSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetDbtSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetFivetranSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetLookerSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetMicrostrategySourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetMssqlSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetMysqlSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetOracleSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetPostgresqlSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetPowerBiSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetQlikSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetQuicksightSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetRedshiftSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetSnowflakeSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetSynapseSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
-}
-
-func (obj PublicGetTableauSourceV2Dto) GetTimezone() *string {
-	return obj.Timezone
 }
 
 // SiffletPublicGetSourceV2Dto reprensents the `oneOf` structure of the PublicGetSourceV2Dto object.

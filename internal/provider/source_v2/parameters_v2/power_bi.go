@@ -65,7 +65,7 @@ func (m PowerBiParametersModel) AsParametersModel(ctx context.Context) (Paramete
 	return o, diag.Diagnostics{}
 }
 
-func (m PowerBiParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m PowerBiParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	powerBiInformation := sifflet.PowerBiInformation{
 		ClientId: m.ClientId.ValueString(),
 		TenantId: m.TenantId.ValueString(),
@@ -73,7 +73,6 @@ func (m PowerBiParametersModel) ToCreateDto(ctx context.Context, name string, ti
 
 	powerBiCreateDto := &sifflet.PublicCreatePowerBiSourceV2Dto{
 		Name:               name,
-		Timezone:           &timezone,
 		Type:               sifflet.PublicCreatePowerBiSourceV2DtoTypePOWERBI,
 		PowerBiInformation: &powerBiInformation,
 		Credentials:        m.Credentials.ValueStringPointer(),
@@ -89,7 +88,7 @@ func (m PowerBiParametersModel) ToCreateDto(ctx context.Context, name string, ti
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m PowerBiParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m PowerBiParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	powerBiInformation := sifflet.PowerBiInformation{
 		ClientId: m.ClientId.ValueString(),
 		TenantId: m.TenantId.ValueString(),
@@ -97,7 +96,6 @@ func (m PowerBiParametersModel) ToUpdateDto(ctx context.Context, name string, ti
 
 	powerBiUpdateDto := &sifflet.PublicUpdatePowerBiSourceV2Dto{
 		Name:               &name,
-		Timezone:           &timezone,
 		Type:               sifflet.PublicUpdatePowerBiSourceV2DtoTypePOWERBI,
 		PowerBiInformation: powerBiInformation,
 		Credentials:        m.Credentials.ValueString(),

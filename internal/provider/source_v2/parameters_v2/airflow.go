@@ -66,7 +66,7 @@ func (m AirflowParametersModel) AsParametersModel(ctx context.Context) (Paramete
 	return o, diag.Diagnostics{}
 }
 
-func (m AirflowParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m AirflowParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	airflowInformation := sifflet.AirflowInformation{
 		Host: m.Host.ValueString(),
 		Port: m.Port.ValueInt32(),
@@ -75,7 +75,6 @@ func (m AirflowParametersModel) ToCreateDto(ctx context.Context, name string, ti
 	airflowCreateDto := sifflet.PublicCreateAirflowSourceV2Dto{
 		Name:               name,
 		Type:               sifflet.PublicCreateAirflowSourceV2DtoTypeAIRFLOW,
-		Timezone:           &timezone,
 		AirflowInformation: &airflowInformation,
 		Credentials:        m.Credentials.ValueStringPointer(),
 		Schedule:           m.Schedule.ValueStringPointer(),
@@ -90,7 +89,7 @@ func (m AirflowParametersModel) ToCreateDto(ctx context.Context, name string, ti
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m AirflowParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m AirflowParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	airflowInformation := sifflet.AirflowInformation{
 		Host: m.Host.ValueString(),
 		Port: m.Port.ValueInt32(),
@@ -99,7 +98,6 @@ func (m AirflowParametersModel) ToUpdateDto(ctx context.Context, name string, ti
 	airflowUpdateDto := sifflet.PublicUpdateAirflowSourceV2Dto{
 		Name:               &name,
 		Type:               sifflet.PublicUpdateAirflowSourceV2DtoTypeAIRFLOW,
-		Timezone:           &timezone,
 		AirflowInformation: airflowInformation,
 		Credentials:        m.Credentials.ValueString(),
 		Schedule:           m.Schedule.ValueStringPointer(),

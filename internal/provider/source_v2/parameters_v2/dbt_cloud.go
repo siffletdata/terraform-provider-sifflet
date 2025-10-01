@@ -65,7 +65,7 @@ func (m DbtCloudParametersModel) AsParametersModel(ctx context.Context) (Paramet
 	return o, diag.Diagnostics{}
 }
 
-func (m DbtCloudParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m DbtCloudParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	dbtCloudInformation := sifflet.DbtCloudInformation{
 		AccountId: m.AccountId.ValueString(),
 		BaseUrl:   m.BaseUrl.ValueString(),
@@ -73,7 +73,6 @@ func (m DbtCloudParametersModel) ToCreateDto(ctx context.Context, name string, t
 
 	dbtCloudCreateDto := &sifflet.PublicCreateDbtCloudSourceV2Dto{
 		Name:                name,
-		Timezone:            &timezone,
 		Type:                sifflet.PublicCreateDbtCloudSourceV2DtoTypeDBTCLOUD,
 		DbtCloudInformation: &dbtCloudInformation,
 		Credentials:         m.Credentials.ValueStringPointer(),
@@ -89,7 +88,7 @@ func (m DbtCloudParametersModel) ToCreateDto(ctx context.Context, name string, t
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m DbtCloudParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m DbtCloudParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	dbtCloudInformation := sifflet.DbtCloudInformation{
 		AccountId: m.AccountId.ValueString(),
 		BaseUrl:   m.BaseUrl.ValueString(),
@@ -97,7 +96,6 @@ func (m DbtCloudParametersModel) ToUpdateDto(ctx context.Context, name string, t
 
 	dbtCloudUpdateDto := &sifflet.PublicUpdateDbtCloudSourceV2Dto{
 		Name:                &name,
-		Timezone:            &timezone,
 		Type:                sifflet.PublicUpdateDbtCloudSourceV2DtoTypeDBTCLOUD,
 		DbtCloudInformation: dbtCloudInformation,
 		Credentials:         m.Credentials.ValueString(),

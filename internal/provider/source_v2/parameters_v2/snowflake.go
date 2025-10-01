@@ -65,7 +65,7 @@ func (m SnowflakeParametersModel) AsParametersModel(ctx context.Context) (Parame
 	return o, diag.Diagnostics{}
 }
 
-func (m SnowflakeParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m SnowflakeParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	snowflakeInformation := sifflet.SnowflakeInformation{
 		AccountIdentifier: m.AccountIdentifier.ValueString(),
 		Warehouse:         m.Warehouse.ValueString(),
@@ -73,7 +73,6 @@ func (m SnowflakeParametersModel) ToCreateDto(ctx context.Context, name string, 
 
 	snowflakeCreateDto := &sifflet.PublicCreateSnowflakeSourceV2Dto{
 		Name:                 name,
-		Timezone:             &timezone,
 		Type:                 sifflet.PublicCreateSnowflakeSourceV2DtoTypeSNOWFLAKE,
 		SnowflakeInformation: &snowflakeInformation,
 		Credentials:          m.Credentials.ValueStringPointer(),
@@ -89,7 +88,7 @@ func (m SnowflakeParametersModel) ToCreateDto(ctx context.Context, name string, 
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m SnowflakeParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m SnowflakeParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	snowflakeInformation := sifflet.SnowflakeInformation{
 		AccountIdentifier: m.AccountIdentifier.ValueString(),
 		Warehouse:         m.Warehouse.ValueString(),
@@ -97,7 +96,6 @@ func (m SnowflakeParametersModel) ToUpdateDto(ctx context.Context, name string, 
 
 	snowflakeUpdateDto := &sifflet.PublicUpdateSnowflakeSourceV2Dto{
 		Name:                 &name,
-		Timezone:             &timezone,
 		Type:                 sifflet.PublicUpdateSnowflakeSourceV2DtoTypeSNOWFLAKE,
 		SnowflakeInformation: snowflakeInformation,
 		Credentials:          m.Credentials.ValueString(),

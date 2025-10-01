@@ -83,7 +83,7 @@ func (m AthenaParametersModel) AsParametersModel(ctx context.Context) (Parameter
 	return o, diag.Diagnostics{}
 }
 
-func (m AthenaParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m AthenaParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	athenaInformation := sifflet.AthenaInformation{
 		Datasource:       m.Datasource.ValueString(),
 		Region:           m.Region.ValueString(),
@@ -95,7 +95,6 @@ func (m AthenaParametersModel) ToCreateDto(ctx context.Context, name string, tim
 
 	athenaCreateDto := &sifflet.PublicCreateAthenaSourceV2Dto{
 		Name:              name,
-		Timezone:          &timezone,
 		Type:              sifflet.PublicCreateAthenaSourceV2DtoTypeATHENA,
 		AthenaInformation: &athenaInformation,
 		Schedule:          m.Schedule.ValueStringPointer(),
@@ -110,7 +109,7 @@ func (m AthenaParametersModel) ToCreateDto(ctx context.Context, name string, tim
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m AthenaParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m AthenaParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	athenaInformation := sifflet.AthenaInformation{
 		Datasource:       m.Datasource.ValueString(),
 		Region:           m.Region.ValueString(),
@@ -122,7 +121,6 @@ func (m AthenaParametersModel) ToUpdateDto(ctx context.Context, name string, tim
 
 	athenaUpdateDto := &sifflet.PublicUpdateAthenaSourceV2Dto{
 		Name:              &name,
-		Timezone:          &timezone,
 		Type:              sifflet.PublicUpdateAthenaSourceV2DtoTypeATHENA,
 		AthenaInformation: athenaInformation,
 		Schedule:          m.Schedule.ValueStringPointer(),

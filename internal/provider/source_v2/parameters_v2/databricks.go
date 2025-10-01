@@ -71,7 +71,7 @@ func (m DatabricksParametersModel) AsParametersModel(ctx context.Context) (Param
 	return o, diag.Diagnostics{}
 }
 
-func (m DatabricksParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m DatabricksParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	databricksInformation := sifflet.DatabricksInformation{
 		Host:     m.Host.ValueString(),
 		HttpPath: m.HttpPath.ValueString(),
@@ -80,7 +80,6 @@ func (m DatabricksParametersModel) ToCreateDto(ctx context.Context, name string,
 
 	databricksCreateDto := &sifflet.PublicCreateDatabricksSourceV2Dto{
 		Name:                  name,
-		Timezone:              &timezone,
 		Type:                  sifflet.PublicCreateDatabricksSourceV2DtoTypeDATABRICKS,
 		DatabricksInformation: &databricksInformation,
 		Credentials:           m.Credentials.ValueStringPointer(),
@@ -96,7 +95,7 @@ func (m DatabricksParametersModel) ToCreateDto(ctx context.Context, name string,
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m DatabricksParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m DatabricksParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	databricksInformation := sifflet.DatabricksInformation{
 		Host:     m.Host.ValueString(),
 		HttpPath: m.HttpPath.ValueString(),
@@ -105,7 +104,6 @@ func (m DatabricksParametersModel) ToUpdateDto(ctx context.Context, name string,
 
 	databricksUpdateDto := &sifflet.PublicUpdateDatabricksSourceV2Dto{
 		Name:                  &name,
-		Timezone:              &timezone,
 		Type:                  sifflet.PublicUpdateDatabricksSourceV2DtoTypeDATABRICKS,
 		DatabricksInformation: databricksInformation,
 		Credentials:           m.Credentials.ValueString(),

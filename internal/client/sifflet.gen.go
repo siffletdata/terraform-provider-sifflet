@@ -7576,9 +7576,6 @@ type PublicCreateAirflowSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreateAirflowSourceV2DtoType `json:"type"`
 }
@@ -7596,9 +7593,6 @@ type PublicCreateAthenaSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicCreateAthenaSourceV2DtoType `json:"type"`
@@ -7621,9 +7615,6 @@ type PublicCreateBigQuerySourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreateBigQuerySourceV2DtoType `json:"type"`
 }
@@ -7644,9 +7635,6 @@ type PublicCreateDatabricksJobsSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicCreateDatabricksJobsSourceV2DtoType `json:"type"`
@@ -7669,9 +7657,6 @@ type PublicCreateDatabricksSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreateDatabricksSourceV2DtoType `json:"type"`
 }
@@ -7693,9 +7678,6 @@ type PublicCreateDbtCloudSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreateDbtCloudSourceV2DtoType `json:"type"`
 }
@@ -7710,9 +7692,6 @@ type PublicCreateDbtSourceV2Dto struct {
 
 	// Name Name of the source
 	Name string `json:"name"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicCreateDbtSourceV2DtoType `json:"type"`
@@ -7735,9 +7714,6 @@ type PublicCreateFivetranSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreateFivetranSourceV2DtoType `json:"type"`
 }
@@ -7758,9 +7734,6 @@ type PublicCreateLookerSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicCreateLookerSourceV2DtoType `json:"type"`
@@ -7783,9 +7756,6 @@ type PublicCreateMicrostrategySourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreateMicrostrategySourceV2DtoType `json:"type"`
 }
@@ -7806,9 +7776,6 @@ type PublicCreateMssqlSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicCreateMssqlSourceV2DtoType `json:"type"`
@@ -7831,9 +7798,6 @@ type PublicCreateMysqlSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreateMysqlSourceV2DtoType `json:"type"`
 }
@@ -7854,9 +7818,6 @@ type PublicCreateOracleSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicCreateOracleSourceV2DtoType `json:"type"`
@@ -7879,9 +7840,6 @@ type PublicCreatePostgresqlSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreatePostgresqlSourceV2DtoType `json:"type"`
 }
@@ -7902,9 +7860,6 @@ type PublicCreatePowerBiSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicCreatePowerBiSourceV2DtoType `json:"type"`
@@ -7927,9 +7882,6 @@ type PublicCreateQlikSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreateQlikSourceV2DtoType `json:"type"`
 }
@@ -7947,9 +7899,6 @@ type PublicCreateQuicksightSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicCreateQuicksightSourceV2DtoType `json:"type"`
@@ -7972,9 +7921,6 @@ type PublicCreateRedshiftSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreateRedshiftSourceV2DtoType `json:"type"`
 }
@@ -7995,9 +7941,6 @@ type PublicCreateSnowflakeSourceV2Dto struct {
 
 	// SnowflakeInformation Snowflake connection settings
 	SnowflakeInformation *SnowflakeInformation `json:"snowflakeInformation,omitempty"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicCreateSnowflakeSourceV2DtoType `json:"type"`
@@ -8036,9 +7979,6 @@ type PublicCreateSourceV2Dto struct {
 	// Name Name of the source
 	Name string `json:"name"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreateSourceV2DtoType `json:"type"`
 }
@@ -8060,9 +8000,6 @@ type PublicCreateSynapseSourceV2Dto struct {
 	// SynapseInformation Synapse connection settings
 	SynapseInformation *SynapseInformation `json:"synapseInformation,omitempty"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicCreateSynapseSourceV2DtoType `json:"type"`
 }
@@ -8083,9 +8020,6 @@ type PublicCreateTableauSourceV2Dto struct {
 
 	// TableauInformation Tableau connection settings
 	TableauInformation *TableauInformation `json:"tableauInformation,omitempty"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicCreateTableauSourceV2DtoType `json:"type"`
@@ -8392,9 +8326,6 @@ type PublicGetAirflowSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetAirflowSourceV2DtoType `json:"type"`
 }
@@ -8592,9 +8523,6 @@ type PublicGetAthenaSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetAthenaSourceV2DtoType `json:"type"`
 }
@@ -8621,9 +8549,6 @@ type PublicGetBigQuerySourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicGetBigQuerySourceV2DtoType `json:"type"`
@@ -8695,9 +8620,6 @@ type PublicGetDatabricksJobsSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetDatabricksJobsSourceV2DtoType `json:"type"`
 }
@@ -8724,9 +8646,6 @@ type PublicGetDatabricksSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicGetDatabricksSourceV2DtoType `json:"type"`
@@ -8755,9 +8674,6 @@ type PublicGetDbtCloudSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetDbtCloudSourceV2DtoType `json:"type"`
 }
@@ -8778,9 +8694,6 @@ type PublicGetDbtSourceV2Dto struct {
 
 	// Name Name of the source
 	Name string `json:"name"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicGetDbtSourceV2DtoType `json:"type"`
@@ -8808,9 +8721,6 @@ type PublicGetFivetranSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicGetFivetranSourceV2DtoType `json:"type"`
@@ -8863,9 +8773,6 @@ type PublicGetLookerSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetLookerSourceV2DtoType `json:"type"`
 }
@@ -8892,9 +8799,6 @@ type PublicGetMicrostrategySourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicGetMicrostrategySourceV2DtoType `json:"type"`
@@ -8923,9 +8827,6 @@ type PublicGetMssqlSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetMssqlSourceV2DtoType `json:"type"`
 }
@@ -8952,9 +8853,6 @@ type PublicGetMysqlSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicGetMysqlSourceV2DtoType `json:"type"`
@@ -8983,9 +8881,6 @@ type PublicGetOracleSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetOracleSourceV2DtoType `json:"type"`
 }
@@ -9012,9 +8907,6 @@ type PublicGetPostgresqlSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicGetPostgresqlSourceV2DtoType `json:"type"`
@@ -9043,9 +8935,6 @@ type PublicGetPowerBiSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetPowerBiSourceV2DtoType `json:"type"`
 }
@@ -9073,9 +8962,6 @@ type PublicGetQlikSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetQlikSourceV2DtoType `json:"type"`
 }
@@ -9099,9 +8985,6 @@ type PublicGetQuicksightSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicGetQuicksightSourceV2DtoType `json:"type"`
@@ -9130,9 +9013,6 @@ type PublicGetRedshiftSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetRedshiftSourceV2DtoType `json:"type"`
 }
@@ -9159,9 +9039,6 @@ type PublicGetSnowflakeSourceV2Dto struct {
 
 	// SnowflakeInformation Snowflake connection settings
 	SnowflakeInformation *SnowflakeInformation `json:"snowflakeInformation,omitempty"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicGetSnowflakeSourceV2DtoType `json:"type"`
@@ -9212,9 +9089,6 @@ type PublicGetSourceV2Dto struct {
 	// Name Name of the source
 	Name string `json:"name"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetSourceV2DtoType `json:"type"`
 }
@@ -9242,9 +9116,6 @@ type PublicGetSynapseSourceV2Dto struct {
 	// SynapseInformation Synapse connection settings
 	SynapseInformation *SynapseInformation `json:"synapseInformation,omitempty"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicGetSynapseSourceV2DtoType `json:"type"`
 }
@@ -9271,9 +9142,6 @@ type PublicGetTableauSourceV2Dto struct {
 
 	// TableauInformation Tableau connection settings
 	TableauInformation *TableauInformation `json:"tableauInformation,omitempty"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicGetTableauSourceV2DtoType `json:"type"`
@@ -9623,9 +9491,6 @@ type PublicUpdateAirflowSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicUpdateAirflowSourceV2DtoType `json:"type"`
 }
@@ -9686,9 +9551,6 @@ type PublicUpdateAthenaSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicUpdateAthenaSourceV2DtoType `json:"type"`
 }
@@ -9709,9 +9571,6 @@ type PublicUpdateBigQuerySourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateBigQuerySourceV2DtoType `json:"type"`
@@ -9734,9 +9593,6 @@ type PublicUpdateDatabricksJobsSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicUpdateDatabricksJobsSourceV2DtoType `json:"type"`
 }
@@ -9757,9 +9613,6 @@ type PublicUpdateDatabricksSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateDatabricksSourceV2DtoType `json:"type"`
@@ -9782,9 +9635,6 @@ type PublicUpdateDbtCloudSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicUpdateDbtCloudSourceV2DtoType `json:"type"`
 }
@@ -9799,9 +9649,6 @@ type PublicUpdateDbtSourceV2Dto struct {
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateDbtSourceV2DtoType `json:"type"`
@@ -9824,9 +9671,6 @@ type PublicUpdateFivetranSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicUpdateFivetranSourceV2DtoType `json:"type"`
 }
@@ -9847,9 +9691,6 @@ type PublicUpdateLookerSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateLookerSourceV2DtoType `json:"type"`
@@ -9872,9 +9713,6 @@ type PublicUpdateMicrostrategySourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicUpdateMicrostrategySourceV2DtoType `json:"type"`
 }
@@ -9895,9 +9733,6 @@ type PublicUpdateMssqlSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateMssqlSourceV2DtoType `json:"type"`
@@ -9920,9 +9755,6 @@ type PublicUpdateMysqlSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicUpdateMysqlSourceV2DtoType `json:"type"`
 }
@@ -9943,9 +9775,6 @@ type PublicUpdateOracleSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateOracleSourceV2DtoType `json:"type"`
@@ -9968,9 +9797,6 @@ type PublicUpdatePostgresqlSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicUpdatePostgresqlSourceV2DtoType `json:"type"`
 }
@@ -9991,9 +9817,6 @@ type PublicUpdatePowerBiSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicUpdatePowerBiSourceV2DtoType `json:"type"`
@@ -10016,9 +9839,6 @@ type PublicUpdateQlikSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicUpdateQlikSourceV2DtoType `json:"type"`
 }
@@ -10036,9 +9856,6 @@ type PublicUpdateQuicksightSourceV2Dto struct {
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateQuicksightSourceV2DtoType `json:"type"`
@@ -10061,9 +9878,6 @@ type PublicUpdateRedshiftSourceV2Dto struct {
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicUpdateRedshiftSourceV2DtoType `json:"type"`
 }
@@ -10084,9 +9898,6 @@ type PublicUpdateSnowflakeSourceV2Dto struct {
 
 	// SnowflakeInformation Snowflake connection settings
 	SnowflakeInformation SnowflakeInformation `json:"snowflakeInformation"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateSnowflakeSourceV2DtoType `json:"type"`
@@ -10134,9 +9945,6 @@ type PublicUpdateSynapseSourceV2Dto struct {
 	// SynapseInformation Synapse connection settings
 	SynapseInformation SynapseInformation `json:"synapseInformation"`
 
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
-
 	// Type Source type
 	Type PublicUpdateSynapseSourceV2DtoType `json:"type"`
 }
@@ -10157,9 +9965,6 @@ type PublicUpdateTableauSourceV2Dto struct {
 
 	// TableauInformation Tableau connection settings
 	TableauInformation TableauInformation `json:"tableauInformation"`
-
-	// Timezone A string representing a timezone identifier (e.g. 'UTC' or 'Europe/Paris')
-	Timezone *string `json:"timezone,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateTableauSourceV2DtoType `json:"type"`

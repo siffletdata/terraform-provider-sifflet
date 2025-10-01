@@ -62,14 +62,13 @@ func (m FivetranParametersModel) AsParametersModel(ctx context.Context) (Paramet
 	return o, diag.Diagnostics{}
 }
 
-func (m FivetranParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m FivetranParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	fivetranInformation := sifflet.FivetranInformation{
 		Host: m.Host.ValueString(),
 	}
 
 	fivetranCreateDto := &sifflet.PublicCreateFivetranSourceV2Dto{
 		Name:                name,
-		Timezone:            &timezone,
 		Type:                sifflet.PublicCreateFivetranSourceV2DtoTypeFIVETRAN,
 		FivetranInformation: &fivetranInformation,
 		Credentials:         m.Credentials.ValueStringPointer(),
@@ -85,14 +84,13 @@ func (m FivetranParametersModel) ToCreateDto(ctx context.Context, name string, t
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m FivetranParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m FivetranParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	fivetranInformation := sifflet.FivetranInformation{
 		Host: m.Host.ValueString(),
 	}
 
 	fivetranUpdateDto := &sifflet.PublicUpdateFivetranSourceV2Dto{
 		Name:                &name,
-		Timezone:            &timezone,
 		Type:                sifflet.PublicUpdateFivetranSourceV2DtoTypeFIVETRAN,
 		FivetranInformation: fivetranInformation,
 		Credentials:         m.Credentials.ValueString(),

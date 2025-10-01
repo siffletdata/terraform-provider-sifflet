@@ -116,7 +116,7 @@ func TestAccSourceV2Basic(t *testing.T) {
 					resource.TestCheckResourceAttr("sifflet_source_v2.test", "parameters.mysql.host", hostId),
 				),
 			},
-			// Test database name and timezone update, should not trigger replacement
+			// Test database name update, should not trigger replacement
 			{
 				Config: baseConfig(credName) + fmt.Sprintf(`
 						resource "sifflet_source_v2" "test" {
@@ -130,12 +130,10 @@ func TestAccSourceV2Basic(t *testing.T) {
 									credentials = sifflet_credentials.test.name
 								}
 							}
-							timezone = "GMT"
 						}
 						`, sourceName, hostId),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_source_v2.test", "parameters.mysql.database", "database_new"),
-					resource.TestCheckResourceAttr("sifflet_source_v2.test", "timezone", "GMT"),
 				),
 				ConfigPlanChecks: resource.ConfigPlanChecks{
 					PreApply: []plancheck.PlanCheck{
@@ -157,7 +155,6 @@ func TestAccSourceV2Basic(t *testing.T) {
 									credentials = sifflet_credentials.test.name
 								}
 							}
-							timezone = "GMT"
 						}
 						`, sourceName, hostId),
 				Check: resource.ComposeTestCheckFunc(
@@ -181,7 +178,6 @@ func TestAccSourceV2Basic(t *testing.T) {
 									credentials = sifflet_credentials.test.name
 								}
 							}
-							timezone = "GMT"
 						}
 						`, sourceName, hostId),
 				Check: resource.ComposeTestCheckFunc(

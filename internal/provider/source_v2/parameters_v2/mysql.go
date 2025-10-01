@@ -106,7 +106,7 @@ func (m MysqlParametersModel) AsParametersModel(ctx context.Context) (Parameters
 	return o, diag.Diagnostics{}
 }
 
-func (m MysqlParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m MysqlParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	mysqlTlsVersion, err := parseMysqlTlsVersion(m.MysqlTlsVersion.ValueString())
 	if err != nil {
 		return sifflet.PublicCreateSourceV2JSONBody{}, diag.Diagnostics{diag.NewErrorDiagnostic("Unable to create source", err.Error())}
@@ -121,7 +121,6 @@ func (m MysqlParametersModel) ToCreateDto(ctx context.Context, name string, time
 	mysqlCreateDto := sifflet.PublicCreateMysqlSourceV2Dto{
 		Name:             name,
 		Type:             sifflet.PublicCreateMysqlSourceV2DtoTypeMYSQL,
-		Timezone:         &timezone,
 		MysqlInformation: &mysqlInformation,
 		Credentials:      m.Credentials.ValueStringPointer(),
 		Schedule:         m.Schedule.ValueStringPointer(),
@@ -136,7 +135,7 @@ func (m MysqlParametersModel) ToCreateDto(ctx context.Context, name string, time
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m MysqlParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m MysqlParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	mysqlTlsVersion, err := parseMysqlTlsVersion(m.MysqlTlsVersion.ValueString())
 	if err != nil {
 		return sifflet.PublicEditSourceV2JSONBody{}, diag.Diagnostics{diag.NewErrorDiagnostic("Unable to create source", err.Error())}
@@ -151,7 +150,6 @@ func (m MysqlParametersModel) ToUpdateDto(ctx context.Context, name string, time
 	mysqlUpdateDto := sifflet.PublicUpdateMysqlSourceV2Dto{
 		Name:             &name,
 		Type:             sifflet.PublicUpdateMysqlSourceV2DtoTypeMYSQL,
-		Timezone:         &timezone,
 		MysqlInformation: mysqlInformation,
 		Credentials:      m.Credentials.ValueString(),
 		Schedule:         m.Schedule.ValueStringPointer(),

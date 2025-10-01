@@ -19,7 +19,6 @@ import (
 type baseSourceV2Model struct {
 	ID         types.String `tfsdk:"id"`
 	Name       types.String `tfsdk:"name"`
-	Timezone   types.String `tfsdk:"timezone"`
 	Parameters types.Object `tfsdk:"parameters"`
 }
 
@@ -35,9 +34,8 @@ var (
 
 func (m baseSourceV2Model) AttributeTypes() map[string]attr.Type {
 	return map[string]attr.Type{
-		"id":       types.StringType,
-		"name":     types.StringType,
-		"timezone": types.StringType,
+		"id":   types.StringType,
+		"name": types.StringType,
 		"parameters": types.ObjectType{
 			AttrTypes: parameters.ParametersModel{}.AttributeTypes(),
 		},
@@ -97,7 +95,6 @@ func (m *baseSourceV2Model) FromDto(ctx context.Context, dto client.SiffletPubli
 	}
 	m.ID = types.StringValue(sourceDto.GetId().String())
 	m.Name = types.StringValue(sourceDto.GetName())
-	m.Timezone = types.StringPointerValue(sourceDto.GetTimezone())
 
 	return diag.Diagnostics{}
 }
@@ -127,7 +124,7 @@ func (m sourceV2Model) ToCreateDto(ctx context.Context) (client.PublicCreateSour
 		return client.PublicCreateSourceV2JSONBody{}, diags
 	}
 
-	createDto, diags := parametersModel.ToCreateDto(ctx, m.Name.ValueString(), m.Timezone.ValueString())
+	createDto, diags := parametersModel.ToCreateDto(ctx, m.Name.ValueString())
 
 	return createDto, diags
 }
@@ -138,7 +135,7 @@ func (m sourceV2Model) ToUpdateDto(ctx context.Context) (client.PublicEditSource
 		return client.PublicEditSourceV2JSONBody{}, diags
 	}
 
-	updateDto, diags := parametersModel.ToUpdateDto(ctx, m.Name.ValueString(), m.Timezone.ValueString())
+	updateDto, diags := parametersModel.ToUpdateDto(ctx, m.Name.ValueString())
 
 	return updateDto, diags
 }

@@ -71,7 +71,7 @@ func (m PostgresqlParametersModel) AsParametersModel(ctx context.Context) (Param
 	return o, diag.Diagnostics{}
 }
 
-func (m PostgresqlParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m PostgresqlParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	postgresqlInformation := sifflet.PostgresqlInformation{
 		Host:     m.Host.ValueString(),
 		Database: m.Database.ValueString(),
@@ -80,7 +80,6 @@ func (m PostgresqlParametersModel) ToCreateDto(ctx context.Context, name string,
 
 	postgresqlCreateDto := &sifflet.PublicCreatePostgresqlSourceV2Dto{
 		Name:                  name,
-		Timezone:              &timezone,
 		Type:                  sifflet.PublicCreatePostgresqlSourceV2DtoTypePOSTGRESQL,
 		PostgresqlInformation: &postgresqlInformation,
 		Credentials:           m.Credentials.ValueStringPointer(),
@@ -96,7 +95,7 @@ func (m PostgresqlParametersModel) ToCreateDto(ctx context.Context, name string,
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m PostgresqlParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m PostgresqlParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	postgresqlInformation := sifflet.PostgresqlInformation{
 		Host:     m.Host.ValueString(),
 		Database: m.Database.ValueString(),
@@ -105,7 +104,6 @@ func (m PostgresqlParametersModel) ToUpdateDto(ctx context.Context, name string,
 
 	postgresqlUpdateDto := &sifflet.PublicUpdatePostgresqlSourceV2Dto{
 		Name:                  &name,
-		Timezone:              &timezone,
 		Type:                  sifflet.PublicUpdatePostgresqlSourceV2DtoTypePOSTGRESQL,
 		PostgresqlInformation: postgresqlInformation,
 		Credentials:           m.Credentials.ValueString(),

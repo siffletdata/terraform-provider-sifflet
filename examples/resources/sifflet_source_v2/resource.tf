@@ -18,8 +18,8 @@ resource "sifflet_source_v2" "example" {
   }
 }
 
-# Example with more complex parameters.
-resource "sifflet_source_v2" "complex" {
+# Example with a schedule.
+resource "sifflet_source_v2" "scheduled" {
   name = "example"
   parameters = {
     snowflake = {
@@ -29,6 +29,4 @@ resource "sifflet_source_v2" "complex" {
       schedule           = "@daily"
     }
   }
-  # The timezone can also be a timezone name, e.g. "Europe/Paris".
-  timezone = "GMT"
 }

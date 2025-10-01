@@ -65,7 +65,7 @@ func (m SynapseParametersModel) AsParametersModel(ctx context.Context) (Paramete
 	return o, diag.Diagnostics{}
 }
 
-func (m SynapseParametersModel) ToCreateDto(ctx context.Context, name string, timezone string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
+func (m SynapseParametersModel) ToCreateDto(ctx context.Context, name string) (sifflet.PublicCreateSourceV2JSONBody, diag.Diagnostics) {
 	synapseInformation := sifflet.SynapseInformation{
 		Host: m.Host.ValueString(),
 		Port: m.Port.ValueInt32(),
@@ -73,7 +73,6 @@ func (m SynapseParametersModel) ToCreateDto(ctx context.Context, name string, ti
 
 	synapseCreateDto := &sifflet.PublicCreateSynapseSourceV2Dto{
 		Name:               name,
-		Timezone:           &timezone,
 		Type:               sifflet.PublicCreateSynapseSourceV2DtoTypeSYNAPSE,
 		SynapseInformation: &synapseInformation,
 		Credentials:        m.Credentials.ValueStringPointer(),
@@ -89,7 +88,7 @@ func (m SynapseParametersModel) ToCreateDto(ctx context.Context, name string, ti
 	return createSourceJsonBody, diag.Diagnostics{}
 }
 
-func (m SynapseParametersModel) ToUpdateDto(ctx context.Context, name string, timezone string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
+func (m SynapseParametersModel) ToUpdateDto(ctx context.Context, name string) (sifflet.PublicEditSourceV2JSONBody, diag.Diagnostics) {
 	synapseInformation := sifflet.SynapseInformation{
 		Host: m.Host.ValueString(),
 		Port: m.Port.ValueInt32(),
@@ -97,7 +96,6 @@ func (m SynapseParametersModel) ToUpdateDto(ctx context.Context, name string, ti
 
 	synapseUpdateDto := &sifflet.PublicUpdateSynapseSourceV2Dto{
 		Name:               &name,
-		Timezone:           &timezone,
 		Type:               sifflet.PublicUpdateSynapseSourceV2DtoTypeSYNAPSE,
 		SynapseInformation: synapseInformation,
 		Credentials:        m.Credentials.ValueString(),
