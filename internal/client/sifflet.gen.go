@@ -14,6 +14,8 @@ import (
 	"strings"
 	"time"
 
+	"gopkg.in/yaml.v2"
+
 	"github.com/oapi-codegen/runtime"
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
@@ -36,6 +38,1402 @@ const (
 	AlertingHookDtoTypeMSTEAMS AlertingHookDtoType = "MS_TEAMS"
 	AlertingHookDtoTypeSLACK   AlertingHookDtoType = "SLACK"
 	AlertingHookDtoTypeWEBHOOK AlertingHookDtoType = "WEBHOOK"
+)
+
+// Defines values for AsCodeAggregationClauseDtoV1Kind.
+const (
+	AsCodeAggregationClauseDtoV1KindAverage           AsCodeAggregationClauseDtoV1Kind = "Average"
+	AsCodeAggregationClauseDtoV1KindCount             AsCodeAggregationClauseDtoV1Kind = "Count"
+	AsCodeAggregationClauseDtoV1KindDistinctCount     AsCodeAggregationClauseDtoV1Kind = "DistinctCount"
+	AsCodeAggregationClauseDtoV1KindMax               AsCodeAggregationClauseDtoV1Kind = "Max"
+	AsCodeAggregationClauseDtoV1KindMin               AsCodeAggregationClauseDtoV1Kind = "Min"
+	AsCodeAggregationClauseDtoV1KindNormalizedAverage AsCodeAggregationClauseDtoV1Kind = "NormalizedAverage"
+	AsCodeAggregationClauseDtoV1KindQuantile          AsCodeAggregationClauseDtoV1Kind = "Quantile"
+	AsCodeAggregationClauseDtoV1KindRange             AsCodeAggregationClauseDtoV1Kind = "Range"
+	AsCodeAggregationClauseDtoV1KindStandardDeviation AsCodeAggregationClauseDtoV1Kind = "StandardDeviation"
+	AsCodeAggregationClauseDtoV1KindSum               AsCodeAggregationClauseDtoV1Kind = "Sum"
+	AsCodeAggregationClauseDtoV1KindVariance          AsCodeAggregationClauseDtoV1Kind = "Variance"
+)
+
+// Defines values for AsCodeAggregationClauseDtoV2Kind.
+const (
+	AsCodeAggregationClauseDtoV2KindAverage           AsCodeAggregationClauseDtoV2Kind = "Average"
+	AsCodeAggregationClauseDtoV2KindCount             AsCodeAggregationClauseDtoV2Kind = "Count"
+	AsCodeAggregationClauseDtoV2KindCountAllRows      AsCodeAggregationClauseDtoV2Kind = "CountAllRows"
+	AsCodeAggregationClauseDtoV2KindDistinctCount     AsCodeAggregationClauseDtoV2Kind = "DistinctCount"
+	AsCodeAggregationClauseDtoV2KindMax               AsCodeAggregationClauseDtoV2Kind = "Max"
+	AsCodeAggregationClauseDtoV2KindMin               AsCodeAggregationClauseDtoV2Kind = "Min"
+	AsCodeAggregationClauseDtoV2KindNormalizedAverage AsCodeAggregationClauseDtoV2Kind = "NormalizedAverage"
+	AsCodeAggregationClauseDtoV2KindQuantile          AsCodeAggregationClauseDtoV2Kind = "Quantile"
+	AsCodeAggregationClauseDtoV2KindStandardDeviation AsCodeAggregationClauseDtoV2Kind = "StandardDeviation"
+	AsCodeAggregationClauseDtoV2KindSum               AsCodeAggregationClauseDtoV2Kind = "Sum"
+	AsCodeAggregationClauseDtoV2KindVariance          AsCodeAggregationClauseDtoV2Kind = "Variance"
+)
+
+// Defines values for AsCodeAlertingHookNotificationDtoKind.
+const (
+	AsCodeAlertingHookNotificationDtoKindEmail          AsCodeAlertingHookNotificationDtoKind = "Email"
+	AsCodeAlertingHookNotificationDtoKindJira           AsCodeAlertingHookNotificationDtoKind = "Jira"
+	AsCodeAlertingHookNotificationDtoKindMicrosoftTeams AsCodeAlertingHookNotificationDtoKind = "MicrosoftTeams"
+	AsCodeAlertingHookNotificationDtoKindServiceNow     AsCodeAlertingHookNotificationDtoKind = "ServiceNow"
+	AsCodeAlertingHookNotificationDtoKindSlack          AsCodeAlertingHookNotificationDtoKind = "Slack"
+	AsCodeAlertingHookNotificationDtoKindWebhook        AsCodeAlertingHookNotificationDtoKind = "Webhook"
+)
+
+// Defines values for AsCodeCalendarReferenceDtoStandardCalendar.
+const (
+	AsCodeCalendarReferenceDtoStandardCalendarBELGIUMPUBLICHOLIDAYS     AsCodeCalendarReferenceDtoStandardCalendar = "BELGIUM_PUBLIC_HOLIDAYS"
+	AsCodeCalendarReferenceDtoStandardCalendarFRANCEPUBLICHOLIDAYS      AsCodeCalendarReferenceDtoStandardCalendar = "FRANCE_PUBLIC_HOLIDAYS"
+	AsCodeCalendarReferenceDtoStandardCalendarGERMANYPUBLICHOLIDAYS     AsCodeCalendarReferenceDtoStandardCalendar = "GERMANY_PUBLIC_HOLIDAYS"
+	AsCodeCalendarReferenceDtoStandardCalendarNETHERLANDSPUBLICHOLIDAYS AsCodeCalendarReferenceDtoStandardCalendar = "NETHERLANDS_PUBLIC_HOLIDAYS"
+	AsCodeCalendarReferenceDtoStandardCalendarSPAINPUBLICHOLIDAYS       AsCodeCalendarReferenceDtoStandardCalendar = "SPAIN_PUBLIC_HOLIDAYS"
+	AsCodeCalendarReferenceDtoStandardCalendarSUNDAYS                   AsCodeCalendarReferenceDtoStandardCalendar = "SUNDAYS"
+	AsCodeCalendarReferenceDtoStandardCalendarUKPUBLICHOLIDAYS          AsCodeCalendarReferenceDtoStandardCalendar = "UK_PUBLIC_HOLIDAYS"
+	AsCodeCalendarReferenceDtoStandardCalendarUSPUBLICHOLIDAYS          AsCodeCalendarReferenceDtoStandardCalendar = "US_PUBLIC_HOLIDAYS"
+	AsCodeCalendarReferenceDtoStandardCalendarWEEKENDS                  AsCodeCalendarReferenceDtoStandardCalendar = "WEEKENDS"
+)
+
+// Defines values for AsCodeCompletenessMonitorParamsDtoKind.
+const (
+	AsCodeCompletenessMonitorParamsDtoKindCompleteness          AsCodeCompletenessMonitorParamsDtoKind = "Completeness"
+	AsCodeCompletenessMonitorParamsDtoKindConditional           AsCodeCompletenessMonitorParamsDtoKind = "Conditional"
+	AsCodeCompletenessMonitorParamsDtoKindCorrelatedMetrics     AsCodeCompletenessMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeCompletenessMonitorParamsDtoKindCustomMetrics         AsCodeCompletenessMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeCompletenessMonitorParamsDtoKindDistribution          AsCodeCompletenessMonitorParamsDtoKind = "Distribution"
+	AsCodeCompletenessMonitorParamsDtoKindDuplicates            AsCodeCompletenessMonitorParamsDtoKind = "Duplicates"
+	AsCodeCompletenessMonitorParamsDtoKindDynamicFieldProfiling AsCodeCompletenessMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeCompletenessMonitorParamsDtoKindDynamicMetrics        AsCodeCompletenessMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeCompletenessMonitorParamsDtoKindFieldDuplicates       AsCodeCompletenessMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeCompletenessMonitorParamsDtoKindFieldFormat           AsCodeCompletenessMonitorParamsDtoKind = "FieldFormat"
+	AsCodeCompletenessMonitorParamsDtoKindFieldInList           AsCodeCompletenessMonitorParamsDtoKind = "FieldInList"
+	AsCodeCompletenessMonitorParamsDtoKindFieldNulls            AsCodeCompletenessMonitorParamsDtoKind = "FieldNulls"
+	AsCodeCompletenessMonitorParamsDtoKindFieldUniqueness       AsCodeCompletenessMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeCompletenessMonitorParamsDtoKindFreshness             AsCodeCompletenessMonitorParamsDtoKind = "Freshness"
+	AsCodeCompletenessMonitorParamsDtoKindMetadataFreshness     AsCodeCompletenessMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeCompletenessMonitorParamsDtoKindMetrics               AsCodeCompletenessMonitorParamsDtoKind = "Metrics"
+	AsCodeCompletenessMonitorParamsDtoKindReferentialIntegrity  AsCodeCompletenessMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeCompletenessMonitorParamsDtoKindRowDuplicates         AsCodeCompletenessMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeCompletenessMonitorParamsDtoKindSchemaChange          AsCodeCompletenessMonitorParamsDtoKind = "SchemaChange"
+	AsCodeCompletenessMonitorParamsDtoKindSql                   AsCodeCompletenessMonitorParamsDtoKind = "Sql"
+	AsCodeCompletenessMonitorParamsDtoKindStaticCompleteness    AsCodeCompletenessMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeCompletenessMonitorParamsDtoKindStaticFieldProfiling  AsCodeCompletenessMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeCompletenessMonitorParamsDtoKindStaticMetrics         AsCodeCompletenessMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeCompletenessMonitorParamsDtoKindValueRange            AsCodeCompletenessMonitorParamsDtoKind = "ValueRange"
+	AsCodeCompletenessMonitorParamsDtoKindVolume                AsCodeCompletenessMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeConditionDtoKind.
+const (
+	AsCodeConditionDtoKindAndGroup            AsCodeConditionDtoKind = "andGroup"
+	AsCodeConditionDtoKindContains            AsCodeConditionDtoKind = "contains"
+	AsCodeConditionDtoKindDateOlderThan       AsCodeConditionDtoKind = "dateOlderThan"
+	AsCodeConditionDtoKindDateYoungerThan     AsCodeConditionDtoKind = "dateYoungerThan"
+	AsCodeConditionDtoKindEquals              AsCodeConditionDtoKind = "equals"
+	AsCodeConditionDtoKindGreaterThan         AsCodeConditionDtoKind = "greaterThan"
+	AsCodeConditionDtoKindGreaterThanOrEquals AsCodeConditionDtoKind = "greaterThanOrEquals"
+	AsCodeConditionDtoKindIsNotNull           AsCodeConditionDtoKind = "isNotNull"
+	AsCodeConditionDtoKindIsNull              AsCodeConditionDtoKind = "isNull"
+	AsCodeConditionDtoKindLessThan            AsCodeConditionDtoKind = "lessThan"
+	AsCodeConditionDtoKindLessThanOrEquals    AsCodeConditionDtoKind = "lessThanOrEquals"
+	AsCodeConditionDtoKindNotContains         AsCodeConditionDtoKind = "notContains"
+	AsCodeConditionDtoKindNotEquals           AsCodeConditionDtoKind = "notEquals"
+	AsCodeConditionDtoKindOrGroup             AsCodeConditionDtoKind = "orGroup"
+)
+
+// Defines values for AsCodeConditionGroupDtoKind.
+const (
+	AsCodeConditionGroupDtoKindAndGroup            AsCodeConditionGroupDtoKind = "andGroup"
+	AsCodeConditionGroupDtoKindContains            AsCodeConditionGroupDtoKind = "contains"
+	AsCodeConditionGroupDtoKindDateOlderThan       AsCodeConditionGroupDtoKind = "dateOlderThan"
+	AsCodeConditionGroupDtoKindDateYoungerThan     AsCodeConditionGroupDtoKind = "dateYoungerThan"
+	AsCodeConditionGroupDtoKindEquals              AsCodeConditionGroupDtoKind = "equals"
+	AsCodeConditionGroupDtoKindGreaterThan         AsCodeConditionGroupDtoKind = "greaterThan"
+	AsCodeConditionGroupDtoKindGreaterThanOrEquals AsCodeConditionGroupDtoKind = "greaterThanOrEquals"
+	AsCodeConditionGroupDtoKindIsNotNull           AsCodeConditionGroupDtoKind = "isNotNull"
+	AsCodeConditionGroupDtoKindIsNull              AsCodeConditionGroupDtoKind = "isNull"
+	AsCodeConditionGroupDtoKindLessThan            AsCodeConditionGroupDtoKind = "lessThan"
+	AsCodeConditionGroupDtoKindLessThanOrEquals    AsCodeConditionGroupDtoKind = "lessThanOrEquals"
+	AsCodeConditionGroupDtoKindNotContains         AsCodeConditionGroupDtoKind = "notContains"
+	AsCodeConditionGroupDtoKindNotEquals           AsCodeConditionGroupDtoKind = "notEquals"
+	AsCodeConditionGroupDtoKindOrGroup             AsCodeConditionGroupDtoKind = "orGroup"
+)
+
+// Defines values for AsCodeConditionalMonitorParamsDtoKind.
+const (
+	AsCodeConditionalMonitorParamsDtoKindCompleteness          AsCodeConditionalMonitorParamsDtoKind = "Completeness"
+	AsCodeConditionalMonitorParamsDtoKindConditional           AsCodeConditionalMonitorParamsDtoKind = "Conditional"
+	AsCodeConditionalMonitorParamsDtoKindCorrelatedMetrics     AsCodeConditionalMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeConditionalMonitorParamsDtoKindCustomMetrics         AsCodeConditionalMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeConditionalMonitorParamsDtoKindDistribution          AsCodeConditionalMonitorParamsDtoKind = "Distribution"
+	AsCodeConditionalMonitorParamsDtoKindDuplicates            AsCodeConditionalMonitorParamsDtoKind = "Duplicates"
+	AsCodeConditionalMonitorParamsDtoKindDynamicFieldProfiling AsCodeConditionalMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeConditionalMonitorParamsDtoKindDynamicMetrics        AsCodeConditionalMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeConditionalMonitorParamsDtoKindFieldDuplicates       AsCodeConditionalMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeConditionalMonitorParamsDtoKindFieldFormat           AsCodeConditionalMonitorParamsDtoKind = "FieldFormat"
+	AsCodeConditionalMonitorParamsDtoKindFieldInList           AsCodeConditionalMonitorParamsDtoKind = "FieldInList"
+	AsCodeConditionalMonitorParamsDtoKindFieldNulls            AsCodeConditionalMonitorParamsDtoKind = "FieldNulls"
+	AsCodeConditionalMonitorParamsDtoKindFieldUniqueness       AsCodeConditionalMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeConditionalMonitorParamsDtoKindFreshness             AsCodeConditionalMonitorParamsDtoKind = "Freshness"
+	AsCodeConditionalMonitorParamsDtoKindMetadataFreshness     AsCodeConditionalMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeConditionalMonitorParamsDtoKindMetrics               AsCodeConditionalMonitorParamsDtoKind = "Metrics"
+	AsCodeConditionalMonitorParamsDtoKindReferentialIntegrity  AsCodeConditionalMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeConditionalMonitorParamsDtoKindRowDuplicates         AsCodeConditionalMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeConditionalMonitorParamsDtoKindSchemaChange          AsCodeConditionalMonitorParamsDtoKind = "SchemaChange"
+	AsCodeConditionalMonitorParamsDtoKindSql                   AsCodeConditionalMonitorParamsDtoKind = "Sql"
+	AsCodeConditionalMonitorParamsDtoKindStaticCompleteness    AsCodeConditionalMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeConditionalMonitorParamsDtoKindStaticFieldProfiling  AsCodeConditionalMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeConditionalMonitorParamsDtoKindStaticMetrics         AsCodeConditionalMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeConditionalMonitorParamsDtoKindValueRange            AsCodeConditionalMonitorParamsDtoKind = "ValueRange"
+	AsCodeConditionalMonitorParamsDtoKindVolume                AsCodeConditionalMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeCorrelatedMetricsMonitorParamsDtoKind.
+const (
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindCompleteness          AsCodeCorrelatedMetricsMonitorParamsDtoKind = "Completeness"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindConditional           AsCodeCorrelatedMetricsMonitorParamsDtoKind = "Conditional"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindCorrelatedMetrics     AsCodeCorrelatedMetricsMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindCustomMetrics         AsCodeCorrelatedMetricsMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindDistribution          AsCodeCorrelatedMetricsMonitorParamsDtoKind = "Distribution"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindDuplicates            AsCodeCorrelatedMetricsMonitorParamsDtoKind = "Duplicates"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindDynamicFieldProfiling AsCodeCorrelatedMetricsMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindDynamicMetrics        AsCodeCorrelatedMetricsMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindFieldDuplicates       AsCodeCorrelatedMetricsMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindFieldFormat           AsCodeCorrelatedMetricsMonitorParamsDtoKind = "FieldFormat"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindFieldInList           AsCodeCorrelatedMetricsMonitorParamsDtoKind = "FieldInList"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindFieldNulls            AsCodeCorrelatedMetricsMonitorParamsDtoKind = "FieldNulls"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindFieldUniqueness       AsCodeCorrelatedMetricsMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindFreshness             AsCodeCorrelatedMetricsMonitorParamsDtoKind = "Freshness"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindMetadataFreshness     AsCodeCorrelatedMetricsMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindMetrics               AsCodeCorrelatedMetricsMonitorParamsDtoKind = "Metrics"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindReferentialIntegrity  AsCodeCorrelatedMetricsMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindRowDuplicates         AsCodeCorrelatedMetricsMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindSchemaChange          AsCodeCorrelatedMetricsMonitorParamsDtoKind = "SchemaChange"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindSql                   AsCodeCorrelatedMetricsMonitorParamsDtoKind = "Sql"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindStaticCompleteness    AsCodeCorrelatedMetricsMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindStaticFieldProfiling  AsCodeCorrelatedMetricsMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindStaticMetrics         AsCodeCorrelatedMetricsMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindValueRange            AsCodeCorrelatedMetricsMonitorParamsDtoKind = "ValueRange"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindVolume                AsCodeCorrelatedMetricsMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeCustomMetadataEntryLabelValueReferenceDtoKind.
+const (
+	AsCodeCustomMetadataEntryLabelValueReferenceDtoKindLabel  AsCodeCustomMetadataEntryLabelValueReferenceDtoKind = "Label"
+	AsCodeCustomMetadataEntryLabelValueReferenceDtoKindString AsCodeCustomMetadataEntryLabelValueReferenceDtoKind = "String"
+	AsCodeCustomMetadataEntryLabelValueReferenceDtoKindUser   AsCodeCustomMetadataEntryLabelValueReferenceDtoKind = "User"
+)
+
+// Defines values for AsCodeCustomMetadataEntryStringValueReferenceDtoKind.
+const (
+	AsCodeCustomMetadataEntryStringValueReferenceDtoKindLabel  AsCodeCustomMetadataEntryStringValueReferenceDtoKind = "Label"
+	AsCodeCustomMetadataEntryStringValueReferenceDtoKindString AsCodeCustomMetadataEntryStringValueReferenceDtoKind = "String"
+	AsCodeCustomMetadataEntryStringValueReferenceDtoKindUser   AsCodeCustomMetadataEntryStringValueReferenceDtoKind = "User"
+)
+
+// Defines values for AsCodeCustomMetadataEntryUserValueReferenceDtoKind.
+const (
+	AsCodeCustomMetadataEntryUserValueReferenceDtoKindLabel  AsCodeCustomMetadataEntryUserValueReferenceDtoKind = "Label"
+	AsCodeCustomMetadataEntryUserValueReferenceDtoKindString AsCodeCustomMetadataEntryUserValueReferenceDtoKind = "String"
+	AsCodeCustomMetadataEntryUserValueReferenceDtoKindUser   AsCodeCustomMetadataEntryUserValueReferenceDtoKind = "User"
+)
+
+// Defines values for AsCodeCustomMetadataEntryValueReferenceDtoKind.
+const (
+	AsCodeCustomMetadataEntryValueReferenceDtoKindLabel  AsCodeCustomMetadataEntryValueReferenceDtoKind = "Label"
+	AsCodeCustomMetadataEntryValueReferenceDtoKindString AsCodeCustomMetadataEntryValueReferenceDtoKind = "String"
+	AsCodeCustomMetadataEntryValueReferenceDtoKindUser   AsCodeCustomMetadataEntryValueReferenceDtoKind = "User"
+)
+
+// Defines values for AsCodeCustomMetricsMonitorParamsDtoV1Kind.
+const (
+	AsCodeCustomMetricsMonitorParamsDtoV1KindCompleteness          AsCodeCustomMetricsMonitorParamsDtoV1Kind = "Completeness"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindConditional           AsCodeCustomMetricsMonitorParamsDtoV1Kind = "Conditional"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindCorrelatedMetrics     AsCodeCustomMetricsMonitorParamsDtoV1Kind = "CorrelatedMetrics"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindCustomMetrics         AsCodeCustomMetricsMonitorParamsDtoV1Kind = "CustomMetrics"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindDistribution          AsCodeCustomMetricsMonitorParamsDtoV1Kind = "Distribution"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindDuplicates            AsCodeCustomMetricsMonitorParamsDtoV1Kind = "Duplicates"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindDynamicFieldProfiling AsCodeCustomMetricsMonitorParamsDtoV1Kind = "DynamicFieldProfiling"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindDynamicMetrics        AsCodeCustomMetricsMonitorParamsDtoV1Kind = "DynamicMetrics"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindFieldDuplicates       AsCodeCustomMetricsMonitorParamsDtoV1Kind = "FieldDuplicates"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindFieldFormat           AsCodeCustomMetricsMonitorParamsDtoV1Kind = "FieldFormat"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindFieldInList           AsCodeCustomMetricsMonitorParamsDtoV1Kind = "FieldInList"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindFieldNulls            AsCodeCustomMetricsMonitorParamsDtoV1Kind = "FieldNulls"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindFieldUniqueness       AsCodeCustomMetricsMonitorParamsDtoV1Kind = "FieldUniqueness"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindFreshness             AsCodeCustomMetricsMonitorParamsDtoV1Kind = "Freshness"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindMetadataFreshness     AsCodeCustomMetricsMonitorParamsDtoV1Kind = "MetadataFreshness"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindMetrics               AsCodeCustomMetricsMonitorParamsDtoV1Kind = "Metrics"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindReferentialIntegrity  AsCodeCustomMetricsMonitorParamsDtoV1Kind = "ReferentialIntegrity"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindRowDuplicates         AsCodeCustomMetricsMonitorParamsDtoV1Kind = "RowDuplicates"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindSchemaChange          AsCodeCustomMetricsMonitorParamsDtoV1Kind = "SchemaChange"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindSql                   AsCodeCustomMetricsMonitorParamsDtoV1Kind = "Sql"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindStaticCompleteness    AsCodeCustomMetricsMonitorParamsDtoV1Kind = "StaticCompleteness"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeCustomMetricsMonitorParamsDtoV1Kind = "StaticFieldProfiling"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindStaticMetrics         AsCodeCustomMetricsMonitorParamsDtoV1Kind = "StaticMetrics"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindValueRange            AsCodeCustomMetricsMonitorParamsDtoV1Kind = "ValueRange"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindVolume                AsCodeCustomMetricsMonitorParamsDtoV1Kind = "Volume"
+)
+
+// Defines values for AsCodeCustomMetricsMonitorParamsDtoV2Kind.
+const (
+	AsCodeCustomMetricsMonitorParamsDtoV2KindCompleteness          AsCodeCustomMetricsMonitorParamsDtoV2Kind = "Completeness"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindConditional           AsCodeCustomMetricsMonitorParamsDtoV2Kind = "Conditional"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindCorrelatedMetrics     AsCodeCustomMetricsMonitorParamsDtoV2Kind = "CorrelatedMetrics"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindCustomMetrics         AsCodeCustomMetricsMonitorParamsDtoV2Kind = "CustomMetrics"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindDistribution          AsCodeCustomMetricsMonitorParamsDtoV2Kind = "Distribution"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindDuplicates            AsCodeCustomMetricsMonitorParamsDtoV2Kind = "Duplicates"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindDynamicFieldProfiling AsCodeCustomMetricsMonitorParamsDtoV2Kind = "DynamicFieldProfiling"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindDynamicMetrics        AsCodeCustomMetricsMonitorParamsDtoV2Kind = "DynamicMetrics"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindFieldDuplicates       AsCodeCustomMetricsMonitorParamsDtoV2Kind = "FieldDuplicates"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindFieldFormat           AsCodeCustomMetricsMonitorParamsDtoV2Kind = "FieldFormat"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindFieldInList           AsCodeCustomMetricsMonitorParamsDtoV2Kind = "FieldInList"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindFieldNulls            AsCodeCustomMetricsMonitorParamsDtoV2Kind = "FieldNulls"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindFieldUniqueness       AsCodeCustomMetricsMonitorParamsDtoV2Kind = "FieldUniqueness"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindFreshness             AsCodeCustomMetricsMonitorParamsDtoV2Kind = "Freshness"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindMetadataFreshness     AsCodeCustomMetricsMonitorParamsDtoV2Kind = "MetadataFreshness"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindMetrics               AsCodeCustomMetricsMonitorParamsDtoV2Kind = "Metrics"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindReferentialIntegrity  AsCodeCustomMetricsMonitorParamsDtoV2Kind = "ReferentialIntegrity"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindRowDuplicates         AsCodeCustomMetricsMonitorParamsDtoV2Kind = "RowDuplicates"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindSchemaChange          AsCodeCustomMetricsMonitorParamsDtoV2Kind = "SchemaChange"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindSql                   AsCodeCustomMetricsMonitorParamsDtoV2Kind = "Sql"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindStaticCompleteness    AsCodeCustomMetricsMonitorParamsDtoV2Kind = "StaticCompleteness"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeCustomMetricsMonitorParamsDtoV2Kind = "StaticFieldProfiling"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindStaticMetrics         AsCodeCustomMetricsMonitorParamsDtoV2Kind = "StaticMetrics"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindValueRange            AsCodeCustomMetricsMonitorParamsDtoV2Kind = "ValueRange"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindVolume                AsCodeCustomMetricsMonitorParamsDtoV2Kind = "Volume"
+)
+
+// Defines values for AsCodeDateConditionDtoKind.
+const (
+	AsCodeDateConditionDtoKindAndGroup            AsCodeDateConditionDtoKind = "andGroup"
+	AsCodeDateConditionDtoKindContains            AsCodeDateConditionDtoKind = "contains"
+	AsCodeDateConditionDtoKindDateOlderThan       AsCodeDateConditionDtoKind = "dateOlderThan"
+	AsCodeDateConditionDtoKindDateYoungerThan     AsCodeDateConditionDtoKind = "dateYoungerThan"
+	AsCodeDateConditionDtoKindEquals              AsCodeDateConditionDtoKind = "equals"
+	AsCodeDateConditionDtoKindGreaterThan         AsCodeDateConditionDtoKind = "greaterThan"
+	AsCodeDateConditionDtoKindGreaterThanOrEquals AsCodeDateConditionDtoKind = "greaterThanOrEquals"
+	AsCodeDateConditionDtoKindIsNotNull           AsCodeDateConditionDtoKind = "isNotNull"
+	AsCodeDateConditionDtoKindIsNull              AsCodeDateConditionDtoKind = "isNull"
+	AsCodeDateConditionDtoKindLessThan            AsCodeDateConditionDtoKind = "lessThan"
+	AsCodeDateConditionDtoKindLessThanOrEquals    AsCodeDateConditionDtoKind = "lessThanOrEquals"
+	AsCodeDateConditionDtoKindNotContains         AsCodeDateConditionDtoKind = "notContains"
+	AsCodeDateConditionDtoKindNotEquals           AsCodeDateConditionDtoKind = "notEquals"
+	AsCodeDateConditionDtoKindOrGroup             AsCodeDateConditionDtoKind = "orGroup"
+)
+
+// Defines values for AsCodeDistributionMonitorParamsDtoKind.
+const (
+	AsCodeDistributionMonitorParamsDtoKindCompleteness          AsCodeDistributionMonitorParamsDtoKind = "Completeness"
+	AsCodeDistributionMonitorParamsDtoKindConditional           AsCodeDistributionMonitorParamsDtoKind = "Conditional"
+	AsCodeDistributionMonitorParamsDtoKindCorrelatedMetrics     AsCodeDistributionMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeDistributionMonitorParamsDtoKindCustomMetrics         AsCodeDistributionMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeDistributionMonitorParamsDtoKindDistribution          AsCodeDistributionMonitorParamsDtoKind = "Distribution"
+	AsCodeDistributionMonitorParamsDtoKindDuplicates            AsCodeDistributionMonitorParamsDtoKind = "Duplicates"
+	AsCodeDistributionMonitorParamsDtoKindDynamicFieldProfiling AsCodeDistributionMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeDistributionMonitorParamsDtoKindDynamicMetrics        AsCodeDistributionMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeDistributionMonitorParamsDtoKindFieldDuplicates       AsCodeDistributionMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeDistributionMonitorParamsDtoKindFieldFormat           AsCodeDistributionMonitorParamsDtoKind = "FieldFormat"
+	AsCodeDistributionMonitorParamsDtoKindFieldInList           AsCodeDistributionMonitorParamsDtoKind = "FieldInList"
+	AsCodeDistributionMonitorParamsDtoKindFieldNulls            AsCodeDistributionMonitorParamsDtoKind = "FieldNulls"
+	AsCodeDistributionMonitorParamsDtoKindFieldUniqueness       AsCodeDistributionMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeDistributionMonitorParamsDtoKindFreshness             AsCodeDistributionMonitorParamsDtoKind = "Freshness"
+	AsCodeDistributionMonitorParamsDtoKindMetadataFreshness     AsCodeDistributionMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeDistributionMonitorParamsDtoKindMetrics               AsCodeDistributionMonitorParamsDtoKind = "Metrics"
+	AsCodeDistributionMonitorParamsDtoKindReferentialIntegrity  AsCodeDistributionMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeDistributionMonitorParamsDtoKindRowDuplicates         AsCodeDistributionMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeDistributionMonitorParamsDtoKindSchemaChange          AsCodeDistributionMonitorParamsDtoKind = "SchemaChange"
+	AsCodeDistributionMonitorParamsDtoKindSql                   AsCodeDistributionMonitorParamsDtoKind = "Sql"
+	AsCodeDistributionMonitorParamsDtoKindStaticCompleteness    AsCodeDistributionMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeDistributionMonitorParamsDtoKindStaticFieldProfiling  AsCodeDistributionMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeDistributionMonitorParamsDtoKindStaticMetrics         AsCodeDistributionMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeDistributionMonitorParamsDtoKindValueRange            AsCodeDistributionMonitorParamsDtoKind = "ValueRange"
+	AsCodeDistributionMonitorParamsDtoKindVolume                AsCodeDistributionMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeDistributionReferenceDtoKind.
+const (
+	AsCodeDistributionReferenceDtoKindFixed   AsCodeDistributionReferenceDtoKind = "Fixed"
+	AsCodeDistributionReferenceDtoKindRolling AsCodeDistributionReferenceDtoKind = "Rolling"
+)
+
+// Defines values for AsCodeDuplicatesMonitorParamsDtoKind.
+const (
+	AsCodeDuplicatesMonitorParamsDtoKindCompleteness          AsCodeDuplicatesMonitorParamsDtoKind = "Completeness"
+	AsCodeDuplicatesMonitorParamsDtoKindConditional           AsCodeDuplicatesMonitorParamsDtoKind = "Conditional"
+	AsCodeDuplicatesMonitorParamsDtoKindCorrelatedMetrics     AsCodeDuplicatesMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeDuplicatesMonitorParamsDtoKindCustomMetrics         AsCodeDuplicatesMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeDuplicatesMonitorParamsDtoKindDistribution          AsCodeDuplicatesMonitorParamsDtoKind = "Distribution"
+	AsCodeDuplicatesMonitorParamsDtoKindDuplicates            AsCodeDuplicatesMonitorParamsDtoKind = "Duplicates"
+	AsCodeDuplicatesMonitorParamsDtoKindDynamicFieldProfiling AsCodeDuplicatesMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeDuplicatesMonitorParamsDtoKindDynamicMetrics        AsCodeDuplicatesMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeDuplicatesMonitorParamsDtoKindFieldDuplicates       AsCodeDuplicatesMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeDuplicatesMonitorParamsDtoKindFieldFormat           AsCodeDuplicatesMonitorParamsDtoKind = "FieldFormat"
+	AsCodeDuplicatesMonitorParamsDtoKindFieldInList           AsCodeDuplicatesMonitorParamsDtoKind = "FieldInList"
+	AsCodeDuplicatesMonitorParamsDtoKindFieldNulls            AsCodeDuplicatesMonitorParamsDtoKind = "FieldNulls"
+	AsCodeDuplicatesMonitorParamsDtoKindFieldUniqueness       AsCodeDuplicatesMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeDuplicatesMonitorParamsDtoKindFreshness             AsCodeDuplicatesMonitorParamsDtoKind = "Freshness"
+	AsCodeDuplicatesMonitorParamsDtoKindMetadataFreshness     AsCodeDuplicatesMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeDuplicatesMonitorParamsDtoKindMetrics               AsCodeDuplicatesMonitorParamsDtoKind = "Metrics"
+	AsCodeDuplicatesMonitorParamsDtoKindReferentialIntegrity  AsCodeDuplicatesMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeDuplicatesMonitorParamsDtoKindRowDuplicates         AsCodeDuplicatesMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeDuplicatesMonitorParamsDtoKindSchemaChange          AsCodeDuplicatesMonitorParamsDtoKind = "SchemaChange"
+	AsCodeDuplicatesMonitorParamsDtoKindSql                   AsCodeDuplicatesMonitorParamsDtoKind = "Sql"
+	AsCodeDuplicatesMonitorParamsDtoKindStaticCompleteness    AsCodeDuplicatesMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeDuplicatesMonitorParamsDtoKindStaticFieldProfiling  AsCodeDuplicatesMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeDuplicatesMonitorParamsDtoKindStaticMetrics         AsCodeDuplicatesMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeDuplicatesMonitorParamsDtoKindValueRange            AsCodeDuplicatesMonitorParamsDtoKind = "ValueRange"
+	AsCodeDuplicatesMonitorParamsDtoKindVolume                AsCodeDuplicatesMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeDurationDtoTimeUnit.
+const (
+	Days    AsCodeDurationDtoTimeUnit = "days"
+	Hours   AsCodeDurationDtoTimeUnit = "hours"
+	Minutes AsCodeDurationDtoTimeUnit = "minutes"
+)
+
+// Defines values for AsCodeDynamicFieldProfilingMonitorParamsDtoKind.
+const (
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindCompleteness          AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "Completeness"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindConditional           AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "Conditional"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindCorrelatedMetrics     AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindCustomMetrics         AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindDistribution          AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "Distribution"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindDuplicates            AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "Duplicates"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindDynamicFieldProfiling AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindDynamicMetrics        AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindFieldDuplicates       AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindFieldFormat           AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "FieldFormat"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindFieldInList           AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "FieldInList"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindFieldNulls            AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "FieldNulls"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindFieldUniqueness       AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindFreshness             AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "Freshness"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindMetadataFreshness     AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindMetrics               AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "Metrics"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindReferentialIntegrity  AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindRowDuplicates         AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindSchemaChange          AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "SchemaChange"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindSql                   AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "Sql"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindStaticCompleteness    AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindStaticFieldProfiling  AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindStaticMetrics         AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindValueRange            AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "ValueRange"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindVolume                AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeDynamicFreshnessThresholdDtoKind.
+const (
+	AsCodeDynamicFreshnessThresholdDtoKindDynamic AsCodeDynamicFreshnessThresholdDtoKind = "Dynamic"
+	AsCodeDynamicFreshnessThresholdDtoKindStatic  AsCodeDynamicFreshnessThresholdDtoKind = "Static"
+)
+
+// Defines values for AsCodeDynamicMetricMonitorParamsDtoKind.
+const (
+	AsCodeDynamicMetricMonitorParamsDtoKindCompleteness          AsCodeDynamicMetricMonitorParamsDtoKind = "Completeness"
+	AsCodeDynamicMetricMonitorParamsDtoKindConditional           AsCodeDynamicMetricMonitorParamsDtoKind = "Conditional"
+	AsCodeDynamicMetricMonitorParamsDtoKindCorrelatedMetrics     AsCodeDynamicMetricMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeDynamicMetricMonitorParamsDtoKindCustomMetrics         AsCodeDynamicMetricMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeDynamicMetricMonitorParamsDtoKindDistribution          AsCodeDynamicMetricMonitorParamsDtoKind = "Distribution"
+	AsCodeDynamicMetricMonitorParamsDtoKindDuplicates            AsCodeDynamicMetricMonitorParamsDtoKind = "Duplicates"
+	AsCodeDynamicMetricMonitorParamsDtoKindDynamicFieldProfiling AsCodeDynamicMetricMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeDynamicMetricMonitorParamsDtoKindDynamicMetrics        AsCodeDynamicMetricMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeDynamicMetricMonitorParamsDtoKindFieldDuplicates       AsCodeDynamicMetricMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeDynamicMetricMonitorParamsDtoKindFieldFormat           AsCodeDynamicMetricMonitorParamsDtoKind = "FieldFormat"
+	AsCodeDynamicMetricMonitorParamsDtoKindFieldInList           AsCodeDynamicMetricMonitorParamsDtoKind = "FieldInList"
+	AsCodeDynamicMetricMonitorParamsDtoKindFieldNulls            AsCodeDynamicMetricMonitorParamsDtoKind = "FieldNulls"
+	AsCodeDynamicMetricMonitorParamsDtoKindFieldUniqueness       AsCodeDynamicMetricMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeDynamicMetricMonitorParamsDtoKindFreshness             AsCodeDynamicMetricMonitorParamsDtoKind = "Freshness"
+	AsCodeDynamicMetricMonitorParamsDtoKindMetadataFreshness     AsCodeDynamicMetricMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeDynamicMetricMonitorParamsDtoKindMetrics               AsCodeDynamicMetricMonitorParamsDtoKind = "Metrics"
+	AsCodeDynamicMetricMonitorParamsDtoKindReferentialIntegrity  AsCodeDynamicMetricMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeDynamicMetricMonitorParamsDtoKindRowDuplicates         AsCodeDynamicMetricMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeDynamicMetricMonitorParamsDtoKindSchemaChange          AsCodeDynamicMetricMonitorParamsDtoKind = "SchemaChange"
+	AsCodeDynamicMetricMonitorParamsDtoKindSql                   AsCodeDynamicMetricMonitorParamsDtoKind = "Sql"
+	AsCodeDynamicMetricMonitorParamsDtoKindStaticCompleteness    AsCodeDynamicMetricMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeDynamicMetricMonitorParamsDtoKindStaticFieldProfiling  AsCodeDynamicMetricMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeDynamicMetricMonitorParamsDtoKindStaticMetrics         AsCodeDynamicMetricMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeDynamicMetricMonitorParamsDtoKindValueRange            AsCodeDynamicMetricMonitorParamsDtoKind = "ValueRange"
+	AsCodeDynamicMetricMonitorParamsDtoKindVolume                AsCodeDynamicMetricMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeDynamicThresholdDtoV1Bounds.
+const (
+	AsCodeDynamicThresholdDtoV1BoundsMax       AsCodeDynamicThresholdDtoV1Bounds = "Max"
+	AsCodeDynamicThresholdDtoV1BoundsMin       AsCodeDynamicThresholdDtoV1Bounds = "Min"
+	AsCodeDynamicThresholdDtoV1BoundsMinAndMax AsCodeDynamicThresholdDtoV1Bounds = "MinAndMax"
+)
+
+// Defines values for AsCodeDynamicThresholdDtoV2Bounds.
+const (
+	AsCodeDynamicThresholdDtoV2BoundsMax       AsCodeDynamicThresholdDtoV2Bounds = "Max"
+	AsCodeDynamicThresholdDtoV2BoundsMin       AsCodeDynamicThresholdDtoV2Bounds = "Min"
+	AsCodeDynamicThresholdDtoV2BoundsMinAndMax AsCodeDynamicThresholdDtoV2Bounds = "MinAndMax"
+)
+
+// Defines values for AsCodeDynamicThresholdDtoV2Kind.
+const (
+	AsCodeDynamicThresholdDtoV2KindDynamic AsCodeDynamicThresholdDtoV2Kind = "Dynamic"
+	AsCodeDynamicThresholdDtoV2KindStatic  AsCodeDynamicThresholdDtoV2Kind = "Static"
+)
+
+// Defines values for AsCodeDynamicThresholdDtoV2ValueMode.
+const (
+	AsCodeDynamicThresholdDtoV2ValueModeCount      AsCodeDynamicThresholdDtoV2ValueMode = "Count"
+	AsCodeDynamicThresholdDtoV2ValueModePercentage AsCodeDynamicThresholdDtoV2ValueMode = "Percentage"
+)
+
+// Defines values for AsCodeEqualityJoinConditionDtoKind.
+const (
+	AsCodeEqualityJoinConditionDtoKindEquality AsCodeEqualityJoinConditionDtoKind = "Equality"
+)
+
+// Defines values for AsCodeExpressionDtoKind.
+const (
+	AsCodeExpressionDtoKindField AsCodeExpressionDtoKind = "field"
+	AsCodeExpressionDtoKindValue AsCodeExpressionDtoKind = "value"
+)
+
+// Defines values for AsCodeFieldDuplicatesMonitorParamsDtoKind.
+const (
+	AsCodeFieldDuplicatesMonitorParamsDtoKindCompleteness          AsCodeFieldDuplicatesMonitorParamsDtoKind = "Completeness"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindConditional           AsCodeFieldDuplicatesMonitorParamsDtoKind = "Conditional"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindCorrelatedMetrics     AsCodeFieldDuplicatesMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindCustomMetrics         AsCodeFieldDuplicatesMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindDistribution          AsCodeFieldDuplicatesMonitorParamsDtoKind = "Distribution"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindDuplicates            AsCodeFieldDuplicatesMonitorParamsDtoKind = "Duplicates"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindDynamicFieldProfiling AsCodeFieldDuplicatesMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindDynamicMetrics        AsCodeFieldDuplicatesMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindFieldDuplicates       AsCodeFieldDuplicatesMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindFieldFormat           AsCodeFieldDuplicatesMonitorParamsDtoKind = "FieldFormat"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindFieldInList           AsCodeFieldDuplicatesMonitorParamsDtoKind = "FieldInList"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindFieldNulls            AsCodeFieldDuplicatesMonitorParamsDtoKind = "FieldNulls"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindFieldUniqueness       AsCodeFieldDuplicatesMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindFreshness             AsCodeFieldDuplicatesMonitorParamsDtoKind = "Freshness"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindMetadataFreshness     AsCodeFieldDuplicatesMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindMetrics               AsCodeFieldDuplicatesMonitorParamsDtoKind = "Metrics"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindReferentialIntegrity  AsCodeFieldDuplicatesMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindRowDuplicates         AsCodeFieldDuplicatesMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindSchemaChange          AsCodeFieldDuplicatesMonitorParamsDtoKind = "SchemaChange"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindSql                   AsCodeFieldDuplicatesMonitorParamsDtoKind = "Sql"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindStaticCompleteness    AsCodeFieldDuplicatesMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindStaticFieldProfiling  AsCodeFieldDuplicatesMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindStaticMetrics         AsCodeFieldDuplicatesMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindValueRange            AsCodeFieldDuplicatesMonitorParamsDtoKind = "ValueRange"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindVolume                AsCodeFieldDuplicatesMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeFieldExpressionDtoKind.
+const (
+	AsCodeFieldExpressionDtoKindField AsCodeFieldExpressionDtoKind = "field"
+	AsCodeFieldExpressionDtoKindValue AsCodeFieldExpressionDtoKind = "value"
+)
+
+// Defines values for AsCodeFieldFormatMonitorParamsDtoV1Kind.
+const (
+	AsCodeFieldFormatMonitorParamsDtoV1KindCompleteness          AsCodeFieldFormatMonitorParamsDtoV1Kind = "Completeness"
+	AsCodeFieldFormatMonitorParamsDtoV1KindConditional           AsCodeFieldFormatMonitorParamsDtoV1Kind = "Conditional"
+	AsCodeFieldFormatMonitorParamsDtoV1KindCorrelatedMetrics     AsCodeFieldFormatMonitorParamsDtoV1Kind = "CorrelatedMetrics"
+	AsCodeFieldFormatMonitorParamsDtoV1KindCustomMetrics         AsCodeFieldFormatMonitorParamsDtoV1Kind = "CustomMetrics"
+	AsCodeFieldFormatMonitorParamsDtoV1KindDistribution          AsCodeFieldFormatMonitorParamsDtoV1Kind = "Distribution"
+	AsCodeFieldFormatMonitorParamsDtoV1KindDuplicates            AsCodeFieldFormatMonitorParamsDtoV1Kind = "Duplicates"
+	AsCodeFieldFormatMonitorParamsDtoV1KindDynamicFieldProfiling AsCodeFieldFormatMonitorParamsDtoV1Kind = "DynamicFieldProfiling"
+	AsCodeFieldFormatMonitorParamsDtoV1KindDynamicMetrics        AsCodeFieldFormatMonitorParamsDtoV1Kind = "DynamicMetrics"
+	AsCodeFieldFormatMonitorParamsDtoV1KindFieldDuplicates       AsCodeFieldFormatMonitorParamsDtoV1Kind = "FieldDuplicates"
+	AsCodeFieldFormatMonitorParamsDtoV1KindFieldFormat           AsCodeFieldFormatMonitorParamsDtoV1Kind = "FieldFormat"
+	AsCodeFieldFormatMonitorParamsDtoV1KindFieldInList           AsCodeFieldFormatMonitorParamsDtoV1Kind = "FieldInList"
+	AsCodeFieldFormatMonitorParamsDtoV1KindFieldNulls            AsCodeFieldFormatMonitorParamsDtoV1Kind = "FieldNulls"
+	AsCodeFieldFormatMonitorParamsDtoV1KindFieldUniqueness       AsCodeFieldFormatMonitorParamsDtoV1Kind = "FieldUniqueness"
+	AsCodeFieldFormatMonitorParamsDtoV1KindFreshness             AsCodeFieldFormatMonitorParamsDtoV1Kind = "Freshness"
+	AsCodeFieldFormatMonitorParamsDtoV1KindMetadataFreshness     AsCodeFieldFormatMonitorParamsDtoV1Kind = "MetadataFreshness"
+	AsCodeFieldFormatMonitorParamsDtoV1KindMetrics               AsCodeFieldFormatMonitorParamsDtoV1Kind = "Metrics"
+	AsCodeFieldFormatMonitorParamsDtoV1KindReferentialIntegrity  AsCodeFieldFormatMonitorParamsDtoV1Kind = "ReferentialIntegrity"
+	AsCodeFieldFormatMonitorParamsDtoV1KindRowDuplicates         AsCodeFieldFormatMonitorParamsDtoV1Kind = "RowDuplicates"
+	AsCodeFieldFormatMonitorParamsDtoV1KindSchemaChange          AsCodeFieldFormatMonitorParamsDtoV1Kind = "SchemaChange"
+	AsCodeFieldFormatMonitorParamsDtoV1KindSql                   AsCodeFieldFormatMonitorParamsDtoV1Kind = "Sql"
+	AsCodeFieldFormatMonitorParamsDtoV1KindStaticCompleteness    AsCodeFieldFormatMonitorParamsDtoV1Kind = "StaticCompleteness"
+	AsCodeFieldFormatMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeFieldFormatMonitorParamsDtoV1Kind = "StaticFieldProfiling"
+	AsCodeFieldFormatMonitorParamsDtoV1KindStaticMetrics         AsCodeFieldFormatMonitorParamsDtoV1Kind = "StaticMetrics"
+	AsCodeFieldFormatMonitorParamsDtoV1KindValueRange            AsCodeFieldFormatMonitorParamsDtoV1Kind = "ValueRange"
+	AsCodeFieldFormatMonitorParamsDtoV1KindVolume                AsCodeFieldFormatMonitorParamsDtoV1Kind = "Volume"
+)
+
+// Defines values for AsCodeFieldFormatMonitorParamsDtoV2Kind.
+const (
+	AsCodeFieldFormatMonitorParamsDtoV2KindCompleteness          AsCodeFieldFormatMonitorParamsDtoV2Kind = "Completeness"
+	AsCodeFieldFormatMonitorParamsDtoV2KindConditional           AsCodeFieldFormatMonitorParamsDtoV2Kind = "Conditional"
+	AsCodeFieldFormatMonitorParamsDtoV2KindCorrelatedMetrics     AsCodeFieldFormatMonitorParamsDtoV2Kind = "CorrelatedMetrics"
+	AsCodeFieldFormatMonitorParamsDtoV2KindCustomMetrics         AsCodeFieldFormatMonitorParamsDtoV2Kind = "CustomMetrics"
+	AsCodeFieldFormatMonitorParamsDtoV2KindDistribution          AsCodeFieldFormatMonitorParamsDtoV2Kind = "Distribution"
+	AsCodeFieldFormatMonitorParamsDtoV2KindDuplicates            AsCodeFieldFormatMonitorParamsDtoV2Kind = "Duplicates"
+	AsCodeFieldFormatMonitorParamsDtoV2KindDynamicFieldProfiling AsCodeFieldFormatMonitorParamsDtoV2Kind = "DynamicFieldProfiling"
+	AsCodeFieldFormatMonitorParamsDtoV2KindDynamicMetrics        AsCodeFieldFormatMonitorParamsDtoV2Kind = "DynamicMetrics"
+	AsCodeFieldFormatMonitorParamsDtoV2KindFieldDuplicates       AsCodeFieldFormatMonitorParamsDtoV2Kind = "FieldDuplicates"
+	AsCodeFieldFormatMonitorParamsDtoV2KindFieldFormat           AsCodeFieldFormatMonitorParamsDtoV2Kind = "FieldFormat"
+	AsCodeFieldFormatMonitorParamsDtoV2KindFieldInList           AsCodeFieldFormatMonitorParamsDtoV2Kind = "FieldInList"
+	AsCodeFieldFormatMonitorParamsDtoV2KindFieldNulls            AsCodeFieldFormatMonitorParamsDtoV2Kind = "FieldNulls"
+	AsCodeFieldFormatMonitorParamsDtoV2KindFieldUniqueness       AsCodeFieldFormatMonitorParamsDtoV2Kind = "FieldUniqueness"
+	AsCodeFieldFormatMonitorParamsDtoV2KindFreshness             AsCodeFieldFormatMonitorParamsDtoV2Kind = "Freshness"
+	AsCodeFieldFormatMonitorParamsDtoV2KindMetadataFreshness     AsCodeFieldFormatMonitorParamsDtoV2Kind = "MetadataFreshness"
+	AsCodeFieldFormatMonitorParamsDtoV2KindMetrics               AsCodeFieldFormatMonitorParamsDtoV2Kind = "Metrics"
+	AsCodeFieldFormatMonitorParamsDtoV2KindReferentialIntegrity  AsCodeFieldFormatMonitorParamsDtoV2Kind = "ReferentialIntegrity"
+	AsCodeFieldFormatMonitorParamsDtoV2KindRowDuplicates         AsCodeFieldFormatMonitorParamsDtoV2Kind = "RowDuplicates"
+	AsCodeFieldFormatMonitorParamsDtoV2KindSchemaChange          AsCodeFieldFormatMonitorParamsDtoV2Kind = "SchemaChange"
+	AsCodeFieldFormatMonitorParamsDtoV2KindSql                   AsCodeFieldFormatMonitorParamsDtoV2Kind = "Sql"
+	AsCodeFieldFormatMonitorParamsDtoV2KindStaticCompleteness    AsCodeFieldFormatMonitorParamsDtoV2Kind = "StaticCompleteness"
+	AsCodeFieldFormatMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeFieldFormatMonitorParamsDtoV2Kind = "StaticFieldProfiling"
+	AsCodeFieldFormatMonitorParamsDtoV2KindStaticMetrics         AsCodeFieldFormatMonitorParamsDtoV2Kind = "StaticMetrics"
+	AsCodeFieldFormatMonitorParamsDtoV2KindValueRange            AsCodeFieldFormatMonitorParamsDtoV2Kind = "ValueRange"
+	AsCodeFieldFormatMonitorParamsDtoV2KindVolume                AsCodeFieldFormatMonitorParamsDtoV2Kind = "Volume"
+)
+
+// Defines values for AsCodeFieldFormatValidationClauseDtoKind.
+const (
+	AsCodeFieldFormatValidationClauseDtoKindEmail AsCodeFieldFormatValidationClauseDtoKind = "Email"
+	AsCodeFieldFormatValidationClauseDtoKindPhone AsCodeFieldFormatValidationClauseDtoKind = "Phone"
+	AsCodeFieldFormatValidationClauseDtoKindRegex AsCodeFieldFormatValidationClauseDtoKind = "Regex"
+	AsCodeFieldFormatValidationClauseDtoKindUUID  AsCodeFieldFormatValidationClauseDtoKind = "UUID"
+)
+
+// Defines values for AsCodeFieldInListConstraintMonitorParamsDtoV1Kind.
+const (
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindCompleteness          AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "Completeness"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindConditional           AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "Conditional"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindCorrelatedMetrics     AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "CorrelatedMetrics"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindCustomMetrics         AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "CustomMetrics"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindDistribution          AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "Distribution"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindDuplicates            AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "Duplicates"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindDynamicFieldProfiling AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "DynamicFieldProfiling"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindDynamicMetrics        AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "DynamicMetrics"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindFieldDuplicates       AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "FieldDuplicates"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindFieldFormat           AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "FieldFormat"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindFieldInList           AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "FieldInList"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindFieldNulls            AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "FieldNulls"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindFieldUniqueness       AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "FieldUniqueness"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindFreshness             AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "Freshness"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindMetadataFreshness     AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "MetadataFreshness"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindMetrics               AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "Metrics"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindReferentialIntegrity  AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "ReferentialIntegrity"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindRowDuplicates         AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "RowDuplicates"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindSchemaChange          AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "SchemaChange"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindSql                   AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "Sql"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindStaticCompleteness    AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "StaticCompleteness"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "StaticFieldProfiling"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindStaticMetrics         AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "StaticMetrics"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindValueRange            AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "ValueRange"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindVolume                AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "Volume"
+)
+
+// Defines values for AsCodeFieldInListConstraintMonitorParamsDtoV2Kind.
+const (
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindCompleteness          AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "Completeness"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindConditional           AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "Conditional"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindCorrelatedMetrics     AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "CorrelatedMetrics"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindCustomMetrics         AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "CustomMetrics"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindDistribution          AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "Distribution"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindDuplicates            AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "Duplicates"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindDynamicFieldProfiling AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "DynamicFieldProfiling"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindDynamicMetrics        AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "DynamicMetrics"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindFieldDuplicates       AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "FieldDuplicates"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindFieldFormat           AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "FieldFormat"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindFieldInList           AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "FieldInList"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindFieldNulls            AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "FieldNulls"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindFieldUniqueness       AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "FieldUniqueness"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindFreshness             AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "Freshness"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindMetadataFreshness     AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "MetadataFreshness"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindMetrics               AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "Metrics"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindReferentialIntegrity  AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "ReferentialIntegrity"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindRowDuplicates         AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "RowDuplicates"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindSchemaChange          AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "SchemaChange"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindSql                   AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "Sql"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindStaticCompleteness    AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "StaticCompleteness"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "StaticFieldProfiling"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindStaticMetrics         AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "StaticMetrics"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindValueRange            AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "ValueRange"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindVolume                AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "Volume"
+)
+
+// Defines values for AsCodeFieldNullsMonitorParamsDtoKind.
+const (
+	AsCodeFieldNullsMonitorParamsDtoKindCompleteness          AsCodeFieldNullsMonitorParamsDtoKind = "Completeness"
+	AsCodeFieldNullsMonitorParamsDtoKindConditional           AsCodeFieldNullsMonitorParamsDtoKind = "Conditional"
+	AsCodeFieldNullsMonitorParamsDtoKindCorrelatedMetrics     AsCodeFieldNullsMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeFieldNullsMonitorParamsDtoKindCustomMetrics         AsCodeFieldNullsMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeFieldNullsMonitorParamsDtoKindDistribution          AsCodeFieldNullsMonitorParamsDtoKind = "Distribution"
+	AsCodeFieldNullsMonitorParamsDtoKindDuplicates            AsCodeFieldNullsMonitorParamsDtoKind = "Duplicates"
+	AsCodeFieldNullsMonitorParamsDtoKindDynamicFieldProfiling AsCodeFieldNullsMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeFieldNullsMonitorParamsDtoKindDynamicMetrics        AsCodeFieldNullsMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeFieldNullsMonitorParamsDtoKindFieldDuplicates       AsCodeFieldNullsMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeFieldNullsMonitorParamsDtoKindFieldFormat           AsCodeFieldNullsMonitorParamsDtoKind = "FieldFormat"
+	AsCodeFieldNullsMonitorParamsDtoKindFieldInList           AsCodeFieldNullsMonitorParamsDtoKind = "FieldInList"
+	AsCodeFieldNullsMonitorParamsDtoKindFieldNulls            AsCodeFieldNullsMonitorParamsDtoKind = "FieldNulls"
+	AsCodeFieldNullsMonitorParamsDtoKindFieldUniqueness       AsCodeFieldNullsMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeFieldNullsMonitorParamsDtoKindFreshness             AsCodeFieldNullsMonitorParamsDtoKind = "Freshness"
+	AsCodeFieldNullsMonitorParamsDtoKindMetadataFreshness     AsCodeFieldNullsMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeFieldNullsMonitorParamsDtoKindMetrics               AsCodeFieldNullsMonitorParamsDtoKind = "Metrics"
+	AsCodeFieldNullsMonitorParamsDtoKindReferentialIntegrity  AsCodeFieldNullsMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeFieldNullsMonitorParamsDtoKindRowDuplicates         AsCodeFieldNullsMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeFieldNullsMonitorParamsDtoKindSchemaChange          AsCodeFieldNullsMonitorParamsDtoKind = "SchemaChange"
+	AsCodeFieldNullsMonitorParamsDtoKindSql                   AsCodeFieldNullsMonitorParamsDtoKind = "Sql"
+	AsCodeFieldNullsMonitorParamsDtoKindStaticCompleteness    AsCodeFieldNullsMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeFieldNullsMonitorParamsDtoKindStaticFieldProfiling  AsCodeFieldNullsMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeFieldNullsMonitorParamsDtoKindStaticMetrics         AsCodeFieldNullsMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeFieldNullsMonitorParamsDtoKindValueRange            AsCodeFieldNullsMonitorParamsDtoKind = "ValueRange"
+	AsCodeFieldNullsMonitorParamsDtoKindVolume                AsCodeFieldNullsMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeFieldNullsMonitorParamsDtoNullValues.
+const (
+	AsCodeFieldNullsMonitorParamsDtoNullValuesNull                    AsCodeFieldNullsMonitorParamsDtoNullValues = "Null"
+	AsCodeFieldNullsMonitorParamsDtoNullValuesNullAndEmpty            AsCodeFieldNullsMonitorParamsDtoNullValues = "NullAndEmpty"
+	AsCodeFieldNullsMonitorParamsDtoNullValuesNullEmptyAndWhitespaces AsCodeFieldNullsMonitorParamsDtoNullValues = "NullEmptyAndWhitespaces"
+)
+
+// Defines values for AsCodeFieldProfilingClauseDtoKind.
+const (
+	AsCodeFieldProfilingClauseDtoKindDuplicateCount      AsCodeFieldProfilingClauseDtoKind = "DuplicateCount"
+	AsCodeFieldProfilingClauseDtoKindDuplicatePercentage AsCodeFieldProfilingClauseDtoKind = "DuplicatePercentage"
+	AsCodeFieldProfilingClauseDtoKindNullCount           AsCodeFieldProfilingClauseDtoKind = "NullCount"
+	AsCodeFieldProfilingClauseDtoKindNullPercentage      AsCodeFieldProfilingClauseDtoKind = "NullPercentage"
+)
+
+// Defines values for AsCodeFieldUniquenessMonitorParamsDtoKind.
+const (
+	AsCodeFieldUniquenessMonitorParamsDtoKindCompleteness          AsCodeFieldUniquenessMonitorParamsDtoKind = "Completeness"
+	AsCodeFieldUniquenessMonitorParamsDtoKindConditional           AsCodeFieldUniquenessMonitorParamsDtoKind = "Conditional"
+	AsCodeFieldUniquenessMonitorParamsDtoKindCorrelatedMetrics     AsCodeFieldUniquenessMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeFieldUniquenessMonitorParamsDtoKindCustomMetrics         AsCodeFieldUniquenessMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeFieldUniquenessMonitorParamsDtoKindDistribution          AsCodeFieldUniquenessMonitorParamsDtoKind = "Distribution"
+	AsCodeFieldUniquenessMonitorParamsDtoKindDuplicates            AsCodeFieldUniquenessMonitorParamsDtoKind = "Duplicates"
+	AsCodeFieldUniquenessMonitorParamsDtoKindDynamicFieldProfiling AsCodeFieldUniquenessMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeFieldUniquenessMonitorParamsDtoKindDynamicMetrics        AsCodeFieldUniquenessMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeFieldUniquenessMonitorParamsDtoKindFieldDuplicates       AsCodeFieldUniquenessMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeFieldUniquenessMonitorParamsDtoKindFieldFormat           AsCodeFieldUniquenessMonitorParamsDtoKind = "FieldFormat"
+	AsCodeFieldUniquenessMonitorParamsDtoKindFieldInList           AsCodeFieldUniquenessMonitorParamsDtoKind = "FieldInList"
+	AsCodeFieldUniquenessMonitorParamsDtoKindFieldNulls            AsCodeFieldUniquenessMonitorParamsDtoKind = "FieldNulls"
+	AsCodeFieldUniquenessMonitorParamsDtoKindFieldUniqueness       AsCodeFieldUniquenessMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeFieldUniquenessMonitorParamsDtoKindFreshness             AsCodeFieldUniquenessMonitorParamsDtoKind = "Freshness"
+	AsCodeFieldUniquenessMonitorParamsDtoKindMetadataFreshness     AsCodeFieldUniquenessMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeFieldUniquenessMonitorParamsDtoKindMetrics               AsCodeFieldUniquenessMonitorParamsDtoKind = "Metrics"
+	AsCodeFieldUniquenessMonitorParamsDtoKindReferentialIntegrity  AsCodeFieldUniquenessMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeFieldUniquenessMonitorParamsDtoKindRowDuplicates         AsCodeFieldUniquenessMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeFieldUniquenessMonitorParamsDtoKindSchemaChange          AsCodeFieldUniquenessMonitorParamsDtoKind = "SchemaChange"
+	AsCodeFieldUniquenessMonitorParamsDtoKindSql                   AsCodeFieldUniquenessMonitorParamsDtoKind = "Sql"
+	AsCodeFieldUniquenessMonitorParamsDtoKindStaticCompleteness    AsCodeFieldUniquenessMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeFieldUniquenessMonitorParamsDtoKindStaticFieldProfiling  AsCodeFieldUniquenessMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeFieldUniquenessMonitorParamsDtoKindStaticMetrics         AsCodeFieldUniquenessMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeFieldUniquenessMonitorParamsDtoKindValueRange            AsCodeFieldUniquenessMonitorParamsDtoKind = "ValueRange"
+	AsCodeFieldUniquenessMonitorParamsDtoKindVolume                AsCodeFieldUniquenessMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeFixedDistributionReferenceDtoKind.
+const (
+	AsCodeFixedDistributionReferenceDtoKindFixed   AsCodeFixedDistributionReferenceDtoKind = "Fixed"
+	AsCodeFixedDistributionReferenceDtoKindRolling AsCodeFixedDistributionReferenceDtoKind = "Rolling"
+)
+
+// Defines values for AsCodeFreshnessMonitorParamsDtoV1Kind.
+const (
+	AsCodeFreshnessMonitorParamsDtoV1KindCompleteness          AsCodeFreshnessMonitorParamsDtoV1Kind = "Completeness"
+	AsCodeFreshnessMonitorParamsDtoV1KindConditional           AsCodeFreshnessMonitorParamsDtoV1Kind = "Conditional"
+	AsCodeFreshnessMonitorParamsDtoV1KindCorrelatedMetrics     AsCodeFreshnessMonitorParamsDtoV1Kind = "CorrelatedMetrics"
+	AsCodeFreshnessMonitorParamsDtoV1KindCustomMetrics         AsCodeFreshnessMonitorParamsDtoV1Kind = "CustomMetrics"
+	AsCodeFreshnessMonitorParamsDtoV1KindDistribution          AsCodeFreshnessMonitorParamsDtoV1Kind = "Distribution"
+	AsCodeFreshnessMonitorParamsDtoV1KindDuplicates            AsCodeFreshnessMonitorParamsDtoV1Kind = "Duplicates"
+	AsCodeFreshnessMonitorParamsDtoV1KindDynamicFieldProfiling AsCodeFreshnessMonitorParamsDtoV1Kind = "DynamicFieldProfiling"
+	AsCodeFreshnessMonitorParamsDtoV1KindDynamicMetrics        AsCodeFreshnessMonitorParamsDtoV1Kind = "DynamicMetrics"
+	AsCodeFreshnessMonitorParamsDtoV1KindFieldDuplicates       AsCodeFreshnessMonitorParamsDtoV1Kind = "FieldDuplicates"
+	AsCodeFreshnessMonitorParamsDtoV1KindFieldFormat           AsCodeFreshnessMonitorParamsDtoV1Kind = "FieldFormat"
+	AsCodeFreshnessMonitorParamsDtoV1KindFieldInList           AsCodeFreshnessMonitorParamsDtoV1Kind = "FieldInList"
+	AsCodeFreshnessMonitorParamsDtoV1KindFieldNulls            AsCodeFreshnessMonitorParamsDtoV1Kind = "FieldNulls"
+	AsCodeFreshnessMonitorParamsDtoV1KindFieldUniqueness       AsCodeFreshnessMonitorParamsDtoV1Kind = "FieldUniqueness"
+	AsCodeFreshnessMonitorParamsDtoV1KindFreshness             AsCodeFreshnessMonitorParamsDtoV1Kind = "Freshness"
+	AsCodeFreshnessMonitorParamsDtoV1KindMetadataFreshness     AsCodeFreshnessMonitorParamsDtoV1Kind = "MetadataFreshness"
+	AsCodeFreshnessMonitorParamsDtoV1KindMetrics               AsCodeFreshnessMonitorParamsDtoV1Kind = "Metrics"
+	AsCodeFreshnessMonitorParamsDtoV1KindReferentialIntegrity  AsCodeFreshnessMonitorParamsDtoV1Kind = "ReferentialIntegrity"
+	AsCodeFreshnessMonitorParamsDtoV1KindRowDuplicates         AsCodeFreshnessMonitorParamsDtoV1Kind = "RowDuplicates"
+	AsCodeFreshnessMonitorParamsDtoV1KindSchemaChange          AsCodeFreshnessMonitorParamsDtoV1Kind = "SchemaChange"
+	AsCodeFreshnessMonitorParamsDtoV1KindSql                   AsCodeFreshnessMonitorParamsDtoV1Kind = "Sql"
+	AsCodeFreshnessMonitorParamsDtoV1KindStaticCompleteness    AsCodeFreshnessMonitorParamsDtoV1Kind = "StaticCompleteness"
+	AsCodeFreshnessMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeFreshnessMonitorParamsDtoV1Kind = "StaticFieldProfiling"
+	AsCodeFreshnessMonitorParamsDtoV1KindStaticMetrics         AsCodeFreshnessMonitorParamsDtoV1Kind = "StaticMetrics"
+	AsCodeFreshnessMonitorParamsDtoV1KindValueRange            AsCodeFreshnessMonitorParamsDtoV1Kind = "ValueRange"
+	AsCodeFreshnessMonitorParamsDtoV1KindVolume                AsCodeFreshnessMonitorParamsDtoV1Kind = "Volume"
+)
+
+// Defines values for AsCodeFreshnessMonitorParamsDtoV2Kind.
+const (
+	AsCodeFreshnessMonitorParamsDtoV2KindCompleteness          AsCodeFreshnessMonitorParamsDtoV2Kind = "Completeness"
+	AsCodeFreshnessMonitorParamsDtoV2KindConditional           AsCodeFreshnessMonitorParamsDtoV2Kind = "Conditional"
+	AsCodeFreshnessMonitorParamsDtoV2KindCorrelatedMetrics     AsCodeFreshnessMonitorParamsDtoV2Kind = "CorrelatedMetrics"
+	AsCodeFreshnessMonitorParamsDtoV2KindCustomMetrics         AsCodeFreshnessMonitorParamsDtoV2Kind = "CustomMetrics"
+	AsCodeFreshnessMonitorParamsDtoV2KindDistribution          AsCodeFreshnessMonitorParamsDtoV2Kind = "Distribution"
+	AsCodeFreshnessMonitorParamsDtoV2KindDuplicates            AsCodeFreshnessMonitorParamsDtoV2Kind = "Duplicates"
+	AsCodeFreshnessMonitorParamsDtoV2KindDynamicFieldProfiling AsCodeFreshnessMonitorParamsDtoV2Kind = "DynamicFieldProfiling"
+	AsCodeFreshnessMonitorParamsDtoV2KindDynamicMetrics        AsCodeFreshnessMonitorParamsDtoV2Kind = "DynamicMetrics"
+	AsCodeFreshnessMonitorParamsDtoV2KindFieldDuplicates       AsCodeFreshnessMonitorParamsDtoV2Kind = "FieldDuplicates"
+	AsCodeFreshnessMonitorParamsDtoV2KindFieldFormat           AsCodeFreshnessMonitorParamsDtoV2Kind = "FieldFormat"
+	AsCodeFreshnessMonitorParamsDtoV2KindFieldInList           AsCodeFreshnessMonitorParamsDtoV2Kind = "FieldInList"
+	AsCodeFreshnessMonitorParamsDtoV2KindFieldNulls            AsCodeFreshnessMonitorParamsDtoV2Kind = "FieldNulls"
+	AsCodeFreshnessMonitorParamsDtoV2KindFieldUniqueness       AsCodeFreshnessMonitorParamsDtoV2Kind = "FieldUniqueness"
+	AsCodeFreshnessMonitorParamsDtoV2KindFreshness             AsCodeFreshnessMonitorParamsDtoV2Kind = "Freshness"
+	AsCodeFreshnessMonitorParamsDtoV2KindMetadataFreshness     AsCodeFreshnessMonitorParamsDtoV2Kind = "MetadataFreshness"
+	AsCodeFreshnessMonitorParamsDtoV2KindMetrics               AsCodeFreshnessMonitorParamsDtoV2Kind = "Metrics"
+	AsCodeFreshnessMonitorParamsDtoV2KindReferentialIntegrity  AsCodeFreshnessMonitorParamsDtoV2Kind = "ReferentialIntegrity"
+	AsCodeFreshnessMonitorParamsDtoV2KindRowDuplicates         AsCodeFreshnessMonitorParamsDtoV2Kind = "RowDuplicates"
+	AsCodeFreshnessMonitorParamsDtoV2KindSchemaChange          AsCodeFreshnessMonitorParamsDtoV2Kind = "SchemaChange"
+	AsCodeFreshnessMonitorParamsDtoV2KindSql                   AsCodeFreshnessMonitorParamsDtoV2Kind = "Sql"
+	AsCodeFreshnessMonitorParamsDtoV2KindStaticCompleteness    AsCodeFreshnessMonitorParamsDtoV2Kind = "StaticCompleteness"
+	AsCodeFreshnessMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeFreshnessMonitorParamsDtoV2Kind = "StaticFieldProfiling"
+	AsCodeFreshnessMonitorParamsDtoV2KindStaticMetrics         AsCodeFreshnessMonitorParamsDtoV2Kind = "StaticMetrics"
+	AsCodeFreshnessMonitorParamsDtoV2KindValueRange            AsCodeFreshnessMonitorParamsDtoV2Kind = "ValueRange"
+	AsCodeFreshnessMonitorParamsDtoV2KindVolume                AsCodeFreshnessMonitorParamsDtoV2Kind = "Volume"
+)
+
+// Defines values for AsCodeFreshnessThresholdDtoKind.
+const (
+	AsCodeFreshnessThresholdDtoKindDynamic AsCodeFreshnessThresholdDtoKind = "Dynamic"
+	AsCodeFreshnessThresholdDtoKindStatic  AsCodeFreshnessThresholdDtoKind = "Static"
+)
+
+// Defines values for AsCodeIncidentDtoSeverity.
+const (
+	Critical AsCodeIncidentDtoSeverity = "Critical"
+	High     AsCodeIncidentDtoSeverity = "High"
+	Low      AsCodeIncidentDtoSeverity = "Low"
+	Moderate AsCodeIncidentDtoSeverity = "Moderate"
+)
+
+// Defines values for AsCodeIngestionTimePartitionClauseDtoKind.
+const (
+	AsCodeIngestionTimePartitionClauseDtoKindIngestionTime  AsCodeIngestionTimePartitionClauseDtoKind = "IngestionTime"
+	AsCodeIngestionTimePartitionClauseDtoKindIntegerRange   AsCodeIngestionTimePartitionClauseDtoKind = "IntegerRange"
+	AsCodeIngestionTimePartitionClauseDtoKindTimeUnitColumn AsCodeIngestionTimePartitionClauseDtoKind = "TimeUnitColumn"
+)
+
+// Defines values for AsCodeIntegerRangePartitionClauseDtoKind.
+const (
+	AsCodeIntegerRangePartitionClauseDtoKindIngestionTime  AsCodeIntegerRangePartitionClauseDtoKind = "IngestionTime"
+	AsCodeIntegerRangePartitionClauseDtoKindIntegerRange   AsCodeIntegerRangePartitionClauseDtoKind = "IntegerRange"
+	AsCodeIntegerRangePartitionClauseDtoKindTimeUnitColumn AsCodeIntegerRangePartitionClauseDtoKind = "TimeUnitColumn"
+)
+
+// Defines values for AsCodeJiraNotificationDtoKind.
+const (
+	AsCodeJiraNotificationDtoKindEmail          AsCodeJiraNotificationDtoKind = "Email"
+	AsCodeJiraNotificationDtoKindJira           AsCodeJiraNotificationDtoKind = "Jira"
+	AsCodeJiraNotificationDtoKindMicrosoftTeams AsCodeJiraNotificationDtoKind = "MicrosoftTeams"
+	AsCodeJiraNotificationDtoKindServiceNow     AsCodeJiraNotificationDtoKind = "ServiceNow"
+	AsCodeJiraNotificationDtoKindSlack          AsCodeJiraNotificationDtoKind = "Slack"
+	AsCodeJiraNotificationDtoKindWebhook        AsCodeJiraNotificationDtoKind = "Webhook"
+)
+
+// Defines values for AsCodeJoinConditionDtoKind.
+const (
+	AsCodeJoinConditionDtoKindEquality AsCodeJoinConditionDtoKind = "Equality"
+)
+
+// Defines values for AsCodeJoinDtoJoinType.
+const (
+	Inner AsCodeJoinDtoJoinType = "Inner"
+	Left  AsCodeJoinDtoJoinType = "Left"
+	Outer AsCodeJoinDtoJoinType = "Outer"
+	Right AsCodeJoinDtoJoinType = "Right"
+)
+
+// Defines values for AsCodeMetadataFreshnessMonitorParamsDtoV1Kind.
+const (
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindCompleteness          AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "Completeness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindConditional           AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "Conditional"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindCorrelatedMetrics     AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "CorrelatedMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindCustomMetrics         AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "CustomMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindDistribution          AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "Distribution"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindDuplicates            AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "Duplicates"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindDynamicFieldProfiling AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "DynamicFieldProfiling"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindDynamicMetrics        AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "DynamicMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindFieldDuplicates       AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "FieldDuplicates"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindFieldFormat           AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "FieldFormat"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindFieldInList           AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "FieldInList"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindFieldNulls            AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "FieldNulls"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindFieldUniqueness       AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "FieldUniqueness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindFreshness             AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "Freshness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindMetadataFreshness     AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "MetadataFreshness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindMetrics               AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "Metrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindReferentialIntegrity  AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "ReferentialIntegrity"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindRowDuplicates         AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "RowDuplicates"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindSchemaChange          AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "SchemaChange"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindSql                   AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "Sql"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindStaticCompleteness    AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "StaticCompleteness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "StaticFieldProfiling"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindStaticMetrics         AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "StaticMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindValueRange            AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "ValueRange"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindVolume                AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "Volume"
+)
+
+// Defines values for AsCodeMetadataFreshnessMonitorParamsDtoV2Kind.
+const (
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindCompleteness          AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Completeness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindConditional           AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Conditional"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindCorrelatedMetrics     AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "CorrelatedMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindCustomMetrics         AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "CustomMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindDistribution          AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Distribution"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindDuplicates            AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Duplicates"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindDynamicFieldProfiling AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "DynamicFieldProfiling"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindDynamicMetrics        AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "DynamicMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFieldDuplicates       AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "FieldDuplicates"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFieldFormat           AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "FieldFormat"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFieldInList           AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "FieldInList"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFieldNulls            AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "FieldNulls"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFieldUniqueness       AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "FieldUniqueness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindFreshness             AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Freshness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindMetadataFreshness     AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "MetadataFreshness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindMetrics               AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Metrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindReferentialIntegrity  AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "ReferentialIntegrity"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindRowDuplicates         AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "RowDuplicates"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindSchemaChange          AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "SchemaChange"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindSql                   AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Sql"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindStaticCompleteness    AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "StaticCompleteness"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "StaticFieldProfiling"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindStaticMetrics         AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "StaticMetrics"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindValueRange            AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "ValueRange"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindVolume                AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Volume"
+)
+
+// Defines values for AsCodeMetricsMonitorParamsDtoKind.
+const (
+	AsCodeMetricsMonitorParamsDtoKindCompleteness          AsCodeMetricsMonitorParamsDtoKind = "Completeness"
+	AsCodeMetricsMonitorParamsDtoKindConditional           AsCodeMetricsMonitorParamsDtoKind = "Conditional"
+	AsCodeMetricsMonitorParamsDtoKindCorrelatedMetrics     AsCodeMetricsMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeMetricsMonitorParamsDtoKindCustomMetrics         AsCodeMetricsMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeMetricsMonitorParamsDtoKindDistribution          AsCodeMetricsMonitorParamsDtoKind = "Distribution"
+	AsCodeMetricsMonitorParamsDtoKindDuplicates            AsCodeMetricsMonitorParamsDtoKind = "Duplicates"
+	AsCodeMetricsMonitorParamsDtoKindDynamicFieldProfiling AsCodeMetricsMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeMetricsMonitorParamsDtoKindDynamicMetrics        AsCodeMetricsMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeMetricsMonitorParamsDtoKindFieldDuplicates       AsCodeMetricsMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeMetricsMonitorParamsDtoKindFieldFormat           AsCodeMetricsMonitorParamsDtoKind = "FieldFormat"
+	AsCodeMetricsMonitorParamsDtoKindFieldInList           AsCodeMetricsMonitorParamsDtoKind = "FieldInList"
+	AsCodeMetricsMonitorParamsDtoKindFieldNulls            AsCodeMetricsMonitorParamsDtoKind = "FieldNulls"
+	AsCodeMetricsMonitorParamsDtoKindFieldUniqueness       AsCodeMetricsMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeMetricsMonitorParamsDtoKindFreshness             AsCodeMetricsMonitorParamsDtoKind = "Freshness"
+	AsCodeMetricsMonitorParamsDtoKindMetadataFreshness     AsCodeMetricsMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeMetricsMonitorParamsDtoKindMetrics               AsCodeMetricsMonitorParamsDtoKind = "Metrics"
+	AsCodeMetricsMonitorParamsDtoKindReferentialIntegrity  AsCodeMetricsMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeMetricsMonitorParamsDtoKindRowDuplicates         AsCodeMetricsMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeMetricsMonitorParamsDtoKindSchemaChange          AsCodeMetricsMonitorParamsDtoKind = "SchemaChange"
+	AsCodeMetricsMonitorParamsDtoKindSql                   AsCodeMetricsMonitorParamsDtoKind = "Sql"
+	AsCodeMetricsMonitorParamsDtoKindStaticCompleteness    AsCodeMetricsMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeMetricsMonitorParamsDtoKindStaticFieldProfiling  AsCodeMetricsMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeMetricsMonitorParamsDtoKindStaticMetrics         AsCodeMetricsMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeMetricsMonitorParamsDtoKindValueRange            AsCodeMetricsMonitorParamsDtoKind = "ValueRange"
+	AsCodeMetricsMonitorParamsDtoKindVolume                AsCodeMetricsMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeMonitorDtoKind.
+const (
+	Asset     AsCodeMonitorDtoKind = "Asset"
+	Lineage   AsCodeMonitorDtoKind = "Lineage"
+	Monitor   AsCodeMonitorDtoKind = "Monitor"
+	Source    AsCodeMonitorDtoKind = "Source"
+	Workspace AsCodeMonitorDtoKind = "Workspace"
+)
+
+// Defines values for AsCodeMonitorParamsDtoKind.
+const (
+	AsCodeMonitorParamsDtoKindCompleteness          AsCodeMonitorParamsDtoKind = "Completeness"
+	AsCodeMonitorParamsDtoKindConditional           AsCodeMonitorParamsDtoKind = "Conditional"
+	AsCodeMonitorParamsDtoKindCorrelatedMetrics     AsCodeMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeMonitorParamsDtoKindCustomMetrics         AsCodeMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeMonitorParamsDtoKindDistribution          AsCodeMonitorParamsDtoKind = "Distribution"
+	AsCodeMonitorParamsDtoKindDuplicates            AsCodeMonitorParamsDtoKind = "Duplicates"
+	AsCodeMonitorParamsDtoKindDynamicFieldProfiling AsCodeMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeMonitorParamsDtoKindDynamicMetrics        AsCodeMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeMonitorParamsDtoKindFieldDuplicates       AsCodeMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeMonitorParamsDtoKindFieldFormat           AsCodeMonitorParamsDtoKind = "FieldFormat"
+	AsCodeMonitorParamsDtoKindFieldInList           AsCodeMonitorParamsDtoKind = "FieldInList"
+	AsCodeMonitorParamsDtoKindFieldNulls            AsCodeMonitorParamsDtoKind = "FieldNulls"
+	AsCodeMonitorParamsDtoKindFieldUniqueness       AsCodeMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeMonitorParamsDtoKindFreshness             AsCodeMonitorParamsDtoKind = "Freshness"
+	AsCodeMonitorParamsDtoKindMetadataFreshness     AsCodeMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeMonitorParamsDtoKindMetrics               AsCodeMonitorParamsDtoKind = "Metrics"
+	AsCodeMonitorParamsDtoKindReferentialIntegrity  AsCodeMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeMonitorParamsDtoKindRowDuplicates         AsCodeMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeMonitorParamsDtoKindSchemaChange          AsCodeMonitorParamsDtoKind = "SchemaChange"
+	AsCodeMonitorParamsDtoKindSql                   AsCodeMonitorParamsDtoKind = "Sql"
+	AsCodeMonitorParamsDtoKindStaticCompleteness    AsCodeMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeMonitorParamsDtoKindStaticFieldProfiling  AsCodeMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeMonitorParamsDtoKindStaticMetrics         AsCodeMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeMonitorParamsDtoKindValueRange            AsCodeMonitorParamsDtoKind = "ValueRange"
+	AsCodeMonitorParamsDtoKindVolume                AsCodeMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeNotificationReferenceDtoKind.
+const (
+	AsCodeNotificationReferenceDtoKindEmail          AsCodeNotificationReferenceDtoKind = "Email"
+	AsCodeNotificationReferenceDtoKindJira           AsCodeNotificationReferenceDtoKind = "Jira"
+	AsCodeNotificationReferenceDtoKindMicrosoftTeams AsCodeNotificationReferenceDtoKind = "MicrosoftTeams"
+	AsCodeNotificationReferenceDtoKindServiceNow     AsCodeNotificationReferenceDtoKind = "ServiceNow"
+	AsCodeNotificationReferenceDtoKindSlack          AsCodeNotificationReferenceDtoKind = "Slack"
+	AsCodeNotificationReferenceDtoKindWebhook        AsCodeNotificationReferenceDtoKind = "Webhook"
+)
+
+// Defines values for AsCodeNullCheckConditionDtoKind.
+const (
+	AsCodeNullCheckConditionDtoKindAndGroup            AsCodeNullCheckConditionDtoKind = "andGroup"
+	AsCodeNullCheckConditionDtoKindContains            AsCodeNullCheckConditionDtoKind = "contains"
+	AsCodeNullCheckConditionDtoKindDateOlderThan       AsCodeNullCheckConditionDtoKind = "dateOlderThan"
+	AsCodeNullCheckConditionDtoKindDateYoungerThan     AsCodeNullCheckConditionDtoKind = "dateYoungerThan"
+	AsCodeNullCheckConditionDtoKindEquals              AsCodeNullCheckConditionDtoKind = "equals"
+	AsCodeNullCheckConditionDtoKindGreaterThan         AsCodeNullCheckConditionDtoKind = "greaterThan"
+	AsCodeNullCheckConditionDtoKindGreaterThanOrEquals AsCodeNullCheckConditionDtoKind = "greaterThanOrEquals"
+	AsCodeNullCheckConditionDtoKindIsNotNull           AsCodeNullCheckConditionDtoKind = "isNotNull"
+	AsCodeNullCheckConditionDtoKindIsNull              AsCodeNullCheckConditionDtoKind = "isNull"
+	AsCodeNullCheckConditionDtoKindLessThan            AsCodeNullCheckConditionDtoKind = "lessThan"
+	AsCodeNullCheckConditionDtoKindLessThanOrEquals    AsCodeNullCheckConditionDtoKind = "lessThanOrEquals"
+	AsCodeNullCheckConditionDtoKindNotContains         AsCodeNullCheckConditionDtoKind = "notContains"
+	AsCodeNullCheckConditionDtoKindNotEquals           AsCodeNullCheckConditionDtoKind = "notEquals"
+	AsCodeNullCheckConditionDtoKindOrGroup             AsCodeNullCheckConditionDtoKind = "orGroup"
+)
+
+// Defines values for AsCodeNullFieldProfilingClauseDtoKind.
+const (
+	AsCodeNullFieldProfilingClauseDtoKindDuplicateCount      AsCodeNullFieldProfilingClauseDtoKind = "DuplicateCount"
+	AsCodeNullFieldProfilingClauseDtoKindDuplicatePercentage AsCodeNullFieldProfilingClauseDtoKind = "DuplicatePercentage"
+	AsCodeNullFieldProfilingClauseDtoKindNullCount           AsCodeNullFieldProfilingClauseDtoKind = "NullCount"
+	AsCodeNullFieldProfilingClauseDtoKindNullPercentage      AsCodeNullFieldProfilingClauseDtoKind = "NullPercentage"
+)
+
+// Defines values for AsCodeNullFieldProfilingClauseDtoNullValues.
+const (
+	AsCodeNullFieldProfilingClauseDtoNullValuesNull                    AsCodeNullFieldProfilingClauseDtoNullValues = "Null"
+	AsCodeNullFieldProfilingClauseDtoNullValuesNullAndEmpty            AsCodeNullFieldProfilingClauseDtoNullValues = "NullAndEmpty"
+	AsCodeNullFieldProfilingClauseDtoNullValuesNullEmptyAndWhitespaces AsCodeNullFieldProfilingClauseDtoNullValues = "NullEmptyAndWhitespaces"
+)
+
+// Defines values for AsCodeNumericComparisonConditionDtoKind.
+const (
+	AsCodeNumericComparisonConditionDtoKindAndGroup            AsCodeNumericComparisonConditionDtoKind = "andGroup"
+	AsCodeNumericComparisonConditionDtoKindContains            AsCodeNumericComparisonConditionDtoKind = "contains"
+	AsCodeNumericComparisonConditionDtoKindDateOlderThan       AsCodeNumericComparisonConditionDtoKind = "dateOlderThan"
+	AsCodeNumericComparisonConditionDtoKindDateYoungerThan     AsCodeNumericComparisonConditionDtoKind = "dateYoungerThan"
+	AsCodeNumericComparisonConditionDtoKindEquals              AsCodeNumericComparisonConditionDtoKind = "equals"
+	AsCodeNumericComparisonConditionDtoKindGreaterThan         AsCodeNumericComparisonConditionDtoKind = "greaterThan"
+	AsCodeNumericComparisonConditionDtoKindGreaterThanOrEquals AsCodeNumericComparisonConditionDtoKind = "greaterThanOrEquals"
+	AsCodeNumericComparisonConditionDtoKindIsNotNull           AsCodeNumericComparisonConditionDtoKind = "isNotNull"
+	AsCodeNumericComparisonConditionDtoKindIsNull              AsCodeNumericComparisonConditionDtoKind = "isNull"
+	AsCodeNumericComparisonConditionDtoKindLessThan            AsCodeNumericComparisonConditionDtoKind = "lessThan"
+	AsCodeNumericComparisonConditionDtoKindLessThanOrEquals    AsCodeNumericComparisonConditionDtoKind = "lessThanOrEquals"
+	AsCodeNumericComparisonConditionDtoKindNotContains         AsCodeNumericComparisonConditionDtoKind = "notContains"
+	AsCodeNumericComparisonConditionDtoKindNotEquals           AsCodeNumericComparisonConditionDtoKind = "notEquals"
+	AsCodeNumericComparisonConditionDtoKindOrGroup             AsCodeNumericComparisonConditionDtoKind = "orGroup"
+)
+
+// Defines values for AsCodePartitionClauseDtoKind.
+const (
+	AsCodePartitionClauseDtoKindIngestionTime  AsCodePartitionClauseDtoKind = "IngestionTime"
+	AsCodePartitionClauseDtoKindIntegerRange   AsCodePartitionClauseDtoKind = "IntegerRange"
+	AsCodePartitionClauseDtoKindTimeUnitColumn AsCodePartitionClauseDtoKind = "TimeUnitColumn"
+)
+
+// Defines values for AsCodeQuantileAggregationClauseDtoV1Kind.
+const (
+	AsCodeQuantileAggregationClauseDtoV1KindAverage           AsCodeQuantileAggregationClauseDtoV1Kind = "Average"
+	AsCodeQuantileAggregationClauseDtoV1KindCount             AsCodeQuantileAggregationClauseDtoV1Kind = "Count"
+	AsCodeQuantileAggregationClauseDtoV1KindDistinctCount     AsCodeQuantileAggregationClauseDtoV1Kind = "DistinctCount"
+	AsCodeQuantileAggregationClauseDtoV1KindMax               AsCodeQuantileAggregationClauseDtoV1Kind = "Max"
+	AsCodeQuantileAggregationClauseDtoV1KindMin               AsCodeQuantileAggregationClauseDtoV1Kind = "Min"
+	AsCodeQuantileAggregationClauseDtoV1KindNormalizedAverage AsCodeQuantileAggregationClauseDtoV1Kind = "NormalizedAverage"
+	AsCodeQuantileAggregationClauseDtoV1KindQuantile          AsCodeQuantileAggregationClauseDtoV1Kind = "Quantile"
+	AsCodeQuantileAggregationClauseDtoV1KindRange             AsCodeQuantileAggregationClauseDtoV1Kind = "Range"
+	AsCodeQuantileAggregationClauseDtoV1KindStandardDeviation AsCodeQuantileAggregationClauseDtoV1Kind = "StandardDeviation"
+	AsCodeQuantileAggregationClauseDtoV1KindSum               AsCodeQuantileAggregationClauseDtoV1Kind = "Sum"
+	AsCodeQuantileAggregationClauseDtoV1KindVariance          AsCodeQuantileAggregationClauseDtoV1Kind = "Variance"
+)
+
+// Defines values for AsCodeQuantileAggregationClauseDtoV2Kind.
+const (
+	AsCodeQuantileAggregationClauseDtoV2KindAverage           AsCodeQuantileAggregationClauseDtoV2Kind = "Average"
+	AsCodeQuantileAggregationClauseDtoV2KindCount             AsCodeQuantileAggregationClauseDtoV2Kind = "Count"
+	AsCodeQuantileAggregationClauseDtoV2KindCountAllRows      AsCodeQuantileAggregationClauseDtoV2Kind = "CountAllRows"
+	AsCodeQuantileAggregationClauseDtoV2KindDistinctCount     AsCodeQuantileAggregationClauseDtoV2Kind = "DistinctCount"
+	AsCodeQuantileAggregationClauseDtoV2KindMax               AsCodeQuantileAggregationClauseDtoV2Kind = "Max"
+	AsCodeQuantileAggregationClauseDtoV2KindMin               AsCodeQuantileAggregationClauseDtoV2Kind = "Min"
+	AsCodeQuantileAggregationClauseDtoV2KindNormalizedAverage AsCodeQuantileAggregationClauseDtoV2Kind = "NormalizedAverage"
+	AsCodeQuantileAggregationClauseDtoV2KindQuantile          AsCodeQuantileAggregationClauseDtoV2Kind = "Quantile"
+	AsCodeQuantileAggregationClauseDtoV2KindStandardDeviation AsCodeQuantileAggregationClauseDtoV2Kind = "StandardDeviation"
+	AsCodeQuantileAggregationClauseDtoV2KindSum               AsCodeQuantileAggregationClauseDtoV2Kind = "Sum"
+	AsCodeQuantileAggregationClauseDtoV2KindVariance          AsCodeQuantileAggregationClauseDtoV2Kind = "Variance"
+)
+
+// Defines values for AsCodeReferentialIntegrityMonitorParamsDtoV1Kind.
+const (
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindCompleteness          AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "Completeness"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindConditional           AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "Conditional"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindCorrelatedMetrics     AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "CorrelatedMetrics"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindCustomMetrics         AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "CustomMetrics"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindDistribution          AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "Distribution"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindDuplicates            AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "Duplicates"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindDynamicFieldProfiling AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "DynamicFieldProfiling"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindDynamicMetrics        AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "DynamicMetrics"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindFieldDuplicates       AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "FieldDuplicates"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindFieldFormat           AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "FieldFormat"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindFieldInList           AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "FieldInList"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindFieldNulls            AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "FieldNulls"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindFieldUniqueness       AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "FieldUniqueness"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindFreshness             AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "Freshness"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindMetadataFreshness     AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "MetadataFreshness"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindMetrics               AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "Metrics"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindReferentialIntegrity  AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "ReferentialIntegrity"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindRowDuplicates         AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "RowDuplicates"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindSchemaChange          AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "SchemaChange"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindSql                   AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "Sql"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindStaticCompleteness    AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "StaticCompleteness"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "StaticFieldProfiling"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindStaticMetrics         AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "StaticMetrics"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindValueRange            AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "ValueRange"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindVolume                AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "Volume"
+)
+
+// Defines values for AsCodeReferentialIntegrityMonitorParamsDtoV1MatchType.
+const (
+	AsCodeReferentialIntegrityMonitorParamsDtoV1MatchTypeFull        AsCodeReferentialIntegrityMonitorParamsDtoV1MatchType = "Full"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1MatchTypeLeftOnRight AsCodeReferentialIntegrityMonitorParamsDtoV1MatchType = "LeftOnRight"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1MatchTypeRightOnLeft AsCodeReferentialIntegrityMonitorParamsDtoV1MatchType = "RightOnLeft"
+)
+
+// Defines values for AsCodeReferentialIntegrityMonitorParamsDtoV2Kind.
+const (
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindCompleteness          AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "Completeness"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindConditional           AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "Conditional"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindCorrelatedMetrics     AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "CorrelatedMetrics"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindCustomMetrics         AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "CustomMetrics"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindDistribution          AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "Distribution"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindDuplicates            AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "Duplicates"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindDynamicFieldProfiling AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "DynamicFieldProfiling"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindDynamicMetrics        AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "DynamicMetrics"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindFieldDuplicates       AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "FieldDuplicates"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindFieldFormat           AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "FieldFormat"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindFieldInList           AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "FieldInList"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindFieldNulls            AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "FieldNulls"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindFieldUniqueness       AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "FieldUniqueness"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindFreshness             AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "Freshness"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindMetadataFreshness     AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "MetadataFreshness"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindMetrics               AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "Metrics"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindReferentialIntegrity  AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "ReferentialIntegrity"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindRowDuplicates         AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "RowDuplicates"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindSchemaChange          AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "SchemaChange"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindSql                   AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "Sql"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindStaticCompleteness    AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "StaticCompleteness"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "StaticFieldProfiling"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindStaticMetrics         AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "StaticMetrics"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindValueRange            AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "ValueRange"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindVolume                AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "Volume"
+)
+
+// Defines values for AsCodeReferentialIntegrityMonitorParamsDtoV2MatchType.
+const (
+	AsCodeReferentialIntegrityMonitorParamsDtoV2MatchTypeFull        AsCodeReferentialIntegrityMonitorParamsDtoV2MatchType = "Full"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2MatchTypeLeftOnRight AsCodeReferentialIntegrityMonitorParamsDtoV2MatchType = "LeftOnRight"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2MatchTypeRightOnLeft AsCodeReferentialIntegrityMonitorParamsDtoV2MatchType = "RightOnLeft"
+)
+
+// Defines values for AsCodeRegexFieldFormatValidationClauseDtoKind.
+const (
+	AsCodeRegexFieldFormatValidationClauseDtoKindEmail AsCodeRegexFieldFormatValidationClauseDtoKind = "Email"
+	AsCodeRegexFieldFormatValidationClauseDtoKindPhone AsCodeRegexFieldFormatValidationClauseDtoKind = "Phone"
+	AsCodeRegexFieldFormatValidationClauseDtoKindRegex AsCodeRegexFieldFormatValidationClauseDtoKind = "Regex"
+	AsCodeRegexFieldFormatValidationClauseDtoKindUUID  AsCodeRegexFieldFormatValidationClauseDtoKind = "UUID"
+)
+
+// Defines values for AsCodeRollingDistributionReferenceDtoKind.
+const (
+	Fixed   AsCodeRollingDistributionReferenceDtoKind = "Fixed"
+	Rolling AsCodeRollingDistributionReferenceDtoKind = "Rolling"
+)
+
+// Defines values for AsCodeRowDuplicatesMonitorParamsDtoKind.
+const (
+	AsCodeRowDuplicatesMonitorParamsDtoKindCompleteness          AsCodeRowDuplicatesMonitorParamsDtoKind = "Completeness"
+	AsCodeRowDuplicatesMonitorParamsDtoKindConditional           AsCodeRowDuplicatesMonitorParamsDtoKind = "Conditional"
+	AsCodeRowDuplicatesMonitorParamsDtoKindCorrelatedMetrics     AsCodeRowDuplicatesMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeRowDuplicatesMonitorParamsDtoKindCustomMetrics         AsCodeRowDuplicatesMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeRowDuplicatesMonitorParamsDtoKindDistribution          AsCodeRowDuplicatesMonitorParamsDtoKind = "Distribution"
+	AsCodeRowDuplicatesMonitorParamsDtoKindDuplicates            AsCodeRowDuplicatesMonitorParamsDtoKind = "Duplicates"
+	AsCodeRowDuplicatesMonitorParamsDtoKindDynamicFieldProfiling AsCodeRowDuplicatesMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeRowDuplicatesMonitorParamsDtoKindDynamicMetrics        AsCodeRowDuplicatesMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeRowDuplicatesMonitorParamsDtoKindFieldDuplicates       AsCodeRowDuplicatesMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeRowDuplicatesMonitorParamsDtoKindFieldFormat           AsCodeRowDuplicatesMonitorParamsDtoKind = "FieldFormat"
+	AsCodeRowDuplicatesMonitorParamsDtoKindFieldInList           AsCodeRowDuplicatesMonitorParamsDtoKind = "FieldInList"
+	AsCodeRowDuplicatesMonitorParamsDtoKindFieldNulls            AsCodeRowDuplicatesMonitorParamsDtoKind = "FieldNulls"
+	AsCodeRowDuplicatesMonitorParamsDtoKindFieldUniqueness       AsCodeRowDuplicatesMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeRowDuplicatesMonitorParamsDtoKindFreshness             AsCodeRowDuplicatesMonitorParamsDtoKind = "Freshness"
+	AsCodeRowDuplicatesMonitorParamsDtoKindMetadataFreshness     AsCodeRowDuplicatesMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeRowDuplicatesMonitorParamsDtoKindMetrics               AsCodeRowDuplicatesMonitorParamsDtoKind = "Metrics"
+	AsCodeRowDuplicatesMonitorParamsDtoKindReferentialIntegrity  AsCodeRowDuplicatesMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeRowDuplicatesMonitorParamsDtoKindRowDuplicates         AsCodeRowDuplicatesMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeRowDuplicatesMonitorParamsDtoKindSchemaChange          AsCodeRowDuplicatesMonitorParamsDtoKind = "SchemaChange"
+	AsCodeRowDuplicatesMonitorParamsDtoKindSql                   AsCodeRowDuplicatesMonitorParamsDtoKind = "Sql"
+	AsCodeRowDuplicatesMonitorParamsDtoKindStaticCompleteness    AsCodeRowDuplicatesMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeRowDuplicatesMonitorParamsDtoKindStaticFieldProfiling  AsCodeRowDuplicatesMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeRowDuplicatesMonitorParamsDtoKindStaticMetrics         AsCodeRowDuplicatesMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeRowDuplicatesMonitorParamsDtoKindValueRange            AsCodeRowDuplicatesMonitorParamsDtoKind = "ValueRange"
+	AsCodeRowDuplicatesMonitorParamsDtoKindVolume                AsCodeRowDuplicatesMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeServiceNowNotificationDtoKind.
+const (
+	AsCodeServiceNowNotificationDtoKindEmail          AsCodeServiceNowNotificationDtoKind = "Email"
+	AsCodeServiceNowNotificationDtoKindJira           AsCodeServiceNowNotificationDtoKind = "Jira"
+	AsCodeServiceNowNotificationDtoKindMicrosoftTeams AsCodeServiceNowNotificationDtoKind = "MicrosoftTeams"
+	AsCodeServiceNowNotificationDtoKindServiceNow     AsCodeServiceNowNotificationDtoKind = "ServiceNow"
+	AsCodeServiceNowNotificationDtoKindSlack          AsCodeServiceNowNotificationDtoKind = "Slack"
+	AsCodeServiceNowNotificationDtoKindWebhook        AsCodeServiceNowNotificationDtoKind = "Webhook"
+)
+
+// Defines values for AsCodeSqlMonitorParamsDtoKind.
+const (
+	AsCodeSqlMonitorParamsDtoKindCompleteness          AsCodeSqlMonitorParamsDtoKind = "Completeness"
+	AsCodeSqlMonitorParamsDtoKindConditional           AsCodeSqlMonitorParamsDtoKind = "Conditional"
+	AsCodeSqlMonitorParamsDtoKindCorrelatedMetrics     AsCodeSqlMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeSqlMonitorParamsDtoKindCustomMetrics         AsCodeSqlMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeSqlMonitorParamsDtoKindDistribution          AsCodeSqlMonitorParamsDtoKind = "Distribution"
+	AsCodeSqlMonitorParamsDtoKindDuplicates            AsCodeSqlMonitorParamsDtoKind = "Duplicates"
+	AsCodeSqlMonitorParamsDtoKindDynamicFieldProfiling AsCodeSqlMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeSqlMonitorParamsDtoKindDynamicMetrics        AsCodeSqlMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeSqlMonitorParamsDtoKindFieldDuplicates       AsCodeSqlMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeSqlMonitorParamsDtoKindFieldFormat           AsCodeSqlMonitorParamsDtoKind = "FieldFormat"
+	AsCodeSqlMonitorParamsDtoKindFieldInList           AsCodeSqlMonitorParamsDtoKind = "FieldInList"
+	AsCodeSqlMonitorParamsDtoKindFieldNulls            AsCodeSqlMonitorParamsDtoKind = "FieldNulls"
+	AsCodeSqlMonitorParamsDtoKindFieldUniqueness       AsCodeSqlMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeSqlMonitorParamsDtoKindFreshness             AsCodeSqlMonitorParamsDtoKind = "Freshness"
+	AsCodeSqlMonitorParamsDtoKindMetadataFreshness     AsCodeSqlMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeSqlMonitorParamsDtoKindMetrics               AsCodeSqlMonitorParamsDtoKind = "Metrics"
+	AsCodeSqlMonitorParamsDtoKindReferentialIntegrity  AsCodeSqlMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeSqlMonitorParamsDtoKindRowDuplicates         AsCodeSqlMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeSqlMonitorParamsDtoKindSchemaChange          AsCodeSqlMonitorParamsDtoKind = "SchemaChange"
+	AsCodeSqlMonitorParamsDtoKindSql                   AsCodeSqlMonitorParamsDtoKind = "Sql"
+	AsCodeSqlMonitorParamsDtoKindStaticCompleteness    AsCodeSqlMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeSqlMonitorParamsDtoKindStaticFieldProfiling  AsCodeSqlMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeSqlMonitorParamsDtoKindStaticMetrics         AsCodeSqlMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeSqlMonitorParamsDtoKindValueRange            AsCodeSqlMonitorParamsDtoKind = "ValueRange"
+	AsCodeSqlMonitorParamsDtoKindVolume                AsCodeSqlMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeStaticCompletenessMonitorParamsDtoKind.
+const (
+	AsCodeStaticCompletenessMonitorParamsDtoKindCompleteness          AsCodeStaticCompletenessMonitorParamsDtoKind = "Completeness"
+	AsCodeStaticCompletenessMonitorParamsDtoKindConditional           AsCodeStaticCompletenessMonitorParamsDtoKind = "Conditional"
+	AsCodeStaticCompletenessMonitorParamsDtoKindCorrelatedMetrics     AsCodeStaticCompletenessMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeStaticCompletenessMonitorParamsDtoKindCustomMetrics         AsCodeStaticCompletenessMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeStaticCompletenessMonitorParamsDtoKindDistribution          AsCodeStaticCompletenessMonitorParamsDtoKind = "Distribution"
+	AsCodeStaticCompletenessMonitorParamsDtoKindDuplicates            AsCodeStaticCompletenessMonitorParamsDtoKind = "Duplicates"
+	AsCodeStaticCompletenessMonitorParamsDtoKindDynamicFieldProfiling AsCodeStaticCompletenessMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeStaticCompletenessMonitorParamsDtoKindDynamicMetrics        AsCodeStaticCompletenessMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeStaticCompletenessMonitorParamsDtoKindFieldDuplicates       AsCodeStaticCompletenessMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeStaticCompletenessMonitorParamsDtoKindFieldFormat           AsCodeStaticCompletenessMonitorParamsDtoKind = "FieldFormat"
+	AsCodeStaticCompletenessMonitorParamsDtoKindFieldInList           AsCodeStaticCompletenessMonitorParamsDtoKind = "FieldInList"
+	AsCodeStaticCompletenessMonitorParamsDtoKindFieldNulls            AsCodeStaticCompletenessMonitorParamsDtoKind = "FieldNulls"
+	AsCodeStaticCompletenessMonitorParamsDtoKindFieldUniqueness       AsCodeStaticCompletenessMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeStaticCompletenessMonitorParamsDtoKindFreshness             AsCodeStaticCompletenessMonitorParamsDtoKind = "Freshness"
+	AsCodeStaticCompletenessMonitorParamsDtoKindMetadataFreshness     AsCodeStaticCompletenessMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeStaticCompletenessMonitorParamsDtoKindMetrics               AsCodeStaticCompletenessMonitorParamsDtoKind = "Metrics"
+	AsCodeStaticCompletenessMonitorParamsDtoKindReferentialIntegrity  AsCodeStaticCompletenessMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeStaticCompletenessMonitorParamsDtoKindRowDuplicates         AsCodeStaticCompletenessMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeStaticCompletenessMonitorParamsDtoKindSchemaChange          AsCodeStaticCompletenessMonitorParamsDtoKind = "SchemaChange"
+	AsCodeStaticCompletenessMonitorParamsDtoKindSql                   AsCodeStaticCompletenessMonitorParamsDtoKind = "Sql"
+	AsCodeStaticCompletenessMonitorParamsDtoKindStaticCompleteness    AsCodeStaticCompletenessMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeStaticCompletenessMonitorParamsDtoKindStaticFieldProfiling  AsCodeStaticCompletenessMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeStaticCompletenessMonitorParamsDtoKindStaticMetrics         AsCodeStaticCompletenessMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeStaticCompletenessMonitorParamsDtoKindValueRange            AsCodeStaticCompletenessMonitorParamsDtoKind = "ValueRange"
+	AsCodeStaticCompletenessMonitorParamsDtoKindVolume                AsCodeStaticCompletenessMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeStaticFieldProfilingMonitorParamsDtoKind.
+const (
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindCompleteness          AsCodeStaticFieldProfilingMonitorParamsDtoKind = "Completeness"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindConditional           AsCodeStaticFieldProfilingMonitorParamsDtoKind = "Conditional"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindCorrelatedMetrics     AsCodeStaticFieldProfilingMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindCustomMetrics         AsCodeStaticFieldProfilingMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindDistribution          AsCodeStaticFieldProfilingMonitorParamsDtoKind = "Distribution"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindDuplicates            AsCodeStaticFieldProfilingMonitorParamsDtoKind = "Duplicates"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindDynamicFieldProfiling AsCodeStaticFieldProfilingMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindDynamicMetrics        AsCodeStaticFieldProfilingMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindFieldDuplicates       AsCodeStaticFieldProfilingMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindFieldFormat           AsCodeStaticFieldProfilingMonitorParamsDtoKind = "FieldFormat"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindFieldInList           AsCodeStaticFieldProfilingMonitorParamsDtoKind = "FieldInList"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindFieldNulls            AsCodeStaticFieldProfilingMonitorParamsDtoKind = "FieldNulls"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindFieldUniqueness       AsCodeStaticFieldProfilingMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindFreshness             AsCodeStaticFieldProfilingMonitorParamsDtoKind = "Freshness"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindMetadataFreshness     AsCodeStaticFieldProfilingMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindMetrics               AsCodeStaticFieldProfilingMonitorParamsDtoKind = "Metrics"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindReferentialIntegrity  AsCodeStaticFieldProfilingMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindRowDuplicates         AsCodeStaticFieldProfilingMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindSchemaChange          AsCodeStaticFieldProfilingMonitorParamsDtoKind = "SchemaChange"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindSql                   AsCodeStaticFieldProfilingMonitorParamsDtoKind = "Sql"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindStaticCompleteness    AsCodeStaticFieldProfilingMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindStaticFieldProfiling  AsCodeStaticFieldProfilingMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindStaticMetrics         AsCodeStaticFieldProfilingMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindValueRange            AsCodeStaticFieldProfilingMonitorParamsDtoKind = "ValueRange"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindVolume                AsCodeStaticFieldProfilingMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeStaticMetricMonitorParamsDtoKind.
+const (
+	AsCodeStaticMetricMonitorParamsDtoKindCompleteness          AsCodeStaticMetricMonitorParamsDtoKind = "Completeness"
+	AsCodeStaticMetricMonitorParamsDtoKindConditional           AsCodeStaticMetricMonitorParamsDtoKind = "Conditional"
+	AsCodeStaticMetricMonitorParamsDtoKindCorrelatedMetrics     AsCodeStaticMetricMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeStaticMetricMonitorParamsDtoKindCustomMetrics         AsCodeStaticMetricMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeStaticMetricMonitorParamsDtoKindDistribution          AsCodeStaticMetricMonitorParamsDtoKind = "Distribution"
+	AsCodeStaticMetricMonitorParamsDtoKindDuplicates            AsCodeStaticMetricMonitorParamsDtoKind = "Duplicates"
+	AsCodeStaticMetricMonitorParamsDtoKindDynamicFieldProfiling AsCodeStaticMetricMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeStaticMetricMonitorParamsDtoKindDynamicMetrics        AsCodeStaticMetricMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeStaticMetricMonitorParamsDtoKindFieldDuplicates       AsCodeStaticMetricMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeStaticMetricMonitorParamsDtoKindFieldFormat           AsCodeStaticMetricMonitorParamsDtoKind = "FieldFormat"
+	AsCodeStaticMetricMonitorParamsDtoKindFieldInList           AsCodeStaticMetricMonitorParamsDtoKind = "FieldInList"
+	AsCodeStaticMetricMonitorParamsDtoKindFieldNulls            AsCodeStaticMetricMonitorParamsDtoKind = "FieldNulls"
+	AsCodeStaticMetricMonitorParamsDtoKindFieldUniqueness       AsCodeStaticMetricMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeStaticMetricMonitorParamsDtoKindFreshness             AsCodeStaticMetricMonitorParamsDtoKind = "Freshness"
+	AsCodeStaticMetricMonitorParamsDtoKindMetadataFreshness     AsCodeStaticMetricMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeStaticMetricMonitorParamsDtoKindMetrics               AsCodeStaticMetricMonitorParamsDtoKind = "Metrics"
+	AsCodeStaticMetricMonitorParamsDtoKindReferentialIntegrity  AsCodeStaticMetricMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeStaticMetricMonitorParamsDtoKindRowDuplicates         AsCodeStaticMetricMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeStaticMetricMonitorParamsDtoKindSchemaChange          AsCodeStaticMetricMonitorParamsDtoKind = "SchemaChange"
+	AsCodeStaticMetricMonitorParamsDtoKindSql                   AsCodeStaticMetricMonitorParamsDtoKind = "Sql"
+	AsCodeStaticMetricMonitorParamsDtoKindStaticCompleteness    AsCodeStaticMetricMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeStaticMetricMonitorParamsDtoKindStaticFieldProfiling  AsCodeStaticMetricMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeStaticMetricMonitorParamsDtoKindStaticMetrics         AsCodeStaticMetricMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeStaticMetricMonitorParamsDtoKindValueRange            AsCodeStaticMetricMonitorParamsDtoKind = "ValueRange"
+	AsCodeStaticMetricMonitorParamsDtoKindVolume                AsCodeStaticMetricMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeStaticThresholdDtoV2ComparisonMode.
+const (
+	AsCodeStaticThresholdDtoV2ComparisonModeAbsolute           AsCodeStaticThresholdDtoV2ComparisonMode = "Absolute"
+	AsCodeStaticThresholdDtoV2ComparisonModeRelative           AsCodeStaticThresholdDtoV2ComparisonMode = "Relative"
+	AsCodeStaticThresholdDtoV2ComparisonModeRelativePercentage AsCodeStaticThresholdDtoV2ComparisonMode = "RelativePercentage"
+)
+
+// Defines values for AsCodeStaticThresholdDtoV2Kind.
+const (
+	AsCodeStaticThresholdDtoV2KindDynamic AsCodeStaticThresholdDtoV2Kind = "Dynamic"
+	AsCodeStaticThresholdDtoV2KindStatic  AsCodeStaticThresholdDtoV2Kind = "Static"
+)
+
+// Defines values for AsCodeStaticThresholdDtoV2ValueMode.
+const (
+	AsCodeStaticThresholdDtoV2ValueModeCount      AsCodeStaticThresholdDtoV2ValueMode = "Count"
+	AsCodeStaticThresholdDtoV2ValueModePercentage AsCodeStaticThresholdDtoV2ValueMode = "Percentage"
+)
+
+// Defines values for AsCodeStaticThresholdWithComparisonModeDtoComparisonMode.
+const (
+	AsCodeStaticThresholdWithComparisonModeDtoComparisonModeAbsolute             AsCodeStaticThresholdWithComparisonModeDtoComparisonMode = "Absolute"
+	AsCodeStaticThresholdWithComparisonModeDtoComparisonModeDifference           AsCodeStaticThresholdWithComparisonModeDtoComparisonMode = "Difference"
+	AsCodeStaticThresholdWithComparisonModeDtoComparisonModePercentageDifference AsCodeStaticThresholdWithComparisonModeDtoComparisonMode = "PercentageDifference"
+)
+
+// Defines values for AsCodeStringConditionDtoKind.
+const (
+	AsCodeStringConditionDtoKindAndGroup            AsCodeStringConditionDtoKind = "andGroup"
+	AsCodeStringConditionDtoKindContains            AsCodeStringConditionDtoKind = "contains"
+	AsCodeStringConditionDtoKindDateOlderThan       AsCodeStringConditionDtoKind = "dateOlderThan"
+	AsCodeStringConditionDtoKindDateYoungerThan     AsCodeStringConditionDtoKind = "dateYoungerThan"
+	AsCodeStringConditionDtoKindEquals              AsCodeStringConditionDtoKind = "equals"
+	AsCodeStringConditionDtoKindGreaterThan         AsCodeStringConditionDtoKind = "greaterThan"
+	AsCodeStringConditionDtoKindGreaterThanOrEquals AsCodeStringConditionDtoKind = "greaterThanOrEquals"
+	AsCodeStringConditionDtoKindIsNotNull           AsCodeStringConditionDtoKind = "isNotNull"
+	AsCodeStringConditionDtoKindIsNull              AsCodeStringConditionDtoKind = "isNull"
+	AsCodeStringConditionDtoKindLessThan            AsCodeStringConditionDtoKind = "lessThan"
+	AsCodeStringConditionDtoKindLessThanOrEquals    AsCodeStringConditionDtoKind = "lessThanOrEquals"
+	AsCodeStringConditionDtoKindNotContains         AsCodeStringConditionDtoKind = "notContains"
+	AsCodeStringConditionDtoKindNotEquals           AsCodeStringConditionDtoKind = "notEquals"
+	AsCodeStringConditionDtoKindOrGroup             AsCodeStringConditionDtoKind = "orGroup"
+)
+
+// Defines values for AsCodeTagReferenceDtoKind.
+const (
+	Classification AsCodeTagReferenceDtoKind = "Classification"
+	Tag            AsCodeTagReferenceDtoKind = "Tag"
+)
+
+// Defines values for AsCodeThresholdBaseDtoKind.
+const (
+	Dynamic AsCodeThresholdBaseDtoKind = "Dynamic"
+	Static  AsCodeThresholdBaseDtoKind = "Static"
+)
+
+// Defines values for AsCodeThresholdBaseDtoValueMode.
+const (
+	Count      AsCodeThresholdBaseDtoValueMode = "Count"
+	Percentage AsCodeThresholdBaseDtoValueMode = "Percentage"
+)
+
+// Defines values for AsCodeTimeUnitColumnPartitionClauseDtoKind.
+const (
+	AsCodeTimeUnitColumnPartitionClauseDtoKindIngestionTime  AsCodeTimeUnitColumnPartitionClauseDtoKind = "IngestionTime"
+	AsCodeTimeUnitColumnPartitionClauseDtoKindIntegerRange   AsCodeTimeUnitColumnPartitionClauseDtoKind = "IntegerRange"
+	AsCodeTimeUnitColumnPartitionClauseDtoKindTimeUnitColumn AsCodeTimeUnitColumnPartitionClauseDtoKind = "TimeUnitColumn"
+)
+
+// Defines values for AsCodeValueExpressionDtoKind.
+const (
+	Field AsCodeValueExpressionDtoKind = "field"
+	Value AsCodeValueExpressionDtoKind = "value"
+)
+
+// Defines values for AsCodeValueRangeMonitorParamsDtoKind.
+const (
+	AsCodeValueRangeMonitorParamsDtoKindCompleteness          AsCodeValueRangeMonitorParamsDtoKind = "Completeness"
+	AsCodeValueRangeMonitorParamsDtoKindConditional           AsCodeValueRangeMonitorParamsDtoKind = "Conditional"
+	AsCodeValueRangeMonitorParamsDtoKindCorrelatedMetrics     AsCodeValueRangeMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeValueRangeMonitorParamsDtoKindCustomMetrics         AsCodeValueRangeMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeValueRangeMonitorParamsDtoKindDistribution          AsCodeValueRangeMonitorParamsDtoKind = "Distribution"
+	AsCodeValueRangeMonitorParamsDtoKindDuplicates            AsCodeValueRangeMonitorParamsDtoKind = "Duplicates"
+	AsCodeValueRangeMonitorParamsDtoKindDynamicFieldProfiling AsCodeValueRangeMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeValueRangeMonitorParamsDtoKindDynamicMetrics        AsCodeValueRangeMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeValueRangeMonitorParamsDtoKindFieldDuplicates       AsCodeValueRangeMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeValueRangeMonitorParamsDtoKindFieldFormat           AsCodeValueRangeMonitorParamsDtoKind = "FieldFormat"
+	AsCodeValueRangeMonitorParamsDtoKindFieldInList           AsCodeValueRangeMonitorParamsDtoKind = "FieldInList"
+	AsCodeValueRangeMonitorParamsDtoKindFieldNulls            AsCodeValueRangeMonitorParamsDtoKind = "FieldNulls"
+	AsCodeValueRangeMonitorParamsDtoKindFieldUniqueness       AsCodeValueRangeMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeValueRangeMonitorParamsDtoKindFreshness             AsCodeValueRangeMonitorParamsDtoKind = "Freshness"
+	AsCodeValueRangeMonitorParamsDtoKindMetadataFreshness     AsCodeValueRangeMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeValueRangeMonitorParamsDtoKindMetrics               AsCodeValueRangeMonitorParamsDtoKind = "Metrics"
+	AsCodeValueRangeMonitorParamsDtoKindReferentialIntegrity  AsCodeValueRangeMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeValueRangeMonitorParamsDtoKindRowDuplicates         AsCodeValueRangeMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeValueRangeMonitorParamsDtoKindSchemaChange          AsCodeValueRangeMonitorParamsDtoKind = "SchemaChange"
+	AsCodeValueRangeMonitorParamsDtoKindSql                   AsCodeValueRangeMonitorParamsDtoKind = "Sql"
+	AsCodeValueRangeMonitorParamsDtoKindStaticCompleteness    AsCodeValueRangeMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeValueRangeMonitorParamsDtoKindStaticFieldProfiling  AsCodeValueRangeMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeValueRangeMonitorParamsDtoKindStaticMetrics         AsCodeValueRangeMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeValueRangeMonitorParamsDtoKindValueRange            AsCodeValueRangeMonitorParamsDtoKind = "ValueRange"
+	AsCodeValueRangeMonitorParamsDtoKindVolume                AsCodeValueRangeMonitorParamsDtoKind = "Volume"
+)
+
+// Defines values for AsCodeVolumeMonitorParamsDtoKind.
+const (
+	Completeness          AsCodeVolumeMonitorParamsDtoKind = "Completeness"
+	Conditional           AsCodeVolumeMonitorParamsDtoKind = "Conditional"
+	CorrelatedMetrics     AsCodeVolumeMonitorParamsDtoKind = "CorrelatedMetrics"
+	CustomMetrics         AsCodeVolumeMonitorParamsDtoKind = "CustomMetrics"
+	Distribution          AsCodeVolumeMonitorParamsDtoKind = "Distribution"
+	Duplicates            AsCodeVolumeMonitorParamsDtoKind = "Duplicates"
+	DynamicFieldProfiling AsCodeVolumeMonitorParamsDtoKind = "DynamicFieldProfiling"
+	DynamicMetrics        AsCodeVolumeMonitorParamsDtoKind = "DynamicMetrics"
+	FieldDuplicates       AsCodeVolumeMonitorParamsDtoKind = "FieldDuplicates"
+	FieldFormat           AsCodeVolumeMonitorParamsDtoKind = "FieldFormat"
+	FieldInList           AsCodeVolumeMonitorParamsDtoKind = "FieldInList"
+	FieldNulls            AsCodeVolumeMonitorParamsDtoKind = "FieldNulls"
+	FieldUniqueness       AsCodeVolumeMonitorParamsDtoKind = "FieldUniqueness"
+	Freshness             AsCodeVolumeMonitorParamsDtoKind = "Freshness"
+	MetadataFreshness     AsCodeVolumeMonitorParamsDtoKind = "MetadataFreshness"
+	Metrics               AsCodeVolumeMonitorParamsDtoKind = "Metrics"
+	ReferentialIntegrity  AsCodeVolumeMonitorParamsDtoKind = "ReferentialIntegrity"
+	RowDuplicates         AsCodeVolumeMonitorParamsDtoKind = "RowDuplicates"
+	SchemaChange          AsCodeVolumeMonitorParamsDtoKind = "SchemaChange"
+	Sql                   AsCodeVolumeMonitorParamsDtoKind = "Sql"
+	StaticCompleteness    AsCodeVolumeMonitorParamsDtoKind = "StaticCompleteness"
+	StaticFieldProfiling  AsCodeVolumeMonitorParamsDtoKind = "StaticFieldProfiling"
+	StaticMetrics         AsCodeVolumeMonitorParamsDtoKind = "StaticMetrics"
+	ValueRange            AsCodeVolumeMonitorParamsDtoKind = "ValueRange"
+	Volume                AsCodeVolumeMonitorParamsDtoKind = "Volume"
 )
 
 // Defines values for ChangeDtoType.
@@ -65,6 +1463,41 @@ const (
 	DatasourceProviderDtoTypeUSER        DatasourceProviderDtoType = "USER"
 )
 
+// Defines values for EntityCustomMetadataDtoType.
+const (
+	EntityCustomMetadataDtoTypeLABEL  EntityCustomMetadataDtoType = "LABEL"
+	EntityCustomMetadataDtoTypeSTRING EntityCustomMetadataDtoType = "STRING"
+	EntityCustomMetadataDtoTypeUSER   EntityCustomMetadataDtoType = "USER"
+)
+
+// Defines values for EntityCustomMetadataEntryDtoType.
+const (
+	EntityCustomMetadataEntryDtoTypeLABEL  EntityCustomMetadataEntryDtoType = "LABEL"
+	EntityCustomMetadataEntryDtoTypeSTRING EntityCustomMetadataEntryDtoType = "STRING"
+	EntityCustomMetadataEntryDtoTypeUSER   EntityCustomMetadataEntryDtoType = "USER"
+)
+
+// Defines values for EntityCustomMetadataEntryLabelDtoType.
+const (
+	EntityCustomMetadataEntryLabelDtoTypeLABEL  EntityCustomMetadataEntryLabelDtoType = "LABEL"
+	EntityCustomMetadataEntryLabelDtoTypeSTRING EntityCustomMetadataEntryLabelDtoType = "STRING"
+	EntityCustomMetadataEntryLabelDtoTypeUSER   EntityCustomMetadataEntryLabelDtoType = "USER"
+)
+
+// Defines values for EntityCustomMetadataEntryStringDtoType.
+const (
+	EntityCustomMetadataEntryStringDtoTypeLABEL  EntityCustomMetadataEntryStringDtoType = "LABEL"
+	EntityCustomMetadataEntryStringDtoTypeSTRING EntityCustomMetadataEntryStringDtoType = "STRING"
+	EntityCustomMetadataEntryStringDtoTypeUSER   EntityCustomMetadataEntryStringDtoType = "USER"
+)
+
+// Defines values for EntityCustomMetadataEntryUserDtoType.
+const (
+	EntityCustomMetadataEntryUserDtoTypeLABEL  EntityCustomMetadataEntryUserDtoType = "LABEL"
+	EntityCustomMetadataEntryUserDtoTypeSTRING EntityCustomMetadataEntryUserDtoType = "STRING"
+	EntityCustomMetadataEntryUserDtoTypeUSER   EntityCustomMetadataEntryUserDtoType = "USER"
+)
+
 // Defines values for GenericProviderDtoType.
 const (
 	GenericProviderDtoTypeACCESSTOKEN GenericProviderDtoType = "ACCESS_TOKEN"
@@ -88,11 +1521,15 @@ const (
 
 // Defines values for IncidentLightDtoQualification.
 const (
-	AUTOMATIC      IncidentLightDtoQualification = "AUTOMATIC"
-	DUPLICATE      IncidentLightDtoQualification = "DUPLICATE"
-	FALSEPOSITIVE  IncidentLightDtoQualification = "FALSE_POSITIVE"
-	FIXED          IncidentLightDtoQualification = "FIXED"
-	NOACTIONNEEDED IncidentLightDtoQualification = "NO_ACTION_NEEDED"
+	AUTOMATIC                       IncidentLightDtoQualification = "AUTOMATIC"
+	DUPLICATE                       IncidentLightDtoQualification = "DUPLICATE"
+	FALSEPOSITIVE                   IncidentLightDtoQualification = "FALSE_POSITIVE"
+	FIXED                           IncidentLightDtoQualification = "FIXED"
+	NOACTIONNEEDED                  IncidentLightDtoQualification = "NO_ACTION_NEEDED"
+	QUALIFIEDMONITORSFALSEPOSITIVE  IncidentLightDtoQualification = "QUALIFIED_MONITORS_FALSE_POSITIVE"
+	QUALIFIEDMONITORSNOACTIONNEEDED IncidentLightDtoQualification = "QUALIFIED_MONITORS_NO_ACTION_NEEDED"
+	QUALIFIEDMONITORSREVIEWED       IncidentLightDtoQualification = "QUALIFIED_MONITORS_REVIEWED"
+	REVIEWED                        IncidentLightDtoQualification = "REVIEWED"
 )
 
 // Defines values for IncidentLightDtoStatus.
@@ -118,6 +1555,12 @@ const (
 	LogDtoLevelFatal   LogDtoLevel = "Fatal"
 	LogDtoLevelInfo    LogDtoLevel = "Info"
 	LogDtoLevelWarning LogDtoLevel = "Warning"
+)
+
+// Defines values for MysqlInformationMysqlTlsVersion.
+const (
+	MysqlInformationMysqlTlsVersionTLSV12 MysqlInformationMysqlTlsVersion = "TLS_V_1_2"
+	MysqlInformationMysqlTlsVersionTLSV13 MysqlInformationMysqlTlsVersion = "TLS_V_1_3"
 )
 
 // Defines values for ProviderDtoType.
@@ -225,15 +1668,615 @@ const (
 
 // Defines values for PublicCalendarGetDtoStandardCalendar.
 const (
-	BELGIUMPUBLICHOLIDAYS     PublicCalendarGetDtoStandardCalendar = "BELGIUM_PUBLIC_HOLIDAYS"
-	FRANCEPUBLICHOLIDAYS      PublicCalendarGetDtoStandardCalendar = "FRANCE_PUBLIC_HOLIDAYS"
-	GERMANYPUBLICHOLIDAYS     PublicCalendarGetDtoStandardCalendar = "GERMANY_PUBLIC_HOLIDAYS"
-	NETHERLANDSPUBLICHOLIDAYS PublicCalendarGetDtoStandardCalendar = "NETHERLANDS_PUBLIC_HOLIDAYS"
-	SPAINPUBLICHOLIDAYS       PublicCalendarGetDtoStandardCalendar = "SPAIN_PUBLIC_HOLIDAYS"
-	SUNDAYS                   PublicCalendarGetDtoStandardCalendar = "SUNDAYS"
-	UKPUBLICHOLIDAYS          PublicCalendarGetDtoStandardCalendar = "UK_PUBLIC_HOLIDAYS"
-	USPUBLICHOLIDAYS          PublicCalendarGetDtoStandardCalendar = "US_PUBLIC_HOLIDAYS"
-	WEEKENDS                  PublicCalendarGetDtoStandardCalendar = "WEEKENDS"
+	PublicCalendarGetDtoStandardCalendarBELGIUMPUBLICHOLIDAYS     PublicCalendarGetDtoStandardCalendar = "BELGIUM_PUBLIC_HOLIDAYS"
+	PublicCalendarGetDtoStandardCalendarFRANCEPUBLICHOLIDAYS      PublicCalendarGetDtoStandardCalendar = "FRANCE_PUBLIC_HOLIDAYS"
+	PublicCalendarGetDtoStandardCalendarGERMANYPUBLICHOLIDAYS     PublicCalendarGetDtoStandardCalendar = "GERMANY_PUBLIC_HOLIDAYS"
+	PublicCalendarGetDtoStandardCalendarNETHERLANDSPUBLICHOLIDAYS PublicCalendarGetDtoStandardCalendar = "NETHERLANDS_PUBLIC_HOLIDAYS"
+	PublicCalendarGetDtoStandardCalendarSPAINPUBLICHOLIDAYS       PublicCalendarGetDtoStandardCalendar = "SPAIN_PUBLIC_HOLIDAYS"
+	PublicCalendarGetDtoStandardCalendarSUNDAYS                   PublicCalendarGetDtoStandardCalendar = "SUNDAYS"
+	PublicCalendarGetDtoStandardCalendarUKPUBLICHOLIDAYS          PublicCalendarGetDtoStandardCalendar = "UK_PUBLIC_HOLIDAYS"
+	PublicCalendarGetDtoStandardCalendarUSPUBLICHOLIDAYS          PublicCalendarGetDtoStandardCalendar = "US_PUBLIC_HOLIDAYS"
+	PublicCalendarGetDtoStandardCalendarWEEKENDS                  PublicCalendarGetDtoStandardCalendar = "WEEKENDS"
+)
+
+// Defines values for PublicCreateAirflowSourceV2DtoType.
+const (
+	PublicCreateAirflowSourceV2DtoTypeAIRFLOW        PublicCreateAirflowSourceV2DtoType = "AIRFLOW"
+	PublicCreateAirflowSourceV2DtoTypeATHENA         PublicCreateAirflowSourceV2DtoType = "ATHENA"
+	PublicCreateAirflowSourceV2DtoTypeBIGQUERY       PublicCreateAirflowSourceV2DtoType = "BIGQUERY"
+	PublicCreateAirflowSourceV2DtoTypeDATABRICKS     PublicCreateAirflowSourceV2DtoType = "DATABRICKS"
+	PublicCreateAirflowSourceV2DtoTypeDATABRICKSJOBS PublicCreateAirflowSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateAirflowSourceV2DtoTypeDBT            PublicCreateAirflowSourceV2DtoType = "DBT"
+	PublicCreateAirflowSourceV2DtoTypeDBTCLOUD       PublicCreateAirflowSourceV2DtoType = "DBTCLOUD"
+	PublicCreateAirflowSourceV2DtoTypeDECLARATIVE    PublicCreateAirflowSourceV2DtoType = "DECLARATIVE"
+	PublicCreateAirflowSourceV2DtoTypeFIVETRAN       PublicCreateAirflowSourceV2DtoType = "FIVETRAN"
+	PublicCreateAirflowSourceV2DtoTypeLOOKER         PublicCreateAirflowSourceV2DtoType = "LOOKER"
+	PublicCreateAirflowSourceV2DtoTypeMICROSTRATEGY  PublicCreateAirflowSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateAirflowSourceV2DtoTypeMSSQL          PublicCreateAirflowSourceV2DtoType = "MSSQL"
+	PublicCreateAirflowSourceV2DtoTypeMYSQL          PublicCreateAirflowSourceV2DtoType = "MYSQL"
+	PublicCreateAirflowSourceV2DtoTypeORACLE         PublicCreateAirflowSourceV2DtoType = "ORACLE"
+	PublicCreateAirflowSourceV2DtoTypePOSTGRESQL     PublicCreateAirflowSourceV2DtoType = "POSTGRESQL"
+	PublicCreateAirflowSourceV2DtoTypePOWERBI        PublicCreateAirflowSourceV2DtoType = "POWER_BI"
+	PublicCreateAirflowSourceV2DtoTypeQLIK           PublicCreateAirflowSourceV2DtoType = "QLIK"
+	PublicCreateAirflowSourceV2DtoTypeQUICKSIGHT     PublicCreateAirflowSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateAirflowSourceV2DtoTypeREDSHIFT       PublicCreateAirflowSourceV2DtoType = "REDSHIFT"
+	PublicCreateAirflowSourceV2DtoTypeSNOWFLAKE      PublicCreateAirflowSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateAirflowSourceV2DtoTypeSYNAPSE        PublicCreateAirflowSourceV2DtoType = "SYNAPSE"
+	PublicCreateAirflowSourceV2DtoTypeTABLEAU        PublicCreateAirflowSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateAthenaSourceV2DtoType.
+const (
+	PublicCreateAthenaSourceV2DtoTypeAIRFLOW        PublicCreateAthenaSourceV2DtoType = "AIRFLOW"
+	PublicCreateAthenaSourceV2DtoTypeATHENA         PublicCreateAthenaSourceV2DtoType = "ATHENA"
+	PublicCreateAthenaSourceV2DtoTypeBIGQUERY       PublicCreateAthenaSourceV2DtoType = "BIGQUERY"
+	PublicCreateAthenaSourceV2DtoTypeDATABRICKS     PublicCreateAthenaSourceV2DtoType = "DATABRICKS"
+	PublicCreateAthenaSourceV2DtoTypeDATABRICKSJOBS PublicCreateAthenaSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateAthenaSourceV2DtoTypeDBT            PublicCreateAthenaSourceV2DtoType = "DBT"
+	PublicCreateAthenaSourceV2DtoTypeDBTCLOUD       PublicCreateAthenaSourceV2DtoType = "DBTCLOUD"
+	PublicCreateAthenaSourceV2DtoTypeDECLARATIVE    PublicCreateAthenaSourceV2DtoType = "DECLARATIVE"
+	PublicCreateAthenaSourceV2DtoTypeFIVETRAN       PublicCreateAthenaSourceV2DtoType = "FIVETRAN"
+	PublicCreateAthenaSourceV2DtoTypeLOOKER         PublicCreateAthenaSourceV2DtoType = "LOOKER"
+	PublicCreateAthenaSourceV2DtoTypeMICROSTRATEGY  PublicCreateAthenaSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateAthenaSourceV2DtoTypeMSSQL          PublicCreateAthenaSourceV2DtoType = "MSSQL"
+	PublicCreateAthenaSourceV2DtoTypeMYSQL          PublicCreateAthenaSourceV2DtoType = "MYSQL"
+	PublicCreateAthenaSourceV2DtoTypeORACLE         PublicCreateAthenaSourceV2DtoType = "ORACLE"
+	PublicCreateAthenaSourceV2DtoTypePOSTGRESQL     PublicCreateAthenaSourceV2DtoType = "POSTGRESQL"
+	PublicCreateAthenaSourceV2DtoTypePOWERBI        PublicCreateAthenaSourceV2DtoType = "POWER_BI"
+	PublicCreateAthenaSourceV2DtoTypeQLIK           PublicCreateAthenaSourceV2DtoType = "QLIK"
+	PublicCreateAthenaSourceV2DtoTypeQUICKSIGHT     PublicCreateAthenaSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateAthenaSourceV2DtoTypeREDSHIFT       PublicCreateAthenaSourceV2DtoType = "REDSHIFT"
+	PublicCreateAthenaSourceV2DtoTypeSNOWFLAKE      PublicCreateAthenaSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateAthenaSourceV2DtoTypeSYNAPSE        PublicCreateAthenaSourceV2DtoType = "SYNAPSE"
+	PublicCreateAthenaSourceV2DtoTypeTABLEAU        PublicCreateAthenaSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateBigQuerySourceV2DtoType.
+const (
+	PublicCreateBigQuerySourceV2DtoTypeAIRFLOW        PublicCreateBigQuerySourceV2DtoType = "AIRFLOW"
+	PublicCreateBigQuerySourceV2DtoTypeATHENA         PublicCreateBigQuerySourceV2DtoType = "ATHENA"
+	PublicCreateBigQuerySourceV2DtoTypeBIGQUERY       PublicCreateBigQuerySourceV2DtoType = "BIGQUERY"
+	PublicCreateBigQuerySourceV2DtoTypeDATABRICKS     PublicCreateBigQuerySourceV2DtoType = "DATABRICKS"
+	PublicCreateBigQuerySourceV2DtoTypeDATABRICKSJOBS PublicCreateBigQuerySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateBigQuerySourceV2DtoTypeDBT            PublicCreateBigQuerySourceV2DtoType = "DBT"
+	PublicCreateBigQuerySourceV2DtoTypeDBTCLOUD       PublicCreateBigQuerySourceV2DtoType = "DBTCLOUD"
+	PublicCreateBigQuerySourceV2DtoTypeDECLARATIVE    PublicCreateBigQuerySourceV2DtoType = "DECLARATIVE"
+	PublicCreateBigQuerySourceV2DtoTypeFIVETRAN       PublicCreateBigQuerySourceV2DtoType = "FIVETRAN"
+	PublicCreateBigQuerySourceV2DtoTypeLOOKER         PublicCreateBigQuerySourceV2DtoType = "LOOKER"
+	PublicCreateBigQuerySourceV2DtoTypeMICROSTRATEGY  PublicCreateBigQuerySourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateBigQuerySourceV2DtoTypeMSSQL          PublicCreateBigQuerySourceV2DtoType = "MSSQL"
+	PublicCreateBigQuerySourceV2DtoTypeMYSQL          PublicCreateBigQuerySourceV2DtoType = "MYSQL"
+	PublicCreateBigQuerySourceV2DtoTypeORACLE         PublicCreateBigQuerySourceV2DtoType = "ORACLE"
+	PublicCreateBigQuerySourceV2DtoTypePOSTGRESQL     PublicCreateBigQuerySourceV2DtoType = "POSTGRESQL"
+	PublicCreateBigQuerySourceV2DtoTypePOWERBI        PublicCreateBigQuerySourceV2DtoType = "POWER_BI"
+	PublicCreateBigQuerySourceV2DtoTypeQLIK           PublicCreateBigQuerySourceV2DtoType = "QLIK"
+	PublicCreateBigQuerySourceV2DtoTypeQUICKSIGHT     PublicCreateBigQuerySourceV2DtoType = "QUICKSIGHT"
+	PublicCreateBigQuerySourceV2DtoTypeREDSHIFT       PublicCreateBigQuerySourceV2DtoType = "REDSHIFT"
+	PublicCreateBigQuerySourceV2DtoTypeSNOWFLAKE      PublicCreateBigQuerySourceV2DtoType = "SNOWFLAKE"
+	PublicCreateBigQuerySourceV2DtoTypeSYNAPSE        PublicCreateBigQuerySourceV2DtoType = "SYNAPSE"
+	PublicCreateBigQuerySourceV2DtoTypeTABLEAU        PublicCreateBigQuerySourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateDatabricksJobsSourceV2DtoType.
+const (
+	PublicCreateDatabricksJobsSourceV2DtoTypeAIRFLOW        PublicCreateDatabricksJobsSourceV2DtoType = "AIRFLOW"
+	PublicCreateDatabricksJobsSourceV2DtoTypeATHENA         PublicCreateDatabricksJobsSourceV2DtoType = "ATHENA"
+	PublicCreateDatabricksJobsSourceV2DtoTypeBIGQUERY       PublicCreateDatabricksJobsSourceV2DtoType = "BIGQUERY"
+	PublicCreateDatabricksJobsSourceV2DtoTypeDATABRICKS     PublicCreateDatabricksJobsSourceV2DtoType = "DATABRICKS"
+	PublicCreateDatabricksJobsSourceV2DtoTypeDATABRICKSJOBS PublicCreateDatabricksJobsSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateDatabricksJobsSourceV2DtoTypeDBT            PublicCreateDatabricksJobsSourceV2DtoType = "DBT"
+	PublicCreateDatabricksJobsSourceV2DtoTypeDBTCLOUD       PublicCreateDatabricksJobsSourceV2DtoType = "DBTCLOUD"
+	PublicCreateDatabricksJobsSourceV2DtoTypeDECLARATIVE    PublicCreateDatabricksJobsSourceV2DtoType = "DECLARATIVE"
+	PublicCreateDatabricksJobsSourceV2DtoTypeFIVETRAN       PublicCreateDatabricksJobsSourceV2DtoType = "FIVETRAN"
+	PublicCreateDatabricksJobsSourceV2DtoTypeLOOKER         PublicCreateDatabricksJobsSourceV2DtoType = "LOOKER"
+	PublicCreateDatabricksJobsSourceV2DtoTypeMICROSTRATEGY  PublicCreateDatabricksJobsSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateDatabricksJobsSourceV2DtoTypeMSSQL          PublicCreateDatabricksJobsSourceV2DtoType = "MSSQL"
+	PublicCreateDatabricksJobsSourceV2DtoTypeMYSQL          PublicCreateDatabricksJobsSourceV2DtoType = "MYSQL"
+	PublicCreateDatabricksJobsSourceV2DtoTypeORACLE         PublicCreateDatabricksJobsSourceV2DtoType = "ORACLE"
+	PublicCreateDatabricksJobsSourceV2DtoTypePOSTGRESQL     PublicCreateDatabricksJobsSourceV2DtoType = "POSTGRESQL"
+	PublicCreateDatabricksJobsSourceV2DtoTypePOWERBI        PublicCreateDatabricksJobsSourceV2DtoType = "POWER_BI"
+	PublicCreateDatabricksJobsSourceV2DtoTypeQLIK           PublicCreateDatabricksJobsSourceV2DtoType = "QLIK"
+	PublicCreateDatabricksJobsSourceV2DtoTypeQUICKSIGHT     PublicCreateDatabricksJobsSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateDatabricksJobsSourceV2DtoTypeREDSHIFT       PublicCreateDatabricksJobsSourceV2DtoType = "REDSHIFT"
+	PublicCreateDatabricksJobsSourceV2DtoTypeSNOWFLAKE      PublicCreateDatabricksJobsSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateDatabricksJobsSourceV2DtoTypeSYNAPSE        PublicCreateDatabricksJobsSourceV2DtoType = "SYNAPSE"
+	PublicCreateDatabricksJobsSourceV2DtoTypeTABLEAU        PublicCreateDatabricksJobsSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateDatabricksSourceV2DtoType.
+const (
+	PublicCreateDatabricksSourceV2DtoTypeAIRFLOW        PublicCreateDatabricksSourceV2DtoType = "AIRFLOW"
+	PublicCreateDatabricksSourceV2DtoTypeATHENA         PublicCreateDatabricksSourceV2DtoType = "ATHENA"
+	PublicCreateDatabricksSourceV2DtoTypeBIGQUERY       PublicCreateDatabricksSourceV2DtoType = "BIGQUERY"
+	PublicCreateDatabricksSourceV2DtoTypeDATABRICKS     PublicCreateDatabricksSourceV2DtoType = "DATABRICKS"
+	PublicCreateDatabricksSourceV2DtoTypeDATABRICKSJOBS PublicCreateDatabricksSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateDatabricksSourceV2DtoTypeDBT            PublicCreateDatabricksSourceV2DtoType = "DBT"
+	PublicCreateDatabricksSourceV2DtoTypeDBTCLOUD       PublicCreateDatabricksSourceV2DtoType = "DBTCLOUD"
+	PublicCreateDatabricksSourceV2DtoTypeDECLARATIVE    PublicCreateDatabricksSourceV2DtoType = "DECLARATIVE"
+	PublicCreateDatabricksSourceV2DtoTypeFIVETRAN       PublicCreateDatabricksSourceV2DtoType = "FIVETRAN"
+	PublicCreateDatabricksSourceV2DtoTypeLOOKER         PublicCreateDatabricksSourceV2DtoType = "LOOKER"
+	PublicCreateDatabricksSourceV2DtoTypeMICROSTRATEGY  PublicCreateDatabricksSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateDatabricksSourceV2DtoTypeMSSQL          PublicCreateDatabricksSourceV2DtoType = "MSSQL"
+	PublicCreateDatabricksSourceV2DtoTypeMYSQL          PublicCreateDatabricksSourceV2DtoType = "MYSQL"
+	PublicCreateDatabricksSourceV2DtoTypeORACLE         PublicCreateDatabricksSourceV2DtoType = "ORACLE"
+	PublicCreateDatabricksSourceV2DtoTypePOSTGRESQL     PublicCreateDatabricksSourceV2DtoType = "POSTGRESQL"
+	PublicCreateDatabricksSourceV2DtoTypePOWERBI        PublicCreateDatabricksSourceV2DtoType = "POWER_BI"
+	PublicCreateDatabricksSourceV2DtoTypeQLIK           PublicCreateDatabricksSourceV2DtoType = "QLIK"
+	PublicCreateDatabricksSourceV2DtoTypeQUICKSIGHT     PublicCreateDatabricksSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateDatabricksSourceV2DtoTypeREDSHIFT       PublicCreateDatabricksSourceV2DtoType = "REDSHIFT"
+	PublicCreateDatabricksSourceV2DtoTypeSNOWFLAKE      PublicCreateDatabricksSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateDatabricksSourceV2DtoTypeSYNAPSE        PublicCreateDatabricksSourceV2DtoType = "SYNAPSE"
+	PublicCreateDatabricksSourceV2DtoTypeTABLEAU        PublicCreateDatabricksSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateDbtCloudSourceV2DtoType.
+const (
+	PublicCreateDbtCloudSourceV2DtoTypeAIRFLOW        PublicCreateDbtCloudSourceV2DtoType = "AIRFLOW"
+	PublicCreateDbtCloudSourceV2DtoTypeATHENA         PublicCreateDbtCloudSourceV2DtoType = "ATHENA"
+	PublicCreateDbtCloudSourceV2DtoTypeBIGQUERY       PublicCreateDbtCloudSourceV2DtoType = "BIGQUERY"
+	PublicCreateDbtCloudSourceV2DtoTypeDATABRICKS     PublicCreateDbtCloudSourceV2DtoType = "DATABRICKS"
+	PublicCreateDbtCloudSourceV2DtoTypeDATABRICKSJOBS PublicCreateDbtCloudSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateDbtCloudSourceV2DtoTypeDBT            PublicCreateDbtCloudSourceV2DtoType = "DBT"
+	PublicCreateDbtCloudSourceV2DtoTypeDBTCLOUD       PublicCreateDbtCloudSourceV2DtoType = "DBTCLOUD"
+	PublicCreateDbtCloudSourceV2DtoTypeDECLARATIVE    PublicCreateDbtCloudSourceV2DtoType = "DECLARATIVE"
+	PublicCreateDbtCloudSourceV2DtoTypeFIVETRAN       PublicCreateDbtCloudSourceV2DtoType = "FIVETRAN"
+	PublicCreateDbtCloudSourceV2DtoTypeLOOKER         PublicCreateDbtCloudSourceV2DtoType = "LOOKER"
+	PublicCreateDbtCloudSourceV2DtoTypeMICROSTRATEGY  PublicCreateDbtCloudSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateDbtCloudSourceV2DtoTypeMSSQL          PublicCreateDbtCloudSourceV2DtoType = "MSSQL"
+	PublicCreateDbtCloudSourceV2DtoTypeMYSQL          PublicCreateDbtCloudSourceV2DtoType = "MYSQL"
+	PublicCreateDbtCloudSourceV2DtoTypeORACLE         PublicCreateDbtCloudSourceV2DtoType = "ORACLE"
+	PublicCreateDbtCloudSourceV2DtoTypePOSTGRESQL     PublicCreateDbtCloudSourceV2DtoType = "POSTGRESQL"
+	PublicCreateDbtCloudSourceV2DtoTypePOWERBI        PublicCreateDbtCloudSourceV2DtoType = "POWER_BI"
+	PublicCreateDbtCloudSourceV2DtoTypeQLIK           PublicCreateDbtCloudSourceV2DtoType = "QLIK"
+	PublicCreateDbtCloudSourceV2DtoTypeQUICKSIGHT     PublicCreateDbtCloudSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateDbtCloudSourceV2DtoTypeREDSHIFT       PublicCreateDbtCloudSourceV2DtoType = "REDSHIFT"
+	PublicCreateDbtCloudSourceV2DtoTypeSNOWFLAKE      PublicCreateDbtCloudSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateDbtCloudSourceV2DtoTypeSYNAPSE        PublicCreateDbtCloudSourceV2DtoType = "SYNAPSE"
+	PublicCreateDbtCloudSourceV2DtoTypeTABLEAU        PublicCreateDbtCloudSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateDbtSourceV2DtoType.
+const (
+	PublicCreateDbtSourceV2DtoTypeAIRFLOW        PublicCreateDbtSourceV2DtoType = "AIRFLOW"
+	PublicCreateDbtSourceV2DtoTypeATHENA         PublicCreateDbtSourceV2DtoType = "ATHENA"
+	PublicCreateDbtSourceV2DtoTypeBIGQUERY       PublicCreateDbtSourceV2DtoType = "BIGQUERY"
+	PublicCreateDbtSourceV2DtoTypeDATABRICKS     PublicCreateDbtSourceV2DtoType = "DATABRICKS"
+	PublicCreateDbtSourceV2DtoTypeDATABRICKSJOBS PublicCreateDbtSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateDbtSourceV2DtoTypeDBT            PublicCreateDbtSourceV2DtoType = "DBT"
+	PublicCreateDbtSourceV2DtoTypeDBTCLOUD       PublicCreateDbtSourceV2DtoType = "DBTCLOUD"
+	PublicCreateDbtSourceV2DtoTypeDECLARATIVE    PublicCreateDbtSourceV2DtoType = "DECLARATIVE"
+	PublicCreateDbtSourceV2DtoTypeFIVETRAN       PublicCreateDbtSourceV2DtoType = "FIVETRAN"
+	PublicCreateDbtSourceV2DtoTypeLOOKER         PublicCreateDbtSourceV2DtoType = "LOOKER"
+	PublicCreateDbtSourceV2DtoTypeMICROSTRATEGY  PublicCreateDbtSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateDbtSourceV2DtoTypeMSSQL          PublicCreateDbtSourceV2DtoType = "MSSQL"
+	PublicCreateDbtSourceV2DtoTypeMYSQL          PublicCreateDbtSourceV2DtoType = "MYSQL"
+	PublicCreateDbtSourceV2DtoTypeORACLE         PublicCreateDbtSourceV2DtoType = "ORACLE"
+	PublicCreateDbtSourceV2DtoTypePOSTGRESQL     PublicCreateDbtSourceV2DtoType = "POSTGRESQL"
+	PublicCreateDbtSourceV2DtoTypePOWERBI        PublicCreateDbtSourceV2DtoType = "POWER_BI"
+	PublicCreateDbtSourceV2DtoTypeQLIK           PublicCreateDbtSourceV2DtoType = "QLIK"
+	PublicCreateDbtSourceV2DtoTypeQUICKSIGHT     PublicCreateDbtSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateDbtSourceV2DtoTypeREDSHIFT       PublicCreateDbtSourceV2DtoType = "REDSHIFT"
+	PublicCreateDbtSourceV2DtoTypeSNOWFLAKE      PublicCreateDbtSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateDbtSourceV2DtoTypeSYNAPSE        PublicCreateDbtSourceV2DtoType = "SYNAPSE"
+	PublicCreateDbtSourceV2DtoTypeTABLEAU        PublicCreateDbtSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateFivetranSourceV2DtoType.
+const (
+	PublicCreateFivetranSourceV2DtoTypeAIRFLOW        PublicCreateFivetranSourceV2DtoType = "AIRFLOW"
+	PublicCreateFivetranSourceV2DtoTypeATHENA         PublicCreateFivetranSourceV2DtoType = "ATHENA"
+	PublicCreateFivetranSourceV2DtoTypeBIGQUERY       PublicCreateFivetranSourceV2DtoType = "BIGQUERY"
+	PublicCreateFivetranSourceV2DtoTypeDATABRICKS     PublicCreateFivetranSourceV2DtoType = "DATABRICKS"
+	PublicCreateFivetranSourceV2DtoTypeDATABRICKSJOBS PublicCreateFivetranSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateFivetranSourceV2DtoTypeDBT            PublicCreateFivetranSourceV2DtoType = "DBT"
+	PublicCreateFivetranSourceV2DtoTypeDBTCLOUD       PublicCreateFivetranSourceV2DtoType = "DBTCLOUD"
+	PublicCreateFivetranSourceV2DtoTypeDECLARATIVE    PublicCreateFivetranSourceV2DtoType = "DECLARATIVE"
+	PublicCreateFivetranSourceV2DtoTypeFIVETRAN       PublicCreateFivetranSourceV2DtoType = "FIVETRAN"
+	PublicCreateFivetranSourceV2DtoTypeLOOKER         PublicCreateFivetranSourceV2DtoType = "LOOKER"
+	PublicCreateFivetranSourceV2DtoTypeMICROSTRATEGY  PublicCreateFivetranSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateFivetranSourceV2DtoTypeMSSQL          PublicCreateFivetranSourceV2DtoType = "MSSQL"
+	PublicCreateFivetranSourceV2DtoTypeMYSQL          PublicCreateFivetranSourceV2DtoType = "MYSQL"
+	PublicCreateFivetranSourceV2DtoTypeORACLE         PublicCreateFivetranSourceV2DtoType = "ORACLE"
+	PublicCreateFivetranSourceV2DtoTypePOSTGRESQL     PublicCreateFivetranSourceV2DtoType = "POSTGRESQL"
+	PublicCreateFivetranSourceV2DtoTypePOWERBI        PublicCreateFivetranSourceV2DtoType = "POWER_BI"
+	PublicCreateFivetranSourceV2DtoTypeQLIK           PublicCreateFivetranSourceV2DtoType = "QLIK"
+	PublicCreateFivetranSourceV2DtoTypeQUICKSIGHT     PublicCreateFivetranSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateFivetranSourceV2DtoTypeREDSHIFT       PublicCreateFivetranSourceV2DtoType = "REDSHIFT"
+	PublicCreateFivetranSourceV2DtoTypeSNOWFLAKE      PublicCreateFivetranSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateFivetranSourceV2DtoTypeSYNAPSE        PublicCreateFivetranSourceV2DtoType = "SYNAPSE"
+	PublicCreateFivetranSourceV2DtoTypeTABLEAU        PublicCreateFivetranSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateLookerSourceV2DtoType.
+const (
+	PublicCreateLookerSourceV2DtoTypeAIRFLOW        PublicCreateLookerSourceV2DtoType = "AIRFLOW"
+	PublicCreateLookerSourceV2DtoTypeATHENA         PublicCreateLookerSourceV2DtoType = "ATHENA"
+	PublicCreateLookerSourceV2DtoTypeBIGQUERY       PublicCreateLookerSourceV2DtoType = "BIGQUERY"
+	PublicCreateLookerSourceV2DtoTypeDATABRICKS     PublicCreateLookerSourceV2DtoType = "DATABRICKS"
+	PublicCreateLookerSourceV2DtoTypeDATABRICKSJOBS PublicCreateLookerSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateLookerSourceV2DtoTypeDBT            PublicCreateLookerSourceV2DtoType = "DBT"
+	PublicCreateLookerSourceV2DtoTypeDBTCLOUD       PublicCreateLookerSourceV2DtoType = "DBTCLOUD"
+	PublicCreateLookerSourceV2DtoTypeDECLARATIVE    PublicCreateLookerSourceV2DtoType = "DECLARATIVE"
+	PublicCreateLookerSourceV2DtoTypeFIVETRAN       PublicCreateLookerSourceV2DtoType = "FIVETRAN"
+	PublicCreateLookerSourceV2DtoTypeLOOKER         PublicCreateLookerSourceV2DtoType = "LOOKER"
+	PublicCreateLookerSourceV2DtoTypeMICROSTRATEGY  PublicCreateLookerSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateLookerSourceV2DtoTypeMSSQL          PublicCreateLookerSourceV2DtoType = "MSSQL"
+	PublicCreateLookerSourceV2DtoTypeMYSQL          PublicCreateLookerSourceV2DtoType = "MYSQL"
+	PublicCreateLookerSourceV2DtoTypeORACLE         PublicCreateLookerSourceV2DtoType = "ORACLE"
+	PublicCreateLookerSourceV2DtoTypePOSTGRESQL     PublicCreateLookerSourceV2DtoType = "POSTGRESQL"
+	PublicCreateLookerSourceV2DtoTypePOWERBI        PublicCreateLookerSourceV2DtoType = "POWER_BI"
+	PublicCreateLookerSourceV2DtoTypeQLIK           PublicCreateLookerSourceV2DtoType = "QLIK"
+	PublicCreateLookerSourceV2DtoTypeQUICKSIGHT     PublicCreateLookerSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateLookerSourceV2DtoTypeREDSHIFT       PublicCreateLookerSourceV2DtoType = "REDSHIFT"
+	PublicCreateLookerSourceV2DtoTypeSNOWFLAKE      PublicCreateLookerSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateLookerSourceV2DtoTypeSYNAPSE        PublicCreateLookerSourceV2DtoType = "SYNAPSE"
+	PublicCreateLookerSourceV2DtoTypeTABLEAU        PublicCreateLookerSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateMicrostrategySourceV2DtoType.
+const (
+	PublicCreateMicrostrategySourceV2DtoTypeAIRFLOW        PublicCreateMicrostrategySourceV2DtoType = "AIRFLOW"
+	PublicCreateMicrostrategySourceV2DtoTypeATHENA         PublicCreateMicrostrategySourceV2DtoType = "ATHENA"
+	PublicCreateMicrostrategySourceV2DtoTypeBIGQUERY       PublicCreateMicrostrategySourceV2DtoType = "BIGQUERY"
+	PublicCreateMicrostrategySourceV2DtoTypeDATABRICKS     PublicCreateMicrostrategySourceV2DtoType = "DATABRICKS"
+	PublicCreateMicrostrategySourceV2DtoTypeDATABRICKSJOBS PublicCreateMicrostrategySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateMicrostrategySourceV2DtoTypeDBT            PublicCreateMicrostrategySourceV2DtoType = "DBT"
+	PublicCreateMicrostrategySourceV2DtoTypeDBTCLOUD       PublicCreateMicrostrategySourceV2DtoType = "DBTCLOUD"
+	PublicCreateMicrostrategySourceV2DtoTypeDECLARATIVE    PublicCreateMicrostrategySourceV2DtoType = "DECLARATIVE"
+	PublicCreateMicrostrategySourceV2DtoTypeFIVETRAN       PublicCreateMicrostrategySourceV2DtoType = "FIVETRAN"
+	PublicCreateMicrostrategySourceV2DtoTypeLOOKER         PublicCreateMicrostrategySourceV2DtoType = "LOOKER"
+	PublicCreateMicrostrategySourceV2DtoTypeMICROSTRATEGY  PublicCreateMicrostrategySourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateMicrostrategySourceV2DtoTypeMSSQL          PublicCreateMicrostrategySourceV2DtoType = "MSSQL"
+	PublicCreateMicrostrategySourceV2DtoTypeMYSQL          PublicCreateMicrostrategySourceV2DtoType = "MYSQL"
+	PublicCreateMicrostrategySourceV2DtoTypeORACLE         PublicCreateMicrostrategySourceV2DtoType = "ORACLE"
+	PublicCreateMicrostrategySourceV2DtoTypePOSTGRESQL     PublicCreateMicrostrategySourceV2DtoType = "POSTGRESQL"
+	PublicCreateMicrostrategySourceV2DtoTypePOWERBI        PublicCreateMicrostrategySourceV2DtoType = "POWER_BI"
+	PublicCreateMicrostrategySourceV2DtoTypeQLIK           PublicCreateMicrostrategySourceV2DtoType = "QLIK"
+	PublicCreateMicrostrategySourceV2DtoTypeQUICKSIGHT     PublicCreateMicrostrategySourceV2DtoType = "QUICKSIGHT"
+	PublicCreateMicrostrategySourceV2DtoTypeREDSHIFT       PublicCreateMicrostrategySourceV2DtoType = "REDSHIFT"
+	PublicCreateMicrostrategySourceV2DtoTypeSNOWFLAKE      PublicCreateMicrostrategySourceV2DtoType = "SNOWFLAKE"
+	PublicCreateMicrostrategySourceV2DtoTypeSYNAPSE        PublicCreateMicrostrategySourceV2DtoType = "SYNAPSE"
+	PublicCreateMicrostrategySourceV2DtoTypeTABLEAU        PublicCreateMicrostrategySourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateMssqlSourceV2DtoType.
+const (
+	PublicCreateMssqlSourceV2DtoTypeAIRFLOW        PublicCreateMssqlSourceV2DtoType = "AIRFLOW"
+	PublicCreateMssqlSourceV2DtoTypeATHENA         PublicCreateMssqlSourceV2DtoType = "ATHENA"
+	PublicCreateMssqlSourceV2DtoTypeBIGQUERY       PublicCreateMssqlSourceV2DtoType = "BIGQUERY"
+	PublicCreateMssqlSourceV2DtoTypeDATABRICKS     PublicCreateMssqlSourceV2DtoType = "DATABRICKS"
+	PublicCreateMssqlSourceV2DtoTypeDATABRICKSJOBS PublicCreateMssqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateMssqlSourceV2DtoTypeDBT            PublicCreateMssqlSourceV2DtoType = "DBT"
+	PublicCreateMssqlSourceV2DtoTypeDBTCLOUD       PublicCreateMssqlSourceV2DtoType = "DBTCLOUD"
+	PublicCreateMssqlSourceV2DtoTypeDECLARATIVE    PublicCreateMssqlSourceV2DtoType = "DECLARATIVE"
+	PublicCreateMssqlSourceV2DtoTypeFIVETRAN       PublicCreateMssqlSourceV2DtoType = "FIVETRAN"
+	PublicCreateMssqlSourceV2DtoTypeLOOKER         PublicCreateMssqlSourceV2DtoType = "LOOKER"
+	PublicCreateMssqlSourceV2DtoTypeMICROSTRATEGY  PublicCreateMssqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateMssqlSourceV2DtoTypeMSSQL          PublicCreateMssqlSourceV2DtoType = "MSSQL"
+	PublicCreateMssqlSourceV2DtoTypeMYSQL          PublicCreateMssqlSourceV2DtoType = "MYSQL"
+	PublicCreateMssqlSourceV2DtoTypeORACLE         PublicCreateMssqlSourceV2DtoType = "ORACLE"
+	PublicCreateMssqlSourceV2DtoTypePOSTGRESQL     PublicCreateMssqlSourceV2DtoType = "POSTGRESQL"
+	PublicCreateMssqlSourceV2DtoTypePOWERBI        PublicCreateMssqlSourceV2DtoType = "POWER_BI"
+	PublicCreateMssqlSourceV2DtoTypeQLIK           PublicCreateMssqlSourceV2DtoType = "QLIK"
+	PublicCreateMssqlSourceV2DtoTypeQUICKSIGHT     PublicCreateMssqlSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateMssqlSourceV2DtoTypeREDSHIFT       PublicCreateMssqlSourceV2DtoType = "REDSHIFT"
+	PublicCreateMssqlSourceV2DtoTypeSNOWFLAKE      PublicCreateMssqlSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateMssqlSourceV2DtoTypeSYNAPSE        PublicCreateMssqlSourceV2DtoType = "SYNAPSE"
+	PublicCreateMssqlSourceV2DtoTypeTABLEAU        PublicCreateMssqlSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateMysqlSourceV2DtoType.
+const (
+	PublicCreateMysqlSourceV2DtoTypeAIRFLOW        PublicCreateMysqlSourceV2DtoType = "AIRFLOW"
+	PublicCreateMysqlSourceV2DtoTypeATHENA         PublicCreateMysqlSourceV2DtoType = "ATHENA"
+	PublicCreateMysqlSourceV2DtoTypeBIGQUERY       PublicCreateMysqlSourceV2DtoType = "BIGQUERY"
+	PublicCreateMysqlSourceV2DtoTypeDATABRICKS     PublicCreateMysqlSourceV2DtoType = "DATABRICKS"
+	PublicCreateMysqlSourceV2DtoTypeDATABRICKSJOBS PublicCreateMysqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateMysqlSourceV2DtoTypeDBT            PublicCreateMysqlSourceV2DtoType = "DBT"
+	PublicCreateMysqlSourceV2DtoTypeDBTCLOUD       PublicCreateMysqlSourceV2DtoType = "DBTCLOUD"
+	PublicCreateMysqlSourceV2DtoTypeDECLARATIVE    PublicCreateMysqlSourceV2DtoType = "DECLARATIVE"
+	PublicCreateMysqlSourceV2DtoTypeFIVETRAN       PublicCreateMysqlSourceV2DtoType = "FIVETRAN"
+	PublicCreateMysqlSourceV2DtoTypeLOOKER         PublicCreateMysqlSourceV2DtoType = "LOOKER"
+	PublicCreateMysqlSourceV2DtoTypeMICROSTRATEGY  PublicCreateMysqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateMysqlSourceV2DtoTypeMSSQL          PublicCreateMysqlSourceV2DtoType = "MSSQL"
+	PublicCreateMysqlSourceV2DtoTypeMYSQL          PublicCreateMysqlSourceV2DtoType = "MYSQL"
+	PublicCreateMysqlSourceV2DtoTypeORACLE         PublicCreateMysqlSourceV2DtoType = "ORACLE"
+	PublicCreateMysqlSourceV2DtoTypePOSTGRESQL     PublicCreateMysqlSourceV2DtoType = "POSTGRESQL"
+	PublicCreateMysqlSourceV2DtoTypePOWERBI        PublicCreateMysqlSourceV2DtoType = "POWER_BI"
+	PublicCreateMysqlSourceV2DtoTypeQLIK           PublicCreateMysqlSourceV2DtoType = "QLIK"
+	PublicCreateMysqlSourceV2DtoTypeQUICKSIGHT     PublicCreateMysqlSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateMysqlSourceV2DtoTypeREDSHIFT       PublicCreateMysqlSourceV2DtoType = "REDSHIFT"
+	PublicCreateMysqlSourceV2DtoTypeSNOWFLAKE      PublicCreateMysqlSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateMysqlSourceV2DtoTypeSYNAPSE        PublicCreateMysqlSourceV2DtoType = "SYNAPSE"
+	PublicCreateMysqlSourceV2DtoTypeTABLEAU        PublicCreateMysqlSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateOracleSourceV2DtoType.
+const (
+	PublicCreateOracleSourceV2DtoTypeAIRFLOW        PublicCreateOracleSourceV2DtoType = "AIRFLOW"
+	PublicCreateOracleSourceV2DtoTypeATHENA         PublicCreateOracleSourceV2DtoType = "ATHENA"
+	PublicCreateOracleSourceV2DtoTypeBIGQUERY       PublicCreateOracleSourceV2DtoType = "BIGQUERY"
+	PublicCreateOracleSourceV2DtoTypeDATABRICKS     PublicCreateOracleSourceV2DtoType = "DATABRICKS"
+	PublicCreateOracleSourceV2DtoTypeDATABRICKSJOBS PublicCreateOracleSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateOracleSourceV2DtoTypeDBT            PublicCreateOracleSourceV2DtoType = "DBT"
+	PublicCreateOracleSourceV2DtoTypeDBTCLOUD       PublicCreateOracleSourceV2DtoType = "DBTCLOUD"
+	PublicCreateOracleSourceV2DtoTypeDECLARATIVE    PublicCreateOracleSourceV2DtoType = "DECLARATIVE"
+	PublicCreateOracleSourceV2DtoTypeFIVETRAN       PublicCreateOracleSourceV2DtoType = "FIVETRAN"
+	PublicCreateOracleSourceV2DtoTypeLOOKER         PublicCreateOracleSourceV2DtoType = "LOOKER"
+	PublicCreateOracleSourceV2DtoTypeMICROSTRATEGY  PublicCreateOracleSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateOracleSourceV2DtoTypeMSSQL          PublicCreateOracleSourceV2DtoType = "MSSQL"
+	PublicCreateOracleSourceV2DtoTypeMYSQL          PublicCreateOracleSourceV2DtoType = "MYSQL"
+	PublicCreateOracleSourceV2DtoTypeORACLE         PublicCreateOracleSourceV2DtoType = "ORACLE"
+	PublicCreateOracleSourceV2DtoTypePOSTGRESQL     PublicCreateOracleSourceV2DtoType = "POSTGRESQL"
+	PublicCreateOracleSourceV2DtoTypePOWERBI        PublicCreateOracleSourceV2DtoType = "POWER_BI"
+	PublicCreateOracleSourceV2DtoTypeQLIK           PublicCreateOracleSourceV2DtoType = "QLIK"
+	PublicCreateOracleSourceV2DtoTypeQUICKSIGHT     PublicCreateOracleSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateOracleSourceV2DtoTypeREDSHIFT       PublicCreateOracleSourceV2DtoType = "REDSHIFT"
+	PublicCreateOracleSourceV2DtoTypeSNOWFLAKE      PublicCreateOracleSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateOracleSourceV2DtoTypeSYNAPSE        PublicCreateOracleSourceV2DtoType = "SYNAPSE"
+	PublicCreateOracleSourceV2DtoTypeTABLEAU        PublicCreateOracleSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreatePostgresqlSourceV2DtoType.
+const (
+	PublicCreatePostgresqlSourceV2DtoTypeAIRFLOW        PublicCreatePostgresqlSourceV2DtoType = "AIRFLOW"
+	PublicCreatePostgresqlSourceV2DtoTypeATHENA         PublicCreatePostgresqlSourceV2DtoType = "ATHENA"
+	PublicCreatePostgresqlSourceV2DtoTypeBIGQUERY       PublicCreatePostgresqlSourceV2DtoType = "BIGQUERY"
+	PublicCreatePostgresqlSourceV2DtoTypeDATABRICKS     PublicCreatePostgresqlSourceV2DtoType = "DATABRICKS"
+	PublicCreatePostgresqlSourceV2DtoTypeDATABRICKSJOBS PublicCreatePostgresqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreatePostgresqlSourceV2DtoTypeDBT            PublicCreatePostgresqlSourceV2DtoType = "DBT"
+	PublicCreatePostgresqlSourceV2DtoTypeDBTCLOUD       PublicCreatePostgresqlSourceV2DtoType = "DBTCLOUD"
+	PublicCreatePostgresqlSourceV2DtoTypeDECLARATIVE    PublicCreatePostgresqlSourceV2DtoType = "DECLARATIVE"
+	PublicCreatePostgresqlSourceV2DtoTypeFIVETRAN       PublicCreatePostgresqlSourceV2DtoType = "FIVETRAN"
+	PublicCreatePostgresqlSourceV2DtoTypeLOOKER         PublicCreatePostgresqlSourceV2DtoType = "LOOKER"
+	PublicCreatePostgresqlSourceV2DtoTypeMICROSTRATEGY  PublicCreatePostgresqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreatePostgresqlSourceV2DtoTypeMSSQL          PublicCreatePostgresqlSourceV2DtoType = "MSSQL"
+	PublicCreatePostgresqlSourceV2DtoTypeMYSQL          PublicCreatePostgresqlSourceV2DtoType = "MYSQL"
+	PublicCreatePostgresqlSourceV2DtoTypeORACLE         PublicCreatePostgresqlSourceV2DtoType = "ORACLE"
+	PublicCreatePostgresqlSourceV2DtoTypePOSTGRESQL     PublicCreatePostgresqlSourceV2DtoType = "POSTGRESQL"
+	PublicCreatePostgresqlSourceV2DtoTypePOWERBI        PublicCreatePostgresqlSourceV2DtoType = "POWER_BI"
+	PublicCreatePostgresqlSourceV2DtoTypeQLIK           PublicCreatePostgresqlSourceV2DtoType = "QLIK"
+	PublicCreatePostgresqlSourceV2DtoTypeQUICKSIGHT     PublicCreatePostgresqlSourceV2DtoType = "QUICKSIGHT"
+	PublicCreatePostgresqlSourceV2DtoTypeREDSHIFT       PublicCreatePostgresqlSourceV2DtoType = "REDSHIFT"
+	PublicCreatePostgresqlSourceV2DtoTypeSNOWFLAKE      PublicCreatePostgresqlSourceV2DtoType = "SNOWFLAKE"
+	PublicCreatePostgresqlSourceV2DtoTypeSYNAPSE        PublicCreatePostgresqlSourceV2DtoType = "SYNAPSE"
+	PublicCreatePostgresqlSourceV2DtoTypeTABLEAU        PublicCreatePostgresqlSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreatePowerBiSourceV2DtoType.
+const (
+	PublicCreatePowerBiSourceV2DtoTypeAIRFLOW        PublicCreatePowerBiSourceV2DtoType = "AIRFLOW"
+	PublicCreatePowerBiSourceV2DtoTypeATHENA         PublicCreatePowerBiSourceV2DtoType = "ATHENA"
+	PublicCreatePowerBiSourceV2DtoTypeBIGQUERY       PublicCreatePowerBiSourceV2DtoType = "BIGQUERY"
+	PublicCreatePowerBiSourceV2DtoTypeDATABRICKS     PublicCreatePowerBiSourceV2DtoType = "DATABRICKS"
+	PublicCreatePowerBiSourceV2DtoTypeDATABRICKSJOBS PublicCreatePowerBiSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreatePowerBiSourceV2DtoTypeDBT            PublicCreatePowerBiSourceV2DtoType = "DBT"
+	PublicCreatePowerBiSourceV2DtoTypeDBTCLOUD       PublicCreatePowerBiSourceV2DtoType = "DBTCLOUD"
+	PublicCreatePowerBiSourceV2DtoTypeDECLARATIVE    PublicCreatePowerBiSourceV2DtoType = "DECLARATIVE"
+	PublicCreatePowerBiSourceV2DtoTypeFIVETRAN       PublicCreatePowerBiSourceV2DtoType = "FIVETRAN"
+	PublicCreatePowerBiSourceV2DtoTypeLOOKER         PublicCreatePowerBiSourceV2DtoType = "LOOKER"
+	PublicCreatePowerBiSourceV2DtoTypeMICROSTRATEGY  PublicCreatePowerBiSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreatePowerBiSourceV2DtoTypeMSSQL          PublicCreatePowerBiSourceV2DtoType = "MSSQL"
+	PublicCreatePowerBiSourceV2DtoTypeMYSQL          PublicCreatePowerBiSourceV2DtoType = "MYSQL"
+	PublicCreatePowerBiSourceV2DtoTypeORACLE         PublicCreatePowerBiSourceV2DtoType = "ORACLE"
+	PublicCreatePowerBiSourceV2DtoTypePOSTGRESQL     PublicCreatePowerBiSourceV2DtoType = "POSTGRESQL"
+	PublicCreatePowerBiSourceV2DtoTypePOWERBI        PublicCreatePowerBiSourceV2DtoType = "POWER_BI"
+	PublicCreatePowerBiSourceV2DtoTypeQLIK           PublicCreatePowerBiSourceV2DtoType = "QLIK"
+	PublicCreatePowerBiSourceV2DtoTypeQUICKSIGHT     PublicCreatePowerBiSourceV2DtoType = "QUICKSIGHT"
+	PublicCreatePowerBiSourceV2DtoTypeREDSHIFT       PublicCreatePowerBiSourceV2DtoType = "REDSHIFT"
+	PublicCreatePowerBiSourceV2DtoTypeSNOWFLAKE      PublicCreatePowerBiSourceV2DtoType = "SNOWFLAKE"
+	PublicCreatePowerBiSourceV2DtoTypeSYNAPSE        PublicCreatePowerBiSourceV2DtoType = "SYNAPSE"
+	PublicCreatePowerBiSourceV2DtoTypeTABLEAU        PublicCreatePowerBiSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateQlikSourceV2DtoType.
+const (
+	PublicCreateQlikSourceV2DtoTypeAIRFLOW        PublicCreateQlikSourceV2DtoType = "AIRFLOW"
+	PublicCreateQlikSourceV2DtoTypeATHENA         PublicCreateQlikSourceV2DtoType = "ATHENA"
+	PublicCreateQlikSourceV2DtoTypeBIGQUERY       PublicCreateQlikSourceV2DtoType = "BIGQUERY"
+	PublicCreateQlikSourceV2DtoTypeDATABRICKS     PublicCreateQlikSourceV2DtoType = "DATABRICKS"
+	PublicCreateQlikSourceV2DtoTypeDATABRICKSJOBS PublicCreateQlikSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateQlikSourceV2DtoTypeDBT            PublicCreateQlikSourceV2DtoType = "DBT"
+	PublicCreateQlikSourceV2DtoTypeDBTCLOUD       PublicCreateQlikSourceV2DtoType = "DBTCLOUD"
+	PublicCreateQlikSourceV2DtoTypeDECLARATIVE    PublicCreateQlikSourceV2DtoType = "DECLARATIVE"
+	PublicCreateQlikSourceV2DtoTypeFIVETRAN       PublicCreateQlikSourceV2DtoType = "FIVETRAN"
+	PublicCreateQlikSourceV2DtoTypeLOOKER         PublicCreateQlikSourceV2DtoType = "LOOKER"
+	PublicCreateQlikSourceV2DtoTypeMICROSTRATEGY  PublicCreateQlikSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateQlikSourceV2DtoTypeMSSQL          PublicCreateQlikSourceV2DtoType = "MSSQL"
+	PublicCreateQlikSourceV2DtoTypeMYSQL          PublicCreateQlikSourceV2DtoType = "MYSQL"
+	PublicCreateQlikSourceV2DtoTypeORACLE         PublicCreateQlikSourceV2DtoType = "ORACLE"
+	PublicCreateQlikSourceV2DtoTypePOSTGRESQL     PublicCreateQlikSourceV2DtoType = "POSTGRESQL"
+	PublicCreateQlikSourceV2DtoTypePOWERBI        PublicCreateQlikSourceV2DtoType = "POWER_BI"
+	PublicCreateQlikSourceV2DtoTypeQLIK           PublicCreateQlikSourceV2DtoType = "QLIK"
+	PublicCreateQlikSourceV2DtoTypeQUICKSIGHT     PublicCreateQlikSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateQlikSourceV2DtoTypeREDSHIFT       PublicCreateQlikSourceV2DtoType = "REDSHIFT"
+	PublicCreateQlikSourceV2DtoTypeSNOWFLAKE      PublicCreateQlikSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateQlikSourceV2DtoTypeSYNAPSE        PublicCreateQlikSourceV2DtoType = "SYNAPSE"
+	PublicCreateQlikSourceV2DtoTypeTABLEAU        PublicCreateQlikSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateQuicksightSourceV2DtoType.
+const (
+	PublicCreateQuicksightSourceV2DtoTypeAIRFLOW        PublicCreateQuicksightSourceV2DtoType = "AIRFLOW"
+	PublicCreateQuicksightSourceV2DtoTypeATHENA         PublicCreateQuicksightSourceV2DtoType = "ATHENA"
+	PublicCreateQuicksightSourceV2DtoTypeBIGQUERY       PublicCreateQuicksightSourceV2DtoType = "BIGQUERY"
+	PublicCreateQuicksightSourceV2DtoTypeDATABRICKS     PublicCreateQuicksightSourceV2DtoType = "DATABRICKS"
+	PublicCreateQuicksightSourceV2DtoTypeDATABRICKSJOBS PublicCreateQuicksightSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateQuicksightSourceV2DtoTypeDBT            PublicCreateQuicksightSourceV2DtoType = "DBT"
+	PublicCreateQuicksightSourceV2DtoTypeDBTCLOUD       PublicCreateQuicksightSourceV2DtoType = "DBTCLOUD"
+	PublicCreateQuicksightSourceV2DtoTypeDECLARATIVE    PublicCreateQuicksightSourceV2DtoType = "DECLARATIVE"
+	PublicCreateQuicksightSourceV2DtoTypeFIVETRAN       PublicCreateQuicksightSourceV2DtoType = "FIVETRAN"
+	PublicCreateQuicksightSourceV2DtoTypeLOOKER         PublicCreateQuicksightSourceV2DtoType = "LOOKER"
+	PublicCreateQuicksightSourceV2DtoTypeMICROSTRATEGY  PublicCreateQuicksightSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateQuicksightSourceV2DtoTypeMSSQL          PublicCreateQuicksightSourceV2DtoType = "MSSQL"
+	PublicCreateQuicksightSourceV2DtoTypeMYSQL          PublicCreateQuicksightSourceV2DtoType = "MYSQL"
+	PublicCreateQuicksightSourceV2DtoTypeORACLE         PublicCreateQuicksightSourceV2DtoType = "ORACLE"
+	PublicCreateQuicksightSourceV2DtoTypePOSTGRESQL     PublicCreateQuicksightSourceV2DtoType = "POSTGRESQL"
+	PublicCreateQuicksightSourceV2DtoTypePOWERBI        PublicCreateQuicksightSourceV2DtoType = "POWER_BI"
+	PublicCreateQuicksightSourceV2DtoTypeQLIK           PublicCreateQuicksightSourceV2DtoType = "QLIK"
+	PublicCreateQuicksightSourceV2DtoTypeQUICKSIGHT     PublicCreateQuicksightSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateQuicksightSourceV2DtoTypeREDSHIFT       PublicCreateQuicksightSourceV2DtoType = "REDSHIFT"
+	PublicCreateQuicksightSourceV2DtoTypeSNOWFLAKE      PublicCreateQuicksightSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateQuicksightSourceV2DtoTypeSYNAPSE        PublicCreateQuicksightSourceV2DtoType = "SYNAPSE"
+	PublicCreateQuicksightSourceV2DtoTypeTABLEAU        PublicCreateQuicksightSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateRedshiftSourceV2DtoType.
+const (
+	PublicCreateRedshiftSourceV2DtoTypeAIRFLOW        PublicCreateRedshiftSourceV2DtoType = "AIRFLOW"
+	PublicCreateRedshiftSourceV2DtoTypeATHENA         PublicCreateRedshiftSourceV2DtoType = "ATHENA"
+	PublicCreateRedshiftSourceV2DtoTypeBIGQUERY       PublicCreateRedshiftSourceV2DtoType = "BIGQUERY"
+	PublicCreateRedshiftSourceV2DtoTypeDATABRICKS     PublicCreateRedshiftSourceV2DtoType = "DATABRICKS"
+	PublicCreateRedshiftSourceV2DtoTypeDATABRICKSJOBS PublicCreateRedshiftSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateRedshiftSourceV2DtoTypeDBT            PublicCreateRedshiftSourceV2DtoType = "DBT"
+	PublicCreateRedshiftSourceV2DtoTypeDBTCLOUD       PublicCreateRedshiftSourceV2DtoType = "DBTCLOUD"
+	PublicCreateRedshiftSourceV2DtoTypeDECLARATIVE    PublicCreateRedshiftSourceV2DtoType = "DECLARATIVE"
+	PublicCreateRedshiftSourceV2DtoTypeFIVETRAN       PublicCreateRedshiftSourceV2DtoType = "FIVETRAN"
+	PublicCreateRedshiftSourceV2DtoTypeLOOKER         PublicCreateRedshiftSourceV2DtoType = "LOOKER"
+	PublicCreateRedshiftSourceV2DtoTypeMICROSTRATEGY  PublicCreateRedshiftSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateRedshiftSourceV2DtoTypeMSSQL          PublicCreateRedshiftSourceV2DtoType = "MSSQL"
+	PublicCreateRedshiftSourceV2DtoTypeMYSQL          PublicCreateRedshiftSourceV2DtoType = "MYSQL"
+	PublicCreateRedshiftSourceV2DtoTypeORACLE         PublicCreateRedshiftSourceV2DtoType = "ORACLE"
+	PublicCreateRedshiftSourceV2DtoTypePOSTGRESQL     PublicCreateRedshiftSourceV2DtoType = "POSTGRESQL"
+	PublicCreateRedshiftSourceV2DtoTypePOWERBI        PublicCreateRedshiftSourceV2DtoType = "POWER_BI"
+	PublicCreateRedshiftSourceV2DtoTypeQLIK           PublicCreateRedshiftSourceV2DtoType = "QLIK"
+	PublicCreateRedshiftSourceV2DtoTypeQUICKSIGHT     PublicCreateRedshiftSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateRedshiftSourceV2DtoTypeREDSHIFT       PublicCreateRedshiftSourceV2DtoType = "REDSHIFT"
+	PublicCreateRedshiftSourceV2DtoTypeSNOWFLAKE      PublicCreateRedshiftSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateRedshiftSourceV2DtoTypeSYNAPSE        PublicCreateRedshiftSourceV2DtoType = "SYNAPSE"
+	PublicCreateRedshiftSourceV2DtoTypeTABLEAU        PublicCreateRedshiftSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateSnowflakeSourceV2DtoType.
+const (
+	PublicCreateSnowflakeSourceV2DtoTypeAIRFLOW        PublicCreateSnowflakeSourceV2DtoType = "AIRFLOW"
+	PublicCreateSnowflakeSourceV2DtoTypeATHENA         PublicCreateSnowflakeSourceV2DtoType = "ATHENA"
+	PublicCreateSnowflakeSourceV2DtoTypeBIGQUERY       PublicCreateSnowflakeSourceV2DtoType = "BIGQUERY"
+	PublicCreateSnowflakeSourceV2DtoTypeDATABRICKS     PublicCreateSnowflakeSourceV2DtoType = "DATABRICKS"
+	PublicCreateSnowflakeSourceV2DtoTypeDATABRICKSJOBS PublicCreateSnowflakeSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateSnowflakeSourceV2DtoTypeDBT            PublicCreateSnowflakeSourceV2DtoType = "DBT"
+	PublicCreateSnowflakeSourceV2DtoTypeDBTCLOUD       PublicCreateSnowflakeSourceV2DtoType = "DBTCLOUD"
+	PublicCreateSnowflakeSourceV2DtoTypeDECLARATIVE    PublicCreateSnowflakeSourceV2DtoType = "DECLARATIVE"
+	PublicCreateSnowflakeSourceV2DtoTypeFIVETRAN       PublicCreateSnowflakeSourceV2DtoType = "FIVETRAN"
+	PublicCreateSnowflakeSourceV2DtoTypeLOOKER         PublicCreateSnowflakeSourceV2DtoType = "LOOKER"
+	PublicCreateSnowflakeSourceV2DtoTypeMICROSTRATEGY  PublicCreateSnowflakeSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateSnowflakeSourceV2DtoTypeMSSQL          PublicCreateSnowflakeSourceV2DtoType = "MSSQL"
+	PublicCreateSnowflakeSourceV2DtoTypeMYSQL          PublicCreateSnowflakeSourceV2DtoType = "MYSQL"
+	PublicCreateSnowflakeSourceV2DtoTypeORACLE         PublicCreateSnowflakeSourceV2DtoType = "ORACLE"
+	PublicCreateSnowflakeSourceV2DtoTypePOSTGRESQL     PublicCreateSnowflakeSourceV2DtoType = "POSTGRESQL"
+	PublicCreateSnowflakeSourceV2DtoTypePOWERBI        PublicCreateSnowflakeSourceV2DtoType = "POWER_BI"
+	PublicCreateSnowflakeSourceV2DtoTypeQLIK           PublicCreateSnowflakeSourceV2DtoType = "QLIK"
+	PublicCreateSnowflakeSourceV2DtoTypeQUICKSIGHT     PublicCreateSnowflakeSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateSnowflakeSourceV2DtoTypeREDSHIFT       PublicCreateSnowflakeSourceV2DtoType = "REDSHIFT"
+	PublicCreateSnowflakeSourceV2DtoTypeSNOWFLAKE      PublicCreateSnowflakeSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateSnowflakeSourceV2DtoTypeSYNAPSE        PublicCreateSnowflakeSourceV2DtoType = "SYNAPSE"
+	PublicCreateSnowflakeSourceV2DtoTypeTABLEAU        PublicCreateSnowflakeSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateSourceV2DtoType.
+const (
+	PublicCreateSourceV2DtoTypeAIRFLOW        PublicCreateSourceV2DtoType = "AIRFLOW"
+	PublicCreateSourceV2DtoTypeATHENA         PublicCreateSourceV2DtoType = "ATHENA"
+	PublicCreateSourceV2DtoTypeBIGQUERY       PublicCreateSourceV2DtoType = "BIGQUERY"
+	PublicCreateSourceV2DtoTypeDATABRICKS     PublicCreateSourceV2DtoType = "DATABRICKS"
+	PublicCreateSourceV2DtoTypeDATABRICKSJOBS PublicCreateSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateSourceV2DtoTypeDBT            PublicCreateSourceV2DtoType = "DBT"
+	PublicCreateSourceV2DtoTypeDBTCLOUD       PublicCreateSourceV2DtoType = "DBTCLOUD"
+	PublicCreateSourceV2DtoTypeDECLARATIVE    PublicCreateSourceV2DtoType = "DECLARATIVE"
+	PublicCreateSourceV2DtoTypeFIVETRAN       PublicCreateSourceV2DtoType = "FIVETRAN"
+	PublicCreateSourceV2DtoTypeLOOKER         PublicCreateSourceV2DtoType = "LOOKER"
+	PublicCreateSourceV2DtoTypeMICROSTRATEGY  PublicCreateSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateSourceV2DtoTypeMSSQL          PublicCreateSourceV2DtoType = "MSSQL"
+	PublicCreateSourceV2DtoTypeMYSQL          PublicCreateSourceV2DtoType = "MYSQL"
+	PublicCreateSourceV2DtoTypeORACLE         PublicCreateSourceV2DtoType = "ORACLE"
+	PublicCreateSourceV2DtoTypePOSTGRESQL     PublicCreateSourceV2DtoType = "POSTGRESQL"
+	PublicCreateSourceV2DtoTypePOWERBI        PublicCreateSourceV2DtoType = "POWER_BI"
+	PublicCreateSourceV2DtoTypeQLIK           PublicCreateSourceV2DtoType = "QLIK"
+	PublicCreateSourceV2DtoTypeQUICKSIGHT     PublicCreateSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateSourceV2DtoTypeREDSHIFT       PublicCreateSourceV2DtoType = "REDSHIFT"
+	PublicCreateSourceV2DtoTypeSNOWFLAKE      PublicCreateSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateSourceV2DtoTypeSYNAPSE        PublicCreateSourceV2DtoType = "SYNAPSE"
+	PublicCreateSourceV2DtoTypeTABLEAU        PublicCreateSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateSynapseSourceV2DtoType.
+const (
+	PublicCreateSynapseSourceV2DtoTypeAIRFLOW        PublicCreateSynapseSourceV2DtoType = "AIRFLOW"
+	PublicCreateSynapseSourceV2DtoTypeATHENA         PublicCreateSynapseSourceV2DtoType = "ATHENA"
+	PublicCreateSynapseSourceV2DtoTypeBIGQUERY       PublicCreateSynapseSourceV2DtoType = "BIGQUERY"
+	PublicCreateSynapseSourceV2DtoTypeDATABRICKS     PublicCreateSynapseSourceV2DtoType = "DATABRICKS"
+	PublicCreateSynapseSourceV2DtoTypeDATABRICKSJOBS PublicCreateSynapseSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateSynapseSourceV2DtoTypeDBT            PublicCreateSynapseSourceV2DtoType = "DBT"
+	PublicCreateSynapseSourceV2DtoTypeDBTCLOUD       PublicCreateSynapseSourceV2DtoType = "DBTCLOUD"
+	PublicCreateSynapseSourceV2DtoTypeDECLARATIVE    PublicCreateSynapseSourceV2DtoType = "DECLARATIVE"
+	PublicCreateSynapseSourceV2DtoTypeFIVETRAN       PublicCreateSynapseSourceV2DtoType = "FIVETRAN"
+	PublicCreateSynapseSourceV2DtoTypeLOOKER         PublicCreateSynapseSourceV2DtoType = "LOOKER"
+	PublicCreateSynapseSourceV2DtoTypeMICROSTRATEGY  PublicCreateSynapseSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateSynapseSourceV2DtoTypeMSSQL          PublicCreateSynapseSourceV2DtoType = "MSSQL"
+	PublicCreateSynapseSourceV2DtoTypeMYSQL          PublicCreateSynapseSourceV2DtoType = "MYSQL"
+	PublicCreateSynapseSourceV2DtoTypeORACLE         PublicCreateSynapseSourceV2DtoType = "ORACLE"
+	PublicCreateSynapseSourceV2DtoTypePOSTGRESQL     PublicCreateSynapseSourceV2DtoType = "POSTGRESQL"
+	PublicCreateSynapseSourceV2DtoTypePOWERBI        PublicCreateSynapseSourceV2DtoType = "POWER_BI"
+	PublicCreateSynapseSourceV2DtoTypeQLIK           PublicCreateSynapseSourceV2DtoType = "QLIK"
+	PublicCreateSynapseSourceV2DtoTypeQUICKSIGHT     PublicCreateSynapseSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateSynapseSourceV2DtoTypeREDSHIFT       PublicCreateSynapseSourceV2DtoType = "REDSHIFT"
+	PublicCreateSynapseSourceV2DtoTypeSNOWFLAKE      PublicCreateSynapseSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateSynapseSourceV2DtoTypeSYNAPSE        PublicCreateSynapseSourceV2DtoType = "SYNAPSE"
+	PublicCreateSynapseSourceV2DtoTypeTABLEAU        PublicCreateSynapseSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCreateTableauSourceV2DtoType.
+const (
+	PublicCreateTableauSourceV2DtoTypeAIRFLOW        PublicCreateTableauSourceV2DtoType = "AIRFLOW"
+	PublicCreateTableauSourceV2DtoTypeATHENA         PublicCreateTableauSourceV2DtoType = "ATHENA"
+	PublicCreateTableauSourceV2DtoTypeBIGQUERY       PublicCreateTableauSourceV2DtoType = "BIGQUERY"
+	PublicCreateTableauSourceV2DtoTypeDATABRICKS     PublicCreateTableauSourceV2DtoType = "DATABRICKS"
+	PublicCreateTableauSourceV2DtoTypeDATABRICKSJOBS PublicCreateTableauSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateTableauSourceV2DtoTypeDBT            PublicCreateTableauSourceV2DtoType = "DBT"
+	PublicCreateTableauSourceV2DtoTypeDBTCLOUD       PublicCreateTableauSourceV2DtoType = "DBTCLOUD"
+	PublicCreateTableauSourceV2DtoTypeDECLARATIVE    PublicCreateTableauSourceV2DtoType = "DECLARATIVE"
+	PublicCreateTableauSourceV2DtoTypeFIVETRAN       PublicCreateTableauSourceV2DtoType = "FIVETRAN"
+	PublicCreateTableauSourceV2DtoTypeLOOKER         PublicCreateTableauSourceV2DtoType = "LOOKER"
+	PublicCreateTableauSourceV2DtoTypeMICROSTRATEGY  PublicCreateTableauSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateTableauSourceV2DtoTypeMSSQL          PublicCreateTableauSourceV2DtoType = "MSSQL"
+	PublicCreateTableauSourceV2DtoTypeMYSQL          PublicCreateTableauSourceV2DtoType = "MYSQL"
+	PublicCreateTableauSourceV2DtoTypeORACLE         PublicCreateTableauSourceV2DtoType = "ORACLE"
+	PublicCreateTableauSourceV2DtoTypePOSTGRESQL     PublicCreateTableauSourceV2DtoType = "POSTGRESQL"
+	PublicCreateTableauSourceV2DtoTypePOWERBI        PublicCreateTableauSourceV2DtoType = "POWER_BI"
+	PublicCreateTableauSourceV2DtoTypeQLIK           PublicCreateTableauSourceV2DtoType = "QLIK"
+	PublicCreateTableauSourceV2DtoTypeQUICKSIGHT     PublicCreateTableauSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateTableauSourceV2DtoTypeREDSHIFT       PublicCreateTableauSourceV2DtoType = "REDSHIFT"
+	PublicCreateTableauSourceV2DtoTypeSNOWFLAKE      PublicCreateTableauSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateTableauSourceV2DtoTypeSYNAPSE        PublicCreateTableauSourceV2DtoType = "SYNAPSE"
+	PublicCreateTableauSourceV2DtoTypeTABLEAU        PublicCreateTableauSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicCustomMetadataEntryLabelReferenceDtoType.
+const (
+	PublicCustomMetadataEntryLabelReferenceDtoTypeLABEL  PublicCustomMetadataEntryLabelReferenceDtoType = "LABEL"
+	PublicCustomMetadataEntryLabelReferenceDtoTypeSTRING PublicCustomMetadataEntryLabelReferenceDtoType = "STRING"
+	PublicCustomMetadataEntryLabelReferenceDtoTypeUSER   PublicCustomMetadataEntryLabelReferenceDtoType = "USER"
+)
+
+// Defines values for PublicCustomMetadataEntryReferenceDtoType.
+const (
+	PublicCustomMetadataEntryReferenceDtoTypeLABEL  PublicCustomMetadataEntryReferenceDtoType = "LABEL"
+	PublicCustomMetadataEntryReferenceDtoTypeSTRING PublicCustomMetadataEntryReferenceDtoType = "STRING"
+	PublicCustomMetadataEntryReferenceDtoTypeUSER   PublicCustomMetadataEntryReferenceDtoType = "USER"
+)
+
+// Defines values for PublicCustomMetadataEntryStringReferenceDtoType.
+const (
+	PublicCustomMetadataEntryStringReferenceDtoTypeLABEL  PublicCustomMetadataEntryStringReferenceDtoType = "LABEL"
+	PublicCustomMetadataEntryStringReferenceDtoTypeSTRING PublicCustomMetadataEntryStringReferenceDtoType = "STRING"
+	PublicCustomMetadataEntryStringReferenceDtoTypeUSER   PublicCustomMetadataEntryStringReferenceDtoType = "USER"
+)
+
+// Defines values for PublicCustomMetadataEntryUserReferenceDtoType.
+const (
+	PublicCustomMetadataEntryUserReferenceDtoTypeLABEL  PublicCustomMetadataEntryUserReferenceDtoType = "LABEL"
+	PublicCustomMetadataEntryUserReferenceDtoTypeSTRING PublicCustomMetadataEntryUserReferenceDtoType = "STRING"
+	PublicCustomMetadataEntryUserReferenceDtoTypeUSER   PublicCustomMetadataEntryUserReferenceDtoType = "USER"
 )
 
 // Defines values for PublicDatabricksParametersDtoType.
@@ -420,6 +2463,7 @@ const (
 	PublicDescriptionDtoOriginDAGSTER                   PublicDescriptionDtoOrigin = "DAGSTER"
 	PublicDescriptionDtoOriginDATABAND                  PublicDescriptionDtoOrigin = "DATABAND"
 	PublicDescriptionDtoOriginDATABRICKS                PublicDescriptionDtoOrigin = "DATABRICKS"
+	PublicDescriptionDtoOriginDATABRICKSJOBS            PublicDescriptionDtoOrigin = "DATABRICKS_JOBS"
 	PublicDescriptionDtoOriginDATADOG                   PublicDescriptionDtoOrigin = "DATADOG"
 	PublicDescriptionDtoOriginDATAEDO                   PublicDescriptionDtoOrigin = "DATAEDO"
 	PublicDescriptionDtoOriginDATAFOLD                  PublicDescriptionDtoOrigin = "DATAFOLD"
@@ -775,6 +2819,14 @@ const (
 	PublicDescriptionDtoOriginZUORA                     PublicDescriptionDtoOrigin = "ZUORA"
 )
 
+// Defines values for PublicExternalTagReferenceDtoKind.
+const (
+	PublicExternalTagReferenceDtoKindBIGQUERYEXTERNAL   PublicExternalTagReferenceDtoKind = "BIGQUERY_EXTERNAL"
+	PublicExternalTagReferenceDtoKindDATABRICKSEXTERNAL PublicExternalTagReferenceDtoKind = "DATABRICKS_EXTERNAL"
+	PublicExternalTagReferenceDtoKindDBTEXTERNAL        PublicExternalTagReferenceDtoKind = "DBT_EXTERNAL"
+	PublicExternalTagReferenceDtoKindSNOWFLAKEEXTERNAL  PublicExternalTagReferenceDtoKind = "SNOWFLAKE_EXTERNAL"
+)
+
 // Defines values for PublicFivetranParametersDtoType.
 const (
 	PublicFivetranParametersDtoTypeAIRFLOW           PublicFivetranParametersDtoType = "AIRFLOW"
@@ -797,6 +2849,32 @@ const (
 	PublicFivetranParametersDtoTypeSYNAPSE           PublicFivetranParametersDtoType = "SYNAPSE"
 	PublicFivetranParametersDtoTypeTABLEAU           PublicFivetranParametersDtoType = "TABLEAU"
 	PublicFivetranParametersDtoTypeUnderscoreUNKNOWN PublicFivetranParametersDtoType = "_UNKNOWN_"
+)
+
+// Defines values for PublicGetAirflowSourceV2DtoType.
+const (
+	PublicGetAirflowSourceV2DtoTypeAIRFLOW        PublicGetAirflowSourceV2DtoType = "AIRFLOW"
+	PublicGetAirflowSourceV2DtoTypeATHENA         PublicGetAirflowSourceV2DtoType = "ATHENA"
+	PublicGetAirflowSourceV2DtoTypeBIGQUERY       PublicGetAirflowSourceV2DtoType = "BIGQUERY"
+	PublicGetAirflowSourceV2DtoTypeDATABRICKS     PublicGetAirflowSourceV2DtoType = "DATABRICKS"
+	PublicGetAirflowSourceV2DtoTypeDATABRICKSJOBS PublicGetAirflowSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetAirflowSourceV2DtoTypeDBT            PublicGetAirflowSourceV2DtoType = "DBT"
+	PublicGetAirflowSourceV2DtoTypeDBTCLOUD       PublicGetAirflowSourceV2DtoType = "DBTCLOUD"
+	PublicGetAirflowSourceV2DtoTypeDECLARATIVE    PublicGetAirflowSourceV2DtoType = "DECLARATIVE"
+	PublicGetAirflowSourceV2DtoTypeFIVETRAN       PublicGetAirflowSourceV2DtoType = "FIVETRAN"
+	PublicGetAirflowSourceV2DtoTypeLOOKER         PublicGetAirflowSourceV2DtoType = "LOOKER"
+	PublicGetAirflowSourceV2DtoTypeMICROSTRATEGY  PublicGetAirflowSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetAirflowSourceV2DtoTypeMSSQL          PublicGetAirflowSourceV2DtoType = "MSSQL"
+	PublicGetAirflowSourceV2DtoTypeMYSQL          PublicGetAirflowSourceV2DtoType = "MYSQL"
+	PublicGetAirflowSourceV2DtoTypeORACLE         PublicGetAirflowSourceV2DtoType = "ORACLE"
+	PublicGetAirflowSourceV2DtoTypePOSTGRESQL     PublicGetAirflowSourceV2DtoType = "POSTGRESQL"
+	PublicGetAirflowSourceV2DtoTypePOWERBI        PublicGetAirflowSourceV2DtoType = "POWER_BI"
+	PublicGetAirflowSourceV2DtoTypeQLIK           PublicGetAirflowSourceV2DtoType = "QLIK"
+	PublicGetAirflowSourceV2DtoTypeQUICKSIGHT     PublicGetAirflowSourceV2DtoType = "QUICKSIGHT"
+	PublicGetAirflowSourceV2DtoTypeREDSHIFT       PublicGetAirflowSourceV2DtoType = "REDSHIFT"
+	PublicGetAirflowSourceV2DtoTypeSNOWFLAKE      PublicGetAirflowSourceV2DtoType = "SNOWFLAKE"
+	PublicGetAirflowSourceV2DtoTypeSYNAPSE        PublicGetAirflowSourceV2DtoType = "SYNAPSE"
+	PublicGetAirflowSourceV2DtoTypeTABLEAU        PublicGetAirflowSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicGetAssetDtoHealthStatus.
@@ -917,6 +2995,7 @@ const (
 	PublicGetAssetDtoTechnologyDAGSTER                   PublicGetAssetDtoTechnology = "DAGSTER"
 	PublicGetAssetDtoTechnologyDATABAND                  PublicGetAssetDtoTechnology = "DATABAND"
 	PublicGetAssetDtoTechnologyDATABRICKS                PublicGetAssetDtoTechnology = "DATABRICKS"
+	PublicGetAssetDtoTechnologyDATABRICKSJOBS            PublicGetAssetDtoTechnology = "DATABRICKS_JOBS"
 	PublicGetAssetDtoTechnologyDATADOG                   PublicGetAssetDtoTechnology = "DATADOG"
 	PublicGetAssetDtoTechnologyDATAEDO                   PublicGetAssetDtoTechnology = "DATAEDO"
 	PublicGetAssetDtoTechnologyDATAFOLD                  PublicGetAssetDtoTechnology = "DATAFOLD"
@@ -1417,6 +3496,7 @@ const (
 	PublicGetAssetListDtoTechnologyDAGSTER                   PublicGetAssetListDtoTechnology = "DAGSTER"
 	PublicGetAssetListDtoTechnologyDATABAND                  PublicGetAssetListDtoTechnology = "DATABAND"
 	PublicGetAssetListDtoTechnologyDATABRICKS                PublicGetAssetListDtoTechnology = "DATABRICKS"
+	PublicGetAssetListDtoTechnologyDATABRICKSJOBS            PublicGetAssetListDtoTechnology = "DATABRICKS_JOBS"
 	PublicGetAssetListDtoTechnologyDATADOG                   PublicGetAssetListDtoTechnology = "DATADOG"
 	PublicGetAssetListDtoTechnologyDATAEDO                   PublicGetAssetListDtoTechnology = "DATAEDO"
 	PublicGetAssetListDtoTechnologyDATAFOLD                  PublicGetAssetListDtoTechnology = "DATAFOLD"
@@ -1799,6 +3879,216 @@ const (
 	UNSUPPORTED PublicGetAssetListDtoUsage = "UNSUPPORTED"
 )
 
+// Defines values for PublicGetAthenaSourceV2DtoType.
+const (
+	PublicGetAthenaSourceV2DtoTypeAIRFLOW        PublicGetAthenaSourceV2DtoType = "AIRFLOW"
+	PublicGetAthenaSourceV2DtoTypeATHENA         PublicGetAthenaSourceV2DtoType = "ATHENA"
+	PublicGetAthenaSourceV2DtoTypeBIGQUERY       PublicGetAthenaSourceV2DtoType = "BIGQUERY"
+	PublicGetAthenaSourceV2DtoTypeDATABRICKS     PublicGetAthenaSourceV2DtoType = "DATABRICKS"
+	PublicGetAthenaSourceV2DtoTypeDATABRICKSJOBS PublicGetAthenaSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetAthenaSourceV2DtoTypeDBT            PublicGetAthenaSourceV2DtoType = "DBT"
+	PublicGetAthenaSourceV2DtoTypeDBTCLOUD       PublicGetAthenaSourceV2DtoType = "DBTCLOUD"
+	PublicGetAthenaSourceV2DtoTypeDECLARATIVE    PublicGetAthenaSourceV2DtoType = "DECLARATIVE"
+	PublicGetAthenaSourceV2DtoTypeFIVETRAN       PublicGetAthenaSourceV2DtoType = "FIVETRAN"
+	PublicGetAthenaSourceV2DtoTypeLOOKER         PublicGetAthenaSourceV2DtoType = "LOOKER"
+	PublicGetAthenaSourceV2DtoTypeMICROSTRATEGY  PublicGetAthenaSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetAthenaSourceV2DtoTypeMSSQL          PublicGetAthenaSourceV2DtoType = "MSSQL"
+	PublicGetAthenaSourceV2DtoTypeMYSQL          PublicGetAthenaSourceV2DtoType = "MYSQL"
+	PublicGetAthenaSourceV2DtoTypeORACLE         PublicGetAthenaSourceV2DtoType = "ORACLE"
+	PublicGetAthenaSourceV2DtoTypePOSTGRESQL     PublicGetAthenaSourceV2DtoType = "POSTGRESQL"
+	PublicGetAthenaSourceV2DtoTypePOWERBI        PublicGetAthenaSourceV2DtoType = "POWER_BI"
+	PublicGetAthenaSourceV2DtoTypeQLIK           PublicGetAthenaSourceV2DtoType = "QLIK"
+	PublicGetAthenaSourceV2DtoTypeQUICKSIGHT     PublicGetAthenaSourceV2DtoType = "QUICKSIGHT"
+	PublicGetAthenaSourceV2DtoTypeREDSHIFT       PublicGetAthenaSourceV2DtoType = "REDSHIFT"
+	PublicGetAthenaSourceV2DtoTypeSNOWFLAKE      PublicGetAthenaSourceV2DtoType = "SNOWFLAKE"
+	PublicGetAthenaSourceV2DtoTypeSYNAPSE        PublicGetAthenaSourceV2DtoType = "SYNAPSE"
+	PublicGetAthenaSourceV2DtoTypeTABLEAU        PublicGetAthenaSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetBigQuerySourceV2DtoType.
+const (
+	PublicGetBigQuerySourceV2DtoTypeAIRFLOW        PublicGetBigQuerySourceV2DtoType = "AIRFLOW"
+	PublicGetBigQuerySourceV2DtoTypeATHENA         PublicGetBigQuerySourceV2DtoType = "ATHENA"
+	PublicGetBigQuerySourceV2DtoTypeBIGQUERY       PublicGetBigQuerySourceV2DtoType = "BIGQUERY"
+	PublicGetBigQuerySourceV2DtoTypeDATABRICKS     PublicGetBigQuerySourceV2DtoType = "DATABRICKS"
+	PublicGetBigQuerySourceV2DtoTypeDATABRICKSJOBS PublicGetBigQuerySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetBigQuerySourceV2DtoTypeDBT            PublicGetBigQuerySourceV2DtoType = "DBT"
+	PublicGetBigQuerySourceV2DtoTypeDBTCLOUD       PublicGetBigQuerySourceV2DtoType = "DBTCLOUD"
+	PublicGetBigQuerySourceV2DtoTypeDECLARATIVE    PublicGetBigQuerySourceV2DtoType = "DECLARATIVE"
+	PublicGetBigQuerySourceV2DtoTypeFIVETRAN       PublicGetBigQuerySourceV2DtoType = "FIVETRAN"
+	PublicGetBigQuerySourceV2DtoTypeLOOKER         PublicGetBigQuerySourceV2DtoType = "LOOKER"
+	PublicGetBigQuerySourceV2DtoTypeMICROSTRATEGY  PublicGetBigQuerySourceV2DtoType = "MICROSTRATEGY"
+	PublicGetBigQuerySourceV2DtoTypeMSSQL          PublicGetBigQuerySourceV2DtoType = "MSSQL"
+	PublicGetBigQuerySourceV2DtoTypeMYSQL          PublicGetBigQuerySourceV2DtoType = "MYSQL"
+	PublicGetBigQuerySourceV2DtoTypeORACLE         PublicGetBigQuerySourceV2DtoType = "ORACLE"
+	PublicGetBigQuerySourceV2DtoTypePOSTGRESQL     PublicGetBigQuerySourceV2DtoType = "POSTGRESQL"
+	PublicGetBigQuerySourceV2DtoTypePOWERBI        PublicGetBigQuerySourceV2DtoType = "POWER_BI"
+	PublicGetBigQuerySourceV2DtoTypeQLIK           PublicGetBigQuerySourceV2DtoType = "QLIK"
+	PublicGetBigQuerySourceV2DtoTypeQUICKSIGHT     PublicGetBigQuerySourceV2DtoType = "QUICKSIGHT"
+	PublicGetBigQuerySourceV2DtoTypeREDSHIFT       PublicGetBigQuerySourceV2DtoType = "REDSHIFT"
+	PublicGetBigQuerySourceV2DtoTypeSNOWFLAKE      PublicGetBigQuerySourceV2DtoType = "SNOWFLAKE"
+	PublicGetBigQuerySourceV2DtoTypeSYNAPSE        PublicGetBigQuerySourceV2DtoType = "SYNAPSE"
+	PublicGetBigQuerySourceV2DtoTypeTABLEAU        PublicGetBigQuerySourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetCustomMetadataEntryDtoType.
+const (
+	PublicGetCustomMetadataEntryDtoTypeLABEL  PublicGetCustomMetadataEntryDtoType = "LABEL"
+	PublicGetCustomMetadataEntryDtoTypeSTRING PublicGetCustomMetadataEntryDtoType = "STRING"
+	PublicGetCustomMetadataEntryDtoTypeUSER   PublicGetCustomMetadataEntryDtoType = "USER"
+)
+
+// Defines values for PublicGetCustomMetadataEntryLabelDtoType.
+const (
+	PublicGetCustomMetadataEntryLabelDtoTypeLABEL  PublicGetCustomMetadataEntryLabelDtoType = "LABEL"
+	PublicGetCustomMetadataEntryLabelDtoTypeSTRING PublicGetCustomMetadataEntryLabelDtoType = "STRING"
+	PublicGetCustomMetadataEntryLabelDtoTypeUSER   PublicGetCustomMetadataEntryLabelDtoType = "USER"
+)
+
+// Defines values for PublicGetCustomMetadataEntryStringDtoType.
+const (
+	PublicGetCustomMetadataEntryStringDtoTypeLABEL  PublicGetCustomMetadataEntryStringDtoType = "LABEL"
+	PublicGetCustomMetadataEntryStringDtoTypeSTRING PublicGetCustomMetadataEntryStringDtoType = "STRING"
+	PublicGetCustomMetadataEntryStringDtoTypeUSER   PublicGetCustomMetadataEntryStringDtoType = "USER"
+)
+
+// Defines values for PublicGetCustomMetadataEntryUserDtoType.
+const (
+	PublicGetCustomMetadataEntryUserDtoTypeLABEL  PublicGetCustomMetadataEntryUserDtoType = "LABEL"
+	PublicGetCustomMetadataEntryUserDtoTypeSTRING PublicGetCustomMetadataEntryUserDtoType = "STRING"
+	PublicGetCustomMetadataEntryUserDtoTypeUSER   PublicGetCustomMetadataEntryUserDtoType = "USER"
+)
+
+// Defines values for PublicGetDatabricksJobsSourceV2DtoType.
+const (
+	PublicGetDatabricksJobsSourceV2DtoTypeAIRFLOW        PublicGetDatabricksJobsSourceV2DtoType = "AIRFLOW"
+	PublicGetDatabricksJobsSourceV2DtoTypeATHENA         PublicGetDatabricksJobsSourceV2DtoType = "ATHENA"
+	PublicGetDatabricksJobsSourceV2DtoTypeBIGQUERY       PublicGetDatabricksJobsSourceV2DtoType = "BIGQUERY"
+	PublicGetDatabricksJobsSourceV2DtoTypeDATABRICKS     PublicGetDatabricksJobsSourceV2DtoType = "DATABRICKS"
+	PublicGetDatabricksJobsSourceV2DtoTypeDATABRICKSJOBS PublicGetDatabricksJobsSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetDatabricksJobsSourceV2DtoTypeDBT            PublicGetDatabricksJobsSourceV2DtoType = "DBT"
+	PublicGetDatabricksJobsSourceV2DtoTypeDBTCLOUD       PublicGetDatabricksJobsSourceV2DtoType = "DBTCLOUD"
+	PublicGetDatabricksJobsSourceV2DtoTypeDECLARATIVE    PublicGetDatabricksJobsSourceV2DtoType = "DECLARATIVE"
+	PublicGetDatabricksJobsSourceV2DtoTypeFIVETRAN       PublicGetDatabricksJobsSourceV2DtoType = "FIVETRAN"
+	PublicGetDatabricksJobsSourceV2DtoTypeLOOKER         PublicGetDatabricksJobsSourceV2DtoType = "LOOKER"
+	PublicGetDatabricksJobsSourceV2DtoTypeMICROSTRATEGY  PublicGetDatabricksJobsSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetDatabricksJobsSourceV2DtoTypeMSSQL          PublicGetDatabricksJobsSourceV2DtoType = "MSSQL"
+	PublicGetDatabricksJobsSourceV2DtoTypeMYSQL          PublicGetDatabricksJobsSourceV2DtoType = "MYSQL"
+	PublicGetDatabricksJobsSourceV2DtoTypeORACLE         PublicGetDatabricksJobsSourceV2DtoType = "ORACLE"
+	PublicGetDatabricksJobsSourceV2DtoTypePOSTGRESQL     PublicGetDatabricksJobsSourceV2DtoType = "POSTGRESQL"
+	PublicGetDatabricksJobsSourceV2DtoTypePOWERBI        PublicGetDatabricksJobsSourceV2DtoType = "POWER_BI"
+	PublicGetDatabricksJobsSourceV2DtoTypeQLIK           PublicGetDatabricksJobsSourceV2DtoType = "QLIK"
+	PublicGetDatabricksJobsSourceV2DtoTypeQUICKSIGHT     PublicGetDatabricksJobsSourceV2DtoType = "QUICKSIGHT"
+	PublicGetDatabricksJobsSourceV2DtoTypeREDSHIFT       PublicGetDatabricksJobsSourceV2DtoType = "REDSHIFT"
+	PublicGetDatabricksJobsSourceV2DtoTypeSNOWFLAKE      PublicGetDatabricksJobsSourceV2DtoType = "SNOWFLAKE"
+	PublicGetDatabricksJobsSourceV2DtoTypeSYNAPSE        PublicGetDatabricksJobsSourceV2DtoType = "SYNAPSE"
+	PublicGetDatabricksJobsSourceV2DtoTypeTABLEAU        PublicGetDatabricksJobsSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetDatabricksSourceV2DtoType.
+const (
+	PublicGetDatabricksSourceV2DtoTypeAIRFLOW        PublicGetDatabricksSourceV2DtoType = "AIRFLOW"
+	PublicGetDatabricksSourceV2DtoTypeATHENA         PublicGetDatabricksSourceV2DtoType = "ATHENA"
+	PublicGetDatabricksSourceV2DtoTypeBIGQUERY       PublicGetDatabricksSourceV2DtoType = "BIGQUERY"
+	PublicGetDatabricksSourceV2DtoTypeDATABRICKS     PublicGetDatabricksSourceV2DtoType = "DATABRICKS"
+	PublicGetDatabricksSourceV2DtoTypeDATABRICKSJOBS PublicGetDatabricksSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetDatabricksSourceV2DtoTypeDBT            PublicGetDatabricksSourceV2DtoType = "DBT"
+	PublicGetDatabricksSourceV2DtoTypeDBTCLOUD       PublicGetDatabricksSourceV2DtoType = "DBTCLOUD"
+	PublicGetDatabricksSourceV2DtoTypeDECLARATIVE    PublicGetDatabricksSourceV2DtoType = "DECLARATIVE"
+	PublicGetDatabricksSourceV2DtoTypeFIVETRAN       PublicGetDatabricksSourceV2DtoType = "FIVETRAN"
+	PublicGetDatabricksSourceV2DtoTypeLOOKER         PublicGetDatabricksSourceV2DtoType = "LOOKER"
+	PublicGetDatabricksSourceV2DtoTypeMICROSTRATEGY  PublicGetDatabricksSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetDatabricksSourceV2DtoTypeMSSQL          PublicGetDatabricksSourceV2DtoType = "MSSQL"
+	PublicGetDatabricksSourceV2DtoTypeMYSQL          PublicGetDatabricksSourceV2DtoType = "MYSQL"
+	PublicGetDatabricksSourceV2DtoTypeORACLE         PublicGetDatabricksSourceV2DtoType = "ORACLE"
+	PublicGetDatabricksSourceV2DtoTypePOSTGRESQL     PublicGetDatabricksSourceV2DtoType = "POSTGRESQL"
+	PublicGetDatabricksSourceV2DtoTypePOWERBI        PublicGetDatabricksSourceV2DtoType = "POWER_BI"
+	PublicGetDatabricksSourceV2DtoTypeQLIK           PublicGetDatabricksSourceV2DtoType = "QLIK"
+	PublicGetDatabricksSourceV2DtoTypeQUICKSIGHT     PublicGetDatabricksSourceV2DtoType = "QUICKSIGHT"
+	PublicGetDatabricksSourceV2DtoTypeREDSHIFT       PublicGetDatabricksSourceV2DtoType = "REDSHIFT"
+	PublicGetDatabricksSourceV2DtoTypeSNOWFLAKE      PublicGetDatabricksSourceV2DtoType = "SNOWFLAKE"
+	PublicGetDatabricksSourceV2DtoTypeSYNAPSE        PublicGetDatabricksSourceV2DtoType = "SYNAPSE"
+	PublicGetDatabricksSourceV2DtoTypeTABLEAU        PublicGetDatabricksSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetDbtCloudSourceV2DtoType.
+const (
+	PublicGetDbtCloudSourceV2DtoTypeAIRFLOW        PublicGetDbtCloudSourceV2DtoType = "AIRFLOW"
+	PublicGetDbtCloudSourceV2DtoTypeATHENA         PublicGetDbtCloudSourceV2DtoType = "ATHENA"
+	PublicGetDbtCloudSourceV2DtoTypeBIGQUERY       PublicGetDbtCloudSourceV2DtoType = "BIGQUERY"
+	PublicGetDbtCloudSourceV2DtoTypeDATABRICKS     PublicGetDbtCloudSourceV2DtoType = "DATABRICKS"
+	PublicGetDbtCloudSourceV2DtoTypeDATABRICKSJOBS PublicGetDbtCloudSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetDbtCloudSourceV2DtoTypeDBT            PublicGetDbtCloudSourceV2DtoType = "DBT"
+	PublicGetDbtCloudSourceV2DtoTypeDBTCLOUD       PublicGetDbtCloudSourceV2DtoType = "DBTCLOUD"
+	PublicGetDbtCloudSourceV2DtoTypeDECLARATIVE    PublicGetDbtCloudSourceV2DtoType = "DECLARATIVE"
+	PublicGetDbtCloudSourceV2DtoTypeFIVETRAN       PublicGetDbtCloudSourceV2DtoType = "FIVETRAN"
+	PublicGetDbtCloudSourceV2DtoTypeLOOKER         PublicGetDbtCloudSourceV2DtoType = "LOOKER"
+	PublicGetDbtCloudSourceV2DtoTypeMICROSTRATEGY  PublicGetDbtCloudSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetDbtCloudSourceV2DtoTypeMSSQL          PublicGetDbtCloudSourceV2DtoType = "MSSQL"
+	PublicGetDbtCloudSourceV2DtoTypeMYSQL          PublicGetDbtCloudSourceV2DtoType = "MYSQL"
+	PublicGetDbtCloudSourceV2DtoTypeORACLE         PublicGetDbtCloudSourceV2DtoType = "ORACLE"
+	PublicGetDbtCloudSourceV2DtoTypePOSTGRESQL     PublicGetDbtCloudSourceV2DtoType = "POSTGRESQL"
+	PublicGetDbtCloudSourceV2DtoTypePOWERBI        PublicGetDbtCloudSourceV2DtoType = "POWER_BI"
+	PublicGetDbtCloudSourceV2DtoTypeQLIK           PublicGetDbtCloudSourceV2DtoType = "QLIK"
+	PublicGetDbtCloudSourceV2DtoTypeQUICKSIGHT     PublicGetDbtCloudSourceV2DtoType = "QUICKSIGHT"
+	PublicGetDbtCloudSourceV2DtoTypeREDSHIFT       PublicGetDbtCloudSourceV2DtoType = "REDSHIFT"
+	PublicGetDbtCloudSourceV2DtoTypeSNOWFLAKE      PublicGetDbtCloudSourceV2DtoType = "SNOWFLAKE"
+	PublicGetDbtCloudSourceV2DtoTypeSYNAPSE        PublicGetDbtCloudSourceV2DtoType = "SYNAPSE"
+	PublicGetDbtCloudSourceV2DtoTypeTABLEAU        PublicGetDbtCloudSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetDbtSourceV2DtoType.
+const (
+	PublicGetDbtSourceV2DtoTypeAIRFLOW        PublicGetDbtSourceV2DtoType = "AIRFLOW"
+	PublicGetDbtSourceV2DtoTypeATHENA         PublicGetDbtSourceV2DtoType = "ATHENA"
+	PublicGetDbtSourceV2DtoTypeBIGQUERY       PublicGetDbtSourceV2DtoType = "BIGQUERY"
+	PublicGetDbtSourceV2DtoTypeDATABRICKS     PublicGetDbtSourceV2DtoType = "DATABRICKS"
+	PublicGetDbtSourceV2DtoTypeDATABRICKSJOBS PublicGetDbtSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetDbtSourceV2DtoTypeDBT            PublicGetDbtSourceV2DtoType = "DBT"
+	PublicGetDbtSourceV2DtoTypeDBTCLOUD       PublicGetDbtSourceV2DtoType = "DBTCLOUD"
+	PublicGetDbtSourceV2DtoTypeDECLARATIVE    PublicGetDbtSourceV2DtoType = "DECLARATIVE"
+	PublicGetDbtSourceV2DtoTypeFIVETRAN       PublicGetDbtSourceV2DtoType = "FIVETRAN"
+	PublicGetDbtSourceV2DtoTypeLOOKER         PublicGetDbtSourceV2DtoType = "LOOKER"
+	PublicGetDbtSourceV2DtoTypeMICROSTRATEGY  PublicGetDbtSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetDbtSourceV2DtoTypeMSSQL          PublicGetDbtSourceV2DtoType = "MSSQL"
+	PublicGetDbtSourceV2DtoTypeMYSQL          PublicGetDbtSourceV2DtoType = "MYSQL"
+	PublicGetDbtSourceV2DtoTypeORACLE         PublicGetDbtSourceV2DtoType = "ORACLE"
+	PublicGetDbtSourceV2DtoTypePOSTGRESQL     PublicGetDbtSourceV2DtoType = "POSTGRESQL"
+	PublicGetDbtSourceV2DtoTypePOWERBI        PublicGetDbtSourceV2DtoType = "POWER_BI"
+	PublicGetDbtSourceV2DtoTypeQLIK           PublicGetDbtSourceV2DtoType = "QLIK"
+	PublicGetDbtSourceV2DtoTypeQUICKSIGHT     PublicGetDbtSourceV2DtoType = "QUICKSIGHT"
+	PublicGetDbtSourceV2DtoTypeREDSHIFT       PublicGetDbtSourceV2DtoType = "REDSHIFT"
+	PublicGetDbtSourceV2DtoTypeSNOWFLAKE      PublicGetDbtSourceV2DtoType = "SNOWFLAKE"
+	PublicGetDbtSourceV2DtoTypeSYNAPSE        PublicGetDbtSourceV2DtoType = "SYNAPSE"
+	PublicGetDbtSourceV2DtoTypeTABLEAU        PublicGetDbtSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetFivetranSourceV2DtoType.
+const (
+	PublicGetFivetranSourceV2DtoTypeAIRFLOW        PublicGetFivetranSourceV2DtoType = "AIRFLOW"
+	PublicGetFivetranSourceV2DtoTypeATHENA         PublicGetFivetranSourceV2DtoType = "ATHENA"
+	PublicGetFivetranSourceV2DtoTypeBIGQUERY       PublicGetFivetranSourceV2DtoType = "BIGQUERY"
+	PublicGetFivetranSourceV2DtoTypeDATABRICKS     PublicGetFivetranSourceV2DtoType = "DATABRICKS"
+	PublicGetFivetranSourceV2DtoTypeDATABRICKSJOBS PublicGetFivetranSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetFivetranSourceV2DtoTypeDBT            PublicGetFivetranSourceV2DtoType = "DBT"
+	PublicGetFivetranSourceV2DtoTypeDBTCLOUD       PublicGetFivetranSourceV2DtoType = "DBTCLOUD"
+	PublicGetFivetranSourceV2DtoTypeDECLARATIVE    PublicGetFivetranSourceV2DtoType = "DECLARATIVE"
+	PublicGetFivetranSourceV2DtoTypeFIVETRAN       PublicGetFivetranSourceV2DtoType = "FIVETRAN"
+	PublicGetFivetranSourceV2DtoTypeLOOKER         PublicGetFivetranSourceV2DtoType = "LOOKER"
+	PublicGetFivetranSourceV2DtoTypeMICROSTRATEGY  PublicGetFivetranSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetFivetranSourceV2DtoTypeMSSQL          PublicGetFivetranSourceV2DtoType = "MSSQL"
+	PublicGetFivetranSourceV2DtoTypeMYSQL          PublicGetFivetranSourceV2DtoType = "MYSQL"
+	PublicGetFivetranSourceV2DtoTypeORACLE         PublicGetFivetranSourceV2DtoType = "ORACLE"
+	PublicGetFivetranSourceV2DtoTypePOSTGRESQL     PublicGetFivetranSourceV2DtoType = "POSTGRESQL"
+	PublicGetFivetranSourceV2DtoTypePOWERBI        PublicGetFivetranSourceV2DtoType = "POWER_BI"
+	PublicGetFivetranSourceV2DtoTypeQLIK           PublicGetFivetranSourceV2DtoType = "QLIK"
+	PublicGetFivetranSourceV2DtoTypeQUICKSIGHT     PublicGetFivetranSourceV2DtoType = "QUICKSIGHT"
+	PublicGetFivetranSourceV2DtoTypeREDSHIFT       PublicGetFivetranSourceV2DtoType = "REDSHIFT"
+	PublicGetFivetranSourceV2DtoTypeSNOWFLAKE      PublicGetFivetranSourceV2DtoType = "SNOWFLAKE"
+	PublicGetFivetranSourceV2DtoTypeSYNAPSE        PublicGetFivetranSourceV2DtoType = "SYNAPSE"
+	PublicGetFivetranSourceV2DtoTypeTABLEAU        PublicGetFivetranSourceV2DtoType = "TABLEAU"
+)
+
 // Defines values for PublicGetLastRunDtoStatus.
 const (
 	PublicGetLastRunDtoStatusFAILURE                         PublicGetLastRunDtoStatus = "FAILURE"
@@ -1806,6 +4096,377 @@ const (
 	PublicGetLastRunDtoStatusRUNNING                         PublicGetLastRunDtoStatus = "RUNNING"
 	PublicGetLastRunDtoStatusSKIPPEDDATASOURCEALREADYRUNNING PublicGetLastRunDtoStatus = "SKIPPED_DATASOURCE_ALREADY_RUNNING"
 	PublicGetLastRunDtoStatusSUCCESS                         PublicGetLastRunDtoStatus = "SUCCESS"
+)
+
+// Defines values for PublicGetLastRunV2DtoStatus.
+const (
+	PublicGetLastRunV2DtoStatusFAILURE PublicGetLastRunV2DtoStatus = "FAILURE"
+	PublicGetLastRunV2DtoStatusRUNNING PublicGetLastRunV2DtoStatus = "RUNNING"
+	PublicGetLastRunV2DtoStatusSUCCESS PublicGetLastRunV2DtoStatus = "SUCCESS"
+)
+
+// Defines values for PublicGetLookerSourceV2DtoType.
+const (
+	PublicGetLookerSourceV2DtoTypeAIRFLOW        PublicGetLookerSourceV2DtoType = "AIRFLOW"
+	PublicGetLookerSourceV2DtoTypeATHENA         PublicGetLookerSourceV2DtoType = "ATHENA"
+	PublicGetLookerSourceV2DtoTypeBIGQUERY       PublicGetLookerSourceV2DtoType = "BIGQUERY"
+	PublicGetLookerSourceV2DtoTypeDATABRICKS     PublicGetLookerSourceV2DtoType = "DATABRICKS"
+	PublicGetLookerSourceV2DtoTypeDATABRICKSJOBS PublicGetLookerSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetLookerSourceV2DtoTypeDBT            PublicGetLookerSourceV2DtoType = "DBT"
+	PublicGetLookerSourceV2DtoTypeDBTCLOUD       PublicGetLookerSourceV2DtoType = "DBTCLOUD"
+	PublicGetLookerSourceV2DtoTypeDECLARATIVE    PublicGetLookerSourceV2DtoType = "DECLARATIVE"
+	PublicGetLookerSourceV2DtoTypeFIVETRAN       PublicGetLookerSourceV2DtoType = "FIVETRAN"
+	PublicGetLookerSourceV2DtoTypeLOOKER         PublicGetLookerSourceV2DtoType = "LOOKER"
+	PublicGetLookerSourceV2DtoTypeMICROSTRATEGY  PublicGetLookerSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetLookerSourceV2DtoTypeMSSQL          PublicGetLookerSourceV2DtoType = "MSSQL"
+	PublicGetLookerSourceV2DtoTypeMYSQL          PublicGetLookerSourceV2DtoType = "MYSQL"
+	PublicGetLookerSourceV2DtoTypeORACLE         PublicGetLookerSourceV2DtoType = "ORACLE"
+	PublicGetLookerSourceV2DtoTypePOSTGRESQL     PublicGetLookerSourceV2DtoType = "POSTGRESQL"
+	PublicGetLookerSourceV2DtoTypePOWERBI        PublicGetLookerSourceV2DtoType = "POWER_BI"
+	PublicGetLookerSourceV2DtoTypeQLIK           PublicGetLookerSourceV2DtoType = "QLIK"
+	PublicGetLookerSourceV2DtoTypeQUICKSIGHT     PublicGetLookerSourceV2DtoType = "QUICKSIGHT"
+	PublicGetLookerSourceV2DtoTypeREDSHIFT       PublicGetLookerSourceV2DtoType = "REDSHIFT"
+	PublicGetLookerSourceV2DtoTypeSNOWFLAKE      PublicGetLookerSourceV2DtoType = "SNOWFLAKE"
+	PublicGetLookerSourceV2DtoTypeSYNAPSE        PublicGetLookerSourceV2DtoType = "SYNAPSE"
+	PublicGetLookerSourceV2DtoTypeTABLEAU        PublicGetLookerSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetMicrostrategySourceV2DtoType.
+const (
+	PublicGetMicrostrategySourceV2DtoTypeAIRFLOW        PublicGetMicrostrategySourceV2DtoType = "AIRFLOW"
+	PublicGetMicrostrategySourceV2DtoTypeATHENA         PublicGetMicrostrategySourceV2DtoType = "ATHENA"
+	PublicGetMicrostrategySourceV2DtoTypeBIGQUERY       PublicGetMicrostrategySourceV2DtoType = "BIGQUERY"
+	PublicGetMicrostrategySourceV2DtoTypeDATABRICKS     PublicGetMicrostrategySourceV2DtoType = "DATABRICKS"
+	PublicGetMicrostrategySourceV2DtoTypeDATABRICKSJOBS PublicGetMicrostrategySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetMicrostrategySourceV2DtoTypeDBT            PublicGetMicrostrategySourceV2DtoType = "DBT"
+	PublicGetMicrostrategySourceV2DtoTypeDBTCLOUD       PublicGetMicrostrategySourceV2DtoType = "DBTCLOUD"
+	PublicGetMicrostrategySourceV2DtoTypeDECLARATIVE    PublicGetMicrostrategySourceV2DtoType = "DECLARATIVE"
+	PublicGetMicrostrategySourceV2DtoTypeFIVETRAN       PublicGetMicrostrategySourceV2DtoType = "FIVETRAN"
+	PublicGetMicrostrategySourceV2DtoTypeLOOKER         PublicGetMicrostrategySourceV2DtoType = "LOOKER"
+	PublicGetMicrostrategySourceV2DtoTypeMICROSTRATEGY  PublicGetMicrostrategySourceV2DtoType = "MICROSTRATEGY"
+	PublicGetMicrostrategySourceV2DtoTypeMSSQL          PublicGetMicrostrategySourceV2DtoType = "MSSQL"
+	PublicGetMicrostrategySourceV2DtoTypeMYSQL          PublicGetMicrostrategySourceV2DtoType = "MYSQL"
+	PublicGetMicrostrategySourceV2DtoTypeORACLE         PublicGetMicrostrategySourceV2DtoType = "ORACLE"
+	PublicGetMicrostrategySourceV2DtoTypePOSTGRESQL     PublicGetMicrostrategySourceV2DtoType = "POSTGRESQL"
+	PublicGetMicrostrategySourceV2DtoTypePOWERBI        PublicGetMicrostrategySourceV2DtoType = "POWER_BI"
+	PublicGetMicrostrategySourceV2DtoTypeQLIK           PublicGetMicrostrategySourceV2DtoType = "QLIK"
+	PublicGetMicrostrategySourceV2DtoTypeQUICKSIGHT     PublicGetMicrostrategySourceV2DtoType = "QUICKSIGHT"
+	PublicGetMicrostrategySourceV2DtoTypeREDSHIFT       PublicGetMicrostrategySourceV2DtoType = "REDSHIFT"
+	PublicGetMicrostrategySourceV2DtoTypeSNOWFLAKE      PublicGetMicrostrategySourceV2DtoType = "SNOWFLAKE"
+	PublicGetMicrostrategySourceV2DtoTypeSYNAPSE        PublicGetMicrostrategySourceV2DtoType = "SYNAPSE"
+	PublicGetMicrostrategySourceV2DtoTypeTABLEAU        PublicGetMicrostrategySourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetMssqlSourceV2DtoType.
+const (
+	PublicGetMssqlSourceV2DtoTypeAIRFLOW        PublicGetMssqlSourceV2DtoType = "AIRFLOW"
+	PublicGetMssqlSourceV2DtoTypeATHENA         PublicGetMssqlSourceV2DtoType = "ATHENA"
+	PublicGetMssqlSourceV2DtoTypeBIGQUERY       PublicGetMssqlSourceV2DtoType = "BIGQUERY"
+	PublicGetMssqlSourceV2DtoTypeDATABRICKS     PublicGetMssqlSourceV2DtoType = "DATABRICKS"
+	PublicGetMssqlSourceV2DtoTypeDATABRICKSJOBS PublicGetMssqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetMssqlSourceV2DtoTypeDBT            PublicGetMssqlSourceV2DtoType = "DBT"
+	PublicGetMssqlSourceV2DtoTypeDBTCLOUD       PublicGetMssqlSourceV2DtoType = "DBTCLOUD"
+	PublicGetMssqlSourceV2DtoTypeDECLARATIVE    PublicGetMssqlSourceV2DtoType = "DECLARATIVE"
+	PublicGetMssqlSourceV2DtoTypeFIVETRAN       PublicGetMssqlSourceV2DtoType = "FIVETRAN"
+	PublicGetMssqlSourceV2DtoTypeLOOKER         PublicGetMssqlSourceV2DtoType = "LOOKER"
+	PublicGetMssqlSourceV2DtoTypeMICROSTRATEGY  PublicGetMssqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetMssqlSourceV2DtoTypeMSSQL          PublicGetMssqlSourceV2DtoType = "MSSQL"
+	PublicGetMssqlSourceV2DtoTypeMYSQL          PublicGetMssqlSourceV2DtoType = "MYSQL"
+	PublicGetMssqlSourceV2DtoTypeORACLE         PublicGetMssqlSourceV2DtoType = "ORACLE"
+	PublicGetMssqlSourceV2DtoTypePOSTGRESQL     PublicGetMssqlSourceV2DtoType = "POSTGRESQL"
+	PublicGetMssqlSourceV2DtoTypePOWERBI        PublicGetMssqlSourceV2DtoType = "POWER_BI"
+	PublicGetMssqlSourceV2DtoTypeQLIK           PublicGetMssqlSourceV2DtoType = "QLIK"
+	PublicGetMssqlSourceV2DtoTypeQUICKSIGHT     PublicGetMssqlSourceV2DtoType = "QUICKSIGHT"
+	PublicGetMssqlSourceV2DtoTypeREDSHIFT       PublicGetMssqlSourceV2DtoType = "REDSHIFT"
+	PublicGetMssqlSourceV2DtoTypeSNOWFLAKE      PublicGetMssqlSourceV2DtoType = "SNOWFLAKE"
+	PublicGetMssqlSourceV2DtoTypeSYNAPSE        PublicGetMssqlSourceV2DtoType = "SYNAPSE"
+	PublicGetMssqlSourceV2DtoTypeTABLEAU        PublicGetMssqlSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetMysqlSourceV2DtoType.
+const (
+	PublicGetMysqlSourceV2DtoTypeAIRFLOW        PublicGetMysqlSourceV2DtoType = "AIRFLOW"
+	PublicGetMysqlSourceV2DtoTypeATHENA         PublicGetMysqlSourceV2DtoType = "ATHENA"
+	PublicGetMysqlSourceV2DtoTypeBIGQUERY       PublicGetMysqlSourceV2DtoType = "BIGQUERY"
+	PublicGetMysqlSourceV2DtoTypeDATABRICKS     PublicGetMysqlSourceV2DtoType = "DATABRICKS"
+	PublicGetMysqlSourceV2DtoTypeDATABRICKSJOBS PublicGetMysqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetMysqlSourceV2DtoTypeDBT            PublicGetMysqlSourceV2DtoType = "DBT"
+	PublicGetMysqlSourceV2DtoTypeDBTCLOUD       PublicGetMysqlSourceV2DtoType = "DBTCLOUD"
+	PublicGetMysqlSourceV2DtoTypeDECLARATIVE    PublicGetMysqlSourceV2DtoType = "DECLARATIVE"
+	PublicGetMysqlSourceV2DtoTypeFIVETRAN       PublicGetMysqlSourceV2DtoType = "FIVETRAN"
+	PublicGetMysqlSourceV2DtoTypeLOOKER         PublicGetMysqlSourceV2DtoType = "LOOKER"
+	PublicGetMysqlSourceV2DtoTypeMICROSTRATEGY  PublicGetMysqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetMysqlSourceV2DtoTypeMSSQL          PublicGetMysqlSourceV2DtoType = "MSSQL"
+	PublicGetMysqlSourceV2DtoTypeMYSQL          PublicGetMysqlSourceV2DtoType = "MYSQL"
+	PublicGetMysqlSourceV2DtoTypeORACLE         PublicGetMysqlSourceV2DtoType = "ORACLE"
+	PublicGetMysqlSourceV2DtoTypePOSTGRESQL     PublicGetMysqlSourceV2DtoType = "POSTGRESQL"
+	PublicGetMysqlSourceV2DtoTypePOWERBI        PublicGetMysqlSourceV2DtoType = "POWER_BI"
+	PublicGetMysqlSourceV2DtoTypeQLIK           PublicGetMysqlSourceV2DtoType = "QLIK"
+	PublicGetMysqlSourceV2DtoTypeQUICKSIGHT     PublicGetMysqlSourceV2DtoType = "QUICKSIGHT"
+	PublicGetMysqlSourceV2DtoTypeREDSHIFT       PublicGetMysqlSourceV2DtoType = "REDSHIFT"
+	PublicGetMysqlSourceV2DtoTypeSNOWFLAKE      PublicGetMysqlSourceV2DtoType = "SNOWFLAKE"
+	PublicGetMysqlSourceV2DtoTypeSYNAPSE        PublicGetMysqlSourceV2DtoType = "SYNAPSE"
+	PublicGetMysqlSourceV2DtoTypeTABLEAU        PublicGetMysqlSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetOracleSourceV2DtoType.
+const (
+	PublicGetOracleSourceV2DtoTypeAIRFLOW        PublicGetOracleSourceV2DtoType = "AIRFLOW"
+	PublicGetOracleSourceV2DtoTypeATHENA         PublicGetOracleSourceV2DtoType = "ATHENA"
+	PublicGetOracleSourceV2DtoTypeBIGQUERY       PublicGetOracleSourceV2DtoType = "BIGQUERY"
+	PublicGetOracleSourceV2DtoTypeDATABRICKS     PublicGetOracleSourceV2DtoType = "DATABRICKS"
+	PublicGetOracleSourceV2DtoTypeDATABRICKSJOBS PublicGetOracleSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetOracleSourceV2DtoTypeDBT            PublicGetOracleSourceV2DtoType = "DBT"
+	PublicGetOracleSourceV2DtoTypeDBTCLOUD       PublicGetOracleSourceV2DtoType = "DBTCLOUD"
+	PublicGetOracleSourceV2DtoTypeDECLARATIVE    PublicGetOracleSourceV2DtoType = "DECLARATIVE"
+	PublicGetOracleSourceV2DtoTypeFIVETRAN       PublicGetOracleSourceV2DtoType = "FIVETRAN"
+	PublicGetOracleSourceV2DtoTypeLOOKER         PublicGetOracleSourceV2DtoType = "LOOKER"
+	PublicGetOracleSourceV2DtoTypeMICROSTRATEGY  PublicGetOracleSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetOracleSourceV2DtoTypeMSSQL          PublicGetOracleSourceV2DtoType = "MSSQL"
+	PublicGetOracleSourceV2DtoTypeMYSQL          PublicGetOracleSourceV2DtoType = "MYSQL"
+	PublicGetOracleSourceV2DtoTypeORACLE         PublicGetOracleSourceV2DtoType = "ORACLE"
+	PublicGetOracleSourceV2DtoTypePOSTGRESQL     PublicGetOracleSourceV2DtoType = "POSTGRESQL"
+	PublicGetOracleSourceV2DtoTypePOWERBI        PublicGetOracleSourceV2DtoType = "POWER_BI"
+	PublicGetOracleSourceV2DtoTypeQLIK           PublicGetOracleSourceV2DtoType = "QLIK"
+	PublicGetOracleSourceV2DtoTypeQUICKSIGHT     PublicGetOracleSourceV2DtoType = "QUICKSIGHT"
+	PublicGetOracleSourceV2DtoTypeREDSHIFT       PublicGetOracleSourceV2DtoType = "REDSHIFT"
+	PublicGetOracleSourceV2DtoTypeSNOWFLAKE      PublicGetOracleSourceV2DtoType = "SNOWFLAKE"
+	PublicGetOracleSourceV2DtoTypeSYNAPSE        PublicGetOracleSourceV2DtoType = "SYNAPSE"
+	PublicGetOracleSourceV2DtoTypeTABLEAU        PublicGetOracleSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetPostgresqlSourceV2DtoType.
+const (
+	PublicGetPostgresqlSourceV2DtoTypeAIRFLOW        PublicGetPostgresqlSourceV2DtoType = "AIRFLOW"
+	PublicGetPostgresqlSourceV2DtoTypeATHENA         PublicGetPostgresqlSourceV2DtoType = "ATHENA"
+	PublicGetPostgresqlSourceV2DtoTypeBIGQUERY       PublicGetPostgresqlSourceV2DtoType = "BIGQUERY"
+	PublicGetPostgresqlSourceV2DtoTypeDATABRICKS     PublicGetPostgresqlSourceV2DtoType = "DATABRICKS"
+	PublicGetPostgresqlSourceV2DtoTypeDATABRICKSJOBS PublicGetPostgresqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetPostgresqlSourceV2DtoTypeDBT            PublicGetPostgresqlSourceV2DtoType = "DBT"
+	PublicGetPostgresqlSourceV2DtoTypeDBTCLOUD       PublicGetPostgresqlSourceV2DtoType = "DBTCLOUD"
+	PublicGetPostgresqlSourceV2DtoTypeDECLARATIVE    PublicGetPostgresqlSourceV2DtoType = "DECLARATIVE"
+	PublicGetPostgresqlSourceV2DtoTypeFIVETRAN       PublicGetPostgresqlSourceV2DtoType = "FIVETRAN"
+	PublicGetPostgresqlSourceV2DtoTypeLOOKER         PublicGetPostgresqlSourceV2DtoType = "LOOKER"
+	PublicGetPostgresqlSourceV2DtoTypeMICROSTRATEGY  PublicGetPostgresqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetPostgresqlSourceV2DtoTypeMSSQL          PublicGetPostgresqlSourceV2DtoType = "MSSQL"
+	PublicGetPostgresqlSourceV2DtoTypeMYSQL          PublicGetPostgresqlSourceV2DtoType = "MYSQL"
+	PublicGetPostgresqlSourceV2DtoTypeORACLE         PublicGetPostgresqlSourceV2DtoType = "ORACLE"
+	PublicGetPostgresqlSourceV2DtoTypePOSTGRESQL     PublicGetPostgresqlSourceV2DtoType = "POSTGRESQL"
+	PublicGetPostgresqlSourceV2DtoTypePOWERBI        PublicGetPostgresqlSourceV2DtoType = "POWER_BI"
+	PublicGetPostgresqlSourceV2DtoTypeQLIK           PublicGetPostgresqlSourceV2DtoType = "QLIK"
+	PublicGetPostgresqlSourceV2DtoTypeQUICKSIGHT     PublicGetPostgresqlSourceV2DtoType = "QUICKSIGHT"
+	PublicGetPostgresqlSourceV2DtoTypeREDSHIFT       PublicGetPostgresqlSourceV2DtoType = "REDSHIFT"
+	PublicGetPostgresqlSourceV2DtoTypeSNOWFLAKE      PublicGetPostgresqlSourceV2DtoType = "SNOWFLAKE"
+	PublicGetPostgresqlSourceV2DtoTypeSYNAPSE        PublicGetPostgresqlSourceV2DtoType = "SYNAPSE"
+	PublicGetPostgresqlSourceV2DtoTypeTABLEAU        PublicGetPostgresqlSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetPowerBiSourceV2DtoType.
+const (
+	PublicGetPowerBiSourceV2DtoTypeAIRFLOW        PublicGetPowerBiSourceV2DtoType = "AIRFLOW"
+	PublicGetPowerBiSourceV2DtoTypeATHENA         PublicGetPowerBiSourceV2DtoType = "ATHENA"
+	PublicGetPowerBiSourceV2DtoTypeBIGQUERY       PublicGetPowerBiSourceV2DtoType = "BIGQUERY"
+	PublicGetPowerBiSourceV2DtoTypeDATABRICKS     PublicGetPowerBiSourceV2DtoType = "DATABRICKS"
+	PublicGetPowerBiSourceV2DtoTypeDATABRICKSJOBS PublicGetPowerBiSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetPowerBiSourceV2DtoTypeDBT            PublicGetPowerBiSourceV2DtoType = "DBT"
+	PublicGetPowerBiSourceV2DtoTypeDBTCLOUD       PublicGetPowerBiSourceV2DtoType = "DBTCLOUD"
+	PublicGetPowerBiSourceV2DtoTypeDECLARATIVE    PublicGetPowerBiSourceV2DtoType = "DECLARATIVE"
+	PublicGetPowerBiSourceV2DtoTypeFIVETRAN       PublicGetPowerBiSourceV2DtoType = "FIVETRAN"
+	PublicGetPowerBiSourceV2DtoTypeLOOKER         PublicGetPowerBiSourceV2DtoType = "LOOKER"
+	PublicGetPowerBiSourceV2DtoTypeMICROSTRATEGY  PublicGetPowerBiSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetPowerBiSourceV2DtoTypeMSSQL          PublicGetPowerBiSourceV2DtoType = "MSSQL"
+	PublicGetPowerBiSourceV2DtoTypeMYSQL          PublicGetPowerBiSourceV2DtoType = "MYSQL"
+	PublicGetPowerBiSourceV2DtoTypeORACLE         PublicGetPowerBiSourceV2DtoType = "ORACLE"
+	PublicGetPowerBiSourceV2DtoTypePOSTGRESQL     PublicGetPowerBiSourceV2DtoType = "POSTGRESQL"
+	PublicGetPowerBiSourceV2DtoTypePOWERBI        PublicGetPowerBiSourceV2DtoType = "POWER_BI"
+	PublicGetPowerBiSourceV2DtoTypeQLIK           PublicGetPowerBiSourceV2DtoType = "QLIK"
+	PublicGetPowerBiSourceV2DtoTypeQUICKSIGHT     PublicGetPowerBiSourceV2DtoType = "QUICKSIGHT"
+	PublicGetPowerBiSourceV2DtoTypeREDSHIFT       PublicGetPowerBiSourceV2DtoType = "REDSHIFT"
+	PublicGetPowerBiSourceV2DtoTypeSNOWFLAKE      PublicGetPowerBiSourceV2DtoType = "SNOWFLAKE"
+	PublicGetPowerBiSourceV2DtoTypeSYNAPSE        PublicGetPowerBiSourceV2DtoType = "SYNAPSE"
+	PublicGetPowerBiSourceV2DtoTypeTABLEAU        PublicGetPowerBiSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetQlikSourceV2DtoType.
+const (
+	PublicGetQlikSourceV2DtoTypeAIRFLOW        PublicGetQlikSourceV2DtoType = "AIRFLOW"
+	PublicGetQlikSourceV2DtoTypeATHENA         PublicGetQlikSourceV2DtoType = "ATHENA"
+	PublicGetQlikSourceV2DtoTypeBIGQUERY       PublicGetQlikSourceV2DtoType = "BIGQUERY"
+	PublicGetQlikSourceV2DtoTypeDATABRICKS     PublicGetQlikSourceV2DtoType = "DATABRICKS"
+	PublicGetQlikSourceV2DtoTypeDATABRICKSJOBS PublicGetQlikSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetQlikSourceV2DtoTypeDBT            PublicGetQlikSourceV2DtoType = "DBT"
+	PublicGetQlikSourceV2DtoTypeDBTCLOUD       PublicGetQlikSourceV2DtoType = "DBTCLOUD"
+	PublicGetQlikSourceV2DtoTypeDECLARATIVE    PublicGetQlikSourceV2DtoType = "DECLARATIVE"
+	PublicGetQlikSourceV2DtoTypeFIVETRAN       PublicGetQlikSourceV2DtoType = "FIVETRAN"
+	PublicGetQlikSourceV2DtoTypeLOOKER         PublicGetQlikSourceV2DtoType = "LOOKER"
+	PublicGetQlikSourceV2DtoTypeMICROSTRATEGY  PublicGetQlikSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetQlikSourceV2DtoTypeMSSQL          PublicGetQlikSourceV2DtoType = "MSSQL"
+	PublicGetQlikSourceV2DtoTypeMYSQL          PublicGetQlikSourceV2DtoType = "MYSQL"
+	PublicGetQlikSourceV2DtoTypeORACLE         PublicGetQlikSourceV2DtoType = "ORACLE"
+	PublicGetQlikSourceV2DtoTypePOSTGRESQL     PublicGetQlikSourceV2DtoType = "POSTGRESQL"
+	PublicGetQlikSourceV2DtoTypePOWERBI        PublicGetQlikSourceV2DtoType = "POWER_BI"
+	PublicGetQlikSourceV2DtoTypeQLIK           PublicGetQlikSourceV2DtoType = "QLIK"
+	PublicGetQlikSourceV2DtoTypeQUICKSIGHT     PublicGetQlikSourceV2DtoType = "QUICKSIGHT"
+	PublicGetQlikSourceV2DtoTypeREDSHIFT       PublicGetQlikSourceV2DtoType = "REDSHIFT"
+	PublicGetQlikSourceV2DtoTypeSNOWFLAKE      PublicGetQlikSourceV2DtoType = "SNOWFLAKE"
+	PublicGetQlikSourceV2DtoTypeSYNAPSE        PublicGetQlikSourceV2DtoType = "SYNAPSE"
+	PublicGetQlikSourceV2DtoTypeTABLEAU        PublicGetQlikSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetQuicksightSourceV2DtoType.
+const (
+	PublicGetQuicksightSourceV2DtoTypeAIRFLOW        PublicGetQuicksightSourceV2DtoType = "AIRFLOW"
+	PublicGetQuicksightSourceV2DtoTypeATHENA         PublicGetQuicksightSourceV2DtoType = "ATHENA"
+	PublicGetQuicksightSourceV2DtoTypeBIGQUERY       PublicGetQuicksightSourceV2DtoType = "BIGQUERY"
+	PublicGetQuicksightSourceV2DtoTypeDATABRICKS     PublicGetQuicksightSourceV2DtoType = "DATABRICKS"
+	PublicGetQuicksightSourceV2DtoTypeDATABRICKSJOBS PublicGetQuicksightSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetQuicksightSourceV2DtoTypeDBT            PublicGetQuicksightSourceV2DtoType = "DBT"
+	PublicGetQuicksightSourceV2DtoTypeDBTCLOUD       PublicGetQuicksightSourceV2DtoType = "DBTCLOUD"
+	PublicGetQuicksightSourceV2DtoTypeDECLARATIVE    PublicGetQuicksightSourceV2DtoType = "DECLARATIVE"
+	PublicGetQuicksightSourceV2DtoTypeFIVETRAN       PublicGetQuicksightSourceV2DtoType = "FIVETRAN"
+	PublicGetQuicksightSourceV2DtoTypeLOOKER         PublicGetQuicksightSourceV2DtoType = "LOOKER"
+	PublicGetQuicksightSourceV2DtoTypeMICROSTRATEGY  PublicGetQuicksightSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetQuicksightSourceV2DtoTypeMSSQL          PublicGetQuicksightSourceV2DtoType = "MSSQL"
+	PublicGetQuicksightSourceV2DtoTypeMYSQL          PublicGetQuicksightSourceV2DtoType = "MYSQL"
+	PublicGetQuicksightSourceV2DtoTypeORACLE         PublicGetQuicksightSourceV2DtoType = "ORACLE"
+	PublicGetQuicksightSourceV2DtoTypePOSTGRESQL     PublicGetQuicksightSourceV2DtoType = "POSTGRESQL"
+	PublicGetQuicksightSourceV2DtoTypePOWERBI        PublicGetQuicksightSourceV2DtoType = "POWER_BI"
+	PublicGetQuicksightSourceV2DtoTypeQLIK           PublicGetQuicksightSourceV2DtoType = "QLIK"
+	PublicGetQuicksightSourceV2DtoTypeQUICKSIGHT     PublicGetQuicksightSourceV2DtoType = "QUICKSIGHT"
+	PublicGetQuicksightSourceV2DtoTypeREDSHIFT       PublicGetQuicksightSourceV2DtoType = "REDSHIFT"
+	PublicGetQuicksightSourceV2DtoTypeSNOWFLAKE      PublicGetQuicksightSourceV2DtoType = "SNOWFLAKE"
+	PublicGetQuicksightSourceV2DtoTypeSYNAPSE        PublicGetQuicksightSourceV2DtoType = "SYNAPSE"
+	PublicGetQuicksightSourceV2DtoTypeTABLEAU        PublicGetQuicksightSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetRedshiftSourceV2DtoType.
+const (
+	PublicGetRedshiftSourceV2DtoTypeAIRFLOW        PublicGetRedshiftSourceV2DtoType = "AIRFLOW"
+	PublicGetRedshiftSourceV2DtoTypeATHENA         PublicGetRedshiftSourceV2DtoType = "ATHENA"
+	PublicGetRedshiftSourceV2DtoTypeBIGQUERY       PublicGetRedshiftSourceV2DtoType = "BIGQUERY"
+	PublicGetRedshiftSourceV2DtoTypeDATABRICKS     PublicGetRedshiftSourceV2DtoType = "DATABRICKS"
+	PublicGetRedshiftSourceV2DtoTypeDATABRICKSJOBS PublicGetRedshiftSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetRedshiftSourceV2DtoTypeDBT            PublicGetRedshiftSourceV2DtoType = "DBT"
+	PublicGetRedshiftSourceV2DtoTypeDBTCLOUD       PublicGetRedshiftSourceV2DtoType = "DBTCLOUD"
+	PublicGetRedshiftSourceV2DtoTypeDECLARATIVE    PublicGetRedshiftSourceV2DtoType = "DECLARATIVE"
+	PublicGetRedshiftSourceV2DtoTypeFIVETRAN       PublicGetRedshiftSourceV2DtoType = "FIVETRAN"
+	PublicGetRedshiftSourceV2DtoTypeLOOKER         PublicGetRedshiftSourceV2DtoType = "LOOKER"
+	PublicGetRedshiftSourceV2DtoTypeMICROSTRATEGY  PublicGetRedshiftSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetRedshiftSourceV2DtoTypeMSSQL          PublicGetRedshiftSourceV2DtoType = "MSSQL"
+	PublicGetRedshiftSourceV2DtoTypeMYSQL          PublicGetRedshiftSourceV2DtoType = "MYSQL"
+	PublicGetRedshiftSourceV2DtoTypeORACLE         PublicGetRedshiftSourceV2DtoType = "ORACLE"
+	PublicGetRedshiftSourceV2DtoTypePOSTGRESQL     PublicGetRedshiftSourceV2DtoType = "POSTGRESQL"
+	PublicGetRedshiftSourceV2DtoTypePOWERBI        PublicGetRedshiftSourceV2DtoType = "POWER_BI"
+	PublicGetRedshiftSourceV2DtoTypeQLIK           PublicGetRedshiftSourceV2DtoType = "QLIK"
+	PublicGetRedshiftSourceV2DtoTypeQUICKSIGHT     PublicGetRedshiftSourceV2DtoType = "QUICKSIGHT"
+	PublicGetRedshiftSourceV2DtoTypeREDSHIFT       PublicGetRedshiftSourceV2DtoType = "REDSHIFT"
+	PublicGetRedshiftSourceV2DtoTypeSNOWFLAKE      PublicGetRedshiftSourceV2DtoType = "SNOWFLAKE"
+	PublicGetRedshiftSourceV2DtoTypeSYNAPSE        PublicGetRedshiftSourceV2DtoType = "SYNAPSE"
+	PublicGetRedshiftSourceV2DtoTypeTABLEAU        PublicGetRedshiftSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetSnowflakeSourceV2DtoType.
+const (
+	PublicGetSnowflakeSourceV2DtoTypeAIRFLOW        PublicGetSnowflakeSourceV2DtoType = "AIRFLOW"
+	PublicGetSnowflakeSourceV2DtoTypeATHENA         PublicGetSnowflakeSourceV2DtoType = "ATHENA"
+	PublicGetSnowflakeSourceV2DtoTypeBIGQUERY       PublicGetSnowflakeSourceV2DtoType = "BIGQUERY"
+	PublicGetSnowflakeSourceV2DtoTypeDATABRICKS     PublicGetSnowflakeSourceV2DtoType = "DATABRICKS"
+	PublicGetSnowflakeSourceV2DtoTypeDATABRICKSJOBS PublicGetSnowflakeSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetSnowflakeSourceV2DtoTypeDBT            PublicGetSnowflakeSourceV2DtoType = "DBT"
+	PublicGetSnowflakeSourceV2DtoTypeDBTCLOUD       PublicGetSnowflakeSourceV2DtoType = "DBTCLOUD"
+	PublicGetSnowflakeSourceV2DtoTypeDECLARATIVE    PublicGetSnowflakeSourceV2DtoType = "DECLARATIVE"
+	PublicGetSnowflakeSourceV2DtoTypeFIVETRAN       PublicGetSnowflakeSourceV2DtoType = "FIVETRAN"
+	PublicGetSnowflakeSourceV2DtoTypeLOOKER         PublicGetSnowflakeSourceV2DtoType = "LOOKER"
+	PublicGetSnowflakeSourceV2DtoTypeMICROSTRATEGY  PublicGetSnowflakeSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetSnowflakeSourceV2DtoTypeMSSQL          PublicGetSnowflakeSourceV2DtoType = "MSSQL"
+	PublicGetSnowflakeSourceV2DtoTypeMYSQL          PublicGetSnowflakeSourceV2DtoType = "MYSQL"
+	PublicGetSnowflakeSourceV2DtoTypeORACLE         PublicGetSnowflakeSourceV2DtoType = "ORACLE"
+	PublicGetSnowflakeSourceV2DtoTypePOSTGRESQL     PublicGetSnowflakeSourceV2DtoType = "POSTGRESQL"
+	PublicGetSnowflakeSourceV2DtoTypePOWERBI        PublicGetSnowflakeSourceV2DtoType = "POWER_BI"
+	PublicGetSnowflakeSourceV2DtoTypeQLIK           PublicGetSnowflakeSourceV2DtoType = "QLIK"
+	PublicGetSnowflakeSourceV2DtoTypeQUICKSIGHT     PublicGetSnowflakeSourceV2DtoType = "QUICKSIGHT"
+	PublicGetSnowflakeSourceV2DtoTypeREDSHIFT       PublicGetSnowflakeSourceV2DtoType = "REDSHIFT"
+	PublicGetSnowflakeSourceV2DtoTypeSNOWFLAKE      PublicGetSnowflakeSourceV2DtoType = "SNOWFLAKE"
+	PublicGetSnowflakeSourceV2DtoTypeSYNAPSE        PublicGetSnowflakeSourceV2DtoType = "SYNAPSE"
+	PublicGetSnowflakeSourceV2DtoTypeTABLEAU        PublicGetSnowflakeSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetSourceV2DtoType.
+const (
+	PublicGetSourceV2DtoTypeAIRFLOW        PublicGetSourceV2DtoType = "AIRFLOW"
+	PublicGetSourceV2DtoTypeATHENA         PublicGetSourceV2DtoType = "ATHENA"
+	PublicGetSourceV2DtoTypeBIGQUERY       PublicGetSourceV2DtoType = "BIGQUERY"
+	PublicGetSourceV2DtoTypeDATABRICKS     PublicGetSourceV2DtoType = "DATABRICKS"
+	PublicGetSourceV2DtoTypeDATABRICKSJOBS PublicGetSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetSourceV2DtoTypeDBT            PublicGetSourceV2DtoType = "DBT"
+	PublicGetSourceV2DtoTypeDBTCLOUD       PublicGetSourceV2DtoType = "DBTCLOUD"
+	PublicGetSourceV2DtoTypeDECLARATIVE    PublicGetSourceV2DtoType = "DECLARATIVE"
+	PublicGetSourceV2DtoTypeFIVETRAN       PublicGetSourceV2DtoType = "FIVETRAN"
+	PublicGetSourceV2DtoTypeLOOKER         PublicGetSourceV2DtoType = "LOOKER"
+	PublicGetSourceV2DtoTypeMICROSTRATEGY  PublicGetSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetSourceV2DtoTypeMSSQL          PublicGetSourceV2DtoType = "MSSQL"
+	PublicGetSourceV2DtoTypeMYSQL          PublicGetSourceV2DtoType = "MYSQL"
+	PublicGetSourceV2DtoTypeORACLE         PublicGetSourceV2DtoType = "ORACLE"
+	PublicGetSourceV2DtoTypePOSTGRESQL     PublicGetSourceV2DtoType = "POSTGRESQL"
+	PublicGetSourceV2DtoTypePOWERBI        PublicGetSourceV2DtoType = "POWER_BI"
+	PublicGetSourceV2DtoTypeQLIK           PublicGetSourceV2DtoType = "QLIK"
+	PublicGetSourceV2DtoTypeQUICKSIGHT     PublicGetSourceV2DtoType = "QUICKSIGHT"
+	PublicGetSourceV2DtoTypeREDSHIFT       PublicGetSourceV2DtoType = "REDSHIFT"
+	PublicGetSourceV2DtoTypeSNOWFLAKE      PublicGetSourceV2DtoType = "SNOWFLAKE"
+	PublicGetSourceV2DtoTypeSYNAPSE        PublicGetSourceV2DtoType = "SYNAPSE"
+	PublicGetSourceV2DtoTypeTABLEAU        PublicGetSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetSynapseSourceV2DtoType.
+const (
+	PublicGetSynapseSourceV2DtoTypeAIRFLOW        PublicGetSynapseSourceV2DtoType = "AIRFLOW"
+	PublicGetSynapseSourceV2DtoTypeATHENA         PublicGetSynapseSourceV2DtoType = "ATHENA"
+	PublicGetSynapseSourceV2DtoTypeBIGQUERY       PublicGetSynapseSourceV2DtoType = "BIGQUERY"
+	PublicGetSynapseSourceV2DtoTypeDATABRICKS     PublicGetSynapseSourceV2DtoType = "DATABRICKS"
+	PublicGetSynapseSourceV2DtoTypeDATABRICKSJOBS PublicGetSynapseSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetSynapseSourceV2DtoTypeDBT            PublicGetSynapseSourceV2DtoType = "DBT"
+	PublicGetSynapseSourceV2DtoTypeDBTCLOUD       PublicGetSynapseSourceV2DtoType = "DBTCLOUD"
+	PublicGetSynapseSourceV2DtoTypeDECLARATIVE    PublicGetSynapseSourceV2DtoType = "DECLARATIVE"
+	PublicGetSynapseSourceV2DtoTypeFIVETRAN       PublicGetSynapseSourceV2DtoType = "FIVETRAN"
+	PublicGetSynapseSourceV2DtoTypeLOOKER         PublicGetSynapseSourceV2DtoType = "LOOKER"
+	PublicGetSynapseSourceV2DtoTypeMICROSTRATEGY  PublicGetSynapseSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetSynapseSourceV2DtoTypeMSSQL          PublicGetSynapseSourceV2DtoType = "MSSQL"
+	PublicGetSynapseSourceV2DtoTypeMYSQL          PublicGetSynapseSourceV2DtoType = "MYSQL"
+	PublicGetSynapseSourceV2DtoTypeORACLE         PublicGetSynapseSourceV2DtoType = "ORACLE"
+	PublicGetSynapseSourceV2DtoTypePOSTGRESQL     PublicGetSynapseSourceV2DtoType = "POSTGRESQL"
+	PublicGetSynapseSourceV2DtoTypePOWERBI        PublicGetSynapseSourceV2DtoType = "POWER_BI"
+	PublicGetSynapseSourceV2DtoTypeQLIK           PublicGetSynapseSourceV2DtoType = "QLIK"
+	PublicGetSynapseSourceV2DtoTypeQUICKSIGHT     PublicGetSynapseSourceV2DtoType = "QUICKSIGHT"
+	PublicGetSynapseSourceV2DtoTypeREDSHIFT       PublicGetSynapseSourceV2DtoType = "REDSHIFT"
+	PublicGetSynapseSourceV2DtoTypeSNOWFLAKE      PublicGetSynapseSourceV2DtoType = "SNOWFLAKE"
+	PublicGetSynapseSourceV2DtoTypeSYNAPSE        PublicGetSynapseSourceV2DtoType = "SYNAPSE"
+	PublicGetSynapseSourceV2DtoTypeTABLEAU        PublicGetSynapseSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicGetTableauSourceV2DtoType.
+const (
+	PublicGetTableauSourceV2DtoTypeAIRFLOW        PublicGetTableauSourceV2DtoType = "AIRFLOW"
+	PublicGetTableauSourceV2DtoTypeATHENA         PublicGetTableauSourceV2DtoType = "ATHENA"
+	PublicGetTableauSourceV2DtoTypeBIGQUERY       PublicGetTableauSourceV2DtoType = "BIGQUERY"
+	PublicGetTableauSourceV2DtoTypeDATABRICKS     PublicGetTableauSourceV2DtoType = "DATABRICKS"
+	PublicGetTableauSourceV2DtoTypeDATABRICKSJOBS PublicGetTableauSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetTableauSourceV2DtoTypeDBT            PublicGetTableauSourceV2DtoType = "DBT"
+	PublicGetTableauSourceV2DtoTypeDBTCLOUD       PublicGetTableauSourceV2DtoType = "DBTCLOUD"
+	PublicGetTableauSourceV2DtoTypeDECLARATIVE    PublicGetTableauSourceV2DtoType = "DECLARATIVE"
+	PublicGetTableauSourceV2DtoTypeFIVETRAN       PublicGetTableauSourceV2DtoType = "FIVETRAN"
+	PublicGetTableauSourceV2DtoTypeLOOKER         PublicGetTableauSourceV2DtoType = "LOOKER"
+	PublicGetTableauSourceV2DtoTypeMICROSTRATEGY  PublicGetTableauSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetTableauSourceV2DtoTypeMSSQL          PublicGetTableauSourceV2DtoType = "MSSQL"
+	PublicGetTableauSourceV2DtoTypeMYSQL          PublicGetTableauSourceV2DtoType = "MYSQL"
+	PublicGetTableauSourceV2DtoTypeORACLE         PublicGetTableauSourceV2DtoType = "ORACLE"
+	PublicGetTableauSourceV2DtoTypePOSTGRESQL     PublicGetTableauSourceV2DtoType = "POSTGRESQL"
+	PublicGetTableauSourceV2DtoTypePOWERBI        PublicGetTableauSourceV2DtoType = "POWER_BI"
+	PublicGetTableauSourceV2DtoTypeQLIK           PublicGetTableauSourceV2DtoType = "QLIK"
+	PublicGetTableauSourceV2DtoTypeQUICKSIGHT     PublicGetTableauSourceV2DtoType = "QUICKSIGHT"
+	PublicGetTableauSourceV2DtoTypeREDSHIFT       PublicGetTableauSourceV2DtoType = "REDSHIFT"
+	PublicGetTableauSourceV2DtoTypeSNOWFLAKE      PublicGetTableauSourceV2DtoType = "SNOWFLAKE"
+	PublicGetTableauSourceV2DtoTypeSYNAPSE        PublicGetTableauSourceV2DtoType = "SYNAPSE"
+	PublicGetTableauSourceV2DtoTypeTABLEAU        PublicGetTableauSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicLookerParametersDtoType.
@@ -1858,8 +4519,8 @@ const (
 
 // Defines values for PublicMysqlParametersDtoMysqlTlsVersion.
 const (
-	TLSV12 PublicMysqlParametersDtoMysqlTlsVersion = "TLS_V_1_2"
-	TLSV13 PublicMysqlParametersDtoMysqlTlsVersion = "TLS_V_1_3"
+	PublicMysqlParametersDtoMysqlTlsVersionTLSV12 PublicMysqlParametersDtoMysqlTlsVersion = "TLS_V_1_2"
+	PublicMysqlParametersDtoMysqlTlsVersionTLSV13 PublicMysqlParametersDtoMysqlTlsVersion = "TLS_V_1_3"
 )
 
 // Defines values for PublicMysqlParametersDtoType.
@@ -2128,16 +4789,8 @@ const (
 
 // Defines values for PublicTagReferenceDtoKind.
 const (
-	Classification PublicTagReferenceDtoKind = "Classification"
-	Tag            PublicTagReferenceDtoKind = "Tag"
-)
-
-// Defines values for PublicTagReferenceGetDtoKind.
-const (
-	PublicTagReferenceGetDtoKindBIGQUERYEXTERNAL  PublicTagReferenceGetDtoKind = "BIGQUERY_EXTERNAL"
-	PublicTagReferenceGetDtoKindCLASSIFICATION    PublicTagReferenceGetDtoKind = "CLASSIFICATION"
-	PublicTagReferenceGetDtoKindSNOWFLAKEEXTERNAL PublicTagReferenceGetDtoKind = "SNOWFLAKE_EXTERNAL"
-	PublicTagReferenceGetDtoKindTAG               PublicTagReferenceGetDtoKind = "TAG"
+	CLASSIFICATION PublicTagReferenceDtoKind = "CLASSIFICATION"
+	TAG            PublicTagReferenceDtoKind = "TAG"
 )
 
 // Defines values for PublicTransformationRunDtoLastRunStatus.
@@ -2148,6 +4801,552 @@ const (
 	PublicTransformationRunDtoLastRunStatusSKIPPED        PublicTransformationRunDtoLastRunStatus = "SKIPPED"
 	PublicTransformationRunDtoLastRunStatusSUCCESS        PublicTransformationRunDtoLastRunStatus = "SUCCESS"
 	PublicTransformationRunDtoLastRunStatusUNKNOWN        PublicTransformationRunDtoLastRunStatus = "UNKNOWN"
+)
+
+// Defines values for PublicUpdateAirflowSourceV2DtoType.
+const (
+	PublicUpdateAirflowSourceV2DtoTypeAIRFLOW        PublicUpdateAirflowSourceV2DtoType = "AIRFLOW"
+	PublicUpdateAirflowSourceV2DtoTypeATHENA         PublicUpdateAirflowSourceV2DtoType = "ATHENA"
+	PublicUpdateAirflowSourceV2DtoTypeBIGQUERY       PublicUpdateAirflowSourceV2DtoType = "BIGQUERY"
+	PublicUpdateAirflowSourceV2DtoTypeDATABRICKS     PublicUpdateAirflowSourceV2DtoType = "DATABRICKS"
+	PublicUpdateAirflowSourceV2DtoTypeDATABRICKSJOBS PublicUpdateAirflowSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateAirflowSourceV2DtoTypeDBT            PublicUpdateAirflowSourceV2DtoType = "DBT"
+	PublicUpdateAirflowSourceV2DtoTypeDBTCLOUD       PublicUpdateAirflowSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateAirflowSourceV2DtoTypeDECLARATIVE    PublicUpdateAirflowSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateAirflowSourceV2DtoTypeFIVETRAN       PublicUpdateAirflowSourceV2DtoType = "FIVETRAN"
+	PublicUpdateAirflowSourceV2DtoTypeLOOKER         PublicUpdateAirflowSourceV2DtoType = "LOOKER"
+	PublicUpdateAirflowSourceV2DtoTypeMICROSTRATEGY  PublicUpdateAirflowSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateAirflowSourceV2DtoTypeMSSQL          PublicUpdateAirflowSourceV2DtoType = "MSSQL"
+	PublicUpdateAirflowSourceV2DtoTypeMYSQL          PublicUpdateAirflowSourceV2DtoType = "MYSQL"
+	PublicUpdateAirflowSourceV2DtoTypeORACLE         PublicUpdateAirflowSourceV2DtoType = "ORACLE"
+	PublicUpdateAirflowSourceV2DtoTypePOSTGRESQL     PublicUpdateAirflowSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateAirflowSourceV2DtoTypePOWERBI        PublicUpdateAirflowSourceV2DtoType = "POWER_BI"
+	PublicUpdateAirflowSourceV2DtoTypeQLIK           PublicUpdateAirflowSourceV2DtoType = "QLIK"
+	PublicUpdateAirflowSourceV2DtoTypeQUICKSIGHT     PublicUpdateAirflowSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateAirflowSourceV2DtoTypeREDSHIFT       PublicUpdateAirflowSourceV2DtoType = "REDSHIFT"
+	PublicUpdateAirflowSourceV2DtoTypeSNOWFLAKE      PublicUpdateAirflowSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateAirflowSourceV2DtoTypeSYNAPSE        PublicUpdateAirflowSourceV2DtoType = "SYNAPSE"
+	PublicUpdateAirflowSourceV2DtoTypeTABLEAU        PublicUpdateAirflowSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateAthenaSourceV2DtoType.
+const (
+	PublicUpdateAthenaSourceV2DtoTypeAIRFLOW        PublicUpdateAthenaSourceV2DtoType = "AIRFLOW"
+	PublicUpdateAthenaSourceV2DtoTypeATHENA         PublicUpdateAthenaSourceV2DtoType = "ATHENA"
+	PublicUpdateAthenaSourceV2DtoTypeBIGQUERY       PublicUpdateAthenaSourceV2DtoType = "BIGQUERY"
+	PublicUpdateAthenaSourceV2DtoTypeDATABRICKS     PublicUpdateAthenaSourceV2DtoType = "DATABRICKS"
+	PublicUpdateAthenaSourceV2DtoTypeDATABRICKSJOBS PublicUpdateAthenaSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateAthenaSourceV2DtoTypeDBT            PublicUpdateAthenaSourceV2DtoType = "DBT"
+	PublicUpdateAthenaSourceV2DtoTypeDBTCLOUD       PublicUpdateAthenaSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateAthenaSourceV2DtoTypeDECLARATIVE    PublicUpdateAthenaSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateAthenaSourceV2DtoTypeFIVETRAN       PublicUpdateAthenaSourceV2DtoType = "FIVETRAN"
+	PublicUpdateAthenaSourceV2DtoTypeLOOKER         PublicUpdateAthenaSourceV2DtoType = "LOOKER"
+	PublicUpdateAthenaSourceV2DtoTypeMICROSTRATEGY  PublicUpdateAthenaSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateAthenaSourceV2DtoTypeMSSQL          PublicUpdateAthenaSourceV2DtoType = "MSSQL"
+	PublicUpdateAthenaSourceV2DtoTypeMYSQL          PublicUpdateAthenaSourceV2DtoType = "MYSQL"
+	PublicUpdateAthenaSourceV2DtoTypeORACLE         PublicUpdateAthenaSourceV2DtoType = "ORACLE"
+	PublicUpdateAthenaSourceV2DtoTypePOSTGRESQL     PublicUpdateAthenaSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateAthenaSourceV2DtoTypePOWERBI        PublicUpdateAthenaSourceV2DtoType = "POWER_BI"
+	PublicUpdateAthenaSourceV2DtoTypeQLIK           PublicUpdateAthenaSourceV2DtoType = "QLIK"
+	PublicUpdateAthenaSourceV2DtoTypeQUICKSIGHT     PublicUpdateAthenaSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateAthenaSourceV2DtoTypeREDSHIFT       PublicUpdateAthenaSourceV2DtoType = "REDSHIFT"
+	PublicUpdateAthenaSourceV2DtoTypeSNOWFLAKE      PublicUpdateAthenaSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateAthenaSourceV2DtoTypeSYNAPSE        PublicUpdateAthenaSourceV2DtoType = "SYNAPSE"
+	PublicUpdateAthenaSourceV2DtoTypeTABLEAU        PublicUpdateAthenaSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateBigQuerySourceV2DtoType.
+const (
+	PublicUpdateBigQuerySourceV2DtoTypeAIRFLOW        PublicUpdateBigQuerySourceV2DtoType = "AIRFLOW"
+	PublicUpdateBigQuerySourceV2DtoTypeATHENA         PublicUpdateBigQuerySourceV2DtoType = "ATHENA"
+	PublicUpdateBigQuerySourceV2DtoTypeBIGQUERY       PublicUpdateBigQuerySourceV2DtoType = "BIGQUERY"
+	PublicUpdateBigQuerySourceV2DtoTypeDATABRICKS     PublicUpdateBigQuerySourceV2DtoType = "DATABRICKS"
+	PublicUpdateBigQuerySourceV2DtoTypeDATABRICKSJOBS PublicUpdateBigQuerySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateBigQuerySourceV2DtoTypeDBT            PublicUpdateBigQuerySourceV2DtoType = "DBT"
+	PublicUpdateBigQuerySourceV2DtoTypeDBTCLOUD       PublicUpdateBigQuerySourceV2DtoType = "DBTCLOUD"
+	PublicUpdateBigQuerySourceV2DtoTypeDECLARATIVE    PublicUpdateBigQuerySourceV2DtoType = "DECLARATIVE"
+	PublicUpdateBigQuerySourceV2DtoTypeFIVETRAN       PublicUpdateBigQuerySourceV2DtoType = "FIVETRAN"
+	PublicUpdateBigQuerySourceV2DtoTypeLOOKER         PublicUpdateBigQuerySourceV2DtoType = "LOOKER"
+	PublicUpdateBigQuerySourceV2DtoTypeMICROSTRATEGY  PublicUpdateBigQuerySourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateBigQuerySourceV2DtoTypeMSSQL          PublicUpdateBigQuerySourceV2DtoType = "MSSQL"
+	PublicUpdateBigQuerySourceV2DtoTypeMYSQL          PublicUpdateBigQuerySourceV2DtoType = "MYSQL"
+	PublicUpdateBigQuerySourceV2DtoTypeORACLE         PublicUpdateBigQuerySourceV2DtoType = "ORACLE"
+	PublicUpdateBigQuerySourceV2DtoTypePOSTGRESQL     PublicUpdateBigQuerySourceV2DtoType = "POSTGRESQL"
+	PublicUpdateBigQuerySourceV2DtoTypePOWERBI        PublicUpdateBigQuerySourceV2DtoType = "POWER_BI"
+	PublicUpdateBigQuerySourceV2DtoTypeQLIK           PublicUpdateBigQuerySourceV2DtoType = "QLIK"
+	PublicUpdateBigQuerySourceV2DtoTypeQUICKSIGHT     PublicUpdateBigQuerySourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateBigQuerySourceV2DtoTypeREDSHIFT       PublicUpdateBigQuerySourceV2DtoType = "REDSHIFT"
+	PublicUpdateBigQuerySourceV2DtoTypeSNOWFLAKE      PublicUpdateBigQuerySourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateBigQuerySourceV2DtoTypeSYNAPSE        PublicUpdateBigQuerySourceV2DtoType = "SYNAPSE"
+	PublicUpdateBigQuerySourceV2DtoTypeTABLEAU        PublicUpdateBigQuerySourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateDatabricksJobsSourceV2DtoType.
+const (
+	PublicUpdateDatabricksJobsSourceV2DtoTypeAIRFLOW        PublicUpdateDatabricksJobsSourceV2DtoType = "AIRFLOW"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeATHENA         PublicUpdateDatabricksJobsSourceV2DtoType = "ATHENA"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeBIGQUERY       PublicUpdateDatabricksJobsSourceV2DtoType = "BIGQUERY"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeDATABRICKS     PublicUpdateDatabricksJobsSourceV2DtoType = "DATABRICKS"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeDATABRICKSJOBS PublicUpdateDatabricksJobsSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeDBT            PublicUpdateDatabricksJobsSourceV2DtoType = "DBT"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeDBTCLOUD       PublicUpdateDatabricksJobsSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeDECLARATIVE    PublicUpdateDatabricksJobsSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeFIVETRAN       PublicUpdateDatabricksJobsSourceV2DtoType = "FIVETRAN"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeLOOKER         PublicUpdateDatabricksJobsSourceV2DtoType = "LOOKER"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeMICROSTRATEGY  PublicUpdateDatabricksJobsSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeMSSQL          PublicUpdateDatabricksJobsSourceV2DtoType = "MSSQL"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeMYSQL          PublicUpdateDatabricksJobsSourceV2DtoType = "MYSQL"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeORACLE         PublicUpdateDatabricksJobsSourceV2DtoType = "ORACLE"
+	PublicUpdateDatabricksJobsSourceV2DtoTypePOSTGRESQL     PublicUpdateDatabricksJobsSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateDatabricksJobsSourceV2DtoTypePOWERBI        PublicUpdateDatabricksJobsSourceV2DtoType = "POWER_BI"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeQLIK           PublicUpdateDatabricksJobsSourceV2DtoType = "QLIK"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeQUICKSIGHT     PublicUpdateDatabricksJobsSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeREDSHIFT       PublicUpdateDatabricksJobsSourceV2DtoType = "REDSHIFT"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeSNOWFLAKE      PublicUpdateDatabricksJobsSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeSYNAPSE        PublicUpdateDatabricksJobsSourceV2DtoType = "SYNAPSE"
+	PublicUpdateDatabricksJobsSourceV2DtoTypeTABLEAU        PublicUpdateDatabricksJobsSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateDatabricksSourceV2DtoType.
+const (
+	PublicUpdateDatabricksSourceV2DtoTypeAIRFLOW        PublicUpdateDatabricksSourceV2DtoType = "AIRFLOW"
+	PublicUpdateDatabricksSourceV2DtoTypeATHENA         PublicUpdateDatabricksSourceV2DtoType = "ATHENA"
+	PublicUpdateDatabricksSourceV2DtoTypeBIGQUERY       PublicUpdateDatabricksSourceV2DtoType = "BIGQUERY"
+	PublicUpdateDatabricksSourceV2DtoTypeDATABRICKS     PublicUpdateDatabricksSourceV2DtoType = "DATABRICKS"
+	PublicUpdateDatabricksSourceV2DtoTypeDATABRICKSJOBS PublicUpdateDatabricksSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateDatabricksSourceV2DtoTypeDBT            PublicUpdateDatabricksSourceV2DtoType = "DBT"
+	PublicUpdateDatabricksSourceV2DtoTypeDBTCLOUD       PublicUpdateDatabricksSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateDatabricksSourceV2DtoTypeDECLARATIVE    PublicUpdateDatabricksSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateDatabricksSourceV2DtoTypeFIVETRAN       PublicUpdateDatabricksSourceV2DtoType = "FIVETRAN"
+	PublicUpdateDatabricksSourceV2DtoTypeLOOKER         PublicUpdateDatabricksSourceV2DtoType = "LOOKER"
+	PublicUpdateDatabricksSourceV2DtoTypeMICROSTRATEGY  PublicUpdateDatabricksSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateDatabricksSourceV2DtoTypeMSSQL          PublicUpdateDatabricksSourceV2DtoType = "MSSQL"
+	PublicUpdateDatabricksSourceV2DtoTypeMYSQL          PublicUpdateDatabricksSourceV2DtoType = "MYSQL"
+	PublicUpdateDatabricksSourceV2DtoTypeORACLE         PublicUpdateDatabricksSourceV2DtoType = "ORACLE"
+	PublicUpdateDatabricksSourceV2DtoTypePOSTGRESQL     PublicUpdateDatabricksSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateDatabricksSourceV2DtoTypePOWERBI        PublicUpdateDatabricksSourceV2DtoType = "POWER_BI"
+	PublicUpdateDatabricksSourceV2DtoTypeQLIK           PublicUpdateDatabricksSourceV2DtoType = "QLIK"
+	PublicUpdateDatabricksSourceV2DtoTypeQUICKSIGHT     PublicUpdateDatabricksSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateDatabricksSourceV2DtoTypeREDSHIFT       PublicUpdateDatabricksSourceV2DtoType = "REDSHIFT"
+	PublicUpdateDatabricksSourceV2DtoTypeSNOWFLAKE      PublicUpdateDatabricksSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateDatabricksSourceV2DtoTypeSYNAPSE        PublicUpdateDatabricksSourceV2DtoType = "SYNAPSE"
+	PublicUpdateDatabricksSourceV2DtoTypeTABLEAU        PublicUpdateDatabricksSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateDbtCloudSourceV2DtoType.
+const (
+	PublicUpdateDbtCloudSourceV2DtoTypeAIRFLOW        PublicUpdateDbtCloudSourceV2DtoType = "AIRFLOW"
+	PublicUpdateDbtCloudSourceV2DtoTypeATHENA         PublicUpdateDbtCloudSourceV2DtoType = "ATHENA"
+	PublicUpdateDbtCloudSourceV2DtoTypeBIGQUERY       PublicUpdateDbtCloudSourceV2DtoType = "BIGQUERY"
+	PublicUpdateDbtCloudSourceV2DtoTypeDATABRICKS     PublicUpdateDbtCloudSourceV2DtoType = "DATABRICKS"
+	PublicUpdateDbtCloudSourceV2DtoTypeDATABRICKSJOBS PublicUpdateDbtCloudSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateDbtCloudSourceV2DtoTypeDBT            PublicUpdateDbtCloudSourceV2DtoType = "DBT"
+	PublicUpdateDbtCloudSourceV2DtoTypeDBTCLOUD       PublicUpdateDbtCloudSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateDbtCloudSourceV2DtoTypeDECLARATIVE    PublicUpdateDbtCloudSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateDbtCloudSourceV2DtoTypeFIVETRAN       PublicUpdateDbtCloudSourceV2DtoType = "FIVETRAN"
+	PublicUpdateDbtCloudSourceV2DtoTypeLOOKER         PublicUpdateDbtCloudSourceV2DtoType = "LOOKER"
+	PublicUpdateDbtCloudSourceV2DtoTypeMICROSTRATEGY  PublicUpdateDbtCloudSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateDbtCloudSourceV2DtoTypeMSSQL          PublicUpdateDbtCloudSourceV2DtoType = "MSSQL"
+	PublicUpdateDbtCloudSourceV2DtoTypeMYSQL          PublicUpdateDbtCloudSourceV2DtoType = "MYSQL"
+	PublicUpdateDbtCloudSourceV2DtoTypeORACLE         PublicUpdateDbtCloudSourceV2DtoType = "ORACLE"
+	PublicUpdateDbtCloudSourceV2DtoTypePOSTGRESQL     PublicUpdateDbtCloudSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateDbtCloudSourceV2DtoTypePOWERBI        PublicUpdateDbtCloudSourceV2DtoType = "POWER_BI"
+	PublicUpdateDbtCloudSourceV2DtoTypeQLIK           PublicUpdateDbtCloudSourceV2DtoType = "QLIK"
+	PublicUpdateDbtCloudSourceV2DtoTypeQUICKSIGHT     PublicUpdateDbtCloudSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateDbtCloudSourceV2DtoTypeREDSHIFT       PublicUpdateDbtCloudSourceV2DtoType = "REDSHIFT"
+	PublicUpdateDbtCloudSourceV2DtoTypeSNOWFLAKE      PublicUpdateDbtCloudSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateDbtCloudSourceV2DtoTypeSYNAPSE        PublicUpdateDbtCloudSourceV2DtoType = "SYNAPSE"
+	PublicUpdateDbtCloudSourceV2DtoTypeTABLEAU        PublicUpdateDbtCloudSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateDbtSourceV2DtoType.
+const (
+	PublicUpdateDbtSourceV2DtoTypeAIRFLOW        PublicUpdateDbtSourceV2DtoType = "AIRFLOW"
+	PublicUpdateDbtSourceV2DtoTypeATHENA         PublicUpdateDbtSourceV2DtoType = "ATHENA"
+	PublicUpdateDbtSourceV2DtoTypeBIGQUERY       PublicUpdateDbtSourceV2DtoType = "BIGQUERY"
+	PublicUpdateDbtSourceV2DtoTypeDATABRICKS     PublicUpdateDbtSourceV2DtoType = "DATABRICKS"
+	PublicUpdateDbtSourceV2DtoTypeDATABRICKSJOBS PublicUpdateDbtSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateDbtSourceV2DtoTypeDBT            PublicUpdateDbtSourceV2DtoType = "DBT"
+	PublicUpdateDbtSourceV2DtoTypeDBTCLOUD       PublicUpdateDbtSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateDbtSourceV2DtoTypeDECLARATIVE    PublicUpdateDbtSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateDbtSourceV2DtoTypeFIVETRAN       PublicUpdateDbtSourceV2DtoType = "FIVETRAN"
+	PublicUpdateDbtSourceV2DtoTypeLOOKER         PublicUpdateDbtSourceV2DtoType = "LOOKER"
+	PublicUpdateDbtSourceV2DtoTypeMICROSTRATEGY  PublicUpdateDbtSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateDbtSourceV2DtoTypeMSSQL          PublicUpdateDbtSourceV2DtoType = "MSSQL"
+	PublicUpdateDbtSourceV2DtoTypeMYSQL          PublicUpdateDbtSourceV2DtoType = "MYSQL"
+	PublicUpdateDbtSourceV2DtoTypeORACLE         PublicUpdateDbtSourceV2DtoType = "ORACLE"
+	PublicUpdateDbtSourceV2DtoTypePOSTGRESQL     PublicUpdateDbtSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateDbtSourceV2DtoTypePOWERBI        PublicUpdateDbtSourceV2DtoType = "POWER_BI"
+	PublicUpdateDbtSourceV2DtoTypeQLIK           PublicUpdateDbtSourceV2DtoType = "QLIK"
+	PublicUpdateDbtSourceV2DtoTypeQUICKSIGHT     PublicUpdateDbtSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateDbtSourceV2DtoTypeREDSHIFT       PublicUpdateDbtSourceV2DtoType = "REDSHIFT"
+	PublicUpdateDbtSourceV2DtoTypeSNOWFLAKE      PublicUpdateDbtSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateDbtSourceV2DtoTypeSYNAPSE        PublicUpdateDbtSourceV2DtoType = "SYNAPSE"
+	PublicUpdateDbtSourceV2DtoTypeTABLEAU        PublicUpdateDbtSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateFivetranSourceV2DtoType.
+const (
+	PublicUpdateFivetranSourceV2DtoTypeAIRFLOW        PublicUpdateFivetranSourceV2DtoType = "AIRFLOW"
+	PublicUpdateFivetranSourceV2DtoTypeATHENA         PublicUpdateFivetranSourceV2DtoType = "ATHENA"
+	PublicUpdateFivetranSourceV2DtoTypeBIGQUERY       PublicUpdateFivetranSourceV2DtoType = "BIGQUERY"
+	PublicUpdateFivetranSourceV2DtoTypeDATABRICKS     PublicUpdateFivetranSourceV2DtoType = "DATABRICKS"
+	PublicUpdateFivetranSourceV2DtoTypeDATABRICKSJOBS PublicUpdateFivetranSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateFivetranSourceV2DtoTypeDBT            PublicUpdateFivetranSourceV2DtoType = "DBT"
+	PublicUpdateFivetranSourceV2DtoTypeDBTCLOUD       PublicUpdateFivetranSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateFivetranSourceV2DtoTypeDECLARATIVE    PublicUpdateFivetranSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateFivetranSourceV2DtoTypeFIVETRAN       PublicUpdateFivetranSourceV2DtoType = "FIVETRAN"
+	PublicUpdateFivetranSourceV2DtoTypeLOOKER         PublicUpdateFivetranSourceV2DtoType = "LOOKER"
+	PublicUpdateFivetranSourceV2DtoTypeMICROSTRATEGY  PublicUpdateFivetranSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateFivetranSourceV2DtoTypeMSSQL          PublicUpdateFivetranSourceV2DtoType = "MSSQL"
+	PublicUpdateFivetranSourceV2DtoTypeMYSQL          PublicUpdateFivetranSourceV2DtoType = "MYSQL"
+	PublicUpdateFivetranSourceV2DtoTypeORACLE         PublicUpdateFivetranSourceV2DtoType = "ORACLE"
+	PublicUpdateFivetranSourceV2DtoTypePOSTGRESQL     PublicUpdateFivetranSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateFivetranSourceV2DtoTypePOWERBI        PublicUpdateFivetranSourceV2DtoType = "POWER_BI"
+	PublicUpdateFivetranSourceV2DtoTypeQLIK           PublicUpdateFivetranSourceV2DtoType = "QLIK"
+	PublicUpdateFivetranSourceV2DtoTypeQUICKSIGHT     PublicUpdateFivetranSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateFivetranSourceV2DtoTypeREDSHIFT       PublicUpdateFivetranSourceV2DtoType = "REDSHIFT"
+	PublicUpdateFivetranSourceV2DtoTypeSNOWFLAKE      PublicUpdateFivetranSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateFivetranSourceV2DtoTypeSYNAPSE        PublicUpdateFivetranSourceV2DtoType = "SYNAPSE"
+	PublicUpdateFivetranSourceV2DtoTypeTABLEAU        PublicUpdateFivetranSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateLookerSourceV2DtoType.
+const (
+	PublicUpdateLookerSourceV2DtoTypeAIRFLOW        PublicUpdateLookerSourceV2DtoType = "AIRFLOW"
+	PublicUpdateLookerSourceV2DtoTypeATHENA         PublicUpdateLookerSourceV2DtoType = "ATHENA"
+	PublicUpdateLookerSourceV2DtoTypeBIGQUERY       PublicUpdateLookerSourceV2DtoType = "BIGQUERY"
+	PublicUpdateLookerSourceV2DtoTypeDATABRICKS     PublicUpdateLookerSourceV2DtoType = "DATABRICKS"
+	PublicUpdateLookerSourceV2DtoTypeDATABRICKSJOBS PublicUpdateLookerSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateLookerSourceV2DtoTypeDBT            PublicUpdateLookerSourceV2DtoType = "DBT"
+	PublicUpdateLookerSourceV2DtoTypeDBTCLOUD       PublicUpdateLookerSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateLookerSourceV2DtoTypeDECLARATIVE    PublicUpdateLookerSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateLookerSourceV2DtoTypeFIVETRAN       PublicUpdateLookerSourceV2DtoType = "FIVETRAN"
+	PublicUpdateLookerSourceV2DtoTypeLOOKER         PublicUpdateLookerSourceV2DtoType = "LOOKER"
+	PublicUpdateLookerSourceV2DtoTypeMICROSTRATEGY  PublicUpdateLookerSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateLookerSourceV2DtoTypeMSSQL          PublicUpdateLookerSourceV2DtoType = "MSSQL"
+	PublicUpdateLookerSourceV2DtoTypeMYSQL          PublicUpdateLookerSourceV2DtoType = "MYSQL"
+	PublicUpdateLookerSourceV2DtoTypeORACLE         PublicUpdateLookerSourceV2DtoType = "ORACLE"
+	PublicUpdateLookerSourceV2DtoTypePOSTGRESQL     PublicUpdateLookerSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateLookerSourceV2DtoTypePOWERBI        PublicUpdateLookerSourceV2DtoType = "POWER_BI"
+	PublicUpdateLookerSourceV2DtoTypeQLIK           PublicUpdateLookerSourceV2DtoType = "QLIK"
+	PublicUpdateLookerSourceV2DtoTypeQUICKSIGHT     PublicUpdateLookerSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateLookerSourceV2DtoTypeREDSHIFT       PublicUpdateLookerSourceV2DtoType = "REDSHIFT"
+	PublicUpdateLookerSourceV2DtoTypeSNOWFLAKE      PublicUpdateLookerSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateLookerSourceV2DtoTypeSYNAPSE        PublicUpdateLookerSourceV2DtoType = "SYNAPSE"
+	PublicUpdateLookerSourceV2DtoTypeTABLEAU        PublicUpdateLookerSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateMicrostrategySourceV2DtoType.
+const (
+	PublicUpdateMicrostrategySourceV2DtoTypeAIRFLOW        PublicUpdateMicrostrategySourceV2DtoType = "AIRFLOW"
+	PublicUpdateMicrostrategySourceV2DtoTypeATHENA         PublicUpdateMicrostrategySourceV2DtoType = "ATHENA"
+	PublicUpdateMicrostrategySourceV2DtoTypeBIGQUERY       PublicUpdateMicrostrategySourceV2DtoType = "BIGQUERY"
+	PublicUpdateMicrostrategySourceV2DtoTypeDATABRICKS     PublicUpdateMicrostrategySourceV2DtoType = "DATABRICKS"
+	PublicUpdateMicrostrategySourceV2DtoTypeDATABRICKSJOBS PublicUpdateMicrostrategySourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateMicrostrategySourceV2DtoTypeDBT            PublicUpdateMicrostrategySourceV2DtoType = "DBT"
+	PublicUpdateMicrostrategySourceV2DtoTypeDBTCLOUD       PublicUpdateMicrostrategySourceV2DtoType = "DBTCLOUD"
+	PublicUpdateMicrostrategySourceV2DtoTypeDECLARATIVE    PublicUpdateMicrostrategySourceV2DtoType = "DECLARATIVE"
+	PublicUpdateMicrostrategySourceV2DtoTypeFIVETRAN       PublicUpdateMicrostrategySourceV2DtoType = "FIVETRAN"
+	PublicUpdateMicrostrategySourceV2DtoTypeLOOKER         PublicUpdateMicrostrategySourceV2DtoType = "LOOKER"
+	PublicUpdateMicrostrategySourceV2DtoTypeMICROSTRATEGY  PublicUpdateMicrostrategySourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateMicrostrategySourceV2DtoTypeMSSQL          PublicUpdateMicrostrategySourceV2DtoType = "MSSQL"
+	PublicUpdateMicrostrategySourceV2DtoTypeMYSQL          PublicUpdateMicrostrategySourceV2DtoType = "MYSQL"
+	PublicUpdateMicrostrategySourceV2DtoTypeORACLE         PublicUpdateMicrostrategySourceV2DtoType = "ORACLE"
+	PublicUpdateMicrostrategySourceV2DtoTypePOSTGRESQL     PublicUpdateMicrostrategySourceV2DtoType = "POSTGRESQL"
+	PublicUpdateMicrostrategySourceV2DtoTypePOWERBI        PublicUpdateMicrostrategySourceV2DtoType = "POWER_BI"
+	PublicUpdateMicrostrategySourceV2DtoTypeQLIK           PublicUpdateMicrostrategySourceV2DtoType = "QLIK"
+	PublicUpdateMicrostrategySourceV2DtoTypeQUICKSIGHT     PublicUpdateMicrostrategySourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateMicrostrategySourceV2DtoTypeREDSHIFT       PublicUpdateMicrostrategySourceV2DtoType = "REDSHIFT"
+	PublicUpdateMicrostrategySourceV2DtoTypeSNOWFLAKE      PublicUpdateMicrostrategySourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateMicrostrategySourceV2DtoTypeSYNAPSE        PublicUpdateMicrostrategySourceV2DtoType = "SYNAPSE"
+	PublicUpdateMicrostrategySourceV2DtoTypeTABLEAU        PublicUpdateMicrostrategySourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateMssqlSourceV2DtoType.
+const (
+	PublicUpdateMssqlSourceV2DtoTypeAIRFLOW        PublicUpdateMssqlSourceV2DtoType = "AIRFLOW"
+	PublicUpdateMssqlSourceV2DtoTypeATHENA         PublicUpdateMssqlSourceV2DtoType = "ATHENA"
+	PublicUpdateMssqlSourceV2DtoTypeBIGQUERY       PublicUpdateMssqlSourceV2DtoType = "BIGQUERY"
+	PublicUpdateMssqlSourceV2DtoTypeDATABRICKS     PublicUpdateMssqlSourceV2DtoType = "DATABRICKS"
+	PublicUpdateMssqlSourceV2DtoTypeDATABRICKSJOBS PublicUpdateMssqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateMssqlSourceV2DtoTypeDBT            PublicUpdateMssqlSourceV2DtoType = "DBT"
+	PublicUpdateMssqlSourceV2DtoTypeDBTCLOUD       PublicUpdateMssqlSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateMssqlSourceV2DtoTypeDECLARATIVE    PublicUpdateMssqlSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateMssqlSourceV2DtoTypeFIVETRAN       PublicUpdateMssqlSourceV2DtoType = "FIVETRAN"
+	PublicUpdateMssqlSourceV2DtoTypeLOOKER         PublicUpdateMssqlSourceV2DtoType = "LOOKER"
+	PublicUpdateMssqlSourceV2DtoTypeMICROSTRATEGY  PublicUpdateMssqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateMssqlSourceV2DtoTypeMSSQL          PublicUpdateMssqlSourceV2DtoType = "MSSQL"
+	PublicUpdateMssqlSourceV2DtoTypeMYSQL          PublicUpdateMssqlSourceV2DtoType = "MYSQL"
+	PublicUpdateMssqlSourceV2DtoTypeORACLE         PublicUpdateMssqlSourceV2DtoType = "ORACLE"
+	PublicUpdateMssqlSourceV2DtoTypePOSTGRESQL     PublicUpdateMssqlSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateMssqlSourceV2DtoTypePOWERBI        PublicUpdateMssqlSourceV2DtoType = "POWER_BI"
+	PublicUpdateMssqlSourceV2DtoTypeQLIK           PublicUpdateMssqlSourceV2DtoType = "QLIK"
+	PublicUpdateMssqlSourceV2DtoTypeQUICKSIGHT     PublicUpdateMssqlSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateMssqlSourceV2DtoTypeREDSHIFT       PublicUpdateMssqlSourceV2DtoType = "REDSHIFT"
+	PublicUpdateMssqlSourceV2DtoTypeSNOWFLAKE      PublicUpdateMssqlSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateMssqlSourceV2DtoTypeSYNAPSE        PublicUpdateMssqlSourceV2DtoType = "SYNAPSE"
+	PublicUpdateMssqlSourceV2DtoTypeTABLEAU        PublicUpdateMssqlSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateMysqlSourceV2DtoType.
+const (
+	PublicUpdateMysqlSourceV2DtoTypeAIRFLOW        PublicUpdateMysqlSourceV2DtoType = "AIRFLOW"
+	PublicUpdateMysqlSourceV2DtoTypeATHENA         PublicUpdateMysqlSourceV2DtoType = "ATHENA"
+	PublicUpdateMysqlSourceV2DtoTypeBIGQUERY       PublicUpdateMysqlSourceV2DtoType = "BIGQUERY"
+	PublicUpdateMysqlSourceV2DtoTypeDATABRICKS     PublicUpdateMysqlSourceV2DtoType = "DATABRICKS"
+	PublicUpdateMysqlSourceV2DtoTypeDATABRICKSJOBS PublicUpdateMysqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateMysqlSourceV2DtoTypeDBT            PublicUpdateMysqlSourceV2DtoType = "DBT"
+	PublicUpdateMysqlSourceV2DtoTypeDBTCLOUD       PublicUpdateMysqlSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateMysqlSourceV2DtoTypeDECLARATIVE    PublicUpdateMysqlSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateMysqlSourceV2DtoTypeFIVETRAN       PublicUpdateMysqlSourceV2DtoType = "FIVETRAN"
+	PublicUpdateMysqlSourceV2DtoTypeLOOKER         PublicUpdateMysqlSourceV2DtoType = "LOOKER"
+	PublicUpdateMysqlSourceV2DtoTypeMICROSTRATEGY  PublicUpdateMysqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateMysqlSourceV2DtoTypeMSSQL          PublicUpdateMysqlSourceV2DtoType = "MSSQL"
+	PublicUpdateMysqlSourceV2DtoTypeMYSQL          PublicUpdateMysqlSourceV2DtoType = "MYSQL"
+	PublicUpdateMysqlSourceV2DtoTypeORACLE         PublicUpdateMysqlSourceV2DtoType = "ORACLE"
+	PublicUpdateMysqlSourceV2DtoTypePOSTGRESQL     PublicUpdateMysqlSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateMysqlSourceV2DtoTypePOWERBI        PublicUpdateMysqlSourceV2DtoType = "POWER_BI"
+	PublicUpdateMysqlSourceV2DtoTypeQLIK           PublicUpdateMysqlSourceV2DtoType = "QLIK"
+	PublicUpdateMysqlSourceV2DtoTypeQUICKSIGHT     PublicUpdateMysqlSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateMysqlSourceV2DtoTypeREDSHIFT       PublicUpdateMysqlSourceV2DtoType = "REDSHIFT"
+	PublicUpdateMysqlSourceV2DtoTypeSNOWFLAKE      PublicUpdateMysqlSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateMysqlSourceV2DtoTypeSYNAPSE        PublicUpdateMysqlSourceV2DtoType = "SYNAPSE"
+	PublicUpdateMysqlSourceV2DtoTypeTABLEAU        PublicUpdateMysqlSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateOracleSourceV2DtoType.
+const (
+	PublicUpdateOracleSourceV2DtoTypeAIRFLOW        PublicUpdateOracleSourceV2DtoType = "AIRFLOW"
+	PublicUpdateOracleSourceV2DtoTypeATHENA         PublicUpdateOracleSourceV2DtoType = "ATHENA"
+	PublicUpdateOracleSourceV2DtoTypeBIGQUERY       PublicUpdateOracleSourceV2DtoType = "BIGQUERY"
+	PublicUpdateOracleSourceV2DtoTypeDATABRICKS     PublicUpdateOracleSourceV2DtoType = "DATABRICKS"
+	PublicUpdateOracleSourceV2DtoTypeDATABRICKSJOBS PublicUpdateOracleSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateOracleSourceV2DtoTypeDBT            PublicUpdateOracleSourceV2DtoType = "DBT"
+	PublicUpdateOracleSourceV2DtoTypeDBTCLOUD       PublicUpdateOracleSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateOracleSourceV2DtoTypeDECLARATIVE    PublicUpdateOracleSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateOracleSourceV2DtoTypeFIVETRAN       PublicUpdateOracleSourceV2DtoType = "FIVETRAN"
+	PublicUpdateOracleSourceV2DtoTypeLOOKER         PublicUpdateOracleSourceV2DtoType = "LOOKER"
+	PublicUpdateOracleSourceV2DtoTypeMICROSTRATEGY  PublicUpdateOracleSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateOracleSourceV2DtoTypeMSSQL          PublicUpdateOracleSourceV2DtoType = "MSSQL"
+	PublicUpdateOracleSourceV2DtoTypeMYSQL          PublicUpdateOracleSourceV2DtoType = "MYSQL"
+	PublicUpdateOracleSourceV2DtoTypeORACLE         PublicUpdateOracleSourceV2DtoType = "ORACLE"
+	PublicUpdateOracleSourceV2DtoTypePOSTGRESQL     PublicUpdateOracleSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateOracleSourceV2DtoTypePOWERBI        PublicUpdateOracleSourceV2DtoType = "POWER_BI"
+	PublicUpdateOracleSourceV2DtoTypeQLIK           PublicUpdateOracleSourceV2DtoType = "QLIK"
+	PublicUpdateOracleSourceV2DtoTypeQUICKSIGHT     PublicUpdateOracleSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateOracleSourceV2DtoTypeREDSHIFT       PublicUpdateOracleSourceV2DtoType = "REDSHIFT"
+	PublicUpdateOracleSourceV2DtoTypeSNOWFLAKE      PublicUpdateOracleSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateOracleSourceV2DtoTypeSYNAPSE        PublicUpdateOracleSourceV2DtoType = "SYNAPSE"
+	PublicUpdateOracleSourceV2DtoTypeTABLEAU        PublicUpdateOracleSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdatePostgresqlSourceV2DtoType.
+const (
+	PublicUpdatePostgresqlSourceV2DtoTypeAIRFLOW        PublicUpdatePostgresqlSourceV2DtoType = "AIRFLOW"
+	PublicUpdatePostgresqlSourceV2DtoTypeATHENA         PublicUpdatePostgresqlSourceV2DtoType = "ATHENA"
+	PublicUpdatePostgresqlSourceV2DtoTypeBIGQUERY       PublicUpdatePostgresqlSourceV2DtoType = "BIGQUERY"
+	PublicUpdatePostgresqlSourceV2DtoTypeDATABRICKS     PublicUpdatePostgresqlSourceV2DtoType = "DATABRICKS"
+	PublicUpdatePostgresqlSourceV2DtoTypeDATABRICKSJOBS PublicUpdatePostgresqlSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdatePostgresqlSourceV2DtoTypeDBT            PublicUpdatePostgresqlSourceV2DtoType = "DBT"
+	PublicUpdatePostgresqlSourceV2DtoTypeDBTCLOUD       PublicUpdatePostgresqlSourceV2DtoType = "DBTCLOUD"
+	PublicUpdatePostgresqlSourceV2DtoTypeDECLARATIVE    PublicUpdatePostgresqlSourceV2DtoType = "DECLARATIVE"
+	PublicUpdatePostgresqlSourceV2DtoTypeFIVETRAN       PublicUpdatePostgresqlSourceV2DtoType = "FIVETRAN"
+	PublicUpdatePostgresqlSourceV2DtoTypeLOOKER         PublicUpdatePostgresqlSourceV2DtoType = "LOOKER"
+	PublicUpdatePostgresqlSourceV2DtoTypeMICROSTRATEGY  PublicUpdatePostgresqlSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdatePostgresqlSourceV2DtoTypeMSSQL          PublicUpdatePostgresqlSourceV2DtoType = "MSSQL"
+	PublicUpdatePostgresqlSourceV2DtoTypeMYSQL          PublicUpdatePostgresqlSourceV2DtoType = "MYSQL"
+	PublicUpdatePostgresqlSourceV2DtoTypeORACLE         PublicUpdatePostgresqlSourceV2DtoType = "ORACLE"
+	PublicUpdatePostgresqlSourceV2DtoTypePOSTGRESQL     PublicUpdatePostgresqlSourceV2DtoType = "POSTGRESQL"
+	PublicUpdatePostgresqlSourceV2DtoTypePOWERBI        PublicUpdatePostgresqlSourceV2DtoType = "POWER_BI"
+	PublicUpdatePostgresqlSourceV2DtoTypeQLIK           PublicUpdatePostgresqlSourceV2DtoType = "QLIK"
+	PublicUpdatePostgresqlSourceV2DtoTypeQUICKSIGHT     PublicUpdatePostgresqlSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdatePostgresqlSourceV2DtoTypeREDSHIFT       PublicUpdatePostgresqlSourceV2DtoType = "REDSHIFT"
+	PublicUpdatePostgresqlSourceV2DtoTypeSNOWFLAKE      PublicUpdatePostgresqlSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdatePostgresqlSourceV2DtoTypeSYNAPSE        PublicUpdatePostgresqlSourceV2DtoType = "SYNAPSE"
+	PublicUpdatePostgresqlSourceV2DtoTypeTABLEAU        PublicUpdatePostgresqlSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdatePowerBiSourceV2DtoType.
+const (
+	PublicUpdatePowerBiSourceV2DtoTypeAIRFLOW        PublicUpdatePowerBiSourceV2DtoType = "AIRFLOW"
+	PublicUpdatePowerBiSourceV2DtoTypeATHENA         PublicUpdatePowerBiSourceV2DtoType = "ATHENA"
+	PublicUpdatePowerBiSourceV2DtoTypeBIGQUERY       PublicUpdatePowerBiSourceV2DtoType = "BIGQUERY"
+	PublicUpdatePowerBiSourceV2DtoTypeDATABRICKS     PublicUpdatePowerBiSourceV2DtoType = "DATABRICKS"
+	PublicUpdatePowerBiSourceV2DtoTypeDATABRICKSJOBS PublicUpdatePowerBiSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdatePowerBiSourceV2DtoTypeDBT            PublicUpdatePowerBiSourceV2DtoType = "DBT"
+	PublicUpdatePowerBiSourceV2DtoTypeDBTCLOUD       PublicUpdatePowerBiSourceV2DtoType = "DBTCLOUD"
+	PublicUpdatePowerBiSourceV2DtoTypeDECLARATIVE    PublicUpdatePowerBiSourceV2DtoType = "DECLARATIVE"
+	PublicUpdatePowerBiSourceV2DtoTypeFIVETRAN       PublicUpdatePowerBiSourceV2DtoType = "FIVETRAN"
+	PublicUpdatePowerBiSourceV2DtoTypeLOOKER         PublicUpdatePowerBiSourceV2DtoType = "LOOKER"
+	PublicUpdatePowerBiSourceV2DtoTypeMICROSTRATEGY  PublicUpdatePowerBiSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdatePowerBiSourceV2DtoTypeMSSQL          PublicUpdatePowerBiSourceV2DtoType = "MSSQL"
+	PublicUpdatePowerBiSourceV2DtoTypeMYSQL          PublicUpdatePowerBiSourceV2DtoType = "MYSQL"
+	PublicUpdatePowerBiSourceV2DtoTypeORACLE         PublicUpdatePowerBiSourceV2DtoType = "ORACLE"
+	PublicUpdatePowerBiSourceV2DtoTypePOSTGRESQL     PublicUpdatePowerBiSourceV2DtoType = "POSTGRESQL"
+	PublicUpdatePowerBiSourceV2DtoTypePOWERBI        PublicUpdatePowerBiSourceV2DtoType = "POWER_BI"
+	PublicUpdatePowerBiSourceV2DtoTypeQLIK           PublicUpdatePowerBiSourceV2DtoType = "QLIK"
+	PublicUpdatePowerBiSourceV2DtoTypeQUICKSIGHT     PublicUpdatePowerBiSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdatePowerBiSourceV2DtoTypeREDSHIFT       PublicUpdatePowerBiSourceV2DtoType = "REDSHIFT"
+	PublicUpdatePowerBiSourceV2DtoTypeSNOWFLAKE      PublicUpdatePowerBiSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdatePowerBiSourceV2DtoTypeSYNAPSE        PublicUpdatePowerBiSourceV2DtoType = "SYNAPSE"
+	PublicUpdatePowerBiSourceV2DtoTypeTABLEAU        PublicUpdatePowerBiSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateQlikSourceV2DtoType.
+const (
+	PublicUpdateQlikSourceV2DtoTypeAIRFLOW        PublicUpdateQlikSourceV2DtoType = "AIRFLOW"
+	PublicUpdateQlikSourceV2DtoTypeATHENA         PublicUpdateQlikSourceV2DtoType = "ATHENA"
+	PublicUpdateQlikSourceV2DtoTypeBIGQUERY       PublicUpdateQlikSourceV2DtoType = "BIGQUERY"
+	PublicUpdateQlikSourceV2DtoTypeDATABRICKS     PublicUpdateQlikSourceV2DtoType = "DATABRICKS"
+	PublicUpdateQlikSourceV2DtoTypeDATABRICKSJOBS PublicUpdateQlikSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateQlikSourceV2DtoTypeDBT            PublicUpdateQlikSourceV2DtoType = "DBT"
+	PublicUpdateQlikSourceV2DtoTypeDBTCLOUD       PublicUpdateQlikSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateQlikSourceV2DtoTypeDECLARATIVE    PublicUpdateQlikSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateQlikSourceV2DtoTypeFIVETRAN       PublicUpdateQlikSourceV2DtoType = "FIVETRAN"
+	PublicUpdateQlikSourceV2DtoTypeLOOKER         PublicUpdateQlikSourceV2DtoType = "LOOKER"
+	PublicUpdateQlikSourceV2DtoTypeMICROSTRATEGY  PublicUpdateQlikSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateQlikSourceV2DtoTypeMSSQL          PublicUpdateQlikSourceV2DtoType = "MSSQL"
+	PublicUpdateQlikSourceV2DtoTypeMYSQL          PublicUpdateQlikSourceV2DtoType = "MYSQL"
+	PublicUpdateQlikSourceV2DtoTypeORACLE         PublicUpdateQlikSourceV2DtoType = "ORACLE"
+	PublicUpdateQlikSourceV2DtoTypePOSTGRESQL     PublicUpdateQlikSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateQlikSourceV2DtoTypePOWERBI        PublicUpdateQlikSourceV2DtoType = "POWER_BI"
+	PublicUpdateQlikSourceV2DtoTypeQLIK           PublicUpdateQlikSourceV2DtoType = "QLIK"
+	PublicUpdateQlikSourceV2DtoTypeQUICKSIGHT     PublicUpdateQlikSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateQlikSourceV2DtoTypeREDSHIFT       PublicUpdateQlikSourceV2DtoType = "REDSHIFT"
+	PublicUpdateQlikSourceV2DtoTypeSNOWFLAKE      PublicUpdateQlikSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateQlikSourceV2DtoTypeSYNAPSE        PublicUpdateQlikSourceV2DtoType = "SYNAPSE"
+	PublicUpdateQlikSourceV2DtoTypeTABLEAU        PublicUpdateQlikSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateQuicksightSourceV2DtoType.
+const (
+	PublicUpdateQuicksightSourceV2DtoTypeAIRFLOW        PublicUpdateQuicksightSourceV2DtoType = "AIRFLOW"
+	PublicUpdateQuicksightSourceV2DtoTypeATHENA         PublicUpdateQuicksightSourceV2DtoType = "ATHENA"
+	PublicUpdateQuicksightSourceV2DtoTypeBIGQUERY       PublicUpdateQuicksightSourceV2DtoType = "BIGQUERY"
+	PublicUpdateQuicksightSourceV2DtoTypeDATABRICKS     PublicUpdateQuicksightSourceV2DtoType = "DATABRICKS"
+	PublicUpdateQuicksightSourceV2DtoTypeDATABRICKSJOBS PublicUpdateQuicksightSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateQuicksightSourceV2DtoTypeDBT            PublicUpdateQuicksightSourceV2DtoType = "DBT"
+	PublicUpdateQuicksightSourceV2DtoTypeDBTCLOUD       PublicUpdateQuicksightSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateQuicksightSourceV2DtoTypeDECLARATIVE    PublicUpdateQuicksightSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateQuicksightSourceV2DtoTypeFIVETRAN       PublicUpdateQuicksightSourceV2DtoType = "FIVETRAN"
+	PublicUpdateQuicksightSourceV2DtoTypeLOOKER         PublicUpdateQuicksightSourceV2DtoType = "LOOKER"
+	PublicUpdateQuicksightSourceV2DtoTypeMICROSTRATEGY  PublicUpdateQuicksightSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateQuicksightSourceV2DtoTypeMSSQL          PublicUpdateQuicksightSourceV2DtoType = "MSSQL"
+	PublicUpdateQuicksightSourceV2DtoTypeMYSQL          PublicUpdateQuicksightSourceV2DtoType = "MYSQL"
+	PublicUpdateQuicksightSourceV2DtoTypeORACLE         PublicUpdateQuicksightSourceV2DtoType = "ORACLE"
+	PublicUpdateQuicksightSourceV2DtoTypePOSTGRESQL     PublicUpdateQuicksightSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateQuicksightSourceV2DtoTypePOWERBI        PublicUpdateQuicksightSourceV2DtoType = "POWER_BI"
+	PublicUpdateQuicksightSourceV2DtoTypeQLIK           PublicUpdateQuicksightSourceV2DtoType = "QLIK"
+	PublicUpdateQuicksightSourceV2DtoTypeQUICKSIGHT     PublicUpdateQuicksightSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateQuicksightSourceV2DtoTypeREDSHIFT       PublicUpdateQuicksightSourceV2DtoType = "REDSHIFT"
+	PublicUpdateQuicksightSourceV2DtoTypeSNOWFLAKE      PublicUpdateQuicksightSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateQuicksightSourceV2DtoTypeSYNAPSE        PublicUpdateQuicksightSourceV2DtoType = "SYNAPSE"
+	PublicUpdateQuicksightSourceV2DtoTypeTABLEAU        PublicUpdateQuicksightSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateRedshiftSourceV2DtoType.
+const (
+	PublicUpdateRedshiftSourceV2DtoTypeAIRFLOW        PublicUpdateRedshiftSourceV2DtoType = "AIRFLOW"
+	PublicUpdateRedshiftSourceV2DtoTypeATHENA         PublicUpdateRedshiftSourceV2DtoType = "ATHENA"
+	PublicUpdateRedshiftSourceV2DtoTypeBIGQUERY       PublicUpdateRedshiftSourceV2DtoType = "BIGQUERY"
+	PublicUpdateRedshiftSourceV2DtoTypeDATABRICKS     PublicUpdateRedshiftSourceV2DtoType = "DATABRICKS"
+	PublicUpdateRedshiftSourceV2DtoTypeDATABRICKSJOBS PublicUpdateRedshiftSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateRedshiftSourceV2DtoTypeDBT            PublicUpdateRedshiftSourceV2DtoType = "DBT"
+	PublicUpdateRedshiftSourceV2DtoTypeDBTCLOUD       PublicUpdateRedshiftSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateRedshiftSourceV2DtoTypeDECLARATIVE    PublicUpdateRedshiftSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateRedshiftSourceV2DtoTypeFIVETRAN       PublicUpdateRedshiftSourceV2DtoType = "FIVETRAN"
+	PublicUpdateRedshiftSourceV2DtoTypeLOOKER         PublicUpdateRedshiftSourceV2DtoType = "LOOKER"
+	PublicUpdateRedshiftSourceV2DtoTypeMICROSTRATEGY  PublicUpdateRedshiftSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateRedshiftSourceV2DtoTypeMSSQL          PublicUpdateRedshiftSourceV2DtoType = "MSSQL"
+	PublicUpdateRedshiftSourceV2DtoTypeMYSQL          PublicUpdateRedshiftSourceV2DtoType = "MYSQL"
+	PublicUpdateRedshiftSourceV2DtoTypeORACLE         PublicUpdateRedshiftSourceV2DtoType = "ORACLE"
+	PublicUpdateRedshiftSourceV2DtoTypePOSTGRESQL     PublicUpdateRedshiftSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateRedshiftSourceV2DtoTypePOWERBI        PublicUpdateRedshiftSourceV2DtoType = "POWER_BI"
+	PublicUpdateRedshiftSourceV2DtoTypeQLIK           PublicUpdateRedshiftSourceV2DtoType = "QLIK"
+	PublicUpdateRedshiftSourceV2DtoTypeQUICKSIGHT     PublicUpdateRedshiftSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateRedshiftSourceV2DtoTypeREDSHIFT       PublicUpdateRedshiftSourceV2DtoType = "REDSHIFT"
+	PublicUpdateRedshiftSourceV2DtoTypeSNOWFLAKE      PublicUpdateRedshiftSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateRedshiftSourceV2DtoTypeSYNAPSE        PublicUpdateRedshiftSourceV2DtoType = "SYNAPSE"
+	PublicUpdateRedshiftSourceV2DtoTypeTABLEAU        PublicUpdateRedshiftSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateSnowflakeSourceV2DtoType.
+const (
+	PublicUpdateSnowflakeSourceV2DtoTypeAIRFLOW        PublicUpdateSnowflakeSourceV2DtoType = "AIRFLOW"
+	PublicUpdateSnowflakeSourceV2DtoTypeATHENA         PublicUpdateSnowflakeSourceV2DtoType = "ATHENA"
+	PublicUpdateSnowflakeSourceV2DtoTypeBIGQUERY       PublicUpdateSnowflakeSourceV2DtoType = "BIGQUERY"
+	PublicUpdateSnowflakeSourceV2DtoTypeDATABRICKS     PublicUpdateSnowflakeSourceV2DtoType = "DATABRICKS"
+	PublicUpdateSnowflakeSourceV2DtoTypeDATABRICKSJOBS PublicUpdateSnowflakeSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateSnowflakeSourceV2DtoTypeDBT            PublicUpdateSnowflakeSourceV2DtoType = "DBT"
+	PublicUpdateSnowflakeSourceV2DtoTypeDBTCLOUD       PublicUpdateSnowflakeSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateSnowflakeSourceV2DtoTypeDECLARATIVE    PublicUpdateSnowflakeSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateSnowflakeSourceV2DtoTypeFIVETRAN       PublicUpdateSnowflakeSourceV2DtoType = "FIVETRAN"
+	PublicUpdateSnowflakeSourceV2DtoTypeLOOKER         PublicUpdateSnowflakeSourceV2DtoType = "LOOKER"
+	PublicUpdateSnowflakeSourceV2DtoTypeMICROSTRATEGY  PublicUpdateSnowflakeSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateSnowflakeSourceV2DtoTypeMSSQL          PublicUpdateSnowflakeSourceV2DtoType = "MSSQL"
+	PublicUpdateSnowflakeSourceV2DtoTypeMYSQL          PublicUpdateSnowflakeSourceV2DtoType = "MYSQL"
+	PublicUpdateSnowflakeSourceV2DtoTypeORACLE         PublicUpdateSnowflakeSourceV2DtoType = "ORACLE"
+	PublicUpdateSnowflakeSourceV2DtoTypePOSTGRESQL     PublicUpdateSnowflakeSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateSnowflakeSourceV2DtoTypePOWERBI        PublicUpdateSnowflakeSourceV2DtoType = "POWER_BI"
+	PublicUpdateSnowflakeSourceV2DtoTypeQLIK           PublicUpdateSnowflakeSourceV2DtoType = "QLIK"
+	PublicUpdateSnowflakeSourceV2DtoTypeQUICKSIGHT     PublicUpdateSnowflakeSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateSnowflakeSourceV2DtoTypeREDSHIFT       PublicUpdateSnowflakeSourceV2DtoType = "REDSHIFT"
+	PublicUpdateSnowflakeSourceV2DtoTypeSNOWFLAKE      PublicUpdateSnowflakeSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateSnowflakeSourceV2DtoTypeSYNAPSE        PublicUpdateSnowflakeSourceV2DtoType = "SYNAPSE"
+	PublicUpdateSnowflakeSourceV2DtoTypeTABLEAU        PublicUpdateSnowflakeSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateSynapseSourceV2DtoType.
+const (
+	PublicUpdateSynapseSourceV2DtoTypeAIRFLOW        PublicUpdateSynapseSourceV2DtoType = "AIRFLOW"
+	PublicUpdateSynapseSourceV2DtoTypeATHENA         PublicUpdateSynapseSourceV2DtoType = "ATHENA"
+	PublicUpdateSynapseSourceV2DtoTypeBIGQUERY       PublicUpdateSynapseSourceV2DtoType = "BIGQUERY"
+	PublicUpdateSynapseSourceV2DtoTypeDATABRICKS     PublicUpdateSynapseSourceV2DtoType = "DATABRICKS"
+	PublicUpdateSynapseSourceV2DtoTypeDATABRICKSJOBS PublicUpdateSynapseSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateSynapseSourceV2DtoTypeDBT            PublicUpdateSynapseSourceV2DtoType = "DBT"
+	PublicUpdateSynapseSourceV2DtoTypeDBTCLOUD       PublicUpdateSynapseSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateSynapseSourceV2DtoTypeDECLARATIVE    PublicUpdateSynapseSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateSynapseSourceV2DtoTypeFIVETRAN       PublicUpdateSynapseSourceV2DtoType = "FIVETRAN"
+	PublicUpdateSynapseSourceV2DtoTypeLOOKER         PublicUpdateSynapseSourceV2DtoType = "LOOKER"
+	PublicUpdateSynapseSourceV2DtoTypeMICROSTRATEGY  PublicUpdateSynapseSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateSynapseSourceV2DtoTypeMSSQL          PublicUpdateSynapseSourceV2DtoType = "MSSQL"
+	PublicUpdateSynapseSourceV2DtoTypeMYSQL          PublicUpdateSynapseSourceV2DtoType = "MYSQL"
+	PublicUpdateSynapseSourceV2DtoTypeORACLE         PublicUpdateSynapseSourceV2DtoType = "ORACLE"
+	PublicUpdateSynapseSourceV2DtoTypePOSTGRESQL     PublicUpdateSynapseSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateSynapseSourceV2DtoTypePOWERBI        PublicUpdateSynapseSourceV2DtoType = "POWER_BI"
+	PublicUpdateSynapseSourceV2DtoTypeQLIK           PublicUpdateSynapseSourceV2DtoType = "QLIK"
+	PublicUpdateSynapseSourceV2DtoTypeQUICKSIGHT     PublicUpdateSynapseSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateSynapseSourceV2DtoTypeREDSHIFT       PublicUpdateSynapseSourceV2DtoType = "REDSHIFT"
+	PublicUpdateSynapseSourceV2DtoTypeSNOWFLAKE      PublicUpdateSynapseSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateSynapseSourceV2DtoTypeSYNAPSE        PublicUpdateSynapseSourceV2DtoType = "SYNAPSE"
+	PublicUpdateSynapseSourceV2DtoTypeTABLEAU        PublicUpdateSynapseSourceV2DtoType = "TABLEAU"
+)
+
+// Defines values for PublicUpdateTableauSourceV2DtoType.
+const (
+	PublicUpdateTableauSourceV2DtoTypeAIRFLOW        PublicUpdateTableauSourceV2DtoType = "AIRFLOW"
+	PublicUpdateTableauSourceV2DtoTypeATHENA         PublicUpdateTableauSourceV2DtoType = "ATHENA"
+	PublicUpdateTableauSourceV2DtoTypeBIGQUERY       PublicUpdateTableauSourceV2DtoType = "BIGQUERY"
+	PublicUpdateTableauSourceV2DtoTypeDATABRICKS     PublicUpdateTableauSourceV2DtoType = "DATABRICKS"
+	PublicUpdateTableauSourceV2DtoTypeDATABRICKSJOBS PublicUpdateTableauSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateTableauSourceV2DtoTypeDBT            PublicUpdateTableauSourceV2DtoType = "DBT"
+	PublicUpdateTableauSourceV2DtoTypeDBTCLOUD       PublicUpdateTableauSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateTableauSourceV2DtoTypeDECLARATIVE    PublicUpdateTableauSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateTableauSourceV2DtoTypeFIVETRAN       PublicUpdateTableauSourceV2DtoType = "FIVETRAN"
+	PublicUpdateTableauSourceV2DtoTypeLOOKER         PublicUpdateTableauSourceV2DtoType = "LOOKER"
+	PublicUpdateTableauSourceV2DtoTypeMICROSTRATEGY  PublicUpdateTableauSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateTableauSourceV2DtoTypeMSSQL          PublicUpdateTableauSourceV2DtoType = "MSSQL"
+	PublicUpdateTableauSourceV2DtoTypeMYSQL          PublicUpdateTableauSourceV2DtoType = "MYSQL"
+	PublicUpdateTableauSourceV2DtoTypeORACLE         PublicUpdateTableauSourceV2DtoType = "ORACLE"
+	PublicUpdateTableauSourceV2DtoTypePOSTGRESQL     PublicUpdateTableauSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateTableauSourceV2DtoTypePOWERBI        PublicUpdateTableauSourceV2DtoType = "POWER_BI"
+	PublicUpdateTableauSourceV2DtoTypeQLIK           PublicUpdateTableauSourceV2DtoType = "QLIK"
+	PublicUpdateTableauSourceV2DtoTypeQUICKSIGHT     PublicUpdateTableauSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateTableauSourceV2DtoTypeREDSHIFT       PublicUpdateTableauSourceV2DtoType = "REDSHIFT"
+	PublicUpdateTableauSourceV2DtoTypeSNOWFLAKE      PublicUpdateTableauSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateTableauSourceV2DtoTypeSYNAPSE        PublicUpdateTableauSourceV2DtoType = "SYNAPSE"
+	PublicUpdateTableauSourceV2DtoTypeTABLEAU        PublicUpdateTableauSourceV2DtoType = "TABLEAU"
 )
 
 // Defines values for PublicUserCreateDtoAuthTypes.
@@ -2253,9 +5452,9 @@ const (
 
 // Defines values for RuleRunDtoType.
 const (
-	DBT       RuleRunDtoType = "DBT"
-	MANUAL    RuleRunDtoType = "MANUAL"
-	SCHEDULED RuleRunDtoType = "SCHEDULED"
+	RuleRunDtoTypeDBT       RuleRunDtoType = "DBT"
+	RuleRunDtoTypeMANUAL    RuleRunDtoType = "MANUAL"
+	RuleRunDtoTypeSCHEDULED RuleRunDtoType = "SCHEDULED"
 )
 
 // Defines values for RuleStatusDtoRuleStatus.
@@ -2266,9 +5465,21 @@ const (
 	RuleStatusDtoRuleStatusPASSING        RuleStatusDtoRuleStatus = "PASSING"
 )
 
+// Defines values for SimpleDurationUnit.
+const (
+	DAYS    SimpleDurationUnit = "DAYS"
+	HOURS   SimpleDurationUnit = "HOURS"
+	MINUTES SimpleDurationUnit = "MINUTES"
+	MONTHS  SimpleDurationUnit = "MONTHS"
+	SECONDS SimpleDurationUnit = "SECONDS"
+	WEEKS   SimpleDurationUnit = "WEEKS"
+	YEARS   SimpleDurationUnit = "YEARS"
+)
+
 // Defines values for TagDtoType.
 const (
 	TagDtoTypeBIGQUERYEXTERNAL          TagDtoType = "BIGQUERY_EXTERNAL"
+	TagDtoTypeDATABRICKSEXTERNAL        TagDtoType = "DATABRICKS_EXTERNAL"
 	TagDtoTypeDBTEXTERNAL               TagDtoType = "DBT_EXTERNAL"
 	TagDtoTypeGENERIC                   TagDtoType = "GENERIC"
 	TagDtoTypeHIDDENDATACLASSIFICATION  TagDtoType = "HIDDEN_DATA_CLASSIFICATION"
@@ -2279,10 +5490,10 @@ const (
 
 // Defines values for UserProviderDtoType.
 const (
-	ACCESSTOKEN UserProviderDtoType = "ACCESS_TOKEN"
-	DATASOURCE  UserProviderDtoType = "DATASOURCE"
-	GENERIC     UserProviderDtoType = "GENERIC"
-	USER        UserProviderDtoType = "USER"
+	UserProviderDtoTypeACCESSTOKEN UserProviderDtoType = "ACCESS_TOKEN"
+	UserProviderDtoTypeDATASOURCE  UserProviderDtoType = "DATASOURCE"
+	UserProviderDtoTypeGENERIC     UserProviderDtoType = "GENERIC"
+	UserProviderDtoTypeUSER        UserProviderDtoType = "USER"
 )
 
 // Defines values for WorkspaceApplyObjectResponseDtoStatus.
@@ -2314,10 +5525,35 @@ const (
 
 // Defines values for GetAllRuleParamsRuleStatus.
 const (
-	FAILING        GetAllRuleParamsRuleStatus = "FAILING"
-	NEEDSATTENTION GetAllRuleParamsRuleStatus = "NEEDS_ATTENTION"
-	NOTEVALUATED   GetAllRuleParamsRuleStatus = "NOT_EVALUATED"
-	PASSING        GetAllRuleParamsRuleStatus = "PASSING"
+	GetAllRuleParamsRuleStatusFAILING        GetAllRuleParamsRuleStatus = "FAILING"
+	GetAllRuleParamsRuleStatusNEEDSATTENTION GetAllRuleParamsRuleStatus = "NEEDS_ATTENTION"
+	GetAllRuleParamsRuleStatusNOTEVALUATED   GetAllRuleParamsRuleStatus = "NOT_EVALUATED"
+	GetAllRuleParamsRuleStatusPASSING        GetAllRuleParamsRuleStatus = "PASSING"
+)
+
+// Defines values for GetAllMonitorsAsCodeParamsMode.
+const (
+	EXPANDED GetAllMonitorsAsCodeParamsMode = "EXPANDED"
+	RELAXED  GetAllMonitorsAsCodeParamsMode = "RELAXED"
+	STRICT   GetAllMonitorsAsCodeParamsMode = "STRICT"
+)
+
+// Defines values for GetAllMonitorsAsCodeParamsLastRunStatus.
+const (
+	GetAllMonitorsAsCodeParamsLastRunStatusFAILED                GetAllMonitorsAsCodeParamsLastRunStatus = "FAILED"
+	GetAllMonitorsAsCodeParamsLastRunStatusPENDING               GetAllMonitorsAsCodeParamsLastRunStatus = "PENDING"
+	GetAllMonitorsAsCodeParamsLastRunStatusREQUIRESYOURATTENTION GetAllMonitorsAsCodeParamsLastRunStatus = "REQUIRES_YOUR_ATTENTION"
+	GetAllMonitorsAsCodeParamsLastRunStatusRUNNING               GetAllMonitorsAsCodeParamsLastRunStatus = "RUNNING"
+	GetAllMonitorsAsCodeParamsLastRunStatusSUCCESS               GetAllMonitorsAsCodeParamsLastRunStatus = "SUCCESS"
+	GetAllMonitorsAsCodeParamsLastRunStatusTECHNICALERROR        GetAllMonitorsAsCodeParamsLastRunStatus = "TECHNICAL_ERROR"
+)
+
+// Defines values for GetAllMonitorsAsCodeParamsRuleStatus.
+const (
+	GetAllMonitorsAsCodeParamsRuleStatusFAILING        GetAllMonitorsAsCodeParamsRuleStatus = "FAILING"
+	GetAllMonitorsAsCodeParamsRuleStatusNEEDSATTENTION GetAllMonitorsAsCodeParamsRuleStatus = "NEEDS_ATTENTION"
+	GetAllMonitorsAsCodeParamsRuleStatusNOTEVALUATED   GetAllMonitorsAsCodeParamsRuleStatus = "NOT_EVALUATED"
+	GetAllMonitorsAsCodeParamsRuleStatusPASSING        GetAllMonitorsAsCodeParamsRuleStatus = "PASSING"
 )
 
 // Defines values for GetSiffletRuleRunsParamsStatus.
@@ -2343,6 +5579,15 @@ type AccessTokenProviderDto struct {
 
 // AccessTokenProviderDtoType defines model for AccessTokenProviderDto.Type.
 type AccessTokenProviderDtoType string
+
+// AirflowInformation Airflow connection settings
+type AirflowInformation struct {
+	// Host Your Airflow server hostname
+	Host string `json:"host"`
+
+	// Port Your Airflow server port
+	Port int32 `json:"port"`
+}
 
 // AlertingHookDto defines model for AlertingHookDto.
 type AlertingHookDto struct {
@@ -2372,6 +5617,1405 @@ type ApiProblemSchema struct {
 	Status   *int32  `json:"status,omitempty"`
 	Title    *string `json:"title,omitempty"`
 	Type     *string `json:"type,omitempty"`
+}
+
+// AsCodeAggregationClauseDtoV1 defines model for AsCodeAggregationClauseDtoV1.
+type AsCodeAggregationClauseDtoV1 struct {
+	Kind AsCodeAggregationClauseDtoV1Kind `json:"kind"`
+}
+
+// AsCodeAggregationClauseDtoV1Kind defines model for AsCodeAggregationClauseDtoV1.Kind.
+type AsCodeAggregationClauseDtoV1Kind string
+
+// AsCodeAggregationClauseDtoV2 defines model for AsCodeAggregationClauseDtoV2.
+type AsCodeAggregationClauseDtoV2 struct {
+	Kind AsCodeAggregationClauseDtoV2Kind `json:"kind"`
+}
+
+// AsCodeAggregationClauseDtoV2Kind defines model for AsCodeAggregationClauseDtoV2.Kind.
+type AsCodeAggregationClauseDtoV2Kind string
+
+// AsCodeAlertingHookNotificationDto defines model for AsCodeAlertingHookNotificationDto.
+type AsCodeAlertingHookNotificationDto struct {
+	Id   *openapi_types.UUID                   `json:"id,omitempty"`
+	Kind AsCodeAlertingHookNotificationDtoKind `json:"kind"`
+	Name *string                               `json:"name,omitempty"`
+}
+
+// AsCodeAlertingHookNotificationDtoKind defines model for AsCodeAlertingHookNotificationDto.Kind.
+type AsCodeAlertingHookNotificationDtoKind string
+
+// AsCodeCalendarReferenceDto defines model for AsCodeCalendarReferenceDto.
+type AsCodeCalendarReferenceDto struct {
+	Id               *openapi_types.UUID                         `json:"id,omitempty"`
+	Name             *string                                     `json:"name,omitempty"`
+	StandardCalendar *AsCodeCalendarReferenceDtoStandardCalendar `json:"standardCalendar,omitempty"`
+}
+
+// AsCodeCalendarReferenceDtoStandardCalendar defines model for AsCodeCalendarReferenceDto.StandardCalendar.
+type AsCodeCalendarReferenceDtoStandardCalendar string
+
+// AsCodeCompletenessMonitorParamsDto defines model for AsCodeCompletenessMonitorParamsDto.
+type AsCodeCompletenessMonitorParamsDto struct {
+	GroupBy        *AsCodeGroupByClauseDto                                 `json:"groupBy,omitempty"`
+	Kind           *AsCodeCompletenessMonitorParamsDtoKind                 `json:"kind,omitempty"`
+	Partition      *AsCodeCompletenessMonitorParamsDto_Partition           `json:"partition,omitempty"`
+	Threshold      *AsCodeDynamicThresholdDtoV1                            `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowWithOffsetFrequencyAndRollingClauseDto `json:"timeWindow,omitempty"`
+	WhereStatement *string                                                 `json:"whereStatement,omitempty"`
+}
+
+// AsCodeCompletenessMonitorParamsDtoKind defines model for AsCodeCompletenessMonitorParamsDto.Kind.
+type AsCodeCompletenessMonitorParamsDtoKind string
+
+// AsCodeCompletenessMonitorParamsDto_Partition defines model for AsCodeCompletenessMonitorParamsDto.Partition.
+type AsCodeCompletenessMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeConditionDto defines model for AsCodeConditionDto.
+type AsCodeConditionDto struct {
+	Kind AsCodeConditionDtoKind `json:"kind"`
+}
+
+// AsCodeConditionDtoKind defines model for AsCodeConditionDto.Kind.
+type AsCodeConditionDtoKind string
+
+// AsCodeConditionGroupDto defines model for AsCodeConditionGroupDto.
+type AsCodeConditionGroupDto struct {
+	Conditions *[]AsCodeConditionGroupDto_Conditions_Item `json:"conditions,omitempty"`
+	Kind       AsCodeConditionGroupDtoKind                `json:"kind"`
+}
+
+// AsCodeConditionGroupDto_Conditions_Item defines model for AsCodeConditionGroupDto.conditions.Item.
+type AsCodeConditionGroupDto_Conditions_Item struct {
+	union json.RawMessage
+}
+
+// AsCodeConditionGroupDtoKind defines model for AsCodeConditionGroupDto.Kind.
+type AsCodeConditionGroupDtoKind string
+
+// AsCodeConditionalMonitorParamsDto defines model for AsCodeConditionalMonitorParamsDto.
+type AsCodeConditionalMonitorParamsDto struct {
+	Condition *AsCodeConditionalMonitorParamsDto_Condition `json:"condition,omitempty"`
+	Kind      *AsCodeConditionalMonitorParamsDtoKind       `json:"kind,omitempty"`
+	Threshold *AsCodeConditionalMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+}
+
+// AsCodeConditionalMonitorParamsDto_Condition defines model for AsCodeConditionalMonitorParamsDto.Condition.
+type AsCodeConditionalMonitorParamsDto_Condition struct {
+	union json.RawMessage
+}
+
+// AsCodeConditionalMonitorParamsDtoKind defines model for AsCodeConditionalMonitorParamsDto.Kind.
+type AsCodeConditionalMonitorParamsDtoKind string
+
+// AsCodeConditionalMonitorParamsDto_Threshold defines model for AsCodeConditionalMonitorParamsDto.Threshold.
+type AsCodeConditionalMonitorParamsDto_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeConnectionParamsOverrideDto defines model for AsCodeConnectionParamsOverrideDto.
+type AsCodeConnectionParamsOverrideDto struct {
+	Credentials string `json:"credentials"`
+}
+
+// AsCodeCorrelatedMetricsMonitorParamsDto defines model for AsCodeCorrelatedMetricsMonitorParamsDto.
+type AsCodeCorrelatedMetricsMonitorParamsDto struct {
+	Kind          *AsCodeCorrelatedMetricsMonitorParamsDtoKind       `json:"kind,omitempty"`
+	MetadataBased *bool                                              `json:"metadataBased,omitempty"`
+	Metrics       *[]AsCodeMetricClauseDto                           `json:"metrics,omitempty"`
+	Threshold     *AsCodeCorrelatedMetricsMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	TimeWindow    *AsCodeTimeWindowClauseWithoutFieldDtoV2           `json:"timeWindow,omitempty"`
+}
+
+// AsCodeCorrelatedMetricsMonitorParamsDtoKind defines model for AsCodeCorrelatedMetricsMonitorParamsDto.Kind.
+type AsCodeCorrelatedMetricsMonitorParamsDtoKind string
+
+// AsCodeCorrelatedMetricsMonitorParamsDto_Threshold defines model for AsCodeCorrelatedMetricsMonitorParamsDto.Threshold.
+type AsCodeCorrelatedMetricsMonitorParamsDto_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeCustomMetadataEntryLabelValueReferenceDto defines model for AsCodeCustomMetadataEntryLabelValueReferenceDto.
+type AsCodeCustomMetadataEntryLabelValueReferenceDto struct {
+	CustomMetadataName *string                                             `json:"customMetadataName,omitempty"`
+	Kind               AsCodeCustomMetadataEntryLabelValueReferenceDtoKind `json:"kind"`
+	LabelValue         *string                                             `json:"labelValue,omitempty"`
+}
+
+// AsCodeCustomMetadataEntryLabelValueReferenceDtoKind defines model for AsCodeCustomMetadataEntryLabelValueReferenceDto.Kind.
+type AsCodeCustomMetadataEntryLabelValueReferenceDtoKind string
+
+// AsCodeCustomMetadataEntryReferenceDto defines model for AsCodeCustomMetadataEntryReferenceDto.
+type AsCodeCustomMetadataEntryReferenceDto struct {
+	Id    *openapi_types.UUID                          `json:"id,omitempty"`
+	Value *AsCodeCustomMetadataEntryReferenceDto_Value `json:"value,omitempty"`
+}
+
+// AsCodeCustomMetadataEntryReferenceDto_Value defines model for AsCodeCustomMetadataEntryReferenceDto.Value.
+type AsCodeCustomMetadataEntryReferenceDto_Value struct {
+	union json.RawMessage
+}
+
+// AsCodeCustomMetadataEntryStringValueReferenceDto defines model for AsCodeCustomMetadataEntryStringValueReferenceDto.
+type AsCodeCustomMetadataEntryStringValueReferenceDto struct {
+	CustomMetadataName *string                                              `json:"customMetadataName,omitempty"`
+	Kind               AsCodeCustomMetadataEntryStringValueReferenceDtoKind `json:"kind"`
+	StringValue        *string                                              `json:"stringValue,omitempty"`
+}
+
+// AsCodeCustomMetadataEntryStringValueReferenceDtoKind defines model for AsCodeCustomMetadataEntryStringValueReferenceDto.Kind.
+type AsCodeCustomMetadataEntryStringValueReferenceDtoKind string
+
+// AsCodeCustomMetadataEntryUserValueReferenceDto defines model for AsCodeCustomMetadataEntryUserValueReferenceDto.
+type AsCodeCustomMetadataEntryUserValueReferenceDto struct {
+	CustomMetadataName *string                                            `json:"customMetadataName,omitempty"`
+	Email              *string                                            `json:"email,omitempty"`
+	Kind               AsCodeCustomMetadataEntryUserValueReferenceDtoKind `json:"kind"`
+}
+
+// AsCodeCustomMetadataEntryUserValueReferenceDtoKind defines model for AsCodeCustomMetadataEntryUserValueReferenceDto.Kind.
+type AsCodeCustomMetadataEntryUserValueReferenceDtoKind string
+
+// AsCodeCustomMetadataEntryValueReferenceDto defines model for AsCodeCustomMetadataEntryValueReferenceDto.
+type AsCodeCustomMetadataEntryValueReferenceDto struct {
+	CustomMetadataName *string                                        `json:"customMetadataName,omitempty"`
+	Kind               AsCodeCustomMetadataEntryValueReferenceDtoKind `json:"kind"`
+}
+
+// AsCodeCustomMetadataEntryValueReferenceDtoKind defines model for AsCodeCustomMetadataEntryValueReferenceDto.Kind.
+type AsCodeCustomMetadataEntryValueReferenceDtoKind string
+
+// AsCodeCustomMetricsMonitorParamsDtoV1 defines model for AsCodeCustomMetricsMonitorParamsDtoV1.
+type AsCodeCustomMetricsMonitorParamsDtoV1 struct {
+	GroupBy    *AsCodeGroupByClauseDto                          `json:"groupBy,omitempty"`
+	Kind       *AsCodeCustomMetricsMonitorParamsDtoV1Kind       `json:"kind,omitempty"`
+	Partition  *AsCodeCustomMetricsMonitorParamsDtoV1_Partition `json:"partition,omitempty"`
+	Sql        *string                                          `json:"sql,omitempty"`
+	Threshold  *AsCodeDynamicThresholdDtoV1                     `json:"threshold,omitempty"`
+	TimeWindow *AsCodeTimeWindowOffsetClauseDto                 `json:"timeWindow,omitempty"`
+}
+
+// AsCodeCustomMetricsMonitorParamsDtoV1Kind defines model for AsCodeCustomMetricsMonitorParamsDtoV1.Kind.
+type AsCodeCustomMetricsMonitorParamsDtoV1Kind string
+
+// AsCodeCustomMetricsMonitorParamsDtoV1_Partition defines model for AsCodeCustomMetricsMonitorParamsDtoV1.Partition.
+type AsCodeCustomMetricsMonitorParamsDtoV1_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeCustomMetricsMonitorParamsDtoV2 defines model for AsCodeCustomMetricsMonitorParamsDtoV2.
+type AsCodeCustomMetricsMonitorParamsDtoV2 struct {
+	EmptyMeansZero *bool                                            `json:"emptyMeansZero,omitempty"`
+	Kind           *AsCodeCustomMetricsMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
+	Sql            *string                                          `json:"sql,omitempty"`
+	Threshold      *AsCodeCustomMetricsMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeCustomMetricsTimeWindowDto                `json:"timeWindow,omitempty"`
+}
+
+// AsCodeCustomMetricsMonitorParamsDtoV2Kind defines model for AsCodeCustomMetricsMonitorParamsDtoV2.Kind.
+type AsCodeCustomMetricsMonitorParamsDtoV2Kind string
+
+// AsCodeCustomMetricsMonitorParamsDtoV2_Threshold defines model for AsCodeCustomMetricsMonitorParamsDtoV2.Threshold.
+type AsCodeCustomMetricsMonitorParamsDtoV2_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeCustomMetricsTimeWindowDto defines model for AsCodeCustomMetricsTimeWindowDto.
+type AsCodeCustomMetricsTimeWindowDto struct {
+	Offset        *SimpleDuration `json:"offset,omitempty"`
+	OffsetPeriods *int32          `json:"offsetPeriods,omitempty"`
+}
+
+// AsCodeDatasetReferenceDto defines model for AsCodeDatasetReferenceDto.
+type AsCodeDatasetReferenceDto struct {
+	Datasource *AsCodeReferenceByIdOrNameDtoImpl `json:"datasource,omitempty"`
+	Id         *openapi_types.UUID               `json:"id,omitempty"`
+	Name       *string                           `json:"name,omitempty"`
+	Uri        *string                           `json:"uri,omitempty"`
+}
+
+// AsCodeDateConditionDto defines model for AsCodeDateConditionDto.
+type AsCodeDateConditionDto struct {
+	DateExpression *AsCodeFieldExpressionDto  `json:"dateExpression,omitempty"`
+	Duration       *AsCodeDurationDto         `json:"duration,omitempty"`
+	Kind           AsCodeDateConditionDtoKind `json:"kind"`
+}
+
+// AsCodeDateConditionDtoKind defines model for AsCodeDateConditionDto.Kind.
+type AsCodeDateConditionDtoKind string
+
+// AsCodeDistributionChangeTimeWindowClauseDtoV2 defines model for AsCodeDistributionChangeTimeWindowClauseDtoV2.
+type AsCodeDistributionChangeTimeWindowClauseDtoV2 struct {
+	DeltaQuerying     *SimpleDuration         `json:"deltaQuerying,omitempty"`
+	Duration          *SimpleDuration         `json:"duration,omitempty"`
+	Field             AsCodeFieldReferenceDto `json:"field"`
+	FirstRun          *SimpleDuration         `json:"firstRun,omitempty"`
+	Frequency         *SimpleDuration         `json:"frequency,omitempty"`
+	Offset            *SimpleDuration         `json:"offset,omitempty"`
+	OffsetPeriods     *int32                  `json:"offsetPeriods,omitempty"`
+	RollingTimeWindow *SimpleDuration         `json:"rollingTimeWindow,omitempty"`
+}
+
+// AsCodeDistributionMonitorParamsDto defines model for AsCodeDistributionMonitorParamsDto.
+type AsCodeDistributionMonitorParamsDto struct {
+	Field             *[]AsCodeFieldReferenceDto                     `json:"field,omitempty"`
+	GroupBy           *AsCodeGroupByClauseDto                        `json:"groupBy,omitempty"`
+	Kind              *AsCodeDistributionMonitorParamsDtoKind        `json:"kind,omitempty"`
+	OnAddedCategory   *bool                                          `json:"onAddedCategory,omitempty"`
+	OnRemovedCategory *bool                                          `json:"onRemovedCategory,omitempty"`
+	Partition         *AsCodeDistributionMonitorParamsDto_Partition  `json:"partition,omitempty"`
+	Reference         *AsCodeDistributionMonitorParamsDto_Reference  `json:"reference,omitempty"`
+	Threshold         *AsCodeDistributionMonitorParamsDto_Threshold  `json:"threshold,omitempty"`
+	TimeWindow        *AsCodeDistributionChangeTimeWindowClauseDtoV2 `json:"timeWindow,omitempty"`
+	WhereStatement    *string                                        `json:"whereStatement,omitempty"`
+}
+
+// AsCodeDistributionMonitorParamsDtoKind defines model for AsCodeDistributionMonitorParamsDto.Kind.
+type AsCodeDistributionMonitorParamsDtoKind string
+
+// AsCodeDistributionMonitorParamsDto_Partition defines model for AsCodeDistributionMonitorParamsDto.Partition.
+type AsCodeDistributionMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeDistributionMonitorParamsDto_Reference defines model for AsCodeDistributionMonitorParamsDto.Reference.
+type AsCodeDistributionMonitorParamsDto_Reference struct {
+	union json.RawMessage
+}
+
+// AsCodeDistributionMonitorParamsDto_Threshold defines model for AsCodeDistributionMonitorParamsDto.Threshold.
+type AsCodeDistributionMonitorParamsDto_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeDistributionReferenceDto defines model for AsCodeDistributionReferenceDto.
+type AsCodeDistributionReferenceDto struct {
+	Kind AsCodeDistributionReferenceDtoKind `json:"kind"`
+}
+
+// AsCodeDistributionReferenceDtoKind defines model for AsCodeDistributionReferenceDto.Kind.
+type AsCodeDistributionReferenceDtoKind string
+
+// AsCodeDuplicatesMonitorParamsDto defines model for AsCodeDuplicatesMonitorParamsDto.
+type AsCodeDuplicatesMonitorParamsDto struct {
+	GroupBy        *AsCodeGroupByClauseDto                          `json:"groupBy,omitempty"`
+	Kind           *AsCodeDuplicatesMonitorParamsDtoKind            `json:"kind,omitempty"`
+	Partition      *AsCodeDuplicatesMonitorParamsDto_Partition      `json:"partition,omitempty"`
+	Threshold      *AsCodeDynamicThresholdDtoV1                     `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowWithOffsetAndFrequencyClauseDto `json:"timeWindow,omitempty"`
+	WhereStatement *string                                          `json:"whereStatement,omitempty"`
+}
+
+// AsCodeDuplicatesMonitorParamsDtoKind defines model for AsCodeDuplicatesMonitorParamsDto.Kind.
+type AsCodeDuplicatesMonitorParamsDtoKind string
+
+// AsCodeDuplicatesMonitorParamsDto_Partition defines model for AsCodeDuplicatesMonitorParamsDto.Partition.
+type AsCodeDuplicatesMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeDurationDto defines model for AsCodeDurationDto.
+type AsCodeDurationDto struct {
+	TimeUnit AsCodeDurationDtoTimeUnit `json:"timeUnit"`
+	Value    int32                     `json:"value"`
+}
+
+// AsCodeDurationDtoTimeUnit defines model for AsCodeDurationDto.TimeUnit.
+type AsCodeDurationDtoTimeUnit string
+
+// AsCodeDynamicFieldProfilingMonitorParamsDto defines model for AsCodeDynamicFieldProfilingMonitorParamsDto.
+type AsCodeDynamicFieldProfilingMonitorParamsDto struct {
+	Field          *[]string                                               `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                                 `json:"groupBy,omitempty"`
+	Kind           *AsCodeDynamicFieldProfilingMonitorParamsDtoKind        `json:"kind,omitempty"`
+	Partition      *AsCodeDynamicFieldProfilingMonitorParamsDto_Partition  `json:"partition,omitempty"`
+	Profiling      *AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling  `json:"profiling,omitempty"`
+	Threshold      *AsCodeDynamicThresholdDtoV1                            `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowWithOffsetFrequencyAndRollingClauseDto `json:"timeWindow,omitempty"`
+	WhereStatement *string                                                 `json:"whereStatement,omitempty"`
+}
+
+// AsCodeDynamicFieldProfilingMonitorParamsDtoKind defines model for AsCodeDynamicFieldProfilingMonitorParamsDto.Kind.
+type AsCodeDynamicFieldProfilingMonitorParamsDtoKind string
+
+// AsCodeDynamicFieldProfilingMonitorParamsDto_Partition defines model for AsCodeDynamicFieldProfilingMonitorParamsDto.Partition.
+type AsCodeDynamicFieldProfilingMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling defines model for AsCodeDynamicFieldProfilingMonitorParamsDto.Profiling.
+type AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling struct {
+	union json.RawMessage
+}
+
+// AsCodeDynamicFreshnessThresholdDto defines model for AsCodeDynamicFreshnessThresholdDto.
+type AsCodeDynamicFreshnessThresholdDto struct {
+	ExcludedDates *[]AsCodeCalendarReferenceDto          `json:"excludedDates,omitempty"`
+	Kind          AsCodeDynamicFreshnessThresholdDtoKind `json:"kind"`
+	Sensitivity   *int32                                 `json:"sensitivity,omitempty"`
+}
+
+// AsCodeDynamicFreshnessThresholdDtoKind defines model for AsCodeDynamicFreshnessThresholdDto.Kind.
+type AsCodeDynamicFreshnessThresholdDtoKind string
+
+// AsCodeDynamicMetricMonitorParamsDto defines model for AsCodeDynamicMetricMonitorParamsDto.
+type AsCodeDynamicMetricMonitorParamsDto struct {
+	Aggregation    *AsCodeDynamicMetricMonitorParamsDto_Aggregation        `json:"aggregation,omitempty"`
+	Field          *string                                                 `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                                 `json:"groupBy,omitempty"`
+	Kind           *AsCodeDynamicMetricMonitorParamsDtoKind                `json:"kind,omitempty"`
+	Partition      *AsCodeDynamicMetricMonitorParamsDto_Partition          `json:"partition,omitempty"`
+	Threshold      *AsCodeDynamicThresholdDtoV1                            `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowWithOffsetFrequencyAndRollingClauseDto `json:"timeWindow,omitempty"`
+	WhereStatement *string                                                 `json:"whereStatement,omitempty"`
+}
+
+// AsCodeDynamicMetricMonitorParamsDto_Aggregation defines model for AsCodeDynamicMetricMonitorParamsDto.Aggregation.
+type AsCodeDynamicMetricMonitorParamsDto_Aggregation struct {
+	union json.RawMessage
+}
+
+// AsCodeDynamicMetricMonitorParamsDtoKind defines model for AsCodeDynamicMetricMonitorParamsDto.Kind.
+type AsCodeDynamicMetricMonitorParamsDtoKind string
+
+// AsCodeDynamicMetricMonitorParamsDto_Partition defines model for AsCodeDynamicMetricMonitorParamsDto.Partition.
+type AsCodeDynamicMetricMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeDynamicThresholdDtoV1 defines model for AsCodeDynamicThresholdDtoV1.
+type AsCodeDynamicThresholdDtoV1 struct {
+	Bounds        *AsCodeDynamicThresholdDtoV1Bounds `json:"bounds,omitempty"`
+	ExcludedDates *[]AsCodeCalendarReferenceDto      `json:"excludedDates,omitempty"`
+	Sensitivity   *int32                             `json:"sensitivity,omitempty"`
+}
+
+// AsCodeDynamicThresholdDtoV1Bounds defines model for AsCodeDynamicThresholdDtoV1.Bounds.
+type AsCodeDynamicThresholdDtoV1Bounds string
+
+// AsCodeDynamicThresholdDtoV2 defines model for AsCodeDynamicThresholdDtoV2.
+type AsCodeDynamicThresholdDtoV2 struct {
+	Bounds        *AsCodeDynamicThresholdDtoV2Bounds    `json:"bounds,omitempty"`
+	ExcludedDates *[]AsCodeCalendarReferenceDto         `json:"excludedDates,omitempty"`
+	Kind          AsCodeDynamicThresholdDtoV2Kind       `json:"kind"`
+	Sensitivity   *int32                                `json:"sensitivity,omitempty"`
+	ValueMode     *AsCodeDynamicThresholdDtoV2ValueMode `json:"valueMode,omitempty"`
+}
+
+// AsCodeDynamicThresholdDtoV2Bounds defines model for AsCodeDynamicThresholdDtoV2.Bounds.
+type AsCodeDynamicThresholdDtoV2Bounds string
+
+// AsCodeDynamicThresholdDtoV2Kind defines model for AsCodeDynamicThresholdDtoV2.Kind.
+type AsCodeDynamicThresholdDtoV2Kind string
+
+// AsCodeDynamicThresholdDtoV2ValueMode defines model for AsCodeDynamicThresholdDtoV2.ValueMode.
+type AsCodeDynamicThresholdDtoV2ValueMode string
+
+// AsCodeEqualityJoinConditionDto defines model for AsCodeEqualityJoinConditionDto.
+type AsCodeEqualityJoinConditionDto struct {
+	FieldPairs *[]AsCodeJoinFieldPairDto          `json:"fieldPairs,omitempty"`
+	Kind       AsCodeEqualityJoinConditionDtoKind `json:"kind"`
+}
+
+// AsCodeEqualityJoinConditionDtoKind defines model for AsCodeEqualityJoinConditionDto.Kind.
+type AsCodeEqualityJoinConditionDtoKind string
+
+// AsCodeExpressionDto defines model for AsCodeExpressionDto.
+type AsCodeExpressionDto struct {
+	Kind AsCodeExpressionDtoKind `json:"kind"`
+}
+
+// AsCodeExpressionDtoKind defines model for AsCodeExpressionDto.Kind.
+type AsCodeExpressionDtoKind string
+
+// AsCodeFieldDuplicatesMonitorParamsDto defines model for AsCodeFieldDuplicatesMonitorParamsDto.
+type AsCodeFieldDuplicatesMonitorParamsDto struct {
+	Field          *[]AsCodeFieldReferenceDto                       `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                          `json:"groupBy,omitempty"`
+	Kind           *AsCodeFieldDuplicatesMonitorParamsDtoKind       `json:"kind,omitempty"`
+	Partition      *AsCodeFieldDuplicatesMonitorParamsDto_Partition `json:"partition,omitempty"`
+	Threshold      *AsCodeFieldDuplicatesMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2                     `json:"timeWindow,omitempty"`
+	WhereStatement *string                                          `json:"whereStatement,omitempty"`
+}
+
+// AsCodeFieldDuplicatesMonitorParamsDtoKind defines model for AsCodeFieldDuplicatesMonitorParamsDto.Kind.
+type AsCodeFieldDuplicatesMonitorParamsDtoKind string
+
+// AsCodeFieldDuplicatesMonitorParamsDto_Partition defines model for AsCodeFieldDuplicatesMonitorParamsDto.Partition.
+type AsCodeFieldDuplicatesMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldDuplicatesMonitorParamsDto_Threshold defines model for AsCodeFieldDuplicatesMonitorParamsDto.Threshold.
+type AsCodeFieldDuplicatesMonitorParamsDto_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldExpressionDto defines model for AsCodeFieldExpressionDto.
+type AsCodeFieldExpressionDto struct {
+	Field *AsCodeFieldReferenceDto     `json:"field,omitempty"`
+	Kind  AsCodeFieldExpressionDtoKind `json:"kind"`
+}
+
+// AsCodeFieldExpressionDtoKind defines model for AsCodeFieldExpressionDto.Kind.
+type AsCodeFieldExpressionDtoKind string
+
+// AsCodeFieldFormatMonitorParamsDtoV1 defines model for AsCodeFieldFormatMonitorParamsDtoV1.
+type AsCodeFieldFormatMonitorParamsDtoV1 struct {
+	Field          *string                                        `json:"field,omitempty"`
+	Format         *AsCodeFieldFormatMonitorParamsDtoV1_Format    `json:"format,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                        `json:"groupBy,omitempty"`
+	Kind           *AsCodeFieldFormatMonitorParamsDtoV1Kind       `json:"kind,omitempty"`
+	Partition      *AsCodeFieldFormatMonitorParamsDtoV1_Partition `json:"partition,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV1                   `json:"timeWindow,omitempty"`
+	WhereStatement *string                                        `json:"whereStatement,omitempty"`
+}
+
+// AsCodeFieldFormatMonitorParamsDtoV1_Format defines model for AsCodeFieldFormatMonitorParamsDtoV1.Format.
+type AsCodeFieldFormatMonitorParamsDtoV1_Format struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldFormatMonitorParamsDtoV1Kind defines model for AsCodeFieldFormatMonitorParamsDtoV1.Kind.
+type AsCodeFieldFormatMonitorParamsDtoV1Kind string
+
+// AsCodeFieldFormatMonitorParamsDtoV1_Partition defines model for AsCodeFieldFormatMonitorParamsDtoV1.Partition.
+type AsCodeFieldFormatMonitorParamsDtoV1_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldFormatMonitorParamsDtoV2 defines model for AsCodeFieldFormatMonitorParamsDtoV2.
+type AsCodeFieldFormatMonitorParamsDtoV2 struct {
+	Field          *AsCodeFieldReferenceDto                       `json:"field,omitempty"`
+	Format         *AsCodeFieldFormatMonitorParamsDtoV2_Format    `json:"format,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                        `json:"groupBy,omitempty"`
+	Kind           *AsCodeFieldFormatMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
+	Partition      *AsCodeFieldFormatMonitorParamsDtoV2_Partition `json:"partition,omitempty"`
+	Threshold      *AsCodeFieldFormatMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2                   `json:"timeWindow,omitempty"`
+	WhereStatement *string                                        `json:"whereStatement,omitempty"`
+}
+
+// AsCodeFieldFormatMonitorParamsDtoV2_Format defines model for AsCodeFieldFormatMonitorParamsDtoV2.Format.
+type AsCodeFieldFormatMonitorParamsDtoV2_Format struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldFormatMonitorParamsDtoV2Kind defines model for AsCodeFieldFormatMonitorParamsDtoV2.Kind.
+type AsCodeFieldFormatMonitorParamsDtoV2Kind string
+
+// AsCodeFieldFormatMonitorParamsDtoV2_Partition defines model for AsCodeFieldFormatMonitorParamsDtoV2.Partition.
+type AsCodeFieldFormatMonitorParamsDtoV2_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldFormatMonitorParamsDtoV2_Threshold defines model for AsCodeFieldFormatMonitorParamsDtoV2.Threshold.
+type AsCodeFieldFormatMonitorParamsDtoV2_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldFormatValidationClauseDto defines model for AsCodeFieldFormatValidationClauseDto.
+type AsCodeFieldFormatValidationClauseDto struct {
+	Kind AsCodeFieldFormatValidationClauseDtoKind `json:"kind"`
+}
+
+// AsCodeFieldFormatValidationClauseDtoKind defines model for AsCodeFieldFormatValidationClauseDto.Kind.
+type AsCodeFieldFormatValidationClauseDtoKind string
+
+// AsCodeFieldInListConstraintMonitorParamsDtoV1 defines model for AsCodeFieldInListConstraintMonitorParamsDtoV1.
+type AsCodeFieldInListConstraintMonitorParamsDtoV1 struct {
+	Field          *string                                                  `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                                  `json:"groupBy,omitempty"`
+	Kind           *AsCodeFieldInListConstraintMonitorParamsDtoV1Kind       `json:"kind,omitempty"`
+	Partition      *AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition `json:"partition,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV1                             `json:"timeWindow,omitempty"`
+	Values         *[]string                                                `json:"values,omitempty"`
+	WhereStatement *string                                                  `json:"whereStatement,omitempty"`
+}
+
+// AsCodeFieldInListConstraintMonitorParamsDtoV1Kind defines model for AsCodeFieldInListConstraintMonitorParamsDtoV1.Kind.
+type AsCodeFieldInListConstraintMonitorParamsDtoV1Kind string
+
+// AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition defines model for AsCodeFieldInListConstraintMonitorParamsDtoV1.Partition.
+type AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldInListConstraintMonitorParamsDtoV2 defines model for AsCodeFieldInListConstraintMonitorParamsDtoV2.
+type AsCodeFieldInListConstraintMonitorParamsDtoV2 struct {
+	Field          *AsCodeFieldReferenceDto                                 `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                                  `json:"groupBy,omitempty"`
+	Kind           *AsCodeFieldInListConstraintMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
+	Partition      *AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition `json:"partition,omitempty"`
+	Threshold      *AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2                             `json:"timeWindow,omitempty"`
+	Values         *[]string                                                `json:"values,omitempty"`
+	WhereStatement *string                                                  `json:"whereStatement,omitempty"`
+}
+
+// AsCodeFieldInListConstraintMonitorParamsDtoV2Kind defines model for AsCodeFieldInListConstraintMonitorParamsDtoV2.Kind.
+type AsCodeFieldInListConstraintMonitorParamsDtoV2Kind string
+
+// AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition defines model for AsCodeFieldInListConstraintMonitorParamsDtoV2.Partition.
+type AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold defines model for AsCodeFieldInListConstraintMonitorParamsDtoV2.Threshold.
+type AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldNullsMonitorParamsDto defines model for AsCodeFieldNullsMonitorParamsDto.
+type AsCodeFieldNullsMonitorParamsDto struct {
+	Field          *AsCodeFieldReferenceDto                    `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                     `json:"groupBy,omitempty"`
+	Kind           *AsCodeFieldNullsMonitorParamsDtoKind       `json:"kind,omitempty"`
+	NullValues     *AsCodeFieldNullsMonitorParamsDtoNullValues `json:"nullValues,omitempty"`
+	Partition      *AsCodeFieldNullsMonitorParamsDto_Partition `json:"partition,omitempty"`
+	Threshold      *AsCodeFieldNullsMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2                `json:"timeWindow,omitempty"`
+	WhereStatement *string                                     `json:"whereStatement,omitempty"`
+}
+
+// AsCodeFieldNullsMonitorParamsDtoKind defines model for AsCodeFieldNullsMonitorParamsDto.Kind.
+type AsCodeFieldNullsMonitorParamsDtoKind string
+
+// AsCodeFieldNullsMonitorParamsDtoNullValues defines model for AsCodeFieldNullsMonitorParamsDto.NullValues.
+type AsCodeFieldNullsMonitorParamsDtoNullValues string
+
+// AsCodeFieldNullsMonitorParamsDto_Partition defines model for AsCodeFieldNullsMonitorParamsDto.Partition.
+type AsCodeFieldNullsMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldNullsMonitorParamsDto_Threshold defines model for AsCodeFieldNullsMonitorParamsDto.Threshold.
+type AsCodeFieldNullsMonitorParamsDto_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeFieldProfilingClauseDto defines model for AsCodeFieldProfilingClauseDto.
+type AsCodeFieldProfilingClauseDto struct {
+	Kind AsCodeFieldProfilingClauseDtoKind `json:"kind"`
+}
+
+// AsCodeFieldProfilingClauseDtoKind defines model for AsCodeFieldProfilingClauseDto.Kind.
+type AsCodeFieldProfilingClauseDtoKind string
+
+// AsCodeFieldReferenceDto defines model for AsCodeFieldReferenceDto.
+type AsCodeFieldReferenceDto struct {
+	Dataset *AsCodeDatasetReferenceDto `json:"dataset,omitempty"`
+	Name    string                     `json:"name"`
+}
+
+// AsCodeFieldUniquenessMonitorParamsDto defines model for AsCodeFieldUniquenessMonitorParamsDto.
+type AsCodeFieldUniquenessMonitorParamsDto struct {
+	Field          *[]string                                        `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                          `json:"groupBy,omitempty"`
+	Kind           *AsCodeFieldUniquenessMonitorParamsDtoKind       `json:"kind,omitempty"`
+	Partition      *AsCodeFieldUniquenessMonitorParamsDto_Partition `json:"partition,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV1                     `json:"timeWindow,omitempty"`
+	WhereStatement *string                                          `json:"whereStatement,omitempty"`
+}
+
+// AsCodeFieldUniquenessMonitorParamsDtoKind defines model for AsCodeFieldUniquenessMonitorParamsDto.Kind.
+type AsCodeFieldUniquenessMonitorParamsDtoKind string
+
+// AsCodeFieldUniquenessMonitorParamsDto_Partition defines model for AsCodeFieldUniquenessMonitorParamsDto.Partition.
+type AsCodeFieldUniquenessMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeFixedDistributionReferenceDto defines model for AsCodeFixedDistributionReferenceDto.
+type AsCodeFixedDistributionReferenceDto struct {
+	Kind      AsCodeFixedDistributionReferenceDtoKind `json:"kind"`
+	Timestamp *string                                 `json:"timestamp,omitempty"`
+}
+
+// AsCodeFixedDistributionReferenceDtoKind defines model for AsCodeFixedDistributionReferenceDto.Kind.
+type AsCodeFixedDistributionReferenceDtoKind string
+
+// AsCodeFreshnessMonitorParamsDtoV1 defines model for AsCodeFreshnessMonitorParamsDtoV1.
+type AsCodeFreshnessMonitorParamsDtoV1 struct {
+	GroupBy        *AsCodeGroupByClauseDto                                 `json:"groupBy,omitempty"`
+	Kind           *AsCodeFreshnessMonitorParamsDtoV1Kind                  `json:"kind,omitempty"`
+	Partition      *AsCodeFreshnessMonitorParamsDtoV1_Partition            `json:"partition,omitempty"`
+	Threshold      *AsCodeFreshnessMonitorParamsDtoV1_Threshold            `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowWithOffsetFrequencyAndRollingClauseDto `json:"timeWindow,omitempty"`
+	WhereStatement *string                                                 `json:"whereStatement,omitempty"`
+}
+
+// AsCodeFreshnessMonitorParamsDtoV1Kind defines model for AsCodeFreshnessMonitorParamsDtoV1.Kind.
+type AsCodeFreshnessMonitorParamsDtoV1Kind string
+
+// AsCodeFreshnessMonitorParamsDtoV1_Partition defines model for AsCodeFreshnessMonitorParamsDtoV1.Partition.
+type AsCodeFreshnessMonitorParamsDtoV1_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeFreshnessMonitorParamsDtoV1_Threshold defines model for AsCodeFreshnessMonitorParamsDtoV1.Threshold.
+type AsCodeFreshnessMonitorParamsDtoV1_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeFreshnessMonitorParamsDtoV2 defines model for AsCodeFreshnessMonitorParamsDtoV2.
+type AsCodeFreshnessMonitorParamsDtoV2 struct {
+	GroupBy        *AsCodeGroupByClauseDto                      `json:"groupBy,omitempty"`
+	Kind           *AsCodeFreshnessMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
+	Partition      *AsCodeFreshnessMonitorParamsDtoV2_Partition `json:"partition,omitempty"`
+	Threshold      *AsCodeFreshnessMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2                 `json:"timeWindow,omitempty"`
+	WhereStatement *string                                      `json:"whereStatement,omitempty"`
+}
+
+// AsCodeFreshnessMonitorParamsDtoV2Kind defines model for AsCodeFreshnessMonitorParamsDtoV2.Kind.
+type AsCodeFreshnessMonitorParamsDtoV2Kind string
+
+// AsCodeFreshnessMonitorParamsDtoV2_Partition defines model for AsCodeFreshnessMonitorParamsDtoV2.Partition.
+type AsCodeFreshnessMonitorParamsDtoV2_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeFreshnessMonitorParamsDtoV2_Threshold defines model for AsCodeFreshnessMonitorParamsDtoV2.Threshold.
+type AsCodeFreshnessMonitorParamsDtoV2_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeFreshnessThresholdDto defines model for AsCodeFreshnessThresholdDto.
+type AsCodeFreshnessThresholdDto struct {
+	ExcludedDates *[]AsCodeCalendarReferenceDto   `json:"excludedDates,omitempty"`
+	Kind          AsCodeFreshnessThresholdDtoKind `json:"kind"`
+}
+
+// AsCodeFreshnessThresholdDtoKind defines model for AsCodeFreshnessThresholdDto.Kind.
+type AsCodeFreshnessThresholdDtoKind string
+
+// AsCodeGroupByClauseDto defines model for AsCodeGroupByClauseDto.
+type AsCodeGroupByClauseDto struct {
+	Field []AsCodeFieldReferenceDto `json:"field"`
+}
+
+// AsCodeIncidentDto defines model for AsCodeIncidentDto.
+type AsCodeIncidentDto struct {
+	CreateOnFailure    *bool                     `json:"createOnFailure,omitempty"`
+	CustomEmailSubject *string                   `json:"customEmailSubject,omitempty"`
+	Message            *string                   `json:"message,omitempty"`
+	Severity           AsCodeIncidentDtoSeverity `json:"severity"`
+}
+
+// AsCodeIncidentDtoSeverity defines model for AsCodeIncidentDto.Severity.
+type AsCodeIncidentDtoSeverity string
+
+// AsCodeIngestionTimePartitionClauseDto defines model for AsCodeIngestionTimePartitionClauseDto.
+type AsCodeIngestionTimePartitionClauseDto struct {
+	Interval *SimpleDuration                            `json:"interval,omitempty"`
+	Kind     *AsCodeIngestionTimePartitionClauseDtoKind `json:"kind,omitempty"`
+}
+
+// AsCodeIngestionTimePartitionClauseDtoKind defines model for AsCodeIngestionTimePartitionClauseDto.Kind.
+type AsCodeIngestionTimePartitionClauseDtoKind string
+
+// AsCodeIntegerRangePartitionClauseDto defines model for AsCodeIntegerRangePartitionClauseDto.
+type AsCodeIntegerRangePartitionClauseDto struct {
+	Field *AsCodeFieldReferenceDto                  `json:"field,omitempty"`
+	Kind  *AsCodeIntegerRangePartitionClauseDtoKind `json:"kind,omitempty"`
+	Max   *int32                                    `json:"max,omitempty"`
+	Min   *int32                                    `json:"min,omitempty"`
+}
+
+// AsCodeIntegerRangePartitionClauseDtoKind defines model for AsCodeIntegerRangePartitionClauseDto.Kind.
+type AsCodeIntegerRangePartitionClauseDtoKind string
+
+// AsCodeJiraNotificationDto defines model for AsCodeJiraNotificationDto.
+type AsCodeJiraNotificationDto struct {
+	IssueTypeId  *int64                        `json:"issueTypeId,omitempty"`
+	Kind         AsCodeJiraNotificationDtoKind `json:"kind"`
+	ProjectKey   *string                       `json:"projectKey,omitempty"`
+	TemplateName *string                       `json:"templateName,omitempty"`
+}
+
+// AsCodeJiraNotificationDtoKind defines model for AsCodeJiraNotificationDto.Kind.
+type AsCodeJiraNotificationDtoKind string
+
+// AsCodeJoinConditionDto defines model for AsCodeJoinConditionDto.
+type AsCodeJoinConditionDto struct {
+	Kind AsCodeJoinConditionDtoKind `json:"kind"`
+}
+
+// AsCodeJoinConditionDtoKind defines model for AsCodeJoinConditionDto.Kind.
+type AsCodeJoinConditionDtoKind string
+
+// AsCodeJoinDto defines model for AsCodeJoinDto.
+type AsCodeJoinDto struct {
+	Dataset       AsCodeDatasetReferenceDto   `json:"dataset"`
+	JoinCondition AsCodeJoinDto_JoinCondition `json:"joinCondition"`
+	JoinType      AsCodeJoinDtoJoinType       `json:"joinType"`
+}
+
+// AsCodeJoinDto_JoinCondition defines model for AsCodeJoinDto.JoinCondition.
+type AsCodeJoinDto_JoinCondition struct {
+	union json.RawMessage
+}
+
+// AsCodeJoinDtoJoinType defines model for AsCodeJoinDto.JoinType.
+type AsCodeJoinDtoJoinType string
+
+// AsCodeJoinFieldPairDto defines model for AsCodeJoinFieldPairDto.
+type AsCodeJoinFieldPairDto struct {
+	LeftField  AsCodeFieldReferenceDto `json:"leftField"`
+	RightField AsCodeFieldReferenceDto `json:"rightField"`
+}
+
+// AsCodeMetadataFreshnessMonitorParamsDtoV1 defines model for AsCodeMetadataFreshnessMonitorParamsDtoV1.
+type AsCodeMetadataFreshnessMonitorParamsDtoV1 struct {
+	Kind      *AsCodeMetadataFreshnessMonitorParamsDtoV1Kind `json:"kind,omitempty"`
+	Threshold *AsCodeDynamicFreshnessThresholdDto            `json:"threshold,omitempty"`
+}
+
+// AsCodeMetadataFreshnessMonitorParamsDtoV1Kind defines model for AsCodeMetadataFreshnessMonitorParamsDtoV1.Kind.
+type AsCodeMetadataFreshnessMonitorParamsDtoV1Kind string
+
+// AsCodeMetadataFreshnessMonitorParamsDtoV2 defines model for AsCodeMetadataFreshnessMonitorParamsDtoV2.
+type AsCodeMetadataFreshnessMonitorParamsDtoV2 struct {
+	Kind      *AsCodeMetadataFreshnessMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
+	Threshold *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+}
+
+// AsCodeMetadataFreshnessMonitorParamsDtoV2Kind defines model for AsCodeMetadataFreshnessMonitorParamsDtoV2.Kind.
+type AsCodeMetadataFreshnessMonitorParamsDtoV2Kind string
+
+// AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold defines model for AsCodeMetadataFreshnessMonitorParamsDtoV2.Threshold.
+type AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeMetricClauseDto defines model for AsCodeMetricClauseDto.
+type AsCodeMetricClauseDto struct {
+	Aggregation     AsCodeMetricClauseDto_Aggregation `json:"aggregation"`
+	Field           *string                           `json:"field,omitempty"`
+	GroupBy         *AsCodeGroupByClauseDto           `json:"groupBy,omitempty"`
+	Name            string                            `json:"name"`
+	Partition       *AsCodeMetricClauseDto_Partition  `json:"partition,omitempty"`
+	TimeWindowField *string                           `json:"timeWindowField,omitempty"`
+	WhereStatement  *string                           `json:"whereStatement,omitempty"`
+}
+
+// AsCodeMetricClauseDto_Aggregation defines model for AsCodeMetricClauseDto.Aggregation.
+type AsCodeMetricClauseDto_Aggregation struct {
+	union json.RawMessage
+}
+
+// AsCodeMetricClauseDto_Partition defines model for AsCodeMetricClauseDto.Partition.
+type AsCodeMetricClauseDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeMetricsMonitorParamsDto defines model for AsCodeMetricsMonitorParamsDto.
+type AsCodeMetricsMonitorParamsDto struct {
+	Aggregation    *AsCodeMetricsMonitorParamsDto_Aggregation `json:"aggregation,omitempty"`
+	Field          *AsCodeFieldReferenceDto                   `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                    `json:"groupBy,omitempty"`
+	Kind           *AsCodeMetricsMonitorParamsDtoKind         `json:"kind,omitempty"`
+	Partition      *AsCodeMetricsMonitorParamsDto_Partition   `json:"partition,omitempty"`
+	Threshold      *AsCodeMetricsMonitorParamsDto_Threshold   `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2               `json:"timeWindow,omitempty"`
+	WhereStatement *string                                    `json:"whereStatement,omitempty"`
+}
+
+// AsCodeMetricsMonitorParamsDto_Aggregation defines model for AsCodeMetricsMonitorParamsDto.Aggregation.
+type AsCodeMetricsMonitorParamsDto_Aggregation struct {
+	union json.RawMessage
+}
+
+// AsCodeMetricsMonitorParamsDtoKind defines model for AsCodeMetricsMonitorParamsDto.Kind.
+type AsCodeMetricsMonitorParamsDtoKind string
+
+// AsCodeMetricsMonitorParamsDto_Partition defines model for AsCodeMetricsMonitorParamsDto.Partition.
+type AsCodeMetricsMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeMetricsMonitorParamsDto_Threshold defines model for AsCodeMetricsMonitorParamsDto.Threshold.
+type AsCodeMetricsMonitorParamsDto_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeMonitorDto defines model for AsCodeMonitorDto.
+type AsCodeMonitorDto struct {
+	Connection            *AsCodeConnectionParamsOverrideDto       `json:"connection,omitempty"`
+	CustomMetadataEntries *[]AsCodeCustomMetadataEntryReferenceDto `json:"customMetadataEntries,omitempty"`
+	Datasets              *[]AsCodeDatasetReferenceDto             `json:"datasets,omitempty"`
+	Description           *string                                  `json:"description,omitempty"`
+	FriendlyId            *string                                  `json:"friendlyId,omitempty"`
+	Id                    *openapi_types.UUID                      `json:"id,omitempty"`
+	Incident              AsCodeIncidentDto                        `json:"incident"`
+	Joins                 []AsCodeJoinDto                          `json:"joins"`
+	Kind                  *AsCodeMonitorDtoKind                    `json:"kind,omitempty"`
+	Name                  string                                   `json:"name"`
+	Notifications         *[]AsCodeMonitorDto_Notifications_Item   `json:"notifications,omitempty"`
+	Parameters            AsCodeMonitorDto_Parameters              `json:"parameters"`
+	Schedule              *string                                  `json:"schedule,omitempty"`
+	ScheduleTimezone      *string                                  `json:"scheduleTimezone,omitempty"`
+	Tags                  *[]AsCodeTagReferenceDto                 `json:"tags,omitempty"`
+	Terms                 *[]AsCodeReferenceByIdOrNameDtoImpl      `json:"terms,omitempty"`
+	Version               int32                                    `json:"version"`
+}
+
+// AsCodeMonitorDtoKind defines model for AsCodeMonitorDto.Kind.
+type AsCodeMonitorDtoKind string
+
+// AsCodeMonitorDto_Notifications_Item defines model for AsCodeMonitorDto.notifications.Item.
+type AsCodeMonitorDto_Notifications_Item struct {
+	union json.RawMessage
+}
+
+// AsCodeMonitorDto_Parameters defines model for AsCodeMonitorDto.Parameters.
+type AsCodeMonitorDto_Parameters struct {
+	union json.RawMessage
+}
+
+// AsCodeMonitorParamsDto defines model for AsCodeMonitorParamsDto.
+type AsCodeMonitorParamsDto struct {
+	Kind *AsCodeMonitorParamsDtoKind `json:"kind,omitempty"`
+}
+
+// AsCodeMonitorParamsDtoKind defines model for AsCodeMonitorParamsDto.Kind.
+type AsCodeMonitorParamsDtoKind string
+
+// AsCodeNotificationReferenceDto defines model for AsCodeNotificationReferenceDto.
+type AsCodeNotificationReferenceDto struct {
+	Kind AsCodeNotificationReferenceDtoKind `json:"kind"`
+}
+
+// AsCodeNotificationReferenceDtoKind defines model for AsCodeNotificationReferenceDto.Kind.
+type AsCodeNotificationReferenceDtoKind string
+
+// AsCodeNullCheckConditionDto defines model for AsCodeNullCheckConditionDto.
+type AsCodeNullCheckConditionDto struct {
+	Expression *AsCodeFieldExpressionDto       `json:"expression,omitempty"`
+	Kind       AsCodeNullCheckConditionDtoKind `json:"kind"`
+}
+
+// AsCodeNullCheckConditionDtoKind defines model for AsCodeNullCheckConditionDto.Kind.
+type AsCodeNullCheckConditionDtoKind string
+
+// AsCodeNullFieldProfilingClauseDto defines model for AsCodeNullFieldProfilingClauseDto.
+type AsCodeNullFieldProfilingClauseDto struct {
+	Kind       AsCodeNullFieldProfilingClauseDtoKind        `json:"kind"`
+	NullValues *AsCodeNullFieldProfilingClauseDtoNullValues `json:"nullValues,omitempty"`
+}
+
+// AsCodeNullFieldProfilingClauseDtoKind defines model for AsCodeNullFieldProfilingClauseDto.Kind.
+type AsCodeNullFieldProfilingClauseDtoKind string
+
+// AsCodeNullFieldProfilingClauseDtoNullValues defines model for AsCodeNullFieldProfilingClauseDto.NullValues.
+type AsCodeNullFieldProfilingClauseDtoNullValues string
+
+// AsCodeNumericComparisonConditionDto defines model for AsCodeNumericComparisonConditionDto.
+type AsCodeNumericComparisonConditionDto struct {
+	Kind            AsCodeNumericComparisonConditionDtoKind              `json:"kind"`
+	LeftExpression  *AsCodeFieldExpressionDto                            `json:"leftExpression,omitempty"`
+	RightExpression *AsCodeNumericComparisonConditionDto_RightExpression `json:"rightExpression,omitempty"`
+}
+
+// AsCodeNumericComparisonConditionDtoKind defines model for AsCodeNumericComparisonConditionDto.Kind.
+type AsCodeNumericComparisonConditionDtoKind string
+
+// AsCodeNumericComparisonConditionDto_RightExpression defines model for AsCodeNumericComparisonConditionDto.RightExpression.
+type AsCodeNumericComparisonConditionDto_RightExpression struct {
+	union json.RawMessage
+}
+
+// AsCodePartitionClauseDto defines model for AsCodePartitionClauseDto.
+type AsCodePartitionClauseDto struct {
+	Kind *AsCodePartitionClauseDtoKind `json:"kind,omitempty"`
+}
+
+// AsCodePartitionClauseDtoKind defines model for AsCodePartitionClauseDto.Kind.
+type AsCodePartitionClauseDtoKind string
+
+// AsCodeQuantileAggregationClauseDtoV1 defines model for AsCodeQuantileAggregationClauseDtoV1.
+type AsCodeQuantileAggregationClauseDtoV1 struct {
+	Kind     AsCodeQuantileAggregationClauseDtoV1Kind `json:"kind"`
+	Quantile *float32                                 `json:"quantile,omitempty"`
+}
+
+// AsCodeQuantileAggregationClauseDtoV1Kind defines model for AsCodeQuantileAggregationClauseDtoV1.Kind.
+type AsCodeQuantileAggregationClauseDtoV1Kind string
+
+// AsCodeQuantileAggregationClauseDtoV2 defines model for AsCodeQuantileAggregationClauseDtoV2.
+type AsCodeQuantileAggregationClauseDtoV2 struct {
+	Kind     AsCodeQuantileAggregationClauseDtoV2Kind `json:"kind"`
+	Quantile *float32                                 `json:"quantile,omitempty"`
+}
+
+// AsCodeQuantileAggregationClauseDtoV2Kind defines model for AsCodeQuantileAggregationClauseDtoV2.Kind.
+type AsCodeQuantileAggregationClauseDtoV2Kind string
+
+// AsCodeRangeDto defines model for AsCodeRangeDto.
+type AsCodeRangeDto struct {
+	IsMaxInclusive *bool      `json:"isMaxInclusive,omitempty"`
+	IsMinInclusive *bool      `json:"isMinInclusive,omitempty"`
+	Max            *NumberDto `json:"max,omitempty"`
+	Min            *NumberDto `json:"min,omitempty"`
+}
+
+// AsCodeReferenceByIdOrNameDtoImpl defines model for AsCodeReferenceByIdOrNameDtoImpl.
+type AsCodeReferenceByIdOrNameDtoImpl struct {
+	Id   *openapi_types.UUID `json:"id,omitempty"`
+	Name *string             `json:"name,omitempty"`
+}
+
+// AsCodeReferentialIntegrityLeftDtoV1 defines model for AsCodeReferentialIntegrityLeftDtoV1.
+type AsCodeReferentialIntegrityLeftDtoV1 struct {
+	Field          []string                                         `json:"field"`
+	GroupBy        *AsCodeGroupByClauseDto                          `json:"groupBy,omitempty"`
+	Partition      *AsCodeReferentialIntegrityLeftDtoV1_Partition   `json:"partition,omitempty"`
+	TimeWindow     *AsCodeTimeWindowWithOffsetAndFrequencyClauseDto `json:"timeWindow,omitempty"`
+	WhereStatement *string                                          `json:"whereStatement,omitempty"`
+}
+
+// AsCodeReferentialIntegrityLeftDtoV1_Partition defines model for AsCodeReferentialIntegrityLeftDtoV1.Partition.
+type AsCodeReferentialIntegrityLeftDtoV1_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeReferentialIntegrityLeftDtoV2 defines model for AsCodeReferentialIntegrityLeftDtoV2.
+type AsCodeReferentialIntegrityLeftDtoV2 struct {
+	Field          []string                                       `json:"field"`
+	GroupBy        *AsCodeGroupByClauseDto                        `json:"groupBy,omitempty"`
+	Partition      *AsCodeReferentialIntegrityLeftDtoV2_Partition `json:"partition,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2                   `json:"timeWindow,omitempty"`
+	WhereStatement *string                                        `json:"whereStatement,omitempty"`
+}
+
+// AsCodeReferentialIntegrityLeftDtoV2_Partition defines model for AsCodeReferentialIntegrityLeftDtoV2.Partition.
+type AsCodeReferentialIntegrityLeftDtoV2_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeReferentialIntegrityMonitorParamsDtoV1 defines model for AsCodeReferentialIntegrityMonitorParamsDtoV1.
+type AsCodeReferentialIntegrityMonitorParamsDtoV1 struct {
+	Kind      *AsCodeReferentialIntegrityMonitorParamsDtoV1Kind      `json:"kind,omitempty"`
+	Left      *AsCodeReferentialIntegrityLeftDtoV1                   `json:"left,omitempty"`
+	MatchType *AsCodeReferentialIntegrityMonitorParamsDtoV1MatchType `json:"matchType,omitempty"`
+	Right     *AsCodeReferentialIntegrityRightDto                    `json:"right,omitempty"`
+}
+
+// AsCodeReferentialIntegrityMonitorParamsDtoV1Kind defines model for AsCodeReferentialIntegrityMonitorParamsDtoV1.Kind.
+type AsCodeReferentialIntegrityMonitorParamsDtoV1Kind string
+
+// AsCodeReferentialIntegrityMonitorParamsDtoV1MatchType defines model for AsCodeReferentialIntegrityMonitorParamsDtoV1.MatchType.
+type AsCodeReferentialIntegrityMonitorParamsDtoV1MatchType string
+
+// AsCodeReferentialIntegrityMonitorParamsDtoV2 defines model for AsCodeReferentialIntegrityMonitorParamsDtoV2.
+type AsCodeReferentialIntegrityMonitorParamsDtoV2 struct {
+	Kind      *AsCodeReferentialIntegrityMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
+	Left      *AsCodeReferentialIntegrityLeftDtoV2                    `json:"left,omitempty"`
+	MatchType *AsCodeReferentialIntegrityMonitorParamsDtoV2MatchType  `json:"matchType,omitempty"`
+	Right     *AsCodeReferentialIntegrityRightDto                     `json:"right,omitempty"`
+	Threshold *AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+}
+
+// AsCodeReferentialIntegrityMonitorParamsDtoV2Kind defines model for AsCodeReferentialIntegrityMonitorParamsDtoV2.Kind.
+type AsCodeReferentialIntegrityMonitorParamsDtoV2Kind string
+
+// AsCodeReferentialIntegrityMonitorParamsDtoV2MatchType defines model for AsCodeReferentialIntegrityMonitorParamsDtoV2.MatchType.
+type AsCodeReferentialIntegrityMonitorParamsDtoV2MatchType string
+
+// AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold defines model for AsCodeReferentialIntegrityMonitorParamsDtoV2.Threshold.
+type AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeReferentialIntegrityRightDto defines model for AsCodeReferentialIntegrityRightDto.
+type AsCodeReferentialIntegrityRightDto struct {
+	Field          []string `json:"field"`
+	WhereStatement *string  `json:"whereStatement,omitempty"`
+}
+
+// AsCodeRegexFieldFormatValidationClauseDto defines model for AsCodeRegexFieldFormatValidationClauseDto.
+type AsCodeRegexFieldFormatValidationClauseDto struct {
+	Kind  AsCodeRegexFieldFormatValidationClauseDtoKind `json:"kind"`
+	Regex *string                                       `json:"regex,omitempty"`
+}
+
+// AsCodeRegexFieldFormatValidationClauseDtoKind defines model for AsCodeRegexFieldFormatValidationClauseDto.Kind.
+type AsCodeRegexFieldFormatValidationClauseDtoKind string
+
+// AsCodeRollingDistributionReferenceDto defines model for AsCodeRollingDistributionReferenceDto.
+type AsCodeRollingDistributionReferenceDto struct {
+	Delay *SimpleDuration                           `json:"delay,omitempty"`
+	Kind  AsCodeRollingDistributionReferenceDtoKind `json:"kind"`
+}
+
+// AsCodeRollingDistributionReferenceDtoKind defines model for AsCodeRollingDistributionReferenceDto.Kind.
+type AsCodeRollingDistributionReferenceDtoKind string
+
+// AsCodeRowDuplicatesMonitorParamsDto defines model for AsCodeRowDuplicatesMonitorParamsDto.
+type AsCodeRowDuplicatesMonitorParamsDto struct {
+	GroupBy        *AsCodeGroupByClauseDto                        `json:"groupBy,omitempty"`
+	Kind           *AsCodeRowDuplicatesMonitorParamsDtoKind       `json:"kind,omitempty"`
+	Partition      *AsCodeRowDuplicatesMonitorParamsDto_Partition `json:"partition,omitempty"`
+	Threshold      *AsCodeRowDuplicatesMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2                   `json:"timeWindow,omitempty"`
+	WhereStatement *string                                        `json:"whereStatement,omitempty"`
+}
+
+// AsCodeRowDuplicatesMonitorParamsDtoKind defines model for AsCodeRowDuplicatesMonitorParamsDto.Kind.
+type AsCodeRowDuplicatesMonitorParamsDtoKind string
+
+// AsCodeRowDuplicatesMonitorParamsDto_Partition defines model for AsCodeRowDuplicatesMonitorParamsDto.Partition.
+type AsCodeRowDuplicatesMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeRowDuplicatesMonitorParamsDto_Threshold defines model for AsCodeRowDuplicatesMonitorParamsDto.Threshold.
+type AsCodeRowDuplicatesMonitorParamsDto_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeSchemaChangeMonitorParamsDto defines model for AsCodeSchemaChangeMonitorParamsDto.
+type AsCodeSchemaChangeMonitorParamsDto = AsCodeMonitorParamsDto
+
+// AsCodeServiceNowNotificationDto defines model for AsCodeServiceNowNotificationDto.
+type AsCodeServiceNowNotificationDto struct {
+	Enabled      *bool                               `json:"enabled,omitempty"`
+	Kind         AsCodeServiceNowNotificationDtoKind `json:"kind"`
+	TemplateName *string                             `json:"templateName,omitempty"`
+}
+
+// AsCodeServiceNowNotificationDtoKind defines model for AsCodeServiceNowNotificationDto.Kind.
+type AsCodeServiceNowNotificationDtoKind string
+
+// AsCodeSqlMonitorParamsDto defines model for AsCodeSqlMonitorParamsDto.
+type AsCodeSqlMonitorParamsDto struct {
+	Kind      *AsCodeSqlMonitorParamsDtoKind       `json:"kind,omitempty"`
+	Sql       *string                              `json:"sql,omitempty"`
+	Threshold *AsCodeSqlMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+}
+
+// AsCodeSqlMonitorParamsDtoKind defines model for AsCodeSqlMonitorParamsDto.Kind.
+type AsCodeSqlMonitorParamsDtoKind string
+
+// AsCodeSqlMonitorParamsDto_Threshold defines model for AsCodeSqlMonitorParamsDto.Threshold.
+type AsCodeSqlMonitorParamsDto_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeStaticCompletenessMonitorParamsDto defines model for AsCodeStaticCompletenessMonitorParamsDto.
+type AsCodeStaticCompletenessMonitorParamsDto struct {
+	GroupBy        *AsCodeGroupByClauseDto                             `json:"groupBy,omitempty"`
+	Kind           *AsCodeStaticCompletenessMonitorParamsDtoKind       `json:"kind,omitempty"`
+	Partition      *AsCodeStaticCompletenessMonitorParamsDto_Partition `json:"partition,omitempty"`
+	Threshold      *AsCodeStaticThresholdWithComparisonModeDto         `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV1                        `json:"timeWindow,omitempty"`
+	WhereStatement *string                                             `json:"whereStatement,omitempty"`
+}
+
+// AsCodeStaticCompletenessMonitorParamsDtoKind defines model for AsCodeStaticCompletenessMonitorParamsDto.Kind.
+type AsCodeStaticCompletenessMonitorParamsDtoKind string
+
+// AsCodeStaticCompletenessMonitorParamsDto_Partition defines model for AsCodeStaticCompletenessMonitorParamsDto.Partition.
+type AsCodeStaticCompletenessMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeStaticFieldProfilingMonitorParamsDto defines model for AsCodeStaticFieldProfilingMonitorParamsDto.
+type AsCodeStaticFieldProfilingMonitorParamsDto struct {
+	Field          *[]string                                             `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                               `json:"groupBy,omitempty"`
+	Kind           *AsCodeStaticFieldProfilingMonitorParamsDtoKind       `json:"kind,omitempty"`
+	Partition      *AsCodeStaticFieldProfilingMonitorParamsDto_Partition `json:"partition,omitempty"`
+	Profiling      *AsCodeStaticFieldProfilingMonitorParamsDto_Profiling `json:"profiling,omitempty"`
+	Threshold      *AsCodeStaticFieldProfilingThresholdDto               `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV1                          `json:"timeWindow,omitempty"`
+	WhereStatement *string                                               `json:"whereStatement,omitempty"`
+}
+
+// AsCodeStaticFieldProfilingMonitorParamsDtoKind defines model for AsCodeStaticFieldProfilingMonitorParamsDto.Kind.
+type AsCodeStaticFieldProfilingMonitorParamsDtoKind string
+
+// AsCodeStaticFieldProfilingMonitorParamsDto_Partition defines model for AsCodeStaticFieldProfilingMonitorParamsDto.Partition.
+type AsCodeStaticFieldProfilingMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeStaticFieldProfilingMonitorParamsDto_Profiling defines model for AsCodeStaticFieldProfilingMonitorParamsDto.Profiling.
+type AsCodeStaticFieldProfilingMonitorParamsDto_Profiling struct {
+	union json.RawMessage
+}
+
+// AsCodeStaticFieldProfilingThresholdDto defines model for AsCodeStaticFieldProfilingThresholdDto.
+type AsCodeStaticFieldProfilingThresholdDto struct {
+	ExcludedDates *[]AsCodeCalendarReferenceDto `json:"excludedDates,omitempty"`
+	Max           NumberOrPercentageDto         `json:"max"`
+}
+
+// AsCodeStaticFreshnessThresholdDto defines model for AsCodeStaticFreshnessThresholdDto.
+type AsCodeStaticFreshnessThresholdDto = AsCodeFreshnessThresholdDto
+
+// AsCodeStaticMetricMonitorParamsDto defines model for AsCodeStaticMetricMonitorParamsDto.
+type AsCodeStaticMetricMonitorParamsDto struct {
+	Aggregation    *AsCodeStaticMetricMonitorParamsDto_Aggregation `json:"aggregation,omitempty"`
+	Field          *string                                         `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                         `json:"groupBy,omitempty"`
+	Kind           *AsCodeStaticMetricMonitorParamsDtoKind         `json:"kind,omitempty"`
+	Partition      *AsCodeStaticMetricMonitorParamsDto_Partition   `json:"partition,omitempty"`
+	Threshold      *AsCodeStaticThresholdDtoV1                     `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV1                    `json:"timeWindow,omitempty"`
+	WhereStatement *string                                         `json:"whereStatement,omitempty"`
+}
+
+// AsCodeStaticMetricMonitorParamsDto_Aggregation defines model for AsCodeStaticMetricMonitorParamsDto.Aggregation.
+type AsCodeStaticMetricMonitorParamsDto_Aggregation struct {
+	union json.RawMessage
+}
+
+// AsCodeStaticMetricMonitorParamsDtoKind defines model for AsCodeStaticMetricMonitorParamsDto.Kind.
+type AsCodeStaticMetricMonitorParamsDtoKind string
+
+// AsCodeStaticMetricMonitorParamsDto_Partition defines model for AsCodeStaticMetricMonitorParamsDto.Partition.
+type AsCodeStaticMetricMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeStaticThresholdDtoV1 defines model for AsCodeStaticThresholdDtoV1.
+type AsCodeStaticThresholdDtoV1 struct {
+	ExcludedDates  *[]AsCodeCalendarReferenceDto `json:"excludedDates,omitempty"`
+	IsMaxInclusive *bool                         `json:"isMaxInclusive,omitempty"`
+	IsMinInclusive *bool                         `json:"isMinInclusive,omitempty"`
+	Max            *NumberOrPercentageDto        `json:"max,omitempty"`
+	Min            *NumberOrPercentageDto        `json:"min,omitempty"`
+}
+
+// AsCodeStaticThresholdDtoV2 defines model for AsCodeStaticThresholdDtoV2.
+type AsCodeStaticThresholdDtoV2 struct {
+	ComparisonMode *AsCodeStaticThresholdDtoV2ComparisonMode `json:"comparisonMode,omitempty"`
+	ExcludedDates  *[]AsCodeCalendarReferenceDto             `json:"excludedDates,omitempty"`
+	IsMaxInclusive *bool                                     `json:"isMaxInclusive,omitempty"`
+	IsMinInclusive *bool                                     `json:"isMinInclusive,omitempty"`
+	Kind           AsCodeStaticThresholdDtoV2Kind            `json:"kind"`
+	Max            *NumberOrPercentageDto                    `json:"max,omitempty"`
+	Min            *NumberOrPercentageDto                    `json:"min,omitempty"`
+	ValueMode      *AsCodeStaticThresholdDtoV2ValueMode      `json:"valueMode,omitempty"`
+}
+
+// AsCodeStaticThresholdDtoV2ComparisonMode defines model for AsCodeStaticThresholdDtoV2.ComparisonMode.
+type AsCodeStaticThresholdDtoV2ComparisonMode string
+
+// AsCodeStaticThresholdDtoV2Kind defines model for AsCodeStaticThresholdDtoV2.Kind.
+type AsCodeStaticThresholdDtoV2Kind string
+
+// AsCodeStaticThresholdDtoV2ValueMode defines model for AsCodeStaticThresholdDtoV2.ValueMode.
+type AsCodeStaticThresholdDtoV2ValueMode string
+
+// AsCodeStaticThresholdWithComparisonModeDto defines model for AsCodeStaticThresholdWithComparisonModeDto.
+type AsCodeStaticThresholdWithComparisonModeDto struct {
+	ComparisonMode *AsCodeStaticThresholdWithComparisonModeDtoComparisonMode `json:"comparisonMode,omitempty"`
+	ExcludedDates  *[]AsCodeCalendarReferenceDto                             `json:"excludedDates,omitempty"`
+	IsMaxInclusive *bool                                                     `json:"isMaxInclusive,omitempty"`
+	IsMinInclusive *bool                                                     `json:"isMinInclusive,omitempty"`
+	Max            *NumberOrPercentageDto                                    `json:"max,omitempty"`
+	Min            *NumberOrPercentageDto                                    `json:"min,omitempty"`
+}
+
+// AsCodeStaticThresholdWithComparisonModeDtoComparisonMode defines model for AsCodeStaticThresholdWithComparisonModeDto.ComparisonMode.
+type AsCodeStaticThresholdWithComparisonModeDtoComparisonMode string
+
+// AsCodeStringConditionDto defines model for AsCodeStringConditionDto.
+type AsCodeStringConditionDto struct {
+	Kind            AsCodeStringConditionDtoKind              `json:"kind"`
+	LeftExpression  *AsCodeFieldExpressionDto                 `json:"leftExpression,omitempty"`
+	RightExpression *AsCodeStringConditionDto_RightExpression `json:"rightExpression,omitempty"`
+}
+
+// AsCodeStringConditionDtoKind defines model for AsCodeStringConditionDto.Kind.
+type AsCodeStringConditionDtoKind string
+
+// AsCodeStringConditionDto_RightExpression defines model for AsCodeStringConditionDto.RightExpression.
+type AsCodeStringConditionDto_RightExpression struct {
+	union json.RawMessage
+}
+
+// AsCodeTagReferenceDto defines model for AsCodeTagReferenceDto.
+type AsCodeTagReferenceDto struct {
+	Id   *openapi_types.UUID        `json:"id,omitempty"`
+	Kind *AsCodeTagReferenceDtoKind `json:"kind,omitempty"`
+	Name *string                    `json:"name,omitempty"`
+}
+
+// AsCodeTagReferenceDtoKind defines model for AsCodeTagReferenceDto.Kind.
+type AsCodeTagReferenceDtoKind string
+
+// AsCodeThresholdBaseDto defines model for AsCodeThresholdBaseDto.
+type AsCodeThresholdBaseDto struct {
+	ExcludedDates *[]AsCodeCalendarReferenceDto    `json:"excludedDates,omitempty"`
+	Kind          AsCodeThresholdBaseDtoKind       `json:"kind"`
+	ValueMode     *AsCodeThresholdBaseDtoValueMode `json:"valueMode,omitempty"`
+}
+
+// AsCodeThresholdBaseDtoKind defines model for AsCodeThresholdBaseDto.Kind.
+type AsCodeThresholdBaseDtoKind string
+
+// AsCodeThresholdBaseDtoValueMode defines model for AsCodeThresholdBaseDto.ValueMode.
+type AsCodeThresholdBaseDtoValueMode string
+
+// AsCodeTimeUnitColumnPartitionClauseDto defines model for AsCodeTimeUnitColumnPartitionClauseDto.
+type AsCodeTimeUnitColumnPartitionClauseDto struct {
+	Field    *AsCodeFieldReferenceDto                    `json:"field,omitempty"`
+	Interval *SimpleDuration                             `json:"interval,omitempty"`
+	Kind     *AsCodeTimeUnitColumnPartitionClauseDtoKind `json:"kind,omitempty"`
+}
+
+// AsCodeTimeUnitColumnPartitionClauseDtoKind defines model for AsCodeTimeUnitColumnPartitionClauseDto.Kind.
+type AsCodeTimeUnitColumnPartitionClauseDtoKind string
+
+// AsCodeTimeWindowClauseDtoV1 defines model for AsCodeTimeWindowClauseDtoV1.
+type AsCodeTimeWindowClauseDtoV1 struct {
+	Duration SimpleDuration `json:"duration"`
+	Field    string         `json:"field"`
+}
+
+// AsCodeTimeWindowClauseDtoV2 defines model for AsCodeTimeWindowClauseDtoV2.
+type AsCodeTimeWindowClauseDtoV2 struct {
+	DeltaQuerying     *SimpleDuration         `json:"deltaQuerying,omitempty"`
+	Field             AsCodeFieldReferenceDto `json:"field"`
+	FirstRun          *SimpleDuration         `json:"firstRun,omitempty"`
+	Frequency         *SimpleDuration         `json:"frequency,omitempty"`
+	Offset            *SimpleDuration         `json:"offset,omitempty"`
+	OffsetPeriods     *int32                  `json:"offsetPeriods,omitempty"`
+	RollingTimeWindow *SimpleDuration         `json:"rollingTimeWindow,omitempty"`
+}
+
+// AsCodeTimeWindowClauseWithoutFieldDtoV2 defines model for AsCodeTimeWindowClauseWithoutFieldDtoV2.
+type AsCodeTimeWindowClauseWithoutFieldDtoV2 struct {
+	DeltaQuerying     *SimpleDuration `json:"deltaQuerying,omitempty"`
+	FirstRun          *SimpleDuration `json:"firstRun,omitempty"`
+	Frequency         *SimpleDuration `json:"frequency,omitempty"`
+	Offset            *SimpleDuration `json:"offset,omitempty"`
+	OffsetPeriods     *int32          `json:"offsetPeriods,omitempty"`
+	RollingTimeWindow *SimpleDuration `json:"rollingTimeWindow,omitempty"`
+}
+
+// AsCodeTimeWindowOffsetClauseDto defines model for AsCodeTimeWindowOffsetClauseDto.
+type AsCodeTimeWindowOffsetClauseDto struct {
+	Offset *SimpleDuration `json:"offset,omitempty"`
+}
+
+// AsCodeTimeWindowWithOffsetAndFrequencyClauseDto defines model for AsCodeTimeWindowWithOffsetAndFrequencyClauseDto.
+type AsCodeTimeWindowWithOffsetAndFrequencyClauseDto struct {
+	DeltaQuerying        *SimpleDuration `json:"deltaQuerying,omitempty"`
+	DisableDeltaQuerying *bool           `json:"disableDeltaQuerying,omitempty"`
+	Duration             SimpleDuration  `json:"duration"`
+	Field                string          `json:"field"`
+	Frequency            *SimpleDuration `json:"frequency,omitempty"`
+	Offset               *SimpleDuration `json:"offset,omitempty"`
+}
+
+// AsCodeTimeWindowWithOffsetFrequencyAndRollingClauseDto defines model for AsCodeTimeWindowWithOffsetFrequencyAndRollingClauseDto.
+type AsCodeTimeWindowWithOffsetFrequencyAndRollingClauseDto struct {
+	DeltaQuerying        *SimpleDuration `json:"deltaQuerying,omitempty"`
+	DisableDeltaQuerying *bool           `json:"disableDeltaQuerying,omitempty"`
+	Duration             SimpleDuration  `json:"duration"`
+	Field                string          `json:"field"`
+	Frequency            *SimpleDuration `json:"frequency,omitempty"`
+	Offset               *SimpleDuration `json:"offset,omitempty"`
+	RollingTimeWindow    *SimpleDuration `json:"rollingTimeWindow,omitempty"`
+}
+
+// AsCodeValueExpressionDto defines model for AsCodeValueExpressionDto.
+type AsCodeValueExpressionDto struct {
+	Kind  AsCodeValueExpressionDtoKind `json:"kind"`
+	Value *string                      `json:"value,omitempty"`
+}
+
+// AsCodeValueExpressionDtoKind defines model for AsCodeValueExpressionDto.Kind.
+type AsCodeValueExpressionDtoKind string
+
+// AsCodeValueRangeMonitorParamsDto defines model for AsCodeValueRangeMonitorParamsDto.
+type AsCodeValueRangeMonitorParamsDto struct {
+	Field          *AsCodeFieldReferenceDto                    `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                     `json:"groupBy,omitempty"`
+	Kind           *AsCodeValueRangeMonitorParamsDtoKind       `json:"kind,omitempty"`
+	Partition      *AsCodeValueRangeMonitorParamsDto_Partition `json:"partition,omitempty"`
+	Range          *AsCodeRangeDto                             `json:"range,omitempty"`
+	Threshold      *AsCodeValueRangeMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2                `json:"timeWindow,omitempty"`
+	WhereStatement *string                                     `json:"whereStatement,omitempty"`
+}
+
+// AsCodeValueRangeMonitorParamsDtoKind defines model for AsCodeValueRangeMonitorParamsDto.Kind.
+type AsCodeValueRangeMonitorParamsDtoKind string
+
+// AsCodeValueRangeMonitorParamsDto_Partition defines model for AsCodeValueRangeMonitorParamsDto.Partition.
+type AsCodeValueRangeMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeValueRangeMonitorParamsDto_Threshold defines model for AsCodeValueRangeMonitorParamsDto.Threshold.
+type AsCodeValueRangeMonitorParamsDto_Threshold struct {
+	union json.RawMessage
+}
+
+// AsCodeVolumeMonitorParamsDto defines model for AsCodeVolumeMonitorParamsDto.
+type AsCodeVolumeMonitorParamsDto struct {
+	GroupBy        *AsCodeGroupByClauseDto                 `json:"groupBy,omitempty"`
+	Kind           *AsCodeVolumeMonitorParamsDtoKind       `json:"kind,omitempty"`
+	MetadataBased  *bool                                   `json:"metadataBased,omitempty"`
+	Partition      *AsCodeVolumeMonitorParamsDto_Partition `json:"partition,omitempty"`
+	Threshold      *AsCodeVolumeMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2            `json:"timeWindow,omitempty"`
+	WhereStatement *string                                 `json:"whereStatement,omitempty"`
+}
+
+// AsCodeVolumeMonitorParamsDtoKind defines model for AsCodeVolumeMonitorParamsDto.Kind.
+type AsCodeVolumeMonitorParamsDtoKind string
+
+// AsCodeVolumeMonitorParamsDto_Partition defines model for AsCodeVolumeMonitorParamsDto.Partition.
+type AsCodeVolumeMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeVolumeMonitorParamsDto_Threshold defines model for AsCodeVolumeMonitorParamsDto.Threshold.
+type AsCodeVolumeMonitorParamsDto_Threshold struct {
+	union json.RawMessage
+}
+
+// AthenaInformation Athena connection settings
+type AthenaInformation struct {
+	// Datasource Your Athena data source name
+	Datasource string `json:"datasource"`
+
+	// Region Your Athena instance AWS region
+	Region string `json:"region"`
+
+	// RoleArn ARN of the IAM role to use for Athena queries
+	RoleArn string `json:"roleArn"`
+
+	// S3OutputLocation The S3 location where Athena query results are stored
+	S3OutputLocation string `json:"s3OutputLocation"`
+
+	// VpcUrl Your VPC URL for Athena connection
+	VpcUrl *string `json:"vpcUrl,omitempty"`
+
+	// Workgroup Your Athena workgroup name
+	Workgroup string `json:"workgroup"`
+}
+
+// BigQueryInformation BigQuery connection settings
+type BigQueryInformation struct {
+	// BillingProjectId Your billing project ID
+	BillingProjectId *string `json:"billingProjectId,omitempty"`
+
+	// ProjectId Your BigQuery project ID
+	ProjectId string `json:"projectId"`
+
+	// WorkerProjectIds Comma separated list of project ids where your queries run. Optional if it's the same as the projectId parameter
+	WorkerProjectIds *string `json:"workerProjectIds,omitempty"`
 }
 
 // CalendarTimeslot defines model for CalendarTimeslot.
@@ -2409,6 +7053,30 @@ type CustomHeader struct {
 	Value *string `json:"value,omitempty"`
 }
 
+// DatabricksInformation Databricks connection settings
+type DatabricksInformation struct {
+	// Host Your Databricks server hostname
+	Host string `json:"host"`
+
+	// HttpPath Your Databricks HTTP path
+	HttpPath string `json:"httpPath"`
+
+	// Port Your Databricks server port
+	Port int32 `json:"port"`
+}
+
+// DatabricksJobsInformation Databricks Jobs connection settings
+type DatabricksJobsInformation struct {
+	// Host Your Databricks Jobs server hostname
+	Host string `json:"host"`
+
+	// HttpPath Your Databricks Jobs HTTP path
+	HttpPath string `json:"httpPath"`
+
+	// Port Your Databricks Jobs server port
+	Port int32 `json:"port"`
+}
+
 // DatasetBriefDto defines model for DatasetBriefDto.
 type DatasetBriefDto struct {
 	DatasourceName string             `json:"datasourceName"`
@@ -2439,11 +7107,93 @@ type DatasourceProviderDto struct {
 // DatasourceProviderDtoType defines model for DatasourceProviderDto.Type.
 type DatasourceProviderDtoType string
 
+// DbtCloudInformation DBT Cloud connection settings
+type DbtCloudInformation struct {
+	// AccountId Your dbt Cloud account ID
+	AccountId string `json:"accountId"`
+
+	// BaseUrl Your dbt Cloud base URL
+	BaseUrl string `json:"baseUrl"`
+}
+
+// DbtInformation DBT connection settings
+type DbtInformation struct {
+	// ProjectName Your dbt project name (the 'name' value in your dbt_project.yml file)
+	ProjectName string `json:"projectName"`
+
+	// Target Your dbt target name (the 'target' value in your profiles.yml file)
+	Target string `json:"target"`
+}
+
+// EntityCustomMetadataDto defines model for EntityCustomMetadataDto.
+type EntityCustomMetadataDto struct {
+	Description *string                                `json:"description,omitempty"`
+	Entries     []EntityCustomMetadataDto_Entries_Item `json:"entries"`
+	Id          openapi_types.UUID                     `json:"id"`
+	Name        string                                 `json:"name"`
+	Type        EntityCustomMetadataDtoType            `json:"type"`
+}
+
+// EntityCustomMetadataDto_Entries_Item defines model for EntityCustomMetadataDto.entries.Item.
+type EntityCustomMetadataDto_Entries_Item struct {
+	union json.RawMessage
+}
+
+// EntityCustomMetadataDtoType defines model for EntityCustomMetadataDto.Type.
+type EntityCustomMetadataDtoType string
+
+// EntityCustomMetadataEntryDto defines model for EntityCustomMetadataEntryDto.
+type EntityCustomMetadataEntryDto struct {
+	Id   openapi_types.UUID               `json:"id"`
+	Type EntityCustomMetadataEntryDtoType `json:"type"`
+}
+
+// EntityCustomMetadataEntryDtoType defines model for EntityCustomMetadataEntryDto.Type.
+type EntityCustomMetadataEntryDtoType string
+
+// EntityCustomMetadataEntryLabelDto defines model for EntityCustomMetadataEntryLabelDto.
+type EntityCustomMetadataEntryLabelDto struct {
+	Id    openapi_types.UUID                    `json:"id"`
+	Type  EntityCustomMetadataEntryLabelDtoType `json:"type"`
+	Value *string                               `json:"value,omitempty"`
+}
+
+// EntityCustomMetadataEntryLabelDtoType defines model for EntityCustomMetadataEntryLabelDto.Type.
+type EntityCustomMetadataEntryLabelDtoType string
+
+// EntityCustomMetadataEntryStringDto defines model for EntityCustomMetadataEntryStringDto.
+type EntityCustomMetadataEntryStringDto struct {
+	Id    openapi_types.UUID                     `json:"id"`
+	Type  EntityCustomMetadataEntryStringDtoType `json:"type"`
+	Value *string                                `json:"value,omitempty"`
+}
+
+// EntityCustomMetadataEntryStringDtoType defines model for EntityCustomMetadataEntryStringDto.Type.
+type EntityCustomMetadataEntryStringDtoType string
+
+// EntityCustomMetadataEntryUserDto defines model for EntityCustomMetadataEntryUserDto.
+type EntityCustomMetadataEntryUserDto struct {
+	Id     openapi_types.UUID                   `json:"id"`
+	Login  *string                              `json:"login,omitempty"`
+	Name   *string                              `json:"name,omitempty"`
+	Type   EntityCustomMetadataEntryUserDtoType `json:"type"`
+	UserId *openapi_types.UUID                  `json:"userId,omitempty"`
+}
+
+// EntityCustomMetadataEntryUserDtoType defines model for EntityCustomMetadataEntryUserDto.Type.
+type EntityCustomMetadataEntryUserDtoType string
+
 // FilterElementDto defines model for FilterElementDto.
 type FilterElementDto struct {
 	Id      *string `json:"id,omitempty"`
 	Name    string  `json:"name"`
 	Results *int32  `json:"results,omitempty"`
+}
+
+// FivetranInformation Fivetran connection settings
+type FivetranInformation struct {
+	// Host Your Fivetran environment URL
+	Host string `json:"host"`
 }
 
 // GenericProviderDto defines model for GenericProviderDto.
@@ -2457,7 +7207,7 @@ type GenericProviderDtoType string
 
 // GetCollaborationToolItemDto defines model for GetCollaborationToolItemDto.
 type GetCollaborationToolItemDto struct {
-	Id      openapi_types.UUID              `json:"id"`
+	Id      *openapi_types.UUID             `json:"id,omitempty"`
 	ItemKey string                          `json:"itemKey"`
 	ItemUrl *string                         `json:"itemUrl,omitempty"`
 	Type    GetCollaborationToolItemDtoType `json:"type"`
@@ -2466,7 +7216,8 @@ type GetCollaborationToolItemDto struct {
 // GetCollaborationToolItemDtoType defines model for GetCollaborationToolItemDto.Type.
 type GetCollaborationToolItemDtoType string
 
-// GitConnection The LookML configuration. See https://docs.siffletdata.com/docs/looker. If you don't use LookML, use an empty list `[]`
+// GitConnection The LookML configuration. See https://docs.siffletdata.com/docs/looker.
+// If you don’t use LookML or omit this field, it will default to an empty list.
 type GitConnection struct {
 	AuthType GitConnectionAuthType `json:"authType"`
 	Branch   *string               `json:"branch,omitempty"`
@@ -2477,21 +7228,26 @@ type GitConnection struct {
 // GitConnectionAuthType defines model for GitConnection.AuthType.
 type GitConnectionAuthType string
 
+// GroupDecryptedValuesDto defines model for GroupDecryptedValuesDto.
+type GroupDecryptedValuesDto struct {
+	DecryptedValues *map[string][]string `json:"decryptedValues,omitempty"`
+}
+
 // IncidentLightDto defines model for IncidentLightDto.
 type IncidentLightDto struct {
-	CollaborationToolItems []GetCollaborationToolItemDto `json:"collaborationToolItems"`
-	CompromisedAssets      int32                         `json:"compromisedAssets"`
-	Criticality            int32                         `json:"criticality"`
-	Datasets               []DatasetBriefDto             `json:"datasets"`
-	Id                     openapi_types.UUID            `json:"id"`
-	IssueNo                int32                         `json:"issueNo"`
-	LastModifiedDate       *int64                        `json:"lastModifiedDate,omitempty"`
-	LastOccurredDate       int64                         `json:"lastOccurredDate"`
-	Name                   string                        `json:"name"`
-	Owners                 []UserDto                     `json:"owners"`
-	Qualification          IncidentLightDtoQualification `json:"qualification"`
-	Status                 IncidentLightDtoStatus        `json:"status"`
-	TriggerTime            int64                         `json:"triggerTime"`
+	CollaborationToolItems []GetCollaborationToolItemDto  `json:"collaborationToolItems"`
+	CompromisedAssets      int32                          `json:"compromisedAssets"`
+	Criticality            int32                          `json:"criticality"`
+	Datasets               []DatasetBriefDto              `json:"datasets"`
+	Id                     openapi_types.UUID             `json:"id"`
+	IssueNo                int32                          `json:"issueNo"`
+	LastModifiedDate       *int64                         `json:"lastModifiedDate,omitempty"`
+	LastOccurredDate       int64                          `json:"lastOccurredDate"`
+	Name                   string                         `json:"name"`
+	Owners                 []UserDto                      `json:"owners"`
+	Qualification          *IncidentLightDtoQualification `json:"qualification,omitempty"`
+	Status                 IncidentLightDtoStatus         `json:"status"`
+	TriggerTime            int64                          `json:"triggerTime"`
 }
 
 // IncidentLightDtoQualification defines model for IncidentLightDto.Qualification.
@@ -2522,10 +7278,90 @@ type LogDto struct {
 // LogDtoLevel defines model for LogDto.Level.
 type LogDtoLevel string
 
+// LookerInformation Looker connection settings
+type LookerInformation struct {
+	// GitConnections The LookML configuration. See https://docs.siffletdata.com/docs/looker.
+	// If you don’t use LookML or omit this field, it will default to an empty list.
+	GitConnections *[]GitConnection `json:"gitConnections,omitempty"`
+
+	// Host URL of the Looker site and append at the end the following "/api/4.0".
+	// For instance if you usually connect to Looker on "https://abcdef.cloud.looker.com/",
+	//  then you should add the following on host: "https://abcdef.cloud.looker.com/api/4.0"
+	Host string `json:"host"`
+}
+
+// MicrostrategyInformation MicroStrategy connection settings
+type MicrostrategyInformation struct {
+	// Host Your MicroStrategy host
+	Host string `json:"host"`
+}
+
 // MonitoringSearchDto defines model for MonitoringSearchDto.
 type MonitoringSearchDto struct {
 	CatalogFilters []CatalogFilterDto                  `json:"catalogFilters"`
 	SearchRules    SearchCollectionRuleCatalogAssetDto `json:"searchRules"`
+}
+
+// MssqlInformation MSSQL connection settings
+type MssqlInformation struct {
+	// Database Your database name
+	Database string `json:"database"`
+
+	// Host Your MSSQL server hostname
+	Host string `json:"host"`
+
+	// Port Your MSSQL server port
+	Port int32 `json:"port"`
+
+	// Ssl Whether to use SSL to connect to your MSSQL server (recommended: true)
+	Ssl bool `json:"ssl"`
+}
+
+// MysqlInformation MySQL connection settings
+type MysqlInformation struct {
+	// Database Your database name
+	Database string `json:"database"`
+
+	// Host Your MySQL server hostname
+	Host string `json:"host"`
+
+	// MysqlTlsVersion The TLS version to use to connect to your MySQL server
+	MysqlTlsVersion MysqlInformationMysqlTlsVersion `json:"mysqlTlsVersion"`
+
+	// Port Your MySQL server port
+	Port int32 `json:"port"`
+}
+
+// MysqlInformationMysqlTlsVersion The TLS version to use to connect to your MySQL server
+type MysqlInformationMysqlTlsVersion string
+
+// NumberDto defines model for NumberDto.
+type NumberDto struct {
+	FloatValue   *float32 `json:"floatValue,omitempty"`
+	Integer      *bool    `json:"integer,omitempty"`
+	IntegerValue *int32   `json:"integerValue,omitempty"`
+	Zero         *bool    `json:"zero,omitempty"`
+}
+
+// NumberOrPercentageDto defines model for NumberOrPercentageDto.
+type NumberOrPercentageDto struct {
+	FloatValue   *float32 `json:"floatValue,omitempty"`
+	Integer      *bool    `json:"integer,omitempty"`
+	IntegerValue *int32   `json:"integerValue,omitempty"`
+	Percentage   *bool    `json:"percentage,omitempty"`
+	Zero         *bool    `json:"zero,omitempty"`
+}
+
+// OracleInformation Oracle connection settings
+type OracleInformation struct {
+	// Database Your database name
+	Database string `json:"database"`
+
+	// Host Your Oracle server hostname
+	Host string `json:"host"`
+
+	// Port Your Oracle server port
+	Port int32 `json:"port"`
 }
 
 // ParameterizedQueryDto defines model for ParameterizedQueryDto.
@@ -2537,6 +7373,27 @@ type ParameterizedQueryDto struct {
 // PositionalParameterDto defines model for PositionalParameterDto.
 type PositionalParameterDto struct {
 	Value *map[string]interface{} `json:"value,omitempty"`
+}
+
+// PostgresqlInformation PostgreSQL connection settings
+type PostgresqlInformation struct {
+	// Database Your database name
+	Database string `json:"database"`
+
+	// Host Your PostgreSQL server host
+	Host string `json:"host"`
+
+	// Port Your PostgreSQL server port
+	Port int32 `json:"port"`
+}
+
+// PowerBiInformation Power BI connection settings
+type PowerBiInformation struct {
+	// ClientId Your Azure AD client ID
+	ClientId string `json:"clientId"`
+
+	// TenantId Your Azure AD tenant ID
+	TenantId string `json:"tenantId"`
 }
 
 // ProviderDto defines model for ProviderDto.
@@ -2565,6 +7422,9 @@ type PublicAssetFilterDto struct {
 	// AssetType List of asset types to filter on. Valid values are TABLE_AND_VIEW, PIPELINE, DASHBOARD, ML_MODEL. For filtering declared assets with custom types, you can use the format declared-asset_{custom sub type}. For example: declared-asset_Storage
 	AssetType *[]string `json:"assetType,omitempty"`
 
+	// CustomMetadataValues List of custom metadata values to filter on
+	CustomMetadataValues *[]PublicAssetFilterDto_CustomMetadataValues_Item `json:"customMetadataValues,omitempty"`
+
 	// DomainId Domain to search on
 	DomainId *openapi_types.UUID `json:"domainId,omitempty"`
 
@@ -2591,6 +7451,11 @@ type PublicAssetFilterDto struct {
 
 	// TextSearch Text to match in the asset names
 	TextSearch *string `json:"textSearch,omitempty"`
+}
+
+// PublicAssetFilterDto_CustomMetadataValues_Item defines model for PublicAssetFilterDto.customMetadataValues.Item.
+type PublicAssetFilterDto_CustomMetadataValues_Item struct {
+	union json.RawMessage
 }
 
 // PublicAssetFilterDtoHealthStatus List of health status to filter on
@@ -2662,6 +7527,9 @@ type PublicBigQueryParametersDto struct {
 	// ProjectId Your BigQuery project ID
 	ProjectId *string                         `json:"projectId,omitempty"`
 	Type      PublicBigQueryParametersDtoType `json:"type"`
+
+	// WorkerProjectIds Comma separated list of project ids where your queries run. Optional if it's the same as the projectId parameter
+	WorkerProjectIds *string `json:"workerProjectIds,omitempty"`
 }
 
 // PublicBigQueryParametersDtoType defines model for PublicBigQueryParametersDto.Type.
@@ -2694,6 +7562,393 @@ type PublicCalendarUpdateDto struct {
 	Timeslots   []CalendarTimeslot `json:"timeslots"`
 }
 
+// PublicCreateAirflowSourceV2Dto defines model for PublicCreateAirflowSourceV2Dto.
+type PublicCreateAirflowSourceV2Dto struct {
+	// AirflowInformation Airflow connection settings
+	AirflowInformation *AirflowInformation `json:"airflowInformation,omitempty"`
+
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateAirflowSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateAirflowSourceV2DtoType Source type
+type PublicCreateAirflowSourceV2DtoType string
+
+// PublicCreateAthenaSourceV2Dto defines model for PublicCreateAthenaSourceV2Dto.
+type PublicCreateAthenaSourceV2Dto struct {
+	// AthenaInformation Athena connection settings
+	AthenaInformation *AthenaInformation `json:"athenaInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateAthenaSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateAthenaSourceV2DtoType Source type
+type PublicCreateAthenaSourceV2DtoType string
+
+// PublicCreateBigQuerySourceV2Dto defines model for PublicCreateBigQuerySourceV2Dto.
+type PublicCreateBigQuerySourceV2Dto struct {
+	// BigQueryInformation BigQuery connection settings
+	BigQueryInformation *BigQueryInformation `json:"bigQueryInformation,omitempty"`
+
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateBigQuerySourceV2DtoType `json:"type"`
+}
+
+// PublicCreateBigQuerySourceV2DtoType Source type
+type PublicCreateBigQuerySourceV2DtoType string
+
+// PublicCreateDatabricksJobsSourceV2Dto defines model for PublicCreateDatabricksJobsSourceV2Dto.
+type PublicCreateDatabricksJobsSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// DatabricksJobsInformation Databricks Jobs connection settings
+	DatabricksJobsInformation *DatabricksJobsInformation `json:"databricksJobsInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateDatabricksJobsSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateDatabricksJobsSourceV2DtoType Source type
+type PublicCreateDatabricksJobsSourceV2DtoType string
+
+// PublicCreateDatabricksSourceV2Dto defines model for PublicCreateDatabricksSourceV2Dto.
+type PublicCreateDatabricksSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// DatabricksInformation Databricks connection settings
+	DatabricksInformation *DatabricksInformation `json:"databricksInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateDatabricksSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateDatabricksSourceV2DtoType Source type
+type PublicCreateDatabricksSourceV2DtoType string
+
+// PublicCreateDbtCloudSourceV2Dto defines model for PublicCreateDbtCloudSourceV2Dto.
+type PublicCreateDbtCloudSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// DbtCloudInformation DBT Cloud connection settings
+	DbtCloudInformation *DbtCloudInformation `json:"dbtCloudInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateDbtCloudSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateDbtCloudSourceV2DtoType Source type
+type PublicCreateDbtCloudSourceV2DtoType string
+
+// PublicCreateDbtSourceV2Dto defines model for PublicCreateDbtSourceV2Dto.
+type PublicCreateDbtSourceV2Dto struct {
+	// DbtInformation DBT connection settings
+	DbtInformation *DbtInformation `json:"dbtInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Type Source type
+	Type PublicCreateDbtSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateDbtSourceV2DtoType Source type
+type PublicCreateDbtSourceV2DtoType string
+
+// PublicCreateFivetranSourceV2Dto defines model for PublicCreateFivetranSourceV2Dto.
+type PublicCreateFivetranSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// FivetranInformation Fivetran connection settings
+	FivetranInformation *FivetranInformation `json:"fivetranInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateFivetranSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateFivetranSourceV2DtoType Source type
+type PublicCreateFivetranSourceV2DtoType string
+
+// PublicCreateLookerSourceV2Dto defines model for PublicCreateLookerSourceV2Dto.
+type PublicCreateLookerSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// LookerInformation Looker connection settings
+	LookerInformation *LookerInformation `json:"lookerInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateLookerSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateLookerSourceV2DtoType Source type
+type PublicCreateLookerSourceV2DtoType string
+
+// PublicCreateMicrostrategySourceV2Dto defines model for PublicCreateMicrostrategySourceV2Dto.
+type PublicCreateMicrostrategySourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// MicrostrategyInformation MicroStrategy connection settings
+	MicrostrategyInformation *MicrostrategyInformation `json:"microstrategyInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateMicrostrategySourceV2DtoType `json:"type"`
+}
+
+// PublicCreateMicrostrategySourceV2DtoType Source type
+type PublicCreateMicrostrategySourceV2DtoType string
+
+// PublicCreateMssqlSourceV2Dto defines model for PublicCreateMssqlSourceV2Dto.
+type PublicCreateMssqlSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// MssqlInformation MSSQL connection settings
+	MssqlInformation *MssqlInformation `json:"mssqlInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateMssqlSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateMssqlSourceV2DtoType Source type
+type PublicCreateMssqlSourceV2DtoType string
+
+// PublicCreateMysqlSourceV2Dto defines model for PublicCreateMysqlSourceV2Dto.
+type PublicCreateMysqlSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// MysqlInformation MySQL connection settings
+	MysqlInformation *MysqlInformation `json:"mysqlInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateMysqlSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateMysqlSourceV2DtoType Source type
+type PublicCreateMysqlSourceV2DtoType string
+
+// PublicCreateOracleSourceV2Dto defines model for PublicCreateOracleSourceV2Dto.
+type PublicCreateOracleSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// OracleInformation Oracle connection settings
+	OracleInformation *OracleInformation `json:"oracleInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateOracleSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateOracleSourceV2DtoType Source type
+type PublicCreateOracleSourceV2DtoType string
+
+// PublicCreatePostgresqlSourceV2Dto defines model for PublicCreatePostgresqlSourceV2Dto.
+type PublicCreatePostgresqlSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// PostgresqlInformation PostgreSQL connection settings
+	PostgresqlInformation *PostgresqlInformation `json:"postgresqlInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreatePostgresqlSourceV2DtoType `json:"type"`
+}
+
+// PublicCreatePostgresqlSourceV2DtoType Source type
+type PublicCreatePostgresqlSourceV2DtoType string
+
+// PublicCreatePowerBiSourceV2Dto defines model for PublicCreatePowerBiSourceV2Dto.
+type PublicCreatePowerBiSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// PowerBiInformation Power BI connection settings
+	PowerBiInformation *PowerBiInformation `json:"powerBiInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreatePowerBiSourceV2DtoType `json:"type"`
+}
+
+// PublicCreatePowerBiSourceV2DtoType Source type
+type PublicCreatePowerBiSourceV2DtoType string
+
+// PublicCreateQlikSourceV2Dto defines model for PublicCreateQlikSourceV2Dto.
+type PublicCreateQlikSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// QlikInformation Qlik connection settings
+	QlikInformation *QlikInformation `json:"qlikInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateQlikSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateQlikSourceV2DtoType Source type
+type PublicCreateQlikSourceV2DtoType string
+
+// PublicCreateQuicksightSourceV2Dto defines model for PublicCreateQuicksightSourceV2Dto.
+type PublicCreateQuicksightSourceV2Dto struct {
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// QuicksightInformation QuickSight connection settings
+	QuicksightInformation *QuicksightInformation `json:"quicksightInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateQuicksightSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateQuicksightSourceV2DtoType Source type
+type PublicCreateQuicksightSourceV2DtoType string
+
+// PublicCreateRedshiftSourceV2Dto defines model for PublicCreateRedshiftSourceV2Dto.
+type PublicCreateRedshiftSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// RedshiftInformation Redshift connection settings
+	RedshiftInformation *RedshiftInformation `json:"redshiftInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicCreateRedshiftSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateRedshiftSourceV2DtoType Source type
+type PublicCreateRedshiftSourceV2DtoType string
+
+// PublicCreateSnowflakeSourceV2Dto defines model for PublicCreateSnowflakeSourceV2Dto.
+type PublicCreateSnowflakeSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// SnowflakeInformation Snowflake connection settings
+	SnowflakeInformation *SnowflakeInformation `json:"snowflakeInformation,omitempty"`
+
+	// Type Source type
+	Type PublicCreateSnowflakeSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateSnowflakeSourceV2DtoType Source type
+type PublicCreateSnowflakeSourceV2DtoType string
+
 // PublicCreateSourceDto defines model for PublicCreateSourceDto.
 type PublicCreateSourceDto struct {
 	// Credentials Credentials of the source. Required for all sources type except 'ATHENA', 'DBT', 'QUICKSIGHT'.
@@ -2718,6 +7973,60 @@ type PublicCreateSourceDto struct {
 type PublicCreateSourceDto_Parameters struct {
 	union json.RawMessage
 }
+
+// PublicCreateSourceV2Dto defines model for PublicCreateSourceV2Dto.
+type PublicCreateSourceV2Dto struct {
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Type Source type
+	Type PublicCreateSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateSourceV2DtoType Source type
+type PublicCreateSourceV2DtoType string
+
+// PublicCreateSynapseSourceV2Dto defines model for PublicCreateSynapseSourceV2Dto.
+type PublicCreateSynapseSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// SynapseInformation Synapse connection settings
+	SynapseInformation *SynapseInformation `json:"synapseInformation,omitempty"`
+
+	// Type Source type
+	Type PublicCreateSynapseSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateSynapseSourceV2DtoType Source type
+type PublicCreateSynapseSourceV2DtoType string
+
+// PublicCreateTableauSourceV2Dto defines model for PublicCreateTableauSourceV2Dto.
+type PublicCreateTableauSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// TableauInformation Tableau connection settings
+	TableauInformation *TableauInformation `json:"tableauInformation,omitempty"`
+
+	// Type Source type
+	Type PublicCreateTableauSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateTableauSourceV2DtoType Source type
+type PublicCreateTableauSourceV2DtoType string
 
 // PublicCredentialsCreateDto defines model for PublicCredentialsCreateDto.
 type PublicCredentialsCreateDto struct {
@@ -2756,6 +8065,55 @@ type PublicCredentialsPatchDto struct {
 	// Value Value of credentials. Double quotes must be escaped with a backslash.
 	Value *string `json:"value,omitempty"`
 }
+
+// PublicCustomMetadataEntryLabelReferenceDto defines model for PublicCustomMetadataEntryLabelReferenceDto.
+type PublicCustomMetadataEntryLabelReferenceDto struct {
+	// CustomMetadataName Name of the referenced custom metadata
+	CustomMetadataName string `json:"customMetadataName"`
+
+	// LabelValue Value of the referenced custom metadata label
+	LabelValue *string                                        `json:"labelValue,omitempty"`
+	Type       PublicCustomMetadataEntryLabelReferenceDtoType `json:"type"`
+}
+
+// PublicCustomMetadataEntryLabelReferenceDtoType defines model for PublicCustomMetadataEntryLabelReferenceDto.Type.
+type PublicCustomMetadataEntryLabelReferenceDtoType string
+
+// PublicCustomMetadataEntryReferenceDto Custom metadata entries to be associated with the declared asset
+type PublicCustomMetadataEntryReferenceDto struct {
+	// CustomMetadataName Name of the referenced custom metadata
+	CustomMetadataName string                                    `json:"customMetadataName"`
+	Type               PublicCustomMetadataEntryReferenceDtoType `json:"type"`
+}
+
+// PublicCustomMetadataEntryReferenceDtoType defines model for PublicCustomMetadataEntryReferenceDto.Type.
+type PublicCustomMetadataEntryReferenceDtoType string
+
+// PublicCustomMetadataEntryStringReferenceDto defines model for PublicCustomMetadataEntryStringReferenceDto.
+type PublicCustomMetadataEntryStringReferenceDto struct {
+	// CustomMetadataName Name of the referenced custom metadata
+	CustomMetadataName string `json:"customMetadataName"`
+
+	// StringValue Value of the referenced custom metadata string
+	StringValue *string                                         `json:"stringValue,omitempty"`
+	Type        PublicCustomMetadataEntryStringReferenceDtoType `json:"type"`
+}
+
+// PublicCustomMetadataEntryStringReferenceDtoType defines model for PublicCustomMetadataEntryStringReferenceDto.Type.
+type PublicCustomMetadataEntryStringReferenceDtoType string
+
+// PublicCustomMetadataEntryUserReferenceDto defines model for PublicCustomMetadataEntryUserReferenceDto.
+type PublicCustomMetadataEntryUserReferenceDto struct {
+	// CustomMetadataName Name of the referenced custom metadata
+	CustomMetadataName string `json:"customMetadataName"`
+
+	// Email Value of the referenced custom metadata user email
+	Email *string                                       `json:"email,omitempty"`
+	Type  PublicCustomMetadataEntryUserReferenceDtoType `json:"type"`
+}
+
+// PublicCustomMetadataEntryUserReferenceDtoType defines model for PublicCustomMetadataEntryUserReferenceDto.Type.
+type PublicCustomMetadataEntryUserReferenceDtoType string
 
 // PublicDatabricksParametersDto defines model for PublicDatabricksParametersDto.
 type PublicDatabricksParametersDto struct {
@@ -2813,6 +8171,9 @@ type PublicDbtParametersDtoType string
 
 // PublicDeclarativeAssetDto Use this parameter to declare assets and their associated links. It is recommended to use the `lineages` object of the `assets` array of objects rather than the `lineages` array of objects for cases where you want to declare assets and their corresponding lineage links.
 type PublicDeclarativeAssetDto struct {
+	// CustomMetadataValues Custom metadata entries to be associated with the declared asset
+	CustomMetadataValues *[]PublicDeclarativeAssetDto_CustomMetadataValues_Item `json:"customMetadataValues,omitempty"`
+
 	// Description Description of the declared asset
 	Description *string `json:"description,omitempty"`
 
@@ -2843,6 +8204,11 @@ type PublicDeclarativeAssetDto struct {
 
 	// Uri URI string identifying the declared asset. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
 	Uri string `json:"uri"`
+}
+
+// PublicDeclarativeAssetDto_CustomMetadataValues_Item defines model for PublicDeclarativeAssetDto.customMetadataValues.Item.
+type PublicDeclarativeAssetDto_CustomMetadataValues_Item struct {
+	union json.RawMessage
 }
 
 // PublicDeclarativeAssetDtoType Primary type of the declared asset, indicating the overall category the asset falls in.
@@ -2915,6 +8281,21 @@ type PublicDomainGetDto struct {
 	Name string             `json:"name"`
 }
 
+// PublicExternalTagReferenceDto Asset tag from external providers.
+type PublicExternalTagReferenceDto struct {
+	// Id Id of the referenced object
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// Kind Type of the referenced tag
+	Kind *PublicExternalTagReferenceDtoKind `json:"kind,omitempty"`
+
+	// Name Name of the referenced object
+	Name *string `json:"name,omitempty"`
+}
+
+// PublicExternalTagReferenceDtoKind Type of the referenced tag
+type PublicExternalTagReferenceDtoKind string
+
 // PublicFivetranParametersDto defines model for PublicFivetranParametersDto.
 type PublicFivetranParametersDto struct {
 	// Host Your Fivetran environment URL
@@ -2925,6 +8306,33 @@ type PublicFivetranParametersDto struct {
 // PublicFivetranParametersDtoType defines model for PublicFivetranParametersDto.Type.
 type PublicFivetranParametersDtoType string
 
+// PublicGetAirflowSourceV2Dto defines model for PublicGetAirflowSourceV2Dto.
+type PublicGetAirflowSourceV2Dto struct {
+	// AirflowInformation Airflow connection settings
+	AirflowInformation *AirflowInformation `json:"airflowInformation,omitempty"`
+
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetAirflowSourceV2DtoType `json:"type"`
+}
+
+// PublicGetAirflowSourceV2DtoType Source type
+type PublicGetAirflowSourceV2DtoType string
+
 // PublicGetAssetColumnDto Fields of the asset
 type PublicGetAssetColumnDto struct {
 	// Description Description of the field
@@ -2932,13 +8340,16 @@ type PublicGetAssetColumnDto struct {
 
 	// ExternalDescriptions Descriptions of the field from external providers
 	ExternalDescriptions *[]PublicDescriptionDto `json:"externalDescriptions,omitempty"`
-	Id                   openapi_types.UUID      `json:"id"`
+
+	// ExternalTags Asset tags from external providers
+	ExternalTags *[]PublicExternalTagReferenceDto `json:"externalTags,omitempty"`
+	Id           openapi_types.UUID               `json:"id"`
 
 	// Name Name of the field
 	Name string `json:"name"`
 
 	// Tags Tags of the column
-	Tags *[]PublicTagReferenceGetDto `json:"tags,omitempty"`
+	Tags *[]PublicTagReferenceDto `json:"tags,omitempty"`
 
 	// Terms Business glossaries of the field
 	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
@@ -2952,14 +8363,20 @@ type PublicGetAssetDto struct {
 	// Columns Fields of the asset
 	Columns *[]PublicGetAssetColumnDto `json:"columns,omitempty"`
 
+	// CustomMetadataValues Custom metadata values of the asset
+	CustomMetadataValues *[]PublicGetAssetDto_CustomMetadataValues_Item `json:"customMetadataValues,omitempty"`
+
 	// Description Description of the asset
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description"`
 
 	// Domains Domains of the asset
 	Domains []PublicDomainGetDto `json:"domains"`
 
 	// ExternalDescriptions Descriptions of the asset from external providers
 	ExternalDescriptions *[]PublicDescriptionDto `json:"externalDescriptions,omitempty"`
+
+	// ExternalTags Asset tags from external providers
+	ExternalTags *[]PublicExternalTagReferenceDto `json:"externalTags,omitempty"`
 
 	// HealthStatus Asset health status
 	HealthStatus PublicGetAssetDtoHealthStatus `json:"healthStatus"`
@@ -2975,7 +8392,7 @@ type PublicGetAssetDto struct {
 	Owners *[]PublicReferenceByIdOrEmailDto `json:"owners,omitempty"`
 
 	// Tags Tags of the asset
-	Tags *[]PublicTagReferenceGetDto `json:"tags,omitempty"`
+	Tags *[]PublicTagReferenceDto `json:"tags,omitempty"`
 
 	// Technology Technology of the asset
 	Technology PublicGetAssetDtoTechnology `json:"technology"`
@@ -2984,7 +8401,7 @@ type PublicGetAssetDto struct {
 	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
 
 	// TransformationRun Transformation associated to the asset
-	TransformationRun *PublicTransformationRunDto `json:"transformationRun,omitempty"`
+	TransformationRun *PublicTransformationRunDto `json:"transformationRun"`
 
 	// Type Type of the asset
 	Type PublicGetAssetDtoType `json:"type"`
@@ -2997,6 +8414,11 @@ type PublicGetAssetDto struct {
 
 	// Usage Usage level of the asset
 	Usage PublicGetAssetDtoUsage `json:"usage"`
+}
+
+// PublicGetAssetDto_CustomMetadataValues_Item defines model for PublicGetAssetDto.customMetadataValues.Item.
+type PublicGetAssetDto_CustomMetadataValues_Item struct {
+	union json.RawMessage
 }
 
 // PublicGetAssetDtoHealthStatus Asset health status
@@ -3017,10 +8439,13 @@ type PublicGetAssetDtoUsage string
 // PublicGetAssetListDto defines model for PublicGetAssetListDto.
 type PublicGetAssetListDto struct {
 	// Description Description of the asset
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description"`
 
 	// ExternalDescriptions Descriptions of the asset from external providers
 	ExternalDescriptions *[]PublicDescriptionDto `json:"externalDescriptions,omitempty"`
+
+	// ExternalTags Asset tags from external providers
+	ExternalTags *[]PublicExternalTagReferenceDto `json:"externalTags,omitempty"`
 
 	// HealthStatus Asset health status
 	HealthStatus PublicGetAssetListDtoHealthStatus `json:"healthStatus"`
@@ -3036,7 +8461,7 @@ type PublicGetAssetListDto struct {
 	Owners *[]PublicReferenceByIdOrEmailDto `json:"owners,omitempty"`
 
 	// Tags Tags of the asset
-	Tags *[]PublicTagReferenceGetDto `json:"tags,omitempty"`
+	Tags *[]PublicTagReferenceDto `json:"tags,omitempty"`
 
 	// Technology Technology of the asset
 	Technology PublicGetAssetListDtoTechnology `json:"technology"`
@@ -3045,7 +8470,7 @@ type PublicGetAssetListDto struct {
 	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
 
 	// TransformationRun Transformation associated to the asset
-	TransformationRun *PublicTransformationRunDto `json:"transformationRun,omitempty"`
+	TransformationRun *PublicTransformationRunDto `json:"transformationRun"`
 
 	// Type Type of the asset
 	Type PublicGetAssetListDtoType `json:"type"`
@@ -3081,6 +8506,229 @@ type PublicGetAssetRequestDto struct {
 	Uri string `json:"uri"`
 }
 
+// PublicGetAthenaSourceV2Dto defines model for PublicGetAthenaSourceV2Dto.
+type PublicGetAthenaSourceV2Dto struct {
+	// AthenaInformation Athena connection settings
+	AthenaInformation *AthenaInformation `json:"athenaInformation,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetAthenaSourceV2DtoType `json:"type"`
+}
+
+// PublicGetAthenaSourceV2DtoType Source type
+type PublicGetAthenaSourceV2DtoType string
+
+// PublicGetBigQuerySourceV2Dto defines model for PublicGetBigQuerySourceV2Dto.
+type PublicGetBigQuerySourceV2Dto struct {
+	// BigQueryInformation BigQuery connection settings
+	BigQueryInformation *BigQueryInformation `json:"bigQueryInformation,omitempty"`
+
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetBigQuerySourceV2DtoType `json:"type"`
+}
+
+// PublicGetBigQuerySourceV2DtoType Source type
+type PublicGetBigQuerySourceV2DtoType string
+
+// PublicGetCustomMetadataEntryDto Custom metadata values of the asset
+type PublicGetCustomMetadataEntryDto struct {
+	// CustomMetadataName Name of the referenced custom metadata
+	CustomMetadataName string                              `json:"customMetadataName"`
+	Type               PublicGetCustomMetadataEntryDtoType `json:"type"`
+}
+
+// PublicGetCustomMetadataEntryDtoType defines model for PublicGetCustomMetadataEntryDto.Type.
+type PublicGetCustomMetadataEntryDtoType string
+
+// PublicGetCustomMetadataEntryLabelDto defines model for PublicGetCustomMetadataEntryLabelDto.
+type PublicGetCustomMetadataEntryLabelDto struct {
+	// CustomMetadataName Name of the referenced custom metadata
+	CustomMetadataName string                                   `json:"customMetadataName"`
+	LabelValue         *string                                  `json:"labelValue,omitempty"`
+	Type               PublicGetCustomMetadataEntryLabelDtoType `json:"type"`
+}
+
+// PublicGetCustomMetadataEntryLabelDtoType defines model for PublicGetCustomMetadataEntryLabelDto.Type.
+type PublicGetCustomMetadataEntryLabelDtoType string
+
+// PublicGetCustomMetadataEntryStringDto defines model for PublicGetCustomMetadataEntryStringDto.
+type PublicGetCustomMetadataEntryStringDto struct {
+	// CustomMetadataName Name of the referenced custom metadata
+	CustomMetadataName string                                    `json:"customMetadataName"`
+	StringValue        *string                                   `json:"stringValue,omitempty"`
+	Type               PublicGetCustomMetadataEntryStringDtoType `json:"type"`
+}
+
+// PublicGetCustomMetadataEntryStringDtoType defines model for PublicGetCustomMetadataEntryStringDto.Type.
+type PublicGetCustomMetadataEntryStringDtoType string
+
+// PublicGetCustomMetadataEntryUserDto defines model for PublicGetCustomMetadataEntryUserDto.
+type PublicGetCustomMetadataEntryUserDto struct {
+	// CustomMetadataName Name of the referenced custom metadata
+	CustomMetadataName string                                  `json:"customMetadataName"`
+	Email              *string                                 `json:"email,omitempty"`
+	Type               PublicGetCustomMetadataEntryUserDtoType `json:"type"`
+}
+
+// PublicGetCustomMetadataEntryUserDtoType defines model for PublicGetCustomMetadataEntryUserDto.Type.
+type PublicGetCustomMetadataEntryUserDtoType string
+
+// PublicGetDatabricksJobsSourceV2Dto defines model for PublicGetDatabricksJobsSourceV2Dto.
+type PublicGetDatabricksJobsSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// DatabricksJobsInformation Databricks Jobs connection settings
+	DatabricksJobsInformation *DatabricksJobsInformation `json:"databricksJobsInformation,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetDatabricksJobsSourceV2DtoType `json:"type"`
+}
+
+// PublicGetDatabricksJobsSourceV2DtoType Source type
+type PublicGetDatabricksJobsSourceV2DtoType string
+
+// PublicGetDatabricksSourceV2Dto defines model for PublicGetDatabricksSourceV2Dto.
+type PublicGetDatabricksSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// DatabricksInformation Databricks connection settings
+	DatabricksInformation *DatabricksInformation `json:"databricksInformation,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetDatabricksSourceV2DtoType `json:"type"`
+}
+
+// PublicGetDatabricksSourceV2DtoType Source type
+type PublicGetDatabricksSourceV2DtoType string
+
+// PublicGetDbtCloudSourceV2Dto defines model for PublicGetDbtCloudSourceV2Dto.
+type PublicGetDbtCloudSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// DbtCloudInformation DBT Cloud connection settings
+	DbtCloudInformation *DbtCloudInformation `json:"dbtCloudInformation,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetDbtCloudSourceV2DtoType `json:"type"`
+}
+
+// PublicGetDbtCloudSourceV2DtoType Source type
+type PublicGetDbtCloudSourceV2DtoType string
+
+// PublicGetDbtSourceV2Dto defines model for PublicGetDbtSourceV2Dto.
+type PublicGetDbtSourceV2Dto struct {
+	// DbtInformation DBT connection settings
+	DbtInformation *DbtInformation `json:"dbtInformation,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Type Source type
+	Type PublicGetDbtSourceV2DtoType `json:"type"`
+}
+
+// PublicGetDbtSourceV2DtoType Source type
+type PublicGetDbtSourceV2DtoType string
+
+// PublicGetFivetranSourceV2Dto defines model for PublicGetFivetranSourceV2Dto.
+type PublicGetFivetranSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// FivetranInformation Fivetran connection settings
+	FivetranInformation *FivetranInformation `json:"fivetranInformation,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetFivetranSourceV2DtoType `json:"type"`
+}
+
+// PublicGetFivetranSourceV2DtoType Source type
+type PublicGetFivetranSourceV2DtoType string
+
 // PublicGetLastRunDto Information about the last run of the source
 type PublicGetLastRunDto struct {
 	// Status Last run status of the source
@@ -3092,6 +8740,312 @@ type PublicGetLastRunDto struct {
 
 // PublicGetLastRunDtoStatus Last run status of the source
 type PublicGetLastRunDtoStatus string
+
+// PublicGetLastRunV2Dto Information about the last run of the source
+type PublicGetLastRunV2Dto struct {
+	// Status Last run status of the source
+	Status *PublicGetLastRunV2DtoStatus `json:"status,omitempty"`
+
+	// Timestamp Timestamp of the last update of the source
+	Timestamp *time.Time `json:"timestamp,omitempty"`
+}
+
+// PublicGetLastRunV2DtoStatus Last run status of the source
+type PublicGetLastRunV2DtoStatus string
+
+// PublicGetLookerSourceV2Dto defines model for PublicGetLookerSourceV2Dto.
+type PublicGetLookerSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// LookerInformation Looker connection settings
+	LookerInformation *LookerInformation `json:"lookerInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetLookerSourceV2DtoType `json:"type"`
+}
+
+// PublicGetLookerSourceV2DtoType Source type
+type PublicGetLookerSourceV2DtoType string
+
+// PublicGetMicrostrategySourceV2Dto defines model for PublicGetMicrostrategySourceV2Dto.
+type PublicGetMicrostrategySourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// MicrostrategyInformation MicroStrategy connection settings
+	MicrostrategyInformation *MicrostrategyInformation `json:"microstrategyInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetMicrostrategySourceV2DtoType `json:"type"`
+}
+
+// PublicGetMicrostrategySourceV2DtoType Source type
+type PublicGetMicrostrategySourceV2DtoType string
+
+// PublicGetMssqlSourceV2Dto defines model for PublicGetMssqlSourceV2Dto.
+type PublicGetMssqlSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// MssqlInformation MSSQL connection settings
+	MssqlInformation *MssqlInformation `json:"mssqlInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetMssqlSourceV2DtoType `json:"type"`
+}
+
+// PublicGetMssqlSourceV2DtoType Source type
+type PublicGetMssqlSourceV2DtoType string
+
+// PublicGetMysqlSourceV2Dto defines model for PublicGetMysqlSourceV2Dto.
+type PublicGetMysqlSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// MysqlInformation MySQL connection settings
+	MysqlInformation *MysqlInformation `json:"mysqlInformation,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetMysqlSourceV2DtoType `json:"type"`
+}
+
+// PublicGetMysqlSourceV2DtoType Source type
+type PublicGetMysqlSourceV2DtoType string
+
+// PublicGetOracleSourceV2Dto defines model for PublicGetOracleSourceV2Dto.
+type PublicGetOracleSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// OracleInformation Oracle connection settings
+	OracleInformation *OracleInformation `json:"oracleInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetOracleSourceV2DtoType `json:"type"`
+}
+
+// PublicGetOracleSourceV2DtoType Source type
+type PublicGetOracleSourceV2DtoType string
+
+// PublicGetPostgresqlSourceV2Dto defines model for PublicGetPostgresqlSourceV2Dto.
+type PublicGetPostgresqlSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// PostgresqlInformation PostgreSQL connection settings
+	PostgresqlInformation *PostgresqlInformation `json:"postgresqlInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetPostgresqlSourceV2DtoType `json:"type"`
+}
+
+// PublicGetPostgresqlSourceV2DtoType Source type
+type PublicGetPostgresqlSourceV2DtoType string
+
+// PublicGetPowerBiSourceV2Dto defines model for PublicGetPowerBiSourceV2Dto.
+type PublicGetPowerBiSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// PowerBiInformation Power BI connection settings
+	PowerBiInformation *PowerBiInformation `json:"powerBiInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetPowerBiSourceV2DtoType `json:"type"`
+}
+
+// PublicGetPowerBiSourceV2DtoType Source type
+type PublicGetPowerBiSourceV2DtoType string
+
+// PublicGetQlikSourceV2Dto defines model for PublicGetQlikSourceV2Dto.
+type PublicGetQlikSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// QlikInformation Qlik connection settings
+	QlikInformation *QlikInformation `json:"qlikInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetQlikSourceV2DtoType `json:"type"`
+}
+
+// PublicGetQlikSourceV2DtoType Source type
+type PublicGetQlikSourceV2DtoType string
+
+// PublicGetQuicksightSourceV2Dto defines model for PublicGetQuicksightSourceV2Dto.
+type PublicGetQuicksightSourceV2Dto struct {
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// QuicksightInformation QuickSight connection settings
+	QuicksightInformation *QuicksightInformation `json:"quicksightInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetQuicksightSourceV2DtoType `json:"type"`
+}
+
+// PublicGetQuicksightSourceV2DtoType Source type
+type PublicGetQuicksightSourceV2DtoType string
+
+// PublicGetRedshiftSourceV2Dto defines model for PublicGetRedshiftSourceV2Dto.
+type PublicGetRedshiftSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// RedshiftInformation Redshift connection settings
+	RedshiftInformation *RedshiftInformation `json:"redshiftInformation,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicGetRedshiftSourceV2DtoType `json:"type"`
+}
+
+// PublicGetRedshiftSourceV2DtoType Source type
+type PublicGetRedshiftSourceV2DtoType string
+
+// PublicGetSnowflakeSourceV2Dto defines model for PublicGetSnowflakeSourceV2Dto.
+type PublicGetSnowflakeSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// SnowflakeInformation Snowflake connection settings
+	SnowflakeInformation *SnowflakeInformation `json:"snowflakeInformation,omitempty"`
+
+	// Type Source type
+	Type PublicGetSnowflakeSourceV2DtoType `json:"type"`
+}
+
+// PublicGetSnowflakeSourceV2DtoType Source type
+type PublicGetSnowflakeSourceV2DtoType string
 
 // PublicGetSourceDto defines model for PublicGetSourceDto.
 type PublicGetSourceDto struct {
@@ -3124,6 +9078,78 @@ type PublicGetSourceDto_Parameters struct {
 	union json.RawMessage
 }
 
+// PublicGetSourceV2Dto defines model for PublicGetSourceV2Dto.
+type PublicGetSourceV2Dto struct {
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Type Source type
+	Type PublicGetSourceV2DtoType `json:"type"`
+}
+
+// PublicGetSourceV2DtoType Source type
+type PublicGetSourceV2DtoType string
+
+// PublicGetSynapseSourceV2Dto defines model for PublicGetSynapseSourceV2Dto.
+type PublicGetSynapseSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// SynapseInformation Synapse connection settings
+	SynapseInformation *SynapseInformation `json:"synapseInformation,omitempty"`
+
+	// Type Source type
+	Type PublicGetSynapseSourceV2DtoType `json:"type"`
+}
+
+// PublicGetSynapseSourceV2DtoType Source type
+type PublicGetSynapseSourceV2DtoType string
+
+// PublicGetTableauSourceV2Dto defines model for PublicGetTableauSourceV2Dto.
+type PublicGetTableauSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// TableauInformation Tableau connection settings
+	TableauInformation *TableauInformation `json:"tableauInformation,omitempty"`
+
+	// Type Source type
+	Type PublicGetTableauSourceV2DtoType `json:"type"`
+}
+
+// PublicGetTableauSourceV2DtoType Source type
+type PublicGetTableauSourceV2DtoType string
+
 // PublicLookerParametersDto defines model for PublicLookerParametersDto.
 type PublicLookerParametersDto struct {
 	// GitConnections The LookML configuration. See https://docs.siffletdata.com/docs/looker. If you don't use LookML, use an empty list `[]`
@@ -3153,7 +9179,7 @@ type PublicMssqlParametersDto struct {
 	// Schema Your schema name
 	Schema *string `json:"schema,omitempty"`
 
-	// Ssl Whether to use SSL to connect to your MSSQL server
+	// Ssl Whether to use SSL to connect to your MSSQL server (recommended: true)
 	Ssl  *bool                        `json:"ssl,omitempty"`
 	Type PublicMssqlParametersDtoType `json:"type"`
 }
@@ -3218,6 +9244,17 @@ type PublicPageDtoPublicGetAssetListDto struct {
 type PublicPageDtoPublicGetSourceDto struct {
 	Data       []PublicGetSourceDto `json:"data"`
 	TotalCount *int64               `json:"totalCount,omitempty"`
+}
+
+// PublicPageDtoPublicGetSourceV2Dto defines model for PublicPageDtoPublicGetSourceV2Dto.
+type PublicPageDtoPublicGetSourceV2Dto struct {
+	Data       []PublicPageDtoPublicGetSourceV2Dto_Data_Item `json:"data"`
+	TotalCount *int64                                        `json:"totalCount,omitempty"`
+}
+
+// PublicPageDtoPublicGetSourceV2Dto_Data_Item defines model for PublicPageDtoPublicGetSourceV2Dto.data.Item.
+type PublicPageDtoPublicGetSourceV2Dto_Data_Item struct {
+	union json.RawMessage
 }
 
 // PublicPageDtoPublicUserGetDto defines model for PublicPageDtoPublicUserGetDto.
@@ -3425,21 +9462,6 @@ type PublicTagReferenceDto struct {
 // PublicTagReferenceDtoKind Type of the referenced tag
 type PublicTagReferenceDtoKind string
 
-// PublicTagReferenceGetDto Tags of the asset
-type PublicTagReferenceGetDto struct {
-	// Id Id of the referenced object
-	Id *openapi_types.UUID `json:"id,omitempty"`
-
-	// Kind Type of the referenced tag
-	Kind *PublicTagReferenceGetDtoKind `json:"kind,omitempty"`
-
-	// Name Name of the referenced object
-	Name *string `json:"name,omitempty"`
-}
-
-// PublicTagReferenceGetDtoKind Type of the referenced tag
-type PublicTagReferenceGetDtoKind string
-
 // PublicTransformationRunDto Transformation associated to the asset
 type PublicTransformationRunDto struct {
 	// LastRunDate Last run date of the transformation
@@ -3454,6 +9476,27 @@ type PublicTransformationRunDto struct {
 
 // PublicTransformationRunDtoLastRunStatus Last run status of the transformation
 type PublicTransformationRunDtoLastRunStatus string
+
+// PublicUpdateAirflowSourceV2Dto defines model for PublicUpdateAirflowSourceV2Dto.
+type PublicUpdateAirflowSourceV2Dto struct {
+	// AirflowInformation Airflow connection settings
+	AirflowInformation AirflowInformation `json:"airflowInformation"`
+
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateAirflowSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateAirflowSourceV2DtoType Source type
+type PublicUpdateAirflowSourceV2DtoType string
 
 // PublicUpdateAssetColumnDto Fields of the asset
 type PublicUpdateAssetColumnDto struct {
@@ -3475,6 +9518,9 @@ type PublicUpdateAssetDto struct {
 	// Columns Fields of the asset
 	Columns *[]PublicUpdateAssetColumnDto `json:"columns,omitempty"`
 
+	// CustomMetadataValues Custom metadata entries of the asset
+	CustomMetadataValues *[]PublicUpdateAssetDto_CustomMetadataValues_Item `json:"customMetadataValues,omitempty"`
+
 	// Description Description of the asset
 	Description *string `json:"description,omitempty"`
 
@@ -3488,6 +9534,377 @@ type PublicUpdateAssetDto struct {
 	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
 	Uri string `json:"uri"`
 }
+
+// PublicUpdateAssetDto_CustomMetadataValues_Item defines model for PublicUpdateAssetDto.customMetadataValues.Item.
+type PublicUpdateAssetDto_CustomMetadataValues_Item struct {
+	union json.RawMessage
+}
+
+// PublicUpdateAthenaSourceV2Dto defines model for PublicUpdateAthenaSourceV2Dto.
+type PublicUpdateAthenaSourceV2Dto struct {
+	// AthenaInformation Athena connection settings
+	AthenaInformation AthenaInformation `json:"athenaInformation"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateAthenaSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateAthenaSourceV2DtoType Source type
+type PublicUpdateAthenaSourceV2DtoType string
+
+// PublicUpdateBigQuerySourceV2Dto defines model for PublicUpdateBigQuerySourceV2Dto.
+type PublicUpdateBigQuerySourceV2Dto struct {
+	// BigQueryInformation BigQuery connection settings
+	BigQueryInformation BigQueryInformation `json:"bigQueryInformation"`
+
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateBigQuerySourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateBigQuerySourceV2DtoType Source type
+type PublicUpdateBigQuerySourceV2DtoType string
+
+// PublicUpdateDatabricksJobsSourceV2Dto defines model for PublicUpdateDatabricksJobsSourceV2Dto.
+type PublicUpdateDatabricksJobsSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// DatabricksJobsInformation Databricks Jobs connection settings
+	DatabricksJobsInformation DatabricksJobsInformation `json:"databricksJobsInformation"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateDatabricksJobsSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateDatabricksJobsSourceV2DtoType Source type
+type PublicUpdateDatabricksJobsSourceV2DtoType string
+
+// PublicUpdateDatabricksSourceV2Dto defines model for PublicUpdateDatabricksSourceV2Dto.
+type PublicUpdateDatabricksSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// DatabricksInformation Databricks connection settings
+	DatabricksInformation DatabricksInformation `json:"databricksInformation"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateDatabricksSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateDatabricksSourceV2DtoType Source type
+type PublicUpdateDatabricksSourceV2DtoType string
+
+// PublicUpdateDbtCloudSourceV2Dto defines model for PublicUpdateDbtCloudSourceV2Dto.
+type PublicUpdateDbtCloudSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// DbtCloudInformation DBT Cloud connection settings
+	DbtCloudInformation DbtCloudInformation `json:"dbtCloudInformation"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateDbtCloudSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateDbtCloudSourceV2DtoType Source type
+type PublicUpdateDbtCloudSourceV2DtoType string
+
+// PublicUpdateDbtSourceV2Dto defines model for PublicUpdateDbtSourceV2Dto.
+type PublicUpdateDbtSourceV2Dto struct {
+	// DbtInformation DBT connection settings
+	DbtInformation DbtInformation `json:"dbtInformation"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Type Source type
+	Type PublicUpdateDbtSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateDbtSourceV2DtoType Source type
+type PublicUpdateDbtSourceV2DtoType string
+
+// PublicUpdateFivetranSourceV2Dto defines model for PublicUpdateFivetranSourceV2Dto.
+type PublicUpdateFivetranSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// FivetranInformation Fivetran connection settings
+	FivetranInformation FivetranInformation `json:"fivetranInformation"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateFivetranSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateFivetranSourceV2DtoType Source type
+type PublicUpdateFivetranSourceV2DtoType string
+
+// PublicUpdateLookerSourceV2Dto defines model for PublicUpdateLookerSourceV2Dto.
+type PublicUpdateLookerSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// LookerInformation Looker connection settings
+	LookerInformation LookerInformation `json:"lookerInformation"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateLookerSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateLookerSourceV2DtoType Source type
+type PublicUpdateLookerSourceV2DtoType string
+
+// PublicUpdateMicrostrategySourceV2Dto defines model for PublicUpdateMicrostrategySourceV2Dto.
+type PublicUpdateMicrostrategySourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// MicrostrategyInformation MicroStrategy connection settings
+	MicrostrategyInformation MicrostrategyInformation `json:"microstrategyInformation"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateMicrostrategySourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateMicrostrategySourceV2DtoType Source type
+type PublicUpdateMicrostrategySourceV2DtoType string
+
+// PublicUpdateMssqlSourceV2Dto defines model for PublicUpdateMssqlSourceV2Dto.
+type PublicUpdateMssqlSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// MssqlInformation MSSQL connection settings
+	MssqlInformation MssqlInformation `json:"mssqlInformation"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateMssqlSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateMssqlSourceV2DtoType Source type
+type PublicUpdateMssqlSourceV2DtoType string
+
+// PublicUpdateMysqlSourceV2Dto defines model for PublicUpdateMysqlSourceV2Dto.
+type PublicUpdateMysqlSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// MysqlInformation MySQL connection settings
+	MysqlInformation MysqlInformation `json:"mysqlInformation"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateMysqlSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateMysqlSourceV2DtoType Source type
+type PublicUpdateMysqlSourceV2DtoType string
+
+// PublicUpdateOracleSourceV2Dto defines model for PublicUpdateOracleSourceV2Dto.
+type PublicUpdateOracleSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// OracleInformation Oracle connection settings
+	OracleInformation OracleInformation `json:"oracleInformation"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateOracleSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateOracleSourceV2DtoType Source type
+type PublicUpdateOracleSourceV2DtoType string
+
+// PublicUpdatePostgresqlSourceV2Dto defines model for PublicUpdatePostgresqlSourceV2Dto.
+type PublicUpdatePostgresqlSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// PostgresqlInformation PostgreSQL connection settings
+	PostgresqlInformation PostgresqlInformation `json:"postgresqlInformation"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdatePostgresqlSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdatePostgresqlSourceV2DtoType Source type
+type PublicUpdatePostgresqlSourceV2DtoType string
+
+// PublicUpdatePowerBiSourceV2Dto defines model for PublicUpdatePowerBiSourceV2Dto.
+type PublicUpdatePowerBiSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// PowerBiInformation Power BI connection settings
+	PowerBiInformation PowerBiInformation `json:"powerBiInformation"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdatePowerBiSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdatePowerBiSourceV2DtoType Source type
+type PublicUpdatePowerBiSourceV2DtoType string
+
+// PublicUpdateQlikSourceV2Dto defines model for PublicUpdateQlikSourceV2Dto.
+type PublicUpdateQlikSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// QlikInformation Qlik connection settings
+	QlikInformation QlikInformation `json:"qlikInformation"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateQlikSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateQlikSourceV2DtoType Source type
+type PublicUpdateQlikSourceV2DtoType string
+
+// PublicUpdateQuicksightSourceV2Dto defines model for PublicUpdateQuicksightSourceV2Dto.
+type PublicUpdateQuicksightSourceV2Dto struct {
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// QuicksightInformation QuickSight connection settings
+	QuicksightInformation QuicksightInformation `json:"quicksightInformation"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateQuicksightSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateQuicksightSourceV2DtoType Source type
+type PublicUpdateQuicksightSourceV2DtoType string
+
+// PublicUpdateRedshiftSourceV2Dto defines model for PublicUpdateRedshiftSourceV2Dto.
+type PublicUpdateRedshiftSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// RedshiftInformation Redshift connection settings
+	RedshiftInformation RedshiftInformation `json:"redshiftInformation"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// Type Source type
+	Type PublicUpdateRedshiftSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateRedshiftSourceV2DtoType Source type
+type PublicUpdateRedshiftSourceV2DtoType string
+
+// PublicUpdateSnowflakeSourceV2Dto defines model for PublicUpdateSnowflakeSourceV2Dto.
+type PublicUpdateSnowflakeSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// SnowflakeInformation Snowflake connection settings
+	SnowflakeInformation SnowflakeInformation `json:"snowflakeInformation"`
+
+	// Type Source type
+	Type PublicUpdateSnowflakeSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateSnowflakeSourceV2DtoType Source type
+type PublicUpdateSnowflakeSourceV2DtoType string
 
 // PublicUpdateSourceDto defines model for PublicUpdateSourceDto.
 type PublicUpdateSourceDto struct {
@@ -3513,6 +9930,48 @@ type PublicUpdateSourceDto struct {
 type PublicUpdateSourceDto_Parameters struct {
 	union json.RawMessage
 }
+
+// PublicUpdateSynapseSourceV2Dto defines model for PublicUpdateSynapseSourceV2Dto.
+type PublicUpdateSynapseSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// SynapseInformation Synapse connection settings
+	SynapseInformation SynapseInformation `json:"synapseInformation"`
+
+	// Type Source type
+	Type PublicUpdateSynapseSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateSynapseSourceV2DtoType Source type
+type PublicUpdateSynapseSourceV2DtoType string
+
+// PublicUpdateTableauSourceV2Dto defines model for PublicUpdateTableauSourceV2Dto.
+type PublicUpdateTableauSourceV2Dto struct {
+	// Credentials Credentials of the source
+	Credentials string `json:"credentials"`
+
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule"`
+
+	// TableauInformation Tableau connection settings
+	TableauInformation TableauInformation `json:"tableauInformation"`
+
+	// Type Source type
+	Type PublicUpdateTableauSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateTableauSourceV2DtoType Source type
+type PublicUpdateTableauSourceV2DtoType string
 
 // PublicUserCreateDto defines model for PublicUserCreateDto.
 type PublicUserCreateDto struct {
@@ -3573,6 +10032,36 @@ type PublicUserUpdateDtoAuthTypes string
 // PublicUserUpdateDtoRole defines model for PublicUserUpdateDto.Role.
 type PublicUserUpdateDtoRole string
 
+// QlikInformation Qlik connection settings
+type QlikInformation struct {
+	// Host Your Qlik server URL
+	Host string `json:"host"`
+}
+
+// QuicksightInformation QuickSight connection settings
+type QuicksightInformation struct {
+	// AccountId Your AWS account ID
+	AccountId string `json:"accountId"`
+
+	// AwsRegion Your AWS region
+	AwsRegion string `json:"awsRegion"`
+
+	// RoleArn The ARN for your QuickSight role
+	RoleArn string `json:"roleArn"`
+}
+
+// RedshiftInformation Redshift connection settings
+type RedshiftInformation struct {
+	// Host Your Redshift server host
+	Host string `json:"host"`
+
+	// Port Your Redshift server port
+	Port int32 `json:"port"`
+
+	// Ssl Whether to use SSL to connect to your Redshift server
+	Ssl bool `json:"ssl"`
+}
+
 // RuleCatalogAssetDto defines model for RuleCatalogAssetDto.
 type RuleCatalogAssetDto struct {
 	CanManuallyRun              bool                              `json:"canManuallyRun"`
@@ -3621,18 +10110,20 @@ type RuleDetailsDto struct {
 	CreatedBy         *string                          `json:"createdBy"`
 	CreatedByProvider RuleDetailsDto_CreatedByProvider `json:"createdByProvider"`
 	CreatedDate       *int64                           `json:"createdDate"`
+	JiraTemplateName  *string                          `json:"jiraTemplateName,omitempty"`
 	LastModifiedDate  *int64                           `json:"lastModifiedDate"`
 	Mails             []AlertingHookDto                `json:"mails"`
 	// Deprecated: this property has been marked as deprecated upstream, but no `x-deprecated-reason` was set
-	ModifiedBy         *string                           `json:"modifiedBy"`
-	ModifiedByProvider RuleDetailsDto_ModifiedByProvider `json:"modifiedByProvider"`
-	MsTeams            []AlertingHookDto                 `json:"msTeams"`
-	Provider           RuleDetailsDto_Provider           `json:"provider"`
-	RuleParams         *JsonNode                         `json:"ruleParams,omitempty"`
-	SlackChannels      []AlertingHookDto                 `json:"slackChannels"`
-	Tags               []TagDto                          `json:"tags"`
-	Terms              []TagDto                          `json:"terms"`
-	Webhooks           []AlertingHookDto                 `json:"webhooks"`
+	ModifiedBy             *string                           `json:"modifiedBy"`
+	ModifiedByProvider     RuleDetailsDto_ModifiedByProvider `json:"modifiedByProvider"`
+	MsTeams                []AlertingHookDto                 `json:"msTeams"`
+	Provider               RuleDetailsDto_Provider           `json:"provider"`
+	RuleParams             *JsonNode                         `json:"ruleParams,omitempty"`
+	ServiceNowTemplateName *string                           `json:"serviceNowTemplateName,omitempty"`
+	SlackChannels          []AlertingHookDto                 `json:"slackChannels"`
+	Tags                   []TagDto                          `json:"tags"`
+	Terms                  []TagDto                          `json:"terms"`
+	Webhooks               []AlertingHookDto                 `json:"webhooks"`
 }
 
 // RuleDetailsDto_CreatedByProvider defines model for RuleDetailsDto.CreatedByProvider.
@@ -3652,12 +10143,15 @@ type RuleDetailsDto_Provider struct {
 
 // RuleInfoDto defines model for RuleInfoDto.
 type RuleInfoDto struct {
-	CanBeQualified bool               `json:"canBeQualified"`
-	CanBeScheduled bool               `json:"canBeScheduled"`
-	CanManuallyRun bool               `json:"canManuallyRun"`
-	Criticality    Criticality        `json:"criticality"`
-	Datasets       *[]DatasetBriefDto `json:"datasets,omitempty"`
-	Id             openapi_types.UUID `json:"id"`
+	CanBeQualified     bool                       `json:"canBeQualified"`
+	CanBeScheduled     bool                       `json:"canBeScheduled"`
+	CanHaveFailingRows bool                       `json:"canHaveFailingRows"`
+	CanManuallyRun     bool                       `json:"canManuallyRun"`
+	Criticality        Criticality                `json:"criticality"`
+	CustomMetadata     *[]EntityCustomMetadataDto `json:"customMetadata,omitempty"`
+	Datasets           *[]DatasetBriefDto         `json:"datasets,omitempty"`
+	Id                 openapi_types.UUID         `json:"id"`
+	LastIncident       *IncidentLightDto          `json:"lastIncident,omitempty"`
 	// Deprecated: this property has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 	LastRunStatus               *RuleInfoDtoLastRunStatus `json:"lastRunStatus,omitempty"`
 	LastRunTimestamp            *int64                    `json:"lastRunTimestamp,omitempty"`
@@ -3677,7 +10171,7 @@ type RuleInfoDto struct {
 	SupportAsCodeYAMLConversion bool                      `json:"supportAsCodeYAMLConversion"`
 	Tags                        *[]TagDto                 `json:"tags,omitempty"`
 	UnresolvedIncidents         int32                     `json:"unresolvedIncidents"`
-	Workspace                   *WorkspaceDto             `json:"workspace,omitempty"`
+	Workspace                   *WorkspaceSummaryDto      `json:"workspace,omitempty"`
 }
 
 // RuleInfoDtoLastRunStatus defines model for RuleInfoDto.LastRunStatus.
@@ -3696,6 +10190,7 @@ type RuleOverviewDto struct {
 
 // RuleRunDto defines model for RuleRunDto.
 type RuleRunDto struct {
+	// Deprecated: this property has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 	CanShowFailingRows bool                      `json:"canShowFailingRows"`
 	CreatedBy          *string                   `json:"createdBy,omitempty"`
 	CreatedDate        *int64                    `json:"createdDate,omitempty"`
@@ -3758,6 +10253,42 @@ type SearchCollectionRuleRunDto struct {
 	TotalElements *int64       `json:"totalElements,omitempty"`
 }
 
+// SimpleDuration defines model for SimpleDuration.
+type SimpleDuration struct {
+	Unit  *SimpleDurationUnit `json:"unit,omitempty"`
+	Value *int32              `json:"value,omitempty"`
+}
+
+// SimpleDurationUnit defines model for SimpleDuration.Unit.
+type SimpleDurationUnit string
+
+// SnowflakeInformation Snowflake connection settings
+type SnowflakeInformation struct {
+	// AccountIdentifier Your Snowflake account identifier
+	AccountIdentifier string `json:"accountIdentifier"`
+
+	// Warehouse Your Snowflake warehouse
+	Warehouse string `json:"warehouse"`
+}
+
+// SynapseInformation Synapse connection settings
+type SynapseInformation struct {
+	// Host The host of your Synapse server
+	Host string `json:"host"`
+
+	// Port Your Synapse server port
+	Port int32 `json:"port"`
+}
+
+// TableauInformation Tableau connection settings
+type TableauInformation struct {
+	// Host Your Tableau Server hostname
+	Host string `json:"host"`
+
+	// Site Your Tableau Server site. Leave empty if your Tableau environment is using the Default Site.
+	Site string `json:"site"`
+}
+
 // TagDto defines model for TagDto.
 type TagDto struct {
 	CreatedBy        *string            `json:"createdBy,omitempty"`
@@ -3817,8 +10348,8 @@ type WorkspaceApplyResponseDto struct {
 	Changes *[]WorkspaceApplyObjectResponseDto `json:"changes,omitempty"`
 }
 
-// WorkspaceDto defines model for WorkspaceDto.
-type WorkspaceDto struct {
+// WorkspaceSummaryDto defines model for WorkspaceSummaryDto.
+type WorkspaceSummaryDto struct {
 	Description *string             `json:"description,omitempty"`
 	Id          *openapi_types.UUID `json:"id,omitempty"`
 	Name        *string             `json:"name,omitempty"`
@@ -3884,6 +10415,54 @@ type GetAllRuleParamsLastRunStatus string
 // GetAllRuleParamsRuleStatus defines parameters for GetAllRule.
 type GetAllRuleParamsRuleStatus string
 
+// GetAllMonitorsAsCodeParams defines parameters for GetAllMonitorsAsCode.
+type GetAllMonitorsAsCodeParams struct {
+	Mode *GetAllMonitorsAsCodeParamsMode `form:"mode,omitempty" json:"mode,omitempty"`
+
+	// TextSearch Global text search
+	TextSearch *string `form:"textSearch,omitempty" json:"textSearch,omitempty"`
+
+	// RuleTemplateName Filter on given rule template name
+	RuleTemplateName *[]string `form:"ruleTemplateName,omitempty" json:"ruleTemplateName,omitempty"`
+
+	// LastRunStatus Filter on given last run statuses
+	LastRunStatus *[]GetAllMonitorsAsCodeParamsLastRunStatus `form:"lastRunStatus,omitempty" json:"lastRunStatus,omitempty"`
+
+	// RuleStatus Filter on given rule status
+	RuleStatus *[]GetAllMonitorsAsCodeParamsRuleStatus `form:"ruleStatus,omitempty" json:"ruleStatus,omitempty"`
+
+	// Dataset Filter on given dataset ids
+	Dataset *[]openapi_types.UUID `form:"dataset,omitempty" json:"dataset,omitempty"`
+
+	// Tag Filter on given tag ids
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// Datasource Filter on given datasource ids
+	Datasource  *[]openapi_types.UUID `form:"datasource,omitempty" json:"datasource,omitempty"`
+	Criticality *[]int32              `form:"criticality,omitempty" json:"criticality,omitempty"`
+
+	// Domain Domain searched
+	Domain *string `form:"domain,omitempty" json:"domain,omitempty"`
+
+	// Page The requested page number. Zero-based page index (0..N)
+	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
+
+	// ItemsPerPage The number of elements to be returned inside the page. Pass a value of -1, to bypass pagination and fetch all items
+	ItemsPerPage *int32 `form:"itemsPerPage,omitempty" json:"itemsPerPage,omitempty"`
+
+	// Sort The resource fields on which to apply the sort, format : property,ASC|DESC
+	Sort *[]string `form:"sort,omitempty" json:"sort,omitempty"`
+}
+
+// GetAllMonitorsAsCodeParamsMode defines parameters for GetAllMonitorsAsCode.
+type GetAllMonitorsAsCodeParamsMode string
+
+// GetAllMonitorsAsCodeParamsLastRunStatus defines parameters for GetAllMonitorsAsCode.
+type GetAllMonitorsAsCodeParamsLastRunStatus string
+
+// GetAllMonitorsAsCodeParamsRuleStatus defines parameters for GetAllMonitorsAsCode.
+type GetAllMonitorsAsCodeParamsRuleStatus string
+
 // GetSiffletRuleRunsParams defines parameters for GetSiffletRuleRuns.
 type GetSiffletRuleRunsParams struct {
 	// Status Filter by run status
@@ -3917,6 +10496,16 @@ type PublicGetUsersParams struct {
 
 	// ItemsPerPage The number of elements to be returned inside the page.
 	ItemsPerPage *int32 `form:"itemsPerPage,omitempty" json:"itemsPerPage,omitempty"`
+}
+
+// PublicCreateSourceV2JSONBody defines parameters for PublicCreateSourceV2.
+type PublicCreateSourceV2JSONBody struct {
+	union json.RawMessage
+}
+
+// PublicEditSourceV2JSONBody defines parameters for PublicEditSourceV2.
+type PublicEditSourceV2JSONBody struct {
+	union json.RawMessage
 }
 
 // PublicEditAssetJSONRequestBody defines body for PublicEditAsset for application/json ContentType.
@@ -3963,6 +10552,5458 @@ type PublicCreateUserJSONRequestBody = PublicUserCreateDto
 
 // PublicUpdateUserJSONRequestBody defines body for PublicUpdateUser for application/json ContentType.
 type PublicUpdateUserJSONRequestBody = PublicUserUpdateDto
+
+// PublicCreateSourceV2JSONRequestBody defines body for PublicCreateSourceV2 for application/json ContentType.
+type PublicCreateSourceV2JSONRequestBody PublicCreateSourceV2JSONBody
+
+// PublicEditSourceV2JSONRequestBody defines body for PublicEditSourceV2 for application/json ContentType.
+type PublicEditSourceV2JSONRequestBody PublicEditSourceV2JSONBody
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeCompletenessMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeCompletenessMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeCompletenessMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeCompletenessMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeCompletenessMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeCompletenessMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeCompletenessMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeCompletenessMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeCompletenessMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeCompletenessMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeCompletenessMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeCompletenessMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeCompletenessMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeCompletenessMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeCompletenessMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeCompletenessMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeCompletenessMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeCompletenessMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeCompletenessMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeCompletenessMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeConditionGroupDto returns the union data inside the AsCodeConditionGroupDto_Conditions_Item as a AsCodeConditionGroupDto
+func (t AsCodeConditionGroupDto_Conditions_Item) AsAsCodeConditionGroupDto() (AsCodeConditionGroupDto, error) {
+	var body AsCodeConditionGroupDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeConditionGroupDto overwrites any union data inside the AsCodeConditionGroupDto_Conditions_Item as the provided AsCodeConditionGroupDto
+func (t *AsCodeConditionGroupDto_Conditions_Item) FromAsCodeConditionGroupDto(v AsCodeConditionGroupDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeConditionGroupDto performs a merge with any union data inside the AsCodeConditionGroupDto_Conditions_Item, using the provided AsCodeConditionGroupDto
+func (t *AsCodeConditionGroupDto_Conditions_Item) MergeAsCodeConditionGroupDto(v AsCodeConditionGroupDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeDateConditionDto returns the union data inside the AsCodeConditionGroupDto_Conditions_Item as a AsCodeDateConditionDto
+func (t AsCodeConditionGroupDto_Conditions_Item) AsAsCodeDateConditionDto() (AsCodeDateConditionDto, error) {
+	var body AsCodeDateConditionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDateConditionDto overwrites any union data inside the AsCodeConditionGroupDto_Conditions_Item as the provided AsCodeDateConditionDto
+func (t *AsCodeConditionGroupDto_Conditions_Item) FromAsCodeDateConditionDto(v AsCodeDateConditionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDateConditionDto performs a merge with any union data inside the AsCodeConditionGroupDto_Conditions_Item, using the provided AsCodeDateConditionDto
+func (t *AsCodeConditionGroupDto_Conditions_Item) MergeAsCodeDateConditionDto(v AsCodeDateConditionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeNullCheckConditionDto returns the union data inside the AsCodeConditionGroupDto_Conditions_Item as a AsCodeNullCheckConditionDto
+func (t AsCodeConditionGroupDto_Conditions_Item) AsAsCodeNullCheckConditionDto() (AsCodeNullCheckConditionDto, error) {
+	var body AsCodeNullCheckConditionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeNullCheckConditionDto overwrites any union data inside the AsCodeConditionGroupDto_Conditions_Item as the provided AsCodeNullCheckConditionDto
+func (t *AsCodeConditionGroupDto_Conditions_Item) FromAsCodeNullCheckConditionDto(v AsCodeNullCheckConditionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeNullCheckConditionDto performs a merge with any union data inside the AsCodeConditionGroupDto_Conditions_Item, using the provided AsCodeNullCheckConditionDto
+func (t *AsCodeConditionGroupDto_Conditions_Item) MergeAsCodeNullCheckConditionDto(v AsCodeNullCheckConditionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeNumericComparisonConditionDto returns the union data inside the AsCodeConditionGroupDto_Conditions_Item as a AsCodeNumericComparisonConditionDto
+func (t AsCodeConditionGroupDto_Conditions_Item) AsAsCodeNumericComparisonConditionDto() (AsCodeNumericComparisonConditionDto, error) {
+	var body AsCodeNumericComparisonConditionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeNumericComparisonConditionDto overwrites any union data inside the AsCodeConditionGroupDto_Conditions_Item as the provided AsCodeNumericComparisonConditionDto
+func (t *AsCodeConditionGroupDto_Conditions_Item) FromAsCodeNumericComparisonConditionDto(v AsCodeNumericComparisonConditionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeNumericComparisonConditionDto performs a merge with any union data inside the AsCodeConditionGroupDto_Conditions_Item, using the provided AsCodeNumericComparisonConditionDto
+func (t *AsCodeConditionGroupDto_Conditions_Item) MergeAsCodeNumericComparisonConditionDto(v AsCodeNumericComparisonConditionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStringConditionDto returns the union data inside the AsCodeConditionGroupDto_Conditions_Item as a AsCodeStringConditionDto
+func (t AsCodeConditionGroupDto_Conditions_Item) AsAsCodeStringConditionDto() (AsCodeStringConditionDto, error) {
+	var body AsCodeStringConditionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStringConditionDto overwrites any union data inside the AsCodeConditionGroupDto_Conditions_Item as the provided AsCodeStringConditionDto
+func (t *AsCodeConditionGroupDto_Conditions_Item) FromAsCodeStringConditionDto(v AsCodeStringConditionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStringConditionDto performs a merge with any union data inside the AsCodeConditionGroupDto_Conditions_Item, using the provided AsCodeStringConditionDto
+func (t *AsCodeConditionGroupDto_Conditions_Item) MergeAsCodeStringConditionDto(v AsCodeStringConditionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeConditionGroupDto_Conditions_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeConditionGroupDto_Conditions_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeConditionGroupDto returns the union data inside the AsCodeConditionalMonitorParamsDto_Condition as a AsCodeConditionGroupDto
+func (t AsCodeConditionalMonitorParamsDto_Condition) AsAsCodeConditionGroupDto() (AsCodeConditionGroupDto, error) {
+	var body AsCodeConditionGroupDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeConditionGroupDto overwrites any union data inside the AsCodeConditionalMonitorParamsDto_Condition as the provided AsCodeConditionGroupDto
+func (t *AsCodeConditionalMonitorParamsDto_Condition) FromAsCodeConditionGroupDto(v AsCodeConditionGroupDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeConditionGroupDto performs a merge with any union data inside the AsCodeConditionalMonitorParamsDto_Condition, using the provided AsCodeConditionGroupDto
+func (t *AsCodeConditionalMonitorParamsDto_Condition) MergeAsCodeConditionGroupDto(v AsCodeConditionGroupDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeDateConditionDto returns the union data inside the AsCodeConditionalMonitorParamsDto_Condition as a AsCodeDateConditionDto
+func (t AsCodeConditionalMonitorParamsDto_Condition) AsAsCodeDateConditionDto() (AsCodeDateConditionDto, error) {
+	var body AsCodeDateConditionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDateConditionDto overwrites any union data inside the AsCodeConditionalMonitorParamsDto_Condition as the provided AsCodeDateConditionDto
+func (t *AsCodeConditionalMonitorParamsDto_Condition) FromAsCodeDateConditionDto(v AsCodeDateConditionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDateConditionDto performs a merge with any union data inside the AsCodeConditionalMonitorParamsDto_Condition, using the provided AsCodeDateConditionDto
+func (t *AsCodeConditionalMonitorParamsDto_Condition) MergeAsCodeDateConditionDto(v AsCodeDateConditionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeNullCheckConditionDto returns the union data inside the AsCodeConditionalMonitorParamsDto_Condition as a AsCodeNullCheckConditionDto
+func (t AsCodeConditionalMonitorParamsDto_Condition) AsAsCodeNullCheckConditionDto() (AsCodeNullCheckConditionDto, error) {
+	var body AsCodeNullCheckConditionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeNullCheckConditionDto overwrites any union data inside the AsCodeConditionalMonitorParamsDto_Condition as the provided AsCodeNullCheckConditionDto
+func (t *AsCodeConditionalMonitorParamsDto_Condition) FromAsCodeNullCheckConditionDto(v AsCodeNullCheckConditionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeNullCheckConditionDto performs a merge with any union data inside the AsCodeConditionalMonitorParamsDto_Condition, using the provided AsCodeNullCheckConditionDto
+func (t *AsCodeConditionalMonitorParamsDto_Condition) MergeAsCodeNullCheckConditionDto(v AsCodeNullCheckConditionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeNumericComparisonConditionDto returns the union data inside the AsCodeConditionalMonitorParamsDto_Condition as a AsCodeNumericComparisonConditionDto
+func (t AsCodeConditionalMonitorParamsDto_Condition) AsAsCodeNumericComparisonConditionDto() (AsCodeNumericComparisonConditionDto, error) {
+	var body AsCodeNumericComparisonConditionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeNumericComparisonConditionDto overwrites any union data inside the AsCodeConditionalMonitorParamsDto_Condition as the provided AsCodeNumericComparisonConditionDto
+func (t *AsCodeConditionalMonitorParamsDto_Condition) FromAsCodeNumericComparisonConditionDto(v AsCodeNumericComparisonConditionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeNumericComparisonConditionDto performs a merge with any union data inside the AsCodeConditionalMonitorParamsDto_Condition, using the provided AsCodeNumericComparisonConditionDto
+func (t *AsCodeConditionalMonitorParamsDto_Condition) MergeAsCodeNumericComparisonConditionDto(v AsCodeNumericComparisonConditionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStringConditionDto returns the union data inside the AsCodeConditionalMonitorParamsDto_Condition as a AsCodeStringConditionDto
+func (t AsCodeConditionalMonitorParamsDto_Condition) AsAsCodeStringConditionDto() (AsCodeStringConditionDto, error) {
+	var body AsCodeStringConditionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStringConditionDto overwrites any union data inside the AsCodeConditionalMonitorParamsDto_Condition as the provided AsCodeStringConditionDto
+func (t *AsCodeConditionalMonitorParamsDto_Condition) FromAsCodeStringConditionDto(v AsCodeStringConditionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStringConditionDto performs a merge with any union data inside the AsCodeConditionalMonitorParamsDto_Condition, using the provided AsCodeStringConditionDto
+func (t *AsCodeConditionalMonitorParamsDto_Condition) MergeAsCodeStringConditionDto(v AsCodeStringConditionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeConditionalMonitorParamsDto_Condition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeConditionalMonitorParamsDto_Condition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeConditionalMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeConditionalMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeConditionalMonitorParamsDto_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeConditionalMonitorParamsDto_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeConditionalMonitorParamsDto_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeConditionalMonitorParamsDto_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeConditionalMonitorParamsDto_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeConditionalMonitorParamsDto_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeConditionalMonitorParamsDto_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeConditionalMonitorParamsDto_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeConditionalMonitorParamsDto_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeConditionalMonitorParamsDto_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeConditionalMonitorParamsDto_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeConditionalMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeCorrelatedMetricsMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeCorrelatedMetricsMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeCorrelatedMetricsMonitorParamsDto_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeCorrelatedMetricsMonitorParamsDto_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeCorrelatedMetricsMonitorParamsDto_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeCorrelatedMetricsMonitorParamsDto_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeCorrelatedMetricsMonitorParamsDto_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeCorrelatedMetricsMonitorParamsDto_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeCorrelatedMetricsMonitorParamsDto_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeCorrelatedMetricsMonitorParamsDto_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeCorrelatedMetricsMonitorParamsDto_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeCorrelatedMetricsMonitorParamsDto_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeCorrelatedMetricsMonitorParamsDto_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeCorrelatedMetricsMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeCustomMetadataEntryLabelValueReferenceDto returns the union data inside the AsCodeCustomMetadataEntryReferenceDto_Value as a AsCodeCustomMetadataEntryLabelValueReferenceDto
+func (t AsCodeCustomMetadataEntryReferenceDto_Value) AsAsCodeCustomMetadataEntryLabelValueReferenceDto() (AsCodeCustomMetadataEntryLabelValueReferenceDto, error) {
+	var body AsCodeCustomMetadataEntryLabelValueReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeCustomMetadataEntryLabelValueReferenceDto overwrites any union data inside the AsCodeCustomMetadataEntryReferenceDto_Value as the provided AsCodeCustomMetadataEntryLabelValueReferenceDto
+func (t *AsCodeCustomMetadataEntryReferenceDto_Value) FromAsCodeCustomMetadataEntryLabelValueReferenceDto(v AsCodeCustomMetadataEntryLabelValueReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeCustomMetadataEntryLabelValueReferenceDto performs a merge with any union data inside the AsCodeCustomMetadataEntryReferenceDto_Value, using the provided AsCodeCustomMetadataEntryLabelValueReferenceDto
+func (t *AsCodeCustomMetadataEntryReferenceDto_Value) MergeAsCodeCustomMetadataEntryLabelValueReferenceDto(v AsCodeCustomMetadataEntryLabelValueReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeCustomMetadataEntryStringValueReferenceDto returns the union data inside the AsCodeCustomMetadataEntryReferenceDto_Value as a AsCodeCustomMetadataEntryStringValueReferenceDto
+func (t AsCodeCustomMetadataEntryReferenceDto_Value) AsAsCodeCustomMetadataEntryStringValueReferenceDto() (AsCodeCustomMetadataEntryStringValueReferenceDto, error) {
+	var body AsCodeCustomMetadataEntryStringValueReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeCustomMetadataEntryStringValueReferenceDto overwrites any union data inside the AsCodeCustomMetadataEntryReferenceDto_Value as the provided AsCodeCustomMetadataEntryStringValueReferenceDto
+func (t *AsCodeCustomMetadataEntryReferenceDto_Value) FromAsCodeCustomMetadataEntryStringValueReferenceDto(v AsCodeCustomMetadataEntryStringValueReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeCustomMetadataEntryStringValueReferenceDto performs a merge with any union data inside the AsCodeCustomMetadataEntryReferenceDto_Value, using the provided AsCodeCustomMetadataEntryStringValueReferenceDto
+func (t *AsCodeCustomMetadataEntryReferenceDto_Value) MergeAsCodeCustomMetadataEntryStringValueReferenceDto(v AsCodeCustomMetadataEntryStringValueReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeCustomMetadataEntryUserValueReferenceDto returns the union data inside the AsCodeCustomMetadataEntryReferenceDto_Value as a AsCodeCustomMetadataEntryUserValueReferenceDto
+func (t AsCodeCustomMetadataEntryReferenceDto_Value) AsAsCodeCustomMetadataEntryUserValueReferenceDto() (AsCodeCustomMetadataEntryUserValueReferenceDto, error) {
+	var body AsCodeCustomMetadataEntryUserValueReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeCustomMetadataEntryUserValueReferenceDto overwrites any union data inside the AsCodeCustomMetadataEntryReferenceDto_Value as the provided AsCodeCustomMetadataEntryUserValueReferenceDto
+func (t *AsCodeCustomMetadataEntryReferenceDto_Value) FromAsCodeCustomMetadataEntryUserValueReferenceDto(v AsCodeCustomMetadataEntryUserValueReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeCustomMetadataEntryUserValueReferenceDto performs a merge with any union data inside the AsCodeCustomMetadataEntryReferenceDto_Value, using the provided AsCodeCustomMetadataEntryUserValueReferenceDto
+func (t *AsCodeCustomMetadataEntryReferenceDto_Value) MergeAsCodeCustomMetadataEntryUserValueReferenceDto(v AsCodeCustomMetadataEntryUserValueReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeCustomMetadataEntryReferenceDto_Value) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeCustomMetadataEntryReferenceDto_Value) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeCustomMetricsMonitorParamsDtoV1_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeCustomMetricsMonitorParamsDtoV1_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeCustomMetricsMonitorParamsDtoV1_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeCustomMetricsMonitorParamsDtoV1_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeCustomMetricsMonitorParamsDtoV1_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeCustomMetricsMonitorParamsDtoV1_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeCustomMetricsMonitorParamsDtoV1_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeCustomMetricsMonitorParamsDtoV1_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeCustomMetricsMonitorParamsDtoV1_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeCustomMetricsMonitorParamsDtoV1_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeCustomMetricsMonitorParamsDtoV1_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeCustomMetricsMonitorParamsDtoV1_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeCustomMetricsMonitorParamsDtoV1_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeCustomMetricsMonitorParamsDtoV1_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeCustomMetricsMonitorParamsDtoV1_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeCustomMetricsMonitorParamsDtoV1_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeCustomMetricsMonitorParamsDtoV1_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeCustomMetricsMonitorParamsDtoV1_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeCustomMetricsMonitorParamsDtoV1_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeCustomMetricsMonitorParamsDtoV1_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeCustomMetricsMonitorParamsDtoV2_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeCustomMetricsMonitorParamsDtoV2_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeCustomMetricsMonitorParamsDtoV2_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeCustomMetricsMonitorParamsDtoV2_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeCustomMetricsMonitorParamsDtoV2_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeCustomMetricsMonitorParamsDtoV2_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeCustomMetricsMonitorParamsDtoV2_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeCustomMetricsMonitorParamsDtoV2_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeCustomMetricsMonitorParamsDtoV2_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeCustomMetricsMonitorParamsDtoV2_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeCustomMetricsMonitorParamsDtoV2_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeCustomMetricsMonitorParamsDtoV2_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeCustomMetricsMonitorParamsDtoV2_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeCustomMetricsMonitorParamsDtoV2_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeDistributionMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeDistributionMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeDistributionMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeDistributionMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeDistributionMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeDistributionMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeDistributionMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeDistributionMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeDistributionMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeDistributionMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeDistributionMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeDistributionMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeDistributionMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeDistributionMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeDistributionMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeDistributionMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeDistributionMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeDistributionMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeDistributionMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeDistributionMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeFixedDistributionReferenceDto returns the union data inside the AsCodeDistributionMonitorParamsDto_Reference as a AsCodeFixedDistributionReferenceDto
+func (t AsCodeDistributionMonitorParamsDto_Reference) AsAsCodeFixedDistributionReferenceDto() (AsCodeFixedDistributionReferenceDto, error) {
+	var body AsCodeFixedDistributionReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFixedDistributionReferenceDto overwrites any union data inside the AsCodeDistributionMonitorParamsDto_Reference as the provided AsCodeFixedDistributionReferenceDto
+func (t *AsCodeDistributionMonitorParamsDto_Reference) FromAsCodeFixedDistributionReferenceDto(v AsCodeFixedDistributionReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFixedDistributionReferenceDto performs a merge with any union data inside the AsCodeDistributionMonitorParamsDto_Reference, using the provided AsCodeFixedDistributionReferenceDto
+func (t *AsCodeDistributionMonitorParamsDto_Reference) MergeAsCodeFixedDistributionReferenceDto(v AsCodeFixedDistributionReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeRollingDistributionReferenceDto returns the union data inside the AsCodeDistributionMonitorParamsDto_Reference as a AsCodeRollingDistributionReferenceDto
+func (t AsCodeDistributionMonitorParamsDto_Reference) AsAsCodeRollingDistributionReferenceDto() (AsCodeRollingDistributionReferenceDto, error) {
+	var body AsCodeRollingDistributionReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeRollingDistributionReferenceDto overwrites any union data inside the AsCodeDistributionMonitorParamsDto_Reference as the provided AsCodeRollingDistributionReferenceDto
+func (t *AsCodeDistributionMonitorParamsDto_Reference) FromAsCodeRollingDistributionReferenceDto(v AsCodeRollingDistributionReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeRollingDistributionReferenceDto performs a merge with any union data inside the AsCodeDistributionMonitorParamsDto_Reference, using the provided AsCodeRollingDistributionReferenceDto
+func (t *AsCodeDistributionMonitorParamsDto_Reference) MergeAsCodeRollingDistributionReferenceDto(v AsCodeRollingDistributionReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeDistributionMonitorParamsDto_Reference) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeDistributionMonitorParamsDto_Reference) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeDistributionMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeDistributionMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeDistributionMonitorParamsDto_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeDistributionMonitorParamsDto_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeDistributionMonitorParamsDto_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeDistributionMonitorParamsDto_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeDistributionMonitorParamsDto_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeDistributionMonitorParamsDto_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeDistributionMonitorParamsDto_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeDistributionMonitorParamsDto_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeDistributionMonitorParamsDto_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeDistributionMonitorParamsDto_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeDistributionMonitorParamsDto_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeDistributionMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeDuplicatesMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeDuplicatesMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeDuplicatesMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeDuplicatesMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeDuplicatesMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeDuplicatesMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeDuplicatesMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeDuplicatesMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeDuplicatesMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeDuplicatesMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeDuplicatesMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeDuplicatesMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeDuplicatesMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeDuplicatesMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeDuplicatesMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeDuplicatesMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeDuplicatesMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeDuplicatesMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeDuplicatesMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeDuplicatesMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeDynamicFieldProfilingMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeDynamicFieldProfilingMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeDynamicFieldProfilingMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeDynamicFieldProfilingMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeFieldProfilingClauseDto returns the union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling as a AsCodeFieldProfilingClauseDto
+func (t AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling) AsAsCodeFieldProfilingClauseDto() (AsCodeFieldProfilingClauseDto, error) {
+	var body AsCodeFieldProfilingClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldProfilingClauseDto overwrites any union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling as the provided AsCodeFieldProfilingClauseDto
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling) FromAsCodeFieldProfilingClauseDto(v AsCodeFieldProfilingClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldProfilingClauseDto performs a merge with any union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling, using the provided AsCodeFieldProfilingClauseDto
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling) MergeAsCodeFieldProfilingClauseDto(v AsCodeFieldProfilingClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeNullFieldProfilingClauseDto returns the union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling as a AsCodeNullFieldProfilingClauseDto
+func (t AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling) AsAsCodeNullFieldProfilingClauseDto() (AsCodeNullFieldProfilingClauseDto, error) {
+	var body AsCodeNullFieldProfilingClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeNullFieldProfilingClauseDto overwrites any union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling as the provided AsCodeNullFieldProfilingClauseDto
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling) FromAsCodeNullFieldProfilingClauseDto(v AsCodeNullFieldProfilingClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeNullFieldProfilingClauseDto performs a merge with any union data inside the AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling, using the provided AsCodeNullFieldProfilingClauseDto
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling) MergeAsCodeNullFieldProfilingClauseDto(v AsCodeNullFieldProfilingClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeAggregationClauseDtoV1 returns the union data inside the AsCodeDynamicMetricMonitorParamsDto_Aggregation as a AsCodeAggregationClauseDtoV1
+func (t AsCodeDynamicMetricMonitorParamsDto_Aggregation) AsAsCodeAggregationClauseDtoV1() (AsCodeAggregationClauseDtoV1, error) {
+	var body AsCodeAggregationClauseDtoV1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeAggregationClauseDtoV1 overwrites any union data inside the AsCodeDynamicMetricMonitorParamsDto_Aggregation as the provided AsCodeAggregationClauseDtoV1
+func (t *AsCodeDynamicMetricMonitorParamsDto_Aggregation) FromAsCodeAggregationClauseDtoV1(v AsCodeAggregationClauseDtoV1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeAggregationClauseDtoV1 performs a merge with any union data inside the AsCodeDynamicMetricMonitorParamsDto_Aggregation, using the provided AsCodeAggregationClauseDtoV1
+func (t *AsCodeDynamicMetricMonitorParamsDto_Aggregation) MergeAsCodeAggregationClauseDtoV1(v AsCodeAggregationClauseDtoV1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeQuantileAggregationClauseDtoV1 returns the union data inside the AsCodeDynamicMetricMonitorParamsDto_Aggregation as a AsCodeQuantileAggregationClauseDtoV1
+func (t AsCodeDynamicMetricMonitorParamsDto_Aggregation) AsAsCodeQuantileAggregationClauseDtoV1() (AsCodeQuantileAggregationClauseDtoV1, error) {
+	var body AsCodeQuantileAggregationClauseDtoV1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeQuantileAggregationClauseDtoV1 overwrites any union data inside the AsCodeDynamicMetricMonitorParamsDto_Aggregation as the provided AsCodeQuantileAggregationClauseDtoV1
+func (t *AsCodeDynamicMetricMonitorParamsDto_Aggregation) FromAsCodeQuantileAggregationClauseDtoV1(v AsCodeQuantileAggregationClauseDtoV1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeQuantileAggregationClauseDtoV1 performs a merge with any union data inside the AsCodeDynamicMetricMonitorParamsDto_Aggregation, using the provided AsCodeQuantileAggregationClauseDtoV1
+func (t *AsCodeDynamicMetricMonitorParamsDto_Aggregation) MergeAsCodeQuantileAggregationClauseDtoV1(v AsCodeQuantileAggregationClauseDtoV1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeDynamicMetricMonitorParamsDto_Aggregation) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeDynamicMetricMonitorParamsDto_Aggregation) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeDynamicMetricMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeDynamicMetricMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeDynamicMetricMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeDynamicMetricMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeDynamicMetricMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeDynamicMetricMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeDynamicMetricMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeDynamicMetricMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeDynamicMetricMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeDynamicMetricMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeDynamicMetricMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeDynamicMetricMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeDynamicMetricMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeDynamicMetricMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeDynamicMetricMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeDynamicMetricMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeDynamicMetricMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeDynamicMetricMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeDynamicMetricMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeDynamicMetricMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeFieldDuplicatesMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeFieldDuplicatesMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeFieldDuplicatesMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldDuplicatesMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeFieldDuplicatesMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeFieldDuplicatesMonitorParamsDto_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeFieldDuplicatesMonitorParamsDto_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldDuplicatesMonitorParamsDto_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldDuplicatesMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeFieldFormatValidationClauseDto returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Format as a AsCodeFieldFormatValidationClauseDto
+func (t AsCodeFieldFormatMonitorParamsDtoV1_Format) AsAsCodeFieldFormatValidationClauseDto() (AsCodeFieldFormatValidationClauseDto, error) {
+	var body AsCodeFieldFormatValidationClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldFormatValidationClauseDto overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Format as the provided AsCodeFieldFormatValidationClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Format) FromAsCodeFieldFormatValidationClauseDto(v AsCodeFieldFormatValidationClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldFormatValidationClauseDto performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Format, using the provided AsCodeFieldFormatValidationClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Format) MergeAsCodeFieldFormatValidationClauseDto(v AsCodeFieldFormatValidationClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeRegexFieldFormatValidationClauseDto returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Format as a AsCodeRegexFieldFormatValidationClauseDto
+func (t AsCodeFieldFormatMonitorParamsDtoV1_Format) AsAsCodeRegexFieldFormatValidationClauseDto() (AsCodeRegexFieldFormatValidationClauseDto, error) {
+	var body AsCodeRegexFieldFormatValidationClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeRegexFieldFormatValidationClauseDto overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Format as the provided AsCodeRegexFieldFormatValidationClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Format) FromAsCodeRegexFieldFormatValidationClauseDto(v AsCodeRegexFieldFormatValidationClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeRegexFieldFormatValidationClauseDto performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Format, using the provided AsCodeRegexFieldFormatValidationClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Format) MergeAsCodeRegexFieldFormatValidationClauseDto(v AsCodeRegexFieldFormatValidationClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldFormatMonitorParamsDtoV1_Format) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Format) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeFieldFormatMonitorParamsDtoV1_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeFieldFormatMonitorParamsDtoV1_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeFieldFormatMonitorParamsDtoV1_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV1_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldFormatMonitorParamsDtoV1_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldFormatMonitorParamsDtoV1_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeFieldFormatValidationClauseDto returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Format as a AsCodeFieldFormatValidationClauseDto
+func (t AsCodeFieldFormatMonitorParamsDtoV2_Format) AsAsCodeFieldFormatValidationClauseDto() (AsCodeFieldFormatValidationClauseDto, error) {
+	var body AsCodeFieldFormatValidationClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldFormatValidationClauseDto overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Format as the provided AsCodeFieldFormatValidationClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Format) FromAsCodeFieldFormatValidationClauseDto(v AsCodeFieldFormatValidationClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldFormatValidationClauseDto performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Format, using the provided AsCodeFieldFormatValidationClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Format) MergeAsCodeFieldFormatValidationClauseDto(v AsCodeFieldFormatValidationClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeRegexFieldFormatValidationClauseDto returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Format as a AsCodeRegexFieldFormatValidationClauseDto
+func (t AsCodeFieldFormatMonitorParamsDtoV2_Format) AsAsCodeRegexFieldFormatValidationClauseDto() (AsCodeRegexFieldFormatValidationClauseDto, error) {
+	var body AsCodeRegexFieldFormatValidationClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeRegexFieldFormatValidationClauseDto overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Format as the provided AsCodeRegexFieldFormatValidationClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Format) FromAsCodeRegexFieldFormatValidationClauseDto(v AsCodeRegexFieldFormatValidationClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeRegexFieldFormatValidationClauseDto performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Format, using the provided AsCodeRegexFieldFormatValidationClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Format) MergeAsCodeRegexFieldFormatValidationClauseDto(v AsCodeRegexFieldFormatValidationClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldFormatMonitorParamsDtoV2_Format) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Format) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeFieldFormatMonitorParamsDtoV2_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeFieldFormatMonitorParamsDtoV2_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeFieldFormatMonitorParamsDtoV2_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldFormatMonitorParamsDtoV2_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeFieldFormatMonitorParamsDtoV2_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeFieldFormatMonitorParamsDtoV2_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeFieldFormatMonitorParamsDtoV2_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldFormatMonitorParamsDtoV2_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldFormatMonitorParamsDtoV2_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeFieldNullsMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeFieldNullsMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeFieldNullsMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldNullsMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeFieldNullsMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldNullsMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeFieldNullsMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeFieldNullsMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeFieldNullsMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldNullsMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeFieldNullsMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldNullsMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeFieldNullsMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeFieldNullsMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeFieldNullsMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldNullsMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeFieldNullsMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldNullsMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldNullsMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldNullsMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeFieldNullsMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeFieldNullsMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeFieldNullsMonitorParamsDto_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeFieldNullsMonitorParamsDto_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeFieldNullsMonitorParamsDto_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeFieldNullsMonitorParamsDto_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeFieldNullsMonitorParamsDto_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeFieldNullsMonitorParamsDto_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeFieldNullsMonitorParamsDto_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeFieldNullsMonitorParamsDto_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeFieldNullsMonitorParamsDto_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeFieldNullsMonitorParamsDto_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldNullsMonitorParamsDto_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldNullsMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeFieldUniquenessMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeFieldUniquenessMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeFieldUniquenessMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldUniquenessMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeFieldUniquenessMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFieldUniquenessMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeFieldUniquenessMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeFieldUniquenessMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeFieldUniquenessMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldUniquenessMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeFieldUniquenessMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFieldUniquenessMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeFieldUniquenessMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeFieldUniquenessMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeFieldUniquenessMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldUniquenessMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeFieldUniquenessMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFieldUniquenessMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFieldUniquenessMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFieldUniquenessMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeFreshnessMonitorParamsDtoV1_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeFreshnessMonitorParamsDtoV1_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeFreshnessMonitorParamsDtoV1_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeFreshnessMonitorParamsDtoV1_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeFreshnessMonitorParamsDtoV1_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeFreshnessMonitorParamsDtoV1_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFreshnessMonitorParamsDtoV1_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeFreshnessThresholdDto returns the union data inside the AsCodeFreshnessMonitorParamsDtoV1_Threshold as a AsCodeFreshnessThresholdDto
+func (t AsCodeFreshnessMonitorParamsDtoV1_Threshold) AsAsCodeFreshnessThresholdDto() (AsCodeFreshnessThresholdDto, error) {
+	var body AsCodeFreshnessThresholdDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFreshnessThresholdDto overwrites any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Threshold as the provided AsCodeFreshnessThresholdDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Threshold) FromAsCodeFreshnessThresholdDto(v AsCodeFreshnessThresholdDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFreshnessThresholdDto performs a merge with any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Threshold, using the provided AsCodeFreshnessThresholdDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Threshold) MergeAsCodeFreshnessThresholdDto(v AsCodeFreshnessThresholdDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeDynamicFreshnessThresholdDto returns the union data inside the AsCodeFreshnessMonitorParamsDtoV1_Threshold as a AsCodeDynamicFreshnessThresholdDto
+func (t AsCodeFreshnessMonitorParamsDtoV1_Threshold) AsAsCodeDynamicFreshnessThresholdDto() (AsCodeDynamicFreshnessThresholdDto, error) {
+	var body AsCodeDynamicFreshnessThresholdDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicFreshnessThresholdDto overwrites any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Threshold as the provided AsCodeDynamicFreshnessThresholdDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Threshold) FromAsCodeDynamicFreshnessThresholdDto(v AsCodeDynamicFreshnessThresholdDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicFreshnessThresholdDto performs a merge with any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Threshold, using the provided AsCodeDynamicFreshnessThresholdDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Threshold) MergeAsCodeDynamicFreshnessThresholdDto(v AsCodeDynamicFreshnessThresholdDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticFreshnessThresholdDto returns the union data inside the AsCodeFreshnessMonitorParamsDtoV1_Threshold as a AsCodeStaticFreshnessThresholdDto
+func (t AsCodeFreshnessMonitorParamsDtoV1_Threshold) AsAsCodeStaticFreshnessThresholdDto() (AsCodeStaticFreshnessThresholdDto, error) {
+	var body AsCodeStaticFreshnessThresholdDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticFreshnessThresholdDto overwrites any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Threshold as the provided AsCodeStaticFreshnessThresholdDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Threshold) FromAsCodeStaticFreshnessThresholdDto(v AsCodeStaticFreshnessThresholdDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticFreshnessThresholdDto performs a merge with any union data inside the AsCodeFreshnessMonitorParamsDtoV1_Threshold, using the provided AsCodeStaticFreshnessThresholdDto
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Threshold) MergeAsCodeStaticFreshnessThresholdDto(v AsCodeStaticFreshnessThresholdDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFreshnessMonitorParamsDtoV1_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFreshnessMonitorParamsDtoV1_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeFreshnessMonitorParamsDtoV2_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeFreshnessMonitorParamsDtoV2_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeFreshnessMonitorParamsDtoV2_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeFreshnessMonitorParamsDtoV2_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeFreshnessMonitorParamsDtoV2_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeFreshnessMonitorParamsDtoV2_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeFreshnessMonitorParamsDtoV2_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeFreshnessMonitorParamsDtoV2_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeFreshnessMonitorParamsDtoV2_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeFreshnessMonitorParamsDtoV2_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeFreshnessMonitorParamsDtoV2_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeFreshnessMonitorParamsDtoV2_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFreshnessMonitorParamsDtoV2_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeFreshnessMonitorParamsDtoV2_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeFreshnessMonitorParamsDtoV2_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeFreshnessMonitorParamsDtoV2_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeFreshnessMonitorParamsDtoV2_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeFreshnessMonitorParamsDtoV2_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeFreshnessMonitorParamsDtoV2_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeFreshnessMonitorParamsDtoV2_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeFreshnessMonitorParamsDtoV2_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeFreshnessMonitorParamsDtoV2_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeFreshnessMonitorParamsDtoV2_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeEqualityJoinConditionDto returns the union data inside the AsCodeJoinDto_JoinCondition as a AsCodeEqualityJoinConditionDto
+func (t AsCodeJoinDto_JoinCondition) AsAsCodeEqualityJoinConditionDto() (AsCodeEqualityJoinConditionDto, error) {
+	var body AsCodeEqualityJoinConditionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeEqualityJoinConditionDto overwrites any union data inside the AsCodeJoinDto_JoinCondition as the provided AsCodeEqualityJoinConditionDto
+func (t *AsCodeJoinDto_JoinCondition) FromAsCodeEqualityJoinConditionDto(v AsCodeEqualityJoinConditionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeEqualityJoinConditionDto performs a merge with any union data inside the AsCodeJoinDto_JoinCondition, using the provided AsCodeEqualityJoinConditionDto
+func (t *AsCodeJoinDto_JoinCondition) MergeAsCodeEqualityJoinConditionDto(v AsCodeEqualityJoinConditionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeJoinDto_JoinCondition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeJoinDto_JoinCondition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeAggregationClauseDtoV2 returns the union data inside the AsCodeMetricClauseDto_Aggregation as a AsCodeAggregationClauseDtoV2
+func (t AsCodeMetricClauseDto_Aggregation) AsAsCodeAggregationClauseDtoV2() (AsCodeAggregationClauseDtoV2, error) {
+	var body AsCodeAggregationClauseDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeAggregationClauseDtoV2 overwrites any union data inside the AsCodeMetricClauseDto_Aggregation as the provided AsCodeAggregationClauseDtoV2
+func (t *AsCodeMetricClauseDto_Aggregation) FromAsCodeAggregationClauseDtoV2(v AsCodeAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeAggregationClauseDtoV2 performs a merge with any union data inside the AsCodeMetricClauseDto_Aggregation, using the provided AsCodeAggregationClauseDtoV2
+func (t *AsCodeMetricClauseDto_Aggregation) MergeAsCodeAggregationClauseDtoV2(v AsCodeAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeQuantileAggregationClauseDtoV2 returns the union data inside the AsCodeMetricClauseDto_Aggregation as a AsCodeQuantileAggregationClauseDtoV2
+func (t AsCodeMetricClauseDto_Aggregation) AsAsCodeQuantileAggregationClauseDtoV2() (AsCodeQuantileAggregationClauseDtoV2, error) {
+	var body AsCodeQuantileAggregationClauseDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeQuantileAggregationClauseDtoV2 overwrites any union data inside the AsCodeMetricClauseDto_Aggregation as the provided AsCodeQuantileAggregationClauseDtoV2
+func (t *AsCodeMetricClauseDto_Aggregation) FromAsCodeQuantileAggregationClauseDtoV2(v AsCodeQuantileAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeQuantileAggregationClauseDtoV2 performs a merge with any union data inside the AsCodeMetricClauseDto_Aggregation, using the provided AsCodeQuantileAggregationClauseDtoV2
+func (t *AsCodeMetricClauseDto_Aggregation) MergeAsCodeQuantileAggregationClauseDtoV2(v AsCodeQuantileAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeMetricClauseDto_Aggregation) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeMetricClauseDto_Aggregation) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeMetricClauseDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeMetricClauseDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeMetricClauseDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeMetricClauseDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeMetricClauseDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeMetricClauseDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeMetricClauseDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeMetricClauseDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeMetricClauseDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeMetricClauseDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeMetricClauseDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeMetricClauseDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeMetricClauseDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeMetricClauseDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeMetricClauseDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeMetricClauseDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeMetricClauseDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeMetricClauseDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeMetricClauseDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeMetricClauseDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeAggregationClauseDtoV2 returns the union data inside the AsCodeMetricsMonitorParamsDto_Aggregation as a AsCodeAggregationClauseDtoV2
+func (t AsCodeMetricsMonitorParamsDto_Aggregation) AsAsCodeAggregationClauseDtoV2() (AsCodeAggregationClauseDtoV2, error) {
+	var body AsCodeAggregationClauseDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeAggregationClauseDtoV2 overwrites any union data inside the AsCodeMetricsMonitorParamsDto_Aggregation as the provided AsCodeAggregationClauseDtoV2
+func (t *AsCodeMetricsMonitorParamsDto_Aggregation) FromAsCodeAggregationClauseDtoV2(v AsCodeAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeAggregationClauseDtoV2 performs a merge with any union data inside the AsCodeMetricsMonitorParamsDto_Aggregation, using the provided AsCodeAggregationClauseDtoV2
+func (t *AsCodeMetricsMonitorParamsDto_Aggregation) MergeAsCodeAggregationClauseDtoV2(v AsCodeAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeQuantileAggregationClauseDtoV2 returns the union data inside the AsCodeMetricsMonitorParamsDto_Aggregation as a AsCodeQuantileAggregationClauseDtoV2
+func (t AsCodeMetricsMonitorParamsDto_Aggregation) AsAsCodeQuantileAggregationClauseDtoV2() (AsCodeQuantileAggregationClauseDtoV2, error) {
+	var body AsCodeQuantileAggregationClauseDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeQuantileAggregationClauseDtoV2 overwrites any union data inside the AsCodeMetricsMonitorParamsDto_Aggregation as the provided AsCodeQuantileAggregationClauseDtoV2
+func (t *AsCodeMetricsMonitorParamsDto_Aggregation) FromAsCodeQuantileAggregationClauseDtoV2(v AsCodeQuantileAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeQuantileAggregationClauseDtoV2 performs a merge with any union data inside the AsCodeMetricsMonitorParamsDto_Aggregation, using the provided AsCodeQuantileAggregationClauseDtoV2
+func (t *AsCodeMetricsMonitorParamsDto_Aggregation) MergeAsCodeQuantileAggregationClauseDtoV2(v AsCodeQuantileAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeMetricsMonitorParamsDto_Aggregation) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeMetricsMonitorParamsDto_Aggregation) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeMetricsMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeMetricsMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeMetricsMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeMetricsMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeMetricsMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeMetricsMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeMetricsMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeMetricsMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeMetricsMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeMetricsMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeMetricsMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeMetricsMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeMetricsMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeMetricsMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeMetricsMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeMetricsMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeMetricsMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeMetricsMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeMetricsMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeMetricsMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeMetricsMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeMetricsMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeMetricsMonitorParamsDto_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeMetricsMonitorParamsDto_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeMetricsMonitorParamsDto_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeMetricsMonitorParamsDto_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeMetricsMonitorParamsDto_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeMetricsMonitorParamsDto_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeMetricsMonitorParamsDto_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeMetricsMonitorParamsDto_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeMetricsMonitorParamsDto_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeMetricsMonitorParamsDto_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeMetricsMonitorParamsDto_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeMetricsMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeAlertingHookNotificationDto returns the union data inside the AsCodeMonitorDto_Notifications_Item as a AsCodeAlertingHookNotificationDto
+func (t AsCodeMonitorDto_Notifications_Item) AsAsCodeAlertingHookNotificationDto() (AsCodeAlertingHookNotificationDto, error) {
+	var body AsCodeAlertingHookNotificationDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeAlertingHookNotificationDto overwrites any union data inside the AsCodeMonitorDto_Notifications_Item as the provided AsCodeAlertingHookNotificationDto
+func (t *AsCodeMonitorDto_Notifications_Item) FromAsCodeAlertingHookNotificationDto(v AsCodeAlertingHookNotificationDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeAlertingHookNotificationDto performs a merge with any union data inside the AsCodeMonitorDto_Notifications_Item, using the provided AsCodeAlertingHookNotificationDto
+func (t *AsCodeMonitorDto_Notifications_Item) MergeAsCodeAlertingHookNotificationDto(v AsCodeAlertingHookNotificationDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeJiraNotificationDto returns the union data inside the AsCodeMonitorDto_Notifications_Item as a AsCodeJiraNotificationDto
+func (t AsCodeMonitorDto_Notifications_Item) AsAsCodeJiraNotificationDto() (AsCodeJiraNotificationDto, error) {
+	var body AsCodeJiraNotificationDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeJiraNotificationDto overwrites any union data inside the AsCodeMonitorDto_Notifications_Item as the provided AsCodeJiraNotificationDto
+func (t *AsCodeMonitorDto_Notifications_Item) FromAsCodeJiraNotificationDto(v AsCodeJiraNotificationDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeJiraNotificationDto performs a merge with any union data inside the AsCodeMonitorDto_Notifications_Item, using the provided AsCodeJiraNotificationDto
+func (t *AsCodeMonitorDto_Notifications_Item) MergeAsCodeJiraNotificationDto(v AsCodeJiraNotificationDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeServiceNowNotificationDto returns the union data inside the AsCodeMonitorDto_Notifications_Item as a AsCodeServiceNowNotificationDto
+func (t AsCodeMonitorDto_Notifications_Item) AsAsCodeServiceNowNotificationDto() (AsCodeServiceNowNotificationDto, error) {
+	var body AsCodeServiceNowNotificationDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeServiceNowNotificationDto overwrites any union data inside the AsCodeMonitorDto_Notifications_Item as the provided AsCodeServiceNowNotificationDto
+func (t *AsCodeMonitorDto_Notifications_Item) FromAsCodeServiceNowNotificationDto(v AsCodeServiceNowNotificationDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeServiceNowNotificationDto performs a merge with any union data inside the AsCodeMonitorDto_Notifications_Item, using the provided AsCodeServiceNowNotificationDto
+func (t *AsCodeMonitorDto_Notifications_Item) MergeAsCodeServiceNowNotificationDto(v AsCodeServiceNowNotificationDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeMonitorDto_Notifications_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeMonitorDto_Notifications_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeCompletenessMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeCompletenessMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeCompletenessMonitorParamsDto() (AsCodeCompletenessMonitorParamsDto, error) {
+	var body AsCodeCompletenessMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeCompletenessMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeCompletenessMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeCompletenessMonitorParamsDto(v AsCodeCompletenessMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeCompletenessMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeCompletenessMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeCompletenessMonitorParamsDto(v AsCodeCompletenessMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeConditionalMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeConditionalMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeConditionalMonitorParamsDto() (AsCodeConditionalMonitorParamsDto, error) {
+	var body AsCodeConditionalMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeConditionalMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeConditionalMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeConditionalMonitorParamsDto(v AsCodeConditionalMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeConditionalMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeConditionalMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeConditionalMonitorParamsDto(v AsCodeConditionalMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeCorrelatedMetricsMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeCorrelatedMetricsMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeCorrelatedMetricsMonitorParamsDto() (AsCodeCorrelatedMetricsMonitorParamsDto, error) {
+	var body AsCodeCorrelatedMetricsMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeCorrelatedMetricsMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeCorrelatedMetricsMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeCorrelatedMetricsMonitorParamsDto(v AsCodeCorrelatedMetricsMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeCorrelatedMetricsMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeCorrelatedMetricsMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeCorrelatedMetricsMonitorParamsDto(v AsCodeCorrelatedMetricsMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeCustomMetricsMonitorParamsDtoV1 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeCustomMetricsMonitorParamsDtoV1
+func (t AsCodeMonitorDto_Parameters) AsAsCodeCustomMetricsMonitorParamsDtoV1() (AsCodeCustomMetricsMonitorParamsDtoV1, error) {
+	var body AsCodeCustomMetricsMonitorParamsDtoV1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeCustomMetricsMonitorParamsDtoV1 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeCustomMetricsMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeCustomMetricsMonitorParamsDtoV1(v AsCodeCustomMetricsMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeCustomMetricsMonitorParamsDtoV1 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeCustomMetricsMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeCustomMetricsMonitorParamsDtoV1(v AsCodeCustomMetricsMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeCustomMetricsMonitorParamsDtoV2 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeCustomMetricsMonitorParamsDtoV2
+func (t AsCodeMonitorDto_Parameters) AsAsCodeCustomMetricsMonitorParamsDtoV2() (AsCodeCustomMetricsMonitorParamsDtoV2, error) {
+	var body AsCodeCustomMetricsMonitorParamsDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeCustomMetricsMonitorParamsDtoV2 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeCustomMetricsMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeCustomMetricsMonitorParamsDtoV2(v AsCodeCustomMetricsMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeCustomMetricsMonitorParamsDtoV2 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeCustomMetricsMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeCustomMetricsMonitorParamsDtoV2(v AsCodeCustomMetricsMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeDistributionMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeDistributionMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeDistributionMonitorParamsDto() (AsCodeDistributionMonitorParamsDto, error) {
+	var body AsCodeDistributionMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDistributionMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeDistributionMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeDistributionMonitorParamsDto(v AsCodeDistributionMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDistributionMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeDistributionMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeDistributionMonitorParamsDto(v AsCodeDistributionMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeDuplicatesMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeDuplicatesMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeDuplicatesMonitorParamsDto() (AsCodeDuplicatesMonitorParamsDto, error) {
+	var body AsCodeDuplicatesMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDuplicatesMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeDuplicatesMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeDuplicatesMonitorParamsDto(v AsCodeDuplicatesMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDuplicatesMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeDuplicatesMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeDuplicatesMonitorParamsDto(v AsCodeDuplicatesMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeDynamicFieldProfilingMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeDynamicFieldProfilingMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeDynamicFieldProfilingMonitorParamsDto() (AsCodeDynamicFieldProfilingMonitorParamsDto, error) {
+	var body AsCodeDynamicFieldProfilingMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicFieldProfilingMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeDynamicFieldProfilingMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeDynamicFieldProfilingMonitorParamsDto(v AsCodeDynamicFieldProfilingMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicFieldProfilingMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeDynamicFieldProfilingMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeDynamicFieldProfilingMonitorParamsDto(v AsCodeDynamicFieldProfilingMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeDynamicMetricMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeDynamicMetricMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeDynamicMetricMonitorParamsDto() (AsCodeDynamicMetricMonitorParamsDto, error) {
+	var body AsCodeDynamicMetricMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicMetricMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeDynamicMetricMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeDynamicMetricMonitorParamsDto(v AsCodeDynamicMetricMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicMetricMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeDynamicMetricMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeDynamicMetricMonitorParamsDto(v AsCodeDynamicMetricMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeFieldDuplicatesMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeFieldDuplicatesMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeFieldDuplicatesMonitorParamsDto() (AsCodeFieldDuplicatesMonitorParamsDto, error) {
+	var body AsCodeFieldDuplicatesMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldDuplicatesMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeFieldDuplicatesMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeFieldDuplicatesMonitorParamsDto(v AsCodeFieldDuplicatesMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldDuplicatesMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeFieldDuplicatesMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeFieldDuplicatesMonitorParamsDto(v AsCodeFieldDuplicatesMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeFieldFormatMonitorParamsDtoV1 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeFieldFormatMonitorParamsDtoV1
+func (t AsCodeMonitorDto_Parameters) AsAsCodeFieldFormatMonitorParamsDtoV1() (AsCodeFieldFormatMonitorParamsDtoV1, error) {
+	var body AsCodeFieldFormatMonitorParamsDtoV1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldFormatMonitorParamsDtoV1 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeFieldFormatMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeFieldFormatMonitorParamsDtoV1(v AsCodeFieldFormatMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldFormatMonitorParamsDtoV1 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeFieldFormatMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeFieldFormatMonitorParamsDtoV1(v AsCodeFieldFormatMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeFieldFormatMonitorParamsDtoV2 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeFieldFormatMonitorParamsDtoV2
+func (t AsCodeMonitorDto_Parameters) AsAsCodeFieldFormatMonitorParamsDtoV2() (AsCodeFieldFormatMonitorParamsDtoV2, error) {
+	var body AsCodeFieldFormatMonitorParamsDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldFormatMonitorParamsDtoV2 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeFieldFormatMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeFieldFormatMonitorParamsDtoV2(v AsCodeFieldFormatMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldFormatMonitorParamsDtoV2 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeFieldFormatMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeFieldFormatMonitorParamsDtoV2(v AsCodeFieldFormatMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeFieldInListConstraintMonitorParamsDtoV1 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeFieldInListConstraintMonitorParamsDtoV1
+func (t AsCodeMonitorDto_Parameters) AsAsCodeFieldInListConstraintMonitorParamsDtoV1() (AsCodeFieldInListConstraintMonitorParamsDtoV1, error) {
+	var body AsCodeFieldInListConstraintMonitorParamsDtoV1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldInListConstraintMonitorParamsDtoV1 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeFieldInListConstraintMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeFieldInListConstraintMonitorParamsDtoV1(v AsCodeFieldInListConstraintMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldInListConstraintMonitorParamsDtoV1 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeFieldInListConstraintMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeFieldInListConstraintMonitorParamsDtoV1(v AsCodeFieldInListConstraintMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeFieldInListConstraintMonitorParamsDtoV2 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeFieldInListConstraintMonitorParamsDtoV2
+func (t AsCodeMonitorDto_Parameters) AsAsCodeFieldInListConstraintMonitorParamsDtoV2() (AsCodeFieldInListConstraintMonitorParamsDtoV2, error) {
+	var body AsCodeFieldInListConstraintMonitorParamsDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldInListConstraintMonitorParamsDtoV2 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeFieldInListConstraintMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeFieldInListConstraintMonitorParamsDtoV2(v AsCodeFieldInListConstraintMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldInListConstraintMonitorParamsDtoV2 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeFieldInListConstraintMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeFieldInListConstraintMonitorParamsDtoV2(v AsCodeFieldInListConstraintMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeFieldNullsMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeFieldNullsMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeFieldNullsMonitorParamsDto() (AsCodeFieldNullsMonitorParamsDto, error) {
+	var body AsCodeFieldNullsMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldNullsMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeFieldNullsMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeFieldNullsMonitorParamsDto(v AsCodeFieldNullsMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldNullsMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeFieldNullsMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeFieldNullsMonitorParamsDto(v AsCodeFieldNullsMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeFieldUniquenessMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeFieldUniquenessMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeFieldUniquenessMonitorParamsDto() (AsCodeFieldUniquenessMonitorParamsDto, error) {
+	var body AsCodeFieldUniquenessMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldUniquenessMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeFieldUniquenessMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeFieldUniquenessMonitorParamsDto(v AsCodeFieldUniquenessMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldUniquenessMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeFieldUniquenessMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeFieldUniquenessMonitorParamsDto(v AsCodeFieldUniquenessMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeFreshnessMonitorParamsDtoV1 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeFreshnessMonitorParamsDtoV1
+func (t AsCodeMonitorDto_Parameters) AsAsCodeFreshnessMonitorParamsDtoV1() (AsCodeFreshnessMonitorParamsDtoV1, error) {
+	var body AsCodeFreshnessMonitorParamsDtoV1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFreshnessMonitorParamsDtoV1 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeFreshnessMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeFreshnessMonitorParamsDtoV1(v AsCodeFreshnessMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFreshnessMonitorParamsDtoV1 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeFreshnessMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeFreshnessMonitorParamsDtoV1(v AsCodeFreshnessMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeFreshnessMonitorParamsDtoV2 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeFreshnessMonitorParamsDtoV2
+func (t AsCodeMonitorDto_Parameters) AsAsCodeFreshnessMonitorParamsDtoV2() (AsCodeFreshnessMonitorParamsDtoV2, error) {
+	var body AsCodeFreshnessMonitorParamsDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFreshnessMonitorParamsDtoV2 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeFreshnessMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeFreshnessMonitorParamsDtoV2(v AsCodeFreshnessMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFreshnessMonitorParamsDtoV2 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeFreshnessMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeFreshnessMonitorParamsDtoV2(v AsCodeFreshnessMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeMetadataFreshnessMonitorParamsDtoV1 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeMetadataFreshnessMonitorParamsDtoV1
+func (t AsCodeMonitorDto_Parameters) AsAsCodeMetadataFreshnessMonitorParamsDtoV1() (AsCodeMetadataFreshnessMonitorParamsDtoV1, error) {
+	var body AsCodeMetadataFreshnessMonitorParamsDtoV1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeMetadataFreshnessMonitorParamsDtoV1 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeMetadataFreshnessMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeMetadataFreshnessMonitorParamsDtoV1(v AsCodeMetadataFreshnessMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeMetadataFreshnessMonitorParamsDtoV1 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeMetadataFreshnessMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeMetadataFreshnessMonitorParamsDtoV1(v AsCodeMetadataFreshnessMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeMetadataFreshnessMonitorParamsDtoV2 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeMetadataFreshnessMonitorParamsDtoV2
+func (t AsCodeMonitorDto_Parameters) AsAsCodeMetadataFreshnessMonitorParamsDtoV2() (AsCodeMetadataFreshnessMonitorParamsDtoV2, error) {
+	var body AsCodeMetadataFreshnessMonitorParamsDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeMetadataFreshnessMonitorParamsDtoV2 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeMetadataFreshnessMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeMetadataFreshnessMonitorParamsDtoV2(v AsCodeMetadataFreshnessMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeMetadataFreshnessMonitorParamsDtoV2 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeMetadataFreshnessMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeMetadataFreshnessMonitorParamsDtoV2(v AsCodeMetadataFreshnessMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeMetricsMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeMetricsMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeMetricsMonitorParamsDto() (AsCodeMetricsMonitorParamsDto, error) {
+	var body AsCodeMetricsMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeMetricsMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeMetricsMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeMetricsMonitorParamsDto(v AsCodeMetricsMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeMetricsMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeMetricsMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeMetricsMonitorParamsDto(v AsCodeMetricsMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeReferentialIntegrityMonitorParamsDtoV1 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeReferentialIntegrityMonitorParamsDtoV1
+func (t AsCodeMonitorDto_Parameters) AsAsCodeReferentialIntegrityMonitorParamsDtoV1() (AsCodeReferentialIntegrityMonitorParamsDtoV1, error) {
+	var body AsCodeReferentialIntegrityMonitorParamsDtoV1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeReferentialIntegrityMonitorParamsDtoV1 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeReferentialIntegrityMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeReferentialIntegrityMonitorParamsDtoV1(v AsCodeReferentialIntegrityMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeReferentialIntegrityMonitorParamsDtoV1 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeReferentialIntegrityMonitorParamsDtoV1
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeReferentialIntegrityMonitorParamsDtoV1(v AsCodeReferentialIntegrityMonitorParamsDtoV1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeReferentialIntegrityMonitorParamsDtoV2 returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeReferentialIntegrityMonitorParamsDtoV2
+func (t AsCodeMonitorDto_Parameters) AsAsCodeReferentialIntegrityMonitorParamsDtoV2() (AsCodeReferentialIntegrityMonitorParamsDtoV2, error) {
+	var body AsCodeReferentialIntegrityMonitorParamsDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeReferentialIntegrityMonitorParamsDtoV2 overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeReferentialIntegrityMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeReferentialIntegrityMonitorParamsDtoV2(v AsCodeReferentialIntegrityMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeReferentialIntegrityMonitorParamsDtoV2 performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeReferentialIntegrityMonitorParamsDtoV2
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeReferentialIntegrityMonitorParamsDtoV2(v AsCodeReferentialIntegrityMonitorParamsDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeRowDuplicatesMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeRowDuplicatesMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeRowDuplicatesMonitorParamsDto() (AsCodeRowDuplicatesMonitorParamsDto, error) {
+	var body AsCodeRowDuplicatesMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeRowDuplicatesMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeRowDuplicatesMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeRowDuplicatesMonitorParamsDto(v AsCodeRowDuplicatesMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeRowDuplicatesMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeRowDuplicatesMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeRowDuplicatesMonitorParamsDto(v AsCodeRowDuplicatesMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeSchemaChangeMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeSchemaChangeMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeSchemaChangeMonitorParamsDto() (AsCodeSchemaChangeMonitorParamsDto, error) {
+	var body AsCodeSchemaChangeMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeSchemaChangeMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeSchemaChangeMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeSchemaChangeMonitorParamsDto(v AsCodeSchemaChangeMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeSchemaChangeMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeSchemaChangeMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeSchemaChangeMonitorParamsDto(v AsCodeSchemaChangeMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeSqlMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeSqlMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeSqlMonitorParamsDto() (AsCodeSqlMonitorParamsDto, error) {
+	var body AsCodeSqlMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeSqlMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeSqlMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeSqlMonitorParamsDto(v AsCodeSqlMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeSqlMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeSqlMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeSqlMonitorParamsDto(v AsCodeSqlMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticCompletenessMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeStaticCompletenessMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeStaticCompletenessMonitorParamsDto() (AsCodeStaticCompletenessMonitorParamsDto, error) {
+	var body AsCodeStaticCompletenessMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticCompletenessMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeStaticCompletenessMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeStaticCompletenessMonitorParamsDto(v AsCodeStaticCompletenessMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticCompletenessMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeStaticCompletenessMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeStaticCompletenessMonitorParamsDto(v AsCodeStaticCompletenessMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticFieldProfilingMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeStaticFieldProfilingMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeStaticFieldProfilingMonitorParamsDto() (AsCodeStaticFieldProfilingMonitorParamsDto, error) {
+	var body AsCodeStaticFieldProfilingMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticFieldProfilingMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeStaticFieldProfilingMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeStaticFieldProfilingMonitorParamsDto(v AsCodeStaticFieldProfilingMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticFieldProfilingMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeStaticFieldProfilingMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeStaticFieldProfilingMonitorParamsDto(v AsCodeStaticFieldProfilingMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticMetricMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeStaticMetricMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeStaticMetricMonitorParamsDto() (AsCodeStaticMetricMonitorParamsDto, error) {
+	var body AsCodeStaticMetricMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticMetricMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeStaticMetricMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeStaticMetricMonitorParamsDto(v AsCodeStaticMetricMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticMetricMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeStaticMetricMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeStaticMetricMonitorParamsDto(v AsCodeStaticMetricMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeValueRangeMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeValueRangeMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeValueRangeMonitorParamsDto() (AsCodeValueRangeMonitorParamsDto, error) {
+	var body AsCodeValueRangeMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeValueRangeMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeValueRangeMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeValueRangeMonitorParamsDto(v AsCodeValueRangeMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeValueRangeMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeValueRangeMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeValueRangeMonitorParamsDto(v AsCodeValueRangeMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeVolumeMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeVolumeMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeVolumeMonitorParamsDto() (AsCodeVolumeMonitorParamsDto, error) {
+	var body AsCodeVolumeMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeVolumeMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeVolumeMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeVolumeMonitorParamsDto(v AsCodeVolumeMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeVolumeMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeVolumeMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeVolumeMonitorParamsDto(v AsCodeVolumeMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeMonitorDto_Parameters) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeMonitorDto_Parameters) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeFieldExpressionDto returns the union data inside the AsCodeNumericComparisonConditionDto_RightExpression as a AsCodeFieldExpressionDto
+func (t AsCodeNumericComparisonConditionDto_RightExpression) AsAsCodeFieldExpressionDto() (AsCodeFieldExpressionDto, error) {
+	var body AsCodeFieldExpressionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldExpressionDto overwrites any union data inside the AsCodeNumericComparisonConditionDto_RightExpression as the provided AsCodeFieldExpressionDto
+func (t *AsCodeNumericComparisonConditionDto_RightExpression) FromAsCodeFieldExpressionDto(v AsCodeFieldExpressionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldExpressionDto performs a merge with any union data inside the AsCodeNumericComparisonConditionDto_RightExpression, using the provided AsCodeFieldExpressionDto
+func (t *AsCodeNumericComparisonConditionDto_RightExpression) MergeAsCodeFieldExpressionDto(v AsCodeFieldExpressionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeValueExpressionDto returns the union data inside the AsCodeNumericComparisonConditionDto_RightExpression as a AsCodeValueExpressionDto
+func (t AsCodeNumericComparisonConditionDto_RightExpression) AsAsCodeValueExpressionDto() (AsCodeValueExpressionDto, error) {
+	var body AsCodeValueExpressionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeValueExpressionDto overwrites any union data inside the AsCodeNumericComparisonConditionDto_RightExpression as the provided AsCodeValueExpressionDto
+func (t *AsCodeNumericComparisonConditionDto_RightExpression) FromAsCodeValueExpressionDto(v AsCodeValueExpressionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeValueExpressionDto performs a merge with any union data inside the AsCodeNumericComparisonConditionDto_RightExpression, using the provided AsCodeValueExpressionDto
+func (t *AsCodeNumericComparisonConditionDto_RightExpression) MergeAsCodeValueExpressionDto(v AsCodeValueExpressionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeNumericComparisonConditionDto_RightExpression) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeNumericComparisonConditionDto_RightExpression) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeReferentialIntegrityLeftDtoV1_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeReferentialIntegrityLeftDtoV1_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeReferentialIntegrityLeftDtoV1_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV1_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeReferentialIntegrityLeftDtoV1_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV1_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeReferentialIntegrityLeftDtoV1_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeReferentialIntegrityLeftDtoV1_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeReferentialIntegrityLeftDtoV1_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV1_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeReferentialIntegrityLeftDtoV1_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV1_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeReferentialIntegrityLeftDtoV1_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeReferentialIntegrityLeftDtoV1_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeReferentialIntegrityLeftDtoV1_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV1_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeReferentialIntegrityLeftDtoV1_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV1_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeReferentialIntegrityLeftDtoV1_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeReferentialIntegrityLeftDtoV1_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeReferentialIntegrityLeftDtoV2_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeReferentialIntegrityLeftDtoV2_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeReferentialIntegrityLeftDtoV2_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV2_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeReferentialIntegrityLeftDtoV2_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV2_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeReferentialIntegrityLeftDtoV2_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeReferentialIntegrityLeftDtoV2_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeReferentialIntegrityLeftDtoV2_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV2_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeReferentialIntegrityLeftDtoV2_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV2_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeReferentialIntegrityLeftDtoV2_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeReferentialIntegrityLeftDtoV2_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeReferentialIntegrityLeftDtoV2_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV2_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeReferentialIntegrityLeftDtoV2_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeReferentialIntegrityLeftDtoV2_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeReferentialIntegrityLeftDtoV2_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeReferentialIntegrityLeftDtoV2_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeRowDuplicatesMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeRowDuplicatesMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeRowDuplicatesMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeRowDuplicatesMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeRowDuplicatesMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeRowDuplicatesMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeRowDuplicatesMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeRowDuplicatesMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeRowDuplicatesMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeRowDuplicatesMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeRowDuplicatesMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeRowDuplicatesMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeRowDuplicatesMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeRowDuplicatesMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeRowDuplicatesMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeRowDuplicatesMonitorParamsDto_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeRowDuplicatesMonitorParamsDto_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeRowDuplicatesMonitorParamsDto_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeRowDuplicatesMonitorParamsDto_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeRowDuplicatesMonitorParamsDto_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeRowDuplicatesMonitorParamsDto_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeRowDuplicatesMonitorParamsDto_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeRowDuplicatesMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeSqlMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeSqlMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeSqlMonitorParamsDto_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeSqlMonitorParamsDto_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeSqlMonitorParamsDto_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeSqlMonitorParamsDto_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeSqlMonitorParamsDto_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeSqlMonitorParamsDto_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeSqlMonitorParamsDto_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeSqlMonitorParamsDto_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeSqlMonitorParamsDto_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeSqlMonitorParamsDto_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeSqlMonitorParamsDto_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeSqlMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeStaticCompletenessMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeStaticCompletenessMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeStaticCompletenessMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeStaticCompletenessMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeStaticCompletenessMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeStaticCompletenessMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeStaticCompletenessMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeStaticCompletenessMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeStaticCompletenessMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeStaticCompletenessMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeStaticCompletenessMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeStaticCompletenessMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeStaticCompletenessMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeStaticCompletenessMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeStaticCompletenessMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeStaticCompletenessMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeStaticCompletenessMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeStaticCompletenessMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeStaticCompletenessMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeStaticCompletenessMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeStaticFieldProfilingMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeStaticFieldProfilingMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeStaticFieldProfilingMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeStaticFieldProfilingMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeFieldProfilingClauseDto returns the union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Profiling as a AsCodeFieldProfilingClauseDto
+func (t AsCodeStaticFieldProfilingMonitorParamsDto_Profiling) AsAsCodeFieldProfilingClauseDto() (AsCodeFieldProfilingClauseDto, error) {
+	var body AsCodeFieldProfilingClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldProfilingClauseDto overwrites any union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Profiling as the provided AsCodeFieldProfilingClauseDto
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Profiling) FromAsCodeFieldProfilingClauseDto(v AsCodeFieldProfilingClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldProfilingClauseDto performs a merge with any union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Profiling, using the provided AsCodeFieldProfilingClauseDto
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Profiling) MergeAsCodeFieldProfilingClauseDto(v AsCodeFieldProfilingClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeNullFieldProfilingClauseDto returns the union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Profiling as a AsCodeNullFieldProfilingClauseDto
+func (t AsCodeStaticFieldProfilingMonitorParamsDto_Profiling) AsAsCodeNullFieldProfilingClauseDto() (AsCodeNullFieldProfilingClauseDto, error) {
+	var body AsCodeNullFieldProfilingClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeNullFieldProfilingClauseDto overwrites any union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Profiling as the provided AsCodeNullFieldProfilingClauseDto
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Profiling) FromAsCodeNullFieldProfilingClauseDto(v AsCodeNullFieldProfilingClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeNullFieldProfilingClauseDto performs a merge with any union data inside the AsCodeStaticFieldProfilingMonitorParamsDto_Profiling, using the provided AsCodeNullFieldProfilingClauseDto
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Profiling) MergeAsCodeNullFieldProfilingClauseDto(v AsCodeNullFieldProfilingClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeStaticFieldProfilingMonitorParamsDto_Profiling) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeStaticFieldProfilingMonitorParamsDto_Profiling) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeAggregationClauseDtoV1 returns the union data inside the AsCodeStaticMetricMonitorParamsDto_Aggregation as a AsCodeAggregationClauseDtoV1
+func (t AsCodeStaticMetricMonitorParamsDto_Aggregation) AsAsCodeAggregationClauseDtoV1() (AsCodeAggregationClauseDtoV1, error) {
+	var body AsCodeAggregationClauseDtoV1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeAggregationClauseDtoV1 overwrites any union data inside the AsCodeStaticMetricMonitorParamsDto_Aggregation as the provided AsCodeAggregationClauseDtoV1
+func (t *AsCodeStaticMetricMonitorParamsDto_Aggregation) FromAsCodeAggregationClauseDtoV1(v AsCodeAggregationClauseDtoV1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeAggregationClauseDtoV1 performs a merge with any union data inside the AsCodeStaticMetricMonitorParamsDto_Aggregation, using the provided AsCodeAggregationClauseDtoV1
+func (t *AsCodeStaticMetricMonitorParamsDto_Aggregation) MergeAsCodeAggregationClauseDtoV1(v AsCodeAggregationClauseDtoV1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeQuantileAggregationClauseDtoV1 returns the union data inside the AsCodeStaticMetricMonitorParamsDto_Aggregation as a AsCodeQuantileAggregationClauseDtoV1
+func (t AsCodeStaticMetricMonitorParamsDto_Aggregation) AsAsCodeQuantileAggregationClauseDtoV1() (AsCodeQuantileAggregationClauseDtoV1, error) {
+	var body AsCodeQuantileAggregationClauseDtoV1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeQuantileAggregationClauseDtoV1 overwrites any union data inside the AsCodeStaticMetricMonitorParamsDto_Aggregation as the provided AsCodeQuantileAggregationClauseDtoV1
+func (t *AsCodeStaticMetricMonitorParamsDto_Aggregation) FromAsCodeQuantileAggregationClauseDtoV1(v AsCodeQuantileAggregationClauseDtoV1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeQuantileAggregationClauseDtoV1 performs a merge with any union data inside the AsCodeStaticMetricMonitorParamsDto_Aggregation, using the provided AsCodeQuantileAggregationClauseDtoV1
+func (t *AsCodeStaticMetricMonitorParamsDto_Aggregation) MergeAsCodeQuantileAggregationClauseDtoV1(v AsCodeQuantileAggregationClauseDtoV1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeStaticMetricMonitorParamsDto_Aggregation) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeStaticMetricMonitorParamsDto_Aggregation) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeStaticMetricMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeStaticMetricMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeStaticMetricMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeStaticMetricMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeStaticMetricMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeStaticMetricMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeStaticMetricMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeStaticMetricMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeStaticMetricMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeStaticMetricMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeStaticMetricMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeStaticMetricMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeStaticMetricMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeStaticMetricMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeStaticMetricMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeStaticMetricMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeStaticMetricMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeStaticMetricMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeStaticMetricMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeStaticMetricMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeFieldExpressionDto returns the union data inside the AsCodeStringConditionDto_RightExpression as a AsCodeFieldExpressionDto
+func (t AsCodeStringConditionDto_RightExpression) AsAsCodeFieldExpressionDto() (AsCodeFieldExpressionDto, error) {
+	var body AsCodeFieldExpressionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeFieldExpressionDto overwrites any union data inside the AsCodeStringConditionDto_RightExpression as the provided AsCodeFieldExpressionDto
+func (t *AsCodeStringConditionDto_RightExpression) FromAsCodeFieldExpressionDto(v AsCodeFieldExpressionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeFieldExpressionDto performs a merge with any union data inside the AsCodeStringConditionDto_RightExpression, using the provided AsCodeFieldExpressionDto
+func (t *AsCodeStringConditionDto_RightExpression) MergeAsCodeFieldExpressionDto(v AsCodeFieldExpressionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeValueExpressionDto returns the union data inside the AsCodeStringConditionDto_RightExpression as a AsCodeValueExpressionDto
+func (t AsCodeStringConditionDto_RightExpression) AsAsCodeValueExpressionDto() (AsCodeValueExpressionDto, error) {
+	var body AsCodeValueExpressionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeValueExpressionDto overwrites any union data inside the AsCodeStringConditionDto_RightExpression as the provided AsCodeValueExpressionDto
+func (t *AsCodeStringConditionDto_RightExpression) FromAsCodeValueExpressionDto(v AsCodeValueExpressionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeValueExpressionDto performs a merge with any union data inside the AsCodeStringConditionDto_RightExpression, using the provided AsCodeValueExpressionDto
+func (t *AsCodeStringConditionDto_RightExpression) MergeAsCodeValueExpressionDto(v AsCodeValueExpressionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeStringConditionDto_RightExpression) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeStringConditionDto_RightExpression) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeValueRangeMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeValueRangeMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeValueRangeMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeValueRangeMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeValueRangeMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeValueRangeMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeValueRangeMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeValueRangeMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeValueRangeMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeValueRangeMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeValueRangeMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeValueRangeMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeValueRangeMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeValueRangeMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeValueRangeMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeValueRangeMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeValueRangeMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeValueRangeMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeValueRangeMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeValueRangeMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeValueRangeMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeValueRangeMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeValueRangeMonitorParamsDto_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeValueRangeMonitorParamsDto_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeValueRangeMonitorParamsDto_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeValueRangeMonitorParamsDto_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeValueRangeMonitorParamsDto_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeValueRangeMonitorParamsDto_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeValueRangeMonitorParamsDto_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeValueRangeMonitorParamsDto_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeValueRangeMonitorParamsDto_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeValueRangeMonitorParamsDto_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeValueRangeMonitorParamsDto_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeValueRangeMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeVolumeMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeVolumeMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeVolumeMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeVolumeMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeVolumeMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeVolumeMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeVolumeMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeVolumeMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeVolumeMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeVolumeMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeVolumeMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeVolumeMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeVolumeMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeVolumeMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeVolumeMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeVolumeMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeVolumeMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeVolumeMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeVolumeMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeVolumeMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeVolumeMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeVolumeMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeVolumeMonitorParamsDto_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeVolumeMonitorParamsDto_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeVolumeMonitorParamsDto_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeVolumeMonitorParamsDto_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeVolumeMonitorParamsDto_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeVolumeMonitorParamsDto_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeVolumeMonitorParamsDto_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeVolumeMonitorParamsDto_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeVolumeMonitorParamsDto_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeVolumeMonitorParamsDto_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeVolumeMonitorParamsDto_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeVolumeMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsEntityCustomMetadataEntryLabelDto returns the union data inside the EntityCustomMetadataDto_Entries_Item as a EntityCustomMetadataEntryLabelDto
+func (t EntityCustomMetadataDto_Entries_Item) AsEntityCustomMetadataEntryLabelDto() (EntityCustomMetadataEntryLabelDto, error) {
+	var body EntityCustomMetadataEntryLabelDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEntityCustomMetadataEntryLabelDto overwrites any union data inside the EntityCustomMetadataDto_Entries_Item as the provided EntityCustomMetadataEntryLabelDto
+func (t *EntityCustomMetadataDto_Entries_Item) FromEntityCustomMetadataEntryLabelDto(v EntityCustomMetadataEntryLabelDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEntityCustomMetadataEntryLabelDto performs a merge with any union data inside the EntityCustomMetadataDto_Entries_Item, using the provided EntityCustomMetadataEntryLabelDto
+func (t *EntityCustomMetadataDto_Entries_Item) MergeEntityCustomMetadataEntryLabelDto(v EntityCustomMetadataEntryLabelDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEntityCustomMetadataEntryStringDto returns the union data inside the EntityCustomMetadataDto_Entries_Item as a EntityCustomMetadataEntryStringDto
+func (t EntityCustomMetadataDto_Entries_Item) AsEntityCustomMetadataEntryStringDto() (EntityCustomMetadataEntryStringDto, error) {
+	var body EntityCustomMetadataEntryStringDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEntityCustomMetadataEntryStringDto overwrites any union data inside the EntityCustomMetadataDto_Entries_Item as the provided EntityCustomMetadataEntryStringDto
+func (t *EntityCustomMetadataDto_Entries_Item) FromEntityCustomMetadataEntryStringDto(v EntityCustomMetadataEntryStringDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEntityCustomMetadataEntryStringDto performs a merge with any union data inside the EntityCustomMetadataDto_Entries_Item, using the provided EntityCustomMetadataEntryStringDto
+func (t *EntityCustomMetadataDto_Entries_Item) MergeEntityCustomMetadataEntryStringDto(v EntityCustomMetadataEntryStringDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEntityCustomMetadataEntryUserDto returns the union data inside the EntityCustomMetadataDto_Entries_Item as a EntityCustomMetadataEntryUserDto
+func (t EntityCustomMetadataDto_Entries_Item) AsEntityCustomMetadataEntryUserDto() (EntityCustomMetadataEntryUserDto, error) {
+	var body EntityCustomMetadataEntryUserDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEntityCustomMetadataEntryUserDto overwrites any union data inside the EntityCustomMetadataDto_Entries_Item as the provided EntityCustomMetadataEntryUserDto
+func (t *EntityCustomMetadataDto_Entries_Item) FromEntityCustomMetadataEntryUserDto(v EntityCustomMetadataEntryUserDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEntityCustomMetadataEntryUserDto performs a merge with any union data inside the EntityCustomMetadataDto_Entries_Item, using the provided EntityCustomMetadataEntryUserDto
+func (t *EntityCustomMetadataDto_Entries_Item) MergeEntityCustomMetadataEntryUserDto(v EntityCustomMetadataEntryUserDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t EntityCustomMetadataDto_Entries_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *EntityCustomMetadataDto_Entries_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsPublicCustomMetadataEntryLabelReferenceDto returns the union data inside the PublicAssetFilterDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryLabelReferenceDto
+func (t PublicAssetFilterDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryLabelReferenceDto() (PublicCustomMetadataEntryLabelReferenceDto, error) {
+	var body PublicCustomMetadataEntryLabelReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryLabelReferenceDto overwrites any union data inside the PublicAssetFilterDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryLabelReferenceDto
+func (t *PublicAssetFilterDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryLabelReferenceDto(v PublicCustomMetadataEntryLabelReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryLabelReferenceDto performs a merge with any union data inside the PublicAssetFilterDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryLabelReferenceDto
+func (t *PublicAssetFilterDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryLabelReferenceDto(v PublicCustomMetadataEntryLabelReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicCustomMetadataEntryStringReferenceDto returns the union data inside the PublicAssetFilterDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryStringReferenceDto
+func (t PublicAssetFilterDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryStringReferenceDto() (PublicCustomMetadataEntryStringReferenceDto, error) {
+	var body PublicCustomMetadataEntryStringReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryStringReferenceDto overwrites any union data inside the PublicAssetFilterDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryStringReferenceDto
+func (t *PublicAssetFilterDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryStringReferenceDto(v PublicCustomMetadataEntryStringReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryStringReferenceDto performs a merge with any union data inside the PublicAssetFilterDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryStringReferenceDto
+func (t *PublicAssetFilterDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryStringReferenceDto(v PublicCustomMetadataEntryStringReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicCustomMetadataEntryUserReferenceDto returns the union data inside the PublicAssetFilterDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryUserReferenceDto
+func (t PublicAssetFilterDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryUserReferenceDto() (PublicCustomMetadataEntryUserReferenceDto, error) {
+	var body PublicCustomMetadataEntryUserReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryUserReferenceDto overwrites any union data inside the PublicAssetFilterDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryUserReferenceDto
+func (t *PublicAssetFilterDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryUserReferenceDto(v PublicCustomMetadataEntryUserReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryUserReferenceDto performs a merge with any union data inside the PublicAssetFilterDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryUserReferenceDto
+func (t *PublicAssetFilterDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryUserReferenceDto(v PublicCustomMetadataEntryUserReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PublicAssetFilterDto_CustomMetadataValues_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PublicAssetFilterDto_CustomMetadataValues_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
 
 // AsPublicAirflowParametersDto returns the union data inside the PublicCreateSourceDto_Parameters as a PublicAirflowParametersDto
 func (t PublicCreateSourceDto_Parameters) AsPublicAirflowParametersDto() (PublicAirflowParametersDto, error) {
@@ -4468,6 +16509,182 @@ func (t *PublicCreateSourceDto_Parameters) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsPublicCustomMetadataEntryLabelReferenceDto returns the union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryLabelReferenceDto
+func (t PublicDeclarativeAssetDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryLabelReferenceDto() (PublicCustomMetadataEntryLabelReferenceDto, error) {
+	var body PublicCustomMetadataEntryLabelReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryLabelReferenceDto overwrites any union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryLabelReferenceDto
+func (t *PublicDeclarativeAssetDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryLabelReferenceDto(v PublicCustomMetadataEntryLabelReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryLabelReferenceDto performs a merge with any union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryLabelReferenceDto
+func (t *PublicDeclarativeAssetDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryLabelReferenceDto(v PublicCustomMetadataEntryLabelReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicCustomMetadataEntryStringReferenceDto returns the union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryStringReferenceDto
+func (t PublicDeclarativeAssetDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryStringReferenceDto() (PublicCustomMetadataEntryStringReferenceDto, error) {
+	var body PublicCustomMetadataEntryStringReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryStringReferenceDto overwrites any union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryStringReferenceDto
+func (t *PublicDeclarativeAssetDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryStringReferenceDto(v PublicCustomMetadataEntryStringReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryStringReferenceDto performs a merge with any union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryStringReferenceDto
+func (t *PublicDeclarativeAssetDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryStringReferenceDto(v PublicCustomMetadataEntryStringReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicCustomMetadataEntryUserReferenceDto returns the union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryUserReferenceDto
+func (t PublicDeclarativeAssetDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryUserReferenceDto() (PublicCustomMetadataEntryUserReferenceDto, error) {
+	var body PublicCustomMetadataEntryUserReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryUserReferenceDto overwrites any union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryUserReferenceDto
+func (t *PublicDeclarativeAssetDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryUserReferenceDto(v PublicCustomMetadataEntryUserReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryUserReferenceDto performs a merge with any union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryUserReferenceDto
+func (t *PublicDeclarativeAssetDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryUserReferenceDto(v PublicCustomMetadataEntryUserReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PublicDeclarativeAssetDto_CustomMetadataValues_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PublicDeclarativeAssetDto_CustomMetadataValues_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsPublicGetCustomMetadataEntryLabelDto returns the union data inside the PublicGetAssetDto_CustomMetadataValues_Item as a PublicGetCustomMetadataEntryLabelDto
+func (t PublicGetAssetDto_CustomMetadataValues_Item) AsPublicGetCustomMetadataEntryLabelDto() (PublicGetCustomMetadataEntryLabelDto, error) {
+	var body PublicGetCustomMetadataEntryLabelDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetCustomMetadataEntryLabelDto overwrites any union data inside the PublicGetAssetDto_CustomMetadataValues_Item as the provided PublicGetCustomMetadataEntryLabelDto
+func (t *PublicGetAssetDto_CustomMetadataValues_Item) FromPublicGetCustomMetadataEntryLabelDto(v PublicGetCustomMetadataEntryLabelDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetCustomMetadataEntryLabelDto performs a merge with any union data inside the PublicGetAssetDto_CustomMetadataValues_Item, using the provided PublicGetCustomMetadataEntryLabelDto
+func (t *PublicGetAssetDto_CustomMetadataValues_Item) MergePublicGetCustomMetadataEntryLabelDto(v PublicGetCustomMetadataEntryLabelDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetCustomMetadataEntryStringDto returns the union data inside the PublicGetAssetDto_CustomMetadataValues_Item as a PublicGetCustomMetadataEntryStringDto
+func (t PublicGetAssetDto_CustomMetadataValues_Item) AsPublicGetCustomMetadataEntryStringDto() (PublicGetCustomMetadataEntryStringDto, error) {
+	var body PublicGetCustomMetadataEntryStringDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetCustomMetadataEntryStringDto overwrites any union data inside the PublicGetAssetDto_CustomMetadataValues_Item as the provided PublicGetCustomMetadataEntryStringDto
+func (t *PublicGetAssetDto_CustomMetadataValues_Item) FromPublicGetCustomMetadataEntryStringDto(v PublicGetCustomMetadataEntryStringDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetCustomMetadataEntryStringDto performs a merge with any union data inside the PublicGetAssetDto_CustomMetadataValues_Item, using the provided PublicGetCustomMetadataEntryStringDto
+func (t *PublicGetAssetDto_CustomMetadataValues_Item) MergePublicGetCustomMetadataEntryStringDto(v PublicGetCustomMetadataEntryStringDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetCustomMetadataEntryUserDto returns the union data inside the PublicGetAssetDto_CustomMetadataValues_Item as a PublicGetCustomMetadataEntryUserDto
+func (t PublicGetAssetDto_CustomMetadataValues_Item) AsPublicGetCustomMetadataEntryUserDto() (PublicGetCustomMetadataEntryUserDto, error) {
+	var body PublicGetCustomMetadataEntryUserDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetCustomMetadataEntryUserDto overwrites any union data inside the PublicGetAssetDto_CustomMetadataValues_Item as the provided PublicGetCustomMetadataEntryUserDto
+func (t *PublicGetAssetDto_CustomMetadataValues_Item) FromPublicGetCustomMetadataEntryUserDto(v PublicGetCustomMetadataEntryUserDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetCustomMetadataEntryUserDto performs a merge with any union data inside the PublicGetAssetDto_CustomMetadataValues_Item, using the provided PublicGetCustomMetadataEntryUserDto
+func (t *PublicGetAssetDto_CustomMetadataValues_Item) MergePublicGetCustomMetadataEntryUserDto(v PublicGetCustomMetadataEntryUserDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PublicGetAssetDto_CustomMetadataValues_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PublicGetAssetDto_CustomMetadataValues_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsPublicAirflowParametersDto returns the union data inside the PublicGetSourceDto_Parameters as a PublicAirflowParametersDto
 func (t PublicGetSourceDto_Parameters) AsPublicAirflowParametersDto() (PublicAirflowParametersDto, error) {
 	var body PublicAirflowParametersDto
@@ -4968,6 +17185,650 @@ func (t PublicGetSourceDto_Parameters) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PublicGetSourceDto_Parameters) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsPublicGetAirflowSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetAirflowSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetAirflowSourceV2Dto() (PublicGetAirflowSourceV2Dto, error) {
+	var body PublicGetAirflowSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetAirflowSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetAirflowSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetAirflowSourceV2Dto(v PublicGetAirflowSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetAirflowSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetAirflowSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetAirflowSourceV2Dto(v PublicGetAirflowSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetAthenaSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetAthenaSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetAthenaSourceV2Dto() (PublicGetAthenaSourceV2Dto, error) {
+	var body PublicGetAthenaSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetAthenaSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetAthenaSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetAthenaSourceV2Dto(v PublicGetAthenaSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetAthenaSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetAthenaSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetAthenaSourceV2Dto(v PublicGetAthenaSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetBigQuerySourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetBigQuerySourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetBigQuerySourceV2Dto() (PublicGetBigQuerySourceV2Dto, error) {
+	var body PublicGetBigQuerySourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetBigQuerySourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetBigQuerySourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetBigQuerySourceV2Dto(v PublicGetBigQuerySourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetBigQuerySourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetBigQuerySourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetBigQuerySourceV2Dto(v PublicGetBigQuerySourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetDatabricksJobsSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetDatabricksJobsSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetDatabricksJobsSourceV2Dto() (PublicGetDatabricksJobsSourceV2Dto, error) {
+	var body PublicGetDatabricksJobsSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetDatabricksJobsSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetDatabricksJobsSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetDatabricksJobsSourceV2Dto(v PublicGetDatabricksJobsSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetDatabricksJobsSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetDatabricksJobsSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetDatabricksJobsSourceV2Dto(v PublicGetDatabricksJobsSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetDatabricksSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetDatabricksSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetDatabricksSourceV2Dto() (PublicGetDatabricksSourceV2Dto, error) {
+	var body PublicGetDatabricksSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetDatabricksSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetDatabricksSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetDatabricksSourceV2Dto(v PublicGetDatabricksSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetDatabricksSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetDatabricksSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetDatabricksSourceV2Dto(v PublicGetDatabricksSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetDbtCloudSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetDbtCloudSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetDbtCloudSourceV2Dto() (PublicGetDbtCloudSourceV2Dto, error) {
+	var body PublicGetDbtCloudSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetDbtCloudSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetDbtCloudSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetDbtCloudSourceV2Dto(v PublicGetDbtCloudSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetDbtCloudSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetDbtCloudSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetDbtCloudSourceV2Dto(v PublicGetDbtCloudSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetDbtSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetDbtSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetDbtSourceV2Dto() (PublicGetDbtSourceV2Dto, error) {
+	var body PublicGetDbtSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetDbtSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetDbtSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetDbtSourceV2Dto(v PublicGetDbtSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetDbtSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetDbtSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetDbtSourceV2Dto(v PublicGetDbtSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetFivetranSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetFivetranSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetFivetranSourceV2Dto() (PublicGetFivetranSourceV2Dto, error) {
+	var body PublicGetFivetranSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetFivetranSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetFivetranSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetFivetranSourceV2Dto(v PublicGetFivetranSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetFivetranSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetFivetranSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetFivetranSourceV2Dto(v PublicGetFivetranSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetLookerSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetLookerSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetLookerSourceV2Dto() (PublicGetLookerSourceV2Dto, error) {
+	var body PublicGetLookerSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetLookerSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetLookerSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetLookerSourceV2Dto(v PublicGetLookerSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetLookerSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetLookerSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetLookerSourceV2Dto(v PublicGetLookerSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetMicrostrategySourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetMicrostrategySourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetMicrostrategySourceV2Dto() (PublicGetMicrostrategySourceV2Dto, error) {
+	var body PublicGetMicrostrategySourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetMicrostrategySourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetMicrostrategySourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetMicrostrategySourceV2Dto(v PublicGetMicrostrategySourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetMicrostrategySourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetMicrostrategySourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetMicrostrategySourceV2Dto(v PublicGetMicrostrategySourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetMssqlSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetMssqlSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetMssqlSourceV2Dto() (PublicGetMssqlSourceV2Dto, error) {
+	var body PublicGetMssqlSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetMssqlSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetMssqlSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetMssqlSourceV2Dto(v PublicGetMssqlSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetMssqlSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetMssqlSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetMssqlSourceV2Dto(v PublicGetMssqlSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetMysqlSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetMysqlSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetMysqlSourceV2Dto() (PublicGetMysqlSourceV2Dto, error) {
+	var body PublicGetMysqlSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetMysqlSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetMysqlSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetMysqlSourceV2Dto(v PublicGetMysqlSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetMysqlSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetMysqlSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetMysqlSourceV2Dto(v PublicGetMysqlSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetOracleSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetOracleSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetOracleSourceV2Dto() (PublicGetOracleSourceV2Dto, error) {
+	var body PublicGetOracleSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetOracleSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetOracleSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetOracleSourceV2Dto(v PublicGetOracleSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetOracleSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetOracleSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetOracleSourceV2Dto(v PublicGetOracleSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetPostgresqlSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetPostgresqlSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetPostgresqlSourceV2Dto() (PublicGetPostgresqlSourceV2Dto, error) {
+	var body PublicGetPostgresqlSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetPostgresqlSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetPostgresqlSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetPostgresqlSourceV2Dto(v PublicGetPostgresqlSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetPostgresqlSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetPostgresqlSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetPostgresqlSourceV2Dto(v PublicGetPostgresqlSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetPowerBiSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetPowerBiSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetPowerBiSourceV2Dto() (PublicGetPowerBiSourceV2Dto, error) {
+	var body PublicGetPowerBiSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetPowerBiSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetPowerBiSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetPowerBiSourceV2Dto(v PublicGetPowerBiSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetPowerBiSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetPowerBiSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetPowerBiSourceV2Dto(v PublicGetPowerBiSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetQlikSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetQlikSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetQlikSourceV2Dto() (PublicGetQlikSourceV2Dto, error) {
+	var body PublicGetQlikSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetQlikSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetQlikSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetQlikSourceV2Dto(v PublicGetQlikSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetQlikSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetQlikSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetQlikSourceV2Dto(v PublicGetQlikSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetQuicksightSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetQuicksightSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetQuicksightSourceV2Dto() (PublicGetQuicksightSourceV2Dto, error) {
+	var body PublicGetQuicksightSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetQuicksightSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetQuicksightSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetQuicksightSourceV2Dto(v PublicGetQuicksightSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetQuicksightSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetQuicksightSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetQuicksightSourceV2Dto(v PublicGetQuicksightSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetRedshiftSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetRedshiftSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetRedshiftSourceV2Dto() (PublicGetRedshiftSourceV2Dto, error) {
+	var body PublicGetRedshiftSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetRedshiftSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetRedshiftSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetRedshiftSourceV2Dto(v PublicGetRedshiftSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetRedshiftSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetRedshiftSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetRedshiftSourceV2Dto(v PublicGetRedshiftSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetSnowflakeSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetSnowflakeSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetSnowflakeSourceV2Dto() (PublicGetSnowflakeSourceV2Dto, error) {
+	var body PublicGetSnowflakeSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetSnowflakeSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetSnowflakeSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetSnowflakeSourceV2Dto(v PublicGetSnowflakeSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetSnowflakeSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetSnowflakeSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetSnowflakeSourceV2Dto(v PublicGetSnowflakeSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetSynapseSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetSynapseSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetSynapseSourceV2Dto() (PublicGetSynapseSourceV2Dto, error) {
+	var body PublicGetSynapseSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetSynapseSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetSynapseSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetSynapseSourceV2Dto(v PublicGetSynapseSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetSynapseSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetSynapseSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetSynapseSourceV2Dto(v PublicGetSynapseSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetTableauSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetTableauSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetTableauSourceV2Dto() (PublicGetTableauSourceV2Dto, error) {
+	var body PublicGetTableauSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetTableauSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetTableauSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetTableauSourceV2Dto(v PublicGetTableauSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetTableauSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetTableauSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetTableauSourceV2Dto(v PublicGetTableauSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsPublicCustomMetadataEntryLabelReferenceDto returns the union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryLabelReferenceDto
+func (t PublicUpdateAssetDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryLabelReferenceDto() (PublicCustomMetadataEntryLabelReferenceDto, error) {
+	var body PublicCustomMetadataEntryLabelReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryLabelReferenceDto overwrites any union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryLabelReferenceDto
+func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryLabelReferenceDto(v PublicCustomMetadataEntryLabelReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryLabelReferenceDto performs a merge with any union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryLabelReferenceDto
+func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryLabelReferenceDto(v PublicCustomMetadataEntryLabelReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicCustomMetadataEntryStringReferenceDto returns the union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryStringReferenceDto
+func (t PublicUpdateAssetDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryStringReferenceDto() (PublicCustomMetadataEntryStringReferenceDto, error) {
+	var body PublicCustomMetadataEntryStringReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryStringReferenceDto overwrites any union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryStringReferenceDto
+func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryStringReferenceDto(v PublicCustomMetadataEntryStringReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryStringReferenceDto performs a merge with any union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryStringReferenceDto
+func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryStringReferenceDto(v PublicCustomMetadataEntryStringReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicCustomMetadataEntryUserReferenceDto returns the union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryUserReferenceDto
+func (t PublicUpdateAssetDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryUserReferenceDto() (PublicCustomMetadataEntryUserReferenceDto, error) {
+	var body PublicCustomMetadataEntryUserReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryUserReferenceDto overwrites any union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryUserReferenceDto
+func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryUserReferenceDto(v PublicCustomMetadataEntryUserReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryUserReferenceDto performs a merge with any union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryUserReferenceDto
+func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryUserReferenceDto(v PublicCustomMetadataEntryUserReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PublicUpdateAssetDto_CustomMetadataValues_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -6072,8 +18933,17 @@ type ClientInterface interface {
 	// GetAllRule request
 	GetAllRule(ctx context.Context, params *GetAllRuleParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetAllMonitorsAsCode request
+	GetAllMonitorsAsCode(ctx context.Context, params *GetAllMonitorsAsCodeParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DecryptRuleRunGroups request
+	DecryptRuleRunGroups(ctx context.Context, runId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// SiffletRuleManualRun request
 	SiffletRuleManualRun(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DecryptRuleGroups request
+	DecryptRuleGroups(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSiffletRuleDetails request
 	GetSiffletRuleDetails(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -6140,6 +19010,25 @@ type ClientInterface interface {
 
 	// PublicResetUserPassword request
 	PublicResetUserPassword(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicGetSourcesV2 request
+	PublicGetSourcesV2(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicCreateSourceV2WithBody request with any body
+	PublicCreateSourceV2WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PublicCreateSourceV2(ctx context.Context, body PublicCreateSourceV2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicDeleteSourceV2 request
+	PublicDeleteSourceV2(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicGetSourceV2 request
+	PublicGetSourceV2(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicEditSourceV2WithBody request with any body
+	PublicEditSourceV2WithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PublicEditSourceV2(ctx context.Context, id openapi_types.UUID, body PublicEditSourceV2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) PublicEditAssetWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -6442,8 +19331,44 @@ func (c *Client) GetAllRule(ctx context.Context, params *GetAllRuleParams, reqEd
 	return c.Client.Do(req)
 }
 
+func (c *Client) GetAllMonitorsAsCode(ctx context.Context, params *GetAllMonitorsAsCodeParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAllMonitorsAsCodeRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DecryptRuleRunGroups(ctx context.Context, runId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDecryptRuleRunGroupsRequest(c.Server, runId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) SiffletRuleManualRun(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSiffletRuleManualRunRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DecryptRuleGroups(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDecryptRuleGroupsRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -6732,6 +19657,90 @@ func (c *Client) PublicUpdateUser(ctx context.Context, id openapi_types.UUID, bo
 
 func (c *Client) PublicResetUserPassword(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPublicResetUserPasswordRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicGetSourcesV2(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetSourcesV2Request(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicCreateSourceV2WithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicCreateSourceV2RequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicCreateSourceV2(ctx context.Context, body PublicCreateSourceV2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicCreateSourceV2Request(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicDeleteSourceV2(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicDeleteSourceV2Request(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicGetSourceV2(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetSourceV2Request(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicEditSourceV2WithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicEditSourceV2RequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicEditSourceV2(ctx context.Context, id openapi_types.UUID, body PublicEditSourceV2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicEditSourceV2Request(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7612,6 +20621,281 @@ func NewGetAllRuleRequest(server string, params *GetAllRuleParams) (*http.Reques
 	return req, nil
 }
 
+// NewGetAllMonitorsAsCodeRequest generates requests for GetAllMonitorsAsCode
+func NewGetAllMonitorsAsCodeRequest(server string, params *GetAllMonitorsAsCodeParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/rules/_all-as-code")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Mode != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "mode", runtime.ParamLocationQuery, *params.Mode); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TextSearch != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "textSearch", runtime.ParamLocationQuery, *params.TextSearch); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RuleTemplateName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "ruleTemplateName", runtime.ParamLocationQuery, *params.RuleTemplateName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LastRunStatus != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "lastRunStatus", runtime.ParamLocationQuery, *params.LastRunStatus); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RuleStatus != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "ruleStatus", runtime.ParamLocationQuery, *params.RuleStatus); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Dataset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "dataset", runtime.ParamLocationQuery, *params.Dataset); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Datasource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "datasource", runtime.ParamLocationQuery, *params.Datasource); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Criticality != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "criticality", runtime.ParamLocationQuery, *params.Criticality); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Domain != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "domain", runtime.ParamLocationQuery, *params.Domain); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ItemsPerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "itemsPerPage", runtime.ParamLocationQuery, *params.ItemsPerPage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Sort != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort", runtime.ParamLocationQuery, *params.Sort); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDecryptRuleRunGroupsRequest generates requests for DecryptRuleRunGroups
+func NewDecryptRuleRunGroupsRequest(server string, runId openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "runId", runtime.ParamLocationPath, runId)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/rules/runs/%s/decrypt", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewSiffletRuleManualRunRequest generates requests for SiffletRuleManualRun
 func NewSiffletRuleManualRunRequest(server string, id openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -7639,6 +20923,40 @@ func NewSiffletRuleManualRunRequest(server string, id openapi_types.UUID) (*http
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDecryptRuleGroupsRequest generates requests for DecryptRuleGroups
+func NewDecryptRuleGroupsRequest(server string, id openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/rules/%s/decrypt", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -8438,6 +21756,188 @@ func NewPublicResetUserPasswordRequest(server string, id openapi_types.UUID) (*h
 	return req, nil
 }
 
+// NewPublicGetSourcesV2Request generates requests for PublicGetSourcesV2
+func NewPublicGetSourcesV2Request(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v2/sources")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPublicCreateSourceV2Request calls the generic PublicCreateSourceV2 builder with application/json body
+func NewPublicCreateSourceV2Request(server string, body PublicCreateSourceV2JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPublicCreateSourceV2RequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPublicCreateSourceV2RequestWithBody generates requests for PublicCreateSourceV2 with any type of body
+func NewPublicCreateSourceV2RequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v2/sources")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPublicDeleteSourceV2Request generates requests for PublicDeleteSourceV2
+func NewPublicDeleteSourceV2Request(server string, id openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v2/sources/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPublicGetSourceV2Request generates requests for PublicGetSourceV2
+func NewPublicGetSourceV2Request(server string, id openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v2/sources/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPublicEditSourceV2Request calls the generic PublicEditSourceV2 builder with application/json body
+func NewPublicEditSourceV2Request(server string, id openapi_types.UUID, body PublicEditSourceV2JSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPublicEditSourceV2RequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewPublicEditSourceV2RequestWithBody generates requests for PublicEditSourceV2 with any type of body
+func NewPublicEditSourceV2RequestWithBody(server string, id openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v2/sources/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 func (c *Client) applyEditors(ctx context.Context, req *http.Request, additionalEditors []RequestEditorFn) error {
 	for _, r := range c.RequestEditors {
 		if err := r(ctx, req); err != nil {
@@ -8548,8 +22048,17 @@ type ClientWithResponsesInterface interface {
 	// GetAllRuleWithResponse request
 	GetAllRuleWithResponse(ctx context.Context, params *GetAllRuleParams, reqEditors ...RequestEditorFn) (*GetAllRuleResponse, error)
 
+	// GetAllMonitorsAsCodeWithResponse request
+	GetAllMonitorsAsCodeWithResponse(ctx context.Context, params *GetAllMonitorsAsCodeParams, reqEditors ...RequestEditorFn) (*GetAllMonitorsAsCodeResponse, error)
+
+	// DecryptRuleRunGroupsWithResponse request
+	DecryptRuleRunGroupsWithResponse(ctx context.Context, runId openapi_types.UUID, reqEditors ...RequestEditorFn) (*DecryptRuleRunGroupsResponse, error)
+
 	// SiffletRuleManualRunWithResponse request
 	SiffletRuleManualRunWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*SiffletRuleManualRunResponse, error)
+
+	// DecryptRuleGroupsWithResponse request
+	DecryptRuleGroupsWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*DecryptRuleGroupsResponse, error)
 
 	// GetSiffletRuleDetailsWithResponse request
 	GetSiffletRuleDetailsWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetSiffletRuleDetailsResponse, error)
@@ -8616,6 +22125,25 @@ type ClientWithResponsesInterface interface {
 
 	// PublicResetUserPasswordWithResponse request
 	PublicResetUserPasswordWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicResetUserPasswordResponse, error)
+
+	// PublicGetSourcesV2WithResponse request
+	PublicGetSourcesV2WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PublicGetSourcesV2Response, error)
+
+	// PublicCreateSourceV2WithBodyWithResponse request with any body
+	PublicCreateSourceV2WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateSourceV2Response, error)
+
+	PublicCreateSourceV2WithResponse(ctx context.Context, body PublicCreateSourceV2JSONRequestBody, reqEditors ...RequestEditorFn) (*PublicCreateSourceV2Response, error)
+
+	// PublicDeleteSourceV2WithResponse request
+	PublicDeleteSourceV2WithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicDeleteSourceV2Response, error)
+
+	// PublicGetSourceV2WithResponse request
+	PublicGetSourceV2WithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicGetSourceV2Response, error)
+
+	// PublicEditSourceV2WithBodyWithResponse request with any body
+	PublicEditSourceV2WithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicEditSourceV2Response, error)
+
+	PublicEditSourceV2WithResponse(ctx context.Context, id openapi_types.UUID, body PublicEditSourceV2JSONRequestBody, reqEditors ...RequestEditorFn) (*PublicEditSourceV2Response, error)
 }
 
 type PublicEditAssetResponse struct {
@@ -9070,6 +22598,62 @@ func (r GetAllRuleResponse) StatusCode() int {
 	return 0
 }
 
+type GetAllMonitorsAsCodeResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *[]AsCodeMonitorDto
+	YAML200                   *[]AsCodeMonitorDto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON409 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r GetAllMonitorsAsCodeResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetAllMonitorsAsCodeResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DecryptRuleRunGroupsResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *GroupDecryptedValuesDto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON409 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r DecryptRuleRunGroupsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DecryptRuleRunGroupsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type SiffletRuleManualRunResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
@@ -9092,6 +22676,34 @@ func (r SiffletRuleManualRunResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r SiffletRuleManualRunResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DecryptRuleGroupsResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *GroupDecryptedValuesDto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON409 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r DecryptRuleGroupsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DecryptRuleGroupsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -9576,6 +23188,150 @@ func (r PublicResetUserPasswordResponse) StatusCode() int {
 	return 0
 }
 
+type PublicGetSourcesV2Response struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *PublicPageDtoPublicGetSourceV2Dto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON409 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicGetSourcesV2Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicGetSourcesV2Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicCreateSourceV2Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *struct {
+		union json.RawMessage
+	}
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON409 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicCreateSourceV2Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicCreateSourceV2Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicDeleteSourceV2Response struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON409 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicDeleteSourceV2Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicDeleteSourceV2Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicGetSourceV2Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		union json.RawMessage
+	}
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON409 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicGetSourceV2Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicGetSourceV2Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicEditSourceV2Response struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		union json.RawMessage
+	}
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON409 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicEditSourceV2Response) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicEditSourceV2Response) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 // PublicEditAssetWithBodyWithResponse request with arbitrary body returning *PublicEditAssetResponse
 func (c *ClientWithResponses) PublicEditAssetWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicEditAssetResponse, error) {
 	rsp, err := c.PublicEditAssetWithBody(ctx, contentType, body, reqEditors...)
@@ -9793,6 +23549,24 @@ func (c *ClientWithResponses) GetAllRuleWithResponse(ctx context.Context, params
 	return ParseGetAllRuleResponse(rsp)
 }
 
+// GetAllMonitorsAsCodeWithResponse request returning *GetAllMonitorsAsCodeResponse
+func (c *ClientWithResponses) GetAllMonitorsAsCodeWithResponse(ctx context.Context, params *GetAllMonitorsAsCodeParams, reqEditors ...RequestEditorFn) (*GetAllMonitorsAsCodeResponse, error) {
+	rsp, err := c.GetAllMonitorsAsCode(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetAllMonitorsAsCodeResponse(rsp)
+}
+
+// DecryptRuleRunGroupsWithResponse request returning *DecryptRuleRunGroupsResponse
+func (c *ClientWithResponses) DecryptRuleRunGroupsWithResponse(ctx context.Context, runId openapi_types.UUID, reqEditors ...RequestEditorFn) (*DecryptRuleRunGroupsResponse, error) {
+	rsp, err := c.DecryptRuleRunGroups(ctx, runId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDecryptRuleRunGroupsResponse(rsp)
+}
+
 // SiffletRuleManualRunWithResponse request returning *SiffletRuleManualRunResponse
 func (c *ClientWithResponses) SiffletRuleManualRunWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*SiffletRuleManualRunResponse, error) {
 	rsp, err := c.SiffletRuleManualRun(ctx, id, reqEditors...)
@@ -9800,6 +23574,15 @@ func (c *ClientWithResponses) SiffletRuleManualRunWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseSiffletRuleManualRunResponse(rsp)
+}
+
+// DecryptRuleGroupsWithResponse request returning *DecryptRuleGroupsResponse
+func (c *ClientWithResponses) DecryptRuleGroupsWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*DecryptRuleGroupsResponse, error) {
+	rsp, err := c.DecryptRuleGroups(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDecryptRuleGroupsResponse(rsp)
 }
 
 // GetSiffletRuleDetailsWithResponse request returning *GetSiffletRuleDetailsResponse
@@ -10010,6 +23793,67 @@ func (c *ClientWithResponses) PublicResetUserPasswordWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParsePublicResetUserPasswordResponse(rsp)
+}
+
+// PublicGetSourcesV2WithResponse request returning *PublicGetSourcesV2Response
+func (c *ClientWithResponses) PublicGetSourcesV2WithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PublicGetSourcesV2Response, error) {
+	rsp, err := c.PublicGetSourcesV2(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicGetSourcesV2Response(rsp)
+}
+
+// PublicCreateSourceV2WithBodyWithResponse request with arbitrary body returning *PublicCreateSourceV2Response
+func (c *ClientWithResponses) PublicCreateSourceV2WithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateSourceV2Response, error) {
+	rsp, err := c.PublicCreateSourceV2WithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicCreateSourceV2Response(rsp)
+}
+
+func (c *ClientWithResponses) PublicCreateSourceV2WithResponse(ctx context.Context, body PublicCreateSourceV2JSONRequestBody, reqEditors ...RequestEditorFn) (*PublicCreateSourceV2Response, error) {
+	rsp, err := c.PublicCreateSourceV2(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicCreateSourceV2Response(rsp)
+}
+
+// PublicDeleteSourceV2WithResponse request returning *PublicDeleteSourceV2Response
+func (c *ClientWithResponses) PublicDeleteSourceV2WithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicDeleteSourceV2Response, error) {
+	rsp, err := c.PublicDeleteSourceV2(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicDeleteSourceV2Response(rsp)
+}
+
+// PublicGetSourceV2WithResponse request returning *PublicGetSourceV2Response
+func (c *ClientWithResponses) PublicGetSourceV2WithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicGetSourceV2Response, error) {
+	rsp, err := c.PublicGetSourceV2(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicGetSourceV2Response(rsp)
+}
+
+// PublicEditSourceV2WithBodyWithResponse request with arbitrary body returning *PublicEditSourceV2Response
+func (c *ClientWithResponses) PublicEditSourceV2WithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicEditSourceV2Response, error) {
+	rsp, err := c.PublicEditSourceV2WithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicEditSourceV2Response(rsp)
+}
+
+func (c *ClientWithResponses) PublicEditSourceV2WithResponse(ctx context.Context, id openapi_types.UUID, body PublicEditSourceV2JSONRequestBody, reqEditors ...RequestEditorFn) (*PublicEditSourceV2Response, error) {
+	rsp, err := c.PublicEditSourceV2(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicEditSourceV2Response(rsp)
 }
 
 // ParsePublicEditAssetResponse parses an HTTP response from a PublicEditAssetWithResponse call
@@ -11000,6 +24844,142 @@ func ParseGetAllRuleResponse(rsp *http.Response) (*GetAllRuleResponse, error) {
 	return response, nil
 }
 
+// ParseGetAllMonitorsAsCodeResponse parses an HTTP response from a GetAllMonitorsAsCodeWithResponse call
+func ParseGetAllMonitorsAsCodeResponse(rsp *http.Response) (*GetAllMonitorsAsCodeResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetAllMonitorsAsCodeResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AsCodeMonitorDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "yaml") && rsp.StatusCode == 200:
+		var dest []AsCodeMonitorDto
+		if err := yaml.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.YAML200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDecryptRuleRunGroupsResponse parses an HTTP response from a DecryptRuleRunGroupsWithResponse call
+func ParseDecryptRuleRunGroupsResponse(rsp *http.Response) (*DecryptRuleRunGroupsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DecryptRuleRunGroupsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GroupDecryptedValuesDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseSiffletRuleManualRunResponse parses an HTTP response from a SiffletRuleManualRunWithResponse call
 func ParseSiffletRuleManualRunResponse(rsp *http.Response) (*SiffletRuleManualRunResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -11016,6 +24996,74 @@ func ParseSiffletRuleManualRunResponse(rsp *http.Response) (*SiffletRuleManualRu
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RuleRunDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDecryptRuleGroupsResponse parses an HTTP response from a DecryptRuleGroupsWithResponse call
+func ParseDecryptRuleGroupsResponse(rsp *http.Response) (*DecryptRuleGroupsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DecryptRuleGroupsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GroupDecryptedValuesDto
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -12097,6 +26145,338 @@ func ParsePublicResetUserPasswordResponse(rsp *http.Response) (*PublicResetUserP
 			return nil, err
 		}
 		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicGetSourcesV2Response parses an HTTP response from a PublicGetSourcesV2WithResponse call
+func ParsePublicGetSourcesV2Response(rsp *http.Response) (*PublicGetSourcesV2Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicGetSourcesV2Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicPageDtoPublicGetSourceV2Dto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicCreateSourceV2Response parses an HTTP response from a PublicCreateSourceV2WithResponse call
+func ParsePublicCreateSourceV2Response(rsp *http.Response) (*PublicCreateSourceV2Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicCreateSourceV2Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest struct {
+			union json.RawMessage
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicDeleteSourceV2Response parses an HTTP response from a PublicDeleteSourceV2WithResponse call
+func ParsePublicDeleteSourceV2Response(rsp *http.Response) (*PublicDeleteSourceV2Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicDeleteSourceV2Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicGetSourceV2Response parses an HTTP response from a PublicGetSourceV2WithResponse call
+func ParsePublicGetSourceV2Response(rsp *http.Response) (*PublicGetSourceV2Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicGetSourceV2Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			union json.RawMessage
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicEditSourceV2Response parses an HTTP response from a PublicEditSourceV2WithResponse call
+func ParsePublicEditSourceV2Response(rsp *http.Response) (*PublicEditSourceV2Response, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicEditSourceV2Response{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			union json.RawMessage
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON409 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest ApiProblemSchema
