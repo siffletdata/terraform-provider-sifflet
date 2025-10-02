@@ -78,9 +78,12 @@ func SourceV2ResourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
 		Description: "A Sifflet source.",
 		MarkdownDescription: `A Sifflet source. A source is any system that's monitored by Sifflet.
-		The sifflet_source_v2 resource will create a source including all assets associated with that source, and discovery on future assets will be enabled.
+
+The sifflet_source_v2 resource will create a source including all assets associated with that source, and discovery on future assets will be enabled. Configuration for this is only possible through the UI at the moment, and will be added later to the terraform provider.
 
 ~> Consider adding a ` + "`lifecycle { prevent_destroy = true }` to `sifflet_source_v2`" + ` resources once they are correctly configured. Deleting a source deletes all associated data, including monitors on that source.
+
+~> When migrating from sifflet_source to sifflet_source_v2, keep in mind that multiple sifflet_source resources can correspond to a single sifflet_source_v2 resource. As such, we recommend removing the sifflet_source resources from your state, and importing the sifflet_source_v2 resources, by looking up their ID in the UI.
 		`,
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
