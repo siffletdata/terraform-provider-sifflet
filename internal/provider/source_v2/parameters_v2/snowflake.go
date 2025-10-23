@@ -97,8 +97,8 @@ func (m SnowflakeParametersModel) ToUpdateDto(ctx context.Context, name string) 
 	snowflakeUpdateDto := &sifflet.PublicUpdateSnowflakeSourceV2Dto{
 		Name:                 &name,
 		Type:                 sifflet.PublicUpdateSnowflakeSourceV2DtoTypeSNOWFLAKE,
-		SnowflakeInformation: snowflakeInformation,
-		Credentials:          m.Credentials.ValueString(),
+		SnowflakeInformation: &snowflakeInformation,
+		Credentials:          m.Credentials.ValueStringPointer(),
 		Schedule:             m.Schedule.ValueStringPointer(),
 	}
 

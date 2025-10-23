@@ -106,8 +106,8 @@ func (m OracleParametersModel) ToUpdateDto(ctx context.Context, name string) (si
 	oracleUpdateDto := &sifflet.PublicUpdateOracleSourceV2Dto{
 		Name:              &name,
 		Type:              sifflet.PublicUpdateOracleSourceV2DtoTypeORACLE,
-		OracleInformation: oracleInformation,
-		Credentials:       m.Credentials.ValueString(),
+		OracleInformation: &oracleInformation,
+		Credentials:       m.Credentials.ValueStringPointer(),
 		Schedule:          m.Schedule.ValueStringPointer(),
 	}
 

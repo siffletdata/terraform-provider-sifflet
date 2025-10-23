@@ -97,8 +97,8 @@ func (m SynapseParametersModel) ToUpdateDto(ctx context.Context, name string) (s
 	synapseUpdateDto := &sifflet.PublicUpdateSynapseSourceV2Dto{
 		Name:               &name,
 		Type:               sifflet.PublicUpdateSynapseSourceV2DtoTypeSYNAPSE,
-		SynapseInformation: synapseInformation,
-		Credentials:        m.Credentials.ValueString(),
+		SynapseInformation: &synapseInformation,
+		Credentials:        m.Credentials.ValueStringPointer(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 

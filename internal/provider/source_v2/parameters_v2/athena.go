@@ -122,7 +122,7 @@ func (m AthenaParametersModel) ToUpdateDto(ctx context.Context, name string) (si
 	athenaUpdateDto := &sifflet.PublicUpdateAthenaSourceV2Dto{
 		Name:              &name,
 		Type:              sifflet.PublicUpdateAthenaSourceV2DtoTypeATHENA,
-		AthenaInformation: athenaInformation,
+		AthenaInformation: &athenaInformation,
 		Schedule:          m.Schedule.ValueStringPointer(),
 	}
 

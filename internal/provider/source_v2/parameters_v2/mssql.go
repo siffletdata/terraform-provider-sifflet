@@ -117,8 +117,8 @@ func (m MssqlParametersModel) ToUpdateDto(ctx context.Context, name string) (sif
 	mssqlUpdateDto := &sifflet.PublicUpdateMssqlSourceV2Dto{
 		Name:             &name,
 		Type:             sifflet.PublicUpdateMssqlSourceV2DtoTypeMSSQL,
-		MssqlInformation: mssqlInformation,
-		Credentials:      m.Credentials.ValueString(),
+		MssqlInformation: &mssqlInformation,
+		Credentials:      m.Credentials.ValueStringPointer(),
 		Schedule:         m.Schedule.ValueStringPointer(),
 	}
 
