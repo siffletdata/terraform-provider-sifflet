@@ -18,6 +18,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 
 	"terraform-provider-sifflet/internal/apiclients"
+	"terraform-provider-sifflet/internal/provider/asset"
 	"terraform-provider-sifflet/internal/provider/credentials"
 	sifflet_datasource "terraform-provider-sifflet/internal/provider/datasource"
 	"terraform-provider-sifflet/internal/provider/source"
@@ -198,6 +199,7 @@ func apiHealthCheck(httpClient *http.Client, host string, resp *provider.Configu
 // DataSources defines the data sources implemented in the provider.
 func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 	return slices.Concat(
+		asset.DataSources(),
 		credentials.DataSources(),
 		sifflet_datasource.DataSources(),
 		source.DataSources(),
