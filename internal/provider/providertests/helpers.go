@@ -1,6 +1,12 @@
 package providertests
 
 import (
+	"context"
+	"errors"
+	"os"
+	"terraform-provider-sifflet/internal/apiclients"
+	"terraform-provider-sifflet/internal/client"
+
 	"github.com/hashicorp/terraform-plugin-testing/helper/acctest"
 )
 
@@ -34,6 +40,10 @@ func RandomEmail() string {
 	return "alerts-sandbox+" + RandomName() + "@siffletdata.com"
 }
 
+func RandomGithubDeclaredAssetUri() string {
+	return "github://github.com/" + SessionPrefix() + "." + acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
+}
+
 func ProviderConfig() string {
 	return providerConfig
 }
@@ -44,3 +54,16 @@ const (
 provider "sifflet" { }
 `
 )
+
+// ClientForTests creates a new Sifflet API client to be used to write tests.
+func ClientForTests(ctx context.Context) (*client.ClientWithResponses, error) {
+	token := os.Getenv("SIFFLET_TOKEN")
+	host := os.Getenv("SIFFLET_HOST")
+	clients, diag := apiclients.MakeHttpClients(
+		ctx, token, host, "test", "test",
+	)
+	if diag != nil {
+		return nil, errors.New(diag.Summary())
+	}
+	return clients.Client, nil
+}

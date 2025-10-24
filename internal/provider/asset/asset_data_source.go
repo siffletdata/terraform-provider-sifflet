@@ -146,7 +146,7 @@ func (d *assetDataSource) Read(ctx context.Context, req datasource.ReadRequest, 
 
 	if assetResponse.StatusCode() != http.StatusOK {
 		sifflet.HandleHttpErrorAsProblem(
-			ctx, &resp.Diagnostics, "Unable to read asset 2",
+			ctx, &resp.Diagnostics, "Unable to read asset",
 			assetResponse.StatusCode(), assetResponse.Body,
 		)
 		return
