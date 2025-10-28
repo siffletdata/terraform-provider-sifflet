@@ -3,7 +3,6 @@ package asset_test
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"regexp"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/provider"
@@ -18,7 +17,6 @@ func TestAccAssetDataSource(t *testing.T) {
 	// We need to use the workspace sync endpoint to create assets, so that we can test the asset data source.
 	// Usually, assets would be created through a source ingestion, but we do not want to use real sources for tests.
 	ctx := context.Background()
-	dryRun := false
 	client, err := providertests.ClientForTests(ctx)
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
@@ -40,20 +38,9 @@ func TestAccAssetDataSource(t *testing.T) {
 				Type:        sifflet.Generic,
 				SubType:     &subTypeName,
 			}
-			payload := sifflet.PublicDeclarativePayloadDto{
-				Assets:    &[]sifflet.PublicDeclarativeAssetDto{asset},
-				Workspace: workspaceName,
-			}
-			params := sifflet.PublicSyncAssetsParams{
-				DryRun: &dryRun,
-			}
-
-			response, err := client.PublicSyncAssetsWithResponse(ctx, &params, payload)
+			err := providertests.CreateDeclaredAssets(ctx, client, workspaceName, &[]sifflet.PublicDeclarativeAssetDto{asset})
 			if err != nil {
-				t.Fatalf("Failed to sync assets: %v", err)
-			}
-			if response.StatusCode() != http.StatusOK {
-				t.Fatalf("Failed to sync assets: status code %d. Details: %s", response.StatusCode(), response.Body)
+				t.Fatalf("Failed to create declared assets: %v", err)
 			}
 		},
 		ProtoV6ProviderFactories: provider.TestAccProtoV6ProviderFactories,
@@ -75,14 +62,8 @@ func TestAccAssetDataSource(t *testing.T) {
 		},
 		CheckDestroy: func(s *terraform.State) error {
 			// Delete the declared assets and all related resources
-			response, err := client.PublicDeleteWorkspaceWithResponse(ctx, workspaceName, &sifflet.PublicDeleteWorkspaceParams{DryRun: &dryRun})
-			if err != nil {
-				return fmt.Errorf("Failed to delete workspace: %v", err)
-			}
-			if response.StatusCode() != http.StatusOK {
-				return fmt.Errorf("Failed to delete workspace: status code %d. Details: %s", response.StatusCode(), response.Body)
-			}
-			return nil
+			err := providertests.DeleteDeclaredAssets(ctx, client, workspaceName)
+			return err
 		},
 	})
 }
