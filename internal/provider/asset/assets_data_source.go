@@ -63,15 +63,15 @@ func AssetsDataSourceSchema(ctx context.Context) schema.Schema {
 				Optional:    true,
 			},
 			"filter": schema.SingleNestedAttribute{
-				Description: "Search criteria",
+				Description: "Search criteria.",
 				Required:    true,
 				Attributes: map[string]schema.Attribute{
 					"text_search": schema.StringAttribute{
-						Description: "Return assets whose name match this attribute",
+						Description: "Return assets whose name match this attribute.",
 						Optional:    true,
 					},
 					"type_categories": schema.ListAttribute{
-						Description: "List of asset type categories to filter on. Valid values are TABLE_AND_VIEW, PIPELINE, DASHBOARD, ML_MODEL. For filtering declared assets with custom types, you can use the format declared-asset_{custom sub type}. For example: declared-asset_Storage",
+						Description: "List of asset type categories to filter on. Valid values are TABLE_AND_VIEW, PIPELINE, DASHBOARD, ML_MODEL. For filtering declared assets with custom types, you can use the format `declared-asset_{custom sub type}`. For example: `declared-asset_Storage`.",
 						ElementType: types.StringType,
 						Optional:    true,
 					},
@@ -81,15 +81,15 @@ func AssetsDataSourceSchema(ctx context.Context) schema.Schema {
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"id": schema.StringAttribute{
-									Description: "Tag ID",
+									Description: "Tag ID.",
 									Optional:    true,
 								},
 								"name": schema.StringAttribute{
-									Description: "Tag name",
+									Description: "Tag name.",
 									Optional:    true,
 								},
 								"kind": schema.StringAttribute{
-									Description: "Tag kind (such as 'Tag' or 'Classification')",
+									Description: "Tag kind (such as 'Tag' or 'Classification').",
 									Optional:    true,
 									Validators: []validator.String{
 										stringvalidator.OneOf("Tag", "Classification"),
@@ -104,49 +104,45 @@ func AssetsDataSourceSchema(ctx context.Context) schema.Schema {
 				},
 			},
 			"results": schema.ListNestedAttribute{
-				Description: "List of assets returned by the search",
+				Description: "List of assets returned by the search.",
 				Computed:    true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"id": schema.StringAttribute{
-							Description: "Asset ID",
+							Description: "Asset ID.",
 							Computed:    true,
 						},
 						"name": schema.StringAttribute{
-							Description: "Asset name",
+							Description: "Asset name.",
 							Computed:    true,
 						},
 						"type": schema.StringAttribute{
 							Description: "Asset type. This is the specific type of the asset, not the broader type category used in the filter. For example, an asset in type category TABLE_AND_VIEW can have the type TABLE.",
 							Computed:    true,
 						},
-						"urn": schema.StringAttribute{
-							Description: "Internal Sifflet identifier for the asset",
-							Computed:    true,
-						},
 						"uri": schema.StringAttribute{
-							Description: "URI string identifying the asset. More about URIs here: https://docs.siffletdata.com/docs/uris",
+							Description: "URI string identifying the asset. More about URIs here: https://docs.siffletdata.com/docs/uris.",
 							Computed:    true,
 						},
 						"description": schema.StringAttribute{
-							Description: "Asset description",
+							Description: "Asset description.",
 							Computed:    true,
 						},
 						"tags": schema.ListNestedAttribute{
-							Description: "List of tags associated with this source",
+							Description: "List of tags associated with this source.",
 							Computed:    true,
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"id": schema.StringAttribute{
-										Description: "Tag ID",
+										Description: "Tag ID.",
 										Computed:    true,
 									},
 									"name": schema.StringAttribute{
-										Description: "Tag name",
+										Description: "Tag name.",
 										Computed:    true,
 									},
 									"kind": schema.StringAttribute{
-										Description: "Tag kind (such as 'Tag' or 'Classification')",
+										Description: "Tag kind (such as 'Tag' or 'Classification').",
 										Computed:    true,
 									},
 								},

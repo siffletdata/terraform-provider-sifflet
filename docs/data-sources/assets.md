@@ -34,7 +34,7 @@ output "assets" {
 
 ### Required
 
-- `filter` (Attributes) Search criteria (see [below for nested schema](#nestedatt--filter))
+- `filter` (Attributes) Search criteria. (see [below for nested schema](#nestedatt--filter))
 
 ### Optional
 
@@ -42,7 +42,7 @@ output "assets" {
 
 ### Read-Only
 
-- `results` (Attributes List) List of assets returned by the search (see [below for nested schema](#nestedatt--results))
+- `results` (Attributes List) List of assets returned by the search. (see [below for nested schema](#nestedatt--results))
 
 <a id="nestedatt--filter"></a>
 ### Nested Schema for `filter`
@@ -50,17 +50,17 @@ output "assets" {
 Optional:
 
 - `tags` (Attributes List) List of tags to filter assets by. Tags can be identified by either ID or name. If a name is provided, optionally a kind can be provided to disambiguate tags of different types sharing the same name. (see [below for nested schema](#nestedatt--filter--tags))
-- `text_search` (String) Return assets whose name match this attribute
-- `type_categories` (List of String) List of asset type categories to filter on. Valid values are TABLE_AND_VIEW, PIPELINE, DASHBOARD, ML_MODEL. For filtering declared assets with custom types, you can use the format declared-asset_{custom sub type}. For example: declared-asset_Storage
+- `text_search` (String) Return assets whose name match this attribute.
+- `type_categories` (List of String) List of asset type categories to filter on. Valid values are TABLE_AND_VIEW, PIPELINE, DASHBOARD, ML_MODEL. For filtering declared assets with custom types, you can use the format `declared-asset_{custom sub type}`. For example: `declared-asset_Storage`.
 
 <a id="nestedatt--filter--tags"></a>
 ### Nested Schema for `filter.tags`
 
 Optional:
 
-- `id` (String) Tag ID
-- `kind` (String) Tag kind (such as 'Tag' or 'Classification')
-- `name` (String) Tag name
+- `id` (String) Tag ID.
+- `kind` (String) Tag kind (such as 'Tag' or 'Classification').
+- `name` (String) Tag name.
 
 
 
@@ -69,19 +69,18 @@ Optional:
 
 Read-Only:
 
-- `description` (String) Asset description
-- `id` (String) Asset ID
-- `name` (String) Asset name
-- `tags` (Attributes List) List of tags associated with this source (see [below for nested schema](#nestedatt--results--tags))
+- `description` (String) Asset description.
+- `id` (String) Asset ID.
+- `name` (String) Asset name.
+- `tags` (Attributes List) List of tags associated with this source. (see [below for nested schema](#nestedatt--results--tags))
 - `type` (String) Asset type. This is the specific type of the asset, not the broader type category used in the filter. For example, an asset in type category TABLE_AND_VIEW can have the type TABLE.
-- `uri` (String) URI string identifying the asset. More about URIs here: https://docs.siffletdata.com/docs/uris
-- `urn` (String) Internal Sifflet identifier for the asset
+- `uri` (String) URI string identifying the asset. More about URIs here: https://docs.siffletdata.com/docs/uris.
 
 <a id="nestedatt--results--tags"></a>
 ### Nested Schema for `results.tags`
 
 Read-Only:
 
-- `id` (String) Tag ID
-- `kind` (String) Tag kind (such as 'Tag' or 'Classification')
-- `name` (String) Tag name
+- `id` (String) Tag ID.
+- `kind` (String) Tag kind (such as 'Tag' or 'Classification').
+- `name` (String) Tag name.

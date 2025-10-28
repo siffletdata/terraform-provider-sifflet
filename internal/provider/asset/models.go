@@ -18,7 +18,6 @@ type assetModel struct {
 	Name        types.String `tfsdk:"name"`
 	Type        types.String `tfsdk:"type"`
 	Uri         types.String `tfsdk:"uri"`
-	Urn         types.String `tfsdk:"urn"`
 	Description types.String `tfsdk:"description"`
 	Tags        types.List   `tfsdk:"tags"`
 }
@@ -35,7 +34,6 @@ func (m assetModel) AttributeTypes() map[string]attr.Type {
 		"description": types.StringType,
 		"type":        types.StringType,
 		"uri":         types.StringType,
-		"urn":         types.StringType,
 		"tags": types.ListType{
 			ElemType: types.ObjectType{
 				AttrTypes: tagModel{}.AttributeTypes(),
@@ -57,7 +55,6 @@ func (m *assetModel) FromDto(ctx context.Context, dto sifflet.PublicGetAssetDto)
 	m.Description = types.StringPointerValue(dto.Description)
 	m.Type = types.StringValue(string(dto.Type))
 	m.Uri = types.StringValue(dto.Uri)
-	m.Urn = types.StringValue(dto.Urn)
 	m.Tags = tags
 	return diag.Diagnostics{}
 }
@@ -75,7 +72,6 @@ func (m *assetModel) FromListDto(ctx context.Context, dto sifflet.PublicGetAsset
 	m.Description = types.StringPointerValue(dto.Description)
 	m.Type = types.StringValue(string(dto.Type))
 	m.Uri = types.StringValue(dto.Uri)
-	m.Urn = types.StringValue(dto.Urn)
 	m.Tags = tags
 	return diag.Diagnostics{}
 }

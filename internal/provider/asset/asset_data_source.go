@@ -54,7 +54,7 @@ func AssetDataSourceSchema(ctx context.Context) schema.Schema {
 		Description: "Read a Sifflet asset by its URI.",
 		Attributes: map[string]schema.Attribute{
 			"uri": schema.StringAttribute{
-				Description: "URI string identifying the asset. More about URIs here: https://docs.siffletdata.com/docs/uris",
+				Description: "URI string identifying the asset. More about URIs here: https://docs.siffletdata.com/docs/uris.",
 				Required:    true,
 			},
 			"id": schema.StringAttribute{
@@ -69,29 +69,25 @@ func AssetDataSourceSchema(ctx context.Context) schema.Schema {
 				Description: "Type of the asset.",
 				Computed:    true,
 			},
-			"urn": schema.StringAttribute{
-				Description: "Internal Sifflet identifier for the asset.",
-				Computed:    true,
-			},
 			"description": schema.StringAttribute{
-				Description: "Description of the asset",
+				Description: "Description of the asset.",
 				Computed:    true,
 			},
 			"tags": schema.ListNestedAttribute{
-				Description: "List of tags associated with this source",
+				Description: "List of tags associated with this source.",
 				Computed:    true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"id": schema.StringAttribute{
-							Description: "Tag ID",
+							Description: "Tag ID.",
 							Computed:    true,
 						},
 						"name": schema.StringAttribute{
-							Description: "Tag name",
+							Description: "Tag name.",
 							Computed:    true,
 						},
 						"kind": schema.StringAttribute{
-							Description: "Tag kind (such as 'Tag' or 'Classification')",
+							Description: "Tag kind (such as 'Tag' or 'Classification').",
 							Computed:    true,
 						},
 					},

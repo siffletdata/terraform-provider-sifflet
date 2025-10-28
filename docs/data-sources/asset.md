@@ -27,22 +27,21 @@ output "asset_urn" {
 
 ### Required
 
-- `uri` (String) URI string identifying the asset. More about URIs here: https://docs.siffletdata.com/docs/uris
+- `uri` (String) URI string identifying the asset. More about URIs here: https://docs.siffletdata.com/docs/uris.
 
 ### Read-Only
 
-- `description` (String) Description of the asset
+- `description` (String) Description of the asset.
 - `id` (String) Id of the asset.
 - `name` (String) Name of the asset.
-- `tags` (Attributes List) List of tags associated with this source (see [below for nested schema](#nestedatt--tags))
+- `tags` (Attributes List) List of tags associated with this source. (see [below for nested schema](#nestedatt--tags))
 - `type` (String) Type of the asset.
-- `urn` (String) Internal Sifflet identifier for the asset.
 
 <a id="nestedatt--tags"></a>
 ### Nested Schema for `tags`
 
 Read-Only:
 
-- `id` (String) Tag ID
-- `kind` (String) Tag kind (such as 'Tag' or 'Classification')
-- `name` (String) Tag name
+- `id` (String) Tag ID.
+- `kind` (String) Tag kind (such as 'Tag' or 'Classification').
+- `name` (String) Tag name.

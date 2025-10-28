@@ -69,7 +69,6 @@ func TestAccAssetDataSource(t *testing.T) {
 					resource.TestCheckResourceAttr("data.sifflet_asset.test", "type", "OTHER"),
 					resource.TestCheckResourceAttr("data.sifflet_asset.test", "uri", assetUri),
 					resource.TestCheckResourceAttrSet("data.sifflet_asset.test", "id"),
-					resource.TestCheckResourceAttrSet("data.sifflet_asset.test", "urn"),
 					resource.TestCheckResourceAttr("data.sifflet_asset.test", "description", "Created by Terraform provider tests"),
 				),
 			},

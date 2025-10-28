@@ -26,9 +26,8 @@ func TestAccAssetsDataSource(t *testing.T) {
 
 	workspaceName := providertests.RandomName()
 	subTypeName := "TerraformTest"
-	//  This is a tag that is present on all sifflet instances by default
+	//  This tag is present on all Sifflet instances by default
 	tagName := "Non-Production"
-
 	assetUri := providertests.RandomGithubDeclaredAssetUri()
 	assetDescription := "Created by Terraform provider tests"
 	assetName := providertests.SessionPrefix() + " " + assetUri
@@ -104,7 +103,6 @@ func TestAccAssetsDataSource(t *testing.T) {
 					resource.TestCheckResourceAttr("data.sifflet_assets.test", "results.0.type", "OTHER"),
 					resource.TestCheckResourceAttr("data.sifflet_assets.test", "results.0.uri", assetUri),
 					resource.TestCheckResourceAttrSet("data.sifflet_assets.test", "results.0.id"),
-					resource.TestCheckResourceAttrSet("data.sifflet_assets.test", "results.0.urn"),
 					resource.TestCheckResourceAttr("data.sifflet_assets.test", "results.0.description", assetDescription),
 				),
 			},
