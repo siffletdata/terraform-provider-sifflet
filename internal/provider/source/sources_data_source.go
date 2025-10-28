@@ -8,6 +8,7 @@ import (
 	"terraform-provider-sifflet/internal/apiclients"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/provider/source/parameters"
+	"terraform-provider-sifflet/internal/provider/tag"
 	"terraform-provider-sifflet/internal/tfutils"
 
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
@@ -189,14 +190,14 @@ func (m FilterModel) ToDto(ctx context.Context) (sifflet.PublicSourceFilterDto, 
 		return sifflet.PublicSourceFilterDto{}, diags
 	}
 
-	var tags []tagModel
+	var tags []tag.PublicApiTagModel
 	diags = m.Tags.ElementsAs(ctx, &tags, false)
 	if diags.HasError() {
 		return sifflet.PublicSourceFilterDto{}, diags
 	}
 
-	tagsDto, diags := tfutils.MapWithDiagnostics(tags, func(tag tagModel) (sifflet.PublicTagReferenceDto, diag.Diagnostics) {
-		return tag.ToDto()
+	tagsDto, diags := tfutils.MapWithDiagnostics(tags, func(tagModel tag.PublicApiTagModel) (sifflet.PublicTagReferenceDto, diag.Diagnostics) {
+		return tagModel.ToDto()
 	})
 	if diags.HasError() {
 		return sifflet.PublicSourceFilterDto{}, diags
