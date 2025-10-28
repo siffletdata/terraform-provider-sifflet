@@ -97,8 +97,8 @@ func (m DbtCloudParametersModel) ToUpdateDto(ctx context.Context, name string) (
 	dbtCloudUpdateDto := &sifflet.PublicUpdateDbtCloudSourceV2Dto{
 		Name:                &name,
 		Type:                sifflet.PublicUpdateDbtCloudSourceV2DtoTypeDBTCLOUD,
-		DbtCloudInformation: dbtCloudInformation,
-		Credentials:         m.Credentials.ValueString(),
+		DbtCloudInformation: &dbtCloudInformation,
+		Credentials:         m.Credentials.ValueStringPointer(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 

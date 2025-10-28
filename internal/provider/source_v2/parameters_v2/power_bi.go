@@ -97,8 +97,8 @@ func (m PowerBiParametersModel) ToUpdateDto(ctx context.Context, name string) (s
 	powerBiUpdateDto := &sifflet.PublicUpdatePowerBiSourceV2Dto{
 		Name:               &name,
 		Type:               sifflet.PublicUpdatePowerBiSourceV2DtoTypePOWERBI,
-		PowerBiInformation: powerBiInformation,
-		Credentials:        m.Credentials.ValueString(),
+		PowerBiInformation: &powerBiInformation,
+		Credentials:        m.Credentials.ValueStringPointer(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 

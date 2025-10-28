@@ -89,7 +89,7 @@ jobs:
       - run: go mod download
       - env:
           TF_ACC: "1"
-          SIFFLET_HOST: ${{ secrets.SIFFLET_HOST }}
-          SIFFLET_TOKEN: ${{ secrets.SIFFLET_TOKEN }}
+          SIFFLET_HOST: ${{ secrets.SIFFLET_TF_PROVIDER_HOST }}
+          SIFFLET_TOKEN: ${{ secrets.SIFFLET_TF_PROVIDER_TOKEN }}
         run: go test -v -cover ./...
         timeout-minutes: 10

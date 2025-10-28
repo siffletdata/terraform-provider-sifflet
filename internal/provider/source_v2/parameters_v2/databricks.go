@@ -105,8 +105,8 @@ func (m DatabricksParametersModel) ToUpdateDto(ctx context.Context, name string)
 	databricksUpdateDto := &sifflet.PublicUpdateDatabricksSourceV2Dto{
 		Name:                  &name,
 		Type:                  sifflet.PublicUpdateDatabricksSourceV2DtoTypeDATABRICKS,
-		DatabricksInformation: databricksInformation,
-		Credentials:           m.Credentials.ValueString(),
+		DatabricksInformation: &databricksInformation,
+		Credentials:           m.Credentials.ValueStringPointer(),
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 

@@ -101,8 +101,8 @@ func (m TableauParametersModel) ToUpdateDto(ctx context.Context, name string) (s
 	tableauUpdateDto := &sifflet.PublicUpdateTableauSourceV2Dto{
 		Name:               &name,
 		Type:               sifflet.PublicUpdateTableauSourceV2DtoTypeTABLEAU,
-		TableauInformation: tableauInformation,
-		Credentials:        m.Credentials.ValueString(),
+		TableauInformation: &tableauInformation,
+		Credentials:        m.Credentials.ValueStringPointer(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 

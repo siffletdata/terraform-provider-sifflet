@@ -9,6 +9,7 @@ import (
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/provider/datasource"
 	"terraform-provider-sifflet/internal/provider/source/parameters"
+	"terraform-provider-sifflet/internal/provider/tag"
 	"terraform-provider-sifflet/internal/tfutils"
 
 	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
@@ -129,7 +130,7 @@ func SourceResourceSchema(ctx context.Context) schema.Schema {
 				Computed:    true,
 				Default: listdefault.StaticValue(types.ListValueMust(
 					types.ObjectType{
-						AttrTypes: tagModel{}.AttributeTypes(),
+						AttrTypes: tag.PublicApiTagModel{}.AttributeTypes(),
 					},
 					[]attr.Value{},
 				)),
@@ -450,11 +451,11 @@ func (r *sourceResource) MoveState(ctx context.Context) []resource.StateMover {
 					return
 				}
 
-				tagsModel := make([]tagModel, len(*sourceStateData.Tags))
-				for i, tag := range *sourceStateData.Tags {
-					tagsModel[i] = tagModel{ID: tag}
+				tagsModel := make([]tag.PublicApiTagModel, len(*sourceStateData.Tags))
+				for i, tagId := range *sourceStateData.Tags {
+					tagsModel[i] = tag.PublicApiTagModel{ID: tagId}
 				}
-				tags, diags := types.ListValueFrom(ctx, types.ObjectType{AttrTypes: tagModel{}.AttributeTypes()}, tagsModel)
+				tags, diags := types.ListValueFrom(ctx, types.ObjectType{AttrTypes: tag.PublicApiTagModel{}.AttributeTypes()}, tagsModel)
 				resp.Diagnostics.Append(diags...)
 				if diags.HasError() {
 					return

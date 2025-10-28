@@ -98,8 +98,8 @@ func (m AirflowParametersModel) ToUpdateDto(ctx context.Context, name string) (s
 	airflowUpdateDto := sifflet.PublicUpdateAirflowSourceV2Dto{
 		Name:               &name,
 		Type:               sifflet.PublicUpdateAirflowSourceV2DtoTypeAIRFLOW,
-		AirflowInformation: airflowInformation,
-		Credentials:        m.Credentials.ValueString(),
+		AirflowInformation: &airflowInformation,
+		Credentials:        m.Credentials.ValueStringPointer(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 

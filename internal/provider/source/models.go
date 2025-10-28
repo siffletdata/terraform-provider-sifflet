@@ -4,6 +4,7 @@ import (
 	"context"
 	"terraform-provider-sifflet/internal/model"
 	"terraform-provider-sifflet/internal/provider/source/parameters"
+	"terraform-provider-sifflet/internal/provider/tag"
 	"terraform-provider-sifflet/internal/tfutils"
 
 	"terraform-provider-sifflet/internal/client"
@@ -51,7 +52,7 @@ func (m baseSourceModel) AttributeTypes() map[string]attr.Type {
 		},
 		"tags": types.ListType{
 			ElemType: types.ObjectType{
-				AttrTypes: tagModel{}.AttributeTypes(),
+				AttrTypes: tag.PublicApiTagModel{}.AttributeTypes(),
 			},
 		},
 	}
@@ -80,8 +81,8 @@ func (m sourceModel) ModelId() (uuid.UUID, diag.Diagnostics) {
 	return id, diag.Diagnostics{}
 }
 
-func (m sourceModel) getTags() ([]tagModel, diag.Diagnostics) {
-	tags := make([]tagModel, 0, len(m.Tags.Elements()))
+func (m sourceModel) getTags() ([]tag.PublicApiTagModel, diag.Diagnostics) {
+	tags := make([]tag.PublicApiTagModel, 0, len(m.Tags.Elements()))
 	diags := m.Tags.ElementsAs(context.Background(), &tags, false)
 	return tags, diags
 }
@@ -155,7 +156,7 @@ func parametersDtoToModel(ctx context.Context, dto client.PublicGetSourceDto_Par
 
 func (m *baseSourceModel) FromDto(ctx context.Context, dto client.PublicGetSourceDto) diag.Diagnostics {
 	tags, diags := model.NewModelListFromDto(ctx, *dto.Tags,
-		func() model.InnerModel[client.PublicTagReferenceDto] { return &tagModel{} },
+		func() model.InnerModel[client.PublicTagReferenceDto] { return &tag.PublicApiTagModel{} },
 	)
 	if diags.HasError() {
 		return diags
@@ -193,7 +194,7 @@ func (m sourceModel) ToCreateDto(ctx context.Context) (client.PublicCreateSource
 
 	tagsDto, diags := tfutils.MapWithDiagnostics(
 		tagsModel,
-		func(tagModel tagModel) (client.PublicTagReferenceDto, diag.Diagnostics) {
+		func(tagModel tag.PublicApiTagModel) (client.PublicTagReferenceDto, diag.Diagnostics) {
 			return tagModel.ToDto()
 		},
 	)
@@ -238,7 +239,7 @@ func (m sourceModel) ToUpdateDto(ctx context.Context) (client.PublicEditSourceJS
 		return client.PublicEditSourceJSONRequestBody{}, diags
 	}
 	tagsDto, diags := tfutils.MapWithDiagnostics(tagsModel,
-		func(tagModel tagModel) (client.PublicTagReferenceDto, diag.Diagnostics) {
+		func(tagModel tag.PublicApiTagModel) (client.PublicTagReferenceDto, diag.Diagnostics) {
 			return tagModel.ToDto()
 		},
 	)
@@ -264,77 +265,4 @@ func (m sourceModel) ToUpdateDto(ctx context.Context) (client.PublicEditSourceJS
 		Tags:        &tagsDto,
 		Parameters:  &parametersDto,
 	}, diag.Diagnostics{}
-}
-
-type tagModel struct {
-	Name types.String `tfsdk:"name"`
-	ID   types.String `tfsdk:"id"`
-	Kind types.String `tfsdk:"kind"`
-}
-
-var (
-	_ model.InnerModel[client.PublicTagReferenceDto] = &tagModel{}
-)
-
-func (m tagModel) ToDto() (client.PublicTagReferenceDto, diag.Diagnostics) {
-	var id *uuid.UUID
-	var kind *client.PublicTagReferenceDtoKind
-	var name *string
-	if !m.ID.IsNull() && m.ID.ValueString() != "" {
-		// If an ID was provided, the DTO should not include a name or kind
-		idv, err := uuid.Parse(m.ID.ValueString())
-		if err != nil {
-			return client.PublicTagReferenceDto{}, diag.Diagnostics{
-				diag.NewErrorDiagnostic("Tag ID is not a valid UUID", err.Error()),
-			}
-		}
-		id = &idv
-	} else {
-		// If an ID is not provided, then a name was provided (enforced by the schema)
-		// Let's double check that here for clarity.
-		if m.Name.IsNull() || m.Name.ValueString() == "" {
-			return client.PublicTagReferenceDto{}, diag.Diagnostics{
-				diag.NewErrorDiagnostic("Tag name is required when an ID is not provided", ""),
-			}
-		}
-		name = m.Name.ValueStringPointer()
-		if !m.Kind.IsNull() && m.Kind.ValueString() != "" {
-			t := client.PublicTagReferenceDtoKind(m.Kind.ValueString())
-			kind = &t
-		}
-	}
-
-	return client.PublicTagReferenceDto{
-		Id:   id,
-		Name: name,
-		Kind: kind,
-	}, diag.Diagnostics{}
-}
-
-func (m *tagModel) FromDto(_ context.Context, dto client.PublicTagReferenceDto) diag.Diagnostics {
-	m.ID = types.StringValue(dto.Id.String())
-	m.Name = types.StringPointerValue(dto.Name)
-	kind := "Tag"
-	if dto.Kind != nil {
-		kind = string(*dto.Kind)
-	}
-	// Backwards compatibility. At some point, the API
-	// started returning "TAG", but the resource schema
-	// expects "Tag".
-	if kind == "TAG" {
-		kind = "Tag"
-	}
-	if kind == "CLASSIFICATION" {
-		kind = "Classification"
-	}
-	m.Kind = types.StringValue(kind)
-	return diag.Diagnostics{}
-}
-
-func (m tagModel) AttributeTypes() map[string]attr.Type {
-	return map[string]attr.Type{
-		"name": types.StringType,
-		"id":   types.StringType,
-		"kind": types.StringType,
-	}
 }
