@@ -54,7 +54,6 @@ func (d *sourceV2SchemasDataSource) Metadata(_ context.Context, req datasource.M
 
 func SourceV2SchemasDataSourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
-		// TODO: add documentation on the fact that we need to wait for the initial ingestion to finish before the schemas are available
 		Description: `Get all schemas for a given source.
 
 "Schemas" here is used broadly to refer to all underlying schemas/workspaces/databases/instances contained in a Sifflet source.
@@ -73,7 +72,7 @@ For example:
 				Required:    true,
 			},
 			"schemas": schema.ListNestedAttribute{
-				Description: "List of schemas.",
+				Description: "List of schemas/workspaces/databases/instances contained in the source.",
 				Computed:    true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{

@@ -51,7 +51,7 @@ output "first_schema_uri" {
 
 ### Read-Only
 
-- `schemas` (Attributes List) List of schemas. (see [below for nested schema](#nestedatt--schemas))
+- `schemas` (Attributes List) List of schemas/workspaces/databases/instances contained in the source. (see [below for nested schema](#nestedatt--schemas))
 
 <a id="nestedatt--schemas"></a>
 ### Nested Schema for `schemas`
