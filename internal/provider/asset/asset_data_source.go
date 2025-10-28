@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"time"
 
 	"terraform-provider-sifflet/internal/apiclients"
 	sifflet "terraform-provider-sifflet/internal/client"
@@ -113,31 +112,19 @@ func (d *assetDataSource) Read(ctx context.Context, req datasource.ReadRequest, 
 
 	uri := data.Uri.ValueString()
 
-	maxAttempts := 20
 	var assetResponse *sifflet.PublicGetAssetResponse
 	var err error
 
 	request := sifflet.PublicGetAssetRequestDto{Uri: uri}
 
-	for attempt := range maxAttempts {
-		assetResponse, err = d.client.PublicGetAssetWithResponse(ctx, request)
+	assetResponse, err = d.client.PublicGetAssetWithResponse(ctx, request)
 
-		if err != nil {
-			resp.Diagnostics.AddError(
-				"Unable to read asset",
-				err.Error(),
-			)
-			return
-		}
-		if assetResponse.StatusCode() == http.StatusNotFound {
-			// Retry a few times, as there's a delay in the API (eventual consistency)
-			if attempt < maxAttempts {
-				time.Sleep(200 * time.Millisecond)
-				continue
-			}
-		} else {
-			break
-		}
+	if err != nil {
+		resp.Diagnostics.AddError(
+			"Unable to read asset",
+			err.Error(),
+		)
+		return
 	}
 
 	if assetResponse.StatusCode() != http.StatusOK {
