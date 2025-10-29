@@ -4,18 +4,18 @@ page_title: "sifflet_source_v2_schemas Data Source - terraform-provider-sifflet"
 subcategory: ""
 description: |-
   Get all schemas for a given source.
-  "Schemas" here is used broadly to refer to all underlying schemas/workspaces/databases/instances contained in a Sifflet source.
+  "Schemas" here is used broadly to refer to all underlying schemas/workspaces/databases/instances/... contained in a Sifflet source.
   This will return the URIs of the schemas for the source. Read more about URIs here: https://docs.siffletdata.com/docs/uri.
   For example:
   For an Airflow source, this will return the URIs of the Airflow instances contained in the source: https://docs.siffletdata.com/docs/airflow-uri-format.For an Athena source, this will return the URIs of the databases contained in the source: https://docs.siffletdata.com/docs/athena-uri-format.For a MySQL source, this will return the URIs of the schemas contained in the source: https://docs.siffletdata.com/docs/mysql-uri-format.
-  ~> Note that the schemas are not immediately available after the source is created. You need to wait for the initial source ingestion to finish before the schemas are available. As such, we do not recomment using this data source in the same module as the one that creates the corresponding Sifflet source.
+  ~> Note that the schemas are not immediately available after the Sifflet source is created. You need to wait for the initial Sifflet source run to finish before the schemas are available. As such, we do not recomment using this data source in the same module as the one that creates the corresponding Sifflet source.
 ---
 
 # sifflet_source_v2_schemas (Data Source)
 
 Get all schemas for a given source.
 
-"Schemas" here is used broadly to refer to all underlying schemas/workspaces/databases/instances contained in a Sifflet source.
+"Schemas" here is used broadly to refer to all underlying schemas/workspaces/databases/instances/... contained in a Sifflet source.
 
 This will return the URIs of the schemas for the source. Read more about URIs here: https://docs.siffletdata.com/docs/uri.
 
@@ -24,7 +24,7 @@ For example:
 - For an Athena source, this will return the URIs of the databases contained in the source: https://docs.siffletdata.com/docs/athena-uri-format.
 - For a MySQL source, this will return the URIs of the schemas contained in the source: https://docs.siffletdata.com/docs/mysql-uri-format.
 
-~> Note that the schemas are not immediately available after the source is created. You need to wait for the initial source ingestion to finish before the schemas are available. As such, we do not recomment using this data source in the same module as the one that creates the corresponding Sifflet source.
+~> Note that the schemas are not immediately available after the Sifflet source is created. You need to wait for the initial Sifflet source run to finish before the schemas are available. As such, we do not recomment using this data source in the same module as the one that creates the corresponding Sifflet source.
 
 ## Example Usage
 
@@ -47,11 +47,11 @@ output "first_schema_uri" {
 
 ### Required
 
-- `source_id` (String) Id of the source.
+- `source_id` (String) Id of the Sifflet source.
 
 ### Read-Only
 
-- `schemas` (Attributes List) List of schemas/workspaces/databases/instances contained in the source. (see [below for nested schema](#nestedatt--schemas))
+- `schemas` (Attributes List) List of schemas/workspaces/databases/instances/... contained in the Sifflet source. (see [below for nested schema](#nestedatt--schemas))
 
 <a id="nestedatt--schemas"></a>
 ### Nested Schema for `schemas`

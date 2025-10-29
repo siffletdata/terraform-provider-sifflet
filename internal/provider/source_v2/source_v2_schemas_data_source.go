@@ -56,7 +56,7 @@ func SourceV2SchemasDataSourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
 		Description: `Get all schemas for a given source.
 
-"Schemas" here is used broadly to refer to all underlying schemas/workspaces/databases/instances contained in a Sifflet source.
+"Schemas" here is used broadly to refer to all underlying schemas/workspaces/databases/instances/... contained in a Sifflet source.
 
 This will return the URIs of the schemas for the source. Read more about URIs here: https://docs.siffletdata.com/docs/uri.
 
@@ -65,14 +65,14 @@ For example:
 - For an Athena source, this will return the URIs of the databases contained in the source: https://docs.siffletdata.com/docs/athena-uri-format.
 - For a MySQL source, this will return the URIs of the schemas contained in the source: https://docs.siffletdata.com/docs/mysql-uri-format.
 
-~> Note that the schemas are not immediately available after the source is created. You need to wait for the initial source ingestion to finish before the schemas are available. As such, we do not recomment using this data source in the same module as the one that creates the corresponding Sifflet source.`,
+~> Note that the schemas are not immediately available after the Sifflet source is created. You need to wait for the initial Sifflet source run to finish before the schemas are available. As such, we do not recomment using this data source in the same module as the one that creates the corresponding Sifflet source.`,
 		Attributes: map[string]schema.Attribute{
 			"source_id": schema.StringAttribute{
-				Description: "Id of the source.",
+				Description: "Id of the Sifflet source.",
 				Required:    true,
 			},
 			"schemas": schema.ListNestedAttribute{
-				Description: "List of schemas/workspaces/databases/instances contained in the source.",
+				Description: "List of schemas/workspaces/databases/instances/... contained in the Sifflet source.",
 				Computed:    true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
@@ -140,7 +140,7 @@ func (d *sourceV2SchemasDataSource) Read(ctx context.Context, req datasource.Rea
 		return
 	}
 
-	results := make([]schemaModel, 0)
+	results := make([]schemaModel, 0, len(assetResponse.JSON200.Schemas))
 	for _, schema := range assetResponse.JSON200.Schemas {
 		results = append(results, schemaModel{Uri: types.StringValue(schema.Uri)})
 	}
