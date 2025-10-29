@@ -1,7 +1,6 @@
 package asset_test
 
 import (
-	"context"
 	"fmt"
 	"regexp"
 	sifflet "terraform-provider-sifflet/internal/client"
@@ -16,7 +15,7 @@ import (
 func TestAccAssetDataSource(t *testing.T) {
 	// We need to use the workspace sync endpoint to create assets, so that we can test the asset data source.
 	// Usually, assets would be created through a source ingestion, but we do not want to use real sources for tests.
-	ctx := context.Background()
+	ctx := t.Context()
 	client, err := providertests.ClientForTests(ctx)
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
