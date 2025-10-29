@@ -839,37 +839,3 @@ func (obj SiffletPublicGetSourceV2Dto) GetSourceDto() (PublicGetSourceV2, error)
 func (dst *SiffletPublicGetSourceV2Dto) FromPublicPageDtoPublicGetSourceV2DtoDataItem(dto PublicPageDtoPublicGetSourceV2Dto_Data_Item) error {
 	return dst.UnmarshalJSON(dto.union)
 }
-
-type PublicGetSourceV2DataItem struct {
-	Name *string
-	Id   *string
-}
-
-func (dst *PublicGetSourceV2DataItem) FromPublicPageDtoPublicGetSourceV2DtoDataItem(dto PublicPageDtoPublicGetSourceV2Dto_Data_Item) error {
-	m := make(map[string]any)
-	if err := json.Unmarshal(dto.union, &m); err != nil {
-		return fmt.Errorf("couldn't parse parameters as JSON: %s", err)
-	}
-
-	name, ok := m["name"]
-	if !ok {
-		return fmt.Errorf("'name' field not found in parameters")
-	}
-	nameStr, ok := name.(string)
-	if !ok {
-		return fmt.Errorf("expected 'name' field to be a string, got %T", name)
-	}
-
-	id, ok := m["id"]
-	if !ok {
-		return fmt.Errorf("'id' field not found in parameters")
-	}
-	idStr, ok := id.(string)
-	if !ok {
-		return fmt.Errorf("expected 'id' field to be a string, got %T", id)
-	}
-
-	dst.Name = &nameStr
-	dst.Id = &idStr
-	return nil
-}
