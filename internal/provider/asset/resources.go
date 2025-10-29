@@ -1,4 +1,4 @@
-package source_v2
+package asset
 
 import (
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
@@ -6,13 +6,12 @@ import (
 )
 
 func Resources() []func() resource.Resource {
-	return []func() resource.Resource{
-		newSourceV2Resource,
-	}
+	return []func() resource.Resource{}
 }
 
 func DataSources() []func() datasource.DataSource {
 	return []func() datasource.DataSource{
-		newSourceV2SchemasDataSource,
+		newAssetDataSource,
+		newAssetsDataSource,
 	}
 }

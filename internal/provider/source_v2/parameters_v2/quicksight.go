@@ -98,7 +98,7 @@ func (m QuickSightParametersModel) ToUpdateDto(ctx context.Context, name string)
 	quickSightUpdateDto := &sifflet.PublicUpdateQuicksightSourceV2Dto{
 		Name:                  &name,
 		Type:                  sifflet.PublicUpdateQuicksightSourceV2DtoTypeQUICKSIGHT,
-		QuicksightInformation: quickSightInformation,
+		QuicksightInformation: &quickSightInformation,
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 

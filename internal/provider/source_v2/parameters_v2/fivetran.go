@@ -92,8 +92,8 @@ func (m FivetranParametersModel) ToUpdateDto(ctx context.Context, name string) (
 	fivetranUpdateDto := &sifflet.PublicUpdateFivetranSourceV2Dto{
 		Name:                &name,
 		Type:                sifflet.PublicUpdateFivetranSourceV2DtoTypeFIVETRAN,
-		FivetranInformation: fivetranInformation,
-		Credentials:         m.Credentials.ValueString(),
+		FivetranInformation: &fivetranInformation,
+		Credentials:         m.Credentials.ValueStringPointer(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 

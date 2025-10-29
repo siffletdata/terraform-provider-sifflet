@@ -108,8 +108,8 @@ func (m RedshiftParametersModel) ToUpdateDto(ctx context.Context, name string) (
 	redshiftUpdateDto := &sifflet.PublicUpdateRedshiftSourceV2Dto{
 		Name:                &name,
 		Type:                sifflet.PublicUpdateRedshiftSourceV2DtoTypeREDSHIFT,
-		RedshiftInformation: redshiftInformation,
-		Credentials:         m.Credentials.ValueString(),
+		RedshiftInformation: &redshiftInformation,
+		Credentials:         m.Credentials.ValueStringPointer(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 

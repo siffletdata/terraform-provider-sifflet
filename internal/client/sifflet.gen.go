@@ -40,6 +40,12 @@ const (
 	AlertingHookDtoTypeWEBHOOK AlertingHookDtoType = "WEBHOOK"
 )
 
+// Defines values for AlertingHookParamsType.
+const (
+	AlertingHookParamsTypeDEFAULT    AlertingHookParamsType = "DEFAULT"
+	AlertingHookParamsTypeGOOGLECHAT AlertingHookParamsType = "GOOGLE_CHAT"
+)
+
 // Defines values for AsCodeAggregationClauseDtoV1Kind.
 const (
 	AsCodeAggregationClauseDtoV1KindAverage           AsCodeAggregationClauseDtoV1Kind = "Average"
@@ -1463,6 +1469,12 @@ const (
 	DatasourceProviderDtoTypeUSER        DatasourceProviderDtoType = "USER"
 )
 
+// Defines values for DefaultWebhookParamsType.
+const (
+	DefaultWebhookParamsTypeDEFAULT    DefaultWebhookParamsType = "DEFAULT"
+	DefaultWebhookParamsTypeGOOGLECHAT DefaultWebhookParamsType = "GOOGLE_CHAT"
+)
+
 // Defines values for EntityCustomMetadataDtoType.
 const (
 	EntityCustomMetadataDtoTypeLABEL  EntityCustomMetadataDtoType = "LABEL"
@@ -2819,12 +2831,36 @@ const (
 	PublicDescriptionDtoOriginZUORA                     PublicDescriptionDtoOrigin = "ZUORA"
 )
 
+// Defines values for PublicDomainContentDefinitionDtoType.
+const (
+	PublicDomainContentDefinitionDtoTypeDYNAMIC PublicDomainContentDefinitionDtoType = "DYNAMIC"
+	PublicDomainContentDefinitionDtoTypeSTATIC  PublicDomainContentDefinitionDtoType = "STATIC"
+)
+
+// Defines values for PublicDynamicDomainContentDefinitionDtoFilterLogicalOperator.
+const (
+	AND PublicDynamicDomainContentDefinitionDtoFilterLogicalOperator = "AND"
+	OR  PublicDynamicDomainContentDefinitionDtoFilterLogicalOperator = "OR"
+)
+
+// Defines values for PublicDynamicDomainContentDefinitionDtoType.
+const (
+	PublicDynamicDomainContentDefinitionDtoTypeDYNAMIC PublicDynamicDomainContentDefinitionDtoType = "DYNAMIC"
+	PublicDynamicDomainContentDefinitionDtoTypeSTATIC  PublicDynamicDomainContentDefinitionDtoType = "STATIC"
+)
+
 // Defines values for PublicExternalTagReferenceDtoKind.
 const (
 	PublicExternalTagReferenceDtoKindBIGQUERYEXTERNAL   PublicExternalTagReferenceDtoKind = "BIGQUERY_EXTERNAL"
 	PublicExternalTagReferenceDtoKindDATABRICKSEXTERNAL PublicExternalTagReferenceDtoKind = "DATABRICKS_EXTERNAL"
 	PublicExternalTagReferenceDtoKindDBTEXTERNAL        PublicExternalTagReferenceDtoKind = "DBT_EXTERNAL"
 	PublicExternalTagReferenceDtoKindSNOWFLAKEEXTERNAL  PublicExternalTagReferenceDtoKind = "SNOWFLAKE_EXTERNAL"
+)
+
+// Defines values for PublicFilterDomainConditionDtoType.
+const (
+	PublicFilterDomainConditionDtoTypeSOURCE PublicFilterDomainConditionDtoType = "SOURCE"
+	PublicFilterDomainConditionDtoTypeTAG    PublicFilterDomainConditionDtoType = "TAG"
 )
 
 // Defines values for PublicFivetranParametersDtoType.
@@ -4691,6 +4727,18 @@ const (
 	PublicSnowflakeParametersDtoTypeUnderscoreUNKNOWN PublicSnowflakeParametersDtoType = "_UNKNOWN_"
 )
 
+// Defines values for PublicSourceFilterDomainConditionDtoOperator.
+const (
+	PublicSourceFilterDomainConditionDtoOperatorIS    PublicSourceFilterDomainConditionDtoOperator = "IS"
+	PublicSourceFilterDomainConditionDtoOperatorISNOT PublicSourceFilterDomainConditionDtoOperator = "IS_NOT"
+)
+
+// Defines values for PublicSourceFilterDomainConditionDtoType.
+const (
+	PublicSourceFilterDomainConditionDtoTypeSOURCE PublicSourceFilterDomainConditionDtoType = "SOURCE"
+	PublicSourceFilterDomainConditionDtoTypeTAG    PublicSourceFilterDomainConditionDtoType = "TAG"
+)
+
 // Defines values for PublicSourceFilterDtoTypes.
 const (
 	PublicSourceFilterDtoTypesAIRFLOW           PublicSourceFilterDtoTypes = "AIRFLOW"
@@ -4737,6 +4785,12 @@ const (
 	PublicSourceParametersDtoTypeSYNAPSE           PublicSourceParametersDtoType = "SYNAPSE"
 	PublicSourceParametersDtoTypeTABLEAU           PublicSourceParametersDtoType = "TABLEAU"
 	PublicSourceParametersDtoTypeUnderscoreUNKNOWN PublicSourceParametersDtoType = "_UNKNOWN_"
+)
+
+// Defines values for PublicStaticDomainContentDefinitionDtoType.
+const (
+	DYNAMIC PublicStaticDomainContentDefinitionDtoType = "DYNAMIC"
+	STATIC  PublicStaticDomainContentDefinitionDtoType = "STATIC"
 )
 
 // Defines values for PublicSynapseParametersDtoType.
@@ -4787,10 +4841,22 @@ const (
 	PublicTableauParametersDtoTypeUnderscoreUNKNOWN PublicTableauParametersDtoType = "_UNKNOWN_"
 )
 
+// Defines values for PublicTagFilterDomainConditionDtoOperator.
+const (
+	PublicTagFilterDomainConditionDtoOperatorIS    PublicTagFilterDomainConditionDtoOperator = "IS"
+	PublicTagFilterDomainConditionDtoOperatorISNOT PublicTagFilterDomainConditionDtoOperator = "IS_NOT"
+)
+
+// Defines values for PublicTagFilterDomainConditionDtoType.
+const (
+	PublicTagFilterDomainConditionDtoTypeSOURCE PublicTagFilterDomainConditionDtoType = "SOURCE"
+	PublicTagFilterDomainConditionDtoTypeTAG    PublicTagFilterDomainConditionDtoType = "TAG"
+)
+
 // Defines values for PublicTagReferenceDtoKind.
 const (
-	CLASSIFICATION PublicTagReferenceDtoKind = "CLASSIFICATION"
-	TAG            PublicTagReferenceDtoKind = "TAG"
+	PublicTagReferenceDtoKindCLASSIFICATION PublicTagReferenceDtoKind = "CLASSIFICATION"
+	PublicTagReferenceDtoKindTAG            PublicTagReferenceDtoKind = "TAG"
 )
 
 // Defines values for PublicTransformationRunDtoLastRunStatus.
@@ -5297,6 +5363,32 @@ const (
 	PublicUpdateSnowflakeSourceV2DtoTypeTABLEAU        PublicUpdateSnowflakeSourceV2DtoType = "TABLEAU"
 )
 
+// Defines values for PublicUpdateSourceV2DtoType.
+const (
+	PublicUpdateSourceV2DtoTypeAIRFLOW        PublicUpdateSourceV2DtoType = "AIRFLOW"
+	PublicUpdateSourceV2DtoTypeATHENA         PublicUpdateSourceV2DtoType = "ATHENA"
+	PublicUpdateSourceV2DtoTypeBIGQUERY       PublicUpdateSourceV2DtoType = "BIGQUERY"
+	PublicUpdateSourceV2DtoTypeDATABRICKS     PublicUpdateSourceV2DtoType = "DATABRICKS"
+	PublicUpdateSourceV2DtoTypeDATABRICKSJOBS PublicUpdateSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicUpdateSourceV2DtoTypeDBT            PublicUpdateSourceV2DtoType = "DBT"
+	PublicUpdateSourceV2DtoTypeDBTCLOUD       PublicUpdateSourceV2DtoType = "DBTCLOUD"
+	PublicUpdateSourceV2DtoTypeDECLARATIVE    PublicUpdateSourceV2DtoType = "DECLARATIVE"
+	PublicUpdateSourceV2DtoTypeFIVETRAN       PublicUpdateSourceV2DtoType = "FIVETRAN"
+	PublicUpdateSourceV2DtoTypeLOOKER         PublicUpdateSourceV2DtoType = "LOOKER"
+	PublicUpdateSourceV2DtoTypeMICROSTRATEGY  PublicUpdateSourceV2DtoType = "MICROSTRATEGY"
+	PublicUpdateSourceV2DtoTypeMSSQL          PublicUpdateSourceV2DtoType = "MSSQL"
+	PublicUpdateSourceV2DtoTypeMYSQL          PublicUpdateSourceV2DtoType = "MYSQL"
+	PublicUpdateSourceV2DtoTypeORACLE         PublicUpdateSourceV2DtoType = "ORACLE"
+	PublicUpdateSourceV2DtoTypePOSTGRESQL     PublicUpdateSourceV2DtoType = "POSTGRESQL"
+	PublicUpdateSourceV2DtoTypePOWERBI        PublicUpdateSourceV2DtoType = "POWER_BI"
+	PublicUpdateSourceV2DtoTypeQLIK           PublicUpdateSourceV2DtoType = "QLIK"
+	PublicUpdateSourceV2DtoTypeQUICKSIGHT     PublicUpdateSourceV2DtoType = "QUICKSIGHT"
+	PublicUpdateSourceV2DtoTypeREDSHIFT       PublicUpdateSourceV2DtoType = "REDSHIFT"
+	PublicUpdateSourceV2DtoTypeSNOWFLAKE      PublicUpdateSourceV2DtoType = "SNOWFLAKE"
+	PublicUpdateSourceV2DtoTypeSYNAPSE        PublicUpdateSourceV2DtoType = "SYNAPSE"
+	PublicUpdateSourceV2DtoTypeTABLEAU        PublicUpdateSourceV2DtoType = "TABLEAU"
+)
+
 // Defines values for PublicUpdateSynapseSourceV2DtoType.
 const (
 	PublicUpdateSynapseSourceV2DtoTypeAIRFLOW        PublicUpdateSynapseSourceV2DtoType = "AIRFLOW"
@@ -5373,6 +5465,12 @@ const (
 	PublicUserGetDtoRoleADMIN  PublicUserGetDtoRole = "ADMIN"
 	PublicUserGetDtoRoleEDITOR PublicUserGetDtoRole = "EDITOR"
 	PublicUserGetDtoRoleVIEWER PublicUserGetDtoRole = "VIEWER"
+)
+
+// Defines values for PublicUserGetDtoStatus.
+const (
+	DISABLED PublicUserGetDtoStatus = "DISABLED"
+	ENABLED  PublicUserGetDtoStatus = "ENABLED"
 )
 
 // Defines values for PublicUserPermissionAssignmentDtoDomainRole.
@@ -5452,9 +5550,9 @@ const (
 
 // Defines values for RuleRunDtoType.
 const (
-	RuleRunDtoTypeDBT       RuleRunDtoType = "DBT"
-	RuleRunDtoTypeMANUAL    RuleRunDtoType = "MANUAL"
-	RuleRunDtoTypeSCHEDULED RuleRunDtoType = "SCHEDULED"
+	DBT       RuleRunDtoType = "DBT"
+	MANUAL    RuleRunDtoType = "MANUAL"
+	SCHEDULED RuleRunDtoType = "SCHEDULED"
 )
 
 // Defines values for RuleStatusDtoRuleStatus.
@@ -5591,15 +5689,20 @@ type AirflowInformation struct {
 
 // AlertingHookDto defines model for AlertingHookDto.
 type AlertingHookDto struct {
-	CreatedBy        *string             `json:"createdBy,omitempty"`
-	CreatedDate      *int64              `json:"createdDate,omitempty"`
-	ExternalHook     string              `json:"externalHook"`
-	Id               openapi_types.UUID  `json:"id"`
-	LastModifiedDate *int64              `json:"lastModifiedDate,omitempty"`
-	ModifiedBy       *string             `json:"modifiedBy,omitempty"`
-	Name             string              `json:"name"`
-	Params           *AlertingHookParams `json:"params,omitempty"`
-	Type             AlertingHookDtoType `json:"type"`
+	CreatedBy        *string                 `json:"createdBy,omitempty"`
+	CreatedDate      *int64                  `json:"createdDate,omitempty"`
+	ExternalHook     string                  `json:"externalHook"`
+	Id               openapi_types.UUID      `json:"id"`
+	LastModifiedDate *int64                  `json:"lastModifiedDate,omitempty"`
+	ModifiedBy       *string                 `json:"modifiedBy,omitempty"`
+	Name             string                  `json:"name"`
+	Params           *AlertingHookDto_Params `json:"params,omitempty"`
+	Type             AlertingHookDtoType     `json:"type"`
+}
+
+// AlertingHookDto_Params defines model for AlertingHookDto.Params.
+type AlertingHookDto_Params struct {
+	union json.RawMessage
 }
 
 // AlertingHookDtoType defines model for AlertingHookDto.Type.
@@ -5607,8 +5710,11 @@ type AlertingHookDtoType string
 
 // AlertingHookParams defines model for AlertingHookParams.
 type AlertingHookParams struct {
-	Headers *[]CustomHeader `json:"headers,omitempty"`
+	Type AlertingHookParamsType `json:"type"`
 }
+
+// AlertingHookParamsType defines model for AlertingHookParams.Type.
+type AlertingHookParamsType string
 
 // ApiProblemSchema defines model for ApiProblemSchema.
 type ApiProblemSchema struct {
@@ -7125,6 +7231,15 @@ type DbtInformation struct {
 	Target string `json:"target"`
 }
 
+// DefaultWebhookParams defines model for DefaultWebhookParams.
+type DefaultWebhookParams struct {
+	Headers *[]CustomHeader          `json:"headers,omitempty"`
+	Type    DefaultWebhookParamsType `json:"type"`
+}
+
+// DefaultWebhookParamsType defines model for DefaultWebhookParams.Type.
+type DefaultWebhookParamsType string
+
 // EntityCustomMetadataDto defines model for EntityCustomMetadataDto.
 type EntityCustomMetadataDto struct {
 	Description *string                                `json:"description,omitempty"`
@@ -7227,6 +7342,9 @@ type GitConnection struct {
 
 // GitConnectionAuthType defines model for GitConnection.AuthType.
 type GitConnectionAuthType string
+
+// GoogleChatWebhookParams defines model for GoogleChatWebhookParams.
+type GoogleChatWebhookParams = AlertingHookParams
 
 // GroupDecryptedValuesDto defines model for GroupDecryptedValuesDto.
 type GroupDecryptedValuesDto struct {
@@ -7699,6 +7817,22 @@ type PublicCreateDbtSourceV2Dto struct {
 
 // PublicCreateDbtSourceV2DtoType Source type
 type PublicCreateDbtSourceV2DtoType string
+
+// PublicCreateDomainDto defines model for PublicCreateDomainDto.
+type PublicCreateDomainDto struct {
+	AssetContentDefinition PublicCreateDomainDto_AssetContentDefinition `json:"assetContentDefinition"`
+
+	// Description Description of the domain
+	Description *string `json:"description,omitempty"`
+
+	// Name Name of the domain
+	Name string `json:"name"`
+}
+
+// PublicCreateDomainDto_AssetContentDefinition defines model for PublicCreateDomainDto.AssetContentDefinition.
+type PublicCreateDomainDto_AssetContentDefinition struct {
+	union json.RawMessage
+}
 
 // PublicCreateFivetranSourceV2Dto defines model for PublicCreateFivetranSourceV2Dto.
 type PublicCreateFivetranSourceV2Dto struct {
@@ -8275,11 +8409,43 @@ type PublicDescriptionDto struct {
 // PublicDescriptionDtoOrigin defines model for PublicDescriptionDto.Origin.
 type PublicDescriptionDtoOrigin string
 
+// PublicDomainContentDefinitionDto Definition of the assets contained in the domain
+type PublicDomainContentDefinitionDto struct {
+	// Type Type of the domain content definition
+	Type PublicDomainContentDefinitionDtoType `json:"type"`
+}
+
+// PublicDomainContentDefinitionDtoType Type of the domain content definition
+type PublicDomainContentDefinitionDtoType string
+
 // PublicDomainGetDto Domains of the asset
 type PublicDomainGetDto struct {
 	Id   openapi_types.UUID `json:"id"`
 	Name string             `json:"name"`
 }
+
+// PublicDynamicDomainContentDefinitionDto defines model for PublicDynamicDomainContentDefinitionDto.
+type PublicDynamicDomainContentDefinitionDto struct {
+	// Conditions List of the conditions defining content of the domain
+	Conditions *[]PublicDynamicDomainContentDefinitionDto_Conditions_Item `json:"conditions,omitempty"`
+
+	// FilterLogicalOperator Logical operator to use between conditions
+	FilterLogicalOperator *PublicDynamicDomainContentDefinitionDtoFilterLogicalOperator `json:"filterLogicalOperator,omitempty"`
+
+	// Type Type of the domain content definition
+	Type PublicDynamicDomainContentDefinitionDtoType `json:"type"`
+}
+
+// PublicDynamicDomainContentDefinitionDto_Conditions_Item defines model for PublicDynamicDomainContentDefinitionDto.conditions.Item.
+type PublicDynamicDomainContentDefinitionDto_Conditions_Item struct {
+	union json.RawMessage
+}
+
+// PublicDynamicDomainContentDefinitionDtoFilterLogicalOperator Logical operator to use between conditions
+type PublicDynamicDomainContentDefinitionDtoFilterLogicalOperator string
+
+// PublicDynamicDomainContentDefinitionDtoType Type of the domain content definition
+type PublicDynamicDomainContentDefinitionDtoType string
 
 // PublicExternalTagReferenceDto Asset tag from external providers.
 type PublicExternalTagReferenceDto struct {
@@ -8295,6 +8461,15 @@ type PublicExternalTagReferenceDto struct {
 
 // PublicExternalTagReferenceDtoKind Type of the referenced tag
 type PublicExternalTagReferenceDtoKind string
+
+// PublicFilterDomainConditionDto List of the conditions defining content of the domain
+type PublicFilterDomainConditionDto struct {
+	// Type Type of the condition
+	Type PublicFilterDomainConditionDtoType `json:"type"`
+}
+
+// PublicFilterDomainConditionDtoType Type of the condition
+type PublicFilterDomainConditionDtoType string
 
 // PublicFivetranParametersDto defines model for PublicFivetranParametersDto.
 type PublicFivetranParametersDto struct {
@@ -8702,6 +8877,26 @@ type PublicGetDbtSourceV2Dto struct {
 // PublicGetDbtSourceV2DtoType Source type
 type PublicGetDbtSourceV2DtoType string
 
+// PublicGetDomainDto defines model for PublicGetDomainDto.
+type PublicGetDomainDto struct {
+	AssetContentDefinition PublicGetDomainDto_AssetContentDefinition `json:"assetContentDefinition"`
+
+	// AssetCount Current count of assets contained in the domain
+	AssetCount int32 `json:"assetCount"`
+
+	// Description Description of the domain
+	Description *string            `json:"description,omitempty"`
+	Id          openapi_types.UUID `json:"id"`
+
+	// Name Name of the domain
+	Name string `json:"name"`
+}
+
+// PublicGetDomainDto_AssetContentDefinition defines model for PublicGetDomainDto.AssetContentDefinition.
+type PublicGetDomainDto_AssetContentDefinition struct {
+	union json.RawMessage
+}
+
 // PublicGetFivetranSourceV2Dto defines model for PublicGetFivetranSourceV2Dto.
 type PublicGetFivetranSourceV2Dto struct {
 	// Credentials Credentials of the source
@@ -9078,6 +9273,19 @@ type PublicGetSourceDto_Parameters struct {
 	union json.RawMessage
 }
 
+// PublicGetSourceSchemaDto Schemas existing for the source
+type PublicGetSourceSchemaDto struct {
+	Uri string `json:"uri"`
+}
+
+// PublicGetSourceSchemaListDto defines model for PublicGetSourceSchemaListDto.
+type PublicGetSourceSchemaListDto struct {
+	Id openapi_types.UUID `json:"id"`
+
+	// Schemas Schemas existing for the source
+	Schemas []PublicGetSourceSchemaDto `json:"schemas"`
+}
+
 // PublicGetSourceV2Dto defines model for PublicGetSourceV2Dto.
 type PublicGetSourceV2Dto struct {
 	// Id id the source
@@ -9240,6 +9448,12 @@ type PublicPageDtoPublicGetAssetListDto struct {
 	TotalCount *int64                  `json:"totalCount,omitempty"`
 }
 
+// PublicPageDtoPublicGetDomainDto defines model for PublicPageDtoPublicGetDomainDto.
+type PublicPageDtoPublicGetDomainDto struct {
+	Data       []PublicGetDomainDto `json:"data"`
+	TotalCount *int64               `json:"totalCount,omitempty"`
+}
+
 // PublicPageDtoPublicGetSourceDto defines model for PublicPageDtoPublicGetSourceDto.
 type PublicPageDtoPublicGetSourceDto struct {
 	Data       []PublicGetSourceDto `json:"data"`
@@ -9373,6 +9587,24 @@ type PublicSnowflakeParametersDto struct {
 // PublicSnowflakeParametersDtoType defines model for PublicSnowflakeParametersDto.Type.
 type PublicSnowflakeParametersDtoType string
 
+// PublicSourceFilterDomainConditionDto defines model for PublicSourceFilterDomainConditionDto.
+type PublicSourceFilterDomainConditionDto struct {
+	// Operator Operator of the condition
+	Operator *PublicSourceFilterDomainConditionDtoOperator `json:"operator,omitempty"`
+
+	// Sources List of the sources in the condition in URI format. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	Sources *[]string `json:"sources,omitempty"`
+
+	// Type Type of the condition
+	Type PublicSourceFilterDomainConditionDtoType `json:"type"`
+}
+
+// PublicSourceFilterDomainConditionDtoOperator Operator of the condition
+type PublicSourceFilterDomainConditionDtoOperator string
+
+// PublicSourceFilterDomainConditionDtoType Type of the condition
+type PublicSourceFilterDomainConditionDtoType string
+
 // PublicSourceFilterDto Filter to apply on the sources search
 type PublicSourceFilterDto struct {
 	// Tags List of tags to filter on
@@ -9415,6 +9647,18 @@ type PublicSourceSearchCriteriaDto struct {
 	Sort *[]string `json:"sort,omitempty"`
 }
 
+// PublicStaticDomainContentDefinitionDto defines model for PublicStaticDomainContentDefinitionDto.
+type PublicStaticDomainContentDefinitionDto struct {
+	// Assets List of the assets of the domain
+	Assets *[]string `json:"assets,omitempty"`
+
+	// Type Type of the domain content definition
+	Type PublicStaticDomainContentDefinitionDtoType `json:"type"`
+}
+
+// PublicStaticDomainContentDefinitionDtoType Type of the domain content definition
+type PublicStaticDomainContentDefinitionDtoType string
+
 // PublicSynapseParametersDto defines model for PublicSynapseParametersDto.
 type PublicSynapseParametersDto struct {
 	// Database Your database name
@@ -9446,6 +9690,24 @@ type PublicTableauParametersDto struct {
 
 // PublicTableauParametersDtoType defines model for PublicTableauParametersDto.Type.
 type PublicTableauParametersDtoType string
+
+// PublicTagFilterDomainConditionDto defines model for PublicTagFilterDomainConditionDto.
+type PublicTagFilterDomainConditionDto struct {
+	// Operator Operator of the condition
+	Operator *PublicTagFilterDomainConditionDtoOperator `json:"operator,omitempty"`
+
+	// Tags List of the tags references in the condition
+	Tags *[]PublicExternalTagReferenceDto `json:"tags,omitempty"`
+
+	// Type Type of the condition
+	Type PublicTagFilterDomainConditionDtoType `json:"type"`
+}
+
+// PublicTagFilterDomainConditionDtoOperator Operator of the condition
+type PublicTagFilterDomainConditionDtoOperator string
+
+// PublicTagFilterDomainConditionDtoType Type of the condition
+type PublicTagFilterDomainConditionDtoType string
 
 // PublicTagReferenceDto Tags of the source. A tag can either be referenced by its id or its name or its name and kind.
 type PublicTagReferenceDto struct {
@@ -9480,10 +9742,10 @@ type PublicTransformationRunDtoLastRunStatus string
 // PublicUpdateAirflowSourceV2Dto defines model for PublicUpdateAirflowSourceV2Dto.
 type PublicUpdateAirflowSourceV2Dto struct {
 	// AirflowInformation Airflow connection settings
-	AirflowInformation AirflowInformation `json:"airflowInformation"`
+	AirflowInformation *AirflowInformation `json:"airflowInformation,omitempty"`
 
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9543,7 +9805,7 @@ type PublicUpdateAssetDto_CustomMetadataValues_Item struct {
 // PublicUpdateAthenaSourceV2Dto defines model for PublicUpdateAthenaSourceV2Dto.
 type PublicUpdateAthenaSourceV2Dto struct {
 	// AthenaInformation Athena connection settings
-	AthenaInformation AthenaInformation `json:"athenaInformation"`
+	AthenaInformation *AthenaInformation `json:"athenaInformation,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9561,10 +9823,10 @@ type PublicUpdateAthenaSourceV2DtoType string
 // PublicUpdateBigQuerySourceV2Dto defines model for PublicUpdateBigQuerySourceV2Dto.
 type PublicUpdateBigQuerySourceV2Dto struct {
 	// BigQueryInformation BigQuery connection settings
-	BigQueryInformation BigQueryInformation `json:"bigQueryInformation"`
+	BigQueryInformation *BigQueryInformation `json:"bigQueryInformation,omitempty"`
 
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9582,10 +9844,10 @@ type PublicUpdateBigQuerySourceV2DtoType string
 // PublicUpdateDatabricksJobsSourceV2Dto defines model for PublicUpdateDatabricksJobsSourceV2Dto.
 type PublicUpdateDatabricksJobsSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// DatabricksJobsInformation Databricks Jobs connection settings
-	DatabricksJobsInformation DatabricksJobsInformation `json:"databricksJobsInformation"`
+	DatabricksJobsInformation *DatabricksJobsInformation `json:"databricksJobsInformation,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9603,10 +9865,10 @@ type PublicUpdateDatabricksJobsSourceV2DtoType string
 // PublicUpdateDatabricksSourceV2Dto defines model for PublicUpdateDatabricksSourceV2Dto.
 type PublicUpdateDatabricksSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// DatabricksInformation Databricks connection settings
-	DatabricksInformation DatabricksInformation `json:"databricksInformation"`
+	DatabricksInformation *DatabricksInformation `json:"databricksInformation,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9624,10 +9886,10 @@ type PublicUpdateDatabricksSourceV2DtoType string
 // PublicUpdateDbtCloudSourceV2Dto defines model for PublicUpdateDbtCloudSourceV2Dto.
 type PublicUpdateDbtCloudSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// DbtCloudInformation DBT Cloud connection settings
-	DbtCloudInformation DbtCloudInformation `json:"dbtCloudInformation"`
+	DbtCloudInformation *DbtCloudInformation `json:"dbtCloudInformation,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9645,7 +9907,7 @@ type PublicUpdateDbtCloudSourceV2DtoType string
 // PublicUpdateDbtSourceV2Dto defines model for PublicUpdateDbtSourceV2Dto.
 type PublicUpdateDbtSourceV2Dto struct {
 	// DbtInformation DBT connection settings
-	DbtInformation DbtInformation `json:"dbtInformation"`
+	DbtInformation *DbtInformation `json:"dbtInformation,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9657,13 +9919,29 @@ type PublicUpdateDbtSourceV2Dto struct {
 // PublicUpdateDbtSourceV2DtoType Source type
 type PublicUpdateDbtSourceV2DtoType string
 
+// PublicUpdateDomainDto defines model for PublicUpdateDomainDto.
+type PublicUpdateDomainDto struct {
+	AssetContentDefinition PublicUpdateDomainDto_AssetContentDefinition `json:"assetContentDefinition"`
+
+	// Description Description of the domain
+	Description *string `json:"description,omitempty"`
+
+	// Name Name of the domain
+	Name string `json:"name"`
+}
+
+// PublicUpdateDomainDto_AssetContentDefinition defines model for PublicUpdateDomainDto.AssetContentDefinition.
+type PublicUpdateDomainDto_AssetContentDefinition struct {
+	union json.RawMessage
+}
+
 // PublicUpdateFivetranSourceV2Dto defines model for PublicUpdateFivetranSourceV2Dto.
 type PublicUpdateFivetranSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// FivetranInformation Fivetran connection settings
-	FivetranInformation FivetranInformation `json:"fivetranInformation"`
+	FivetranInformation *FivetranInformation `json:"fivetranInformation,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9681,10 +9959,10 @@ type PublicUpdateFivetranSourceV2DtoType string
 // PublicUpdateLookerSourceV2Dto defines model for PublicUpdateLookerSourceV2Dto.
 type PublicUpdateLookerSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// LookerInformation Looker connection settings
-	LookerInformation LookerInformation `json:"lookerInformation"`
+	LookerInformation *LookerInformation `json:"lookerInformation,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9702,10 +9980,10 @@ type PublicUpdateLookerSourceV2DtoType string
 // PublicUpdateMicrostrategySourceV2Dto defines model for PublicUpdateMicrostrategySourceV2Dto.
 type PublicUpdateMicrostrategySourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// MicrostrategyInformation MicroStrategy connection settings
-	MicrostrategyInformation MicrostrategyInformation `json:"microstrategyInformation"`
+	MicrostrategyInformation *MicrostrategyInformation `json:"microstrategyInformation,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9723,10 +10001,10 @@ type PublicUpdateMicrostrategySourceV2DtoType string
 // PublicUpdateMssqlSourceV2Dto defines model for PublicUpdateMssqlSourceV2Dto.
 type PublicUpdateMssqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// MssqlInformation MSSQL connection settings
-	MssqlInformation MssqlInformation `json:"mssqlInformation"`
+	MssqlInformation *MssqlInformation `json:"mssqlInformation,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9744,10 +10022,10 @@ type PublicUpdateMssqlSourceV2DtoType string
 // PublicUpdateMysqlSourceV2Dto defines model for PublicUpdateMysqlSourceV2Dto.
 type PublicUpdateMysqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// MysqlInformation MySQL connection settings
-	MysqlInformation MysqlInformation `json:"mysqlInformation"`
+	MysqlInformation *MysqlInformation `json:"mysqlInformation,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9765,13 +10043,13 @@ type PublicUpdateMysqlSourceV2DtoType string
 // PublicUpdateOracleSourceV2Dto defines model for PublicUpdateOracleSourceV2Dto.
 type PublicUpdateOracleSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
 	// OracleInformation Oracle connection settings
-	OracleInformation OracleInformation `json:"oracleInformation"`
+	OracleInformation *OracleInformation `json:"oracleInformation,omitempty"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
@@ -9786,13 +10064,13 @@ type PublicUpdateOracleSourceV2DtoType string
 // PublicUpdatePostgresqlSourceV2Dto defines model for PublicUpdatePostgresqlSourceV2Dto.
 type PublicUpdatePostgresqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
 	// PostgresqlInformation PostgreSQL connection settings
-	PostgresqlInformation PostgresqlInformation `json:"postgresqlInformation"`
+	PostgresqlInformation *PostgresqlInformation `json:"postgresqlInformation,omitempty"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
@@ -9807,13 +10085,13 @@ type PublicUpdatePostgresqlSourceV2DtoType string
 // PublicUpdatePowerBiSourceV2Dto defines model for PublicUpdatePowerBiSourceV2Dto.
 type PublicUpdatePowerBiSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
 	// PowerBiInformation Power BI connection settings
-	PowerBiInformation PowerBiInformation `json:"powerBiInformation"`
+	PowerBiInformation *PowerBiInformation `json:"powerBiInformation,omitempty"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
@@ -9828,13 +10106,13 @@ type PublicUpdatePowerBiSourceV2DtoType string
 // PublicUpdateQlikSourceV2Dto defines model for PublicUpdateQlikSourceV2Dto.
 type PublicUpdateQlikSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
 	// QlikInformation Qlik connection settings
-	QlikInformation QlikInformation `json:"qlikInformation"`
+	QlikInformation *QlikInformation `json:"qlikInformation,omitempty"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
@@ -9852,7 +10130,7 @@ type PublicUpdateQuicksightSourceV2Dto struct {
 	Name *string `json:"name,omitempty"`
 
 	// QuicksightInformation QuickSight connection settings
-	QuicksightInformation QuicksightInformation `json:"quicksightInformation"`
+	QuicksightInformation *QuicksightInformation `json:"quicksightInformation,omitempty"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
@@ -9867,13 +10145,13 @@ type PublicUpdateQuicksightSourceV2DtoType string
 // PublicUpdateRedshiftSourceV2Dto defines model for PublicUpdateRedshiftSourceV2Dto.
 type PublicUpdateRedshiftSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
 	// RedshiftInformation Redshift connection settings
-	RedshiftInformation RedshiftInformation `json:"redshiftInformation"`
+	RedshiftInformation *RedshiftInformation `json:"redshiftInformation,omitempty"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule"`
@@ -9888,7 +10166,7 @@ type PublicUpdateRedshiftSourceV2DtoType string
 // PublicUpdateSnowflakeSourceV2Dto defines model for PublicUpdateSnowflakeSourceV2Dto.
 type PublicUpdateSnowflakeSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9897,7 +10175,7 @@ type PublicUpdateSnowflakeSourceV2Dto struct {
 	Schedule *string `json:"schedule"`
 
 	// SnowflakeInformation Snowflake connection settings
-	SnowflakeInformation SnowflakeInformation `json:"snowflakeInformation"`
+	SnowflakeInformation *SnowflakeInformation `json:"snowflakeInformation,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateSnowflakeSourceV2DtoType `json:"type"`
@@ -9931,10 +10209,22 @@ type PublicUpdateSourceDto_Parameters struct {
 	union json.RawMessage
 }
 
+// PublicUpdateSourceV2Dto defines model for PublicUpdateSourceV2Dto.
+type PublicUpdateSourceV2Dto struct {
+	// Name Name of the source
+	Name *string `json:"name,omitempty"`
+
+	// Type Source type
+	Type PublicUpdateSourceV2DtoType `json:"type"`
+}
+
+// PublicUpdateSourceV2DtoType Source type
+type PublicUpdateSourceV2DtoType string
+
 // PublicUpdateSynapseSourceV2Dto defines model for PublicUpdateSynapseSourceV2Dto.
 type PublicUpdateSynapseSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9943,7 +10233,7 @@ type PublicUpdateSynapseSourceV2Dto struct {
 	Schedule *string `json:"schedule"`
 
 	// SynapseInformation Synapse connection settings
-	SynapseInformation SynapseInformation `json:"synapseInformation"`
+	SynapseInformation *SynapseInformation `json:"synapseInformation,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateSynapseSourceV2DtoType `json:"type"`
@@ -9955,7 +10245,7 @@ type PublicUpdateSynapseSourceV2DtoType string
 // PublicUpdateTableauSourceV2Dto defines model for PublicUpdateTableauSourceV2Dto.
 type PublicUpdateTableauSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials string `json:"credentials"`
+	Credentials *string `json:"credentials,omitempty"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -9964,7 +10254,7 @@ type PublicUpdateTableauSourceV2Dto struct {
 	Schedule *string `json:"schedule"`
 
 	// TableauInformation Tableau connection settings
-	TableauInformation TableauInformation `json:"tableauInformation"`
+	TableauInformation *TableauInformation `json:"tableauInformation,omitempty"`
 
 	// Type Source type
 	Type PublicUpdateTableauSourceV2DtoType `json:"type"`
@@ -9975,42 +10265,69 @@ type PublicUpdateTableauSourceV2DtoType string
 
 // PublicUserCreateDto defines model for PublicUserCreateDto.
 type PublicUserCreateDto struct {
-	AuthTypes   *[]PublicUserCreateDtoAuthTypes     `json:"authTypes,omitempty"`
-	Email       string                              `json:"email"`
-	Name        string                              `json:"name"`
+	// AuthTypes Authorized authentication type of the user
+	AuthTypes *[]PublicUserCreateDtoAuthTypes `json:"authTypes,omitempty"`
+
+	// Email Email of the user
+	Email string `json:"email"`
+
+	// Name Name of the user
+	Name string `json:"name"`
+
+	// Permissions Domain access permissions of the user
 	Permissions []PublicUserPermissionAssignmentDto `json:"permissions"`
-	Role        PublicUserCreateDtoRole             `json:"role"`
+
+	// Role System role of the user
+	Role PublicUserCreateDtoRole `json:"role"`
 }
 
-// PublicUserCreateDtoAuthTypes defines model for PublicUserCreateDto.AuthTypes.
+// PublicUserCreateDtoAuthTypes Authorized authentication type of the user
 type PublicUserCreateDtoAuthTypes string
 
-// PublicUserCreateDtoRole defines model for PublicUserCreateDto.Role.
+// PublicUserCreateDtoRole System role of the user
 type PublicUserCreateDtoRole string
 
 // PublicUserGetDto defines model for PublicUserGetDto.
 type PublicUserGetDto struct {
-	AuthTypes   []PublicUserGetDtoAuthTypes         `json:"authTypes"`
-	Email       string                              `json:"email"`
-	Id          openapi_types.UUID                  `json:"id"`
-	Name        string                              `json:"name"`
+	// AuthTypes Authorized authentication type of the user
+	AuthTypes []PublicUserGetDtoAuthTypes `json:"authTypes"`
+
+	// Email Email of the user
+	Email string             `json:"email"`
+	Id    openapi_types.UUID `json:"id"`
+
+	// Name Name of the user
+	Name string `json:"name"`
+
+	// Permissions Domain access permissions of the user
 	Permissions []PublicUserPermissionAssignmentDto `json:"permissions"`
-	Role        PublicUserGetDtoRole                `json:"role"`
+
+	// Role System role of the user
+	Role PublicUserGetDtoRole `json:"role"`
+
+	// Status Status of the user
+	Status PublicUserGetDtoStatus `json:"status"`
 }
 
-// PublicUserGetDtoAuthTypes defines model for PublicUserGetDto.AuthTypes.
+// PublicUserGetDtoAuthTypes Authorized authentication type of the user
 type PublicUserGetDtoAuthTypes string
 
-// PublicUserGetDtoRole defines model for PublicUserGetDto.Role.
+// PublicUserGetDtoRole System role of the user
 type PublicUserGetDtoRole string
 
-// PublicUserPermissionAssignmentDto defines model for PublicUserPermissionAssignmentDto.
+// PublicUserGetDtoStatus Status of the user
+type PublicUserGetDtoStatus string
+
+// PublicUserPermissionAssignmentDto Domain access permissions of the user
 type PublicUserPermissionAssignmentDto struct {
-	DomainId   openapi_types.UUID                           `json:"domainId"`
+	// DomainId Id of the domain
+	DomainId openapi_types.UUID `json:"domainId"`
+
+	// DomainRole Domain role assigned to the principal for accessing the referenced domain
 	DomainRole *PublicUserPermissionAssignmentDtoDomainRole `json:"domainRole,omitempty"`
 }
 
-// PublicUserPermissionAssignmentDtoDomainRole defines model for PublicUserPermissionAssignmentDto.DomainRole.
+// PublicUserPermissionAssignmentDtoDomainRole Domain role assigned to the principal for accessing the referenced domain
 type PublicUserPermissionAssignmentDtoDomainRole string
 
 // PublicUserResetPasswordDto defines model for PublicUserResetPasswordDto.
@@ -10020,16 +10337,23 @@ type PublicUserResetPasswordDto struct {
 
 // PublicUserUpdateDto defines model for PublicUserUpdateDto.
 type PublicUserUpdateDto struct {
-	AuthTypes   *[]PublicUserUpdateDtoAuthTypes     `json:"authTypes,omitempty"`
-	Name        string                              `json:"name"`
+	// AuthTypes Authorized authentication type of the user
+	AuthTypes *[]PublicUserUpdateDtoAuthTypes `json:"authTypes,omitempty"`
+
+	// Name Name of the user
+	Name string `json:"name"`
+
+	// Permissions Domain access permissions of the user
 	Permissions []PublicUserPermissionAssignmentDto `json:"permissions"`
-	Role        PublicUserUpdateDtoRole             `json:"role"`
+
+	// Role System role of the user
+	Role PublicUserUpdateDtoRole `json:"role"`
 }
 
-// PublicUserUpdateDtoAuthTypes defines model for PublicUserUpdateDto.AuthTypes.
+// PublicUserUpdateDtoAuthTypes Authorized authentication type of the user
 type PublicUserUpdateDtoAuthTypes string
 
-// PublicUserUpdateDtoRole defines model for PublicUserUpdateDto.Role.
+// PublicUserUpdateDtoRole System role of the user
 type PublicUserUpdateDtoRole string
 
 // QlikInformation Qlik connection settings
@@ -10365,6 +10689,15 @@ type PublicDeleteWorkspaceParams struct {
 	DryRun *bool `form:"dryRun,omitempty" json:"dryRun,omitempty"`
 }
 
+// PublicGetDomainsParams defines parameters for PublicGetDomains.
+type PublicGetDomainsParams struct {
+	// Page The page number to retrieve. Starts at 0.
+	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
+
+	// ItemsPerPage The number of elements to be returned inside the page.
+	ItemsPerPage *int32 `form:"itemsPerPage,omitempty" json:"itemsPerPage,omitempty"`
+}
+
 // UploadDbtMetadataFilesMultipartBody defines parameters for UploadDbtMetadataFiles.
 type UploadDbtMetadataFilesMultipartBody struct {
 	Catalog    *openapi_types.File `json:"catalog,omitempty"`
@@ -10532,6 +10865,12 @@ type PublicCreateCredentialsJSONRequestBody = PublicCredentialsCreateDto
 // PublicUpdateCredentialsJSONRequestBody defines body for PublicUpdateCredentials for application/json ContentType.
 type PublicUpdateCredentialsJSONRequestBody = PublicCredentialsPatchDto
 
+// PublicCreateDomainJSONRequestBody defines body for PublicCreateDomain for application/json ContentType.
+type PublicCreateDomainJSONRequestBody = PublicCreateDomainDto
+
+// PublicUpdateDomainJSONRequestBody defines body for PublicUpdateDomain for application/json ContentType.
+type PublicUpdateDomainJSONRequestBody = PublicUpdateDomainDto
+
 // UploadDbtMetadataFilesMultipartRequestBody defines body for UploadDbtMetadataFiles for multipart/form-data ContentType.
 type UploadDbtMetadataFilesMultipartRequestBody UploadDbtMetadataFilesMultipartBody
 
@@ -10558,6 +10897,68 @@ type PublicCreateSourceV2JSONRequestBody PublicCreateSourceV2JSONBody
 
 // PublicEditSourceV2JSONRequestBody defines body for PublicEditSourceV2 for application/json ContentType.
 type PublicEditSourceV2JSONRequestBody PublicEditSourceV2JSONBody
+
+// AsDefaultWebhookParams returns the union data inside the AlertingHookDto_Params as a DefaultWebhookParams
+func (t AlertingHookDto_Params) AsDefaultWebhookParams() (DefaultWebhookParams, error) {
+	var body DefaultWebhookParams
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDefaultWebhookParams overwrites any union data inside the AlertingHookDto_Params as the provided DefaultWebhookParams
+func (t *AlertingHookDto_Params) FromDefaultWebhookParams(v DefaultWebhookParams) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDefaultWebhookParams performs a merge with any union data inside the AlertingHookDto_Params, using the provided DefaultWebhookParams
+func (t *AlertingHookDto_Params) MergeDefaultWebhookParams(v DefaultWebhookParams) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsGoogleChatWebhookParams returns the union data inside the AlertingHookDto_Params as a GoogleChatWebhookParams
+func (t AlertingHookDto_Params) AsGoogleChatWebhookParams() (GoogleChatWebhookParams, error) {
+	var body GoogleChatWebhookParams
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGoogleChatWebhookParams overwrites any union data inside the AlertingHookDto_Params as the provided GoogleChatWebhookParams
+func (t *AlertingHookDto_Params) FromGoogleChatWebhookParams(v GoogleChatWebhookParams) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGoogleChatWebhookParams performs a merge with any union data inside the AlertingHookDto_Params, using the provided GoogleChatWebhookParams
+func (t *AlertingHookDto_Params) MergeGoogleChatWebhookParams(v GoogleChatWebhookParams) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AlertingHookDto_Params) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AlertingHookDto_Params) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
 
 // AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeCompletenessMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
 func (t AsCodeCompletenessMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
@@ -16005,6 +16406,68 @@ func (t *PublicAssetFilterDto_CustomMetadataValues_Item) UnmarshalJSON(b []byte)
 	return err
 }
 
+// AsPublicDynamicDomainContentDefinitionDto returns the union data inside the PublicCreateDomainDto_AssetContentDefinition as a PublicDynamicDomainContentDefinitionDto
+func (t PublicCreateDomainDto_AssetContentDefinition) AsPublicDynamicDomainContentDefinitionDto() (PublicDynamicDomainContentDefinitionDto, error) {
+	var body PublicDynamicDomainContentDefinitionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicDynamicDomainContentDefinitionDto overwrites any union data inside the PublicCreateDomainDto_AssetContentDefinition as the provided PublicDynamicDomainContentDefinitionDto
+func (t *PublicCreateDomainDto_AssetContentDefinition) FromPublicDynamicDomainContentDefinitionDto(v PublicDynamicDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicDynamicDomainContentDefinitionDto performs a merge with any union data inside the PublicCreateDomainDto_AssetContentDefinition, using the provided PublicDynamicDomainContentDefinitionDto
+func (t *PublicCreateDomainDto_AssetContentDefinition) MergePublicDynamicDomainContentDefinitionDto(v PublicDynamicDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicStaticDomainContentDefinitionDto returns the union data inside the PublicCreateDomainDto_AssetContentDefinition as a PublicStaticDomainContentDefinitionDto
+func (t PublicCreateDomainDto_AssetContentDefinition) AsPublicStaticDomainContentDefinitionDto() (PublicStaticDomainContentDefinitionDto, error) {
+	var body PublicStaticDomainContentDefinitionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicStaticDomainContentDefinitionDto overwrites any union data inside the PublicCreateDomainDto_AssetContentDefinition as the provided PublicStaticDomainContentDefinitionDto
+func (t *PublicCreateDomainDto_AssetContentDefinition) FromPublicStaticDomainContentDefinitionDto(v PublicStaticDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicStaticDomainContentDefinitionDto performs a merge with any union data inside the PublicCreateDomainDto_AssetContentDefinition, using the provided PublicStaticDomainContentDefinitionDto
+func (t *PublicCreateDomainDto_AssetContentDefinition) MergePublicStaticDomainContentDefinitionDto(v PublicStaticDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PublicCreateDomainDto_AssetContentDefinition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PublicCreateDomainDto_AssetContentDefinition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsPublicAirflowParametersDto returns the union data inside the PublicCreateSourceDto_Parameters as a PublicAirflowParametersDto
 func (t PublicCreateSourceDto_Parameters) AsPublicAirflowParametersDto() (PublicAirflowParametersDto, error) {
 	var body PublicAirflowParametersDto
@@ -16597,6 +17060,68 @@ func (t *PublicDeclarativeAssetDto_CustomMetadataValues_Item) UnmarshalJSON(b []
 	return err
 }
 
+// AsPublicSourceFilterDomainConditionDto returns the union data inside the PublicDynamicDomainContentDefinitionDto_Conditions_Item as a PublicSourceFilterDomainConditionDto
+func (t PublicDynamicDomainContentDefinitionDto_Conditions_Item) AsPublicSourceFilterDomainConditionDto() (PublicSourceFilterDomainConditionDto, error) {
+	var body PublicSourceFilterDomainConditionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicSourceFilterDomainConditionDto overwrites any union data inside the PublicDynamicDomainContentDefinitionDto_Conditions_Item as the provided PublicSourceFilterDomainConditionDto
+func (t *PublicDynamicDomainContentDefinitionDto_Conditions_Item) FromPublicSourceFilterDomainConditionDto(v PublicSourceFilterDomainConditionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicSourceFilterDomainConditionDto performs a merge with any union data inside the PublicDynamicDomainContentDefinitionDto_Conditions_Item, using the provided PublicSourceFilterDomainConditionDto
+func (t *PublicDynamicDomainContentDefinitionDto_Conditions_Item) MergePublicSourceFilterDomainConditionDto(v PublicSourceFilterDomainConditionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicTagFilterDomainConditionDto returns the union data inside the PublicDynamicDomainContentDefinitionDto_Conditions_Item as a PublicTagFilterDomainConditionDto
+func (t PublicDynamicDomainContentDefinitionDto_Conditions_Item) AsPublicTagFilterDomainConditionDto() (PublicTagFilterDomainConditionDto, error) {
+	var body PublicTagFilterDomainConditionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicTagFilterDomainConditionDto overwrites any union data inside the PublicDynamicDomainContentDefinitionDto_Conditions_Item as the provided PublicTagFilterDomainConditionDto
+func (t *PublicDynamicDomainContentDefinitionDto_Conditions_Item) FromPublicTagFilterDomainConditionDto(v PublicTagFilterDomainConditionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicTagFilterDomainConditionDto performs a merge with any union data inside the PublicDynamicDomainContentDefinitionDto_Conditions_Item, using the provided PublicTagFilterDomainConditionDto
+func (t *PublicDynamicDomainContentDefinitionDto_Conditions_Item) MergePublicTagFilterDomainConditionDto(v PublicTagFilterDomainConditionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PublicDynamicDomainContentDefinitionDto_Conditions_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PublicDynamicDomainContentDefinitionDto_Conditions_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsPublicGetCustomMetadataEntryLabelDto returns the union data inside the PublicGetAssetDto_CustomMetadataValues_Item as a PublicGetCustomMetadataEntryLabelDto
 func (t PublicGetAssetDto_CustomMetadataValues_Item) AsPublicGetCustomMetadataEntryLabelDto() (PublicGetCustomMetadataEntryLabelDto, error) {
 	var body PublicGetCustomMetadataEntryLabelDto
@@ -16681,6 +17206,68 @@ func (t PublicGetAssetDto_CustomMetadataValues_Item) MarshalJSON() ([]byte, erro
 }
 
 func (t *PublicGetAssetDto_CustomMetadataValues_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsPublicDynamicDomainContentDefinitionDto returns the union data inside the PublicGetDomainDto_AssetContentDefinition as a PublicDynamicDomainContentDefinitionDto
+func (t PublicGetDomainDto_AssetContentDefinition) AsPublicDynamicDomainContentDefinitionDto() (PublicDynamicDomainContentDefinitionDto, error) {
+	var body PublicDynamicDomainContentDefinitionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicDynamicDomainContentDefinitionDto overwrites any union data inside the PublicGetDomainDto_AssetContentDefinition as the provided PublicDynamicDomainContentDefinitionDto
+func (t *PublicGetDomainDto_AssetContentDefinition) FromPublicDynamicDomainContentDefinitionDto(v PublicDynamicDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicDynamicDomainContentDefinitionDto performs a merge with any union data inside the PublicGetDomainDto_AssetContentDefinition, using the provided PublicDynamicDomainContentDefinitionDto
+func (t *PublicGetDomainDto_AssetContentDefinition) MergePublicDynamicDomainContentDefinitionDto(v PublicDynamicDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicStaticDomainContentDefinitionDto returns the union data inside the PublicGetDomainDto_AssetContentDefinition as a PublicStaticDomainContentDefinitionDto
+func (t PublicGetDomainDto_AssetContentDefinition) AsPublicStaticDomainContentDefinitionDto() (PublicStaticDomainContentDefinitionDto, error) {
+	var body PublicStaticDomainContentDefinitionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicStaticDomainContentDefinitionDto overwrites any union data inside the PublicGetDomainDto_AssetContentDefinition as the provided PublicStaticDomainContentDefinitionDto
+func (t *PublicGetDomainDto_AssetContentDefinition) FromPublicStaticDomainContentDefinitionDto(v PublicStaticDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicStaticDomainContentDefinitionDto performs a merge with any union data inside the PublicGetDomainDto_AssetContentDefinition, using the provided PublicStaticDomainContentDefinitionDto
+func (t *PublicGetDomainDto_AssetContentDefinition) MergePublicStaticDomainContentDefinitionDto(v PublicStaticDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PublicGetDomainDto_AssetContentDefinition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PublicGetDomainDto_AssetContentDefinition) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -17833,6 +18420,68 @@ func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) UnmarshalJSON(b []byte)
 	return err
 }
 
+// AsPublicDynamicDomainContentDefinitionDto returns the union data inside the PublicUpdateDomainDto_AssetContentDefinition as a PublicDynamicDomainContentDefinitionDto
+func (t PublicUpdateDomainDto_AssetContentDefinition) AsPublicDynamicDomainContentDefinitionDto() (PublicDynamicDomainContentDefinitionDto, error) {
+	var body PublicDynamicDomainContentDefinitionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicDynamicDomainContentDefinitionDto overwrites any union data inside the PublicUpdateDomainDto_AssetContentDefinition as the provided PublicDynamicDomainContentDefinitionDto
+func (t *PublicUpdateDomainDto_AssetContentDefinition) FromPublicDynamicDomainContentDefinitionDto(v PublicDynamicDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicDynamicDomainContentDefinitionDto performs a merge with any union data inside the PublicUpdateDomainDto_AssetContentDefinition, using the provided PublicDynamicDomainContentDefinitionDto
+func (t *PublicUpdateDomainDto_AssetContentDefinition) MergePublicDynamicDomainContentDefinitionDto(v PublicDynamicDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicStaticDomainContentDefinitionDto returns the union data inside the PublicUpdateDomainDto_AssetContentDefinition as a PublicStaticDomainContentDefinitionDto
+func (t PublicUpdateDomainDto_AssetContentDefinition) AsPublicStaticDomainContentDefinitionDto() (PublicStaticDomainContentDefinitionDto, error) {
+	var body PublicStaticDomainContentDefinitionDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicStaticDomainContentDefinitionDto overwrites any union data inside the PublicUpdateDomainDto_AssetContentDefinition as the provided PublicStaticDomainContentDefinitionDto
+func (t *PublicUpdateDomainDto_AssetContentDefinition) FromPublicStaticDomainContentDefinitionDto(v PublicStaticDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicStaticDomainContentDefinitionDto performs a merge with any union data inside the PublicUpdateDomainDto_AssetContentDefinition, using the provided PublicStaticDomainContentDefinitionDto
+func (t *PublicUpdateDomainDto_AssetContentDefinition) MergePublicStaticDomainContentDefinitionDto(v PublicStaticDomainContentDefinitionDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PublicUpdateDomainDto_AssetContentDefinition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PublicUpdateDomainDto_AssetContentDefinition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsPublicAirflowParametersDto returns the union data inside the PublicUpdateSourceDto_Parameters as a PublicAirflowParametersDto
 func (t PublicUpdateSourceDto_Parameters) AsPublicAirflowParametersDto() (PublicAirflowParametersDto, error) {
 	var body PublicAirflowParametersDto
@@ -18927,6 +19576,25 @@ type ClientInterface interface {
 
 	PublicUpdateCredentials(ctx context.Context, name string, body PublicUpdateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// PublicGetDomains request
+	PublicGetDomains(ctx context.Context, params *PublicGetDomainsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicCreateDomainWithBody request with any body
+	PublicCreateDomainWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PublicCreateDomain(ctx context.Context, body PublicCreateDomainJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicDeleteDomain request
+	PublicDeleteDomain(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicGetDomain request
+	PublicGetDomain(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicUpdateDomainWithBody request with any body
+	PublicUpdateDomainWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PublicUpdateDomain(ctx context.Context, id openapi_types.UUID, body PublicUpdateDomainJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// UploadDbtMetadataFilesWithBody request with any body
 	UploadDbtMetadataFilesWithBody(ctx context.Context, projectName string, target string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -19029,6 +19697,9 @@ type ClientInterface interface {
 	PublicEditSourceV2WithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	PublicEditSourceV2(ctx context.Context, id openapi_types.UUID, body PublicEditSourceV2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicGetSourceSchemaList request
+	PublicGetSourceSchemaList(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) PublicEditAssetWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -19297,6 +19968,90 @@ func (c *Client) PublicUpdateCredentialsWithBody(ctx context.Context, name strin
 
 func (c *Client) PublicUpdateCredentials(ctx context.Context, name string, body PublicUpdateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPublicUpdateCredentialsRequest(c.Server, name, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicGetDomains(ctx context.Context, params *PublicGetDomainsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetDomainsRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicCreateDomainWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicCreateDomainRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicCreateDomain(ctx context.Context, body PublicCreateDomainJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicCreateDomainRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicDeleteDomain(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicDeleteDomainRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicGetDomain(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetDomainRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicUpdateDomainWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicUpdateDomainRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicUpdateDomain(ctx context.Context, id openapi_types.UUID, body PublicUpdateDomainJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicUpdateDomainRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -19741,6 +20496,18 @@ func (c *Client) PublicEditSourceV2WithBody(ctx context.Context, id openapi_type
 
 func (c *Client) PublicEditSourceV2(ctx context.Context, id openapi_types.UUID, body PublicEditSourceV2JSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPublicEditSourceV2Request(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicGetSourceSchemaList(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetSourceSchemaListRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -20334,6 +21101,226 @@ func NewPublicUpdateCredentialsRequestWithBody(server string, name string, conte
 	}
 
 	operationPath := fmt.Sprintf("/v1/credentials/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPublicGetDomainsRequest generates requests for PublicGetDomains
+func NewPublicGetDomainsRequest(server string, params *PublicGetDomainsParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/domains")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ItemsPerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "itemsPerPage", runtime.ParamLocationQuery, *params.ItemsPerPage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPublicCreateDomainRequest calls the generic PublicCreateDomain builder with application/json body
+func NewPublicCreateDomainRequest(server string, body PublicCreateDomainJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPublicCreateDomainRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPublicCreateDomainRequestWithBody generates requests for PublicCreateDomain with any type of body
+func NewPublicCreateDomainRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/domains")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPublicDeleteDomainRequest generates requests for PublicDeleteDomain
+func NewPublicDeleteDomainRequest(server string, id openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/domains/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPublicGetDomainRequest generates requests for PublicGetDomain
+func NewPublicGetDomainRequest(server string, id openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/domains/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPublicUpdateDomainRequest calls the generic PublicUpdateDomain builder with application/json body
+func NewPublicUpdateDomainRequest(server string, id openapi_types.UUID, body PublicUpdateDomainJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPublicUpdateDomainRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewPublicUpdateDomainRequestWithBody generates requests for PublicUpdateDomain with any type of body
+func NewPublicUpdateDomainRequestWithBody(server string, id openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/domains/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -21938,6 +22925,40 @@ func NewPublicEditSourceV2RequestWithBody(server string, id openapi_types.UUID, 
 	return req, nil
 }
 
+// NewPublicGetSourceSchemaListRequest generates requests for PublicGetSourceSchemaList
+func NewPublicGetSourceSchemaListRequest(server string, id openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v2/sources/%s/schemas", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 func (c *Client) applyEditors(ctx context.Context, req *http.Request, additionalEditors []RequestEditorFn) error {
 	for _, r := range c.RequestEditors {
 		if err := r(ctx, req); err != nil {
@@ -22042,6 +23063,25 @@ type ClientWithResponsesInterface interface {
 
 	PublicUpdateCredentialsWithResponse(ctx context.Context, name string, body PublicUpdateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicUpdateCredentialsResponse, error)
 
+	// PublicGetDomainsWithResponse request
+	PublicGetDomainsWithResponse(ctx context.Context, params *PublicGetDomainsParams, reqEditors ...RequestEditorFn) (*PublicGetDomainsResponse, error)
+
+	// PublicCreateDomainWithBodyWithResponse request with any body
+	PublicCreateDomainWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateDomainResponse, error)
+
+	PublicCreateDomainWithResponse(ctx context.Context, body PublicCreateDomainJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicCreateDomainResponse, error)
+
+	// PublicDeleteDomainWithResponse request
+	PublicDeleteDomainWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicDeleteDomainResponse, error)
+
+	// PublicGetDomainWithResponse request
+	PublicGetDomainWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicGetDomainResponse, error)
+
+	// PublicUpdateDomainWithBodyWithResponse request with any body
+	PublicUpdateDomainWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicUpdateDomainResponse, error)
+
+	PublicUpdateDomainWithResponse(ctx context.Context, id openapi_types.UUID, body PublicUpdateDomainJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicUpdateDomainResponse, error)
+
 	// UploadDbtMetadataFilesWithBodyWithResponse request with any body
 	UploadDbtMetadataFilesWithBodyWithResponse(ctx context.Context, projectName string, target string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UploadDbtMetadataFilesResponse, error)
 
@@ -22144,6 +23184,9 @@ type ClientWithResponsesInterface interface {
 	PublicEditSourceV2WithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicEditSourceV2Response, error)
 
 	PublicEditSourceV2WithResponse(ctx context.Context, id openapi_types.UUID, body PublicEditSourceV2JSONRequestBody, reqEditors ...RequestEditorFn) (*PublicEditSourceV2Response, error)
+
+	// PublicGetSourceSchemaListWithResponse request
+	PublicGetSourceSchemaListWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicGetSourceSchemaListResponse, error)
 }
 
 type PublicEditAssetResponse struct {
@@ -22538,6 +23581,135 @@ func (r PublicUpdateCredentialsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r PublicUpdateCredentialsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicGetDomainsResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *PublicPageDtoPublicGetDomainDto
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicGetDomainsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicGetDomainsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicCreateDomainResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON201                   *PublicGetDomainDto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicCreateDomainResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicCreateDomainResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicDeleteDomainResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicDeleteDomainResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicDeleteDomainResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicGetDomainResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *PublicGetDomainDto
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicGetDomainResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicGetDomainResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicUpdateDomainResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *PublicGetDomainDto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicUpdateDomainResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicUpdateDomainResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -23332,6 +24504,34 @@ func (r PublicEditSourceV2Response) StatusCode() int {
 	return 0
 }
 
+type PublicGetSourceSchemaListResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *PublicGetSourceSchemaListDto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON409 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicGetSourceSchemaListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicGetSourceSchemaListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 // PublicEditAssetWithBodyWithResponse request with arbitrary body returning *PublicEditAssetResponse
 func (c *ClientWithResponses) PublicEditAssetWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicEditAssetResponse, error) {
 	rsp, err := c.PublicEditAssetWithBody(ctx, contentType, body, reqEditors...)
@@ -23529,6 +24729,67 @@ func (c *ClientWithResponses) PublicUpdateCredentialsWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParsePublicUpdateCredentialsResponse(rsp)
+}
+
+// PublicGetDomainsWithResponse request returning *PublicGetDomainsResponse
+func (c *ClientWithResponses) PublicGetDomainsWithResponse(ctx context.Context, params *PublicGetDomainsParams, reqEditors ...RequestEditorFn) (*PublicGetDomainsResponse, error) {
+	rsp, err := c.PublicGetDomains(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicGetDomainsResponse(rsp)
+}
+
+// PublicCreateDomainWithBodyWithResponse request with arbitrary body returning *PublicCreateDomainResponse
+func (c *ClientWithResponses) PublicCreateDomainWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateDomainResponse, error) {
+	rsp, err := c.PublicCreateDomainWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicCreateDomainResponse(rsp)
+}
+
+func (c *ClientWithResponses) PublicCreateDomainWithResponse(ctx context.Context, body PublicCreateDomainJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicCreateDomainResponse, error) {
+	rsp, err := c.PublicCreateDomain(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicCreateDomainResponse(rsp)
+}
+
+// PublicDeleteDomainWithResponse request returning *PublicDeleteDomainResponse
+func (c *ClientWithResponses) PublicDeleteDomainWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicDeleteDomainResponse, error) {
+	rsp, err := c.PublicDeleteDomain(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicDeleteDomainResponse(rsp)
+}
+
+// PublicGetDomainWithResponse request returning *PublicGetDomainResponse
+func (c *ClientWithResponses) PublicGetDomainWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicGetDomainResponse, error) {
+	rsp, err := c.PublicGetDomain(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicGetDomainResponse(rsp)
+}
+
+// PublicUpdateDomainWithBodyWithResponse request with arbitrary body returning *PublicUpdateDomainResponse
+func (c *ClientWithResponses) PublicUpdateDomainWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicUpdateDomainResponse, error) {
+	rsp, err := c.PublicUpdateDomainWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicUpdateDomainResponse(rsp)
+}
+
+func (c *ClientWithResponses) PublicUpdateDomainWithResponse(ctx context.Context, id openapi_types.UUID, body PublicUpdateDomainJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicUpdateDomainResponse, error) {
+	rsp, err := c.PublicUpdateDomain(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicUpdateDomainResponse(rsp)
 }
 
 // UploadDbtMetadataFilesWithBodyWithResponse request with arbitrary body returning *UploadDbtMetadataFilesResponse
@@ -23854,6 +25115,15 @@ func (c *ClientWithResponses) PublicEditSourceV2WithResponse(ctx context.Context
 		return nil, err
 	}
 	return ParsePublicEditSourceV2Response(rsp)
+}
+
+// PublicGetSourceSchemaListWithResponse request returning *PublicGetSourceSchemaListResponse
+func (c *ClientWithResponses) PublicGetSourceSchemaListWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicGetSourceSchemaListResponse, error) {
+	rsp, err := c.PublicGetSourceSchemaList(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicGetSourceSchemaListResponse(rsp)
 }
 
 // ParsePublicEditAssetResponse parses an HTTP response from a PublicEditAssetWithResponse call
@@ -24709,6 +25979,269 @@ func ParsePublicUpdateCredentialsResponse(rsp *http.Response) (*PublicUpdateCred
 			return nil, err
 		}
 		response.ApplicationproblemJSON429 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicGetDomainsResponse parses an HTTP response from a PublicGetDomainsWithResponse call
+func ParsePublicGetDomainsResponse(rsp *http.Response) (*PublicGetDomainsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicGetDomainsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicPageDtoPublicGetDomainDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicCreateDomainResponse parses an HTTP response from a PublicCreateDomainWithResponse call
+func ParsePublicCreateDomainResponse(rsp *http.Response) (*PublicCreateDomainResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicCreateDomainResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest PublicGetDomainDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicDeleteDomainResponse parses an HTTP response from a PublicDeleteDomainWithResponse call
+func ParsePublicDeleteDomainResponse(rsp *http.Response) (*PublicDeleteDomainResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicDeleteDomainResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicGetDomainResponse parses an HTTP response from a PublicGetDomainWithResponse call
+func ParsePublicGetDomainResponse(rsp *http.Response) (*PublicGetDomainResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicGetDomainResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicGetDomainDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicUpdateDomainResponse parses an HTTP response from a PublicUpdateDomainWithResponse call
+func ParsePublicUpdateDomainResponse(rsp *http.Response) (*PublicUpdateDomainResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicUpdateDomainResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicGetDomainDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
 		var dest ApiProblemSchema
@@ -26438,6 +27971,74 @@ func ParsePublicEditSourceV2Response(rsp *http.Response) (*PublicEditSourceV2Res
 		var dest struct {
 			union json.RawMessage
 		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicGetSourceSchemaListResponse parses an HTTP response from a PublicGetSourceSchemaListWithResponse call
+func ParsePublicGetSourceSchemaListResponse(rsp *http.Response) (*PublicGetSourceSchemaListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicGetSourceSchemaListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicGetSourceSchemaListDto
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}

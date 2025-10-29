@@ -34,6 +34,10 @@ func RandomEmail() string {
 	return "alerts-sandbox+" + RandomName() + "@siffletdata.com"
 }
 
+func RandomGithubDeclaredAssetUri() string {
+	return "github://github.com/" + SessionPrefix() + "." + acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
+}
+
 func ProviderConfig() string {
 	return providerConfig
 }

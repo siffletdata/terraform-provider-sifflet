@@ -97,8 +97,8 @@ func (m BigQueryParametersModel) ToUpdateDto(ctx context.Context, name string) (
 	bigQueryUpdateDto := &sifflet.PublicUpdateBigQuerySourceV2Dto{
 		Name:                &name,
 		Type:                sifflet.PublicUpdateBigQuerySourceV2DtoTypeBIGQUERY,
-		BigQueryInformation: bigQueryInformation,
-		Credentials:         m.Credentials.ValueString(),
+		BigQueryInformation: &bigQueryInformation,
+		Credentials:         m.Credentials.ValueStringPointer(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 

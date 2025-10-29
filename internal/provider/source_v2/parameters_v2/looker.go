@@ -214,8 +214,8 @@ func (m LookerParametersModel) ToUpdateDto(ctx context.Context, name string) (si
 	lookerUpdateDto := &sifflet.PublicUpdateLookerSourceV2Dto{
 		Name:              &name,
 		Type:              sifflet.PublicUpdateLookerSourceV2DtoTypeLOOKER,
-		LookerInformation: lookerInformation,
-		Credentials:       m.Credentials.ValueString(),
+		LookerInformation: &lookerInformation,
+		Credentials:       m.Credentials.ValueStringPointer(),
 		Schedule:          m.Schedule.ValueStringPointer(),
 	}
 

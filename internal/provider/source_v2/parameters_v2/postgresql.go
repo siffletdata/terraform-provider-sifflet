@@ -105,8 +105,8 @@ func (m PostgresqlParametersModel) ToUpdateDto(ctx context.Context, name string)
 	postgresqlUpdateDto := &sifflet.PublicUpdatePostgresqlSourceV2Dto{
 		Name:                  &name,
 		Type:                  sifflet.PublicUpdatePostgresqlSourceV2DtoTypePOSTGRESQL,
-		PostgresqlInformation: postgresqlInformation,
-		Credentials:           m.Credentials.ValueString(),
+		PostgresqlInformation: &postgresqlInformation,
+		Credentials:           m.Credentials.ValueStringPointer(),
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 

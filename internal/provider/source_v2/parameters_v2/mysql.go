@@ -150,8 +150,8 @@ func (m MysqlParametersModel) ToUpdateDto(ctx context.Context, name string) (sif
 	mysqlUpdateDto := sifflet.PublicUpdateMysqlSourceV2Dto{
 		Name:             &name,
 		Type:             sifflet.PublicUpdateMysqlSourceV2DtoTypeMYSQL,
-		MysqlInformation: mysqlInformation,
-		Credentials:      m.Credentials.ValueString(),
+		MysqlInformation: &mysqlInformation,
+		Credentials:      m.Credentials.ValueStringPointer(),
 		Schedule:         m.Schedule.ValueStringPointer(),
 	}
 

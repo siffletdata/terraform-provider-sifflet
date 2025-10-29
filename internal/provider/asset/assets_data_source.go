@@ -1,4 +1,4 @@
-package source
+package asset
 
 import (
 	"context"
@@ -7,7 +7,6 @@ import (
 
 	"terraform-provider-sifflet/internal/apiclients"
 	sifflet "terraform-provider-sifflet/internal/client"
-	"terraform-provider-sifflet/internal/provider/source/parameters"
 	"terraform-provider-sifflet/internal/provider/tag"
 	"terraform-provider-sifflet/internal/tfutils"
 
@@ -22,19 +21,19 @@ import (
 )
 
 var (
-	_ datasource.DataSource              = &sourcesDataSource{}
-	_ datasource.DataSourceWithConfigure = &sourcesDataSource{}
+	_ datasource.DataSource              = &assetsDataSource{}
+	_ datasource.DataSourceWithConfigure = &assetsDataSource{}
 )
 
-func newSourcesDataSource() datasource.DataSource {
-	return &sourcesDataSource{}
+func newAssetsDataSource() datasource.DataSource {
+	return &assetsDataSource{}
 }
 
-type sourcesDataSource struct {
+type assetsDataSource struct {
 	client *sifflet.ClientWithResponses
 }
 
-func (d *sourcesDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
+func (d *assetsDataSource) Configure(_ context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	if req.ProviderData == nil {
 		return
 	}
@@ -52,40 +51,46 @@ func (d *sourcesDataSource) Configure(_ context.Context, req datasource.Configur
 	d.client = clients.Client
 }
 
-func (d *sourcesDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_sources"
+func (d *assetsDataSource) Metadata(_ context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_assets"
 }
 
-func SourcesDataSourceSchema(ctx context.Context) schema.Schema {
-	paramsSchema := parameters.ParametersModel{}.TerraformSchema()
-	paramsSchema.Computed = true
-	paramsSchema.Required = false
+func AssetsDataSourceSchema(ctx context.Context) schema.Schema {
 	return schema.Schema{
-		Description: "Return sources matching search criteria.",
+		Description: "Return assets matching search criteria.",
 		Attributes: map[string]schema.Attribute{
 			"max_results": schema.Int32Attribute{
 				Description: "Maximum number of results to return. Default is 1000.",
 				Optional:    true,
 			},
 			"filter": schema.SingleNestedAttribute{
-				Description: "Search criteria",
+				Description: "Search criteria.",
 				Required:    true,
 				Attributes: map[string]schema.Attribute{
+					"text_search": schema.StringAttribute{
+						Description: "Return assets whose name match this attribute.",
+						Optional:    true,
+					},
+					"type_categories": schema.ListAttribute{
+						Description: "List of asset type categories to filter on. Valid values are TABLE_AND_VIEW, PIPELINE, DASHBOARD, ML_MODEL. For filtering declared assets with custom types, you can use the format `declared-asset_{custom sub type}`. For example: `declared-asset_Storage`.",
+						ElementType: types.StringType,
+						Optional:    true,
+					},
 					"tags": schema.ListNestedAttribute{
-						Description: "List of tags to filter sources by. Tags can be identified by either ID or name. If a name is provided, optionally a kind can be provided to disambiguate tags of different types sharing the same name.",
+						Description: "List of tags to filter assets by. Tags can be identified by either ID or name. If a name is provided, optionally a kind can be provided to disambiguate tags of different types sharing the same name.",
 						Optional:    true,
 						NestedObject: schema.NestedAttributeObject{
 							Attributes: map[string]schema.Attribute{
 								"id": schema.StringAttribute{
-									Description: "Tag ID",
+									Description: "Tag ID.",
 									Optional:    true,
 								},
 								"name": schema.StringAttribute{
-									Description: "Tag name",
+									Description: "Tag name.",
 									Optional:    true,
 								},
 								"kind": schema.StringAttribute{
-									Description: "Tag kind (such as 'Tag' or 'Classification')",
+									Description: "Tag kind (such as 'Tag' or 'Classification').",
 									Optional:    true,
 									Validators: []validator.String{
 										stringvalidator.OneOf("Tag", "Classification"),
@@ -97,63 +102,48 @@ func SourcesDataSourceSchema(ctx context.Context) schema.Schema {
 							},
 						},
 					},
-					"text_search": schema.StringAttribute{
-						Description: "Return sources whose name match this attribute",
-						Optional:    true,
-					},
-					"types": schema.ListAttribute{
-						Description: "List of source types to filter sources by",
-						ElementType: types.StringType,
-						Optional:    true,
-					},
 				},
 			},
 			"results": schema.ListNestedAttribute{
-				Description: "List of sources returned by the search",
+				Description: "List of assets returned by the search.",
 				Computed:    true,
-				// This currently duplicates the schema of the "sifflet_source" resource, consider merging them.
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"id": schema.StringAttribute{
-							Description: "Source ID",
-							Computed:    true,
-						},
-						"credentials": schema.StringAttribute{
-							Description: "Name of the credentials used to connect to the source",
+							Description: "Asset ID.",
 							Computed:    true,
 						},
 						"name": schema.StringAttribute{
-							Description: "Source name",
+							Description: "Asset name.",
+							Computed:    true,
+						},
+						"type": schema.StringAttribute{
+							Description: "Asset type. This is the specific type of the asset, not the broader type category used in the filter. For example, an asset in type category TABLE_AND_VIEW can have the type TABLE.",
+							Computed:    true,
+						},
+						"uri": schema.StringAttribute{
+							Description: "URI string identifying the asset. More about URIs here: https://docs.siffletdata.com/docs/uris.",
 							Computed:    true,
 						},
 						"description": schema.StringAttribute{
-							Description: "Source description",
-							Computed:    true,
-						},
-						"parameters": paramsSchema,
-						"schedule": schema.StringAttribute{
-							Description: "When this source is scheduled to refresh (cron expression). Will be null if not scheduled.",
-							Computed:    true,
-						},
-						"timezone": schema.StringAttribute{
-							Description: "Timezone for this source",
+							Description: "Asset description.",
 							Computed:    true,
 						},
 						"tags": schema.ListNestedAttribute{
-							Description: "List of tags associated with this source",
+							Description: "List of tags associated with this source.",
 							Computed:    true,
 							NestedObject: schema.NestedAttributeObject{
 								Attributes: map[string]schema.Attribute{
 									"id": schema.StringAttribute{
-										Description: "Tag ID",
+										Description: "Tag ID.",
 										Computed:    true,
 									},
 									"name": schema.StringAttribute{
-										Description: "Tag name",
+										Description: "Tag name.",
 										Computed:    true,
 									},
 									"kind": schema.StringAttribute{
-										Description: "Tag kind (such as 'Tag' or 'Classification')",
+										Description: "Tag kind (such as 'Tag' or 'Classification').",
 										Computed:    true,
 									},
 								},
@@ -166,55 +156,55 @@ func SourcesDataSourceSchema(ctx context.Context) schema.Schema {
 	}
 }
 
-func (d *sourcesDataSource) Schema(ctx context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
-	resp.Schema = SourcesDataSourceSchema(ctx)
+func (d *assetsDataSource) Schema(ctx context.Context, _ datasource.SchemaRequest, resp *datasource.SchemaResponse) {
+	resp.Schema = AssetsDataSourceSchema(ctx)
 }
 
-type SourcesDataSourceModel struct {
+type AssetsDataSourceModel struct {
 	MaxResults types.Int32  `tfsdk:"max_results"`
 	Filter     types.Object `tfsdk:"filter"`
 	Results    types.List   `tfsdk:"results"`
 }
 
 type FilterModel struct {
-	Tags       types.List   `tfsdk:"tags"`
-	TextSearch types.String `tfsdk:"text_search"`
-	Types      types.List   `tfsdk:"types"`
+	Tags           types.List   `tfsdk:"tags"`
+	TextSearch     types.String `tfsdk:"text_search"`
+	TypeCategories types.List   `tfsdk:"type_categories"`
 }
 
-func (m FilterModel) ToDto(ctx context.Context) (sifflet.PublicSourceFilterDto, diag.Diagnostics) {
-	var types []sifflet.PublicSourceFilterDtoTypes
+func (m FilterModel) ToDto(ctx context.Context) (sifflet.PublicAssetFilterDto, diag.Diagnostics) {
+	var typeCategories []string
 
-	diags := m.Types.ElementsAs(ctx, &types, false)
+	diags := m.TypeCategories.ElementsAs(ctx, &typeCategories, false)
 	if diags.HasError() {
-		return sifflet.PublicSourceFilterDto{}, diags
+		return sifflet.PublicAssetFilterDto{}, diags
 	}
 
 	var tags []tag.PublicApiTagModel
 	diags = m.Tags.ElementsAs(ctx, &tags, false)
 	if diags.HasError() {
-		return sifflet.PublicSourceFilterDto{}, diags
+		return sifflet.PublicAssetFilterDto{}, diags
 	}
 
 	tagsDto, diags := tfutils.MapWithDiagnostics(tags, func(tagModel tag.PublicApiTagModel) (sifflet.PublicTagReferenceDto, diag.Diagnostics) {
 		return tagModel.ToDto()
 	})
 	if diags.HasError() {
-		return sifflet.PublicSourceFilterDto{}, diags
+		return sifflet.PublicAssetFilterDto{}, diags
 	}
 
-	return sifflet.PublicSourceFilterDto{
+	return sifflet.PublicAssetFilterDto{
 		TextSearch: m.TextSearch.ValueStringPointer(),
-		Types:      &types,
+		AssetType:  &typeCategories,
 		Tags:       &tagsDto,
 	}, diag.Diagnostics{}
 }
 
-func (d *sourcesDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+func (d *assetsDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
 	ctx, cancel := tfutils.WithDefaultReadTimeout(ctx)
 	defer cancel()
 
-	var data SourcesDataSourceModel
+	var data AssetsDataSourceModel
 	diags := req.Config.Get(ctx, &data)
 	if diags.HasError() {
 		resp.Diagnostics.Append(diags...)
@@ -241,29 +231,29 @@ func (d *sourcesDataSource) Read(ctx context.Context, req datasource.ReadRequest
 		// Set a default
 		remainingResults = 1000
 	}
-	results := make([]baseSourceModel, 0)
+	results := make([]assetModel, 0)
 
 	for ; ; page++ {
 		if remainingResults <= itemsPerPage {
 			itemsPerPage = remainingResults
 		}
 
-		paginationDto := sifflet.PublicSourcePaginationDto{
+		paginationDto := sifflet.PublicAssetPaginationDto{
 			ItemsPerPage: &itemsPerPage,
 			Page:         &page,
 		}
-		requestDto := sifflet.PublicSourceSearchCriteriaDto{
+		requestDto := sifflet.PublicAssetSearchCriteriaDto{
 			Filter:     &filterDto,
 			Pagination: &paginationDto,
 		}
-		searchResponse, err := d.client.PublicGetSourcesWithResponse(ctx, requestDto)
+		searchResponse, err := d.client.PublicGetAssetsWithResponse(ctx, requestDto)
 		if err != nil {
-			resp.Diagnostics.AddError("Unable to read sources", err.Error())
+			resp.Diagnostics.AddError("Unable to read assets", err.Error())
 			return
 		}
 		if searchResponse.StatusCode() != http.StatusOK {
 			sifflet.HandleHttpErrorAsProblem(
-				ctx, &resp.Diagnostics, "Unable to read sources", searchResponse.StatusCode(), searchResponse.Body,
+				ctx, &resp.Diagnostics, "Unable to read assets", searchResponse.StatusCode(), searchResponse.Body,
 			)
 			return
 		}
@@ -277,17 +267,17 @@ func (d *sourcesDataSource) Read(ctx context.Context, req datasource.ReadRequest
 			break
 		}
 		for _, data := range responseDto.Data {
-			var baseSourceModel baseSourceModel
-			diags := baseSourceModel.FromDto(ctx, data)
+			var assetModel assetModel
+			diags := assetModel.FromListDto(ctx, data)
 			resp.Diagnostics.Append(diags...)
 			if diags.HasError() {
 				return
 			}
-			results = append(results, baseSourceModel)
+			results = append(results, assetModel)
 		}
 	}
 
-	data.Results, diags = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: baseSourceModel{}.AttributeTypes()}, results)
+	data.Results, diags = types.ListValueFrom(ctx, types.ObjectType{AttrTypes: assetModel{}.AttributeTypes()}, results)
 	resp.Diagnostics.Append(diags...)
 	if diags.HasError() {
 		return
