@@ -43,14 +43,9 @@ func HandleHttpErrorAsProblem(ctx context.Context, diagnostics *diag.Diagnostics
 	)
 }
 
-// GetSourceType returns the API type of the source from the parameters (in uppercase).
-// This capability is not natively exposed by the generated client code.
-func GetSourceType(dto PublicGetSourceDto_Parameters) (string, error) {
-	// This function must live in this package, in order to be able to access the private
-	// dto.union field.
-
+func getUnionType(union []byte) (string, error) {
 	m := make(map[string]any)
-	if err := json.Unmarshal(dto.union, &m); err != nil {
+	if err := json.Unmarshal(union, &m); err != nil {
 		return "", fmt.Errorf("couldn't parse parameters as JSON: %s", err)
 	}
 
@@ -65,4 +60,28 @@ func GetSourceType(dto PublicGetSourceDto_Parameters) (string, error) {
 	}
 
 	return typeStr, nil
+}
+
+// GetSourceType returns the API type of the source from the parameters (in uppercase).
+// This capability is not natively exposed by the generated client code.
+func GetSourceType(dto PublicGetSourceDto_Parameters) (string, error) {
+	// This function must live in this package, in order to be able to access the private
+	// dto.union field.
+	return getUnionType(dto.union)
+}
+
+// GetDomainDynamicDomainConditionType returns the API type of the dynamic domain condition.
+// This capability is not natively exposed by the generated client code.
+func GetDomainDynamicDomainConditionType(dto PublicDynamicDomainContentDefinitionDto_Conditions_Item) (string, error) {
+	// This function must live in this package, in order to be able to access the private
+	// dto.union field.
+	return getUnionType(dto.union)
+}
+
+// GetDomainContentDefinitionType returns the API type of the domain content definition.
+// This capability is not natively exposed by the generated client code.
+func GetDomainContentDefinitionType(dto PublicGetDomainDto_AssetContentDefinition) (string, error) {
+	// This function must live in this package, in order to be able to access the private
+	// dto.union field.
+	return getUnionType(dto.union)
 }
