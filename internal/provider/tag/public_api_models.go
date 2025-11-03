@@ -22,7 +22,7 @@ var (
 	_ model.InnerModel[sifflet.PublicTagReferenceDto] = &PublicApiTagModel{}
 )
 
-func (m PublicApiTagModel) ToDto() (sifflet.PublicTagReferenceDto, diag.Diagnostics) {
+func (m PublicApiTagModel) ToDto(_ context.Context) (sifflet.PublicTagReferenceDto, diag.Diagnostics) {
 	var id *uuid.UUID
 	var kind *sifflet.PublicTagReferenceDtoKind
 	var name *string

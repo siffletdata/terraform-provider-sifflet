@@ -195,7 +195,7 @@ func (m sourceModel) ToCreateDto(ctx context.Context) (client.PublicCreateSource
 	tagsDto, diags := tfutils.MapWithDiagnostics(
 		tagsModel,
 		func(tagModel tag.PublicApiTagModel) (client.PublicTagReferenceDto, diag.Diagnostics) {
-			return tagModel.ToDto()
+			return tagModel.ToDto(ctx)
 		},
 	)
 	if diags.HasError() {
@@ -240,7 +240,7 @@ func (m sourceModel) ToUpdateDto(ctx context.Context) (client.PublicEditSourceJS
 	}
 	tagsDto, diags := tfutils.MapWithDiagnostics(tagsModel,
 		func(tagModel tag.PublicApiTagModel) (client.PublicTagReferenceDto, diag.Diagnostics) {
-			return tagModel.ToDto()
+			return tagModel.ToDto(ctx)
 		},
 	)
 	if diags.HasError() {

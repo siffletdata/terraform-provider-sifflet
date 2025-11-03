@@ -86,7 +86,7 @@ type FullModel[R any, C any, U any] interface {
 // uses the same type parameter as these two. This is typically used for nested models (models that are not the top-level
 // Terraform state of a resource).
 type InnerModel[D any] interface {
-	ToDto() (D, diag.Diagnostics)
+	ToDto(context.Context) (D, diag.Diagnostics)
 	FromDto(context.Context, D) diag.Diagnostics
 
 	AttributeTypes() map[string]attr.Type

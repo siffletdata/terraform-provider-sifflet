@@ -47,7 +47,7 @@ func (m userModel) getAuthTypesModel() ([]types.String, diag.Diagnostics) {
 	return authTypes, diags
 }
 
-func (m userModel) ToCreateDto(_ context.Context) (sifflet.PublicUserCreateDto, diag.Diagnostics) {
+func (m userModel) ToCreateDto(ctx context.Context) (sifflet.PublicUserCreateDto, diag.Diagnostics) {
 	permissionsModel, diags := m.getPermissionsModel()
 	if diags.HasError() {
 		return sifflet.PublicUserCreateDto{}, diags
@@ -55,7 +55,7 @@ func (m userModel) ToCreateDto(_ context.Context) (sifflet.PublicUserCreateDto, 
 
 	permissionsDto := make([]sifflet.PublicUserPermissionAssignmentDto, len(permissionsModel))
 	for i, permissionModel := range permissionsModel {
-		dto, diags := permissionModel.ToDto()
+		dto, diags := permissionModel.ToDto(ctx)
 		if diags.HasError() {
 			return sifflet.PublicUserCreateDto{}, diags
 		}
@@ -84,7 +84,7 @@ func (m userModel) ToCreateDto(_ context.Context) (sifflet.PublicUserCreateDto, 
 
 }
 
-func (m userModel) ToUpdateDto(_ context.Context) (sifflet.PublicUserUpdateDto, diag.Diagnostics) {
+func (m userModel) ToUpdateDto(ctx context.Context) (sifflet.PublicUserUpdateDto, diag.Diagnostics) {
 	permissionsModel, diags := m.getPermissionsModel()
 	if diags.HasError() {
 		return sifflet.PublicUserUpdateDto{}, diags
@@ -92,7 +92,7 @@ func (m userModel) ToUpdateDto(_ context.Context) (sifflet.PublicUserUpdateDto, 
 
 	permissionsDto := make([]sifflet.PublicUserPermissionAssignmentDto, len(permissionsModel))
 	for i, permissionModel := range permissionsModel {
-		dto, diags := permissionModel.ToDto()
+		dto, diags := permissionModel.ToDto(ctx)
 		if diags.HasError() {
 			return sifflet.PublicUserUpdateDto{}, diags
 		}
@@ -168,7 +168,7 @@ func (m *permissionModel) FromDto(_ context.Context, dto sifflet.PublicUserPermi
 	return diag.Diagnostics{}
 }
 
-func (m permissionModel) ToDto() (sifflet.PublicUserPermissionAssignmentDto, diag.Diagnostics) {
+func (m permissionModel) ToDto(_ context.Context) (sifflet.PublicUserPermissionAssignmentDto, diag.Diagnostics) {
 	uid, err := uuid.Parse(m.DomainId.ValueString())
 	if err != nil {
 		return sifflet.PublicUserPermissionAssignmentDto{}, tfutils.ErrToDiags("Could not parse domain ID as UUID", err)
