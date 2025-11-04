@@ -19,14 +19,16 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 		ProtoV6ProviderFactories: provider.TestAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
+				// No static or dynamic content definition provided
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 					resource "sifflet_domain" "test" {
 						name = "%s"
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("Exactly one of these attributes must be configured"),
+				ExpectError: regexp.MustCompile("Exactly one of these attributes must be configured:\n\\[dynamic_content_definition,static_content_definition\\]"),
 			},
 			{
+				// Both static and dynamic content definition provided
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 					resource "sifflet_domain" "test" {
 						name = "%s"
@@ -39,9 +41,10 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("Exactly one of these attributes must be configured"),
+				ExpectError: regexp.MustCompile("Exactly one of these attributes must be configured:\n\\[dynamic_content_definition,static_content_definition\\]"),
 			},
 			{
+				// Static content definition provided but empty
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 					resource "sifflet_domain" "test" {
 						name = "%s"
@@ -50,9 +53,10 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("must contain at least 1"),
+				ExpectError: regexp.MustCompile("Attribute static_content_definition.asset_uris set must contain at least 1\nelements, got: 0"),
 			},
 			{
+				// Dynamic content definition provided but empty
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 					resource "sifflet_domain" "test" {
 						name = "%s"
@@ -62,9 +66,10 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("must contain at least 1"),
+				ExpectError: regexp.MustCompile("Attribute dynamic_content_definition.conditions list must contain at least 1\nelements, got: 0"),
 			},
 			{
+				// No tags or schema URIs specified in dynamic content condition
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 					resource "sifflet_domain" "test" {
 						name = "%s"
@@ -76,9 +81,10 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("No attribute specified when one"),
+				ExpectError: regexp.MustCompile("No attribute specified when one \\(and only one\\) of\n\\[dynamic_content_definition.conditions\\[0\\].tags.<.schema_uris,dynamic_content_definition.conditions\\[0\\].tags\\]\nis required"),
 			},
 			{
+				// Both tags and schema URIs specified in dynamic content condition
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 					resource "sifflet_domain" "test" {
 						name = "%s"
@@ -92,9 +98,10 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("2 attributes specified when one"),
+				ExpectError: regexp.MustCompile("2 attributes specified when one \\(and only one\\) of\n\\[dynamic_content_definition.conditions\\[0\\].tags.<.schema_uris,dynamic_content_definition.conditions\\[0\\].tags\\]\nis required"),
 			},
 			{
+				// No name or id specified in tag condition
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 					resource "sifflet_domain" "test" {
 						name = "%s"
@@ -109,9 +116,10 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("No attribute specified when one"),
+				ExpectError: regexp.MustCompile("No attribute specified when one \\(and only one\\) of\n\\[dynamic_content_definition.conditions\\[0\\].tags\\[0\\].name.<.id,dynamic_content_definition.conditions\\[0\\].tags\\[0\\].name\\]\nis required"),
 			},
 			{
+				// Both name and id specified in tag condition
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 					resource "sifflet_domain" "test" {
 						name = "%s"
@@ -127,9 +135,10 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("2 attributes specified when one"),
+				ExpectError: regexp.MustCompile("2 attributes specified when one \\(and only one\\) of\n\\[dynamic_content_definition.conditions\\[0\\].tags\\[0\\].name.<.id,dynamic_content_definition.conditions\\[0\\].tags\\[0\\].name\\]\nis required"),
 			},
 			{
+				// Both id and kind specified in tag condition
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 					resource "sifflet_domain" "test" {
 						name = "%s"
@@ -145,9 +154,10 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("Invalid Attribute Combination"),
+				ExpectError: regexp.MustCompile("Attribute \"dynamic_content_definition.conditions\\[0\\].tags\\[0\\].id\" cannot be\nspecified when \"dynamic_content_definition.conditions\\[0\\].tags\\[0\\].kind\" is\nspecified"),
 			},
 			{
+				// Invalid logical operator used in dynamic content condition
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 					resource "sifflet_domain" "test" {
 						name = "%s"
@@ -163,7 +173,7 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("logical_operator value must be one of"),
+				ExpectError: regexp.MustCompile("Attribute dynamic_content_definition.logical_operator value must be one of:\n\\[\"AND\" \"OR\"\\], got: \"XOR\""),
 			},
 		},
 	})
