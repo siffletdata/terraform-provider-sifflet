@@ -2,6 +2,7 @@ package domain
 
 import (
 	"context"
+	"fmt"
 
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/model"
@@ -112,11 +113,19 @@ func (m domainModel) getStaticContentDefinitionDto(ctx context.Context) (sifflet
 	}, diag.Diagnostics{}
 }
 
+func (m domainModel) HasDynamicContentDefinition() bool {
+	return !m.DynamicContentDefinition.IsNull() && !m.DynamicContentDefinition.IsUnknown()
+}
+
+func (m domainModel) HasStaticContentDefinition() bool {
+	return !m.StaticContentDefinition.IsNull() && !m.StaticContentDefinition.IsUnknown()
+}
+
 func (m domainModel) ToCreateDto(ctx context.Context) (sifflet.PublicCreateDomainDto, diag.Diagnostics) {
 	var assetContentDefinition sifflet.PublicCreateDomainDto_AssetContentDefinition
 
-	// Dynamic content definition
-	if !m.DynamicContentDefinition.IsNull() && !m.DynamicContentDefinition.IsUnknown() {
+	if m.HasDynamicContentDefinition() {
+		// Dynamic content definition
 		dymanicContentDefinition, diags := m.getDynamicContentDefinitionDto(ctx)
 		if diags.HasError() {
 			return sifflet.PublicCreateDomainDto{}, diags
@@ -127,10 +136,8 @@ func (m domainModel) ToCreateDto(ctx context.Context) (sifflet.PublicCreateDomai
 				diag.NewErrorDiagnostic("Unable to create domain", err.Error()),
 			}
 		}
-	}
-
-	// Static content definition
-	if !m.StaticContentDefinition.IsNull() && !m.StaticContentDefinition.IsUnknown() {
+	} else if m.HasStaticContentDefinition() {
+		// Static content definition
 		staticContentDefintion, diags := m.getStaticContentDefinitionDto(ctx)
 		if diags.HasError() {
 			return sifflet.PublicCreateDomainDto{}, diags
@@ -140,6 +147,11 @@ func (m domainModel) ToCreateDto(ctx context.Context) (sifflet.PublicCreateDomai
 			return sifflet.PublicCreateDomainDto{}, diag.Diagnostics{
 				diag.NewErrorDiagnostic("Unable to create domain", err.Error()),
 			}
+		}
+	} else {
+		// This should not happen because of the validation in the terraform schema
+		return sifflet.PublicCreateDomainDto{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to create domain", "No dynamic or static content definition provided"),
 		}
 	}
 
@@ -153,8 +165,8 @@ func (m domainModel) ToCreateDto(ctx context.Context) (sifflet.PublicCreateDomai
 func (m domainModel) ToUpdateDto(ctx context.Context) (sifflet.PublicUpdateDomainDto, diag.Diagnostics) {
 	var assetContentDefinition sifflet.PublicUpdateDomainDto_AssetContentDefinition
 
-	// Dynamic content definition
-	if !m.DynamicContentDefinition.IsNull() && !m.DynamicContentDefinition.IsUnknown() {
+	if m.HasDynamicContentDefinition() {
+		// Dynamic content definition
 		dymanicContentDefinition, diags := m.getDynamicContentDefinitionDto(ctx)
 		if diags.HasError() {
 			return sifflet.PublicUpdateDomainDto{}, diags
@@ -165,10 +177,8 @@ func (m domainModel) ToUpdateDto(ctx context.Context) (sifflet.PublicUpdateDomai
 				diag.NewErrorDiagnostic("Unable to create domain", err.Error()),
 			}
 		}
-	}
-
-	// Static content definition
-	if !m.StaticContentDefinition.IsNull() && !m.StaticContentDefinition.IsUnknown() {
+	} else if m.HasStaticContentDefinition() {
+		// Static content definition
 		staticContentDefintion, diags := m.getStaticContentDefinitionDto(ctx)
 		if diags.HasError() {
 			return sifflet.PublicUpdateDomainDto{}, diags
@@ -178,6 +188,11 @@ func (m domainModel) ToUpdateDto(ctx context.Context) (sifflet.PublicUpdateDomai
 			return sifflet.PublicUpdateDomainDto{}, diag.Diagnostics{
 				diag.NewErrorDiagnostic("Unable to create domain", err.Error()),
 			}
+		}
+	} else {
+		// This should not happen because of the validation in the terraform schema
+		return sifflet.PublicUpdateDomainDto{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to update domain", "No dynamic or static content definition provided"),
 		}
 	}
 
@@ -216,9 +231,7 @@ func (m *domainModel) FromDto(ctx context.Context, dto sifflet.PublicGetDomainDt
 		}
 		m.DynamicContentDefinition = dynamicContentDefinitionObject
 		m.StaticContentDefinition = types.ObjectNull(staticContentDefinitionModel.AttributeTypes())
-	}
-
-	if contentDefinitionType == string(sifflet.PublicDomainContentDefinitionDtoTypeSTATIC) {
+	} else if contentDefinitionType == string(sifflet.PublicDomainContentDefinitionDtoTypeSTATIC) {
 		staticContentDefinition, err := dto.AssetContentDefinition.AsPublicStaticDomainContentDefinitionDto()
 		if err != nil {
 			return diag.Diagnostics{
@@ -235,6 +248,10 @@ func (m *domainModel) FromDto(ctx context.Context, dto sifflet.PublicGetDomainDt
 		}
 		m.StaticContentDefinition = staticContentDefinitionObject
 		m.DynamicContentDefinition = types.ObjectNull(dynamicContentDefinitionModel.AttributeTypes())
+	} else {
+		return diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to read domain content definition", fmt.Sprintf("No dynamic or static content definition found, got content definition type: %s", contentDefinitionType)),
+		}
 	}
 
 	m.Id = types.StringValue(dto.Id.String())
@@ -329,9 +346,7 @@ func (m *dynamicContentDefinitionConditionModel) FromDto(ctx context.Context, dt
 		m.LogicalOperator = types.StringValue(string(*sourceFilterCondition.Operator))
 		m.SchemaUris = schemaUris
 		m.Tags = types.ListNull(types.ObjectType{AttrTypes: tagModel{}.AttributeTypes()})
-	}
-
-	if conditionType == string(sifflet.PublicFilterDomainConditionDtoTypeTAG) {
+	} else if conditionType == string(sifflet.PublicFilterDomainConditionDtoTypeTAG) {
 		tagFilterCondition, err := dto.AsPublicTagFilterDomainConditionDto()
 		if err != nil {
 			return diag.Diagnostics{
@@ -348,14 +363,19 @@ func (m *dynamicContentDefinitionConditionModel) FromDto(ctx context.Context, dt
 		m.LogicalOperator = types.StringValue(string(*tagFilterCondition.Operator))
 		m.Tags = tags
 		m.SchemaUris = types.ListNull(types.StringType)
+	} else {
+		return diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to read domain condition", fmt.Sprintf("No source or tag filter condition found, got condition type: %s", conditionType)),
+		}
 	}
 	return diag.Diagnostics{}
 }
 
 func (m dynamicContentDefinitionConditionModel) ToDto(ctx context.Context) (sifflet.PublicDynamicDomainContentDefinitionDto_Conditions_Item, diag.Diagnostics) {
 	var conditionDto sifflet.PublicDynamicDomainContentDefinitionDto_Conditions_Item
-	// Source filter condition
+
 	if !m.SchemaUris.IsNull() && !m.SchemaUris.IsUnknown() {
+		// Source filter condition
 		schemaUris := make([]string, 0, len(m.SchemaUris.Elements()))
 
 		schemaUrisModel := make([]types.String, 0, len(m.SchemaUris.Elements()))
@@ -375,13 +395,11 @@ func (m dynamicContentDefinitionConditionModel) ToDto(ctx context.Context) (siff
 		err := conditionDto.FromPublicSourceFilterDomainConditionDto(sourceFilterCondition)
 		if err != nil {
 			return sifflet.PublicDynamicDomainContentDefinitionDto_Conditions_Item{}, diag.Diagnostics{
-				diag.NewErrorDiagnostic("Unable to create domain", err.Error()),
+				diag.NewErrorDiagnostic("Unable to create domain condition", err.Error()),
 			}
 		}
-	}
-
-	// Tag filter condition
-	if !m.Tags.IsNull() && !m.Tags.IsUnknown() {
+	} else if !m.Tags.IsNull() && !m.Tags.IsUnknown() {
+		// Tag filter condition
 		tags := make([]sifflet.PublicExternalTagReferenceDto, 0, len(m.Tags.Elements()))
 		tagsModel := make([]types.Object, 0, len(m.Tags.Elements()))
 		diags := m.Tags.ElementsAs(ctx, &tagsModel, false)
@@ -409,8 +427,13 @@ func (m dynamicContentDefinitionConditionModel) ToDto(ctx context.Context) (siff
 		err := conditionDto.FromPublicTagFilterDomainConditionDto(tagFilterCondition)
 		if err != nil {
 			return sifflet.PublicDynamicDomainContentDefinitionDto_Conditions_Item{}, diag.Diagnostics{
-				diag.NewErrorDiagnostic("Unable to create domain", err.Error()),
+				diag.NewErrorDiagnostic("Unable to create domain condition", err.Error()),
 			}
+		}
+	} else {
+		// This should not happen because of the validation in the terraform schema
+		return sifflet.PublicDynamicDomainContentDefinitionDto_Conditions_Item{}, diag.Diagnostics{
+			diag.NewErrorDiagnostic("Unable to create domain condition", "No source or tag filter condition found"),
 		}
 	}
 	return conditionDto, diag.Diagnostics{}
