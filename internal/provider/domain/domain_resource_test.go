@@ -25,7 +25,7 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						name = "%s"
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("Exactly one of these attributes must be configured:\n\\[dynamic_content_definition,static_content_definition\\]"),
+				ExpectError: regexp.MustCompile("Exactly one of these attributes must be configured:\n.*dynamic_content_definition,static_content_definition"),
 			},
 			{
 				// Both static and dynamic content definition provided
@@ -41,7 +41,7 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("Exactly one of these attributes must be configured:\n\\[dynamic_content_definition,static_content_definition\\]"),
+				ExpectError: regexp.MustCompile("Exactly one of these attributes must be configured:\n.*dynamic_content_definition,static_content_definition"),
 			},
 			{
 				// Static content definition provided but empty
@@ -81,7 +81,9 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("No attribute specified when one \\(and only one\\) of\n\\[dynamic_content_definition.conditions\\[0\\].tags.<.schema_uris,dynamic_content_definition.conditions\\[0\\].tags\\]\nis required"),
+				ExpectError: regexp.MustCompile(`No attribute specified when one \(and only one\) of
+.*dynamic_content_definition.conditions\[0\].tags.<.schema_uris,dynamic_content_definition.conditions\[0\].tags.*
+is required`),
 			},
 			{
 				// Both tags and schema URIs specified in dynamic content condition
@@ -98,7 +100,9 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("2 attributes specified when one \\(and only one\\) of\n\\[dynamic_content_definition.conditions\\[0\\].tags.<.schema_uris,dynamic_content_definition.conditions\\[0\\].tags\\]\nis required"),
+				ExpectError: regexp.MustCompile(`2 attributes specified when one \(and only one\) of
+.*dynamic_content_definition.conditions\[0\].tags.<.schema_uris,dynamic_content_definition.conditions\[0\].tags.*
+is required`),
 			},
 			{
 				// No name or id specified in tag condition
@@ -116,7 +120,9 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("No attribute specified when one \\(and only one\\) of\n\\[dynamic_content_definition.conditions\\[0\\].tags\\[0\\].name.<.id,dynamic_content_definition.conditions\\[0\\].tags\\[0\\].name\\]\nis required"),
+				ExpectError: regexp.MustCompile(`No attribute specified when one \(and only one\) of
+.*dynamic_content_definition.conditions\[0\].tags\[0\].name.<.id,dynamic_content_definition.conditions\[0\].tags\[0\].name.*
+is required`),
 			},
 			{
 				// Both name and id specified in tag condition
@@ -135,7 +141,9 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("2 attributes specified when one \\(and only one\\) of\n\\[dynamic_content_definition.conditions\\[0\\].tags\\[0\\].name.<.id,dynamic_content_definition.conditions\\[0\\].tags\\[0\\].name\\]\nis required"),
+				ExpectError: regexp.MustCompile(`2 attributes specified when one \(and only one\) of
+.*dynamic_content_definition.conditions\[0\].tags\[0\].name.<.id,dynamic_content_definition.conditions\[0\].tags\[0\].name.*
+is required`),
 			},
 			{
 				// Both id and kind specified in tag condition
@@ -154,7 +162,9 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("Attribute \"dynamic_content_definition.conditions\\[0\\].tags\\[0\\].id\" cannot be\nspecified when \"dynamic_content_definition.conditions\\[0\\].tags\\[0\\].kind\" is\nspecified"),
+				ExpectError: regexp.MustCompile(`Attribute "dynamic_content_definition.conditions\[0\].tags\[0\].id" cannot be
+specified when "dynamic_content_definition.conditions\[0\].tags\[0\].kind" is
+specified`),
 			},
 			{
 				// Invalid logical operator used in dynamic content condition
@@ -173,7 +183,8 @@ func TestAccSourceInvalidConfig(t *testing.T) {
 						}
 					}
 				`, domainName),
-				ExpectError: regexp.MustCompile("Attribute dynamic_content_definition.logical_operator value must be one of:\n\\[\"AND\" \"OR\"\\], got: \"XOR\""),
+				ExpectError: regexp.MustCompile(`Attribute dynamic_content_definition.logical_operator value must be one of:
+\[\"AND\" \"OR\"\], got: \"XOR\"`),
 			},
 		},
 	})
