@@ -197,7 +197,7 @@ func (m FilterModel) ToDto(ctx context.Context) (sifflet.PublicSourceFilterDto, 
 	}
 
 	tagsDto, diags := tfutils.MapWithDiagnostics(tags, func(tagModel tag.PublicApiTagModel) (sifflet.PublicTagReferenceDto, diag.Diagnostics) {
-		return tagModel.ToDto()
+		return tagModel.ToDto(ctx)
 	})
 	if diags.HasError() {
 		return sifflet.PublicSourceFilterDto{}, diags
