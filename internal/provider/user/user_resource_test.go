@@ -23,20 +23,16 @@ func TestAccUserResourceBasic(t *testing.T) {
 		Steps: []resource.TestStep{
 			{
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
-					data "sifflet_domain" "test" {
-						id = "%s"
-					}
-
-					resource "sifflet_user" "test" {
-						email = "%s"
-						name = "Terraform Test User"
-						role = "VIEWER"
-						permissions = [{
-							domain_id = data.sifflet_domain.test.id
-							domain_role = "VIEWER"
-						}]
-					}
-					`, domainId, userEmail),
+						resource "sifflet_user" "test" {
+							email = "%s"
+							name = "Terraform Test User"
+							role = "VIEWER"
+							permissions = [{
+								domain_id = "%s"
+								domain_role = "VIEWER"
+							}]
+						}
+						`, userEmail, domainId),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_user.test", "email", userEmail),
 					resource.TestCheckResourceAttrSet("sifflet_user.test", "id"),
@@ -51,20 +47,16 @@ func TestAccUserResourceBasic(t *testing.T) {
 			},
 			{
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
-					data "sifflet_domain" "test" {
-						id = "%s"
-					}
-
-					resource "sifflet_user" "test" {
-						email = "%s"
-						name = "Updated name"
-						role = "EDITOR"
-						permissions = [{
-							domain_id = data.sifflet_domain.test.id
-							domain_role = "EDITOR"
-						}]
-					}
-					`, domainId, userEmail),
+						resource "sifflet_user" "test" {
+							email = "%s"
+							name = "Updated name"
+							role = "EDITOR"
+							permissions = [{
+								domain_id = "%s"
+								domain_role = "EDITOR"
+							}]
+						}
+						`, userEmail, domainId),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_user.test", "name", "Updated name"),
 					resource.TestCheckResourceAttr("sifflet_user.test", "role", "EDITOR"),
@@ -94,23 +86,19 @@ func TestAccUserResourceOptionalAttributes(t *testing.T) {
 		Steps: []resource.TestStep{
 			{
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
-					data "sifflet_domain" "test" {
-						id = "%s"
-					}
-
-					resource "sifflet_user" "test" {
-						email = "%s"
-						name = "Terraform Test User"
-						role = "VIEWER"
-						permissions = [{
-							domain_id = data.sifflet_domain.test.id
-							domain_role = "VIEWER"
-						}]
-						// These are set in inverse alphabetical order because the backend sorts them and we need to check
-						// that this does not introduce a bug
-						auth_types = ["SAML2", "LOGIN_PASSWORD"]
-					}
-					`, domainId, userEmail),
+						resource "sifflet_user" "test" {
+							email = "%s"
+							name = "Terraform Test User"
+							role = "VIEWER"
+							permissions = [{
+								domain_id = "%s"
+								domain_role = "VIEWER"
+							}]
+							// These are set in inverse alphabetical order because the backend sorts them and we need to check
+							// that this does not introduce a bug
+							auth_types = ["SAML2", "LOGIN_PASSWORD"]
+						}
+						`, userEmail, domainId),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_user.test", "email", userEmail),
 					resource.TestCheckResourceAttrSet("sifflet_user.test", "id"),
@@ -126,21 +114,17 @@ func TestAccUserResourceOptionalAttributes(t *testing.T) {
 			},
 			{
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
-					data "sifflet_domain" "test" {
-						id = "%s"
-					}
-
-					resource "sifflet_user" "test" {
-						email = "%s"
-						name = "Updated name"
-						role = "EDITOR"
-						permissions = [{
-							domain_id = data.sifflet_domain.test.id
-							domain_role = "EDITOR"
-						}]
-						auth_types = ["LOGIN_PASSWORD"]
-					}
-					`, domainId, userEmail),
+						resource "sifflet_user" "test" {
+							email = "%s"
+							name = "Updated name"
+							role = "EDITOR"
+							permissions = [{
+								domain_id = "%s"
+								domain_role = "EDITOR"
+							}]
+							auth_types = ["LOGIN_PASSWORD"]
+						}
+						`, userEmail, domainId),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_user.test", "name", "Updated name"),
 					resource.TestCheckResourceAttr("sifflet_user.test", "role", "EDITOR"),
