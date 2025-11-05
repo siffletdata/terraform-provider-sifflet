@@ -100,13 +100,10 @@ func (d *domainDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 		return
 	}
 
-	var domainResponse *sifflet.PublicGetDomainResponse
-
-	domainResponse, err = d.client.PublicGetDomainWithResponse(ctx, id)
-
+	domainResponse, err := d.client.PublicGetDomainWithResponse(ctx, id)
 	if err != nil {
 		resp.Diagnostics.AddError(
-			"Unable to read asset",
+			"Unable to read domain",
 			err.Error(),
 		)
 		return
@@ -114,7 +111,7 @@ func (d *domainDataSource) Read(ctx context.Context, req datasource.ReadRequest,
 
 	if domainResponse.StatusCode() != http.StatusOK {
 		sifflet.HandleHttpErrorAsProblem(
-			ctx, &resp.Diagnostics, "Unable to read asset",
+			ctx, &resp.Diagnostics, "Unable to read domain",
 			domainResponse.StatusCode(), domainResponse.Body,
 		)
 		return
