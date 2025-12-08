@@ -66,16 +66,17 @@ jobs:
       matrix:
         terraform:
           # Supported Terraform versions:
-          # Oldest
-          - "1.6.*"
-          # Reduce the number of concurrent calls to the Sifflet API to avoid throttling.
+          #
           # We don't use any fancy Terraform feature, so for now we assume that testing with both
           # the oldest and latest support versions is enough.
-          # - "1.7.*"
-          # - "1.8.*"
-          # - "1.9.*"
-          # Latest
-          - "1.10.*"
+          # This reduce the number of concurrent calls to the Sifflet API to avoid throttling.
+          #
+          # = Oldest =
+          # Hashicorp supports Terraform versions for 2 years, see https://support.hashicorp.com/hc/en-us/articles/360021185113-Support-Period-and-End-of-Life-EOL-Policy.
+          # Let's support the oldest version still supported by Hashicorp.
+          - "1.7.*"
+          # = Latest =
+          - "1.14.*"
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - uses: actions/setup-go@cdcb36043654635271a94b9a6d1392de5bb323a7 # v5.0.1
