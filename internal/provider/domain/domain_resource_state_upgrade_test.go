@@ -106,7 +106,6 @@ func TestDomainResourceStateUpgradeV0(t *testing.T) {
 		var upgradedState domainModel
 		resp.State.Get(ctx, &upgradedState)
 
-		// Verify schema_uris was converted from List to Set
 		var dynamicDef dynamicContentDefinitionModel
 		upgradedState.DynamicContentDefinition.As(ctx, &dynamicDef, basetypes.ObjectAsOptions{})
 
@@ -116,6 +115,11 @@ func TestDomainResourceStateUpgradeV0(t *testing.T) {
 		var condition dynamicContentDefinitionConditionModel
 		conditions[0].As(ctx, &condition, basetypes.ObjectAsOptions{})
 
+		// Verify schema_uris is not null and is a Set (the field type guarantees it's types.Set)
+		if condition.SchemaUris.IsNull() {
+			t.Fatal("schema_uris should not be null after upgrade")
+		}
+
 		var schemaUris []types.String
 		condition.SchemaUris.ElementsAs(ctx, &schemaUris, false)
 
@@ -124,13 +128,18 @@ func TestDomainResourceStateUpgradeV0(t *testing.T) {
 		}
 
 		// Verify values are preserved
-		schemaUrisMap := make(map[string]bool)
+		expectedUris := map[string]bool{
+			"bigquery://project/dataset":   false,
+			"snowflake://account/database": false,
+		}
 		for _, uri := range schemaUris {
-			schemaUrisMap[uri.ValueString()] = true
+			expectedUris[uri.ValueString()] = true
 		}
 
-		if !schemaUrisMap["bigquery://project/dataset"] || !schemaUrisMap["snowflake://account/database"] {
-			t.Error("schema_uris values not preserved correctly")
+		for uri, found := range expectedUris {
+			if !found {
+				t.Errorf("Expected schema_uri %q not found", uri)
+			}
 		}
 	})
 }
