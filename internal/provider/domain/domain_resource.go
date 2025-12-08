@@ -448,8 +448,14 @@ func (r *domainResource) UpgradeState(ctx context.Context) map[int64]resource.St
 	v0Schema.Version = 0
 
 	// Override schema_uris to be ListAttribute (v0) instead of SetAttribute (v1)
-	dynamicContentDef := v0Schema.Attributes["dynamic_content_definition"].(schema.SingleNestedAttribute)
-	conditions := dynamicContentDef.Attributes["conditions"].(schema.ListNestedAttribute)
+	dynamicContentDef, ok := v0Schema.Attributes["dynamic_content_definition"].(schema.SingleNestedAttribute)
+	if !ok {
+		panic("dynamic_content_definition is not a SingleNestedAttribute in the current domain resource schema (this is a bug in the provider)")
+	}
+	conditions, ok := dynamicContentDef.Attributes["conditions"].(schema.ListNestedAttribute)
+	if !ok {
+		panic("conditions is not a ListNestedAttribute in the current domain resource schema (this is a bug in the provider)")
+	}
 	conditions.NestedObject.Attributes["schema_uris"] = schema.ListAttribute{
 		Description: "The source schemas to filter assets by in the dynamic condition, in URI format.",
 		Optional:    true,
