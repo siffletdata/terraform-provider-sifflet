@@ -27,7 +27,7 @@ type tagModel struct {
 
 type dynamicContentDefinitionConditionModel struct {
 	LogicalOperator types.String `tfsdk:"logical_operator"`
-	SchemaUris      types.List   `tfsdk:"schema_uris"`
+	SchemaUris      types.Set    `tfsdk:"schema_uris"`
 	Tags            types.List   `tfsdk:"tags"`
 }
 
@@ -315,7 +315,7 @@ func (m *dynamicContentDefinitionModel) FromDto(ctx context.Context, dto sifflet
 func (m dynamicContentDefinitionConditionModel) AttributeTypes() map[string]attr.Type {
 	return map[string]attr.Type{
 		"logical_operator": types.StringType,
-		"schema_uris": types.ListType{
+		"schema_uris": types.SetType{
 			ElemType: types.StringType,
 		},
 		"tags": types.ListType{
@@ -339,7 +339,7 @@ func (m *dynamicContentDefinitionConditionModel) FromDto(ctx context.Context, dt
 				diag.NewErrorDiagnostic("Unable to read domain condition", err.Error()),
 			}
 		}
-		schemaUris, diags := types.ListValueFrom(ctx, types.StringType, sourceFilterCondition.Sources)
+		schemaUris, diags := types.SetValueFrom(ctx, types.StringType, sourceFilterCondition.Sources)
 		if diags.HasError() {
 			return diags
 		}
@@ -362,7 +362,7 @@ func (m *dynamicContentDefinitionConditionModel) FromDto(ctx context.Context, dt
 		}
 		m.LogicalOperator = types.StringValue(string(*tagFilterCondition.Operator))
 		m.Tags = tags
-		m.SchemaUris = types.ListNull(types.StringType)
+		m.SchemaUris = types.SetNull(types.StringType)
 	} else {
 		return diag.Diagnostics{
 			diag.NewErrorDiagnostic("Unable to read domain condition", fmt.Sprintf("No source or tag filter condition found, got condition type: %s", conditionType)),

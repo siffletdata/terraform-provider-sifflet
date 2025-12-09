@@ -13,6 +13,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework-validators/resourcevalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/setvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
@@ -20,12 +21,14 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 )
 
 var (
 	_ resource.Resource                     = &domainResource{}
 	_ resource.ResourceWithConfigure        = &domainResource{}
 	_ resource.ResourceWithConfigValidators = &domainResource{}
+	_ resource.ResourceWithUpgradeState     = &domainResource{}
 )
 
 func newDomainResource() resource.Resource {
@@ -43,6 +46,7 @@ func (r *domainResource) Metadata(_ context.Context, req resource.MetadataReques
 
 func domainResourceSchema() schema.Schema {
 	return schema.Schema{
+		Version:             1,
 		Description:         "A Sifflet domain.",
 		MarkdownDescription: "A Sifflet domain. A domain represents a subset of assets. Domains are used to provide a view of specific business areas, and provide different access to different teams.",
 		Attributes: map[string]schema.Attribute{
@@ -88,7 +92,7 @@ func domainResourceSchema() schema.Schema {
 										stringvalidator.OneOf("IS", "IS_NOT"),
 									},
 								},
-								"schema_uris": schema.ListAttribute{
+								"schema_uris": schema.SetAttribute{
 									Description: "The source schemas to filter assets by in the dynamic condition, in URI format. More about URIs here: https://docs.siffletdata.com/docs/uris.",
 									Optional:    true,
 									ElementType: types.StringType,
@@ -361,4 +365,143 @@ func (r *domainResource) Configure(_ context.Context, req resource.ConfigureRequ
 	}
 
 	r.client = clients.Client
+}
+
+// upgradeDynamicContentDefinitionV0ToV1 converts schema_uris from List to Set in dynamic content definition conditions.
+func upgradeDynamicContentDefinitionV0ToV1(ctx context.Context, dynamicV0Obj types.Object) (types.Object, diag.Diagnostics) {
+	type dynamicContentDefinitionConditionModelV0 struct {
+		LogicalOperator types.String `tfsdk:"logical_operator"`
+		SchemaUris      types.List   `tfsdk:"schema_uris"`
+		Tags            types.List   `tfsdk:"tags"`
+	}
+
+	type dynamicContentDefinitionModelV0 struct {
+		LogicalOperator types.String `tfsdk:"logical_operator"`
+		Conditions      types.List   `tfsdk:"conditions"`
+	}
+
+	var dynamicV0 dynamicContentDefinitionModelV0
+	diags := dynamicV0Obj.As(ctx, &dynamicV0, basetypes.ObjectAsOptions{})
+	if diags.HasError() {
+		return types.Object{}, diags
+	}
+
+	var conditionsV0 []types.Object
+	diags.Append(dynamicV0.Conditions.ElementsAs(ctx, &conditionsV0, false)...)
+	if diags.HasError() {
+		return types.Object{}, diags
+	}
+
+	upgradeCondition := func(conditionObjV0 types.Object) (types.Object, diag.Diagnostics) {
+		var conditionV0 dynamicContentDefinitionConditionModelV0
+		diags := conditionObjV0.As(ctx, &conditionV0, basetypes.ObjectAsOptions{})
+		if diags.HasError() {
+			return types.Object{}, diags
+		}
+
+		// Convert schema_uris from List to Set
+		var schemaUrisUpgraded types.Set
+		if !conditionV0.SchemaUris.IsNull() && !conditionV0.SchemaUris.IsUnknown() {
+			var schemaUrisList []types.String
+			diags.Append(conditionV0.SchemaUris.ElementsAs(ctx, &schemaUrisList, false)...)
+			if diags.HasError() {
+				return types.Object{}, diags
+			}
+			schemaUrisUpgraded, diags = types.SetValueFrom(ctx, types.StringType, schemaUrisList)
+			if diags.HasError() {
+				return types.Object{}, diags
+			}
+		} else {
+			schemaUrisUpgraded = types.SetNull(types.StringType)
+		}
+
+		upgradedCondition := dynamicContentDefinitionConditionModel{
+			LogicalOperator: conditionV0.LogicalOperator,
+			SchemaUris:      schemaUrisUpgraded,
+			Tags:            conditionV0.Tags,
+		}
+
+		return types.ObjectValueFrom(ctx, upgradedCondition.AttributeTypes(), upgradedCondition)
+	}
+
+	upgradedConditions, diags := tfutils.MapWithDiagnostics(conditionsV0, upgradeCondition)
+	if diags.HasError() {
+		return types.Object{}, diags
+	}
+
+	upgradedConditionsList, diags := types.ListValueFrom(ctx, types.ObjectType{AttrTypes: dynamicContentDefinitionConditionModel{}.AttributeTypes()}, upgradedConditions)
+	if diags.HasError() {
+		return types.Object{}, diags
+	}
+
+	upgradedDynamic := dynamicContentDefinitionModel{
+		LogicalOperator: dynamicV0.LogicalOperator,
+		Conditions:      upgradedConditionsList,
+	}
+
+	return types.ObjectValueFrom(ctx, upgradedDynamic.AttributeTypes(), upgradedDynamic)
+}
+
+func (r *domainResource) UpgradeState(ctx context.Context) map[int64]resource.StateUpgrader {
+	// Build v0 schema by copying v1 and overriding only the changed attribute
+	v0Schema := domainResourceSchema()
+	v0Schema.Version = 0
+
+	// Override schema_uris to be ListAttribute (v0) instead of SetAttribute (v1)
+	dynamicContentDef, ok := v0Schema.Attributes["dynamic_content_definition"].(schema.SingleNestedAttribute)
+	if !ok {
+		panic("dynamic_content_definition is not a SingleNestedAttribute in the current domain resource schema (this is a bug in the provider)")
+	}
+	conditions, ok := dynamicContentDef.Attributes["conditions"].(schema.ListNestedAttribute)
+	if !ok {
+		panic("conditions is not a ListNestedAttribute in the current domain resource schema (this is a bug in the provider)")
+	}
+	conditions.NestedObject.Attributes["schema_uris"] = schema.ListAttribute{
+		Description: "The source schemas to filter assets by in the dynamic condition, in URI format.",
+		Optional:    true,
+		ElementType: types.StringType,
+	}
+	dynamicContentDef.Attributes["conditions"] = conditions
+	v0Schema.Attributes["dynamic_content_definition"] = dynamicContentDef
+
+	return map[int64]resource.StateUpgrader{
+		0: {
+			PriorSchema: &v0Schema,
+			StateUpgrader: func(ctx context.Context, req resource.UpgradeStateRequest, resp *resource.UpgradeStateResponse) {
+				type domainModelV0 struct {
+					Id                       types.String `tfsdk:"id"`
+					Name                     types.String `tfsdk:"name"`
+					Description              types.String `tfsdk:"description"`
+					DynamicContentDefinition types.Object `tfsdk:"dynamic_content_definition"`
+					StaticContentDefinition  types.Object `tfsdk:"static_content_definition"`
+				}
+
+				var priorState domainModelV0
+				resp.Diagnostics.Append(req.State.Get(ctx, &priorState)...)
+				if resp.Diagnostics.HasError() {
+					return
+				}
+
+				upgradedState := domainModel{
+					Id:                      priorState.Id,
+					Name:                    priorState.Name,
+					Description:             priorState.Description,
+					StaticContentDefinition: priorState.StaticContentDefinition,
+				}
+
+				if !priorState.DynamicContentDefinition.IsNull() && !priorState.DynamicContentDefinition.IsUnknown() {
+					upgradedDynamicObj, diags := upgradeDynamicContentDefinitionV0ToV1(ctx, priorState.DynamicContentDefinition)
+					resp.Diagnostics.Append(diags...)
+					if resp.Diagnostics.HasError() {
+						return
+					}
+					upgradedState.DynamicContentDefinition = upgradedDynamicObj
+				} else {
+					upgradedState.DynamicContentDefinition = types.ObjectNull(dynamicContentDefinitionModel{}.AttributeTypes())
+				}
+
+				resp.Diagnostics.Append(resp.State.Set(ctx, upgradedState)...)
+			},
+		},
+	}
 }

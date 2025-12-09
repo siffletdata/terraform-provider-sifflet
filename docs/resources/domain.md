@@ -103,7 +103,7 @@ Required:
 
 Optional:
 
-- `schema_uris` (List of String) The source schemas to filter assets by in the dynamic condition, in URI format. More about URIs here: https://docs.siffletdata.com/docs/uris.
+- `schema_uris` (Set of String) The source schemas to filter assets by in the dynamic condition, in URI format. More about URIs here: https://docs.siffletdata.com/docs/uris.
 - `tags` (Attributes List) The tags to filter assets by in the dynamic condition. (see [below for nested schema](#nestedatt--dynamic_content_definition--conditions--tags))
 
 <a id="nestedatt--dynamic_content_definition--conditions--tags"></a>
