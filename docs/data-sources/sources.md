@@ -3,12 +3,12 @@
 page_title: "sifflet_sources Data Source - terraform-provider-sifflet"
 subcategory: ""
 description: |-
-  Return sources matching search criteria.
+  Return sources matching search criteria. Deprecated.
 ---
 
 # sifflet_sources (Data Source)
 
-Return sources matching search criteria.
+Return sources matching search criteria. **Deprecated.**
 
 ## Example Usage
 

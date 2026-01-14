@@ -61,7 +61,8 @@ func SourcesDataSourceSchema(ctx context.Context) schema.Schema {
 	paramsSchema.Computed = true
 	paramsSchema.Required = false
 	return schema.Schema{
-		Description: "Return sources matching search criteria.",
+		Description:        "Return sources matching search criteria. **Deprecated.**",
+		DeprecationMessage: "This source relies on a deprecated API that may be removed in the future.",
 		Attributes: map[string]schema.Attribute{
 			"max_results": schema.Int32Attribute{
 				Description: "Maximum number of results to return. Default is 1000.",
