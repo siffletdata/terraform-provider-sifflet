@@ -20,7 +20,6 @@ import (
 	"terraform-provider-sifflet/internal/apiclients"
 	"terraform-provider-sifflet/internal/provider/asset"
 	"terraform-provider-sifflet/internal/provider/credentials"
-	sifflet_datasource "terraform-provider-sifflet/internal/provider/datasource"
 	"terraform-provider-sifflet/internal/provider/domain"
 	"terraform-provider-sifflet/internal/provider/source"
 	"terraform-provider-sifflet/internal/provider/source_v2"
@@ -202,7 +201,6 @@ func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.Dat
 	return slices.Concat(
 		asset.DataSources(),
 		credentials.DataSources(),
-		sifflet_datasource.DataSources(),
 		domain.DataSources(),
 		source.DataSources(),
 		source_v2.DataSources(),
@@ -216,7 +214,6 @@ func (p *siffletProvider) Resources(_ context.Context) []func() resource.Resourc
 	return slices.Concat(
 		asset.Resources(),
 		credentials.Resources(),
-		sifflet_datasource.Resources(),
 		domain.Resources(),
 		source.Resources(),
 		source_v2.Resources(),
