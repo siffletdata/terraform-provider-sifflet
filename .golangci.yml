@@ -24,6 +24,10 @@ linters:
     - unconvert
     - unparam
     - unused
+  settings:
+    gosec:
+      excludes:
+        - G704 # SSRF via taint analysis: always false positives, the Terraform provider is a client-only application.
 
 formatters:
   enable:
