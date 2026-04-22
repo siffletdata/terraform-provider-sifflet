@@ -39,7 +39,7 @@ resource "sifflet_user" "example" {
 
 - `email` (String) User email. Also used as a the login identifier. Updates require recreating the user.
 - `name` (String) User full name.
-- `permissions` (Attributes List) Per-domain user permissions. Can not be empty. (see [below for nested schema](#nestedatt--permissions))
+- `permissions` (Set of Attributes) Per-domain user permissions. Can not be empty. (see [below for nested schema](#nestedatt--permissions))
 - `role` (String) User system role. Determines a user's access and permissions over Sifflet-level settings. One of 'ADMIN', 'EDITOR', 'VIEWER'.
 
 ### Optional

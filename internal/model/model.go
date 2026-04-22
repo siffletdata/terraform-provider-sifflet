@@ -92,9 +92,10 @@ type InnerModel[D any] interface {
 	AttributeTypes() map[string]attr.Type
 }
 
-// NewModelListFromDto is a helper function that creates a Terraform list value from a list of DTOs.
+// NewModelListFromDto and NewModelSetFromDto are helper functions that creates a Terraform list or set value from a list of DTOs.
 // In the function signature, D is the type of the DTO, and InnerModel[D] is the type of the model that can be created from the DTO.
 // modelCtor is a function that returns a new instance of the model type that matches the DTO type.
+
 func NewModelListFromDto[D any](ctx context.Context, dtos []D, modelCtor func() InnerModel[D]) (basetypes.ListValue, diag.Diagnostics) {
 	diags := diag.Diagnostics{}
 
@@ -109,6 +110,24 @@ func NewModelListFromDto[D any](ctx context.Context, dtos []D, modelCtor func() 
 	diags.Append(ds...)
 
 	result, ds := types.ListValueFrom(ctx, attrType, modelList)
+	diags.Append(ds...)
+	return result, diags
+}
+
+func NewModelSetFromDto[D any](ctx context.Context, dtos []D, modelCtor func() InnerModel[D]) (basetypes.SetValue, diag.Diagnostics) {
+	diags := diag.Diagnostics{}
+
+	// zero value used only to call AttributeTypes
+	attrType := types.ObjectType{AttrTypes: modelCtor().AttributeTypes()}
+
+	modelList, ds := tfutils.MapWithDiagnostics(dtos, func(dto D) (InnerModel[D], diag.Diagnostics) {
+		model := modelCtor()
+		diags := model.FromDto(ctx, dto)
+		return model, diags
+	})
+	diags.Append(ds...)
+
+	result, ds := types.SetValueFrom(ctx, attrType, modelList)
 	diags.Append(ds...)
 	return result, diags
 }

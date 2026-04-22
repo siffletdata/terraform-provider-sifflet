@@ -18,7 +18,7 @@ type userModel struct {
 	Name        types.String `tfsdk:"name"`
 	Email       types.String `tfsdk:"email"`
 	Role        types.String `tfsdk:"role"`
-	Permissions types.List   `tfsdk:"permissions"`
+	Permissions types.Set    `tfsdk:"permissions"`
 	AuthTypes   types.Set    `tfsdk:"auth_types"`
 }
 
@@ -120,7 +120,7 @@ func (m userModel) ToUpdateDto(ctx context.Context) (sifflet.PublicUserUpdateDto
 }
 
 func (m *userModel) FromDto(ctx context.Context, userDto sifflet.PublicUserGetDto) diag.Diagnostics {
-	permissionsList, diags := model.NewModelListFromDto(
+	permissionsList, diags := model.NewModelSetFromDto(
 		ctx, userDto.Permissions,
 		func() model.InnerModel[sifflet.PublicUserPermissionAssignmentDto] { return &permissionModel{} },
 	)

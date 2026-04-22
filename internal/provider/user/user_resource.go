@@ -9,7 +9,6 @@ import (
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/tfutils"
 
-	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/setvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -19,11 +18,13 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 )
 
 var (
-	_ resource.Resource              = &userResource{}
-	_ resource.ResourceWithConfigure = &userResource{}
+	_ resource.Resource                 = &userResource{}
+	_ resource.ResourceWithConfigure    = &userResource{}
+	_ resource.ResourceWithUpgradeState = &userResource{}
 )
 
 func newUserResource() resource.Resource {
@@ -41,6 +42,7 @@ func (r *userResource) Metadata(_ context.Context, req resource.MetadataRequest,
 
 func userResourceSchema() schema.Schema {
 	return schema.Schema{
+		Version:             1,
 		Description:         "Manage a Sifflet user.",
 		MarkdownDescription: "Manage a Sifflet user. See the [Sifflet documentation about access control](https://docs.siffletdata.com/docs/access-control) for more information.\n\nWarning: creating a user will send an email to the specified email address giving them instructions on how to connect to the Sifflet environment.",
 		Attributes: map[string]schema.Attribute{
@@ -67,13 +69,13 @@ func userResourceSchema() schema.Schema {
 				Description: "User system role. Determines a user's access and permissions over Sifflet-level settings. One of 'ADMIN', 'EDITOR', 'VIEWER'.",
 				Required:    true,
 			},
-			"permissions": schema.ListNestedAttribute{
+			"permissions": schema.SetNestedAttribute{
 				Description: "Per-domain user permissions. Can not be empty.",
 				Required:    true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"domain_id": schema.StringAttribute{
-							Description: "Domain ID. This can be retrieved from the domain details page from the Sifflet UI (there's no public API for this as of this writing).",
+							Description: "Domain ID. This can be retrieved from the domain details page from the Sifflet UI or from the sifflet_domain data source or resource.",
 							Required:    true,
 						},
 						"domain_role": schema.StringAttribute{
@@ -82,9 +84,9 @@ func userResourceSchema() schema.Schema {
 						},
 					},
 				},
-				// The API will return an error if the list is empty. It's an easy mistake to make, so add client-side validation.
-				Validators: []validator.List{
-					listvalidator.SizeAtLeast(1),
+				// The API will return an error if the set is empty. It's an easy mistake to make, so add client-side validation.
+				Validators: []validator.Set{
+					setvalidator.SizeAtLeast(1),
 				},
 			},
 			"auth_types": schema.SetAttribute{
@@ -296,4 +298,80 @@ func (r *userResource) Configure(_ context.Context, req resource.ConfigureReques
 	}
 
 	r.client = clients.Client
+}
+
+func (r *userResource) UpgradeState(ctx context.Context) map[int64]resource.StateUpgrader {
+	// Build v0 schema by copying v1 and overriding only the changed attribute
+	v0Schema := userResourceSchema()
+	v0Schema.Version = 0
+
+	// Override permissions to be ListNestedAttribute (v0) instead of SetNestedAttribute (v1)
+	v0Schema.Attributes["permissions"] = schema.ListNestedAttribute{
+		Description: "Per-domain user permissions. Can not be empty.",
+		Required:    true,
+		NestedObject: schema.NestedAttributeObject{
+			Attributes: map[string]schema.Attribute{
+				"domain_id": schema.StringAttribute{
+					Description: "Domain ID.",
+					Required:    true,
+				},
+				"domain_role": schema.StringAttribute{
+					Description: "User role in the domain.",
+					Required:    true,
+				},
+			},
+		},
+	}
+
+	return map[int64]resource.StateUpgrader{
+		0: {
+			PriorSchema: &v0Schema,
+			StateUpgrader: func(ctx context.Context, req resource.UpgradeStateRequest, resp *resource.UpgradeStateResponse) {
+				type userModelV0 struct {
+					Id          types.String `tfsdk:"id"`
+					Name        types.String `tfsdk:"name"`
+					Email       types.String `tfsdk:"email"`
+					Role        types.String `tfsdk:"role"`
+					Permissions types.List   `tfsdk:"permissions"`
+					AuthTypes   types.Set    `tfsdk:"auth_types"`
+				}
+
+				var priorState userModelV0
+				resp.Diagnostics.Append(req.State.Get(ctx, &priorState)...)
+				if resp.Diagnostics.HasError() {
+					return
+				}
+
+				// Convert permissions from List to Set
+				permissionAttrTypes := permissionModel{}.AttributeTypes()
+				var permissionsUpgraded types.Set
+				if !priorState.Permissions.IsNull() && !priorState.Permissions.IsUnknown() {
+					var permissionObjs []types.Object
+					resp.Diagnostics.Append(priorState.Permissions.ElementsAs(ctx, &permissionObjs, false)...)
+					if resp.Diagnostics.HasError() {
+						return
+					}
+					var ds basetypes.SetValue
+					ds, resp.Diagnostics = types.SetValueFrom(ctx, types.ObjectType{AttrTypes: permissionAttrTypes}, permissionObjs)
+					if resp.Diagnostics.HasError() {
+						return
+					}
+					permissionsUpgraded = ds
+				} else {
+					permissionsUpgraded = types.SetNull(types.ObjectType{AttrTypes: permissionAttrTypes})
+				}
+
+				upgradedState := userModel{
+					Id:          priorState.Id,
+					Name:        priorState.Name,
+					Email:       priorState.Email,
+					Role:        priorState.Role,
+					Permissions: permissionsUpgraded,
+					AuthTypes:   priorState.AuthTypes,
+				}
+
+				resp.Diagnostics.Append(resp.State.Set(ctx, upgradedState)...)
+			},
+		},
+	}
 }
