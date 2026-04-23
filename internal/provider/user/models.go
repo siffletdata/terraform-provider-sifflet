@@ -119,6 +119,14 @@ func (m userModel) ToUpdateDto(ctx context.Context) (sifflet.PublicUserUpdateDto
 	}, diag.Diagnostics{}
 }
 
+// clearPermissionsForAdmin sets permissions to null for ADMIN users.
+// ADMIN users have permissions auto-assigned by the API on all domains, so we don't manage them in state.
+func clearPermissionsForAdmin(state *userModel) {
+	if state.Role.ValueString() == "ADMIN" {
+		state.Permissions = types.SetNull(types.ObjectType{AttrTypes: permissionModel{}.AttributeTypes()})
+	}
+}
+
 func (m *userModel) FromDto(ctx context.Context, userDto sifflet.PublicUserGetDto) diag.Diagnostics {
 	permissionsList, diags := model.NewModelSetFromDto(
 		ctx, userDto.Permissions,
@@ -139,6 +147,7 @@ func (m *userModel) FromDto(ctx context.Context, userDto sifflet.PublicUserGetDt
 	m.Role = types.StringValue(string(userDto.Role))
 	m.Permissions = permissionsList
 	m.AuthTypes = authTypes
+	clearPermissionsForAdmin(m)
 	return diag.Diagnostics{}
 }
 

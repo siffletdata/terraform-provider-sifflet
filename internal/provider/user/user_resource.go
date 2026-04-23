@@ -22,9 +22,11 @@ import (
 )
 
 var (
-	_ resource.Resource                 = &userResource{}
-	_ resource.ResourceWithConfigure    = &userResource{}
-	_ resource.ResourceWithUpgradeState = &userResource{}
+	_ resource.Resource                     = &userResource{}
+	_ resource.ResourceWithConfigure        = &userResource{}
+	_ resource.ResourceWithUpgradeState     = &userResource{}
+	_ resource.ResourceWithConfigValidators = &userResource{}
+	_ resource.ResourceWithModifyPlan       = &userResource{}
 )
 
 func newUserResource() resource.Resource {
@@ -70,8 +72,8 @@ func userResourceSchema() schema.Schema {
 				Required:    true,
 			},
 			"permissions": schema.SetNestedAttribute{
-				Description: "Per-domain user permissions. Can not be empty.",
-				Required:    true,
+				Description: "Per-domain user permissions. Required for non-ADMIN users (must have at least one entry). Must not be set for ADMIN users: ADMINs are automatically granted editor access on all domains.",
+				Optional:    true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"domain_id": schema.StringAttribute{
@@ -83,10 +85,6 @@ func userResourceSchema() schema.Schema {
 							Required:    true,
 						},
 					},
-				},
-				// The API will return an error if the set is empty. It's an easy mistake to make, so add client-side validation.
-				Validators: []validator.Set{
-					setvalidator.SizeAtLeast(1),
 				},
 			},
 			"auth_types": schema.SetAttribute{
@@ -107,6 +105,70 @@ func userResourceSchema() schema.Schema {
 
 func (r *userResource) Schema(ctx context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = userResourceSchema()
+}
+
+// permissionsAdminValidator enforces that:
+//   - ADMIN users must not have permissions set (the API auto-assigns editor access on all domains)
+//   - non-ADMIN users must have at least one permission entry
+type permissionsAdminValidator struct{}
+
+func (v permissionsAdminValidator) Description(_ context.Context) string {
+	return "Validates that permissions is not set for ADMIN users and has at least one entry for non-ADMIN users."
+}
+
+func (v permissionsAdminValidator) MarkdownDescription(ctx context.Context) string {
+	return v.Description(ctx)
+}
+
+func (v permissionsAdminValidator) ValidateResource(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+	var config userModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	isAdmin := config.Role.ValueString() == "ADMIN"
+	permissionsSet := !config.Permissions.IsNull() && len(config.Permissions.Elements()) > 0
+
+	if isAdmin && permissionsSet {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("permissions"),
+			"permissions must not be set for ADMIN users",
+			"ADMIN users are automatically granted editor access on all domains. Do not provide the permissions attribute.",
+		)
+	} else if !isAdmin && !permissionsSet {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("permissions"),
+			"permissions must be set for non-ADMIN users",
+			"Non-ADMIN users must have at least one domain permission entry.",
+		)
+	}
+}
+
+func (r userResource) ConfigValidators(_ context.Context) []resource.ConfigValidator {
+	return []resource.ConfigValidator{
+		permissionsAdminValidator{},
+	}
+}
+
+// ModifyPlan ensures that permissions is null in the plan for ADMIN users, preventing
+// "Provider produced inconsistent result after apply" errors when transitioning to/from ADMIN.
+func (r *userResource) ModifyPlan(ctx context.Context, req resource.ModifyPlanRequest, resp *resource.ModifyPlanResponse) {
+	// Nothing to do when destroying
+	if req.Plan.Raw.IsNull() {
+		return
+	}
+
+	var plan userModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	if plan.Role.ValueString() == "ADMIN" {
+		plan.Permissions = types.SetNull(types.ObjectType{AttrTypes: permissionModel{}.AttributeTypes()})
+		resp.Diagnostics.Append(resp.Plan.Set(ctx, plan)...)
+	}
 }
 
 func (r *userResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {

@@ -6,7 +6,8 @@ resource "sifflet_user" "example" {
   email = "user@example.com"
   name  = "Example User"
   role  = "EDITOR"
-  # No matter the system role, all users must have at least one domain role.
+  # VIEWER and EDITOR users must have at least one domain role.
+  # ADMIN users have access to all domains, so none should be set.
   permissions = [{
     domain_id   = data.sifflet_domain.test.id
     domain_role = "VIEWER"
