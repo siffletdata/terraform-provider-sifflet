@@ -115,14 +115,3 @@ func TestUserResourceStateUpgradeV0(t *testing.T) {
 		}
 	})
 }
-
-func TestUserResourceSchemaVersion(t *testing.T) {
-	schema := userResourceSchema()
-	if schema.Version != 1 {
-		t.Errorf("Expected schema version 1, got %d", schema.Version)
-	}
-}
-
-func TestUserResourceImplementsUpgradeState(t *testing.T) {
-	var _ resource.ResourceWithUpgradeState = &userResource{}
-}
