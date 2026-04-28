@@ -9,7 +9,6 @@ import (
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/tfutils"
 
-	"github.com/hashicorp/terraform-plugin-framework-validators/listvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/setvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -19,11 +18,15 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 )
 
 var (
-	_ resource.Resource              = &userResource{}
-	_ resource.ResourceWithConfigure = &userResource{}
+	_ resource.Resource                     = &userResource{}
+	_ resource.ResourceWithConfigure        = &userResource{}
+	_ resource.ResourceWithUpgradeState     = &userResource{}
+	_ resource.ResourceWithConfigValidators = &userResource{}
+	_ resource.ResourceWithModifyPlan       = &userResource{}
 )
 
 func newUserResource() resource.Resource {
@@ -41,6 +44,7 @@ func (r *userResource) Metadata(_ context.Context, req resource.MetadataRequest,
 
 func userResourceSchema() schema.Schema {
 	return schema.Schema{
+		Version:             1,
 		Description:         "Manage a Sifflet user.",
 		MarkdownDescription: "Manage a Sifflet user. See the [Sifflet documentation about access control](https://docs.siffletdata.com/docs/access-control) for more information.\n\nWarning: creating a user will send an email to the specified email address giving them instructions on how to connect to the Sifflet environment.",
 		Attributes: map[string]schema.Attribute{
@@ -67,13 +71,13 @@ func userResourceSchema() schema.Schema {
 				Description: "User system role. Determines a user's access and permissions over Sifflet-level settings. One of 'ADMIN', 'EDITOR', 'VIEWER'.",
 				Required:    true,
 			},
-			"permissions": schema.ListNestedAttribute{
-				Description: "Per-domain user permissions. Can not be empty.",
-				Required:    true,
+			"permissions": schema.SetNestedAttribute{
+				Description: "Per-domain user permissions. Required for non-ADMIN users (must have at least one entry). Must not be set for ADMIN users: ADMINs are automatically granted editor access on all domains.",
+				Optional:    true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"domain_id": schema.StringAttribute{
-							Description: "Domain ID. This can be retrieved from the domain details page from the Sifflet UI (there's no public API for this as of this writing).",
+							Description: "Domain ID. This can be retrieved from the domain details page from the Sifflet UI or from the sifflet_domain data source or resource.",
 							Required:    true,
 						},
 						"domain_role": schema.StringAttribute{
@@ -81,10 +85,6 @@ func userResourceSchema() schema.Schema {
 							Required:    true,
 						},
 					},
-				},
-				// The API will return an error if the list is empty. It's an easy mistake to make, so add client-side validation.
-				Validators: []validator.List{
-					listvalidator.SizeAtLeast(1),
 				},
 			},
 			"auth_types": schema.SetAttribute{
@@ -105,6 +105,70 @@ func userResourceSchema() schema.Schema {
 
 func (r *userResource) Schema(ctx context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = userResourceSchema()
+}
+
+// permissionsAdminValidator enforces that:
+//   - ADMIN users must not have permissions set (the API auto-assigns editor access on all domains)
+//   - non-ADMIN users must have at least one permission entry
+type permissionsAdminValidator struct{}
+
+func (v permissionsAdminValidator) Description(_ context.Context) string {
+	return "Validates that permissions is not set for ADMIN users and has at least one entry for non-ADMIN users."
+}
+
+func (v permissionsAdminValidator) MarkdownDescription(ctx context.Context) string {
+	return v.Description(ctx)
+}
+
+func (v permissionsAdminValidator) ValidateResource(ctx context.Context, req resource.ValidateConfigRequest, resp *resource.ValidateConfigResponse) {
+	var config userModel
+	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	isAdmin := config.Role.ValueString() == "ADMIN"
+	permissionsSet := !config.Permissions.IsNull() && len(config.Permissions.Elements()) > 0
+
+	if isAdmin && permissionsSet {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("permissions"),
+			"permissions must not be set for ADMIN users",
+			"ADMIN users are automatically granted editor access on all domains. Do not provide the permissions attribute.",
+		)
+	} else if !isAdmin && !permissionsSet {
+		resp.Diagnostics.AddAttributeError(
+			path.Root("permissions"),
+			"permissions must be set for non-ADMIN users",
+			"Non-ADMIN users must have at least one domain permission entry.",
+		)
+	}
+}
+
+func (r userResource) ConfigValidators(_ context.Context) []resource.ConfigValidator {
+	return []resource.ConfigValidator{
+		permissionsAdminValidator{},
+	}
+}
+
+// ModifyPlan ensures that permissions is null in the plan for ADMIN users, preventing
+// "Provider produced inconsistent result after apply" errors when transitioning to/from ADMIN.
+func (r *userResource) ModifyPlan(ctx context.Context, req resource.ModifyPlanRequest, resp *resource.ModifyPlanResponse) {
+	// Nothing to do when destroying
+	if req.Plan.Raw.IsNull() {
+		return
+	}
+
+	var plan userModel
+	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	if plan.Role.ValueString() == "ADMIN" {
+		plan.Permissions = types.SetNull(types.ObjectType{AttrTypes: permissionModel{}.AttributeTypes()})
+		resp.Diagnostics.Append(resp.Plan.Set(ctx, plan)...)
+	}
 }
 
 func (r *userResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
@@ -296,4 +360,80 @@ func (r *userResource) Configure(_ context.Context, req resource.ConfigureReques
 	}
 
 	r.client = clients.Client
+}
+
+func (r *userResource) UpgradeState(ctx context.Context) map[int64]resource.StateUpgrader {
+	// Build v0 schema by copying v1 and overriding only the changed attribute
+	v0Schema := userResourceSchema()
+	v0Schema.Version = 0
+
+	// Override permissions to be ListNestedAttribute (v0) instead of SetNestedAttribute (v1)
+	v0Schema.Attributes["permissions"] = schema.ListNestedAttribute{
+		Description: "Per-domain user permissions. Can not be empty.",
+		Required:    true,
+		NestedObject: schema.NestedAttributeObject{
+			Attributes: map[string]schema.Attribute{
+				"domain_id": schema.StringAttribute{
+					Description: "Domain ID.",
+					Required:    true,
+				},
+				"domain_role": schema.StringAttribute{
+					Description: "User role in the domain.",
+					Required:    true,
+				},
+			},
+		},
+	}
+
+	return map[int64]resource.StateUpgrader{
+		0: {
+			PriorSchema: &v0Schema,
+			StateUpgrader: func(ctx context.Context, req resource.UpgradeStateRequest, resp *resource.UpgradeStateResponse) {
+				type userModelV0 struct {
+					Id          types.String `tfsdk:"id"`
+					Name        types.String `tfsdk:"name"`
+					Email       types.String `tfsdk:"email"`
+					Role        types.String `tfsdk:"role"`
+					Permissions types.List   `tfsdk:"permissions"`
+					AuthTypes   types.Set    `tfsdk:"auth_types"`
+				}
+
+				var priorState userModelV0
+				resp.Diagnostics.Append(req.State.Get(ctx, &priorState)...)
+				if resp.Diagnostics.HasError() {
+					return
+				}
+
+				// Convert permissions from List to Set
+				permissionAttrTypes := permissionModel{}.AttributeTypes()
+				var permissionsUpgraded types.Set
+				if !priorState.Permissions.IsNull() && !priorState.Permissions.IsUnknown() {
+					var permissionObjs []types.Object
+					resp.Diagnostics.Append(priorState.Permissions.ElementsAs(ctx, &permissionObjs, false)...)
+					if resp.Diagnostics.HasError() {
+						return
+					}
+					var ds basetypes.SetValue
+					ds, resp.Diagnostics = types.SetValueFrom(ctx, types.ObjectType{AttrTypes: permissionAttrTypes}, permissionObjs)
+					if resp.Diagnostics.HasError() {
+						return
+					}
+					permissionsUpgraded = ds
+				} else {
+					permissionsUpgraded = types.SetNull(types.ObjectType{AttrTypes: permissionAttrTypes})
+				}
+
+				upgradedState := userModel{
+					Id:          priorState.Id,
+					Name:        priorState.Name,
+					Email:       priorState.Email,
+					Role:        priorState.Role,
+					Permissions: permissionsUpgraded,
+					AuthTypes:   priorState.AuthTypes,
+				}
+
+				resp.Diagnostics.Append(resp.State.Set(ctx, upgradedState)...)
+			},
+		},
+	}
 }

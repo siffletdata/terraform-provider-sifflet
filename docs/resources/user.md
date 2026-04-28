@@ -24,7 +24,8 @@ resource "sifflet_user" "example" {
   email = "user@example.com"
   name  = "Example User"
   role  = "EDITOR"
-  # No matter the system role, all users must have at least one domain role.
+  # VIEWER and EDITOR users must have at least one domain role.
+  # ADMIN users have access to all domains, so none should be set.
   permissions = [{
     domain_id   = data.sifflet_domain.test.id
     domain_role = "VIEWER"
@@ -39,12 +40,12 @@ resource "sifflet_user" "example" {
 
 - `email` (String) User email. Also used as a the login identifier. Updates require recreating the user.
 - `name` (String) User full name.
-- `permissions` (Attributes List) Per-domain user permissions. Can not be empty. (see [below for nested schema](#nestedatt--permissions))
 - `role` (String) User system role. Determines a user's access and permissions over Sifflet-level settings. One of 'ADMIN', 'EDITOR', 'VIEWER'.
 
 ### Optional
 
 - `auth_types` (Set of String) Authorized authentication types for the user. Possible values are 'SAML2' and 'LOGIN_PASSWORD'. Default is ['SAML2'] if your Sifflet instance has SSO enabled, and ['LOGIN_PASSWORD', 'SAML2'] otherwise.
+- `permissions` (Attributes Set) Per-domain user permissions. Required for non-ADMIN users (must have at least one entry). Must not be set for ADMIN users: ADMINs are automatically granted editor access on all domains. (see [below for nested schema](#nestedatt--permissions))
 
 ### Read-Only
 
@@ -55,7 +56,7 @@ resource "sifflet_user" "example" {
 
 Required:
 
-- `domain_id` (String) Domain ID. This can be retrieved from the domain details page from the Sifflet UI (there's no public API for this as of this writing).
+- `domain_id` (String) Domain ID. This can be retrieved from the domain details page from the Sifflet UI or from the sifflet_domain data source or resource.
 - `domain_role` (String) User role in the domain. One of 'EDITOR', 'VIEWER', 'CATALOG_EDITOR', 'MONITOR_RESPONDER'.
 
 ## Import
