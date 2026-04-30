@@ -53,14 +53,15 @@ func (m userModel) ToCreateDto(ctx context.Context) (sifflet.PublicUserCreateDto
 		return sifflet.PublicUserCreateDto{}, diags
 	}
 
-	permissionsDto := make([]sifflet.PublicUserPermissionAssignmentDto, len(permissionsModel))
+	permissionsDtoSlice := make([]sifflet.PublicUserPermissionAssignmentDto, len(permissionsModel))
 	for i, permissionModel := range permissionsModel {
 		dto, diags := permissionModel.ToDto(ctx)
 		if diags.HasError() {
 			return sifflet.PublicUserCreateDto{}, diags
 		}
-		permissionsDto[i] = dto
+		permissionsDtoSlice[i] = dto
 	}
+	permissionsDto := &permissionsDtoSlice
 
 	var authTypes []sifflet.PublicUserCreateDtoAuthTypes
 	if !m.AuthTypes.IsNull() && !m.AuthTypes.IsUnknown() {
@@ -90,14 +91,15 @@ func (m userModel) ToUpdateDto(ctx context.Context) (sifflet.PublicUserUpdateDto
 		return sifflet.PublicUserUpdateDto{}, diags
 	}
 
-	permissionsDto := make([]sifflet.PublicUserPermissionAssignmentDto, len(permissionsModel))
+	permissionsDtoSlice := make([]sifflet.PublicUserPermissionAssignmentDto, len(permissionsModel))
 	for i, permissionModel := range permissionsModel {
 		dto, diags := permissionModel.ToDto(ctx)
 		if diags.HasError() {
 			return sifflet.PublicUserUpdateDto{}, diags
 		}
-		permissionsDto[i] = dto
+		permissionsDtoSlice[i] = dto
 	}
+	permissionsDto := &permissionsDtoSlice
 
 	var authTypes []sifflet.PublicUserUpdateDtoAuthTypes
 	if !m.AuthTypes.IsNull() && !m.AuthTypes.IsUnknown() {

@@ -140,8 +140,8 @@ golangci-lint run
 
 ### Regenerate the Sifflet API client
 
-You can fetch the latest OpenAPI schema from https://docs.siffletdata.com/openapi/. Store it under
-``internal/client/openapi.yaml``, then run:
+You can fetch the latest OpenAPI schema from https://docs.siffletdata.com/openapi/ (you need to be logged in).
+Store it under ``internal/client/openapi.yaml``, then run:
 
 ```
 go generate ./internal/client

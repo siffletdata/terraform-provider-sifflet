@@ -28,6 +28,11 @@ website/node_modules
 
 website/vendor
 
+.claude/
+
+# Binary produced by a local build
+/terraform-provider-sifflet
+
 # Test exclusions
 !command/test-fixtures/**/*.tfstate
 !command/test-fixtures/**/.terraform/
