@@ -72,6 +72,24 @@ func (e AlertingHookDtoType) Valid() bool {
 	}
 }
 
+// Defines values for AlertingHookParamsScope.
+const (
+	AlertingHookParamsScopeALLEVENTS    AlertingHookParamsScope = "ALL_EVENTS"
+	AlertingHookParamsScopeLINKEDEVENTS AlertingHookParamsScope = "LINKED_EVENTS"
+)
+
+// Valid indicates whether the value is a known member of the AlertingHookParamsScope enum.
+func (e AlertingHookParamsScope) Valid() bool {
+	switch e {
+	case AlertingHookParamsScopeALLEVENTS:
+		return true
+	case AlertingHookParamsScopeLINKEDEVENTS:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AlertingHookParamsType.
 const (
 	AlertingHookParamsTypeDEFAULT    AlertingHookParamsType = "DEFAULT"
@@ -140,6 +158,7 @@ const (
 	AsCodeAggregationClauseDtoV2KindAverage           AsCodeAggregationClauseDtoV2Kind = "Average"
 	AsCodeAggregationClauseDtoV2KindCount             AsCodeAggregationClauseDtoV2Kind = "Count"
 	AsCodeAggregationClauseDtoV2KindCountAllRows      AsCodeAggregationClauseDtoV2Kind = "CountAllRows"
+	AsCodeAggregationClauseDtoV2KindCustomAggregation AsCodeAggregationClauseDtoV2Kind = "CustomAggregation"
 	AsCodeAggregationClauseDtoV2KindDistinctCount     AsCodeAggregationClauseDtoV2Kind = "DistinctCount"
 	AsCodeAggregationClauseDtoV2KindMax               AsCodeAggregationClauseDtoV2Kind = "Max"
 	AsCodeAggregationClauseDtoV2KindMin               AsCodeAggregationClauseDtoV2Kind = "Min"
@@ -158,6 +177,8 @@ func (e AsCodeAggregationClauseDtoV2Kind) Valid() bool {
 	case AsCodeAggregationClauseDtoV2KindCount:
 		return true
 	case AsCodeAggregationClauseDtoV2KindCountAllRows:
+		return true
+	case AsCodeAggregationClauseDtoV2KindCustomAggregation:
 		return true
 	case AsCodeAggregationClauseDtoV2KindDistinctCount:
 		return true
@@ -271,6 +292,7 @@ const (
 	AsCodeCompletenessMonitorParamsDtoKindRowDuplicates         AsCodeCompletenessMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeCompletenessMonitorParamsDtoKindSchemaChange          AsCodeCompletenessMonitorParamsDtoKind = "SchemaChange"
 	AsCodeCompletenessMonitorParamsDtoKindSql                   AsCodeCompletenessMonitorParamsDtoKind = "Sql"
+	AsCodeCompletenessMonitorParamsDtoKindSqlCondition          AsCodeCompletenessMonitorParamsDtoKind = "SqlCondition"
 	AsCodeCompletenessMonitorParamsDtoKindStaticCompleteness    AsCodeCompletenessMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeCompletenessMonitorParamsDtoKindStaticFieldProfiling  AsCodeCompletenessMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeCompletenessMonitorParamsDtoKindStaticMetrics         AsCodeCompletenessMonitorParamsDtoKind = "StaticMetrics"
@@ -320,6 +342,8 @@ func (e AsCodeCompletenessMonitorParamsDtoKind) Valid() bool {
 	case AsCodeCompletenessMonitorParamsDtoKindSchemaChange:
 		return true
 	case AsCodeCompletenessMonitorParamsDtoKindSql:
+		return true
+	case AsCodeCompletenessMonitorParamsDtoKindSqlCondition:
 		return true
 	case AsCodeCompletenessMonitorParamsDtoKindStaticCompleteness:
 		return true
@@ -466,6 +490,7 @@ const (
 	AsCodeConditionalMonitorParamsDtoKindRowDuplicates         AsCodeConditionalMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeConditionalMonitorParamsDtoKindSchemaChange          AsCodeConditionalMonitorParamsDtoKind = "SchemaChange"
 	AsCodeConditionalMonitorParamsDtoKindSql                   AsCodeConditionalMonitorParamsDtoKind = "Sql"
+	AsCodeConditionalMonitorParamsDtoKindSqlCondition          AsCodeConditionalMonitorParamsDtoKind = "SqlCondition"
 	AsCodeConditionalMonitorParamsDtoKindStaticCompleteness    AsCodeConditionalMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeConditionalMonitorParamsDtoKindStaticFieldProfiling  AsCodeConditionalMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeConditionalMonitorParamsDtoKindStaticMetrics         AsCodeConditionalMonitorParamsDtoKind = "StaticMetrics"
@@ -516,6 +541,8 @@ func (e AsCodeConditionalMonitorParamsDtoKind) Valid() bool {
 		return true
 	case AsCodeConditionalMonitorParamsDtoKindSql:
 		return true
+	case AsCodeConditionalMonitorParamsDtoKindSqlCondition:
+		return true
 	case AsCodeConditionalMonitorParamsDtoKindStaticCompleteness:
 		return true
 	case AsCodeConditionalMonitorParamsDtoKindStaticFieldProfiling:
@@ -553,6 +580,7 @@ const (
 	AsCodeCorrelatedMetricsMonitorParamsDtoKindRowDuplicates         AsCodeCorrelatedMetricsMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeCorrelatedMetricsMonitorParamsDtoKindSchemaChange          AsCodeCorrelatedMetricsMonitorParamsDtoKind = "SchemaChange"
 	AsCodeCorrelatedMetricsMonitorParamsDtoKindSql                   AsCodeCorrelatedMetricsMonitorParamsDtoKind = "Sql"
+	AsCodeCorrelatedMetricsMonitorParamsDtoKindSqlCondition          AsCodeCorrelatedMetricsMonitorParamsDtoKind = "SqlCondition"
 	AsCodeCorrelatedMetricsMonitorParamsDtoKindStaticCompleteness    AsCodeCorrelatedMetricsMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeCorrelatedMetricsMonitorParamsDtoKindStaticFieldProfiling  AsCodeCorrelatedMetricsMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeCorrelatedMetricsMonitorParamsDtoKindStaticMetrics         AsCodeCorrelatedMetricsMonitorParamsDtoKind = "StaticMetrics"
@@ -603,6 +631,8 @@ func (e AsCodeCorrelatedMetricsMonitorParamsDtoKind) Valid() bool {
 		return true
 	case AsCodeCorrelatedMetricsMonitorParamsDtoKindSql:
 		return true
+	case AsCodeCorrelatedMetricsMonitorParamsDtoKindSqlCondition:
+		return true
 	case AsCodeCorrelatedMetricsMonitorParamsDtoKindStaticCompleteness:
 		return true
 	case AsCodeCorrelatedMetricsMonitorParamsDtoKindStaticFieldProfiling:
@@ -618,10 +648,59 @@ func (e AsCodeCorrelatedMetricsMonitorParamsDtoKind) Valid() bool {
 	}
 }
 
+// Defines values for AsCodeCustomAggregationClauseDtoV2Kind.
+const (
+	AsCodeCustomAggregationClauseDtoV2KindAverage           AsCodeCustomAggregationClauseDtoV2Kind = "Average"
+	AsCodeCustomAggregationClauseDtoV2KindCount             AsCodeCustomAggregationClauseDtoV2Kind = "Count"
+	AsCodeCustomAggregationClauseDtoV2KindCountAllRows      AsCodeCustomAggregationClauseDtoV2Kind = "CountAllRows"
+	AsCodeCustomAggregationClauseDtoV2KindCustomAggregation AsCodeCustomAggregationClauseDtoV2Kind = "CustomAggregation"
+	AsCodeCustomAggregationClauseDtoV2KindDistinctCount     AsCodeCustomAggregationClauseDtoV2Kind = "DistinctCount"
+	AsCodeCustomAggregationClauseDtoV2KindMax               AsCodeCustomAggregationClauseDtoV2Kind = "Max"
+	AsCodeCustomAggregationClauseDtoV2KindMin               AsCodeCustomAggregationClauseDtoV2Kind = "Min"
+	AsCodeCustomAggregationClauseDtoV2KindNormalizedAverage AsCodeCustomAggregationClauseDtoV2Kind = "NormalizedAverage"
+	AsCodeCustomAggregationClauseDtoV2KindQuantile          AsCodeCustomAggregationClauseDtoV2Kind = "Quantile"
+	AsCodeCustomAggregationClauseDtoV2KindStandardDeviation AsCodeCustomAggregationClauseDtoV2Kind = "StandardDeviation"
+	AsCodeCustomAggregationClauseDtoV2KindSum               AsCodeCustomAggregationClauseDtoV2Kind = "Sum"
+	AsCodeCustomAggregationClauseDtoV2KindVariance          AsCodeCustomAggregationClauseDtoV2Kind = "Variance"
+)
+
+// Valid indicates whether the value is a known member of the AsCodeCustomAggregationClauseDtoV2Kind enum.
+func (e AsCodeCustomAggregationClauseDtoV2Kind) Valid() bool {
+	switch e {
+	case AsCodeCustomAggregationClauseDtoV2KindAverage:
+		return true
+	case AsCodeCustomAggregationClauseDtoV2KindCount:
+		return true
+	case AsCodeCustomAggregationClauseDtoV2KindCountAllRows:
+		return true
+	case AsCodeCustomAggregationClauseDtoV2KindCustomAggregation:
+		return true
+	case AsCodeCustomAggregationClauseDtoV2KindDistinctCount:
+		return true
+	case AsCodeCustomAggregationClauseDtoV2KindMax:
+		return true
+	case AsCodeCustomAggregationClauseDtoV2KindMin:
+		return true
+	case AsCodeCustomAggregationClauseDtoV2KindNormalizedAverage:
+		return true
+	case AsCodeCustomAggregationClauseDtoV2KindQuantile:
+		return true
+	case AsCodeCustomAggregationClauseDtoV2KindStandardDeviation:
+		return true
+	case AsCodeCustomAggregationClauseDtoV2KindSum:
+		return true
+	case AsCodeCustomAggregationClauseDtoV2KindVariance:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AsCodeCustomMetadataEntryLabelValueReferenceDtoKind.
 const (
 	AsCodeCustomMetadataEntryLabelValueReferenceDtoKindLabel  AsCodeCustomMetadataEntryLabelValueReferenceDtoKind = "Label"
 	AsCodeCustomMetadataEntryLabelValueReferenceDtoKindString AsCodeCustomMetadataEntryLabelValueReferenceDtoKind = "String"
+	AsCodeCustomMetadataEntryLabelValueReferenceDtoKindTeam   AsCodeCustomMetadataEntryLabelValueReferenceDtoKind = "Team"
 	AsCodeCustomMetadataEntryLabelValueReferenceDtoKindUser   AsCodeCustomMetadataEntryLabelValueReferenceDtoKind = "User"
 )
 
@@ -631,6 +710,8 @@ func (e AsCodeCustomMetadataEntryLabelValueReferenceDtoKind) Valid() bool {
 	case AsCodeCustomMetadataEntryLabelValueReferenceDtoKindLabel:
 		return true
 	case AsCodeCustomMetadataEntryLabelValueReferenceDtoKindString:
+		return true
+	case AsCodeCustomMetadataEntryLabelValueReferenceDtoKindTeam:
 		return true
 	case AsCodeCustomMetadataEntryLabelValueReferenceDtoKindUser:
 		return true
@@ -643,6 +724,7 @@ func (e AsCodeCustomMetadataEntryLabelValueReferenceDtoKind) Valid() bool {
 const (
 	AsCodeCustomMetadataEntryStringValueReferenceDtoKindLabel  AsCodeCustomMetadataEntryStringValueReferenceDtoKind = "Label"
 	AsCodeCustomMetadataEntryStringValueReferenceDtoKindString AsCodeCustomMetadataEntryStringValueReferenceDtoKind = "String"
+	AsCodeCustomMetadataEntryStringValueReferenceDtoKindTeam   AsCodeCustomMetadataEntryStringValueReferenceDtoKind = "Team"
 	AsCodeCustomMetadataEntryStringValueReferenceDtoKindUser   AsCodeCustomMetadataEntryStringValueReferenceDtoKind = "User"
 )
 
@@ -653,7 +735,33 @@ func (e AsCodeCustomMetadataEntryStringValueReferenceDtoKind) Valid() bool {
 		return true
 	case AsCodeCustomMetadataEntryStringValueReferenceDtoKindString:
 		return true
+	case AsCodeCustomMetadataEntryStringValueReferenceDtoKindTeam:
+		return true
 	case AsCodeCustomMetadataEntryStringValueReferenceDtoKindUser:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for AsCodeCustomMetadataEntryTeamValueReferenceDtoKind.
+const (
+	AsCodeCustomMetadataEntryTeamValueReferenceDtoKindLabel  AsCodeCustomMetadataEntryTeamValueReferenceDtoKind = "Label"
+	AsCodeCustomMetadataEntryTeamValueReferenceDtoKindString AsCodeCustomMetadataEntryTeamValueReferenceDtoKind = "String"
+	AsCodeCustomMetadataEntryTeamValueReferenceDtoKindTeam   AsCodeCustomMetadataEntryTeamValueReferenceDtoKind = "Team"
+	AsCodeCustomMetadataEntryTeamValueReferenceDtoKindUser   AsCodeCustomMetadataEntryTeamValueReferenceDtoKind = "User"
+)
+
+// Valid indicates whether the value is a known member of the AsCodeCustomMetadataEntryTeamValueReferenceDtoKind enum.
+func (e AsCodeCustomMetadataEntryTeamValueReferenceDtoKind) Valid() bool {
+	switch e {
+	case AsCodeCustomMetadataEntryTeamValueReferenceDtoKindLabel:
+		return true
+	case AsCodeCustomMetadataEntryTeamValueReferenceDtoKindString:
+		return true
+	case AsCodeCustomMetadataEntryTeamValueReferenceDtoKindTeam:
+		return true
+	case AsCodeCustomMetadataEntryTeamValueReferenceDtoKindUser:
 		return true
 	default:
 		return false
@@ -664,6 +772,7 @@ func (e AsCodeCustomMetadataEntryStringValueReferenceDtoKind) Valid() bool {
 const (
 	AsCodeCustomMetadataEntryUserValueReferenceDtoKindLabel  AsCodeCustomMetadataEntryUserValueReferenceDtoKind = "Label"
 	AsCodeCustomMetadataEntryUserValueReferenceDtoKindString AsCodeCustomMetadataEntryUserValueReferenceDtoKind = "String"
+	AsCodeCustomMetadataEntryUserValueReferenceDtoKindTeam   AsCodeCustomMetadataEntryUserValueReferenceDtoKind = "Team"
 	AsCodeCustomMetadataEntryUserValueReferenceDtoKindUser   AsCodeCustomMetadataEntryUserValueReferenceDtoKind = "User"
 )
 
@@ -674,6 +783,8 @@ func (e AsCodeCustomMetadataEntryUserValueReferenceDtoKind) Valid() bool {
 		return true
 	case AsCodeCustomMetadataEntryUserValueReferenceDtoKindString:
 		return true
+	case AsCodeCustomMetadataEntryUserValueReferenceDtoKindTeam:
+		return true
 	case AsCodeCustomMetadataEntryUserValueReferenceDtoKindUser:
 		return true
 	default:
@@ -683,19 +794,22 @@ func (e AsCodeCustomMetadataEntryUserValueReferenceDtoKind) Valid() bool {
 
 // Defines values for AsCodeCustomMetadataEntryValueReferenceDtoKind.
 const (
-	AsCodeCustomMetadataEntryValueReferenceDtoKindLabel  AsCodeCustomMetadataEntryValueReferenceDtoKind = "Label"
-	AsCodeCustomMetadataEntryValueReferenceDtoKindString AsCodeCustomMetadataEntryValueReferenceDtoKind = "String"
-	AsCodeCustomMetadataEntryValueReferenceDtoKindUser   AsCodeCustomMetadataEntryValueReferenceDtoKind = "User"
+	Label  AsCodeCustomMetadataEntryValueReferenceDtoKind = "Label"
+	String AsCodeCustomMetadataEntryValueReferenceDtoKind = "String"
+	Team   AsCodeCustomMetadataEntryValueReferenceDtoKind = "Team"
+	User   AsCodeCustomMetadataEntryValueReferenceDtoKind = "User"
 )
 
 // Valid indicates whether the value is a known member of the AsCodeCustomMetadataEntryValueReferenceDtoKind enum.
 func (e AsCodeCustomMetadataEntryValueReferenceDtoKind) Valid() bool {
 	switch e {
-	case AsCodeCustomMetadataEntryValueReferenceDtoKindLabel:
+	case Label:
 		return true
-	case AsCodeCustomMetadataEntryValueReferenceDtoKindString:
+	case String:
 		return true
-	case AsCodeCustomMetadataEntryValueReferenceDtoKindUser:
+	case Team:
+		return true
+	case User:
 		return true
 	default:
 		return false
@@ -724,6 +838,7 @@ const (
 	AsCodeCustomMetricsMonitorParamsDtoV1KindRowDuplicates         AsCodeCustomMetricsMonitorParamsDtoV1Kind = "RowDuplicates"
 	AsCodeCustomMetricsMonitorParamsDtoV1KindSchemaChange          AsCodeCustomMetricsMonitorParamsDtoV1Kind = "SchemaChange"
 	AsCodeCustomMetricsMonitorParamsDtoV1KindSql                   AsCodeCustomMetricsMonitorParamsDtoV1Kind = "Sql"
+	AsCodeCustomMetricsMonitorParamsDtoV1KindSqlCondition          AsCodeCustomMetricsMonitorParamsDtoV1Kind = "SqlCondition"
 	AsCodeCustomMetricsMonitorParamsDtoV1KindStaticCompleteness    AsCodeCustomMetricsMonitorParamsDtoV1Kind = "StaticCompleteness"
 	AsCodeCustomMetricsMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeCustomMetricsMonitorParamsDtoV1Kind = "StaticFieldProfiling"
 	AsCodeCustomMetricsMonitorParamsDtoV1KindStaticMetrics         AsCodeCustomMetricsMonitorParamsDtoV1Kind = "StaticMetrics"
@@ -774,6 +889,8 @@ func (e AsCodeCustomMetricsMonitorParamsDtoV1Kind) Valid() bool {
 		return true
 	case AsCodeCustomMetricsMonitorParamsDtoV1KindSql:
 		return true
+	case AsCodeCustomMetricsMonitorParamsDtoV1KindSqlCondition:
+		return true
 	case AsCodeCustomMetricsMonitorParamsDtoV1KindStaticCompleteness:
 		return true
 	case AsCodeCustomMetricsMonitorParamsDtoV1KindStaticFieldProfiling:
@@ -811,6 +928,7 @@ const (
 	AsCodeCustomMetricsMonitorParamsDtoV2KindRowDuplicates         AsCodeCustomMetricsMonitorParamsDtoV2Kind = "RowDuplicates"
 	AsCodeCustomMetricsMonitorParamsDtoV2KindSchemaChange          AsCodeCustomMetricsMonitorParamsDtoV2Kind = "SchemaChange"
 	AsCodeCustomMetricsMonitorParamsDtoV2KindSql                   AsCodeCustomMetricsMonitorParamsDtoV2Kind = "Sql"
+	AsCodeCustomMetricsMonitorParamsDtoV2KindSqlCondition          AsCodeCustomMetricsMonitorParamsDtoV2Kind = "SqlCondition"
 	AsCodeCustomMetricsMonitorParamsDtoV2KindStaticCompleteness    AsCodeCustomMetricsMonitorParamsDtoV2Kind = "StaticCompleteness"
 	AsCodeCustomMetricsMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeCustomMetricsMonitorParamsDtoV2Kind = "StaticFieldProfiling"
 	AsCodeCustomMetricsMonitorParamsDtoV2KindStaticMetrics         AsCodeCustomMetricsMonitorParamsDtoV2Kind = "StaticMetrics"
@@ -860,6 +978,8 @@ func (e AsCodeCustomMetricsMonitorParamsDtoV2Kind) Valid() bool {
 	case AsCodeCustomMetricsMonitorParamsDtoV2KindSchemaChange:
 		return true
 	case AsCodeCustomMetricsMonitorParamsDtoV2KindSql:
+		return true
+	case AsCodeCustomMetricsMonitorParamsDtoV2KindSqlCondition:
 		return true
 	case AsCodeCustomMetricsMonitorParamsDtoV2KindStaticCompleteness:
 		return true
@@ -952,6 +1072,7 @@ const (
 	AsCodeDistributionMonitorParamsDtoKindRowDuplicates         AsCodeDistributionMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeDistributionMonitorParamsDtoKindSchemaChange          AsCodeDistributionMonitorParamsDtoKind = "SchemaChange"
 	AsCodeDistributionMonitorParamsDtoKindSql                   AsCodeDistributionMonitorParamsDtoKind = "Sql"
+	AsCodeDistributionMonitorParamsDtoKindSqlCondition          AsCodeDistributionMonitorParamsDtoKind = "SqlCondition"
 	AsCodeDistributionMonitorParamsDtoKindStaticCompleteness    AsCodeDistributionMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeDistributionMonitorParamsDtoKindStaticFieldProfiling  AsCodeDistributionMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeDistributionMonitorParamsDtoKindStaticMetrics         AsCodeDistributionMonitorParamsDtoKind = "StaticMetrics"
@@ -1001,6 +1122,8 @@ func (e AsCodeDistributionMonitorParamsDtoKind) Valid() bool {
 	case AsCodeDistributionMonitorParamsDtoKindSchemaChange:
 		return true
 	case AsCodeDistributionMonitorParamsDtoKindSql:
+		return true
+	case AsCodeDistributionMonitorParamsDtoKindSqlCondition:
 		return true
 	case AsCodeDistributionMonitorParamsDtoKindStaticCompleteness:
 		return true
@@ -1057,6 +1180,7 @@ const (
 	AsCodeDuplicatesMonitorParamsDtoKindRowDuplicates         AsCodeDuplicatesMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeDuplicatesMonitorParamsDtoKindSchemaChange          AsCodeDuplicatesMonitorParamsDtoKind = "SchemaChange"
 	AsCodeDuplicatesMonitorParamsDtoKindSql                   AsCodeDuplicatesMonitorParamsDtoKind = "Sql"
+	AsCodeDuplicatesMonitorParamsDtoKindSqlCondition          AsCodeDuplicatesMonitorParamsDtoKind = "SqlCondition"
 	AsCodeDuplicatesMonitorParamsDtoKindStaticCompleteness    AsCodeDuplicatesMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeDuplicatesMonitorParamsDtoKindStaticFieldProfiling  AsCodeDuplicatesMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeDuplicatesMonitorParamsDtoKindStaticMetrics         AsCodeDuplicatesMonitorParamsDtoKind = "StaticMetrics"
@@ -1106,6 +1230,8 @@ func (e AsCodeDuplicatesMonitorParamsDtoKind) Valid() bool {
 	case AsCodeDuplicatesMonitorParamsDtoKindSchemaChange:
 		return true
 	case AsCodeDuplicatesMonitorParamsDtoKindSql:
+		return true
+	case AsCodeDuplicatesMonitorParamsDtoKindSqlCondition:
 		return true
 	case AsCodeDuplicatesMonitorParamsDtoKindStaticCompleteness:
 		return true
@@ -1165,6 +1291,7 @@ const (
 	AsCodeDynamicFieldProfilingMonitorParamsDtoKindRowDuplicates         AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeDynamicFieldProfilingMonitorParamsDtoKindSchemaChange          AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "SchemaChange"
 	AsCodeDynamicFieldProfilingMonitorParamsDtoKindSql                   AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "Sql"
+	AsCodeDynamicFieldProfilingMonitorParamsDtoKindSqlCondition          AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "SqlCondition"
 	AsCodeDynamicFieldProfilingMonitorParamsDtoKindStaticCompleteness    AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeDynamicFieldProfilingMonitorParamsDtoKindStaticFieldProfiling  AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeDynamicFieldProfilingMonitorParamsDtoKindStaticMetrics         AsCodeDynamicFieldProfilingMonitorParamsDtoKind = "StaticMetrics"
@@ -1214,6 +1341,8 @@ func (e AsCodeDynamicFieldProfilingMonitorParamsDtoKind) Valid() bool {
 	case AsCodeDynamicFieldProfilingMonitorParamsDtoKindSchemaChange:
 		return true
 	case AsCodeDynamicFieldProfilingMonitorParamsDtoKindSql:
+		return true
+	case AsCodeDynamicFieldProfilingMonitorParamsDtoKindSqlCondition:
 		return true
 	case AsCodeDynamicFieldProfilingMonitorParamsDtoKindStaticCompleteness:
 		return true
@@ -1270,6 +1399,7 @@ const (
 	AsCodeDynamicMetricMonitorParamsDtoKindRowDuplicates         AsCodeDynamicMetricMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeDynamicMetricMonitorParamsDtoKindSchemaChange          AsCodeDynamicMetricMonitorParamsDtoKind = "SchemaChange"
 	AsCodeDynamicMetricMonitorParamsDtoKindSql                   AsCodeDynamicMetricMonitorParamsDtoKind = "Sql"
+	AsCodeDynamicMetricMonitorParamsDtoKindSqlCondition          AsCodeDynamicMetricMonitorParamsDtoKind = "SqlCondition"
 	AsCodeDynamicMetricMonitorParamsDtoKindStaticCompleteness    AsCodeDynamicMetricMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeDynamicMetricMonitorParamsDtoKindStaticFieldProfiling  AsCodeDynamicMetricMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeDynamicMetricMonitorParamsDtoKindStaticMetrics         AsCodeDynamicMetricMonitorParamsDtoKind = "StaticMetrics"
@@ -1319,6 +1449,8 @@ func (e AsCodeDynamicMetricMonitorParamsDtoKind) Valid() bool {
 	case AsCodeDynamicMetricMonitorParamsDtoKindSchemaChange:
 		return true
 	case AsCodeDynamicMetricMonitorParamsDtoKindSql:
+		return true
+	case AsCodeDynamicMetricMonitorParamsDtoKindSqlCondition:
 		return true
 	case AsCodeDynamicMetricMonitorParamsDtoKindStaticCompleteness:
 		return true
@@ -1468,6 +1600,7 @@ const (
 	AsCodeFieldDuplicatesMonitorParamsDtoKindRowDuplicates         AsCodeFieldDuplicatesMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeFieldDuplicatesMonitorParamsDtoKindSchemaChange          AsCodeFieldDuplicatesMonitorParamsDtoKind = "SchemaChange"
 	AsCodeFieldDuplicatesMonitorParamsDtoKindSql                   AsCodeFieldDuplicatesMonitorParamsDtoKind = "Sql"
+	AsCodeFieldDuplicatesMonitorParamsDtoKindSqlCondition          AsCodeFieldDuplicatesMonitorParamsDtoKind = "SqlCondition"
 	AsCodeFieldDuplicatesMonitorParamsDtoKindStaticCompleteness    AsCodeFieldDuplicatesMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeFieldDuplicatesMonitorParamsDtoKindStaticFieldProfiling  AsCodeFieldDuplicatesMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeFieldDuplicatesMonitorParamsDtoKindStaticMetrics         AsCodeFieldDuplicatesMonitorParamsDtoKind = "StaticMetrics"
@@ -1517,6 +1650,8 @@ func (e AsCodeFieldDuplicatesMonitorParamsDtoKind) Valid() bool {
 	case AsCodeFieldDuplicatesMonitorParamsDtoKindSchemaChange:
 		return true
 	case AsCodeFieldDuplicatesMonitorParamsDtoKindSql:
+		return true
+	case AsCodeFieldDuplicatesMonitorParamsDtoKindSqlCondition:
 		return true
 	case AsCodeFieldDuplicatesMonitorParamsDtoKindStaticCompleteness:
 		return true
@@ -1573,6 +1708,7 @@ const (
 	AsCodeFieldFormatMonitorParamsDtoV1KindRowDuplicates         AsCodeFieldFormatMonitorParamsDtoV1Kind = "RowDuplicates"
 	AsCodeFieldFormatMonitorParamsDtoV1KindSchemaChange          AsCodeFieldFormatMonitorParamsDtoV1Kind = "SchemaChange"
 	AsCodeFieldFormatMonitorParamsDtoV1KindSql                   AsCodeFieldFormatMonitorParamsDtoV1Kind = "Sql"
+	AsCodeFieldFormatMonitorParamsDtoV1KindSqlCondition          AsCodeFieldFormatMonitorParamsDtoV1Kind = "SqlCondition"
 	AsCodeFieldFormatMonitorParamsDtoV1KindStaticCompleteness    AsCodeFieldFormatMonitorParamsDtoV1Kind = "StaticCompleteness"
 	AsCodeFieldFormatMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeFieldFormatMonitorParamsDtoV1Kind = "StaticFieldProfiling"
 	AsCodeFieldFormatMonitorParamsDtoV1KindStaticMetrics         AsCodeFieldFormatMonitorParamsDtoV1Kind = "StaticMetrics"
@@ -1623,6 +1759,8 @@ func (e AsCodeFieldFormatMonitorParamsDtoV1Kind) Valid() bool {
 		return true
 	case AsCodeFieldFormatMonitorParamsDtoV1KindSql:
 		return true
+	case AsCodeFieldFormatMonitorParamsDtoV1KindSqlCondition:
+		return true
 	case AsCodeFieldFormatMonitorParamsDtoV1KindStaticCompleteness:
 		return true
 	case AsCodeFieldFormatMonitorParamsDtoV1KindStaticFieldProfiling:
@@ -1660,6 +1798,7 @@ const (
 	AsCodeFieldFormatMonitorParamsDtoV2KindRowDuplicates         AsCodeFieldFormatMonitorParamsDtoV2Kind = "RowDuplicates"
 	AsCodeFieldFormatMonitorParamsDtoV2KindSchemaChange          AsCodeFieldFormatMonitorParamsDtoV2Kind = "SchemaChange"
 	AsCodeFieldFormatMonitorParamsDtoV2KindSql                   AsCodeFieldFormatMonitorParamsDtoV2Kind = "Sql"
+	AsCodeFieldFormatMonitorParamsDtoV2KindSqlCondition          AsCodeFieldFormatMonitorParamsDtoV2Kind = "SqlCondition"
 	AsCodeFieldFormatMonitorParamsDtoV2KindStaticCompleteness    AsCodeFieldFormatMonitorParamsDtoV2Kind = "StaticCompleteness"
 	AsCodeFieldFormatMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeFieldFormatMonitorParamsDtoV2Kind = "StaticFieldProfiling"
 	AsCodeFieldFormatMonitorParamsDtoV2KindStaticMetrics         AsCodeFieldFormatMonitorParamsDtoV2Kind = "StaticMetrics"
@@ -1709,6 +1848,8 @@ func (e AsCodeFieldFormatMonitorParamsDtoV2Kind) Valid() bool {
 	case AsCodeFieldFormatMonitorParamsDtoV2KindSchemaChange:
 		return true
 	case AsCodeFieldFormatMonitorParamsDtoV2KindSql:
+		return true
+	case AsCodeFieldFormatMonitorParamsDtoV2KindSqlCondition:
 		return true
 	case AsCodeFieldFormatMonitorParamsDtoV2KindStaticCompleteness:
 		return true
@@ -1771,6 +1912,7 @@ const (
 	AsCodeFieldInListConstraintMonitorParamsDtoV1KindRowDuplicates         AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "RowDuplicates"
 	AsCodeFieldInListConstraintMonitorParamsDtoV1KindSchemaChange          AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "SchemaChange"
 	AsCodeFieldInListConstraintMonitorParamsDtoV1KindSql                   AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "Sql"
+	AsCodeFieldInListConstraintMonitorParamsDtoV1KindSqlCondition          AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "SqlCondition"
 	AsCodeFieldInListConstraintMonitorParamsDtoV1KindStaticCompleteness    AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "StaticCompleteness"
 	AsCodeFieldInListConstraintMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "StaticFieldProfiling"
 	AsCodeFieldInListConstraintMonitorParamsDtoV1KindStaticMetrics         AsCodeFieldInListConstraintMonitorParamsDtoV1Kind = "StaticMetrics"
@@ -1821,6 +1963,8 @@ func (e AsCodeFieldInListConstraintMonitorParamsDtoV1Kind) Valid() bool {
 		return true
 	case AsCodeFieldInListConstraintMonitorParamsDtoV1KindSql:
 		return true
+	case AsCodeFieldInListConstraintMonitorParamsDtoV1KindSqlCondition:
+		return true
 	case AsCodeFieldInListConstraintMonitorParamsDtoV1KindStaticCompleteness:
 		return true
 	case AsCodeFieldInListConstraintMonitorParamsDtoV1KindStaticFieldProfiling:
@@ -1858,6 +2002,7 @@ const (
 	AsCodeFieldInListConstraintMonitorParamsDtoV2KindRowDuplicates         AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "RowDuplicates"
 	AsCodeFieldInListConstraintMonitorParamsDtoV2KindSchemaChange          AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "SchemaChange"
 	AsCodeFieldInListConstraintMonitorParamsDtoV2KindSql                   AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "Sql"
+	AsCodeFieldInListConstraintMonitorParamsDtoV2KindSqlCondition          AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "SqlCondition"
 	AsCodeFieldInListConstraintMonitorParamsDtoV2KindStaticCompleteness    AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "StaticCompleteness"
 	AsCodeFieldInListConstraintMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "StaticFieldProfiling"
 	AsCodeFieldInListConstraintMonitorParamsDtoV2KindStaticMetrics         AsCodeFieldInListConstraintMonitorParamsDtoV2Kind = "StaticMetrics"
@@ -1908,6 +2053,8 @@ func (e AsCodeFieldInListConstraintMonitorParamsDtoV2Kind) Valid() bool {
 		return true
 	case AsCodeFieldInListConstraintMonitorParamsDtoV2KindSql:
 		return true
+	case AsCodeFieldInListConstraintMonitorParamsDtoV2KindSqlCondition:
+		return true
 	case AsCodeFieldInListConstraintMonitorParamsDtoV2KindStaticCompleteness:
 		return true
 	case AsCodeFieldInListConstraintMonitorParamsDtoV2KindStaticFieldProfiling:
@@ -1945,6 +2092,7 @@ const (
 	AsCodeFieldNullsMonitorParamsDtoKindRowDuplicates         AsCodeFieldNullsMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeFieldNullsMonitorParamsDtoKindSchemaChange          AsCodeFieldNullsMonitorParamsDtoKind = "SchemaChange"
 	AsCodeFieldNullsMonitorParamsDtoKindSql                   AsCodeFieldNullsMonitorParamsDtoKind = "Sql"
+	AsCodeFieldNullsMonitorParamsDtoKindSqlCondition          AsCodeFieldNullsMonitorParamsDtoKind = "SqlCondition"
 	AsCodeFieldNullsMonitorParamsDtoKindStaticCompleteness    AsCodeFieldNullsMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeFieldNullsMonitorParamsDtoKindStaticFieldProfiling  AsCodeFieldNullsMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeFieldNullsMonitorParamsDtoKindStaticMetrics         AsCodeFieldNullsMonitorParamsDtoKind = "StaticMetrics"
@@ -1994,6 +2142,8 @@ func (e AsCodeFieldNullsMonitorParamsDtoKind) Valid() bool {
 	case AsCodeFieldNullsMonitorParamsDtoKindSchemaChange:
 		return true
 	case AsCodeFieldNullsMonitorParamsDtoKindSql:
+		return true
+	case AsCodeFieldNullsMonitorParamsDtoKindSqlCondition:
 		return true
 	case AsCodeFieldNullsMonitorParamsDtoKindStaticCompleteness:
 		return true
@@ -2077,6 +2227,7 @@ const (
 	AsCodeFieldUniquenessMonitorParamsDtoKindRowDuplicates         AsCodeFieldUniquenessMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeFieldUniquenessMonitorParamsDtoKindSchemaChange          AsCodeFieldUniquenessMonitorParamsDtoKind = "SchemaChange"
 	AsCodeFieldUniquenessMonitorParamsDtoKindSql                   AsCodeFieldUniquenessMonitorParamsDtoKind = "Sql"
+	AsCodeFieldUniquenessMonitorParamsDtoKindSqlCondition          AsCodeFieldUniquenessMonitorParamsDtoKind = "SqlCondition"
 	AsCodeFieldUniquenessMonitorParamsDtoKindStaticCompleteness    AsCodeFieldUniquenessMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeFieldUniquenessMonitorParamsDtoKindStaticFieldProfiling  AsCodeFieldUniquenessMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeFieldUniquenessMonitorParamsDtoKindStaticMetrics         AsCodeFieldUniquenessMonitorParamsDtoKind = "StaticMetrics"
@@ -2126,6 +2277,8 @@ func (e AsCodeFieldUniquenessMonitorParamsDtoKind) Valid() bool {
 	case AsCodeFieldUniquenessMonitorParamsDtoKindSchemaChange:
 		return true
 	case AsCodeFieldUniquenessMonitorParamsDtoKindSql:
+		return true
+	case AsCodeFieldUniquenessMonitorParamsDtoKindSqlCondition:
 		return true
 	case AsCodeFieldUniquenessMonitorParamsDtoKindStaticCompleteness:
 		return true
@@ -2182,6 +2335,7 @@ const (
 	AsCodeFreshnessMonitorParamsDtoV1KindRowDuplicates         AsCodeFreshnessMonitorParamsDtoV1Kind = "RowDuplicates"
 	AsCodeFreshnessMonitorParamsDtoV1KindSchemaChange          AsCodeFreshnessMonitorParamsDtoV1Kind = "SchemaChange"
 	AsCodeFreshnessMonitorParamsDtoV1KindSql                   AsCodeFreshnessMonitorParamsDtoV1Kind = "Sql"
+	AsCodeFreshnessMonitorParamsDtoV1KindSqlCondition          AsCodeFreshnessMonitorParamsDtoV1Kind = "SqlCondition"
 	AsCodeFreshnessMonitorParamsDtoV1KindStaticCompleteness    AsCodeFreshnessMonitorParamsDtoV1Kind = "StaticCompleteness"
 	AsCodeFreshnessMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeFreshnessMonitorParamsDtoV1Kind = "StaticFieldProfiling"
 	AsCodeFreshnessMonitorParamsDtoV1KindStaticMetrics         AsCodeFreshnessMonitorParamsDtoV1Kind = "StaticMetrics"
@@ -2232,6 +2386,8 @@ func (e AsCodeFreshnessMonitorParamsDtoV1Kind) Valid() bool {
 		return true
 	case AsCodeFreshnessMonitorParamsDtoV1KindSql:
 		return true
+	case AsCodeFreshnessMonitorParamsDtoV1KindSqlCondition:
+		return true
 	case AsCodeFreshnessMonitorParamsDtoV1KindStaticCompleteness:
 		return true
 	case AsCodeFreshnessMonitorParamsDtoV1KindStaticFieldProfiling:
@@ -2269,6 +2425,7 @@ const (
 	AsCodeFreshnessMonitorParamsDtoV2KindRowDuplicates         AsCodeFreshnessMonitorParamsDtoV2Kind = "RowDuplicates"
 	AsCodeFreshnessMonitorParamsDtoV2KindSchemaChange          AsCodeFreshnessMonitorParamsDtoV2Kind = "SchemaChange"
 	AsCodeFreshnessMonitorParamsDtoV2KindSql                   AsCodeFreshnessMonitorParamsDtoV2Kind = "Sql"
+	AsCodeFreshnessMonitorParamsDtoV2KindSqlCondition          AsCodeFreshnessMonitorParamsDtoV2Kind = "SqlCondition"
 	AsCodeFreshnessMonitorParamsDtoV2KindStaticCompleteness    AsCodeFreshnessMonitorParamsDtoV2Kind = "StaticCompleteness"
 	AsCodeFreshnessMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeFreshnessMonitorParamsDtoV2Kind = "StaticFieldProfiling"
 	AsCodeFreshnessMonitorParamsDtoV2KindStaticMetrics         AsCodeFreshnessMonitorParamsDtoV2Kind = "StaticMetrics"
@@ -2318,6 +2475,8 @@ func (e AsCodeFreshnessMonitorParamsDtoV2Kind) Valid() bool {
 	case AsCodeFreshnessMonitorParamsDtoV2KindSchemaChange:
 		return true
 	case AsCodeFreshnessMonitorParamsDtoV2KindSql:
+		return true
+	case AsCodeFreshnessMonitorParamsDtoV2KindSqlCondition:
 		return true
 	case AsCodeFreshnessMonitorParamsDtoV2KindStaticCompleteness:
 		return true
@@ -2509,6 +2668,7 @@ const (
 	AsCodeMetadataFreshnessMonitorParamsDtoV1KindRowDuplicates         AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "RowDuplicates"
 	AsCodeMetadataFreshnessMonitorParamsDtoV1KindSchemaChange          AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "SchemaChange"
 	AsCodeMetadataFreshnessMonitorParamsDtoV1KindSql                   AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "Sql"
+	AsCodeMetadataFreshnessMonitorParamsDtoV1KindSqlCondition          AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "SqlCondition"
 	AsCodeMetadataFreshnessMonitorParamsDtoV1KindStaticCompleteness    AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "StaticCompleteness"
 	AsCodeMetadataFreshnessMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "StaticFieldProfiling"
 	AsCodeMetadataFreshnessMonitorParamsDtoV1KindStaticMetrics         AsCodeMetadataFreshnessMonitorParamsDtoV1Kind = "StaticMetrics"
@@ -2559,6 +2719,8 @@ func (e AsCodeMetadataFreshnessMonitorParamsDtoV1Kind) Valid() bool {
 		return true
 	case AsCodeMetadataFreshnessMonitorParamsDtoV1KindSql:
 		return true
+	case AsCodeMetadataFreshnessMonitorParamsDtoV1KindSqlCondition:
+		return true
 	case AsCodeMetadataFreshnessMonitorParamsDtoV1KindStaticCompleteness:
 		return true
 	case AsCodeMetadataFreshnessMonitorParamsDtoV1KindStaticFieldProfiling:
@@ -2596,6 +2758,7 @@ const (
 	AsCodeMetadataFreshnessMonitorParamsDtoV2KindRowDuplicates         AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "RowDuplicates"
 	AsCodeMetadataFreshnessMonitorParamsDtoV2KindSchemaChange          AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "SchemaChange"
 	AsCodeMetadataFreshnessMonitorParamsDtoV2KindSql                   AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "Sql"
+	AsCodeMetadataFreshnessMonitorParamsDtoV2KindSqlCondition          AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "SqlCondition"
 	AsCodeMetadataFreshnessMonitorParamsDtoV2KindStaticCompleteness    AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "StaticCompleteness"
 	AsCodeMetadataFreshnessMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "StaticFieldProfiling"
 	AsCodeMetadataFreshnessMonitorParamsDtoV2KindStaticMetrics         AsCodeMetadataFreshnessMonitorParamsDtoV2Kind = "StaticMetrics"
@@ -2646,6 +2809,8 @@ func (e AsCodeMetadataFreshnessMonitorParamsDtoV2Kind) Valid() bool {
 		return true
 	case AsCodeMetadataFreshnessMonitorParamsDtoV2KindSql:
 		return true
+	case AsCodeMetadataFreshnessMonitorParamsDtoV2KindSqlCondition:
+		return true
 	case AsCodeMetadataFreshnessMonitorParamsDtoV2KindStaticCompleteness:
 		return true
 	case AsCodeMetadataFreshnessMonitorParamsDtoV2KindStaticFieldProfiling:
@@ -2683,6 +2848,7 @@ const (
 	AsCodeMetricsMonitorParamsDtoKindRowDuplicates         AsCodeMetricsMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeMetricsMonitorParamsDtoKindSchemaChange          AsCodeMetricsMonitorParamsDtoKind = "SchemaChange"
 	AsCodeMetricsMonitorParamsDtoKindSql                   AsCodeMetricsMonitorParamsDtoKind = "Sql"
+	AsCodeMetricsMonitorParamsDtoKindSqlCondition          AsCodeMetricsMonitorParamsDtoKind = "SqlCondition"
 	AsCodeMetricsMonitorParamsDtoKindStaticCompleteness    AsCodeMetricsMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeMetricsMonitorParamsDtoKindStaticFieldProfiling  AsCodeMetricsMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeMetricsMonitorParamsDtoKindStaticMetrics         AsCodeMetricsMonitorParamsDtoKind = "StaticMetrics"
@@ -2732,6 +2898,8 @@ func (e AsCodeMetricsMonitorParamsDtoKind) Valid() bool {
 	case AsCodeMetricsMonitorParamsDtoKindSchemaChange:
 		return true
 	case AsCodeMetricsMonitorParamsDtoKindSql:
+		return true
+	case AsCodeMetricsMonitorParamsDtoKindSqlCondition:
 		return true
 	case AsCodeMetricsMonitorParamsDtoKindStaticCompleteness:
 		return true
@@ -2797,6 +2965,7 @@ const (
 	AsCodeMonitorParamsDtoKindRowDuplicates         AsCodeMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeMonitorParamsDtoKindSchemaChange          AsCodeMonitorParamsDtoKind = "SchemaChange"
 	AsCodeMonitorParamsDtoKindSql                   AsCodeMonitorParamsDtoKind = "Sql"
+	AsCodeMonitorParamsDtoKindSqlCondition          AsCodeMonitorParamsDtoKind = "SqlCondition"
 	AsCodeMonitorParamsDtoKindStaticCompleteness    AsCodeMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeMonitorParamsDtoKindStaticFieldProfiling  AsCodeMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeMonitorParamsDtoKindStaticMetrics         AsCodeMonitorParamsDtoKind = "StaticMetrics"
@@ -2846,6 +3015,8 @@ func (e AsCodeMonitorParamsDtoKind) Valid() bool {
 	case AsCodeMonitorParamsDtoKindSchemaChange:
 		return true
 	case AsCodeMonitorParamsDtoKindSql:
+		return true
+	case AsCodeMonitorParamsDtoKindSqlCondition:
 		return true
 	case AsCodeMonitorParamsDtoKindStaticCompleteness:
 		return true
@@ -3116,6 +3287,7 @@ const (
 	AsCodeQuantileAggregationClauseDtoV2KindAverage           AsCodeQuantileAggregationClauseDtoV2Kind = "Average"
 	AsCodeQuantileAggregationClauseDtoV2KindCount             AsCodeQuantileAggregationClauseDtoV2Kind = "Count"
 	AsCodeQuantileAggregationClauseDtoV2KindCountAllRows      AsCodeQuantileAggregationClauseDtoV2Kind = "CountAllRows"
+	AsCodeQuantileAggregationClauseDtoV2KindCustomAggregation AsCodeQuantileAggregationClauseDtoV2Kind = "CustomAggregation"
 	AsCodeQuantileAggregationClauseDtoV2KindDistinctCount     AsCodeQuantileAggregationClauseDtoV2Kind = "DistinctCount"
 	AsCodeQuantileAggregationClauseDtoV2KindMax               AsCodeQuantileAggregationClauseDtoV2Kind = "Max"
 	AsCodeQuantileAggregationClauseDtoV2KindMin               AsCodeQuantileAggregationClauseDtoV2Kind = "Min"
@@ -3134,6 +3306,8 @@ func (e AsCodeQuantileAggregationClauseDtoV2Kind) Valid() bool {
 	case AsCodeQuantileAggregationClauseDtoV2KindCount:
 		return true
 	case AsCodeQuantileAggregationClauseDtoV2KindCountAllRows:
+		return true
+	case AsCodeQuantileAggregationClauseDtoV2KindCustomAggregation:
 		return true
 	case AsCodeQuantileAggregationClauseDtoV2KindDistinctCount:
 		return true
@@ -3178,6 +3352,7 @@ const (
 	AsCodeReferentialIntegrityMonitorParamsDtoV1KindRowDuplicates         AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "RowDuplicates"
 	AsCodeReferentialIntegrityMonitorParamsDtoV1KindSchemaChange          AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "SchemaChange"
 	AsCodeReferentialIntegrityMonitorParamsDtoV1KindSql                   AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "Sql"
+	AsCodeReferentialIntegrityMonitorParamsDtoV1KindSqlCondition          AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "SqlCondition"
 	AsCodeReferentialIntegrityMonitorParamsDtoV1KindStaticCompleteness    AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "StaticCompleteness"
 	AsCodeReferentialIntegrityMonitorParamsDtoV1KindStaticFieldProfiling  AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "StaticFieldProfiling"
 	AsCodeReferentialIntegrityMonitorParamsDtoV1KindStaticMetrics         AsCodeReferentialIntegrityMonitorParamsDtoV1Kind = "StaticMetrics"
@@ -3227,6 +3402,8 @@ func (e AsCodeReferentialIntegrityMonitorParamsDtoV1Kind) Valid() bool {
 	case AsCodeReferentialIntegrityMonitorParamsDtoV1KindSchemaChange:
 		return true
 	case AsCodeReferentialIntegrityMonitorParamsDtoV1KindSql:
+		return true
+	case AsCodeReferentialIntegrityMonitorParamsDtoV1KindSqlCondition:
 		return true
 	case AsCodeReferentialIntegrityMonitorParamsDtoV1KindStaticCompleteness:
 		return true
@@ -3286,6 +3463,7 @@ const (
 	AsCodeReferentialIntegrityMonitorParamsDtoV2KindRowDuplicates         AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "RowDuplicates"
 	AsCodeReferentialIntegrityMonitorParamsDtoV2KindSchemaChange          AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "SchemaChange"
 	AsCodeReferentialIntegrityMonitorParamsDtoV2KindSql                   AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "Sql"
+	AsCodeReferentialIntegrityMonitorParamsDtoV2KindSqlCondition          AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "SqlCondition"
 	AsCodeReferentialIntegrityMonitorParamsDtoV2KindStaticCompleteness    AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "StaticCompleteness"
 	AsCodeReferentialIntegrityMonitorParamsDtoV2KindStaticFieldProfiling  AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "StaticFieldProfiling"
 	AsCodeReferentialIntegrityMonitorParamsDtoV2KindStaticMetrics         AsCodeReferentialIntegrityMonitorParamsDtoV2Kind = "StaticMetrics"
@@ -3335,6 +3513,8 @@ func (e AsCodeReferentialIntegrityMonitorParamsDtoV2Kind) Valid() bool {
 	case AsCodeReferentialIntegrityMonitorParamsDtoV2KindSchemaChange:
 		return true
 	case AsCodeReferentialIntegrityMonitorParamsDtoV2KindSql:
+		return true
+	case AsCodeReferentialIntegrityMonitorParamsDtoV2KindSqlCondition:
 		return true
 	case AsCodeReferentialIntegrityMonitorParamsDtoV2KindStaticCompleteness:
 		return true
@@ -3436,6 +3616,7 @@ const (
 	AsCodeRowDuplicatesMonitorParamsDtoKindRowDuplicates         AsCodeRowDuplicatesMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeRowDuplicatesMonitorParamsDtoKindSchemaChange          AsCodeRowDuplicatesMonitorParamsDtoKind = "SchemaChange"
 	AsCodeRowDuplicatesMonitorParamsDtoKindSql                   AsCodeRowDuplicatesMonitorParamsDtoKind = "Sql"
+	AsCodeRowDuplicatesMonitorParamsDtoKindSqlCondition          AsCodeRowDuplicatesMonitorParamsDtoKind = "SqlCondition"
 	AsCodeRowDuplicatesMonitorParamsDtoKindStaticCompleteness    AsCodeRowDuplicatesMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeRowDuplicatesMonitorParamsDtoKindStaticFieldProfiling  AsCodeRowDuplicatesMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeRowDuplicatesMonitorParamsDtoKindStaticMetrics         AsCodeRowDuplicatesMonitorParamsDtoKind = "StaticMetrics"
@@ -3486,6 +3667,8 @@ func (e AsCodeRowDuplicatesMonitorParamsDtoKind) Valid() bool {
 		return true
 	case AsCodeRowDuplicatesMonitorParamsDtoKindSql:
 		return true
+	case AsCodeRowDuplicatesMonitorParamsDtoKindSqlCondition:
+		return true
 	case AsCodeRowDuplicatesMonitorParamsDtoKindStaticCompleteness:
 		return true
 	case AsCodeRowDuplicatesMonitorParamsDtoKindStaticFieldProfiling:
@@ -3531,6 +3714,96 @@ func (e AsCodeServiceNowNotificationDtoKind) Valid() bool {
 	}
 }
 
+// Defines values for AsCodeSqlConditionMonitorParamsDtoKind.
+const (
+	AsCodeSqlConditionMonitorParamsDtoKindCompleteness          AsCodeSqlConditionMonitorParamsDtoKind = "Completeness"
+	AsCodeSqlConditionMonitorParamsDtoKindConditional           AsCodeSqlConditionMonitorParamsDtoKind = "Conditional"
+	AsCodeSqlConditionMonitorParamsDtoKindCorrelatedMetrics     AsCodeSqlConditionMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeSqlConditionMonitorParamsDtoKindCustomMetrics         AsCodeSqlConditionMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeSqlConditionMonitorParamsDtoKindDistribution          AsCodeSqlConditionMonitorParamsDtoKind = "Distribution"
+	AsCodeSqlConditionMonitorParamsDtoKindDuplicates            AsCodeSqlConditionMonitorParamsDtoKind = "Duplicates"
+	AsCodeSqlConditionMonitorParamsDtoKindDynamicFieldProfiling AsCodeSqlConditionMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeSqlConditionMonitorParamsDtoKindDynamicMetrics        AsCodeSqlConditionMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeSqlConditionMonitorParamsDtoKindFieldDuplicates       AsCodeSqlConditionMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeSqlConditionMonitorParamsDtoKindFieldFormat           AsCodeSqlConditionMonitorParamsDtoKind = "FieldFormat"
+	AsCodeSqlConditionMonitorParamsDtoKindFieldInList           AsCodeSqlConditionMonitorParamsDtoKind = "FieldInList"
+	AsCodeSqlConditionMonitorParamsDtoKindFieldNulls            AsCodeSqlConditionMonitorParamsDtoKind = "FieldNulls"
+	AsCodeSqlConditionMonitorParamsDtoKindFieldUniqueness       AsCodeSqlConditionMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeSqlConditionMonitorParamsDtoKindFreshness             AsCodeSqlConditionMonitorParamsDtoKind = "Freshness"
+	AsCodeSqlConditionMonitorParamsDtoKindMetadataFreshness     AsCodeSqlConditionMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeSqlConditionMonitorParamsDtoKindMetrics               AsCodeSqlConditionMonitorParamsDtoKind = "Metrics"
+	AsCodeSqlConditionMonitorParamsDtoKindReferentialIntegrity  AsCodeSqlConditionMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeSqlConditionMonitorParamsDtoKindRowDuplicates         AsCodeSqlConditionMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeSqlConditionMonitorParamsDtoKindSchemaChange          AsCodeSqlConditionMonitorParamsDtoKind = "SchemaChange"
+	AsCodeSqlConditionMonitorParamsDtoKindSql                   AsCodeSqlConditionMonitorParamsDtoKind = "Sql"
+	AsCodeSqlConditionMonitorParamsDtoKindSqlCondition          AsCodeSqlConditionMonitorParamsDtoKind = "SqlCondition"
+	AsCodeSqlConditionMonitorParamsDtoKindStaticCompleteness    AsCodeSqlConditionMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeSqlConditionMonitorParamsDtoKindStaticFieldProfiling  AsCodeSqlConditionMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeSqlConditionMonitorParamsDtoKindStaticMetrics         AsCodeSqlConditionMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeSqlConditionMonitorParamsDtoKindValueRange            AsCodeSqlConditionMonitorParamsDtoKind = "ValueRange"
+	AsCodeSqlConditionMonitorParamsDtoKindVolume                AsCodeSqlConditionMonitorParamsDtoKind = "Volume"
+)
+
+// Valid indicates whether the value is a known member of the AsCodeSqlConditionMonitorParamsDtoKind enum.
+func (e AsCodeSqlConditionMonitorParamsDtoKind) Valid() bool {
+	switch e {
+	case AsCodeSqlConditionMonitorParamsDtoKindCompleteness:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindConditional:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindCorrelatedMetrics:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindCustomMetrics:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindDistribution:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindDuplicates:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindDynamicFieldProfiling:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindDynamicMetrics:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindFieldDuplicates:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindFieldFormat:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindFieldInList:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindFieldNulls:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindFieldUniqueness:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindFreshness:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindMetadataFreshness:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindMetrics:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindReferentialIntegrity:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindRowDuplicates:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindSchemaChange:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindSql:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindSqlCondition:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindStaticCompleteness:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindStaticFieldProfiling:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindStaticMetrics:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindValueRange:
+		return true
+	case AsCodeSqlConditionMonitorParamsDtoKindVolume:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AsCodeSqlMonitorParamsDtoKind.
 const (
 	AsCodeSqlMonitorParamsDtoKindCompleteness          AsCodeSqlMonitorParamsDtoKind = "Completeness"
@@ -3553,6 +3826,7 @@ const (
 	AsCodeSqlMonitorParamsDtoKindRowDuplicates         AsCodeSqlMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeSqlMonitorParamsDtoKindSchemaChange          AsCodeSqlMonitorParamsDtoKind = "SchemaChange"
 	AsCodeSqlMonitorParamsDtoKindSql                   AsCodeSqlMonitorParamsDtoKind = "Sql"
+	AsCodeSqlMonitorParamsDtoKindSqlCondition          AsCodeSqlMonitorParamsDtoKind = "SqlCondition"
 	AsCodeSqlMonitorParamsDtoKindStaticCompleteness    AsCodeSqlMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeSqlMonitorParamsDtoKindStaticFieldProfiling  AsCodeSqlMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeSqlMonitorParamsDtoKindStaticMetrics         AsCodeSqlMonitorParamsDtoKind = "StaticMetrics"
@@ -3603,6 +3877,8 @@ func (e AsCodeSqlMonitorParamsDtoKind) Valid() bool {
 		return true
 	case AsCodeSqlMonitorParamsDtoKindSql:
 		return true
+	case AsCodeSqlMonitorParamsDtoKindSqlCondition:
+		return true
 	case AsCodeSqlMonitorParamsDtoKindStaticCompleteness:
 		return true
 	case AsCodeSqlMonitorParamsDtoKindStaticFieldProfiling:
@@ -3640,6 +3916,7 @@ const (
 	AsCodeStaticCompletenessMonitorParamsDtoKindRowDuplicates         AsCodeStaticCompletenessMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeStaticCompletenessMonitorParamsDtoKindSchemaChange          AsCodeStaticCompletenessMonitorParamsDtoKind = "SchemaChange"
 	AsCodeStaticCompletenessMonitorParamsDtoKindSql                   AsCodeStaticCompletenessMonitorParamsDtoKind = "Sql"
+	AsCodeStaticCompletenessMonitorParamsDtoKindSqlCondition          AsCodeStaticCompletenessMonitorParamsDtoKind = "SqlCondition"
 	AsCodeStaticCompletenessMonitorParamsDtoKindStaticCompleteness    AsCodeStaticCompletenessMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeStaticCompletenessMonitorParamsDtoKindStaticFieldProfiling  AsCodeStaticCompletenessMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeStaticCompletenessMonitorParamsDtoKindStaticMetrics         AsCodeStaticCompletenessMonitorParamsDtoKind = "StaticMetrics"
@@ -3690,6 +3967,8 @@ func (e AsCodeStaticCompletenessMonitorParamsDtoKind) Valid() bool {
 		return true
 	case AsCodeStaticCompletenessMonitorParamsDtoKindSql:
 		return true
+	case AsCodeStaticCompletenessMonitorParamsDtoKindSqlCondition:
+		return true
 	case AsCodeStaticCompletenessMonitorParamsDtoKindStaticCompleteness:
 		return true
 	case AsCodeStaticCompletenessMonitorParamsDtoKindStaticFieldProfiling:
@@ -3727,6 +4006,7 @@ const (
 	AsCodeStaticFieldProfilingMonitorParamsDtoKindRowDuplicates         AsCodeStaticFieldProfilingMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeStaticFieldProfilingMonitorParamsDtoKindSchemaChange          AsCodeStaticFieldProfilingMonitorParamsDtoKind = "SchemaChange"
 	AsCodeStaticFieldProfilingMonitorParamsDtoKindSql                   AsCodeStaticFieldProfilingMonitorParamsDtoKind = "Sql"
+	AsCodeStaticFieldProfilingMonitorParamsDtoKindSqlCondition          AsCodeStaticFieldProfilingMonitorParamsDtoKind = "SqlCondition"
 	AsCodeStaticFieldProfilingMonitorParamsDtoKindStaticCompleteness    AsCodeStaticFieldProfilingMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeStaticFieldProfilingMonitorParamsDtoKindStaticFieldProfiling  AsCodeStaticFieldProfilingMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeStaticFieldProfilingMonitorParamsDtoKindStaticMetrics         AsCodeStaticFieldProfilingMonitorParamsDtoKind = "StaticMetrics"
@@ -3777,6 +4057,8 @@ func (e AsCodeStaticFieldProfilingMonitorParamsDtoKind) Valid() bool {
 		return true
 	case AsCodeStaticFieldProfilingMonitorParamsDtoKindSql:
 		return true
+	case AsCodeStaticFieldProfilingMonitorParamsDtoKindSqlCondition:
+		return true
 	case AsCodeStaticFieldProfilingMonitorParamsDtoKindStaticCompleteness:
 		return true
 	case AsCodeStaticFieldProfilingMonitorParamsDtoKindStaticFieldProfiling:
@@ -3814,6 +4096,7 @@ const (
 	AsCodeStaticMetricMonitorParamsDtoKindRowDuplicates         AsCodeStaticMetricMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeStaticMetricMonitorParamsDtoKindSchemaChange          AsCodeStaticMetricMonitorParamsDtoKind = "SchemaChange"
 	AsCodeStaticMetricMonitorParamsDtoKindSql                   AsCodeStaticMetricMonitorParamsDtoKind = "Sql"
+	AsCodeStaticMetricMonitorParamsDtoKindSqlCondition          AsCodeStaticMetricMonitorParamsDtoKind = "SqlCondition"
 	AsCodeStaticMetricMonitorParamsDtoKindStaticCompleteness    AsCodeStaticMetricMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeStaticMetricMonitorParamsDtoKindStaticFieldProfiling  AsCodeStaticMetricMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeStaticMetricMonitorParamsDtoKindStaticMetrics         AsCodeStaticMetricMonitorParamsDtoKind = "StaticMetrics"
@@ -3863,6 +4146,8 @@ func (e AsCodeStaticMetricMonitorParamsDtoKind) Valid() bool {
 	case AsCodeStaticMetricMonitorParamsDtoKindSchemaChange:
 		return true
 	case AsCodeStaticMetricMonitorParamsDtoKindSql:
+		return true
+	case AsCodeStaticMetricMonitorParamsDtoKindSqlCondition:
 		return true
 	case AsCodeStaticMetricMonitorParamsDtoKindStaticCompleteness:
 		return true
@@ -4049,16 +4334,16 @@ func (e AsCodeThresholdBaseDtoKind) Valid() bool {
 
 // Defines values for AsCodeThresholdBaseDtoValueMode.
 const (
-	Count      AsCodeThresholdBaseDtoValueMode = "Count"
-	Percentage AsCodeThresholdBaseDtoValueMode = "Percentage"
+	AsCodeThresholdBaseDtoValueModeCount      AsCodeThresholdBaseDtoValueMode = "Count"
+	AsCodeThresholdBaseDtoValueModePercentage AsCodeThresholdBaseDtoValueMode = "Percentage"
 )
 
 // Valid indicates whether the value is a known member of the AsCodeThresholdBaseDtoValueMode enum.
 func (e AsCodeThresholdBaseDtoValueMode) Valid() bool {
 	switch e {
-	case Count:
+	case AsCodeThresholdBaseDtoValueModeCount:
 		return true
-	case Percentage:
+	case AsCodeThresholdBaseDtoValueModePercentage:
 		return true
 	default:
 		return false
@@ -4126,6 +4411,7 @@ const (
 	AsCodeValueRangeMonitorParamsDtoKindRowDuplicates         AsCodeValueRangeMonitorParamsDtoKind = "RowDuplicates"
 	AsCodeValueRangeMonitorParamsDtoKindSchemaChange          AsCodeValueRangeMonitorParamsDtoKind = "SchemaChange"
 	AsCodeValueRangeMonitorParamsDtoKindSql                   AsCodeValueRangeMonitorParamsDtoKind = "Sql"
+	AsCodeValueRangeMonitorParamsDtoKindSqlCondition          AsCodeValueRangeMonitorParamsDtoKind = "SqlCondition"
 	AsCodeValueRangeMonitorParamsDtoKindStaticCompleteness    AsCodeValueRangeMonitorParamsDtoKind = "StaticCompleteness"
 	AsCodeValueRangeMonitorParamsDtoKindStaticFieldProfiling  AsCodeValueRangeMonitorParamsDtoKind = "StaticFieldProfiling"
 	AsCodeValueRangeMonitorParamsDtoKindStaticMetrics         AsCodeValueRangeMonitorParamsDtoKind = "StaticMetrics"
@@ -4176,6 +4462,8 @@ func (e AsCodeValueRangeMonitorParamsDtoKind) Valid() bool {
 		return true
 	case AsCodeValueRangeMonitorParamsDtoKindSql:
 		return true
+	case AsCodeValueRangeMonitorParamsDtoKindSqlCondition:
+		return true
 	case AsCodeValueRangeMonitorParamsDtoKindStaticCompleteness:
 		return true
 	case AsCodeValueRangeMonitorParamsDtoKindStaticFieldProfiling:
@@ -4193,85 +4481,88 @@ func (e AsCodeValueRangeMonitorParamsDtoKind) Valid() bool {
 
 // Defines values for AsCodeVolumeMonitorParamsDtoKind.
 const (
-	Completeness          AsCodeVolumeMonitorParamsDtoKind = "Completeness"
-	Conditional           AsCodeVolumeMonitorParamsDtoKind = "Conditional"
-	CorrelatedMetrics     AsCodeVolumeMonitorParamsDtoKind = "CorrelatedMetrics"
-	CustomMetrics         AsCodeVolumeMonitorParamsDtoKind = "CustomMetrics"
-	Distribution          AsCodeVolumeMonitorParamsDtoKind = "Distribution"
-	Duplicates            AsCodeVolumeMonitorParamsDtoKind = "Duplicates"
-	DynamicFieldProfiling AsCodeVolumeMonitorParamsDtoKind = "DynamicFieldProfiling"
-	DynamicMetrics        AsCodeVolumeMonitorParamsDtoKind = "DynamicMetrics"
-	FieldDuplicates       AsCodeVolumeMonitorParamsDtoKind = "FieldDuplicates"
-	FieldFormat           AsCodeVolumeMonitorParamsDtoKind = "FieldFormat"
-	FieldInList           AsCodeVolumeMonitorParamsDtoKind = "FieldInList"
-	FieldNulls            AsCodeVolumeMonitorParamsDtoKind = "FieldNulls"
-	FieldUniqueness       AsCodeVolumeMonitorParamsDtoKind = "FieldUniqueness"
-	Freshness             AsCodeVolumeMonitorParamsDtoKind = "Freshness"
-	MetadataFreshness     AsCodeVolumeMonitorParamsDtoKind = "MetadataFreshness"
-	Metrics               AsCodeVolumeMonitorParamsDtoKind = "Metrics"
-	ReferentialIntegrity  AsCodeVolumeMonitorParamsDtoKind = "ReferentialIntegrity"
-	RowDuplicates         AsCodeVolumeMonitorParamsDtoKind = "RowDuplicates"
-	SchemaChange          AsCodeVolumeMonitorParamsDtoKind = "SchemaChange"
-	Sql                   AsCodeVolumeMonitorParamsDtoKind = "Sql"
-	StaticCompleteness    AsCodeVolumeMonitorParamsDtoKind = "StaticCompleteness"
-	StaticFieldProfiling  AsCodeVolumeMonitorParamsDtoKind = "StaticFieldProfiling"
-	StaticMetrics         AsCodeVolumeMonitorParamsDtoKind = "StaticMetrics"
-	ValueRange            AsCodeVolumeMonitorParamsDtoKind = "ValueRange"
-	Volume                AsCodeVolumeMonitorParamsDtoKind = "Volume"
+	AsCodeVolumeMonitorParamsDtoKindCompleteness          AsCodeVolumeMonitorParamsDtoKind = "Completeness"
+	AsCodeVolumeMonitorParamsDtoKindConditional           AsCodeVolumeMonitorParamsDtoKind = "Conditional"
+	AsCodeVolumeMonitorParamsDtoKindCorrelatedMetrics     AsCodeVolumeMonitorParamsDtoKind = "CorrelatedMetrics"
+	AsCodeVolumeMonitorParamsDtoKindCustomMetrics         AsCodeVolumeMonitorParamsDtoKind = "CustomMetrics"
+	AsCodeVolumeMonitorParamsDtoKindDistribution          AsCodeVolumeMonitorParamsDtoKind = "Distribution"
+	AsCodeVolumeMonitorParamsDtoKindDuplicates            AsCodeVolumeMonitorParamsDtoKind = "Duplicates"
+	AsCodeVolumeMonitorParamsDtoKindDynamicFieldProfiling AsCodeVolumeMonitorParamsDtoKind = "DynamicFieldProfiling"
+	AsCodeVolumeMonitorParamsDtoKindDynamicMetrics        AsCodeVolumeMonitorParamsDtoKind = "DynamicMetrics"
+	AsCodeVolumeMonitorParamsDtoKindFieldDuplicates       AsCodeVolumeMonitorParamsDtoKind = "FieldDuplicates"
+	AsCodeVolumeMonitorParamsDtoKindFieldFormat           AsCodeVolumeMonitorParamsDtoKind = "FieldFormat"
+	AsCodeVolumeMonitorParamsDtoKindFieldInList           AsCodeVolumeMonitorParamsDtoKind = "FieldInList"
+	AsCodeVolumeMonitorParamsDtoKindFieldNulls            AsCodeVolumeMonitorParamsDtoKind = "FieldNulls"
+	AsCodeVolumeMonitorParamsDtoKindFieldUniqueness       AsCodeVolumeMonitorParamsDtoKind = "FieldUniqueness"
+	AsCodeVolumeMonitorParamsDtoKindFreshness             AsCodeVolumeMonitorParamsDtoKind = "Freshness"
+	AsCodeVolumeMonitorParamsDtoKindMetadataFreshness     AsCodeVolumeMonitorParamsDtoKind = "MetadataFreshness"
+	AsCodeVolumeMonitorParamsDtoKindMetrics               AsCodeVolumeMonitorParamsDtoKind = "Metrics"
+	AsCodeVolumeMonitorParamsDtoKindReferentialIntegrity  AsCodeVolumeMonitorParamsDtoKind = "ReferentialIntegrity"
+	AsCodeVolumeMonitorParamsDtoKindRowDuplicates         AsCodeVolumeMonitorParamsDtoKind = "RowDuplicates"
+	AsCodeVolumeMonitorParamsDtoKindSchemaChange          AsCodeVolumeMonitorParamsDtoKind = "SchemaChange"
+	AsCodeVolumeMonitorParamsDtoKindSql                   AsCodeVolumeMonitorParamsDtoKind = "Sql"
+	AsCodeVolumeMonitorParamsDtoKindSqlCondition          AsCodeVolumeMonitorParamsDtoKind = "SqlCondition"
+	AsCodeVolumeMonitorParamsDtoKindStaticCompleteness    AsCodeVolumeMonitorParamsDtoKind = "StaticCompleteness"
+	AsCodeVolumeMonitorParamsDtoKindStaticFieldProfiling  AsCodeVolumeMonitorParamsDtoKind = "StaticFieldProfiling"
+	AsCodeVolumeMonitorParamsDtoKindStaticMetrics         AsCodeVolumeMonitorParamsDtoKind = "StaticMetrics"
+	AsCodeVolumeMonitorParamsDtoKindValueRange            AsCodeVolumeMonitorParamsDtoKind = "ValueRange"
+	AsCodeVolumeMonitorParamsDtoKindVolume                AsCodeVolumeMonitorParamsDtoKind = "Volume"
 )
 
 // Valid indicates whether the value is a known member of the AsCodeVolumeMonitorParamsDtoKind enum.
 func (e AsCodeVolumeMonitorParamsDtoKind) Valid() bool {
 	switch e {
-	case Completeness:
+	case AsCodeVolumeMonitorParamsDtoKindCompleteness:
 		return true
-	case Conditional:
+	case AsCodeVolumeMonitorParamsDtoKindConditional:
 		return true
-	case CorrelatedMetrics:
+	case AsCodeVolumeMonitorParamsDtoKindCorrelatedMetrics:
 		return true
-	case CustomMetrics:
+	case AsCodeVolumeMonitorParamsDtoKindCustomMetrics:
 		return true
-	case Distribution:
+	case AsCodeVolumeMonitorParamsDtoKindDistribution:
 		return true
-	case Duplicates:
+	case AsCodeVolumeMonitorParamsDtoKindDuplicates:
 		return true
-	case DynamicFieldProfiling:
+	case AsCodeVolumeMonitorParamsDtoKindDynamicFieldProfiling:
 		return true
-	case DynamicMetrics:
+	case AsCodeVolumeMonitorParamsDtoKindDynamicMetrics:
 		return true
-	case FieldDuplicates:
+	case AsCodeVolumeMonitorParamsDtoKindFieldDuplicates:
 		return true
-	case FieldFormat:
+	case AsCodeVolumeMonitorParamsDtoKindFieldFormat:
 		return true
-	case FieldInList:
+	case AsCodeVolumeMonitorParamsDtoKindFieldInList:
 		return true
-	case FieldNulls:
+	case AsCodeVolumeMonitorParamsDtoKindFieldNulls:
 		return true
-	case FieldUniqueness:
+	case AsCodeVolumeMonitorParamsDtoKindFieldUniqueness:
 		return true
-	case Freshness:
+	case AsCodeVolumeMonitorParamsDtoKindFreshness:
 		return true
-	case MetadataFreshness:
+	case AsCodeVolumeMonitorParamsDtoKindMetadataFreshness:
 		return true
-	case Metrics:
+	case AsCodeVolumeMonitorParamsDtoKindMetrics:
 		return true
-	case ReferentialIntegrity:
+	case AsCodeVolumeMonitorParamsDtoKindReferentialIntegrity:
 		return true
-	case RowDuplicates:
+	case AsCodeVolumeMonitorParamsDtoKindRowDuplicates:
 		return true
-	case SchemaChange:
+	case AsCodeVolumeMonitorParamsDtoKindSchemaChange:
 		return true
-	case Sql:
+	case AsCodeVolumeMonitorParamsDtoKindSql:
 		return true
-	case StaticCompleteness:
+	case AsCodeVolumeMonitorParamsDtoKindSqlCondition:
 		return true
-	case StaticFieldProfiling:
+	case AsCodeVolumeMonitorParamsDtoKindStaticCompleteness:
 		return true
-	case StaticMetrics:
+	case AsCodeVolumeMonitorParamsDtoKindStaticFieldProfiling:
 		return true
-	case ValueRange:
+	case AsCodeVolumeMonitorParamsDtoKindStaticMetrics:
 		return true
-	case Volume:
+	case AsCodeVolumeMonitorParamsDtoKindValueRange:
+		return true
+	case AsCodeVolumeMonitorParamsDtoKindVolume:
 		return true
 	default:
 		return false
@@ -4359,6 +4650,24 @@ func (e DatasourceProviderDtoType) Valid() bool {
 	}
 }
 
+// Defines values for DefaultWebhookParamsScope.
+const (
+	DefaultWebhookParamsScopeALLEVENTS    DefaultWebhookParamsScope = "ALL_EVENTS"
+	DefaultWebhookParamsScopeLINKEDEVENTS DefaultWebhookParamsScope = "LINKED_EVENTS"
+)
+
+// Valid indicates whether the value is a known member of the DefaultWebhookParamsScope enum.
+func (e DefaultWebhookParamsScope) Valid() bool {
+	switch e {
+	case DefaultWebhookParamsScopeALLEVENTS:
+		return true
+	case DefaultWebhookParamsScopeLINKEDEVENTS:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for DefaultWebhookParamsType.
 const (
 	DefaultWebhookParamsTypeDEFAULT    DefaultWebhookParamsType = "DEFAULT"
@@ -4377,10 +4686,1400 @@ func (e DefaultWebhookParamsType) Valid() bool {
 	}
 }
 
+// Defines values for EntityCustomMetadataDtoLineagePlatform.
+const (
+	EntityCustomMetadataDtoLineagePlatformACCELDATA                 EntityCustomMetadataDtoLineagePlatform = "ACCELDATA"
+	EntityCustomMetadataDtoLineagePlatformACRYLDATA                 EntityCustomMetadataDtoLineagePlatform = "ACRYL_DATA"
+	EntityCustomMetadataDtoLineagePlatformACTIANVECTOR              EntityCustomMetadataDtoLineagePlatform = "ACTIAN_VECTOR"
+	EntityCustomMetadataDtoLineagePlatformACTIVECAMPAIGN            EntityCustomMetadataDtoLineagePlatform = "ACTIVE_CAMPAIGN"
+	EntityCustomMetadataDtoLineagePlatformADA                       EntityCustomMetadataDtoLineagePlatform = "ADA"
+	EntityCustomMetadataDtoLineagePlatformADF                       EntityCustomMetadataDtoLineagePlatform = "ADF"
+	EntityCustomMetadataDtoLineagePlatformADJUST                    EntityCustomMetadataDtoLineagePlatform = "ADJUST"
+	EntityCustomMetadataDtoLineagePlatformADOBE                     EntityCustomMetadataDtoLineagePlatform = "ADOBE"
+	EntityCustomMetadataDtoLineagePlatformADPWFN                    EntityCustomMetadataDtoLineagePlatform = "ADP_WFN"
+	EntityCustomMetadataDtoLineagePlatformADROLL                    EntityCustomMetadataDtoLineagePlatform = "ADROLL"
+	EntityCustomMetadataDtoLineagePlatformAFFINITY                  EntityCustomMetadataDtoLineagePlatform = "AFFINITY"
+	EntityCustomMetadataDtoLineagePlatformAIRBYTE                   EntityCustomMetadataDtoLineagePlatform = "AIRBYTE"
+	EntityCustomMetadataDtoLineagePlatformAIRCALL                   EntityCustomMetadataDtoLineagePlatform = "AIRCALL"
+	EntityCustomMetadataDtoLineagePlatformAIRFLOW                   EntityCustomMetadataDtoLineagePlatform = "AIRFLOW"
+	EntityCustomMetadataDtoLineagePlatformAIRTABLE                  EntityCustomMetadataDtoLineagePlatform = "AIRTABLE"
+	EntityCustomMetadataDtoLineagePlatformALATION                   EntityCustomMetadataDtoLineagePlatform = "ALATION"
+	EntityCustomMetadataDtoLineagePlatformALCHEMER                  EntityCustomMetadataDtoLineagePlatform = "ALCHEMER"
+	EntityCustomMetadataDtoLineagePlatformALVINAI                   EntityCustomMetadataDtoLineagePlatform = "ALVIN_AI"
+	EntityCustomMetadataDtoLineagePlatformAMAZON                    EntityCustomMetadataDtoLineagePlatform = "AMAZON"
+	EntityCustomMetadataDtoLineagePlatformAMAZONCLOUDFRONT          EntityCustomMetadataDtoLineagePlatform = "AMAZON_CLOUDFRONT"
+	EntityCustomMetadataDtoLineagePlatformAMAZONDOCUMENTDB          EntityCustomMetadataDtoLineagePlatform = "AMAZON_DOCUMENTDB"
+	EntityCustomMetadataDtoLineagePlatformAMAZONDYNAMODB            EntityCustomMetadataDtoLineagePlatform = "AMAZON_DYNAMODB"
+	EntityCustomMetadataDtoLineagePlatformAMAZONFIREHOSE            EntityCustomMetadataDtoLineagePlatform = "AMAZON_FIREHOSE"
+	EntityCustomMetadataDtoLineagePlatformAMAZONSAGEMAKER           EntityCustomMetadataDtoLineagePlatform = "AMAZON_SAGEMAKER"
+	EntityCustomMetadataDtoLineagePlatformAMAZONSELLINGPARTNER      EntityCustomMetadataDtoLineagePlatform = "AMAZON_SELLING_PARTNER"
+	EntityCustomMetadataDtoLineagePlatformAMPLITUDE                 EntityCustomMetadataDtoLineagePlatform = "AMPLITUDE"
+	EntityCustomMetadataDtoLineagePlatformANAPLAN                   EntityCustomMetadataDtoLineagePlatform = "ANAPLAN"
+	EntityCustomMetadataDtoLineagePlatformANOMALO                   EntityCustomMetadataDtoLineagePlatform = "ANOMALO"
+	EntityCustomMetadataDtoLineagePlatformAPACHEKAFKA               EntityCustomMetadataDtoLineagePlatform = "APACHE_KAFKA"
+	EntityCustomMetadataDtoLineagePlatformAPACHESPARK               EntityCustomMetadataDtoLineagePlatform = "APACHE_SPARK"
+	EntityCustomMetadataDtoLineagePlatformAPPCUES                   EntityCustomMetadataDtoLineagePlatform = "APPCUES"
+	EntityCustomMetadataDtoLineagePlatformAPPFIGURES                EntityCustomMetadataDtoLineagePlatform = "APPFIGURES"
+	EntityCustomMetadataDtoLineagePlatformAPPLE                     EntityCustomMetadataDtoLineagePlatform = "APPLE"
+	EntityCustomMetadataDtoLineagePlatformAPPLEAPPSTORE             EntityCustomMetadataDtoLineagePlatform = "APPLE_APP_STORE"
+	EntityCustomMetadataDtoLineagePlatformAPPSFLYER                 EntityCustomMetadataDtoLineagePlatform = "APPSFLYER"
+	EntityCustomMetadataDtoLineagePlatformASANA                     EntityCustomMetadataDtoLineagePlatform = "ASANA"
+	EntityCustomMetadataDtoLineagePlatformASSEMBLED                 EntityCustomMetadataDtoLineagePlatform = "ASSEMBLED"
+	EntityCustomMetadataDtoLineagePlatformATHENA                    EntityCustomMetadataDtoLineagePlatform = "ATHENA"
+	EntityCustomMetadataDtoLineagePlatformATLAN                     EntityCustomMetadataDtoLineagePlatform = "ATLAN"
+	EntityCustomMetadataDtoLineagePlatformATLASSIANCONFLUENCE       EntityCustomMetadataDtoLineagePlatform = "ATLASSIAN_CONFLUENCE"
+	EntityCustomMetadataDtoLineagePlatformATLASSIANJIRA             EntityCustomMetadataDtoLineagePlatform = "ATLASSIAN_JIRA"
+	EntityCustomMetadataDtoLineagePlatformATLASSIANOPSGENIE         EntityCustomMetadataDtoLineagePlatform = "ATLASSIAN_OPSGENIE"
+	EntityCustomMetadataDtoLineagePlatformAUTH0                     EntityCustomMetadataDtoLineagePlatform = "AUTH0"
+	EntityCustomMetadataDtoLineagePlatformAUTODESKBIM360            EntityCustomMetadataDtoLineagePlatform = "AUTODESK_BIM_360"
+	EntityCustomMetadataDtoLineagePlatformAWIN                      EntityCustomMetadataDtoLineagePlatform = "AWIN"
+	EntityCustomMetadataDtoLineagePlatformAWSCLOUDTRAIL             EntityCustomMetadataDtoLineagePlatform = "AWS_CLOUDTRAIL"
+	EntityCustomMetadataDtoLineagePlatformAWSCOSTEXPLORER           EntityCustomMetadataDtoLineagePlatform = "AWS_COST_EXPLORER"
+	EntityCustomMetadataDtoLineagePlatformAWSINVENTORY              EntityCustomMetadataDtoLineagePlatform = "AWS_INVENTORY"
+	EntityCustomMetadataDtoLineagePlatformAWSLAMBDA                 EntityCustomMetadataDtoLineagePlatform = "AWS_LAMBDA"
+	EntityCustomMetadataDtoLineagePlatformAZURE                     EntityCustomMetadataDtoLineagePlatform = "AZURE"
+	EntityCustomMetadataDtoLineagePlatformBALLOTREADY               EntityCustomMetadataDtoLineagePlatform = "BALLOT_READY"
+	EntityCustomMetadataDtoLineagePlatformBAMBOOHR                  EntityCustomMetadataDtoLineagePlatform = "BAMBOOHR"
+	EntityCustomMetadataDtoLineagePlatformBIGCOMMERCE               EntityCustomMetadataDtoLineagePlatform = "BIGCOMMERCE"
+	EntityCustomMetadataDtoLineagePlatformBIGEYE                    EntityCustomMetadataDtoLineagePlatform = "BIGEYE"
+	EntityCustomMetadataDtoLineagePlatformBIGQUERY                  EntityCustomMetadataDtoLineagePlatform = "BIGQUERY"
+	EntityCustomMetadataDtoLineagePlatformBILLINGPLATFORM           EntityCustomMetadataDtoLineagePlatform = "BILLINGPLATFORM"
+	EntityCustomMetadataDtoLineagePlatformBIRDEYE                   EntityCustomMetadataDtoLineagePlatform = "BIRDEYE"
+	EntityCustomMetadataDtoLineagePlatformBLACKBOARD                EntityCustomMetadataDtoLineagePlatform = "BLACKBOARD"
+	EntityCustomMetadataDtoLineagePlatformBOX                       EntityCustomMetadataDtoLineagePlatform = "BOX"
+	EntityCustomMetadataDtoLineagePlatformBRAINTREE                 EntityCustomMetadataDtoLineagePlatform = "BRAINTREE"
+	EntityCustomMetadataDtoLineagePlatformBRAZE                     EntityCustomMetadataDtoLineagePlatform = "BRAZE"
+	EntityCustomMetadataDtoLineagePlatformBREVO                     EntityCustomMetadataDtoLineagePlatform = "BREVO"
+	EntityCustomMetadataDtoLineagePlatformBREX                      EntityCustomMetadataDtoLineagePlatform = "BREX"
+	EntityCustomMetadataDtoLineagePlatformBUILDKITE                 EntityCustomMetadataDtoLineagePlatform = "BUILDKITE"
+	EntityCustomMetadataDtoLineagePlatformBUZZSPROUT                EntityCustomMetadataDtoLineagePlatform = "BUZZSPROUT"
+	EntityCustomMetadataDtoLineagePlatformCALENDLY                  EntityCustomMetadataDtoLineagePlatform = "CALENDLY"
+	EntityCustomMetadataDtoLineagePlatformCAMPAIGNMONITOR           EntityCustomMetadataDtoLineagePlatform = "CAMPAIGN_MONITOR"
+	EntityCustomMetadataDtoLineagePlatformCANNY                     EntityCustomMetadataDtoLineagePlatform = "CANNY"
+	EntityCustomMetadataDtoLineagePlatformCANVAS                    EntityCustomMetadataDtoLineagePlatform = "CANVAS"
+	EntityCustomMetadataDtoLineagePlatformCAPTERRA                  EntityCustomMetadataDtoLineagePlatform = "CAPTERRA"
+	EntityCustomMetadataDtoLineagePlatformCASTORDOC                 EntityCustomMetadataDtoLineagePlatform = "CASTOR_DOC"
+	EntityCustomMetadataDtoLineagePlatformCATALOGGENERIC            EntityCustomMetadataDtoLineagePlatform = "CATALOG_GENERIC"
+	EntityCustomMetadataDtoLineagePlatformCENSUS                    EntityCustomMetadataDtoLineagePlatform = "CENSUS"
+	EntityCustomMetadataDtoLineagePlatformCERTINIA                  EntityCustomMetadataDtoLineagePlatform = "CERTINIA"
+	EntityCustomMetadataDtoLineagePlatformCHAMELEON                 EntityCustomMetadataDtoLineagePlatform = "CHAMELEON"
+	EntityCustomMetadataDtoLineagePlatformCHANNELADVISOR            EntityCustomMetadataDtoLineagePlatform = "CHANNEL_ADVISOR"
+	EntityCustomMetadataDtoLineagePlatformCHARGEBEE                 EntityCustomMetadataDtoLineagePlatform = "CHARGEBEE"
+	EntityCustomMetadataDtoLineagePlatformCHARGEDESK                EntityCustomMetadataDtoLineagePlatform = "CHARGEDESK"
+	EntityCustomMetadataDtoLineagePlatformCHARTMOGUL                EntityCustomMetadataDtoLineagePlatform = "CHARTMOGUL"
+	EntityCustomMetadataDtoLineagePlatformCHORUSAI                  EntityCustomMetadataDtoLineagePlatform = "CHORUS_AI"
+	EntityCustomMetadataDtoLineagePlatformCHURNKEY                  EntityCustomMetadataDtoLineagePlatform = "CHURNKEY"
+	EntityCustomMetadataDtoLineagePlatformCHURNZERO                 EntityCustomMetadataDtoLineagePlatform = "CHURNZERO"
+	EntityCustomMetadataDtoLineagePlatformCIMIS                     EntityCustomMetadataDtoLineagePlatform = "CIMIS"
+	EntityCustomMetadataDtoLineagePlatformCIN7                      EntityCustomMetadataDtoLineagePlatform = "CIN7"
+	EntityCustomMetadataDtoLineagePlatformCIRCLECI                  EntityCustomMetadataDtoLineagePlatform = "CIRCLE_CI"
+	EntityCustomMetadataDtoLineagePlatformCLARI                     EntityCustomMetadataDtoLineagePlatform = "CLARI"
+	EntityCustomMetadataDtoLineagePlatformCLICKUP                   EntityCustomMetadataDtoLineagePlatform = "CLICKUP"
+	EntityCustomMetadataDtoLineagePlatformCLIFFAI                   EntityCustomMetadataDtoLineagePlatform = "CLIFF_AI"
+	EntityCustomMetadataDtoLineagePlatformCLOSE                     EntityCustomMetadataDtoLineagePlatform = "CLOSE"
+	EntityCustomMetadataDtoLineagePlatformCOLLIBRA                  EntityCustomMetadataDtoLineagePlatform = "COLLIBRA"
+	EntityCustomMetadataDtoLineagePlatformCOMMERCETOOLS             EntityCustomMetadataDtoLineagePlatform = "COMMERCETOOLS"
+	EntityCustomMetadataDtoLineagePlatformCOMPOSER                  EntityCustomMetadataDtoLineagePlatform = "COMPOSER"
+	EntityCustomMetadataDtoLineagePlatformCONFLUENTCLOUD            EntityCustomMetadataDtoLineagePlatform = "CONFLUENT_CLOUD"
+	EntityCustomMetadataDtoLineagePlatformCONTRASTSECURITY          EntityCustomMetadataDtoLineagePlatform = "CONTRAST_SECURITY"
+	EntityCustomMetadataDtoLineagePlatformCOUPA                     EntityCustomMetadataDtoLineagePlatform = "COUPA"
+	EntityCustomMetadataDtoLineagePlatformCRITEO                    EntityCustomMetadataDtoLineagePlatform = "CRITEO"
+	EntityCustomMetadataDtoLineagePlatformCROSSBEAM                 EntityCustomMetadataDtoLineagePlatform = "CROSSBEAM"
+	EntityCustomMetadataDtoLineagePlatformCRUNCHBASE                EntityCustomMetadataDtoLineagePlatform = "CRUNCHBASE"
+	EntityCustomMetadataDtoLineagePlatformCUSTOMERIO                EntityCustomMetadataDtoLineagePlatform = "CUSTOMER_IO"
+	EntityCustomMetadataDtoLineagePlatformD2LBRIGHTSPACE            EntityCustomMetadataDtoLineagePlatform = "D2L_BRIGHTSPACE"
+	EntityCustomMetadataDtoLineagePlatformDAGSTER                   EntityCustomMetadataDtoLineagePlatform = "DAGSTER"
+	EntityCustomMetadataDtoLineagePlatformDATABAND                  EntityCustomMetadataDtoLineagePlatform = "DATABAND"
+	EntityCustomMetadataDtoLineagePlatformDATABRICKS                EntityCustomMetadataDtoLineagePlatform = "DATABRICKS"
+	EntityCustomMetadataDtoLineagePlatformDATABRICKSJOBS            EntityCustomMetadataDtoLineagePlatform = "DATABRICKS_JOBS"
+	EntityCustomMetadataDtoLineagePlatformDATADOG                   EntityCustomMetadataDtoLineagePlatform = "DATADOG"
+	EntityCustomMetadataDtoLineagePlatformDATAEDO                   EntityCustomMetadataDtoLineagePlatform = "DATAEDO"
+	EntityCustomMetadataDtoLineagePlatformDATAFOLD                  EntityCustomMetadataDtoLineagePlatform = "DATAFOLD"
+	EntityCustomMetadataDtoLineagePlatformDATAGALAXY                EntityCustomMetadataDtoLineagePlatform = "DATAGALAXY"
+	EntityCustomMetadataDtoLineagePlatformDATAHUB                   EntityCustomMetadataDtoLineagePlatform = "DATAHUB"
+	EntityCustomMetadataDtoLineagePlatformDATAIKU                   EntityCustomMetadataDtoLineagePlatform = "DATAIKU"
+	EntityCustomMetadataDtoLineagePlatformDATAWORLD                 EntityCustomMetadataDtoLineagePlatform = "DATA_WORLD"
+	EntityCustomMetadataDtoLineagePlatformDB2                       EntityCustomMetadataDtoLineagePlatform = "DB2"
+	EntityCustomMetadataDtoLineagePlatformDBT                       EntityCustomMetadataDtoLineagePlatform = "DBT"
+	EntityCustomMetadataDtoLineagePlatformDBTCLOUD                  EntityCustomMetadataDtoLineagePlatform = "DBTCLOUD"
+	EntityCustomMetadataDtoLineagePlatformDCLLOGISTICS              EntityCustomMetadataDtoLineagePlatform = "DCL_LOGISTICS"
+	EntityCustomMetadataDtoLineagePlatformDEAR                      EntityCustomMetadataDtoLineagePlatform = "DEAR"
+	EntityCustomMetadataDtoLineagePlatformDECUBE                    EntityCustomMetadataDtoLineagePlatform = "DECUBE"
+	EntityCustomMetadataDtoLineagePlatformDELIGHTED                 EntityCustomMetadataDtoLineagePlatform = "DELIGHTED"
+	EntityCustomMetadataDtoLineagePlatformDEPUTY                    EntityCustomMetadataDtoLineagePlatform = "DEPUTY"
+	EntityCustomMetadataDtoLineagePlatformDESTINI                   EntityCustomMetadataDtoLineagePlatform = "DESTINI"
+	EntityCustomMetadataDtoLineagePlatformDIXA                      EntityCustomMetadataDtoLineagePlatform = "DIXA"
+	EntityCustomMetadataDtoLineagePlatformDOCEBO                    EntityCustomMetadataDtoLineagePlatform = "DOCEBO"
+	EntityCustomMetadataDtoLineagePlatformDRATA                     EntityCustomMetadataDtoLineagePlatform = "DRATA"
+	EntityCustomMetadataDtoLineagePlatformDRIFT                     EntityCustomMetadataDtoLineagePlatform = "DRIFT"
+	EntityCustomMetadataDtoLineagePlatformDRIP                      EntityCustomMetadataDtoLineagePlatform = "DRIP"
+	EntityCustomMetadataDtoLineagePlatformDROPBOX                   EntityCustomMetadataDtoLineagePlatform = "DROPBOX"
+	EntityCustomMetadataDtoLineagePlatformDUOPLANE                  EntityCustomMetadataDtoLineagePlatform = "DUOPLANE"
+	EntityCustomMetadataDtoLineagePlatformEASYPOST                  EntityCustomMetadataDtoLineagePlatform = "EASY_POST"
+	EntityCustomMetadataDtoLineagePlatformECONOMIC                  EntityCustomMetadataDtoLineagePlatform = "E_CONOMIC"
+	EntityCustomMetadataDtoLineagePlatformELASTICSEARCH             EntityCustomMetadataDtoLineagePlatform = "ELASTICSEARCH"
+	EntityCustomMetadataDtoLineagePlatformELEMENTARY                EntityCustomMetadataDtoLineagePlatform = "ELEMENTARY"
+	EntityCustomMetadataDtoLineagePlatformELLUCIAN                  EntityCustomMetadataDtoLineagePlatform = "ELLUCIAN"
+	EntityCustomMetadataDtoLineagePlatformELOQUA                    EntityCustomMetadataDtoLineagePlatform = "ELOQUA"
+	EntityCustomMetadataDtoLineagePlatformEMAIL                     EntityCustomMetadataDtoLineagePlatform = "EMAIL"
+	EntityCustomMetadataDtoLineagePlatformEMPLOYMENTHERO            EntityCustomMetadataDtoLineagePlatform = "EMPLOYMENT_HERO"
+	EntityCustomMetadataDtoLineagePlatformEPICORPROPHET21           EntityCustomMetadataDtoLineagePlatform = "EPICOR_PROPHET_21"
+	EntityCustomMetadataDtoLineagePlatformEVENTBRITE                EntityCustomMetadataDtoLineagePlatform = "EVENTBRITE"
+	EntityCustomMetadataDtoLineagePlatformEVERHOUR                  EntityCustomMetadataDtoLineagePlatform = "EVERHOUR"
+	EntityCustomMetadataDtoLineagePlatformEXCEL                     EntityCustomMetadataDtoLineagePlatform = "EXCEL"
+	EntityCustomMetadataDtoLineagePlatformEXPENSIFY                 EntityCustomMetadataDtoLineagePlatform = "EXPENSIFY"
+	EntityCustomMetadataDtoLineagePlatformFACEBOOK                  EntityCustomMetadataDtoLineagePlatform = "FACEBOOK"
+	EntityCustomMetadataDtoLineagePlatformFIFTEENFIVE               EntityCustomMetadataDtoLineagePlatform = "FIFTEENFIVE"
+	EntityCustomMetadataDtoLineagePlatformFIGMA                     EntityCustomMetadataDtoLineagePlatform = "FIGMA"
+	EntityCustomMetadataDtoLineagePlatformFIREBASE                  EntityCustomMetadataDtoLineagePlatform = "FIREBASE"
+	EntityCustomMetadataDtoLineagePlatformFIREBOLT                  EntityCustomMetadataDtoLineagePlatform = "FIREBOLT"
+	EntityCustomMetadataDtoLineagePlatformFIVETRAN                  EntityCustomMetadataDtoLineagePlatform = "FIVETRAN"
+	EntityCustomMetadataDtoLineagePlatformFLEXPORT                  EntityCustomMetadataDtoLineagePlatform = "FLEXPORT"
+	EntityCustomMetadataDtoLineagePlatformFORJ                      EntityCustomMetadataDtoLineagePlatform = "FORJ"
+	EntityCustomMetadataDtoLineagePlatformFOUNTAIN                  EntityCustomMetadataDtoLineagePlatform = "FOUNTAIN"
+	EntityCustomMetadataDtoLineagePlatformFREIGHTVIEW               EntityCustomMetadataDtoLineagePlatform = "FREIGHTVIEW"
+	EntityCustomMetadataDtoLineagePlatformFRESHBOOKS                EntityCustomMetadataDtoLineagePlatform = "FRESHBOOKS"
+	EntityCustomMetadataDtoLineagePlatformFRESHCHAT                 EntityCustomMetadataDtoLineagePlatform = "FRESHCHAT"
+	EntityCustomMetadataDtoLineagePlatformFRESHDESK                 EntityCustomMetadataDtoLineagePlatform = "FRESHDESK"
+	EntityCustomMetadataDtoLineagePlatformFRESHDESKCONTACTCENTER    EntityCustomMetadataDtoLineagePlatform = "FRESHDESK_CONTACT_CENTER"
+	EntityCustomMetadataDtoLineagePlatformFRESHSERVICE              EntityCustomMetadataDtoLineagePlatform = "FRESHSERVICE"
+	EntityCustomMetadataDtoLineagePlatformFRESHSUCCESS              EntityCustomMetadataDtoLineagePlatform = "FRESHSUCCESS"
+	EntityCustomMetadataDtoLineagePlatformFRESHTEAM                 EntityCustomMetadataDtoLineagePlatform = "FRESHTEAM"
+	EntityCustomMetadataDtoLineagePlatformFRIENDBUY                 EntityCustomMetadataDtoLineagePlatform = "FRIENDBUY"
+	EntityCustomMetadataDtoLineagePlatformFRONT                     EntityCustomMetadataDtoLineagePlatform = "FRONT"
+	EntityCustomMetadataDtoLineagePlatformFTP                       EntityCustomMetadataDtoLineagePlatform = "FTP"
+	EntityCustomMetadataDtoLineagePlatformFULLSTORY                 EntityCustomMetadataDtoLineagePlatform = "FULLSTORY"
+	EntityCustomMetadataDtoLineagePlatformG2                        EntityCustomMetadataDtoLineagePlatform = "G2"
+	EntityCustomMetadataDtoLineagePlatformGAINSIGHT                 EntityCustomMetadataDtoLineagePlatform = "GAINSIGHT"
+	EntityCustomMetadataDtoLineagePlatformGEM                       EntityCustomMetadataDtoLineagePlatform = "GEM"
+	EntityCustomMetadataDtoLineagePlatformGIT                       EntityCustomMetadataDtoLineagePlatform = "GIT"
+	EntityCustomMetadataDtoLineagePlatformGITHUB                    EntityCustomMetadataDtoLineagePlatform = "GITHUB"
+	EntityCustomMetadataDtoLineagePlatformGITLAB                    EntityCustomMetadataDtoLineagePlatform = "GITLAB"
+	EntityCustomMetadataDtoLineagePlatformGLADLY                    EntityCustomMetadataDtoLineagePlatform = "GLADLY"
+	EntityCustomMetadataDtoLineagePlatformGOCARDLESS                EntityCustomMetadataDtoLineagePlatform = "GOCARDLESS"
+	EntityCustomMetadataDtoLineagePlatformGONG                      EntityCustomMetadataDtoLineagePlatform = "GONG"
+	EntityCustomMetadataDtoLineagePlatformGOOGLE                    EntityCustomMetadataDtoLineagePlatform = "GOOGLE"
+	EntityCustomMetadataDtoLineagePlatformGOOGLEADMANAGER           EntityCustomMetadataDtoLineagePlatform = "GOOGLE_AD_MANAGER"
+	EntityCustomMetadataDtoLineagePlatformGOOGLEADS                 EntityCustomMetadataDtoLineagePlatform = "GOOGLE_ADS"
+	EntityCustomMetadataDtoLineagePlatformGOOGLEANALYTICS           EntityCustomMetadataDtoLineagePlatform = "GOOGLE_ANALYTICS"
+	EntityCustomMetadataDtoLineagePlatformGOOGLECALENDAR            EntityCustomMetadataDtoLineagePlatform = "GOOGLE_CALENDAR"
+	EntityCustomMetadataDtoLineagePlatformGOOGLECAMPAIGNMANAGER     EntityCustomMetadataDtoLineagePlatform = "GOOGLE_CAMPAIGN_MANAGER"
+	EntityCustomMetadataDtoLineagePlatformGOOGLECHROME              EntityCustomMetadataDtoLineagePlatform = "GOOGLE_CHROME"
+	EntityCustomMetadataDtoLineagePlatformGOOGLECLOUD               EntityCustomMetadataDtoLineagePlatform = "GOOGLE_CLOUD"
+	EntityCustomMetadataDtoLineagePlatformGOOGLECLOUDSTORAGE        EntityCustomMetadataDtoLineagePlatform = "GOOGLE_CLOUD_STORAGE"
+	EntityCustomMetadataDtoLineagePlatformGOOGLEDISPLAY             EntityCustomMetadataDtoLineagePlatform = "GOOGLE_DISPLAY"
+	EntityCustomMetadataDtoLineagePlatformGOOGLEDRIVE               EntityCustomMetadataDtoLineagePlatform = "GOOGLE_DRIVE"
+	EntityCustomMetadataDtoLineagePlatformGOOGLEPLAY                EntityCustomMetadataDtoLineagePlatform = "GOOGLE_PLAY"
+	EntityCustomMetadataDtoLineagePlatformGOOGLESEARCHADS360        EntityCustomMetadataDtoLineagePlatform = "GOOGLE_SEARCH_ADS_360"
+	EntityCustomMetadataDtoLineagePlatformGOOGLESEARCHCONSOLE       EntityCustomMetadataDtoLineagePlatform = "GOOGLE_SEARCH_CONSOLE"
+	EntityCustomMetadataDtoLineagePlatformGOOGLESHEETS              EntityCustomMetadataDtoLineagePlatform = "GOOGLE_SHEETS"
+	EntityCustomMetadataDtoLineagePlatformGOOGLETASKS               EntityCustomMetadataDtoLineagePlatform = "GOOGLE_TASKS"
+	EntityCustomMetadataDtoLineagePlatformGORGIAS                   EntityCustomMetadataDtoLineagePlatform = "GORGIAS"
+	EntityCustomMetadataDtoLineagePlatformGREENHOUSE                EntityCustomMetadataDtoLineagePlatform = "GREENHOUSE"
+	EntityCustomMetadataDtoLineagePlatformGREENPLUM                 EntityCustomMetadataDtoLineagePlatform = "GREENPLUM"
+	EntityCustomMetadataDtoLineagePlatformGREENPOWERMONITOR         EntityCustomMetadataDtoLineagePlatform = "GREEN_POWER_MONITOR"
+	EntityCustomMetadataDtoLineagePlatformGREPSR                    EntityCustomMetadataDtoLineagePlatform = "GREPSR"
+	EntityCustomMetadataDtoLineagePlatformGRIN                      EntityCustomMetadataDtoLineagePlatform = "GRIN"
+	EntityCustomMetadataDtoLineagePlatformGURU                      EntityCustomMetadataDtoLineagePlatform = "GURU"
+	EntityCustomMetadataDtoLineagePlatformH2                        EntityCustomMetadataDtoLineagePlatform = "H2"
+	EntityCustomMetadataDtoLineagePlatformHARVEST                   EntityCustomMetadataDtoLineagePlatform = "HARVEST"
+	EntityCustomMetadataDtoLineagePlatformHDFS                      EntityCustomMetadataDtoLineagePlatform = "HDFS"
+	EntityCustomMetadataDtoLineagePlatformHEAP                      EntityCustomMetadataDtoLineagePlatform = "HEAP"
+	EntityCustomMetadataDtoLineagePlatformHEIGHT                    EntityCustomMetadataDtoLineagePlatform = "HEIGHT"
+	EntityCustomMetadataDtoLineagePlatformHELPSCOUT                 EntityCustomMetadataDtoLineagePlatform = "HELP_SCOUT"
+	EntityCustomMetadataDtoLineagePlatformHELPSHIFT                 EntityCustomMetadataDtoLineagePlatform = "HELPSHIFT"
+	EntityCustomMetadataDtoLineagePlatformHEROKUKAFKA               EntityCustomMetadataDtoLineagePlatform = "HEROKU_KAFKA"
+	EntityCustomMetadataDtoLineagePlatformHEX                       EntityCustomMetadataDtoLineagePlatform = "HEX"
+	EntityCustomMetadataDtoLineagePlatformHIBOB                     EntityCustomMetadataDtoLineagePlatform = "HIBOB"
+	EntityCustomMetadataDtoLineagePlatformHIGHTOUCH                 EntityCustomMetadataDtoLineagePlatform = "HIGH_TOUCH"
+	EntityCustomMetadataDtoLineagePlatformHOPIN                     EntityCustomMetadataDtoLineagePlatform = "HOPIN"
+	EntityCustomMetadataDtoLineagePlatformHUBSPOT                   EntityCustomMetadataDtoLineagePlatform = "HUBSPOT"
+	EntityCustomMetadataDtoLineagePlatformIMPACT                    EntityCustomMetadataDtoLineagePlatform = "IMPACT"
+	EntityCustomMetadataDtoLineagePlatformINCIDENTIO                EntityCustomMetadataDtoLineagePlatform = "INCIDENT_IO"
+	EntityCustomMetadataDtoLineagePlatformINFOBIP                   EntityCustomMetadataDtoLineagePlatform = "INFOBIP"
+	EntityCustomMetadataDtoLineagePlatformINFORMATICA               EntityCustomMetadataDtoLineagePlatform = "INFORMATICA"
+	EntityCustomMetadataDtoLineagePlatformINSIGHTLY                 EntityCustomMetadataDtoLineagePlatform = "INSIGHTLY"
+	EntityCustomMetadataDtoLineagePlatformINSTAGRAM                 EntityCustomMetadataDtoLineagePlatform = "INSTAGRAM"
+	EntityCustomMetadataDtoLineagePlatformINTERCOM                  EntityCustomMetadataDtoLineagePlatform = "INTERCOM"
+	EntityCustomMetadataDtoLineagePlatformINVESTOPEDIA              EntityCustomMetadataDtoLineagePlatform = "INVESTOPEDIA"
+	EntityCustomMetadataDtoLineagePlatformIRONCLAD                  EntityCustomMetadataDtoLineagePlatform = "IRONCLAD"
+	EntityCustomMetadataDtoLineagePlatformIRONSOURCE                EntityCustomMetadataDtoLineagePlatform = "IRONSOURCE"
+	EntityCustomMetadataDtoLineagePlatformITERABLE                  EntityCustomMetadataDtoLineagePlatform = "ITERABLE"
+	EntityCustomMetadataDtoLineagePlatformJAVA                      EntityCustomMetadataDtoLineagePlatform = "JAVA"
+	EntityCustomMetadataDtoLineagePlatformJENKINS                   EntityCustomMetadataDtoLineagePlatform = "JENKINS"
+	EntityCustomMetadataDtoLineagePlatformJUSTCALL                  EntityCustomMetadataDtoLineagePlatform = "JUSTCALL"
+	EntityCustomMetadataDtoLineagePlatformKANDJI                    EntityCustomMetadataDtoLineagePlatform = "KANDJI"
+	EntityCustomMetadataDtoLineagePlatformKENSU                     EntityCustomMetadataDtoLineagePlatform = "KENSU"
+	EntityCustomMetadataDtoLineagePlatformKHOROSCARE                EntityCustomMetadataDtoLineagePlatform = "KHOROS_CARE"
+	EntityCustomMetadataDtoLineagePlatformKISSMETRICS               EntityCustomMetadataDtoLineagePlatform = "KISSMETRICS"
+	EntityCustomMetadataDtoLineagePlatformKLAVIYO                   EntityCustomMetadataDtoLineagePlatform = "KLAVIYO"
+	EntityCustomMetadataDtoLineagePlatformKNOWBE4                   EntityCustomMetadataDtoLineagePlatform = "KNOWBE4"
+	EntityCustomMetadataDtoLineagePlatformKONNECTINSIGHTS           EntityCustomMetadataDtoLineagePlatform = "KONNECT_INSIGHTS"
+	EntityCustomMetadataDtoLineagePlatformKUSTOMER                  EntityCustomMetadataDtoLineagePlatform = "KUSTOMER"
+	EntityCustomMetadataDtoLineagePlatformLARIATDATA                EntityCustomMetadataDtoLineagePlatform = "LARIAT_DATA"
+	EntityCustomMetadataDtoLineagePlatformLATTICE                   EntityCustomMetadataDtoLineagePlatform = "LATTICE"
+	EntityCustomMetadataDtoLineagePlatformLAUNCHDARKLY              EntityCustomMetadataDtoLineagePlatform = "LAUNCH_DARKLY"
+	EntityCustomMetadataDtoLineagePlatformLEARNUPON                 EntityCustomMetadataDtoLineagePlatform = "LEARN_UPON"
+	EntityCustomMetadataDtoLineagePlatformLESSONLY                  EntityCustomMetadataDtoLineagePlatform = "LESSONLY"
+	EntityCustomMetadataDtoLineagePlatformLEVER                     EntityCustomMetadataDtoLineagePlatform = "LEVER"
+	EntityCustomMetadataDtoLineagePlatformLIFTOFF                   EntityCustomMetadataDtoLineagePlatform = "LIFTOFF"
+	EntityCustomMetadataDtoLineagePlatformLIGHTDASH                 EntityCustomMetadataDtoLineagePlatform = "LIGHTDASH"
+	EntityCustomMetadataDtoLineagePlatformLIGHTSPEED                EntityCustomMetadataDtoLineagePlatform = "LIGHTSPEED"
+	EntityCustomMetadataDtoLineagePlatformLIGHTSUP                  EntityCustomMetadataDtoLineagePlatform = "LIGHTSUP"
+	EntityCustomMetadataDtoLineagePlatformLINEAR                    EntityCustomMetadataDtoLineagePlatform = "LINEAR"
+	EntityCustomMetadataDtoLineagePlatformLINKEDIN                  EntityCustomMetadataDtoLineagePlatform = "LINKEDIN"
+	EntityCustomMetadataDtoLineagePlatformLIVECHAT                  EntityCustomMetadataDtoLineagePlatform = "LIVECHAT"
+	EntityCustomMetadataDtoLineagePlatformLOADEDCOMMERCE            EntityCustomMetadataDtoLineagePlatform = "LOADED_COMMERCE"
+	EntityCustomMetadataDtoLineagePlatformLOB                       EntityCustomMetadataDtoLineagePlatform = "LOB"
+	EntityCustomMetadataDtoLineagePlatformLOOKER                    EntityCustomMetadataDtoLineagePlatform = "LOOKER"
+	EntityCustomMetadataDtoLineagePlatformLOOP                      EntityCustomMetadataDtoLineagePlatform = "LOOP"
+	EntityCustomMetadataDtoLineagePlatformLOOPIO                    EntityCustomMetadataDtoLineagePlatform = "LOOPIO"
+	EntityCustomMetadataDtoLineagePlatformLUMA                      EntityCustomMetadataDtoLineagePlatform = "LUMA"
+	EntityCustomMetadataDtoLineagePlatformMAGENTO                   EntityCustomMetadataDtoLineagePlatform = "MAGENTO"
+	EntityCustomMetadataDtoLineagePlatformMAILCHIMP                 EntityCustomMetadataDtoLineagePlatform = "MAILCHIMP"
+	EntityCustomMetadataDtoLineagePlatformMAILGUN                   EntityCustomMetadataDtoLineagePlatform = "MAILGUN"
+	EntityCustomMetadataDtoLineagePlatformMANDRILL                  EntityCustomMetadataDtoLineagePlatform = "MANDRILL"
+	EntityCustomMetadataDtoLineagePlatformMANTA                     EntityCustomMetadataDtoLineagePlatform = "MANTA"
+	EntityCustomMetadataDtoLineagePlatformMARIADB                   EntityCustomMetadataDtoLineagePlatform = "MARIADB"
+	EntityCustomMetadataDtoLineagePlatformMARINSOFTWARE             EntityCustomMetadataDtoLineagePlatform = "MARIN_SOFTWARE"
+	EntityCustomMetadataDtoLineagePlatformMARKETO                   EntityCustomMetadataDtoLineagePlatform = "MARKETO"
+	EntityCustomMetadataDtoLineagePlatformMATILLION                 EntityCustomMetadataDtoLineagePlatform = "MATILLION"
+	EntityCustomMetadataDtoLineagePlatformMATTERMOST                EntityCustomMetadataDtoLineagePlatform = "MATTERMOST"
+	EntityCustomMetadataDtoLineagePlatformMAVENLINK                 EntityCustomMetadataDtoLineagePlatform = "MAVENLINK"
+	EntityCustomMetadataDtoLineagePlatformMAXIO                     EntityCustomMetadataDtoLineagePlatform = "MAXIO"
+	EntityCustomMetadataDtoLineagePlatformMEDALLIA                  EntityCustomMetadataDtoLineagePlatform = "MEDALLIA"
+	EntityCustomMetadataDtoLineagePlatformMETA                      EntityCustomMetadataDtoLineagePlatform = "META"
+	EntityCustomMetadataDtoLineagePlatformMETABASE                  EntityCustomMetadataDtoLineagePlatform = "METABASE"
+	EntityCustomMetadataDtoLineagePlatformMETAPHOR                  EntityCustomMetadataDtoLineagePlatform = "METAPHOR"
+	EntityCustomMetadataDtoLineagePlatformMETAPLANE                 EntityCustomMetadataDtoLineagePlatform = "METAPLANE"
+	EntityCustomMetadataDtoLineagePlatformMICROSOFT                 EntityCustomMetadataDtoLineagePlatform = "MICROSOFT"
+	EntityCustomMetadataDtoLineagePlatformMICROSOFTAZUREBLOBSTORAGE EntityCustomMetadataDtoLineagePlatform = "MICROSOFT_AZURE_BLOB_STORAGE"
+	EntityCustomMetadataDtoLineagePlatformMICROSOFTAZUREML          EntityCustomMetadataDtoLineagePlatform = "MICROSOFT_AZURE_ML"
+	EntityCustomMetadataDtoLineagePlatformMICROSOFTDYNAMICS         EntityCustomMetadataDtoLineagePlatform = "MICROSOFT_DYNAMICS"
+	EntityCustomMetadataDtoLineagePlatformMICROSOFTONEDRIVE         EntityCustomMetadataDtoLineagePlatform = "MICROSOFT_ONEDRIVE"
+	EntityCustomMetadataDtoLineagePlatformMICROSOFTPURVIEW          EntityCustomMetadataDtoLineagePlatform = "MICROSOFT_PURVIEW"
+	EntityCustomMetadataDtoLineagePlatformMICROSOFTTEAMS            EntityCustomMetadataDtoLineagePlatform = "MICROSOFT_TEAMS"
+	EntityCustomMetadataDtoLineagePlatformMICROSTRATEGY             EntityCustomMetadataDtoLineagePlatform = "MICROSTRATEGY"
+	EntityCustomMetadataDtoLineagePlatformMIXMAX                    EntityCustomMetadataDtoLineagePlatform = "MIXMAX"
+	EntityCustomMetadataDtoLineagePlatformMIXPANEL                  EntityCustomMetadataDtoLineagePlatform = "MIXPANEL"
+	EntityCustomMetadataDtoLineagePlatformMONDAYCOM                 EntityCustomMetadataDtoLineagePlatform = "MONDAY_COM"
+	EntityCustomMetadataDtoLineagePlatformMONGODB                   EntityCustomMetadataDtoLineagePlatform = "MONGODB"
+	EntityCustomMetadataDtoLineagePlatformMONTECARLO                EntityCustomMetadataDtoLineagePlatform = "MONTE_CARLO"
+	EntityCustomMetadataDtoLineagePlatformMOUNTAIN                  EntityCustomMetadataDtoLineagePlatform = "MOUNTAIN"
+	EntityCustomMetadataDtoLineagePlatformMSSQL                     EntityCustomMetadataDtoLineagePlatform = "MSSQL"
+	EntityCustomMetadataDtoLineagePlatformMULESOFT                  EntityCustomMetadataDtoLineagePlatform = "MULESOFT"
+	EntityCustomMetadataDtoLineagePlatformMUX                       EntityCustomMetadataDtoLineagePlatform = "MUX"
+	EntityCustomMetadataDtoLineagePlatformMWAA                      EntityCustomMetadataDtoLineagePlatform = "MWAA"
+	EntityCustomMetadataDtoLineagePlatformMYSQL                     EntityCustomMetadataDtoLineagePlatform = "MYSQL"
+	EntityCustomMetadataDtoLineagePlatformNAMELY                    EntityCustomMetadataDtoLineagePlatform = "NAMELY"
+	EntityCustomMetadataDtoLineagePlatformNCINO                     EntityCustomMetadataDtoLineagePlatform = "NCINO"
+	EntityCustomMetadataDtoLineagePlatformNETSUITEANALYTICS         EntityCustomMetadataDtoLineagePlatform = "NETSUITE_ANALYTICS"
+	EntityCustomMetadataDtoLineagePlatformNEWRELIC                  EntityCustomMetadataDtoLineagePlatform = "NEW_RELIC"
+	EntityCustomMetadataDtoLineagePlatformNOTION                    EntityCustomMetadataDtoLineagePlatform = "NOTION"
+	EntityCustomMetadataDtoLineagePlatformNYLAS                     EntityCustomMetadataDtoLineagePlatform = "NYLAS"
+	EntityCustomMetadataDtoLineagePlatformOBSERVE                   EntityCustomMetadataDtoLineagePlatform = "OBSERVE"
+	EntityCustomMetadataDtoLineagePlatformOCTOPAI                   EntityCustomMetadataDtoLineagePlatform = "OCTOPAI"
+	EntityCustomMetadataDtoLineagePlatformOKTA                      EntityCustomMetadataDtoLineagePlatform = "OKTA"
+	EntityCustomMetadataDtoLineagePlatformOPENAI                    EntityCustomMetadataDtoLineagePlatform = "OPEN_AI"
+	EntityCustomMetadataDtoLineagePlatformOPENDATADC                EntityCustomMetadataDtoLineagePlatform = "OPEN_DATA_DC"
+	EntityCustomMetadataDtoLineagePlatformOPENEXCHANGESRATES        EntityCustomMetadataDtoLineagePlatform = "OPEN_EXCHANGES_RATES"
+	EntityCustomMetadataDtoLineagePlatformOPENSEARCH                EntityCustomMetadataDtoLineagePlatform = "OPEN_SEARCH"
+	EntityCustomMetadataDtoLineagePlatformOPTIMIZELY                EntityCustomMetadataDtoLineagePlatform = "OPTIMIZELY"
+	EntityCustomMetadataDtoLineagePlatformORACLE                    EntityCustomMetadataDtoLineagePlatform = "ORACLE"
+	EntityCustomMetadataDtoLineagePlatformORBITCOMMUNITYPLATFORM    EntityCustomMetadataDtoLineagePlatform = "ORBIT_COMMUNITY_PLATFORM"
+	EntityCustomMetadataDtoLineagePlatformORDWAY                    EntityCustomMetadataDtoLineagePlatform = "ORDWAY"
+	EntityCustomMetadataDtoLineagePlatformORTTO                     EntityCustomMetadataDtoLineagePlatform = "ORTTO"
+	EntityCustomMetadataDtoLineagePlatformOSCOMMERCE                EntityCustomMetadataDtoLineagePlatform = "OS_COMMERCE"
+	EntityCustomMetadataDtoLineagePlatformOUTBRAIN                  EntityCustomMetadataDtoLineagePlatform = "OUTBRAIN"
+	EntityCustomMetadataDtoLineagePlatformOUTREACH                  EntityCustomMetadataDtoLineagePlatform = "OUTREACH"
+	EntityCustomMetadataDtoLineagePlatformOVALEDGE                  EntityCustomMetadataDtoLineagePlatform = "OVALEDGE"
+	EntityCustomMetadataDtoLineagePlatformPAGERDUTY                 EntityCustomMetadataDtoLineagePlatform = "PAGERDUTY"
+	EntityCustomMetadataDtoLineagePlatformPAGERSHIFT                EntityCustomMetadataDtoLineagePlatform = "PAGERSHIFT"
+	EntityCustomMetadataDtoLineagePlatformPAYPAL                    EntityCustomMetadataDtoLineagePlatform = "PAYPAL"
+	EntityCustomMetadataDtoLineagePlatformPENDO                     EntityCustomMetadataDtoLineagePlatform = "PENDO"
+	EntityCustomMetadataDtoLineagePlatformPINGDOM                   EntityCustomMetadataDtoLineagePlatform = "PINGDOM"
+	EntityCustomMetadataDtoLineagePlatformPINTEREST                 EntityCustomMetadataDtoLineagePlatform = "PINTEREST"
+	EntityCustomMetadataDtoLineagePlatformPIPE17                    EntityCustomMetadataDtoLineagePlatform = "PIPE17"
+	EntityCustomMetadataDtoLineagePlatformPIPEDRIVE                 EntityCustomMetadataDtoLineagePlatform = "PIPEDRIVE"
+	EntityCustomMetadataDtoLineagePlatformPIVOTALTRACKER            EntityCustomMetadataDtoLineagePlatform = "PIVOTAL_TRACKER"
+	EntityCustomMetadataDtoLineagePlatformPLAYVOX                   EntityCustomMetadataDtoLineagePlatform = "PLAYVOX"
+	EntityCustomMetadataDtoLineagePlatformPOSTGRES                  EntityCustomMetadataDtoLineagePlatform = "POSTGRES"
+	EntityCustomMetadataDtoLineagePlatformPOSTHOG                   EntityCustomMetadataDtoLineagePlatform = "POSTHOG"
+	EntityCustomMetadataDtoLineagePlatformPOWERBI                   EntityCustomMetadataDtoLineagePlatform = "POWER_BI"
+	EntityCustomMetadataDtoLineagePlatformPOWERSCHOOL               EntityCustomMetadataDtoLineagePlatform = "POWERSCHOOL"
+	EntityCustomMetadataDtoLineagePlatformPREFECT                   EntityCustomMetadataDtoLineagePlatform = "PREFECT"
+	EntityCustomMetadataDtoLineagePlatformPRESTASHOP                EntityCustomMetadataDtoLineagePlatform = "PRESTASHOP"
+	EntityCustomMetadataDtoLineagePlatformPRESTO                    EntityCustomMetadataDtoLineagePlatform = "PRESTO"
+	EntityCustomMetadataDtoLineagePlatformPRODUCTBOARD              EntityCustomMetadataDtoLineagePlatform = "PRODUCTBOARD"
+	EntityCustomMetadataDtoLineagePlatformPYTHON                    EntityCustomMetadataDtoLineagePlatform = "PYTHON"
+	EntityCustomMetadataDtoLineagePlatformQLIK                      EntityCustomMetadataDtoLineagePlatform = "QLIK"
+	EntityCustomMetadataDtoLineagePlatformQUALAROO                  EntityCustomMetadataDtoLineagePlatform = "QUALAROO"
+	EntityCustomMetadataDtoLineagePlatformQUALTRICS                 EntityCustomMetadataDtoLineagePlatform = "QUALTRICS"
+	EntityCustomMetadataDtoLineagePlatformQUICKBOOKS                EntityCustomMetadataDtoLineagePlatform = "QUICKBOOKS"
+	EntityCustomMetadataDtoLineagePlatformQUICKSIGHT                EntityCustomMetadataDtoLineagePlatform = "QUICKSIGHT"
+	EntityCustomMetadataDtoLineagePlatformRAMP                      EntityCustomMetadataDtoLineagePlatform = "RAMP"
+	EntityCustomMetadataDtoLineagePlatformRARIBLE                   EntityCustomMetadataDtoLineagePlatform = "RARIBLE"
+	EntityCustomMetadataDtoLineagePlatformRECHARGE                  EntityCustomMetadataDtoLineagePlatform = "RECHARGE"
+	EntityCustomMetadataDtoLineagePlatformRECURLY                   EntityCustomMetadataDtoLineagePlatform = "RECURLY"
+	EntityCustomMetadataDtoLineagePlatformREDDIT                    EntityCustomMetadataDtoLineagePlatform = "REDDIT"
+	EntityCustomMetadataDtoLineagePlatformREDSHIFT                  EntityCustomMetadataDtoLineagePlatform = "REDSHIFT"
+	EntityCustomMetadataDtoLineagePlatformRELTIO                    EntityCustomMetadataDtoLineagePlatform = "RELTIO"
+	EntityCustomMetadataDtoLineagePlatformREPLYIO                   EntityCustomMetadataDtoLineagePlatform = "REPLY_IO"
+	EntityCustomMetadataDtoLineagePlatformRETAILNEXT                EntityCustomMetadataDtoLineagePlatform = "RETAILNEXT"
+	EntityCustomMetadataDtoLineagePlatformRETENTLY                  EntityCustomMetadataDtoLineagePlatform = "RETENTLY"
+	EntityCustomMetadataDtoLineagePlatformREVELSYSTEMS              EntityCustomMetadataDtoLineagePlatform = "REVEL_SYSTEMS"
+	EntityCustomMetadataDtoLineagePlatformRINGCENTRAL               EntityCustomMetadataDtoLineagePlatform = "RINGCENTRAL"
+	EntityCustomMetadataDtoLineagePlatformRIPPLING                  EntityCustomMetadataDtoLineagePlatform = "RIPPLING"
+	EntityCustomMetadataDtoLineagePlatformROLLBAR                   EntityCustomMetadataDtoLineagePlatform = "ROLLBAR"
+	EntityCustomMetadataDtoLineagePlatformROOTLY                    EntityCustomMetadataDtoLineagePlatform = "ROOTLY"
+	EntityCustomMetadataDtoLineagePlatformS3                        EntityCustomMetadataDtoLineagePlatform = "S3"
+	EntityCustomMetadataDtoLineagePlatformSAGEHR                    EntityCustomMetadataDtoLineagePlatform = "SAGE_HR"
+	EntityCustomMetadataDtoLineagePlatformSAGEINTACCT               EntityCustomMetadataDtoLineagePlatform = "SAGE_INTACCT"
+	EntityCustomMetadataDtoLineagePlatformSAILTHRU                  EntityCustomMetadataDtoLineagePlatform = "SAILTHRU"
+	EntityCustomMetadataDtoLineagePlatformSALESFORCE                EntityCustomMetadataDtoLineagePlatform = "SALESFORCE"
+	EntityCustomMetadataDtoLineagePlatformSALESLOFT                 EntityCustomMetadataDtoLineagePlatform = "SALESLOFT"
+	EntityCustomMetadataDtoLineagePlatformSALSIFY                   EntityCustomMetadataDtoLineagePlatform = "SALSIFY"
+	EntityCustomMetadataDtoLineagePlatformSAMSARA                   EntityCustomMetadataDtoLineagePlatform = "SAMSARA"
+	EntityCustomMetadataDtoLineagePlatformSAP                       EntityCustomMetadataDtoLineagePlatform = "SAP"
+	EntityCustomMetadataDtoLineagePlatformSAPCONCUR                 EntityCustomMetadataDtoLineagePlatform = "SAP_CONCUR"
+	EntityCustomMetadataDtoLineagePlatformSCORM                     EntityCustomMetadataDtoLineagePlatform = "SCORM"
+	EntityCustomMetadataDtoLineagePlatformSECODA                    EntityCustomMetadataDtoLineagePlatform = "SECODA"
+	EntityCustomMetadataDtoLineagePlatformSECURITYJOURNEY           EntityCustomMetadataDtoLineagePlatform = "SECURITY_JOURNEY"
+	EntityCustomMetadataDtoLineagePlatformSEGMENT                   EntityCustomMetadataDtoLineagePlatform = "SEGMENT"
+	EntityCustomMetadataDtoLineagePlatformSELECTSTAR                EntityCustomMetadataDtoLineagePlatform = "SELECT_STAR"
+	EntityCustomMetadataDtoLineagePlatformSENDGRID                  EntityCustomMetadataDtoLineagePlatform = "SENDGRID"
+	EntityCustomMetadataDtoLineagePlatformSERVICENOW                EntityCustomMetadataDtoLineagePlatform = "SERVICE_NOW"
+	EntityCustomMetadataDtoLineagePlatformSFTP                      EntityCustomMetadataDtoLineagePlatform = "SFTP"
+	EntityCustomMetadataDtoLineagePlatformSHAREPOINT                EntityCustomMetadataDtoLineagePlatform = "SHAREPOINT"
+	EntityCustomMetadataDtoLineagePlatformSHARETRIBE                EntityCustomMetadataDtoLineagePlatform = "SHARETRIBE"
+	EntityCustomMetadataDtoLineagePlatformSHIPHERO                  EntityCustomMetadataDtoLineagePlatform = "SHIPHERO"
+	EntityCustomMetadataDtoLineagePlatformSHIPSTATION               EntityCustomMetadataDtoLineagePlatform = "SHIPSTATION"
+	EntityCustomMetadataDtoLineagePlatformSHOPIFY                   EntityCustomMetadataDtoLineagePlatform = "SHOPIFY"
+	EntityCustomMetadataDtoLineagePlatformSHOPWARE                  EntityCustomMetadataDtoLineagePlatform = "SHOPWARE"
+	EntityCustomMetadataDtoLineagePlatformSHORTIO                   EntityCustomMetadataDtoLineagePlatform = "SHORT_IO"
+	EntityCustomMetadataDtoLineagePlatformSIFFLET                   EntityCustomMetadataDtoLineagePlatform = "SIFFLET"
+	EntityCustomMetadataDtoLineagePlatformSIGMA                     EntityCustomMetadataDtoLineagePlatform = "SIGMA"
+	EntityCustomMetadataDtoLineagePlatformSIMPLECAST                EntityCustomMetadataDtoLineagePlatform = "SIMPLECAST"
+	EntityCustomMetadataDtoLineagePlatformSIMPLESAT                 EntityCustomMetadataDtoLineagePlatform = "SIMPLESAT"
+	EntityCustomMetadataDtoLineagePlatformSINGLESTORE               EntityCustomMetadataDtoLineagePlatform = "SINGLESTORE"
+	EntityCustomMetadataDtoLineagePlatformSISENSE                   EntityCustomMetadataDtoLineagePlatform = "SISENSE"
+	EntityCustomMetadataDtoLineagePlatformSIXSENSE                  EntityCustomMetadataDtoLineagePlatform = "SIXSENSE"
+	EntityCustomMetadataDtoLineagePlatformSKILLJAR                  EntityCustomMetadataDtoLineagePlatform = "SKILLJAR"
+	EntityCustomMetadataDtoLineagePlatformSKUVAULT                  EntityCustomMetadataDtoLineagePlatform = "SKUVAULT"
+	EntityCustomMetadataDtoLineagePlatformSLAB                      EntityCustomMetadataDtoLineagePlatform = "SLAB"
+	EntityCustomMetadataDtoLineagePlatformSLACK                     EntityCustomMetadataDtoLineagePlatform = "SLACK"
+	EntityCustomMetadataDtoLineagePlatformSMADEX                    EntityCustomMetadataDtoLineagePlatform = "SMADEX"
+	EntityCustomMetadataDtoLineagePlatformSNAPCHAT                  EntityCustomMetadataDtoLineagePlatform = "SNAPCHAT"
+	EntityCustomMetadataDtoLineagePlatformSNOWFLAKE                 EntityCustomMetadataDtoLineagePlatform = "SNOWFLAKE"
+	EntityCustomMetadataDtoLineagePlatformSNOWPLOW                  EntityCustomMetadataDtoLineagePlatform = "SNOWPLOW"
+	EntityCustomMetadataDtoLineagePlatformSODA                      EntityCustomMetadataDtoLineagePlatform = "SODA"
+	EntityCustomMetadataDtoLineagePlatformSONARQUBE                 EntityCustomMetadataDtoLineagePlatform = "SONARQUBE"
+	EntityCustomMetadataDtoLineagePlatformSPLITIO                   EntityCustomMetadataDtoLineagePlatform = "SPLIT_IO"
+	EntityCustomMetadataDtoLineagePlatformSPLUNK                    EntityCustomMetadataDtoLineagePlatform = "SPLUNK"
+	EntityCustomMetadataDtoLineagePlatformSPOTIFY                   EntityCustomMetadataDtoLineagePlatform = "SPOTIFY"
+	EntityCustomMetadataDtoLineagePlatformSPREECOMMERCE             EntityCustomMetadataDtoLineagePlatform = "SPREE_COMMERCE"
+	EntityCustomMetadataDtoLineagePlatformSPROUTSOCIAL              EntityCustomMetadataDtoLineagePlatform = "SPROUT_SOCIAL"
+	EntityCustomMetadataDtoLineagePlatformSQUARE                    EntityCustomMetadataDtoLineagePlatform = "SQUARE"
+	EntityCustomMetadataDtoLineagePlatformSQUARESPACE               EntityCustomMetadataDtoLineagePlatform = "SQUARESPACE"
+	EntityCustomMetadataDtoLineagePlatformSSIS                      EntityCustomMetadataDtoLineagePlatform = "SSIS"
+	EntityCustomMetadataDtoLineagePlatformSTACKADAPT                EntityCustomMetadataDtoLineagePlatform = "STACK_ADAPT"
+	EntityCustomMetadataDtoLineagePlatformSTATSIG                   EntityCustomMetadataDtoLineagePlatform = "STATSIG"
+	EntityCustomMetadataDtoLineagePlatformSTITCH                    EntityCustomMetadataDtoLineagePlatform = "STITCH"
+	EntityCustomMetadataDtoLineagePlatformSTRIPE                    EntityCustomMetadataDtoLineagePlatform = "STRIPE"
+	EntityCustomMetadataDtoLineagePlatformSTYLIGHT                  EntityCustomMetadataDtoLineagePlatform = "STYLIGHT"
+	EntityCustomMetadataDtoLineagePlatformSUBSCRIPT                 EntityCustomMetadataDtoLineagePlatform = "SUBSCRIPT"
+	EntityCustomMetadataDtoLineagePlatformSYNAPSE                   EntityCustomMetadataDtoLineagePlatform = "SYNAPSE"
+	EntityCustomMetadataDtoLineagePlatformTABLEAU                   EntityCustomMetadataDtoLineagePlatform = "TABLEAU"
+	EntityCustomMetadataDtoLineagePlatformTABOOLA                   EntityCustomMetadataDtoLineagePlatform = "TABOOLA"
+	EntityCustomMetadataDtoLineagePlatformTALEND                    EntityCustomMetadataDtoLineagePlatform = "TALEND"
+	EntityCustomMetadataDtoLineagePlatformTALKDESK                  EntityCustomMetadataDtoLineagePlatform = "TALKDESK"
+	EntityCustomMetadataDtoLineagePlatformTALKWALKER                EntityCustomMetadataDtoLineagePlatform = "TALKWALKER"
+	EntityCustomMetadataDtoLineagePlatformTEAMWORKCOM               EntityCustomMetadataDtoLineagePlatform = "TEAMWORK_COM"
+	EntityCustomMetadataDtoLineagePlatformTEMPOIO                   EntityCustomMetadataDtoLineagePlatform = "TEMPO_IO"
+	EntityCustomMetadataDtoLineagePlatformTERADATA                  EntityCustomMetadataDtoLineagePlatform = "TERADATA"
+	EntityCustomMetadataDtoLineagePlatformTERRAFORM                 EntityCustomMetadataDtoLineagePlatform = "TERRAFORM"
+	EntityCustomMetadataDtoLineagePlatformTHETRADEDESK              EntityCustomMetadataDtoLineagePlatform = "THE_TRADE_DESK"
+	EntityCustomMetadataDtoLineagePlatformTHOUGHTSPOT               EntityCustomMetadataDtoLineagePlatform = "THOUGHT_SPOT"
+	EntityCustomMetadataDtoLineagePlatformTHREESIXTYLEARNING        EntityCustomMetadataDtoLineagePlatform = "THREESIXTYLEARNING"
+	EntityCustomMetadataDtoLineagePlatformTIKTOK                    EntityCustomMetadataDtoLineagePlatform = "TIKTOK"
+	EntityCustomMetadataDtoLineagePlatformTOGGL                     EntityCustomMetadataDtoLineagePlatform = "TOGGL"
+	EntityCustomMetadataDtoLineagePlatformTRANSCEND                 EntityCustomMetadataDtoLineagePlatform = "TRANSCEND"
+	EntityCustomMetadataDtoLineagePlatformTRELLO                    EntityCustomMetadataDtoLineagePlatform = "TRELLO"
+	EntityCustomMetadataDtoLineagePlatformTRINET                    EntityCustomMetadataDtoLineagePlatform = "TRINET"
+	EntityCustomMetadataDtoLineagePlatformTRISOLUTE                 EntityCustomMetadataDtoLineagePlatform = "TRISOLUTE"
+	EntityCustomMetadataDtoLineagePlatformTWILIO                    EntityCustomMetadataDtoLineagePlatform = "TWILIO"
+	EntityCustomMetadataDtoLineagePlatformTYPEFORM                  EntityCustomMetadataDtoLineagePlatform = "TYPEFORM"
+	EntityCustomMetadataDtoLineagePlatformUNKNOWN                   EntityCustomMetadataDtoLineagePlatform = "UNKNOWN"
+	EntityCustomMetadataDtoLineagePlatformUPLAND                    EntityCustomMetadataDtoLineagePlatform = "UPLAND"
+	EntityCustomMetadataDtoLineagePlatformUSERVOICE                 EntityCustomMetadataDtoLineagePlatform = "USERVOICE"
+	EntityCustomMetadataDtoLineagePlatformVALIDIO                   EntityCustomMetadataDtoLineagePlatform = "VALIDIO"
+	EntityCustomMetadataDtoLineagePlatformVEEVA                     EntityCustomMetadataDtoLineagePlatform = "VEEVA"
+	EntityCustomMetadataDtoLineagePlatformVERIZONMEDIA              EntityCustomMetadataDtoLineagePlatform = "VERIZON_MEDIA"
+	EntityCustomMetadataDtoLineagePlatformVITALLY                   EntityCustomMetadataDtoLineagePlatform = "VITALLY"
+	EntityCustomMetadataDtoLineagePlatformVONAGE                    EntityCustomMetadataDtoLineagePlatform = "VONAGE"
+	EntityCustomMetadataDtoLineagePlatformVUETIFY                   EntityCustomMetadataDtoLineagePlatform = "VUETIFY"
+	EntityCustomMetadataDtoLineagePlatformWEBHOOKS                  EntityCustomMetadataDtoLineagePlatform = "WEBHOOKS"
+	EntityCustomMetadataDtoLineagePlatformWEBSCRAPER                EntityCustomMetadataDtoLineagePlatform = "WEB_SCRAPER"
+	EntityCustomMetadataDtoLineagePlatformWHENIWORK                 EntityCustomMetadataDtoLineagePlatform = "WHEN_I_WORK"
+	EntityCustomMetadataDtoLineagePlatformWHEREFOUR                 EntityCustomMetadataDtoLineagePlatform = "WHEREFOUR"
+	EntityCustomMetadataDtoLineagePlatformWIKIPEDIA                 EntityCustomMetadataDtoLineagePlatform = "WIKIPEDIA"
+	EntityCustomMetadataDtoLineagePlatformWOOCOMMERCE               EntityCustomMetadataDtoLineagePlatform = "WOOCOMMERCE"
+	EntityCustomMetadataDtoLineagePlatformWORDPRESS                 EntityCustomMetadataDtoLineagePlatform = "WORDPRESS"
+	EntityCustomMetadataDtoLineagePlatformWORKABLE                  EntityCustomMetadataDtoLineagePlatform = "WORKABLE"
+	EntityCustomMetadataDtoLineagePlatformWORKDAY                   EntityCustomMetadataDtoLineagePlatform = "WORKDAY"
+	EntityCustomMetadataDtoLineagePlatformWORKFLOWMAX               EntityCustomMetadataDtoLineagePlatform = "WORKFLOW_MAX"
+	EntityCustomMetadataDtoLineagePlatformWRIKE                     EntityCustomMetadataDtoLineagePlatform = "WRIKE"
+	EntityCustomMetadataDtoLineagePlatformX                         EntityCustomMetadataDtoLineagePlatform = "X"
+	EntityCustomMetadataDtoLineagePlatformXERO                      EntityCustomMetadataDtoLineagePlatform = "XERO"
+	EntityCustomMetadataDtoLineagePlatformXRAY                      EntityCustomMetadataDtoLineagePlatform = "XRAY"
+	EntityCustomMetadataDtoLineagePlatformYAHOO                     EntityCustomMetadataDtoLineagePlatform = "YAHOO"
+	EntityCustomMetadataDtoLineagePlatformYOTPO                     EntityCustomMetadataDtoLineagePlatform = "YOTPO"
+	EntityCustomMetadataDtoLineagePlatformYOUTUBE                   EntityCustomMetadataDtoLineagePlatform = "YOUTUBE"
+	EntityCustomMetadataDtoLineagePlatformZEENEA                    EntityCustomMetadataDtoLineagePlatform = "ZEENEA"
+	EntityCustomMetadataDtoLineagePlatformZENCART                   EntityCustomMetadataDtoLineagePlatform = "ZEN_CART"
+	EntityCustomMetadataDtoLineagePlatformZENDESKCHAT               EntityCustomMetadataDtoLineagePlatform = "ZENDESK_CHAT"
+	EntityCustomMetadataDtoLineagePlatformZENDESKSELL               EntityCustomMetadataDtoLineagePlatform = "ZENDESK_SELL"
+	EntityCustomMetadataDtoLineagePlatformZENDESKSUNSHINE           EntityCustomMetadataDtoLineagePlatform = "ZENDESK_SUNSHINE"
+	EntityCustomMetadataDtoLineagePlatformZENDESKSUPPORT            EntityCustomMetadataDtoLineagePlatform = "ZENDESK_SUPPORT"
+	EntityCustomMetadataDtoLineagePlatformZINGTREE                  EntityCustomMetadataDtoLineagePlatform = "ZINGTREE"
+	EntityCustomMetadataDtoLineagePlatformZOHOBOOKS                 EntityCustomMetadataDtoLineagePlatform = "ZOHO_BOOKS"
+	EntityCustomMetadataDtoLineagePlatformZOHOCAMPAIGNS             EntityCustomMetadataDtoLineagePlatform = "ZOHO_CAMPAIGNS"
+	EntityCustomMetadataDtoLineagePlatformZOHOCRM                   EntityCustomMetadataDtoLineagePlatform = "ZOHO_CRM"
+	EntityCustomMetadataDtoLineagePlatformZOOM                      EntityCustomMetadataDtoLineagePlatform = "ZOOM"
+	EntityCustomMetadataDtoLineagePlatformZUORA                     EntityCustomMetadataDtoLineagePlatform = "ZUORA"
+)
+
+// Valid indicates whether the value is a known member of the EntityCustomMetadataDtoLineagePlatform enum.
+func (e EntityCustomMetadataDtoLineagePlatform) Valid() bool {
+	switch e {
+	case EntityCustomMetadataDtoLineagePlatformACCELDATA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformACRYLDATA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformACTIANVECTOR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformACTIVECAMPAIGN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformADA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformADF:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformADJUST:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformADOBE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformADPWFN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformADROLL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAFFINITY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAIRBYTE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAIRCALL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAIRFLOW:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAIRTABLE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformALATION:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformALCHEMER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformALVINAI:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAMAZON:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAMAZONCLOUDFRONT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAMAZONDOCUMENTDB:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAMAZONDYNAMODB:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAMAZONFIREHOSE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAMAZONSAGEMAKER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAMAZONSELLINGPARTNER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAMPLITUDE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformANAPLAN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformANOMALO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAPACHEKAFKA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAPACHESPARK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAPPCUES:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAPPFIGURES:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAPPLE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAPPLEAPPSTORE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAPPSFLYER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformASANA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformASSEMBLED:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformATHENA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformATLAN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformATLASSIANCONFLUENCE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformATLASSIANJIRA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformATLASSIANOPSGENIE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAUTH0:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAUTODESKBIM360:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAWIN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAWSCLOUDTRAIL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAWSCOSTEXPLORER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAWSINVENTORY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAWSLAMBDA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformAZURE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBALLOTREADY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBAMBOOHR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBIGCOMMERCE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBIGEYE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBIGQUERY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBILLINGPLATFORM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBIRDEYE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBLACKBOARD:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBOX:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBRAINTREE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBRAZE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBREVO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBREX:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBUILDKITE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformBUZZSPROUT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCALENDLY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCAMPAIGNMONITOR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCANNY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCANVAS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCAPTERRA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCASTORDOC:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCATALOGGENERIC:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCENSUS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCERTINIA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCHAMELEON:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCHANNELADVISOR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCHARGEBEE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCHARGEDESK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCHARTMOGUL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCHORUSAI:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCHURNKEY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCHURNZERO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCIMIS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCIN7:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCIRCLECI:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCLARI:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCLICKUP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCLIFFAI:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCLOSE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCOLLIBRA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCOMMERCETOOLS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCOMPOSER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCONFLUENTCLOUD:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCONTRASTSECURITY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCOUPA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCRITEO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCROSSBEAM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCRUNCHBASE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformCUSTOMERIO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformD2LBRIGHTSPACE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDAGSTER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDATABAND:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDATABRICKS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDATABRICKSJOBS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDATADOG:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDATAEDO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDATAFOLD:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDATAGALAXY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDATAHUB:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDATAIKU:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDATAWORLD:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDB2:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDBT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDBTCLOUD:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDCLLOGISTICS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDEAR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDECUBE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDELIGHTED:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDEPUTY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDESTINI:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDIXA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDOCEBO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDRATA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDRIFT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDRIP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDROPBOX:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformDUOPLANE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformEASYPOST:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformECONOMIC:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformELASTICSEARCH:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformELEMENTARY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformELLUCIAN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformELOQUA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformEMAIL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformEMPLOYMENTHERO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformEPICORPROPHET21:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformEVENTBRITE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformEVERHOUR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformEXCEL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformEXPENSIFY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFACEBOOK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFIFTEENFIVE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFIGMA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFIREBASE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFIREBOLT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFIVETRAN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFLEXPORT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFORJ:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFOUNTAIN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFREIGHTVIEW:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFRESHBOOKS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFRESHCHAT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFRESHDESK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFRESHDESKCONTACTCENTER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFRESHSERVICE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFRESHSUCCESS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFRESHTEAM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFRIENDBUY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFRONT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFTP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformFULLSTORY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformG2:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGAINSIGHT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGEM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGIT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGITHUB:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGITLAB:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGLADLY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOCARDLESS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGONG:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLEADMANAGER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLEADS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLEANALYTICS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLECALENDAR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLECAMPAIGNMANAGER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLECHROME:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLECLOUD:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLECLOUDSTORAGE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLEDISPLAY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLEDRIVE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLEPLAY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLESEARCHADS360:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLESEARCHCONSOLE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLESHEETS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGOOGLETASKS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGORGIAS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGREENHOUSE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGREENPLUM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGREENPOWERMONITOR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGREPSR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGRIN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformGURU:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformH2:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHARVEST:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHDFS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHEAP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHEIGHT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHELPSCOUT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHELPSHIFT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHEROKUKAFKA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHEX:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHIBOB:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHIGHTOUCH:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHOPIN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformHUBSPOT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformIMPACT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformINCIDENTIO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformINFOBIP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformINFORMATICA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformINSIGHTLY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformINSTAGRAM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformINTERCOM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformINVESTOPEDIA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformIRONCLAD:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformIRONSOURCE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformITERABLE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformJAVA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformJENKINS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformJUSTCALL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformKANDJI:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformKENSU:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformKHOROSCARE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformKISSMETRICS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformKLAVIYO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformKNOWBE4:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformKONNECTINSIGHTS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformKUSTOMER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLARIATDATA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLATTICE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLAUNCHDARKLY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLEARNUPON:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLESSONLY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLEVER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLIFTOFF:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLIGHTDASH:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLIGHTSPEED:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLIGHTSUP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLINEAR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLINKEDIN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLIVECHAT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLOADEDCOMMERCE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLOB:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLOOKER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLOOP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLOOPIO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformLUMA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMAGENTO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMAILCHIMP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMAILGUN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMANDRILL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMANTA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMARIADB:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMARINSOFTWARE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMARKETO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMATILLION:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMATTERMOST:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMAVENLINK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMAXIO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMEDALLIA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMETA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMETABASE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMETAPHOR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMETAPLANE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMICROSOFT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMICROSOFTAZUREBLOBSTORAGE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMICROSOFTAZUREML:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMICROSOFTDYNAMICS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMICROSOFTONEDRIVE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMICROSOFTPURVIEW:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMICROSOFTTEAMS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMICROSTRATEGY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMIXMAX:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMIXPANEL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMONDAYCOM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMONGODB:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMONTECARLO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMOUNTAIN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMSSQL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMULESOFT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMUX:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMWAA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformMYSQL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformNAMELY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformNCINO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformNETSUITEANALYTICS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformNEWRELIC:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformNOTION:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformNYLAS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOBSERVE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOCTOPAI:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOKTA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOPENAI:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOPENDATADC:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOPENEXCHANGESRATES:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOPENSEARCH:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOPTIMIZELY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformORACLE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformORBITCOMMUNITYPLATFORM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformORDWAY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformORTTO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOSCOMMERCE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOUTBRAIN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOUTREACH:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformOVALEDGE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPAGERDUTY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPAGERSHIFT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPAYPAL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPENDO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPINGDOM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPINTEREST:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPIPE17:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPIPEDRIVE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPIVOTALTRACKER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPLAYVOX:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPOSTGRES:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPOSTHOG:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPOWERBI:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPOWERSCHOOL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPREFECT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPRESTASHOP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPRESTO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPRODUCTBOARD:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformPYTHON:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformQLIK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformQUALAROO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformQUALTRICS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformQUICKBOOKS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformQUICKSIGHT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformRAMP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformRARIBLE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformRECHARGE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformRECURLY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformREDDIT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformREDSHIFT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformRELTIO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformREPLYIO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformRETAILNEXT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformRETENTLY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformREVELSYSTEMS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformRINGCENTRAL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformRIPPLING:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformROLLBAR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformROOTLY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformS3:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSAGEHR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSAGEINTACCT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSAILTHRU:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSALESFORCE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSALESLOFT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSALSIFY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSAMSARA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSAP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSAPCONCUR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSCORM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSECODA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSECURITYJOURNEY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSEGMENT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSELECTSTAR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSENDGRID:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSERVICENOW:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSFTP:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSHAREPOINT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSHARETRIBE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSHIPHERO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSHIPSTATION:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSHOPIFY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSHOPWARE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSHORTIO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSIFFLET:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSIGMA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSIMPLECAST:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSIMPLESAT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSINGLESTORE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSISENSE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSIXSENSE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSKILLJAR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSKUVAULT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSLAB:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSLACK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSMADEX:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSNAPCHAT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSNOWFLAKE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSNOWPLOW:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSODA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSONARQUBE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSPLITIO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSPLUNK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSPOTIFY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSPREECOMMERCE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSPROUTSOCIAL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSQUARE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSQUARESPACE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSSIS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSTACKADAPT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSTATSIG:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSTITCH:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSTRIPE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSTYLIGHT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSUBSCRIPT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformSYNAPSE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTABLEAU:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTABOOLA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTALEND:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTALKDESK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTALKWALKER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTEAMWORKCOM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTEMPOIO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTERADATA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTERRAFORM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTHETRADEDESK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTHOUGHTSPOT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTHREESIXTYLEARNING:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTIKTOK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTOGGL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTRANSCEND:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTRELLO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTRINET:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTRISOLUTE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTWILIO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformTYPEFORM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformUNKNOWN:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformUPLAND:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformUSERVOICE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformVALIDIO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformVEEVA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformVERIZONMEDIA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformVITALLY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformVONAGE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformVUETIFY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformWEBHOOKS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformWEBSCRAPER:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformWHENIWORK:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformWHEREFOUR:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformWIKIPEDIA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformWOOCOMMERCE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformWORDPRESS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformWORKABLE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformWORKDAY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformWORKFLOWMAX:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformWRIKE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformX:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformXERO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformXRAY:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformYAHOO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformYOTPO:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformYOUTUBE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZEENEA:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZENCART:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZENDESKCHAT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZENDESKSELL:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZENDESKSUNSHINE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZENDESKSUPPORT:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZINGTREE:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZOHOBOOKS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZOHOCAMPAIGNS:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZOHOCRM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZOOM:
+		return true
+	case EntityCustomMetadataDtoLineagePlatformZUORA:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for EntityCustomMetadataDtoType.
 const (
 	EntityCustomMetadataDtoTypeLABEL  EntityCustomMetadataDtoType = "LABEL"
 	EntityCustomMetadataDtoTypeSTRING EntityCustomMetadataDtoType = "STRING"
+	EntityCustomMetadataDtoTypeTEAM   EntityCustomMetadataDtoType = "TEAM"
 	EntityCustomMetadataDtoTypeUSER   EntityCustomMetadataDtoType = "USER"
 )
 
@@ -4390,6 +6089,8 @@ func (e EntityCustomMetadataDtoType) Valid() bool {
 	case EntityCustomMetadataDtoTypeLABEL:
 		return true
 	case EntityCustomMetadataDtoTypeSTRING:
+		return true
+	case EntityCustomMetadataDtoTypeTEAM:
 		return true
 	case EntityCustomMetadataDtoTypeUSER:
 		return true
@@ -4402,6 +6103,7 @@ func (e EntityCustomMetadataDtoType) Valid() bool {
 const (
 	EntityCustomMetadataEntryDtoTypeLABEL  EntityCustomMetadataEntryDtoType = "LABEL"
 	EntityCustomMetadataEntryDtoTypeSTRING EntityCustomMetadataEntryDtoType = "STRING"
+	EntityCustomMetadataEntryDtoTypeTEAM   EntityCustomMetadataEntryDtoType = "TEAM"
 	EntityCustomMetadataEntryDtoTypeUSER   EntityCustomMetadataEntryDtoType = "USER"
 )
 
@@ -4411,6 +6113,8 @@ func (e EntityCustomMetadataEntryDtoType) Valid() bool {
 	case EntityCustomMetadataEntryDtoTypeLABEL:
 		return true
 	case EntityCustomMetadataEntryDtoTypeSTRING:
+		return true
+	case EntityCustomMetadataEntryDtoTypeTEAM:
 		return true
 	case EntityCustomMetadataEntryDtoTypeUSER:
 		return true
@@ -4423,6 +6127,7 @@ func (e EntityCustomMetadataEntryDtoType) Valid() bool {
 const (
 	EntityCustomMetadataEntryLabelDtoTypeLABEL  EntityCustomMetadataEntryLabelDtoType = "LABEL"
 	EntityCustomMetadataEntryLabelDtoTypeSTRING EntityCustomMetadataEntryLabelDtoType = "STRING"
+	EntityCustomMetadataEntryLabelDtoTypeTEAM   EntityCustomMetadataEntryLabelDtoType = "TEAM"
 	EntityCustomMetadataEntryLabelDtoTypeUSER   EntityCustomMetadataEntryLabelDtoType = "USER"
 )
 
@@ -4432,6 +6137,8 @@ func (e EntityCustomMetadataEntryLabelDtoType) Valid() bool {
 	case EntityCustomMetadataEntryLabelDtoTypeLABEL:
 		return true
 	case EntityCustomMetadataEntryLabelDtoTypeSTRING:
+		return true
+	case EntityCustomMetadataEntryLabelDtoTypeTEAM:
 		return true
 	case EntityCustomMetadataEntryLabelDtoTypeUSER:
 		return true
@@ -4444,6 +6151,7 @@ func (e EntityCustomMetadataEntryLabelDtoType) Valid() bool {
 const (
 	EntityCustomMetadataEntryStringDtoTypeLABEL  EntityCustomMetadataEntryStringDtoType = "LABEL"
 	EntityCustomMetadataEntryStringDtoTypeSTRING EntityCustomMetadataEntryStringDtoType = "STRING"
+	EntityCustomMetadataEntryStringDtoTypeTEAM   EntityCustomMetadataEntryStringDtoType = "TEAM"
 	EntityCustomMetadataEntryStringDtoTypeUSER   EntityCustomMetadataEntryStringDtoType = "USER"
 )
 
@@ -4454,7 +6162,33 @@ func (e EntityCustomMetadataEntryStringDtoType) Valid() bool {
 		return true
 	case EntityCustomMetadataEntryStringDtoTypeSTRING:
 		return true
+	case EntityCustomMetadataEntryStringDtoTypeTEAM:
+		return true
 	case EntityCustomMetadataEntryStringDtoTypeUSER:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for EntityCustomMetadataEntryTeamDtoType.
+const (
+	EntityCustomMetadataEntryTeamDtoTypeLABEL  EntityCustomMetadataEntryTeamDtoType = "LABEL"
+	EntityCustomMetadataEntryTeamDtoTypeSTRING EntityCustomMetadataEntryTeamDtoType = "STRING"
+	EntityCustomMetadataEntryTeamDtoTypeTEAM   EntityCustomMetadataEntryTeamDtoType = "TEAM"
+	EntityCustomMetadataEntryTeamDtoTypeUSER   EntityCustomMetadataEntryTeamDtoType = "USER"
+)
+
+// Valid indicates whether the value is a known member of the EntityCustomMetadataEntryTeamDtoType enum.
+func (e EntityCustomMetadataEntryTeamDtoType) Valid() bool {
+	switch e {
+	case EntityCustomMetadataEntryTeamDtoTypeLABEL:
+		return true
+	case EntityCustomMetadataEntryTeamDtoTypeSTRING:
+		return true
+	case EntityCustomMetadataEntryTeamDtoTypeTEAM:
+		return true
+	case EntityCustomMetadataEntryTeamDtoTypeUSER:
 		return true
 	default:
 		return false
@@ -4465,6 +6199,7 @@ func (e EntityCustomMetadataEntryStringDtoType) Valid() bool {
 const (
 	EntityCustomMetadataEntryUserDtoTypeLABEL  EntityCustomMetadataEntryUserDtoType = "LABEL"
 	EntityCustomMetadataEntryUserDtoTypeSTRING EntityCustomMetadataEntryUserDtoType = "STRING"
+	EntityCustomMetadataEntryUserDtoTypeTEAM   EntityCustomMetadataEntryUserDtoType = "TEAM"
 	EntityCustomMetadataEntryUserDtoTypeUSER   EntityCustomMetadataEntryUserDtoType = "USER"
 )
 
@@ -4474,6 +6209,8 @@ func (e EntityCustomMetadataEntryUserDtoType) Valid() bool {
 	case EntityCustomMetadataEntryUserDtoTypeLABEL:
 		return true
 	case EntityCustomMetadataEntryUserDtoTypeSTRING:
+		return true
+	case EntityCustomMetadataEntryUserDtoTypeTEAM:
 		return true
 	case EntityCustomMetadataEntryUserDtoTypeUSER:
 		return true
@@ -5025,8 +6762,90 @@ func (e PublicCalendarGetDtoStandardCalendar) Valid() bool {
 	}
 }
 
+// Defines values for PublicCreateAdfSourceV2DtoType.
+const (
+	PublicCreateAdfSourceV2DtoTypeADF            PublicCreateAdfSourceV2DtoType = "ADF"
+	PublicCreateAdfSourceV2DtoTypeAIRFLOW        PublicCreateAdfSourceV2DtoType = "AIRFLOW"
+	PublicCreateAdfSourceV2DtoTypeATHENA         PublicCreateAdfSourceV2DtoType = "ATHENA"
+	PublicCreateAdfSourceV2DtoTypeBIGQUERY       PublicCreateAdfSourceV2DtoType = "BIGQUERY"
+	PublicCreateAdfSourceV2DtoTypeDATABRICKS     PublicCreateAdfSourceV2DtoType = "DATABRICKS"
+	PublicCreateAdfSourceV2DtoTypeDATABRICKSJOBS PublicCreateAdfSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicCreateAdfSourceV2DtoTypeDBT            PublicCreateAdfSourceV2DtoType = "DBT"
+	PublicCreateAdfSourceV2DtoTypeDBTCLOUD       PublicCreateAdfSourceV2DtoType = "DBTCLOUD"
+	PublicCreateAdfSourceV2DtoTypeDECLARATIVE    PublicCreateAdfSourceV2DtoType = "DECLARATIVE"
+	PublicCreateAdfSourceV2DtoTypeFIVETRAN       PublicCreateAdfSourceV2DtoType = "FIVETRAN"
+	PublicCreateAdfSourceV2DtoTypeLOOKER         PublicCreateAdfSourceV2DtoType = "LOOKER"
+	PublicCreateAdfSourceV2DtoTypeMICROSTRATEGY  PublicCreateAdfSourceV2DtoType = "MICROSTRATEGY"
+	PublicCreateAdfSourceV2DtoTypeMSSQL          PublicCreateAdfSourceV2DtoType = "MSSQL"
+	PublicCreateAdfSourceV2DtoTypeMYSQL          PublicCreateAdfSourceV2DtoType = "MYSQL"
+	PublicCreateAdfSourceV2DtoTypeORACLE         PublicCreateAdfSourceV2DtoType = "ORACLE"
+	PublicCreateAdfSourceV2DtoTypePOSTGRESQL     PublicCreateAdfSourceV2DtoType = "POSTGRESQL"
+	PublicCreateAdfSourceV2DtoTypePOWERBI        PublicCreateAdfSourceV2DtoType = "POWER_BI"
+	PublicCreateAdfSourceV2DtoTypeQLIK           PublicCreateAdfSourceV2DtoType = "QLIK"
+	PublicCreateAdfSourceV2DtoTypeQUICKSIGHT     PublicCreateAdfSourceV2DtoType = "QUICKSIGHT"
+	PublicCreateAdfSourceV2DtoTypeREDSHIFT       PublicCreateAdfSourceV2DtoType = "REDSHIFT"
+	PublicCreateAdfSourceV2DtoTypeSNOWFLAKE      PublicCreateAdfSourceV2DtoType = "SNOWFLAKE"
+	PublicCreateAdfSourceV2DtoTypeSYNAPSE        PublicCreateAdfSourceV2DtoType = "SYNAPSE"
+	PublicCreateAdfSourceV2DtoTypeTABLEAU        PublicCreateAdfSourceV2DtoType = "TABLEAU"
+)
+
+// Valid indicates whether the value is a known member of the PublicCreateAdfSourceV2DtoType enum.
+func (e PublicCreateAdfSourceV2DtoType) Valid() bool {
+	switch e {
+	case PublicCreateAdfSourceV2DtoTypeADF:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeAIRFLOW:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeATHENA:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeBIGQUERY:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeDATABRICKS:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeDATABRICKSJOBS:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeDBT:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeDBTCLOUD:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeDECLARATIVE:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeFIVETRAN:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeLOOKER:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeMICROSTRATEGY:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeMSSQL:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeMYSQL:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeORACLE:
+		return true
+	case PublicCreateAdfSourceV2DtoTypePOSTGRESQL:
+		return true
+	case PublicCreateAdfSourceV2DtoTypePOWERBI:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeQLIK:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeQUICKSIGHT:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeREDSHIFT:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeSNOWFLAKE:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeSYNAPSE:
+		return true
+	case PublicCreateAdfSourceV2DtoTypeTABLEAU:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for PublicCreateAirflowSourceV2DtoType.
 const (
+	PublicCreateAirflowSourceV2DtoTypeADF            PublicCreateAirflowSourceV2DtoType = "ADF"
 	PublicCreateAirflowSourceV2DtoTypeAIRFLOW        PublicCreateAirflowSourceV2DtoType = "AIRFLOW"
 	PublicCreateAirflowSourceV2DtoTypeATHENA         PublicCreateAirflowSourceV2DtoType = "ATHENA"
 	PublicCreateAirflowSourceV2DtoTypeBIGQUERY       PublicCreateAirflowSourceV2DtoType = "BIGQUERY"
@@ -5054,6 +6873,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateAirflowSourceV2DtoType enum.
 func (e PublicCreateAirflowSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateAirflowSourceV2DtoTypeADF:
+		return true
 	case PublicCreateAirflowSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateAirflowSourceV2DtoTypeATHENA:
@@ -5105,6 +6926,7 @@ func (e PublicCreateAirflowSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateAthenaSourceV2DtoType.
 const (
+	PublicCreateAthenaSourceV2DtoTypeADF            PublicCreateAthenaSourceV2DtoType = "ADF"
 	PublicCreateAthenaSourceV2DtoTypeAIRFLOW        PublicCreateAthenaSourceV2DtoType = "AIRFLOW"
 	PublicCreateAthenaSourceV2DtoTypeATHENA         PublicCreateAthenaSourceV2DtoType = "ATHENA"
 	PublicCreateAthenaSourceV2DtoTypeBIGQUERY       PublicCreateAthenaSourceV2DtoType = "BIGQUERY"
@@ -5132,6 +6954,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateAthenaSourceV2DtoType enum.
 func (e PublicCreateAthenaSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateAthenaSourceV2DtoTypeADF:
+		return true
 	case PublicCreateAthenaSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateAthenaSourceV2DtoTypeATHENA:
@@ -5183,6 +7007,7 @@ func (e PublicCreateAthenaSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateBigQuerySourceV2DtoType.
 const (
+	PublicCreateBigQuerySourceV2DtoTypeADF            PublicCreateBigQuerySourceV2DtoType = "ADF"
 	PublicCreateBigQuerySourceV2DtoTypeAIRFLOW        PublicCreateBigQuerySourceV2DtoType = "AIRFLOW"
 	PublicCreateBigQuerySourceV2DtoTypeATHENA         PublicCreateBigQuerySourceV2DtoType = "ATHENA"
 	PublicCreateBigQuerySourceV2DtoTypeBIGQUERY       PublicCreateBigQuerySourceV2DtoType = "BIGQUERY"
@@ -5210,6 +7035,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateBigQuerySourceV2DtoType enum.
 func (e PublicCreateBigQuerySourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateBigQuerySourceV2DtoTypeADF:
+		return true
 	case PublicCreateBigQuerySourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateBigQuerySourceV2DtoTypeATHENA:
@@ -5261,6 +7088,7 @@ func (e PublicCreateBigQuerySourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateDatabricksJobsSourceV2DtoType.
 const (
+	PublicCreateDatabricksJobsSourceV2DtoTypeADF            PublicCreateDatabricksJobsSourceV2DtoType = "ADF"
 	PublicCreateDatabricksJobsSourceV2DtoTypeAIRFLOW        PublicCreateDatabricksJobsSourceV2DtoType = "AIRFLOW"
 	PublicCreateDatabricksJobsSourceV2DtoTypeATHENA         PublicCreateDatabricksJobsSourceV2DtoType = "ATHENA"
 	PublicCreateDatabricksJobsSourceV2DtoTypeBIGQUERY       PublicCreateDatabricksJobsSourceV2DtoType = "BIGQUERY"
@@ -5288,6 +7116,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateDatabricksJobsSourceV2DtoType enum.
 func (e PublicCreateDatabricksJobsSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateDatabricksJobsSourceV2DtoTypeADF:
+		return true
 	case PublicCreateDatabricksJobsSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateDatabricksJobsSourceV2DtoTypeATHENA:
@@ -5339,6 +7169,7 @@ func (e PublicCreateDatabricksJobsSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateDatabricksSourceV2DtoType.
 const (
+	PublicCreateDatabricksSourceV2DtoTypeADF            PublicCreateDatabricksSourceV2DtoType = "ADF"
 	PublicCreateDatabricksSourceV2DtoTypeAIRFLOW        PublicCreateDatabricksSourceV2DtoType = "AIRFLOW"
 	PublicCreateDatabricksSourceV2DtoTypeATHENA         PublicCreateDatabricksSourceV2DtoType = "ATHENA"
 	PublicCreateDatabricksSourceV2DtoTypeBIGQUERY       PublicCreateDatabricksSourceV2DtoType = "BIGQUERY"
@@ -5366,6 +7197,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateDatabricksSourceV2DtoType enum.
 func (e PublicCreateDatabricksSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateDatabricksSourceV2DtoTypeADF:
+		return true
 	case PublicCreateDatabricksSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateDatabricksSourceV2DtoTypeATHENA:
@@ -5417,6 +7250,7 @@ func (e PublicCreateDatabricksSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateDbtCloudSourceV2DtoType.
 const (
+	PublicCreateDbtCloudSourceV2DtoTypeADF            PublicCreateDbtCloudSourceV2DtoType = "ADF"
 	PublicCreateDbtCloudSourceV2DtoTypeAIRFLOW        PublicCreateDbtCloudSourceV2DtoType = "AIRFLOW"
 	PublicCreateDbtCloudSourceV2DtoTypeATHENA         PublicCreateDbtCloudSourceV2DtoType = "ATHENA"
 	PublicCreateDbtCloudSourceV2DtoTypeBIGQUERY       PublicCreateDbtCloudSourceV2DtoType = "BIGQUERY"
@@ -5444,6 +7278,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateDbtCloudSourceV2DtoType enum.
 func (e PublicCreateDbtCloudSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateDbtCloudSourceV2DtoTypeADF:
+		return true
 	case PublicCreateDbtCloudSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateDbtCloudSourceV2DtoTypeATHENA:
@@ -5495,6 +7331,7 @@ func (e PublicCreateDbtCloudSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateDbtSourceV2DtoType.
 const (
+	PublicCreateDbtSourceV2DtoTypeADF            PublicCreateDbtSourceV2DtoType = "ADF"
 	PublicCreateDbtSourceV2DtoTypeAIRFLOW        PublicCreateDbtSourceV2DtoType = "AIRFLOW"
 	PublicCreateDbtSourceV2DtoTypeATHENA         PublicCreateDbtSourceV2DtoType = "ATHENA"
 	PublicCreateDbtSourceV2DtoTypeBIGQUERY       PublicCreateDbtSourceV2DtoType = "BIGQUERY"
@@ -5522,6 +7359,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateDbtSourceV2DtoType enum.
 func (e PublicCreateDbtSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateDbtSourceV2DtoTypeADF:
+		return true
 	case PublicCreateDbtSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateDbtSourceV2DtoTypeATHENA:
@@ -5573,6 +7412,7 @@ func (e PublicCreateDbtSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateFivetranSourceV2DtoType.
 const (
+	PublicCreateFivetranSourceV2DtoTypeADF            PublicCreateFivetranSourceV2DtoType = "ADF"
 	PublicCreateFivetranSourceV2DtoTypeAIRFLOW        PublicCreateFivetranSourceV2DtoType = "AIRFLOW"
 	PublicCreateFivetranSourceV2DtoTypeATHENA         PublicCreateFivetranSourceV2DtoType = "ATHENA"
 	PublicCreateFivetranSourceV2DtoTypeBIGQUERY       PublicCreateFivetranSourceV2DtoType = "BIGQUERY"
@@ -5600,6 +7440,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateFivetranSourceV2DtoType enum.
 func (e PublicCreateFivetranSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateFivetranSourceV2DtoTypeADF:
+		return true
 	case PublicCreateFivetranSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateFivetranSourceV2DtoTypeATHENA:
@@ -5651,6 +7493,7 @@ func (e PublicCreateFivetranSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateLookerSourceV2DtoType.
 const (
+	PublicCreateLookerSourceV2DtoTypeADF            PublicCreateLookerSourceV2DtoType = "ADF"
 	PublicCreateLookerSourceV2DtoTypeAIRFLOW        PublicCreateLookerSourceV2DtoType = "AIRFLOW"
 	PublicCreateLookerSourceV2DtoTypeATHENA         PublicCreateLookerSourceV2DtoType = "ATHENA"
 	PublicCreateLookerSourceV2DtoTypeBIGQUERY       PublicCreateLookerSourceV2DtoType = "BIGQUERY"
@@ -5678,6 +7521,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateLookerSourceV2DtoType enum.
 func (e PublicCreateLookerSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateLookerSourceV2DtoTypeADF:
+		return true
 	case PublicCreateLookerSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateLookerSourceV2DtoTypeATHENA:
@@ -5729,6 +7574,7 @@ func (e PublicCreateLookerSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateMicrostrategySourceV2DtoType.
 const (
+	PublicCreateMicrostrategySourceV2DtoTypeADF            PublicCreateMicrostrategySourceV2DtoType = "ADF"
 	PublicCreateMicrostrategySourceV2DtoTypeAIRFLOW        PublicCreateMicrostrategySourceV2DtoType = "AIRFLOW"
 	PublicCreateMicrostrategySourceV2DtoTypeATHENA         PublicCreateMicrostrategySourceV2DtoType = "ATHENA"
 	PublicCreateMicrostrategySourceV2DtoTypeBIGQUERY       PublicCreateMicrostrategySourceV2DtoType = "BIGQUERY"
@@ -5756,6 +7602,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateMicrostrategySourceV2DtoType enum.
 func (e PublicCreateMicrostrategySourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateMicrostrategySourceV2DtoTypeADF:
+		return true
 	case PublicCreateMicrostrategySourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateMicrostrategySourceV2DtoTypeATHENA:
@@ -5807,6 +7655,7 @@ func (e PublicCreateMicrostrategySourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateMssqlSourceV2DtoType.
 const (
+	PublicCreateMssqlSourceV2DtoTypeADF            PublicCreateMssqlSourceV2DtoType = "ADF"
 	PublicCreateMssqlSourceV2DtoTypeAIRFLOW        PublicCreateMssqlSourceV2DtoType = "AIRFLOW"
 	PublicCreateMssqlSourceV2DtoTypeATHENA         PublicCreateMssqlSourceV2DtoType = "ATHENA"
 	PublicCreateMssqlSourceV2DtoTypeBIGQUERY       PublicCreateMssqlSourceV2DtoType = "BIGQUERY"
@@ -5834,6 +7683,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateMssqlSourceV2DtoType enum.
 func (e PublicCreateMssqlSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateMssqlSourceV2DtoTypeADF:
+		return true
 	case PublicCreateMssqlSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateMssqlSourceV2DtoTypeATHENA:
@@ -5885,6 +7736,7 @@ func (e PublicCreateMssqlSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateMysqlSourceV2DtoType.
 const (
+	PublicCreateMysqlSourceV2DtoTypeADF            PublicCreateMysqlSourceV2DtoType = "ADF"
 	PublicCreateMysqlSourceV2DtoTypeAIRFLOW        PublicCreateMysqlSourceV2DtoType = "AIRFLOW"
 	PublicCreateMysqlSourceV2DtoTypeATHENA         PublicCreateMysqlSourceV2DtoType = "ATHENA"
 	PublicCreateMysqlSourceV2DtoTypeBIGQUERY       PublicCreateMysqlSourceV2DtoType = "BIGQUERY"
@@ -5912,6 +7764,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateMysqlSourceV2DtoType enum.
 func (e PublicCreateMysqlSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateMysqlSourceV2DtoTypeADF:
+		return true
 	case PublicCreateMysqlSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateMysqlSourceV2DtoTypeATHENA:
@@ -5963,6 +7817,7 @@ func (e PublicCreateMysqlSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateOracleSourceV2DtoType.
 const (
+	PublicCreateOracleSourceV2DtoTypeADF            PublicCreateOracleSourceV2DtoType = "ADF"
 	PublicCreateOracleSourceV2DtoTypeAIRFLOW        PublicCreateOracleSourceV2DtoType = "AIRFLOW"
 	PublicCreateOracleSourceV2DtoTypeATHENA         PublicCreateOracleSourceV2DtoType = "ATHENA"
 	PublicCreateOracleSourceV2DtoTypeBIGQUERY       PublicCreateOracleSourceV2DtoType = "BIGQUERY"
@@ -5990,6 +7845,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateOracleSourceV2DtoType enum.
 func (e PublicCreateOracleSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateOracleSourceV2DtoTypeADF:
+		return true
 	case PublicCreateOracleSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateOracleSourceV2DtoTypeATHENA:
@@ -6041,6 +7898,7 @@ func (e PublicCreateOracleSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreatePostgresqlSourceV2DtoType.
 const (
+	PublicCreatePostgresqlSourceV2DtoTypeADF            PublicCreatePostgresqlSourceV2DtoType = "ADF"
 	PublicCreatePostgresqlSourceV2DtoTypeAIRFLOW        PublicCreatePostgresqlSourceV2DtoType = "AIRFLOW"
 	PublicCreatePostgresqlSourceV2DtoTypeATHENA         PublicCreatePostgresqlSourceV2DtoType = "ATHENA"
 	PublicCreatePostgresqlSourceV2DtoTypeBIGQUERY       PublicCreatePostgresqlSourceV2DtoType = "BIGQUERY"
@@ -6068,6 +7926,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreatePostgresqlSourceV2DtoType enum.
 func (e PublicCreatePostgresqlSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreatePostgresqlSourceV2DtoTypeADF:
+		return true
 	case PublicCreatePostgresqlSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreatePostgresqlSourceV2DtoTypeATHENA:
@@ -6119,6 +7979,7 @@ func (e PublicCreatePostgresqlSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreatePowerBiSourceV2DtoType.
 const (
+	PublicCreatePowerBiSourceV2DtoTypeADF            PublicCreatePowerBiSourceV2DtoType = "ADF"
 	PublicCreatePowerBiSourceV2DtoTypeAIRFLOW        PublicCreatePowerBiSourceV2DtoType = "AIRFLOW"
 	PublicCreatePowerBiSourceV2DtoTypeATHENA         PublicCreatePowerBiSourceV2DtoType = "ATHENA"
 	PublicCreatePowerBiSourceV2DtoTypeBIGQUERY       PublicCreatePowerBiSourceV2DtoType = "BIGQUERY"
@@ -6146,6 +8007,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreatePowerBiSourceV2DtoType enum.
 func (e PublicCreatePowerBiSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreatePowerBiSourceV2DtoTypeADF:
+		return true
 	case PublicCreatePowerBiSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreatePowerBiSourceV2DtoTypeATHENA:
@@ -6197,6 +8060,7 @@ func (e PublicCreatePowerBiSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateQlikSourceV2DtoType.
 const (
+	PublicCreateQlikSourceV2DtoTypeADF            PublicCreateQlikSourceV2DtoType = "ADF"
 	PublicCreateQlikSourceV2DtoTypeAIRFLOW        PublicCreateQlikSourceV2DtoType = "AIRFLOW"
 	PublicCreateQlikSourceV2DtoTypeATHENA         PublicCreateQlikSourceV2DtoType = "ATHENA"
 	PublicCreateQlikSourceV2DtoTypeBIGQUERY       PublicCreateQlikSourceV2DtoType = "BIGQUERY"
@@ -6224,6 +8088,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateQlikSourceV2DtoType enum.
 func (e PublicCreateQlikSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateQlikSourceV2DtoTypeADF:
+		return true
 	case PublicCreateQlikSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateQlikSourceV2DtoTypeATHENA:
@@ -6275,6 +8141,7 @@ func (e PublicCreateQlikSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateQuicksightSourceV2DtoType.
 const (
+	PublicCreateQuicksightSourceV2DtoTypeADF            PublicCreateQuicksightSourceV2DtoType = "ADF"
 	PublicCreateQuicksightSourceV2DtoTypeAIRFLOW        PublicCreateQuicksightSourceV2DtoType = "AIRFLOW"
 	PublicCreateQuicksightSourceV2DtoTypeATHENA         PublicCreateQuicksightSourceV2DtoType = "ATHENA"
 	PublicCreateQuicksightSourceV2DtoTypeBIGQUERY       PublicCreateQuicksightSourceV2DtoType = "BIGQUERY"
@@ -6302,6 +8169,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateQuicksightSourceV2DtoType enum.
 func (e PublicCreateQuicksightSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateQuicksightSourceV2DtoTypeADF:
+		return true
 	case PublicCreateQuicksightSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateQuicksightSourceV2DtoTypeATHENA:
@@ -6353,6 +8222,7 @@ func (e PublicCreateQuicksightSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateRedshiftSourceV2DtoType.
 const (
+	PublicCreateRedshiftSourceV2DtoTypeADF            PublicCreateRedshiftSourceV2DtoType = "ADF"
 	PublicCreateRedshiftSourceV2DtoTypeAIRFLOW        PublicCreateRedshiftSourceV2DtoType = "AIRFLOW"
 	PublicCreateRedshiftSourceV2DtoTypeATHENA         PublicCreateRedshiftSourceV2DtoType = "ATHENA"
 	PublicCreateRedshiftSourceV2DtoTypeBIGQUERY       PublicCreateRedshiftSourceV2DtoType = "BIGQUERY"
@@ -6380,6 +8250,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateRedshiftSourceV2DtoType enum.
 func (e PublicCreateRedshiftSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateRedshiftSourceV2DtoTypeADF:
+		return true
 	case PublicCreateRedshiftSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateRedshiftSourceV2DtoTypeATHENA:
@@ -6431,6 +8303,7 @@ func (e PublicCreateRedshiftSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateSnowflakeSourceV2DtoType.
 const (
+	PublicCreateSnowflakeSourceV2DtoTypeADF            PublicCreateSnowflakeSourceV2DtoType = "ADF"
 	PublicCreateSnowflakeSourceV2DtoTypeAIRFLOW        PublicCreateSnowflakeSourceV2DtoType = "AIRFLOW"
 	PublicCreateSnowflakeSourceV2DtoTypeATHENA         PublicCreateSnowflakeSourceV2DtoType = "ATHENA"
 	PublicCreateSnowflakeSourceV2DtoTypeBIGQUERY       PublicCreateSnowflakeSourceV2DtoType = "BIGQUERY"
@@ -6458,6 +8331,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateSnowflakeSourceV2DtoType enum.
 func (e PublicCreateSnowflakeSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateSnowflakeSourceV2DtoTypeADF:
+		return true
 	case PublicCreateSnowflakeSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateSnowflakeSourceV2DtoTypeATHENA:
@@ -6509,6 +8384,7 @@ func (e PublicCreateSnowflakeSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateSourceV2DtoType.
 const (
+	PublicCreateSourceV2DtoTypeADF            PublicCreateSourceV2DtoType = "ADF"
 	PublicCreateSourceV2DtoTypeAIRFLOW        PublicCreateSourceV2DtoType = "AIRFLOW"
 	PublicCreateSourceV2DtoTypeATHENA         PublicCreateSourceV2DtoType = "ATHENA"
 	PublicCreateSourceV2DtoTypeBIGQUERY       PublicCreateSourceV2DtoType = "BIGQUERY"
@@ -6536,6 +8412,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateSourceV2DtoType enum.
 func (e PublicCreateSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateSourceV2DtoTypeADF:
+		return true
 	case PublicCreateSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateSourceV2DtoTypeATHENA:
@@ -6587,6 +8465,7 @@ func (e PublicCreateSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateSynapseSourceV2DtoType.
 const (
+	PublicCreateSynapseSourceV2DtoTypeADF            PublicCreateSynapseSourceV2DtoType = "ADF"
 	PublicCreateSynapseSourceV2DtoTypeAIRFLOW        PublicCreateSynapseSourceV2DtoType = "AIRFLOW"
 	PublicCreateSynapseSourceV2DtoTypeATHENA         PublicCreateSynapseSourceV2DtoType = "ATHENA"
 	PublicCreateSynapseSourceV2DtoTypeBIGQUERY       PublicCreateSynapseSourceV2DtoType = "BIGQUERY"
@@ -6614,6 +8493,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateSynapseSourceV2DtoType enum.
 func (e PublicCreateSynapseSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateSynapseSourceV2DtoTypeADF:
+		return true
 	case PublicCreateSynapseSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateSynapseSourceV2DtoTypeATHENA:
@@ -6665,6 +8546,7 @@ func (e PublicCreateSynapseSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicCreateTableauSourceV2DtoType.
 const (
+	PublicCreateTableauSourceV2DtoTypeADF            PublicCreateTableauSourceV2DtoType = "ADF"
 	PublicCreateTableauSourceV2DtoTypeAIRFLOW        PublicCreateTableauSourceV2DtoType = "AIRFLOW"
 	PublicCreateTableauSourceV2DtoTypeATHENA         PublicCreateTableauSourceV2DtoType = "ATHENA"
 	PublicCreateTableauSourceV2DtoTypeBIGQUERY       PublicCreateTableauSourceV2DtoType = "BIGQUERY"
@@ -6692,6 +8574,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicCreateTableauSourceV2DtoType enum.
 func (e PublicCreateTableauSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicCreateTableauSourceV2DtoTypeADF:
+		return true
 	case PublicCreateTableauSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicCreateTableauSourceV2DtoTypeATHENA:
@@ -6745,6 +8629,7 @@ func (e PublicCreateTableauSourceV2DtoType) Valid() bool {
 const (
 	PublicCustomMetadataEntryLabelReferenceDtoTypeLABEL  PublicCustomMetadataEntryLabelReferenceDtoType = "LABEL"
 	PublicCustomMetadataEntryLabelReferenceDtoTypeSTRING PublicCustomMetadataEntryLabelReferenceDtoType = "STRING"
+	PublicCustomMetadataEntryLabelReferenceDtoTypeTEAM   PublicCustomMetadataEntryLabelReferenceDtoType = "TEAM"
 	PublicCustomMetadataEntryLabelReferenceDtoTypeUSER   PublicCustomMetadataEntryLabelReferenceDtoType = "USER"
 )
 
@@ -6754,6 +8639,8 @@ func (e PublicCustomMetadataEntryLabelReferenceDtoType) Valid() bool {
 	case PublicCustomMetadataEntryLabelReferenceDtoTypeLABEL:
 		return true
 	case PublicCustomMetadataEntryLabelReferenceDtoTypeSTRING:
+		return true
+	case PublicCustomMetadataEntryLabelReferenceDtoTypeTEAM:
 		return true
 	case PublicCustomMetadataEntryLabelReferenceDtoTypeUSER:
 		return true
@@ -6766,6 +8653,7 @@ func (e PublicCustomMetadataEntryLabelReferenceDtoType) Valid() bool {
 const (
 	PublicCustomMetadataEntryReferenceDtoTypeLABEL  PublicCustomMetadataEntryReferenceDtoType = "LABEL"
 	PublicCustomMetadataEntryReferenceDtoTypeSTRING PublicCustomMetadataEntryReferenceDtoType = "STRING"
+	PublicCustomMetadataEntryReferenceDtoTypeTEAM   PublicCustomMetadataEntryReferenceDtoType = "TEAM"
 	PublicCustomMetadataEntryReferenceDtoTypeUSER   PublicCustomMetadataEntryReferenceDtoType = "USER"
 )
 
@@ -6775,6 +8663,8 @@ func (e PublicCustomMetadataEntryReferenceDtoType) Valid() bool {
 	case PublicCustomMetadataEntryReferenceDtoTypeLABEL:
 		return true
 	case PublicCustomMetadataEntryReferenceDtoTypeSTRING:
+		return true
+	case PublicCustomMetadataEntryReferenceDtoTypeTEAM:
 		return true
 	case PublicCustomMetadataEntryReferenceDtoTypeUSER:
 		return true
@@ -6787,6 +8677,7 @@ func (e PublicCustomMetadataEntryReferenceDtoType) Valid() bool {
 const (
 	PublicCustomMetadataEntryStringReferenceDtoTypeLABEL  PublicCustomMetadataEntryStringReferenceDtoType = "LABEL"
 	PublicCustomMetadataEntryStringReferenceDtoTypeSTRING PublicCustomMetadataEntryStringReferenceDtoType = "STRING"
+	PublicCustomMetadataEntryStringReferenceDtoTypeTEAM   PublicCustomMetadataEntryStringReferenceDtoType = "TEAM"
 	PublicCustomMetadataEntryStringReferenceDtoTypeUSER   PublicCustomMetadataEntryStringReferenceDtoType = "USER"
 )
 
@@ -6797,7 +8688,33 @@ func (e PublicCustomMetadataEntryStringReferenceDtoType) Valid() bool {
 		return true
 	case PublicCustomMetadataEntryStringReferenceDtoTypeSTRING:
 		return true
+	case PublicCustomMetadataEntryStringReferenceDtoTypeTEAM:
+		return true
 	case PublicCustomMetadataEntryStringReferenceDtoTypeUSER:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for PublicCustomMetadataEntryTeamReferenceDtoType.
+const (
+	PublicCustomMetadataEntryTeamReferenceDtoTypeLABEL  PublicCustomMetadataEntryTeamReferenceDtoType = "LABEL"
+	PublicCustomMetadataEntryTeamReferenceDtoTypeSTRING PublicCustomMetadataEntryTeamReferenceDtoType = "STRING"
+	PublicCustomMetadataEntryTeamReferenceDtoTypeTEAM   PublicCustomMetadataEntryTeamReferenceDtoType = "TEAM"
+	PublicCustomMetadataEntryTeamReferenceDtoTypeUSER   PublicCustomMetadataEntryTeamReferenceDtoType = "USER"
+)
+
+// Valid indicates whether the value is a known member of the PublicCustomMetadataEntryTeamReferenceDtoType enum.
+func (e PublicCustomMetadataEntryTeamReferenceDtoType) Valid() bool {
+	switch e {
+	case PublicCustomMetadataEntryTeamReferenceDtoTypeLABEL:
+		return true
+	case PublicCustomMetadataEntryTeamReferenceDtoTypeSTRING:
+		return true
+	case PublicCustomMetadataEntryTeamReferenceDtoTypeTEAM:
+		return true
+	case PublicCustomMetadataEntryTeamReferenceDtoTypeUSER:
 		return true
 	default:
 		return false
@@ -6808,6 +8725,7 @@ func (e PublicCustomMetadataEntryStringReferenceDtoType) Valid() bool {
 const (
 	PublicCustomMetadataEntryUserReferenceDtoTypeLABEL  PublicCustomMetadataEntryUserReferenceDtoType = "LABEL"
 	PublicCustomMetadataEntryUserReferenceDtoTypeSTRING PublicCustomMetadataEntryUserReferenceDtoType = "STRING"
+	PublicCustomMetadataEntryUserReferenceDtoTypeTEAM   PublicCustomMetadataEntryUserReferenceDtoType = "TEAM"
 	PublicCustomMetadataEntryUserReferenceDtoTypeUSER   PublicCustomMetadataEntryUserReferenceDtoType = "USER"
 )
 
@@ -6817,6 +8735,8 @@ func (e PublicCustomMetadataEntryUserReferenceDtoType) Valid() bool {
 	case PublicCustomMetadataEntryUserReferenceDtoTypeLABEL:
 		return true
 	case PublicCustomMetadataEntryUserReferenceDtoTypeSTRING:
+		return true
+	case PublicCustomMetadataEntryUserReferenceDtoTypeTEAM:
 		return true
 	case PublicCustomMetadataEntryUserReferenceDtoTypeUSER:
 		return true
@@ -7075,6 +8995,7 @@ const (
 	PublicDescriptionDtoOriginACTIANVECTOR              PublicDescriptionDtoOrigin = "ACTIAN_VECTOR"
 	PublicDescriptionDtoOriginACTIVECAMPAIGN            PublicDescriptionDtoOrigin = "ACTIVE_CAMPAIGN"
 	PublicDescriptionDtoOriginADA                       PublicDescriptionDtoOrigin = "ADA"
+	PublicDescriptionDtoOriginADF                       PublicDescriptionDtoOrigin = "ADF"
 	PublicDescriptionDtoOriginADJUST                    PublicDescriptionDtoOrigin = "ADJUST"
 	PublicDescriptionDtoOriginADOBE                     PublicDescriptionDtoOrigin = "ADOBE"
 	PublicDescriptionDtoOriginADPWFN                    PublicDescriptionDtoOrigin = "ADP_WFN"
@@ -7140,6 +9061,7 @@ const (
 	PublicDescriptionDtoOriginCANVAS                    PublicDescriptionDtoOrigin = "CANVAS"
 	PublicDescriptionDtoOriginCAPTERRA                  PublicDescriptionDtoOrigin = "CAPTERRA"
 	PublicDescriptionDtoOriginCASTORDOC                 PublicDescriptionDtoOrigin = "CASTOR_DOC"
+	PublicDescriptionDtoOriginCATALOGGENERIC            PublicDescriptionDtoOrigin = "CATALOG_GENERIC"
 	PublicDescriptionDtoOriginCENSUS                    PublicDescriptionDtoOrigin = "CENSUS"
 	PublicDescriptionDtoOriginCERTINIA                  PublicDescriptionDtoOrigin = "CERTINIA"
 	PublicDescriptionDtoOriginCHAMELEON                 PublicDescriptionDtoOrigin = "CHAMELEON"
@@ -7323,6 +9245,7 @@ const (
 	PublicDescriptionDtoOriginMARIADB                   PublicDescriptionDtoOrigin = "MARIADB"
 	PublicDescriptionDtoOriginMARINSOFTWARE             PublicDescriptionDtoOrigin = "MARIN_SOFTWARE"
 	PublicDescriptionDtoOriginMARKETO                   PublicDescriptionDtoOrigin = "MARKETO"
+	PublicDescriptionDtoOriginMATILLION                 PublicDescriptionDtoOrigin = "MATILLION"
 	PublicDescriptionDtoOriginMATTERMOST                PublicDescriptionDtoOrigin = "MATTERMOST"
 	PublicDescriptionDtoOriginMAVENLINK                 PublicDescriptionDtoOrigin = "MAVENLINK"
 	PublicDescriptionDtoOriginMAXIO                     PublicDescriptionDtoOrigin = "MAXIO"
@@ -7460,6 +9383,7 @@ const (
 	PublicDescriptionDtoOriginSPROUTSOCIAL              PublicDescriptionDtoOrigin = "SPROUT_SOCIAL"
 	PublicDescriptionDtoOriginSQUARE                    PublicDescriptionDtoOrigin = "SQUARE"
 	PublicDescriptionDtoOriginSQUARESPACE               PublicDescriptionDtoOrigin = "SQUARESPACE"
+	PublicDescriptionDtoOriginSSIS                      PublicDescriptionDtoOrigin = "SSIS"
 	PublicDescriptionDtoOriginSTACKADAPT                PublicDescriptionDtoOrigin = "STACK_ADAPT"
 	PublicDescriptionDtoOriginSTATSIG                   PublicDescriptionDtoOrigin = "STATSIG"
 	PublicDescriptionDtoOriginSTITCH                    PublicDescriptionDtoOrigin = "STITCH"
@@ -7539,6 +9463,8 @@ func (e PublicDescriptionDtoOrigin) Valid() bool {
 	case PublicDescriptionDtoOriginACTIVECAMPAIGN:
 		return true
 	case PublicDescriptionDtoOriginADA:
+		return true
+	case PublicDescriptionDtoOriginADF:
 		return true
 	case PublicDescriptionDtoOriginADJUST:
 		return true
@@ -7669,6 +9595,8 @@ func (e PublicDescriptionDtoOrigin) Valid() bool {
 	case PublicDescriptionDtoOriginCAPTERRA:
 		return true
 	case PublicDescriptionDtoOriginCASTORDOC:
+		return true
+	case PublicDescriptionDtoOriginCATALOGGENERIC:
 		return true
 	case PublicDescriptionDtoOriginCENSUS:
 		return true
@@ -8036,6 +9964,8 @@ func (e PublicDescriptionDtoOrigin) Valid() bool {
 		return true
 	case PublicDescriptionDtoOriginMARKETO:
 		return true
+	case PublicDescriptionDtoOriginMATILLION:
+		return true
 	case PublicDescriptionDtoOriginMATTERMOST:
 		return true
 	case PublicDescriptionDtoOriginMAVENLINK:
@@ -8310,6 +10240,8 @@ func (e PublicDescriptionDtoOrigin) Valid() bool {
 		return true
 	case PublicDescriptionDtoOriginSQUARESPACE:
 		return true
+	case PublicDescriptionDtoOriginSSIS:
+		return true
 	case PublicDescriptionDtoOriginSTACKADAPT:
 		return true
 	case PublicDescriptionDtoOriginSTATSIG:
@@ -8463,6 +10395,30 @@ func (e PublicDomainContentDefinitionDtoType) Valid() bool {
 	}
 }
 
+// Defines values for PublicDomainTeamPermissionDtoDomainRole.
+const (
+	PublicDomainTeamPermissionDtoDomainRoleCATALOGEDITOR    PublicDomainTeamPermissionDtoDomainRole = "CATALOG_EDITOR"
+	PublicDomainTeamPermissionDtoDomainRoleEDITOR           PublicDomainTeamPermissionDtoDomainRole = "EDITOR"
+	PublicDomainTeamPermissionDtoDomainRoleMONITORRESPONDER PublicDomainTeamPermissionDtoDomainRole = "MONITOR_RESPONDER"
+	PublicDomainTeamPermissionDtoDomainRoleVIEWER           PublicDomainTeamPermissionDtoDomainRole = "VIEWER"
+)
+
+// Valid indicates whether the value is a known member of the PublicDomainTeamPermissionDtoDomainRole enum.
+func (e PublicDomainTeamPermissionDtoDomainRole) Valid() bool {
+	switch e {
+	case PublicDomainTeamPermissionDtoDomainRoleCATALOGEDITOR:
+		return true
+	case PublicDomainTeamPermissionDtoDomainRoleEDITOR:
+		return true
+	case PublicDomainTeamPermissionDtoDomainRoleMONITORRESPONDER:
+		return true
+	case PublicDomainTeamPermissionDtoDomainRoleVIEWER:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for PublicDynamicDomainContentDefinitionDtoFilterLogicalOperator.
 const (
 	AND PublicDynamicDomainContentDefinitionDtoFilterLogicalOperator = "AND"
@@ -8501,22 +10457,49 @@ func (e PublicDynamicDomainContentDefinitionDtoType) Valid() bool {
 
 // Defines values for PublicExternalTagReferenceDtoKind.
 const (
-	PublicExternalTagReferenceDtoKindBIGQUERYEXTERNAL   PublicExternalTagReferenceDtoKind = "BIGQUERY_EXTERNAL"
-	PublicExternalTagReferenceDtoKindDATABRICKSEXTERNAL PublicExternalTagReferenceDtoKind = "DATABRICKS_EXTERNAL"
-	PublicExternalTagReferenceDtoKindDBTEXTERNAL        PublicExternalTagReferenceDtoKind = "DBT_EXTERNAL"
-	PublicExternalTagReferenceDtoKindSNOWFLAKEEXTERNAL  PublicExternalTagReferenceDtoKind = "SNOWFLAKE_EXTERNAL"
+	PublicExternalTagReferenceDtoKindADFEXTERNAL            PublicExternalTagReferenceDtoKind = "ADF_EXTERNAL"
+	PublicExternalTagReferenceDtoKindATLANEXTERNAL          PublicExternalTagReferenceDtoKind = "ATLAN_EXTERNAL"
+	PublicExternalTagReferenceDtoKindBIGQUERYEXTERNAL       PublicExternalTagReferenceDtoKind = "BIGQUERY_EXTERNAL"
+	PublicExternalTagReferenceDtoKindDATABRICKSEXTERNAL     PublicExternalTagReferenceDtoKind = "DATABRICKS_EXTERNAL"
+	PublicExternalTagReferenceDtoKindDBTEXTERNAL            PublicExternalTagReferenceDtoKind = "DBT_EXTERNAL"
+	PublicExternalTagReferenceDtoKindGENERICCATALOGEXTERNAL PublicExternalTagReferenceDtoKind = "GENERIC_CATALOG_EXTERNAL"
+	PublicExternalTagReferenceDtoKindSNOWFLAKEEXTERNAL      PublicExternalTagReferenceDtoKind = "SNOWFLAKE_EXTERNAL"
 )
 
 // Valid indicates whether the value is a known member of the PublicExternalTagReferenceDtoKind enum.
 func (e PublicExternalTagReferenceDtoKind) Valid() bool {
 	switch e {
+	case PublicExternalTagReferenceDtoKindADFEXTERNAL:
+		return true
+	case PublicExternalTagReferenceDtoKindATLANEXTERNAL:
+		return true
 	case PublicExternalTagReferenceDtoKindBIGQUERYEXTERNAL:
 		return true
 	case PublicExternalTagReferenceDtoKindDATABRICKSEXTERNAL:
 		return true
 	case PublicExternalTagReferenceDtoKindDBTEXTERNAL:
 		return true
+	case PublicExternalTagReferenceDtoKindGENERICCATALOGEXTERNAL:
+		return true
 	case PublicExternalTagReferenceDtoKindSNOWFLAKEEXTERNAL:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for PublicExternalTermReferenceDtoKind.
+const (
+	PublicExternalTermReferenceDtoKindATLANEXTERNAL          PublicExternalTermReferenceDtoKind = "ATLAN_EXTERNAL"
+	PublicExternalTermReferenceDtoKindGENERICCATALOGEXTERNAL PublicExternalTermReferenceDtoKind = "GENERIC_CATALOG_EXTERNAL"
+)
+
+// Valid indicates whether the value is a known member of the PublicExternalTermReferenceDtoKind enum.
+func (e PublicExternalTermReferenceDtoKind) Valid() bool {
+	switch e {
+	case PublicExternalTermReferenceDtoKindATLANEXTERNAL:
+		return true
+	case PublicExternalTermReferenceDtoKindGENERICCATALOGEXTERNAL:
 		return true
 	default:
 		return false
@@ -8613,8 +10596,90 @@ func (e PublicFivetranParametersDtoType) Valid() bool {
 	}
 }
 
+// Defines values for PublicGetAdfSourceV2DtoType.
+const (
+	PublicGetAdfSourceV2DtoTypeADF            PublicGetAdfSourceV2DtoType = "ADF"
+	PublicGetAdfSourceV2DtoTypeAIRFLOW        PublicGetAdfSourceV2DtoType = "AIRFLOW"
+	PublicGetAdfSourceV2DtoTypeATHENA         PublicGetAdfSourceV2DtoType = "ATHENA"
+	PublicGetAdfSourceV2DtoTypeBIGQUERY       PublicGetAdfSourceV2DtoType = "BIGQUERY"
+	PublicGetAdfSourceV2DtoTypeDATABRICKS     PublicGetAdfSourceV2DtoType = "DATABRICKS"
+	PublicGetAdfSourceV2DtoTypeDATABRICKSJOBS PublicGetAdfSourceV2DtoType = "DATABRICKS_JOBS"
+	PublicGetAdfSourceV2DtoTypeDBT            PublicGetAdfSourceV2DtoType = "DBT"
+	PublicGetAdfSourceV2DtoTypeDBTCLOUD       PublicGetAdfSourceV2DtoType = "DBTCLOUD"
+	PublicGetAdfSourceV2DtoTypeDECLARATIVE    PublicGetAdfSourceV2DtoType = "DECLARATIVE"
+	PublicGetAdfSourceV2DtoTypeFIVETRAN       PublicGetAdfSourceV2DtoType = "FIVETRAN"
+	PublicGetAdfSourceV2DtoTypeLOOKER         PublicGetAdfSourceV2DtoType = "LOOKER"
+	PublicGetAdfSourceV2DtoTypeMICROSTRATEGY  PublicGetAdfSourceV2DtoType = "MICROSTRATEGY"
+	PublicGetAdfSourceV2DtoTypeMSSQL          PublicGetAdfSourceV2DtoType = "MSSQL"
+	PublicGetAdfSourceV2DtoTypeMYSQL          PublicGetAdfSourceV2DtoType = "MYSQL"
+	PublicGetAdfSourceV2DtoTypeORACLE         PublicGetAdfSourceV2DtoType = "ORACLE"
+	PublicGetAdfSourceV2DtoTypePOSTGRESQL     PublicGetAdfSourceV2DtoType = "POSTGRESQL"
+	PublicGetAdfSourceV2DtoTypePOWERBI        PublicGetAdfSourceV2DtoType = "POWER_BI"
+	PublicGetAdfSourceV2DtoTypeQLIK           PublicGetAdfSourceV2DtoType = "QLIK"
+	PublicGetAdfSourceV2DtoTypeQUICKSIGHT     PublicGetAdfSourceV2DtoType = "QUICKSIGHT"
+	PublicGetAdfSourceV2DtoTypeREDSHIFT       PublicGetAdfSourceV2DtoType = "REDSHIFT"
+	PublicGetAdfSourceV2DtoTypeSNOWFLAKE      PublicGetAdfSourceV2DtoType = "SNOWFLAKE"
+	PublicGetAdfSourceV2DtoTypeSYNAPSE        PublicGetAdfSourceV2DtoType = "SYNAPSE"
+	PublicGetAdfSourceV2DtoTypeTABLEAU        PublicGetAdfSourceV2DtoType = "TABLEAU"
+)
+
+// Valid indicates whether the value is a known member of the PublicGetAdfSourceV2DtoType enum.
+func (e PublicGetAdfSourceV2DtoType) Valid() bool {
+	switch e {
+	case PublicGetAdfSourceV2DtoTypeADF:
+		return true
+	case PublicGetAdfSourceV2DtoTypeAIRFLOW:
+		return true
+	case PublicGetAdfSourceV2DtoTypeATHENA:
+		return true
+	case PublicGetAdfSourceV2DtoTypeBIGQUERY:
+		return true
+	case PublicGetAdfSourceV2DtoTypeDATABRICKS:
+		return true
+	case PublicGetAdfSourceV2DtoTypeDATABRICKSJOBS:
+		return true
+	case PublicGetAdfSourceV2DtoTypeDBT:
+		return true
+	case PublicGetAdfSourceV2DtoTypeDBTCLOUD:
+		return true
+	case PublicGetAdfSourceV2DtoTypeDECLARATIVE:
+		return true
+	case PublicGetAdfSourceV2DtoTypeFIVETRAN:
+		return true
+	case PublicGetAdfSourceV2DtoTypeLOOKER:
+		return true
+	case PublicGetAdfSourceV2DtoTypeMICROSTRATEGY:
+		return true
+	case PublicGetAdfSourceV2DtoTypeMSSQL:
+		return true
+	case PublicGetAdfSourceV2DtoTypeMYSQL:
+		return true
+	case PublicGetAdfSourceV2DtoTypeORACLE:
+		return true
+	case PublicGetAdfSourceV2DtoTypePOSTGRESQL:
+		return true
+	case PublicGetAdfSourceV2DtoTypePOWERBI:
+		return true
+	case PublicGetAdfSourceV2DtoTypeQLIK:
+		return true
+	case PublicGetAdfSourceV2DtoTypeQUICKSIGHT:
+		return true
+	case PublicGetAdfSourceV2DtoTypeREDSHIFT:
+		return true
+	case PublicGetAdfSourceV2DtoTypeSNOWFLAKE:
+		return true
+	case PublicGetAdfSourceV2DtoTypeSYNAPSE:
+		return true
+	case PublicGetAdfSourceV2DtoTypeTABLEAU:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for PublicGetAirflowSourceV2DtoType.
 const (
+	PublicGetAirflowSourceV2DtoTypeADF            PublicGetAirflowSourceV2DtoType = "ADF"
 	PublicGetAirflowSourceV2DtoTypeAIRFLOW        PublicGetAirflowSourceV2DtoType = "AIRFLOW"
 	PublicGetAirflowSourceV2DtoTypeATHENA         PublicGetAirflowSourceV2DtoType = "ATHENA"
 	PublicGetAirflowSourceV2DtoTypeBIGQUERY       PublicGetAirflowSourceV2DtoType = "BIGQUERY"
@@ -8642,6 +10707,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetAirflowSourceV2DtoType enum.
 func (e PublicGetAirflowSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetAirflowSourceV2DtoTypeADF:
+		return true
 	case PublicGetAirflowSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetAirflowSourceV2DtoTypeATHENA:
@@ -8743,6 +10810,7 @@ const (
 	PublicGetAssetDtoTechnologyACTIANVECTOR              PublicGetAssetDtoTechnology = "ACTIAN_VECTOR"
 	PublicGetAssetDtoTechnologyACTIVECAMPAIGN            PublicGetAssetDtoTechnology = "ACTIVE_CAMPAIGN"
 	PublicGetAssetDtoTechnologyADA                       PublicGetAssetDtoTechnology = "ADA"
+	PublicGetAssetDtoTechnologyADF                       PublicGetAssetDtoTechnology = "ADF"
 	PublicGetAssetDtoTechnologyADJUST                    PublicGetAssetDtoTechnology = "ADJUST"
 	PublicGetAssetDtoTechnologyADOBE                     PublicGetAssetDtoTechnology = "ADOBE"
 	PublicGetAssetDtoTechnologyADPWFN                    PublicGetAssetDtoTechnology = "ADP_WFN"
@@ -8808,6 +10876,7 @@ const (
 	PublicGetAssetDtoTechnologyCANVAS                    PublicGetAssetDtoTechnology = "CANVAS"
 	PublicGetAssetDtoTechnologyCAPTERRA                  PublicGetAssetDtoTechnology = "CAPTERRA"
 	PublicGetAssetDtoTechnologyCASTORDOC                 PublicGetAssetDtoTechnology = "CASTOR_DOC"
+	PublicGetAssetDtoTechnologyCATALOGGENERIC            PublicGetAssetDtoTechnology = "CATALOG_GENERIC"
 	PublicGetAssetDtoTechnologyCENSUS                    PublicGetAssetDtoTechnology = "CENSUS"
 	PublicGetAssetDtoTechnologyCERTINIA                  PublicGetAssetDtoTechnology = "CERTINIA"
 	PublicGetAssetDtoTechnologyCHAMELEON                 PublicGetAssetDtoTechnology = "CHAMELEON"
@@ -8991,6 +11060,7 @@ const (
 	PublicGetAssetDtoTechnologyMARIADB                   PublicGetAssetDtoTechnology = "MARIADB"
 	PublicGetAssetDtoTechnologyMARINSOFTWARE             PublicGetAssetDtoTechnology = "MARIN_SOFTWARE"
 	PublicGetAssetDtoTechnologyMARKETO                   PublicGetAssetDtoTechnology = "MARKETO"
+	PublicGetAssetDtoTechnologyMATILLION                 PublicGetAssetDtoTechnology = "MATILLION"
 	PublicGetAssetDtoTechnologyMATTERMOST                PublicGetAssetDtoTechnology = "MATTERMOST"
 	PublicGetAssetDtoTechnologyMAVENLINK                 PublicGetAssetDtoTechnology = "MAVENLINK"
 	PublicGetAssetDtoTechnologyMAXIO                     PublicGetAssetDtoTechnology = "MAXIO"
@@ -9128,6 +11198,7 @@ const (
 	PublicGetAssetDtoTechnologySPROUTSOCIAL              PublicGetAssetDtoTechnology = "SPROUT_SOCIAL"
 	PublicGetAssetDtoTechnologySQUARE                    PublicGetAssetDtoTechnology = "SQUARE"
 	PublicGetAssetDtoTechnologySQUARESPACE               PublicGetAssetDtoTechnology = "SQUARESPACE"
+	PublicGetAssetDtoTechnologySSIS                      PublicGetAssetDtoTechnology = "SSIS"
 	PublicGetAssetDtoTechnologySTACKADAPT                PublicGetAssetDtoTechnology = "STACK_ADAPT"
 	PublicGetAssetDtoTechnologySTATSIG                   PublicGetAssetDtoTechnology = "STATSIG"
 	PublicGetAssetDtoTechnologySTITCH                    PublicGetAssetDtoTechnology = "STITCH"
@@ -9207,6 +11278,8 @@ func (e PublicGetAssetDtoTechnology) Valid() bool {
 	case PublicGetAssetDtoTechnologyACTIVECAMPAIGN:
 		return true
 	case PublicGetAssetDtoTechnologyADA:
+		return true
+	case PublicGetAssetDtoTechnologyADF:
 		return true
 	case PublicGetAssetDtoTechnologyADJUST:
 		return true
@@ -9337,6 +11410,8 @@ func (e PublicGetAssetDtoTechnology) Valid() bool {
 	case PublicGetAssetDtoTechnologyCAPTERRA:
 		return true
 	case PublicGetAssetDtoTechnologyCASTORDOC:
+		return true
+	case PublicGetAssetDtoTechnologyCATALOGGENERIC:
 		return true
 	case PublicGetAssetDtoTechnologyCENSUS:
 		return true
@@ -9704,6 +11779,8 @@ func (e PublicGetAssetDtoTechnology) Valid() bool {
 		return true
 	case PublicGetAssetDtoTechnologyMARKETO:
 		return true
+	case PublicGetAssetDtoTechnologyMATILLION:
+		return true
 	case PublicGetAssetDtoTechnologyMATTERMOST:
 		return true
 	case PublicGetAssetDtoTechnologyMAVENLINK:
@@ -9978,6 +12055,8 @@ func (e PublicGetAssetDtoTechnology) Valid() bool {
 		return true
 	case PublicGetAssetDtoTechnologySQUARESPACE:
 		return true
+	case PublicGetAssetDtoTechnologySSIS:
+		return true
 	case PublicGetAssetDtoTechnologySTACKADAPT:
 		return true
 	case PublicGetAssetDtoTechnologySTATSIG:
@@ -10246,6 +12325,7 @@ const (
 	PublicGetAssetListDtoTechnologyACTIANVECTOR              PublicGetAssetListDtoTechnology = "ACTIAN_VECTOR"
 	PublicGetAssetListDtoTechnologyACTIVECAMPAIGN            PublicGetAssetListDtoTechnology = "ACTIVE_CAMPAIGN"
 	PublicGetAssetListDtoTechnologyADA                       PublicGetAssetListDtoTechnology = "ADA"
+	PublicGetAssetListDtoTechnologyADF                       PublicGetAssetListDtoTechnology = "ADF"
 	PublicGetAssetListDtoTechnologyADJUST                    PublicGetAssetListDtoTechnology = "ADJUST"
 	PublicGetAssetListDtoTechnologyADOBE                     PublicGetAssetListDtoTechnology = "ADOBE"
 	PublicGetAssetListDtoTechnologyADPWFN                    PublicGetAssetListDtoTechnology = "ADP_WFN"
@@ -10311,6 +12391,7 @@ const (
 	PublicGetAssetListDtoTechnologyCANVAS                    PublicGetAssetListDtoTechnology = "CANVAS"
 	PublicGetAssetListDtoTechnologyCAPTERRA                  PublicGetAssetListDtoTechnology = "CAPTERRA"
 	PublicGetAssetListDtoTechnologyCASTORDOC                 PublicGetAssetListDtoTechnology = "CASTOR_DOC"
+	PublicGetAssetListDtoTechnologyCATALOGGENERIC            PublicGetAssetListDtoTechnology = "CATALOG_GENERIC"
 	PublicGetAssetListDtoTechnologyCENSUS                    PublicGetAssetListDtoTechnology = "CENSUS"
 	PublicGetAssetListDtoTechnologyCERTINIA                  PublicGetAssetListDtoTechnology = "CERTINIA"
 	PublicGetAssetListDtoTechnologyCHAMELEON                 PublicGetAssetListDtoTechnology = "CHAMELEON"
@@ -10494,6 +12575,7 @@ const (
 	PublicGetAssetListDtoTechnologyMARIADB                   PublicGetAssetListDtoTechnology = "MARIADB"
 	PublicGetAssetListDtoTechnologyMARINSOFTWARE             PublicGetAssetListDtoTechnology = "MARIN_SOFTWARE"
 	PublicGetAssetListDtoTechnologyMARKETO                   PublicGetAssetListDtoTechnology = "MARKETO"
+	PublicGetAssetListDtoTechnologyMATILLION                 PublicGetAssetListDtoTechnology = "MATILLION"
 	PublicGetAssetListDtoTechnologyMATTERMOST                PublicGetAssetListDtoTechnology = "MATTERMOST"
 	PublicGetAssetListDtoTechnologyMAVENLINK                 PublicGetAssetListDtoTechnology = "MAVENLINK"
 	PublicGetAssetListDtoTechnologyMAXIO                     PublicGetAssetListDtoTechnology = "MAXIO"
@@ -10631,6 +12713,7 @@ const (
 	PublicGetAssetListDtoTechnologySPROUTSOCIAL              PublicGetAssetListDtoTechnology = "SPROUT_SOCIAL"
 	PublicGetAssetListDtoTechnologySQUARE                    PublicGetAssetListDtoTechnology = "SQUARE"
 	PublicGetAssetListDtoTechnologySQUARESPACE               PublicGetAssetListDtoTechnology = "SQUARESPACE"
+	PublicGetAssetListDtoTechnologySSIS                      PublicGetAssetListDtoTechnology = "SSIS"
 	PublicGetAssetListDtoTechnologySTACKADAPT                PublicGetAssetListDtoTechnology = "STACK_ADAPT"
 	PublicGetAssetListDtoTechnologySTATSIG                   PublicGetAssetListDtoTechnology = "STATSIG"
 	PublicGetAssetListDtoTechnologySTITCH                    PublicGetAssetListDtoTechnology = "STITCH"
@@ -10710,6 +12793,8 @@ func (e PublicGetAssetListDtoTechnology) Valid() bool {
 	case PublicGetAssetListDtoTechnologyACTIVECAMPAIGN:
 		return true
 	case PublicGetAssetListDtoTechnologyADA:
+		return true
+	case PublicGetAssetListDtoTechnologyADF:
 		return true
 	case PublicGetAssetListDtoTechnologyADJUST:
 		return true
@@ -10840,6 +12925,8 @@ func (e PublicGetAssetListDtoTechnology) Valid() bool {
 	case PublicGetAssetListDtoTechnologyCAPTERRA:
 		return true
 	case PublicGetAssetListDtoTechnologyCASTORDOC:
+		return true
+	case PublicGetAssetListDtoTechnologyCATALOGGENERIC:
 		return true
 	case PublicGetAssetListDtoTechnologyCENSUS:
 		return true
@@ -11207,6 +13294,8 @@ func (e PublicGetAssetListDtoTechnology) Valid() bool {
 		return true
 	case PublicGetAssetListDtoTechnologyMARKETO:
 		return true
+	case PublicGetAssetListDtoTechnologyMATILLION:
+		return true
 	case PublicGetAssetListDtoTechnologyMATTERMOST:
 		return true
 	case PublicGetAssetListDtoTechnologyMAVENLINK:
@@ -11481,6 +13570,8 @@ func (e PublicGetAssetListDtoTechnology) Valid() bool {
 		return true
 	case PublicGetAssetListDtoTechnologySQUARESPACE:
 		return true
+	case PublicGetAssetListDtoTechnologySSIS:
+		return true
 	case PublicGetAssetListDtoTechnologySTACKADAPT:
 		return true
 	case PublicGetAssetListDtoTechnologySTATSIG:
@@ -11699,6 +13790,7 @@ func (e PublicGetAssetListDtoUsage) Valid() bool {
 
 // Defines values for PublicGetAthenaSourceV2DtoType.
 const (
+	PublicGetAthenaSourceV2DtoTypeADF            PublicGetAthenaSourceV2DtoType = "ADF"
 	PublicGetAthenaSourceV2DtoTypeAIRFLOW        PublicGetAthenaSourceV2DtoType = "AIRFLOW"
 	PublicGetAthenaSourceV2DtoTypeATHENA         PublicGetAthenaSourceV2DtoType = "ATHENA"
 	PublicGetAthenaSourceV2DtoTypeBIGQUERY       PublicGetAthenaSourceV2DtoType = "BIGQUERY"
@@ -11726,6 +13818,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetAthenaSourceV2DtoType enum.
 func (e PublicGetAthenaSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetAthenaSourceV2DtoTypeADF:
+		return true
 	case PublicGetAthenaSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetAthenaSourceV2DtoTypeATHENA:
@@ -11777,6 +13871,7 @@ func (e PublicGetAthenaSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetBigQuerySourceV2DtoType.
 const (
+	PublicGetBigQuerySourceV2DtoTypeADF            PublicGetBigQuerySourceV2DtoType = "ADF"
 	PublicGetBigQuerySourceV2DtoTypeAIRFLOW        PublicGetBigQuerySourceV2DtoType = "AIRFLOW"
 	PublicGetBigQuerySourceV2DtoTypeATHENA         PublicGetBigQuerySourceV2DtoType = "ATHENA"
 	PublicGetBigQuerySourceV2DtoTypeBIGQUERY       PublicGetBigQuerySourceV2DtoType = "BIGQUERY"
@@ -11804,6 +13899,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetBigQuerySourceV2DtoType enum.
 func (e PublicGetBigQuerySourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetBigQuerySourceV2DtoTypeADF:
+		return true
 	case PublicGetBigQuerySourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetBigQuerySourceV2DtoTypeATHENA:
@@ -11857,6 +13954,7 @@ func (e PublicGetBigQuerySourceV2DtoType) Valid() bool {
 const (
 	PublicGetCustomMetadataEntryDtoTypeLABEL  PublicGetCustomMetadataEntryDtoType = "LABEL"
 	PublicGetCustomMetadataEntryDtoTypeSTRING PublicGetCustomMetadataEntryDtoType = "STRING"
+	PublicGetCustomMetadataEntryDtoTypeTEAM   PublicGetCustomMetadataEntryDtoType = "TEAM"
 	PublicGetCustomMetadataEntryDtoTypeUSER   PublicGetCustomMetadataEntryDtoType = "USER"
 )
 
@@ -11866,6 +13964,8 @@ func (e PublicGetCustomMetadataEntryDtoType) Valid() bool {
 	case PublicGetCustomMetadataEntryDtoTypeLABEL:
 		return true
 	case PublicGetCustomMetadataEntryDtoTypeSTRING:
+		return true
+	case PublicGetCustomMetadataEntryDtoTypeTEAM:
 		return true
 	case PublicGetCustomMetadataEntryDtoTypeUSER:
 		return true
@@ -11878,6 +13978,7 @@ func (e PublicGetCustomMetadataEntryDtoType) Valid() bool {
 const (
 	PublicGetCustomMetadataEntryLabelDtoTypeLABEL  PublicGetCustomMetadataEntryLabelDtoType = "LABEL"
 	PublicGetCustomMetadataEntryLabelDtoTypeSTRING PublicGetCustomMetadataEntryLabelDtoType = "STRING"
+	PublicGetCustomMetadataEntryLabelDtoTypeTEAM   PublicGetCustomMetadataEntryLabelDtoType = "TEAM"
 	PublicGetCustomMetadataEntryLabelDtoTypeUSER   PublicGetCustomMetadataEntryLabelDtoType = "USER"
 )
 
@@ -11887,6 +13988,8 @@ func (e PublicGetCustomMetadataEntryLabelDtoType) Valid() bool {
 	case PublicGetCustomMetadataEntryLabelDtoTypeLABEL:
 		return true
 	case PublicGetCustomMetadataEntryLabelDtoTypeSTRING:
+		return true
+	case PublicGetCustomMetadataEntryLabelDtoTypeTEAM:
 		return true
 	case PublicGetCustomMetadataEntryLabelDtoTypeUSER:
 		return true
@@ -11899,6 +14002,7 @@ func (e PublicGetCustomMetadataEntryLabelDtoType) Valid() bool {
 const (
 	PublicGetCustomMetadataEntryStringDtoTypeLABEL  PublicGetCustomMetadataEntryStringDtoType = "LABEL"
 	PublicGetCustomMetadataEntryStringDtoTypeSTRING PublicGetCustomMetadataEntryStringDtoType = "STRING"
+	PublicGetCustomMetadataEntryStringDtoTypeTEAM   PublicGetCustomMetadataEntryStringDtoType = "TEAM"
 	PublicGetCustomMetadataEntryStringDtoTypeUSER   PublicGetCustomMetadataEntryStringDtoType = "USER"
 )
 
@@ -11909,7 +14013,33 @@ func (e PublicGetCustomMetadataEntryStringDtoType) Valid() bool {
 		return true
 	case PublicGetCustomMetadataEntryStringDtoTypeSTRING:
 		return true
+	case PublicGetCustomMetadataEntryStringDtoTypeTEAM:
+		return true
 	case PublicGetCustomMetadataEntryStringDtoTypeUSER:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for PublicGetCustomMetadataEntryTeamDtoType.
+const (
+	PublicGetCustomMetadataEntryTeamDtoTypeLABEL  PublicGetCustomMetadataEntryTeamDtoType = "LABEL"
+	PublicGetCustomMetadataEntryTeamDtoTypeSTRING PublicGetCustomMetadataEntryTeamDtoType = "STRING"
+	PublicGetCustomMetadataEntryTeamDtoTypeTEAM   PublicGetCustomMetadataEntryTeamDtoType = "TEAM"
+	PublicGetCustomMetadataEntryTeamDtoTypeUSER   PublicGetCustomMetadataEntryTeamDtoType = "USER"
+)
+
+// Valid indicates whether the value is a known member of the PublicGetCustomMetadataEntryTeamDtoType enum.
+func (e PublicGetCustomMetadataEntryTeamDtoType) Valid() bool {
+	switch e {
+	case PublicGetCustomMetadataEntryTeamDtoTypeLABEL:
+		return true
+	case PublicGetCustomMetadataEntryTeamDtoTypeSTRING:
+		return true
+	case PublicGetCustomMetadataEntryTeamDtoTypeTEAM:
+		return true
+	case PublicGetCustomMetadataEntryTeamDtoTypeUSER:
 		return true
 	default:
 		return false
@@ -11920,6 +14050,7 @@ func (e PublicGetCustomMetadataEntryStringDtoType) Valid() bool {
 const (
 	PublicGetCustomMetadataEntryUserDtoTypeLABEL  PublicGetCustomMetadataEntryUserDtoType = "LABEL"
 	PublicGetCustomMetadataEntryUserDtoTypeSTRING PublicGetCustomMetadataEntryUserDtoType = "STRING"
+	PublicGetCustomMetadataEntryUserDtoTypeTEAM   PublicGetCustomMetadataEntryUserDtoType = "TEAM"
 	PublicGetCustomMetadataEntryUserDtoTypeUSER   PublicGetCustomMetadataEntryUserDtoType = "USER"
 )
 
@@ -11930,6 +14061,8 @@ func (e PublicGetCustomMetadataEntryUserDtoType) Valid() bool {
 		return true
 	case PublicGetCustomMetadataEntryUserDtoTypeSTRING:
 		return true
+	case PublicGetCustomMetadataEntryUserDtoTypeTEAM:
+		return true
 	case PublicGetCustomMetadataEntryUserDtoTypeUSER:
 		return true
 	default:
@@ -11939,6 +14072,7 @@ func (e PublicGetCustomMetadataEntryUserDtoType) Valid() bool {
 
 // Defines values for PublicGetDatabricksJobsSourceV2DtoType.
 const (
+	PublicGetDatabricksJobsSourceV2DtoTypeADF            PublicGetDatabricksJobsSourceV2DtoType = "ADF"
 	PublicGetDatabricksJobsSourceV2DtoTypeAIRFLOW        PublicGetDatabricksJobsSourceV2DtoType = "AIRFLOW"
 	PublicGetDatabricksJobsSourceV2DtoTypeATHENA         PublicGetDatabricksJobsSourceV2DtoType = "ATHENA"
 	PublicGetDatabricksJobsSourceV2DtoTypeBIGQUERY       PublicGetDatabricksJobsSourceV2DtoType = "BIGQUERY"
@@ -11966,6 +14100,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetDatabricksJobsSourceV2DtoType enum.
 func (e PublicGetDatabricksJobsSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetDatabricksJobsSourceV2DtoTypeADF:
+		return true
 	case PublicGetDatabricksJobsSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetDatabricksJobsSourceV2DtoTypeATHENA:
@@ -12017,6 +14153,7 @@ func (e PublicGetDatabricksJobsSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetDatabricksSourceV2DtoType.
 const (
+	PublicGetDatabricksSourceV2DtoTypeADF            PublicGetDatabricksSourceV2DtoType = "ADF"
 	PublicGetDatabricksSourceV2DtoTypeAIRFLOW        PublicGetDatabricksSourceV2DtoType = "AIRFLOW"
 	PublicGetDatabricksSourceV2DtoTypeATHENA         PublicGetDatabricksSourceV2DtoType = "ATHENA"
 	PublicGetDatabricksSourceV2DtoTypeBIGQUERY       PublicGetDatabricksSourceV2DtoType = "BIGQUERY"
@@ -12044,6 +14181,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetDatabricksSourceV2DtoType enum.
 func (e PublicGetDatabricksSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetDatabricksSourceV2DtoTypeADF:
+		return true
 	case PublicGetDatabricksSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetDatabricksSourceV2DtoTypeATHENA:
@@ -12095,6 +14234,7 @@ func (e PublicGetDatabricksSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetDbtCloudSourceV2DtoType.
 const (
+	PublicGetDbtCloudSourceV2DtoTypeADF            PublicGetDbtCloudSourceV2DtoType = "ADF"
 	PublicGetDbtCloudSourceV2DtoTypeAIRFLOW        PublicGetDbtCloudSourceV2DtoType = "AIRFLOW"
 	PublicGetDbtCloudSourceV2DtoTypeATHENA         PublicGetDbtCloudSourceV2DtoType = "ATHENA"
 	PublicGetDbtCloudSourceV2DtoTypeBIGQUERY       PublicGetDbtCloudSourceV2DtoType = "BIGQUERY"
@@ -12122,6 +14262,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetDbtCloudSourceV2DtoType enum.
 func (e PublicGetDbtCloudSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetDbtCloudSourceV2DtoTypeADF:
+		return true
 	case PublicGetDbtCloudSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetDbtCloudSourceV2DtoTypeATHENA:
@@ -12173,6 +14315,7 @@ func (e PublicGetDbtCloudSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetDbtSourceV2DtoType.
 const (
+	PublicGetDbtSourceV2DtoTypeADF            PublicGetDbtSourceV2DtoType = "ADF"
 	PublicGetDbtSourceV2DtoTypeAIRFLOW        PublicGetDbtSourceV2DtoType = "AIRFLOW"
 	PublicGetDbtSourceV2DtoTypeATHENA         PublicGetDbtSourceV2DtoType = "ATHENA"
 	PublicGetDbtSourceV2DtoTypeBIGQUERY       PublicGetDbtSourceV2DtoType = "BIGQUERY"
@@ -12200,6 +14343,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetDbtSourceV2DtoType enum.
 func (e PublicGetDbtSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetDbtSourceV2DtoTypeADF:
+		return true
 	case PublicGetDbtSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetDbtSourceV2DtoTypeATHENA:
@@ -12251,6 +14396,7 @@ func (e PublicGetDbtSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetFivetranSourceV2DtoType.
 const (
+	PublicGetFivetranSourceV2DtoTypeADF            PublicGetFivetranSourceV2DtoType = "ADF"
 	PublicGetFivetranSourceV2DtoTypeAIRFLOW        PublicGetFivetranSourceV2DtoType = "AIRFLOW"
 	PublicGetFivetranSourceV2DtoTypeATHENA         PublicGetFivetranSourceV2DtoType = "ATHENA"
 	PublicGetFivetranSourceV2DtoTypeBIGQUERY       PublicGetFivetranSourceV2DtoType = "BIGQUERY"
@@ -12278,6 +14424,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetFivetranSourceV2DtoType enum.
 func (e PublicGetFivetranSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetFivetranSourceV2DtoTypeADF:
+		return true
 	case PublicGetFivetranSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetFivetranSourceV2DtoTypeATHENA:
@@ -12333,6 +14481,7 @@ const (
 	PublicGetLastRunDtoStatusPENDING                         PublicGetLastRunDtoStatus = "PENDING"
 	PublicGetLastRunDtoStatusRUNNING                         PublicGetLastRunDtoStatus = "RUNNING"
 	PublicGetLastRunDtoStatusSKIPPEDDATASOURCEALREADYRUNNING PublicGetLastRunDtoStatus = "SKIPPED_DATASOURCE_ALREADY_RUNNING"
+	PublicGetLastRunDtoStatusSKIPPEDDATASOURCEDEACTIVATED    PublicGetLastRunDtoStatus = "SKIPPED_DATASOURCE_DEACTIVATED"
 	PublicGetLastRunDtoStatusSUCCESS                         PublicGetLastRunDtoStatus = "SUCCESS"
 )
 
@@ -12346,6 +14495,8 @@ func (e PublicGetLastRunDtoStatus) Valid() bool {
 	case PublicGetLastRunDtoStatusRUNNING:
 		return true
 	case PublicGetLastRunDtoStatusSKIPPEDDATASOURCEALREADYRUNNING:
+		return true
+	case PublicGetLastRunDtoStatusSKIPPEDDATASOURCEDEACTIVATED:
 		return true
 	case PublicGetLastRunDtoStatusSUCCESS:
 		return true
@@ -12377,6 +14528,7 @@ func (e PublicGetLastRunV2DtoStatus) Valid() bool {
 
 // Defines values for PublicGetLookerSourceV2DtoType.
 const (
+	PublicGetLookerSourceV2DtoTypeADF            PublicGetLookerSourceV2DtoType = "ADF"
 	PublicGetLookerSourceV2DtoTypeAIRFLOW        PublicGetLookerSourceV2DtoType = "AIRFLOW"
 	PublicGetLookerSourceV2DtoTypeATHENA         PublicGetLookerSourceV2DtoType = "ATHENA"
 	PublicGetLookerSourceV2DtoTypeBIGQUERY       PublicGetLookerSourceV2DtoType = "BIGQUERY"
@@ -12404,6 +14556,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetLookerSourceV2DtoType enum.
 func (e PublicGetLookerSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetLookerSourceV2DtoTypeADF:
+		return true
 	case PublicGetLookerSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetLookerSourceV2DtoTypeATHENA:
@@ -12455,6 +14609,7 @@ func (e PublicGetLookerSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetMicrostrategySourceV2DtoType.
 const (
+	PublicGetMicrostrategySourceV2DtoTypeADF            PublicGetMicrostrategySourceV2DtoType = "ADF"
 	PublicGetMicrostrategySourceV2DtoTypeAIRFLOW        PublicGetMicrostrategySourceV2DtoType = "AIRFLOW"
 	PublicGetMicrostrategySourceV2DtoTypeATHENA         PublicGetMicrostrategySourceV2DtoType = "ATHENA"
 	PublicGetMicrostrategySourceV2DtoTypeBIGQUERY       PublicGetMicrostrategySourceV2DtoType = "BIGQUERY"
@@ -12482,6 +14637,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetMicrostrategySourceV2DtoType enum.
 func (e PublicGetMicrostrategySourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetMicrostrategySourceV2DtoTypeADF:
+		return true
 	case PublicGetMicrostrategySourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetMicrostrategySourceV2DtoTypeATHENA:
@@ -12533,6 +14690,7 @@ func (e PublicGetMicrostrategySourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetMssqlSourceV2DtoType.
 const (
+	PublicGetMssqlSourceV2DtoTypeADF            PublicGetMssqlSourceV2DtoType = "ADF"
 	PublicGetMssqlSourceV2DtoTypeAIRFLOW        PublicGetMssqlSourceV2DtoType = "AIRFLOW"
 	PublicGetMssqlSourceV2DtoTypeATHENA         PublicGetMssqlSourceV2DtoType = "ATHENA"
 	PublicGetMssqlSourceV2DtoTypeBIGQUERY       PublicGetMssqlSourceV2DtoType = "BIGQUERY"
@@ -12560,6 +14718,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetMssqlSourceV2DtoType enum.
 func (e PublicGetMssqlSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetMssqlSourceV2DtoTypeADF:
+		return true
 	case PublicGetMssqlSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetMssqlSourceV2DtoTypeATHENA:
@@ -12611,6 +14771,7 @@ func (e PublicGetMssqlSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetMysqlSourceV2DtoType.
 const (
+	PublicGetMysqlSourceV2DtoTypeADF            PublicGetMysqlSourceV2DtoType = "ADF"
 	PublicGetMysqlSourceV2DtoTypeAIRFLOW        PublicGetMysqlSourceV2DtoType = "AIRFLOW"
 	PublicGetMysqlSourceV2DtoTypeATHENA         PublicGetMysqlSourceV2DtoType = "ATHENA"
 	PublicGetMysqlSourceV2DtoTypeBIGQUERY       PublicGetMysqlSourceV2DtoType = "BIGQUERY"
@@ -12638,6 +14799,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetMysqlSourceV2DtoType enum.
 func (e PublicGetMysqlSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetMysqlSourceV2DtoTypeADF:
+		return true
 	case PublicGetMysqlSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetMysqlSourceV2DtoTypeATHENA:
@@ -12689,6 +14852,7 @@ func (e PublicGetMysqlSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetOracleSourceV2DtoType.
 const (
+	PublicGetOracleSourceV2DtoTypeADF            PublicGetOracleSourceV2DtoType = "ADF"
 	PublicGetOracleSourceV2DtoTypeAIRFLOW        PublicGetOracleSourceV2DtoType = "AIRFLOW"
 	PublicGetOracleSourceV2DtoTypeATHENA         PublicGetOracleSourceV2DtoType = "ATHENA"
 	PublicGetOracleSourceV2DtoTypeBIGQUERY       PublicGetOracleSourceV2DtoType = "BIGQUERY"
@@ -12716,6 +14880,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetOracleSourceV2DtoType enum.
 func (e PublicGetOracleSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetOracleSourceV2DtoTypeADF:
+		return true
 	case PublicGetOracleSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetOracleSourceV2DtoTypeATHENA:
@@ -12767,6 +14933,7 @@ func (e PublicGetOracleSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetPostgresqlSourceV2DtoType.
 const (
+	PublicGetPostgresqlSourceV2DtoTypeADF            PublicGetPostgresqlSourceV2DtoType = "ADF"
 	PublicGetPostgresqlSourceV2DtoTypeAIRFLOW        PublicGetPostgresqlSourceV2DtoType = "AIRFLOW"
 	PublicGetPostgresqlSourceV2DtoTypeATHENA         PublicGetPostgresqlSourceV2DtoType = "ATHENA"
 	PublicGetPostgresqlSourceV2DtoTypeBIGQUERY       PublicGetPostgresqlSourceV2DtoType = "BIGQUERY"
@@ -12794,6 +14961,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetPostgresqlSourceV2DtoType enum.
 func (e PublicGetPostgresqlSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetPostgresqlSourceV2DtoTypeADF:
+		return true
 	case PublicGetPostgresqlSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetPostgresqlSourceV2DtoTypeATHENA:
@@ -12845,6 +15014,7 @@ func (e PublicGetPostgresqlSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetPowerBiSourceV2DtoType.
 const (
+	PublicGetPowerBiSourceV2DtoTypeADF            PublicGetPowerBiSourceV2DtoType = "ADF"
 	PublicGetPowerBiSourceV2DtoTypeAIRFLOW        PublicGetPowerBiSourceV2DtoType = "AIRFLOW"
 	PublicGetPowerBiSourceV2DtoTypeATHENA         PublicGetPowerBiSourceV2DtoType = "ATHENA"
 	PublicGetPowerBiSourceV2DtoTypeBIGQUERY       PublicGetPowerBiSourceV2DtoType = "BIGQUERY"
@@ -12872,6 +15042,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetPowerBiSourceV2DtoType enum.
 func (e PublicGetPowerBiSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetPowerBiSourceV2DtoTypeADF:
+		return true
 	case PublicGetPowerBiSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetPowerBiSourceV2DtoTypeATHENA:
@@ -12923,6 +15095,7 @@ func (e PublicGetPowerBiSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetQlikSourceV2DtoType.
 const (
+	PublicGetQlikSourceV2DtoTypeADF            PublicGetQlikSourceV2DtoType = "ADF"
 	PublicGetQlikSourceV2DtoTypeAIRFLOW        PublicGetQlikSourceV2DtoType = "AIRFLOW"
 	PublicGetQlikSourceV2DtoTypeATHENA         PublicGetQlikSourceV2DtoType = "ATHENA"
 	PublicGetQlikSourceV2DtoTypeBIGQUERY       PublicGetQlikSourceV2DtoType = "BIGQUERY"
@@ -12950,6 +15123,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetQlikSourceV2DtoType enum.
 func (e PublicGetQlikSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetQlikSourceV2DtoTypeADF:
+		return true
 	case PublicGetQlikSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetQlikSourceV2DtoTypeATHENA:
@@ -13001,6 +15176,7 @@ func (e PublicGetQlikSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetQuicksightSourceV2DtoType.
 const (
+	PublicGetQuicksightSourceV2DtoTypeADF            PublicGetQuicksightSourceV2DtoType = "ADF"
 	PublicGetQuicksightSourceV2DtoTypeAIRFLOW        PublicGetQuicksightSourceV2DtoType = "AIRFLOW"
 	PublicGetQuicksightSourceV2DtoTypeATHENA         PublicGetQuicksightSourceV2DtoType = "ATHENA"
 	PublicGetQuicksightSourceV2DtoTypeBIGQUERY       PublicGetQuicksightSourceV2DtoType = "BIGQUERY"
@@ -13028,6 +15204,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetQuicksightSourceV2DtoType enum.
 func (e PublicGetQuicksightSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetQuicksightSourceV2DtoTypeADF:
+		return true
 	case PublicGetQuicksightSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetQuicksightSourceV2DtoTypeATHENA:
@@ -13079,6 +15257,7 @@ func (e PublicGetQuicksightSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetRedshiftSourceV2DtoType.
 const (
+	PublicGetRedshiftSourceV2DtoTypeADF            PublicGetRedshiftSourceV2DtoType = "ADF"
 	PublicGetRedshiftSourceV2DtoTypeAIRFLOW        PublicGetRedshiftSourceV2DtoType = "AIRFLOW"
 	PublicGetRedshiftSourceV2DtoTypeATHENA         PublicGetRedshiftSourceV2DtoType = "ATHENA"
 	PublicGetRedshiftSourceV2DtoTypeBIGQUERY       PublicGetRedshiftSourceV2DtoType = "BIGQUERY"
@@ -13106,6 +15285,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetRedshiftSourceV2DtoType enum.
 func (e PublicGetRedshiftSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetRedshiftSourceV2DtoTypeADF:
+		return true
 	case PublicGetRedshiftSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetRedshiftSourceV2DtoTypeATHENA:
@@ -13157,6 +15338,7 @@ func (e PublicGetRedshiftSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetSnowflakeSourceV2DtoType.
 const (
+	PublicGetSnowflakeSourceV2DtoTypeADF            PublicGetSnowflakeSourceV2DtoType = "ADF"
 	PublicGetSnowflakeSourceV2DtoTypeAIRFLOW        PublicGetSnowflakeSourceV2DtoType = "AIRFLOW"
 	PublicGetSnowflakeSourceV2DtoTypeATHENA         PublicGetSnowflakeSourceV2DtoType = "ATHENA"
 	PublicGetSnowflakeSourceV2DtoTypeBIGQUERY       PublicGetSnowflakeSourceV2DtoType = "BIGQUERY"
@@ -13184,6 +15366,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetSnowflakeSourceV2DtoType enum.
 func (e PublicGetSnowflakeSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetSnowflakeSourceV2DtoTypeADF:
+		return true
 	case PublicGetSnowflakeSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetSnowflakeSourceV2DtoTypeATHENA:
@@ -13235,6 +15419,7 @@ func (e PublicGetSnowflakeSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetSourceV2DtoType.
 const (
+	PublicGetSourceV2DtoTypeADF            PublicGetSourceV2DtoType = "ADF"
 	PublicGetSourceV2DtoTypeAIRFLOW        PublicGetSourceV2DtoType = "AIRFLOW"
 	PublicGetSourceV2DtoTypeATHENA         PublicGetSourceV2DtoType = "ATHENA"
 	PublicGetSourceV2DtoTypeBIGQUERY       PublicGetSourceV2DtoType = "BIGQUERY"
@@ -13262,6 +15447,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetSourceV2DtoType enum.
 func (e PublicGetSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetSourceV2DtoTypeADF:
+		return true
 	case PublicGetSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetSourceV2DtoTypeATHENA:
@@ -13313,6 +15500,7 @@ func (e PublicGetSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetSynapseSourceV2DtoType.
 const (
+	PublicGetSynapseSourceV2DtoTypeADF            PublicGetSynapseSourceV2DtoType = "ADF"
 	PublicGetSynapseSourceV2DtoTypeAIRFLOW        PublicGetSynapseSourceV2DtoType = "AIRFLOW"
 	PublicGetSynapseSourceV2DtoTypeATHENA         PublicGetSynapseSourceV2DtoType = "ATHENA"
 	PublicGetSynapseSourceV2DtoTypeBIGQUERY       PublicGetSynapseSourceV2DtoType = "BIGQUERY"
@@ -13340,6 +15528,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetSynapseSourceV2DtoType enum.
 func (e PublicGetSynapseSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetSynapseSourceV2DtoTypeADF:
+		return true
 	case PublicGetSynapseSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetSynapseSourceV2DtoTypeATHENA:
@@ -13391,6 +15581,7 @@ func (e PublicGetSynapseSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicGetTableauSourceV2DtoType.
 const (
+	PublicGetTableauSourceV2DtoTypeADF            PublicGetTableauSourceV2DtoType = "ADF"
 	PublicGetTableauSourceV2DtoTypeAIRFLOW        PublicGetTableauSourceV2DtoType = "AIRFLOW"
 	PublicGetTableauSourceV2DtoTypeATHENA         PublicGetTableauSourceV2DtoType = "ATHENA"
 	PublicGetTableauSourceV2DtoTypeBIGQUERY       PublicGetTableauSourceV2DtoType = "BIGQUERY"
@@ -13418,6 +15609,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicGetTableauSourceV2DtoType enum.
 func (e PublicGetTableauSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicGetTableauSourceV2DtoTypeADF:
+		return true
 	case PublicGetTableauSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicGetTableauSourceV2DtoTypeATHENA:
@@ -14529,6 +16722,30 @@ func (e PublicTagReferenceDtoKind) Valid() bool {
 	}
 }
 
+// Defines values for PublicTeamPermissionAssignmentDtoDomainRole.
+const (
+	PublicTeamPermissionAssignmentDtoDomainRoleCATALOGEDITOR    PublicTeamPermissionAssignmentDtoDomainRole = "CATALOG_EDITOR"
+	PublicTeamPermissionAssignmentDtoDomainRoleEDITOR           PublicTeamPermissionAssignmentDtoDomainRole = "EDITOR"
+	PublicTeamPermissionAssignmentDtoDomainRoleMONITORRESPONDER PublicTeamPermissionAssignmentDtoDomainRole = "MONITOR_RESPONDER"
+	PublicTeamPermissionAssignmentDtoDomainRoleVIEWER           PublicTeamPermissionAssignmentDtoDomainRole = "VIEWER"
+)
+
+// Valid indicates whether the value is a known member of the PublicTeamPermissionAssignmentDtoDomainRole enum.
+func (e PublicTeamPermissionAssignmentDtoDomainRole) Valid() bool {
+	switch e {
+	case PublicTeamPermissionAssignmentDtoDomainRoleCATALOGEDITOR:
+		return true
+	case PublicTeamPermissionAssignmentDtoDomainRoleEDITOR:
+		return true
+	case PublicTeamPermissionAssignmentDtoDomainRoleMONITORRESPONDER:
+		return true
+	case PublicTeamPermissionAssignmentDtoDomainRoleVIEWER:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for PublicTransformationRunDtoLastRunStatus.
 const (
 	PublicTransformationRunDtoLastRunStatusERROR          PublicTransformationRunDtoLastRunStatus = "ERROR"
@@ -14561,6 +16778,7 @@ func (e PublicTransformationRunDtoLastRunStatus) Valid() bool {
 
 // Defines values for PublicUpdateAirflowSourceV2DtoType.
 const (
+	PublicUpdateAirflowSourceV2DtoTypeADF            PublicUpdateAirflowSourceV2DtoType = "ADF"
 	PublicUpdateAirflowSourceV2DtoTypeAIRFLOW        PublicUpdateAirflowSourceV2DtoType = "AIRFLOW"
 	PublicUpdateAirflowSourceV2DtoTypeATHENA         PublicUpdateAirflowSourceV2DtoType = "ATHENA"
 	PublicUpdateAirflowSourceV2DtoTypeBIGQUERY       PublicUpdateAirflowSourceV2DtoType = "BIGQUERY"
@@ -14588,6 +16806,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateAirflowSourceV2DtoType enum.
 func (e PublicUpdateAirflowSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateAirflowSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateAirflowSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateAirflowSourceV2DtoTypeATHENA:
@@ -14639,6 +16859,7 @@ func (e PublicUpdateAirflowSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateAthenaSourceV2DtoType.
 const (
+	PublicUpdateAthenaSourceV2DtoTypeADF            PublicUpdateAthenaSourceV2DtoType = "ADF"
 	PublicUpdateAthenaSourceV2DtoTypeAIRFLOW        PublicUpdateAthenaSourceV2DtoType = "AIRFLOW"
 	PublicUpdateAthenaSourceV2DtoTypeATHENA         PublicUpdateAthenaSourceV2DtoType = "ATHENA"
 	PublicUpdateAthenaSourceV2DtoTypeBIGQUERY       PublicUpdateAthenaSourceV2DtoType = "BIGQUERY"
@@ -14666,6 +16887,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateAthenaSourceV2DtoType enum.
 func (e PublicUpdateAthenaSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateAthenaSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateAthenaSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateAthenaSourceV2DtoTypeATHENA:
@@ -14717,6 +16940,7 @@ func (e PublicUpdateAthenaSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateBigQuerySourceV2DtoType.
 const (
+	PublicUpdateBigQuerySourceV2DtoTypeADF            PublicUpdateBigQuerySourceV2DtoType = "ADF"
 	PublicUpdateBigQuerySourceV2DtoTypeAIRFLOW        PublicUpdateBigQuerySourceV2DtoType = "AIRFLOW"
 	PublicUpdateBigQuerySourceV2DtoTypeATHENA         PublicUpdateBigQuerySourceV2DtoType = "ATHENA"
 	PublicUpdateBigQuerySourceV2DtoTypeBIGQUERY       PublicUpdateBigQuerySourceV2DtoType = "BIGQUERY"
@@ -14744,6 +16968,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateBigQuerySourceV2DtoType enum.
 func (e PublicUpdateBigQuerySourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateBigQuerySourceV2DtoTypeADF:
+		return true
 	case PublicUpdateBigQuerySourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateBigQuerySourceV2DtoTypeATHENA:
@@ -14795,6 +17021,7 @@ func (e PublicUpdateBigQuerySourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateDatabricksJobsSourceV2DtoType.
 const (
+	PublicUpdateDatabricksJobsSourceV2DtoTypeADF            PublicUpdateDatabricksJobsSourceV2DtoType = "ADF"
 	PublicUpdateDatabricksJobsSourceV2DtoTypeAIRFLOW        PublicUpdateDatabricksJobsSourceV2DtoType = "AIRFLOW"
 	PublicUpdateDatabricksJobsSourceV2DtoTypeATHENA         PublicUpdateDatabricksJobsSourceV2DtoType = "ATHENA"
 	PublicUpdateDatabricksJobsSourceV2DtoTypeBIGQUERY       PublicUpdateDatabricksJobsSourceV2DtoType = "BIGQUERY"
@@ -14822,6 +17049,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateDatabricksJobsSourceV2DtoType enum.
 func (e PublicUpdateDatabricksJobsSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateDatabricksJobsSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateDatabricksJobsSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateDatabricksJobsSourceV2DtoTypeATHENA:
@@ -14873,6 +17102,7 @@ func (e PublicUpdateDatabricksJobsSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateDatabricksSourceV2DtoType.
 const (
+	PublicUpdateDatabricksSourceV2DtoTypeADF            PublicUpdateDatabricksSourceV2DtoType = "ADF"
 	PublicUpdateDatabricksSourceV2DtoTypeAIRFLOW        PublicUpdateDatabricksSourceV2DtoType = "AIRFLOW"
 	PublicUpdateDatabricksSourceV2DtoTypeATHENA         PublicUpdateDatabricksSourceV2DtoType = "ATHENA"
 	PublicUpdateDatabricksSourceV2DtoTypeBIGQUERY       PublicUpdateDatabricksSourceV2DtoType = "BIGQUERY"
@@ -14900,6 +17130,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateDatabricksSourceV2DtoType enum.
 func (e PublicUpdateDatabricksSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateDatabricksSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateDatabricksSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateDatabricksSourceV2DtoTypeATHENA:
@@ -14951,6 +17183,7 @@ func (e PublicUpdateDatabricksSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateDbtCloudSourceV2DtoType.
 const (
+	PublicUpdateDbtCloudSourceV2DtoTypeADF            PublicUpdateDbtCloudSourceV2DtoType = "ADF"
 	PublicUpdateDbtCloudSourceV2DtoTypeAIRFLOW        PublicUpdateDbtCloudSourceV2DtoType = "AIRFLOW"
 	PublicUpdateDbtCloudSourceV2DtoTypeATHENA         PublicUpdateDbtCloudSourceV2DtoType = "ATHENA"
 	PublicUpdateDbtCloudSourceV2DtoTypeBIGQUERY       PublicUpdateDbtCloudSourceV2DtoType = "BIGQUERY"
@@ -14978,6 +17211,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateDbtCloudSourceV2DtoType enum.
 func (e PublicUpdateDbtCloudSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateDbtCloudSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateDbtCloudSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateDbtCloudSourceV2DtoTypeATHENA:
@@ -15029,6 +17264,7 @@ func (e PublicUpdateDbtCloudSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateDbtSourceV2DtoType.
 const (
+	PublicUpdateDbtSourceV2DtoTypeADF            PublicUpdateDbtSourceV2DtoType = "ADF"
 	PublicUpdateDbtSourceV2DtoTypeAIRFLOW        PublicUpdateDbtSourceV2DtoType = "AIRFLOW"
 	PublicUpdateDbtSourceV2DtoTypeATHENA         PublicUpdateDbtSourceV2DtoType = "ATHENA"
 	PublicUpdateDbtSourceV2DtoTypeBIGQUERY       PublicUpdateDbtSourceV2DtoType = "BIGQUERY"
@@ -15056,6 +17292,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateDbtSourceV2DtoType enum.
 func (e PublicUpdateDbtSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateDbtSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateDbtSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateDbtSourceV2DtoTypeATHENA:
@@ -15107,6 +17345,7 @@ func (e PublicUpdateDbtSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateFivetranSourceV2DtoType.
 const (
+	PublicUpdateFivetranSourceV2DtoTypeADF            PublicUpdateFivetranSourceV2DtoType = "ADF"
 	PublicUpdateFivetranSourceV2DtoTypeAIRFLOW        PublicUpdateFivetranSourceV2DtoType = "AIRFLOW"
 	PublicUpdateFivetranSourceV2DtoTypeATHENA         PublicUpdateFivetranSourceV2DtoType = "ATHENA"
 	PublicUpdateFivetranSourceV2DtoTypeBIGQUERY       PublicUpdateFivetranSourceV2DtoType = "BIGQUERY"
@@ -15134,6 +17373,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateFivetranSourceV2DtoType enum.
 func (e PublicUpdateFivetranSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateFivetranSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateFivetranSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateFivetranSourceV2DtoTypeATHENA:
@@ -15185,6 +17426,7 @@ func (e PublicUpdateFivetranSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateLookerSourceV2DtoType.
 const (
+	PublicUpdateLookerSourceV2DtoTypeADF            PublicUpdateLookerSourceV2DtoType = "ADF"
 	PublicUpdateLookerSourceV2DtoTypeAIRFLOW        PublicUpdateLookerSourceV2DtoType = "AIRFLOW"
 	PublicUpdateLookerSourceV2DtoTypeATHENA         PublicUpdateLookerSourceV2DtoType = "ATHENA"
 	PublicUpdateLookerSourceV2DtoTypeBIGQUERY       PublicUpdateLookerSourceV2DtoType = "BIGQUERY"
@@ -15212,6 +17454,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateLookerSourceV2DtoType enum.
 func (e PublicUpdateLookerSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateLookerSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateLookerSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateLookerSourceV2DtoTypeATHENA:
@@ -15263,6 +17507,7 @@ func (e PublicUpdateLookerSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateMicrostrategySourceV2DtoType.
 const (
+	PublicUpdateMicrostrategySourceV2DtoTypeADF            PublicUpdateMicrostrategySourceV2DtoType = "ADF"
 	PublicUpdateMicrostrategySourceV2DtoTypeAIRFLOW        PublicUpdateMicrostrategySourceV2DtoType = "AIRFLOW"
 	PublicUpdateMicrostrategySourceV2DtoTypeATHENA         PublicUpdateMicrostrategySourceV2DtoType = "ATHENA"
 	PublicUpdateMicrostrategySourceV2DtoTypeBIGQUERY       PublicUpdateMicrostrategySourceV2DtoType = "BIGQUERY"
@@ -15290,6 +17535,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateMicrostrategySourceV2DtoType enum.
 func (e PublicUpdateMicrostrategySourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateMicrostrategySourceV2DtoTypeADF:
+		return true
 	case PublicUpdateMicrostrategySourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateMicrostrategySourceV2DtoTypeATHENA:
@@ -15341,6 +17588,7 @@ func (e PublicUpdateMicrostrategySourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateMssqlSourceV2DtoType.
 const (
+	PublicUpdateMssqlSourceV2DtoTypeADF            PublicUpdateMssqlSourceV2DtoType = "ADF"
 	PublicUpdateMssqlSourceV2DtoTypeAIRFLOW        PublicUpdateMssqlSourceV2DtoType = "AIRFLOW"
 	PublicUpdateMssqlSourceV2DtoTypeATHENA         PublicUpdateMssqlSourceV2DtoType = "ATHENA"
 	PublicUpdateMssqlSourceV2DtoTypeBIGQUERY       PublicUpdateMssqlSourceV2DtoType = "BIGQUERY"
@@ -15368,6 +17616,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateMssqlSourceV2DtoType enum.
 func (e PublicUpdateMssqlSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateMssqlSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateMssqlSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateMssqlSourceV2DtoTypeATHENA:
@@ -15419,6 +17669,7 @@ func (e PublicUpdateMssqlSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateMysqlSourceV2DtoType.
 const (
+	PublicUpdateMysqlSourceV2DtoTypeADF            PublicUpdateMysqlSourceV2DtoType = "ADF"
 	PublicUpdateMysqlSourceV2DtoTypeAIRFLOW        PublicUpdateMysqlSourceV2DtoType = "AIRFLOW"
 	PublicUpdateMysqlSourceV2DtoTypeATHENA         PublicUpdateMysqlSourceV2DtoType = "ATHENA"
 	PublicUpdateMysqlSourceV2DtoTypeBIGQUERY       PublicUpdateMysqlSourceV2DtoType = "BIGQUERY"
@@ -15446,6 +17697,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateMysqlSourceV2DtoType enum.
 func (e PublicUpdateMysqlSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateMysqlSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateMysqlSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateMysqlSourceV2DtoTypeATHENA:
@@ -15497,6 +17750,7 @@ func (e PublicUpdateMysqlSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateOracleSourceV2DtoType.
 const (
+	PublicUpdateOracleSourceV2DtoTypeADF            PublicUpdateOracleSourceV2DtoType = "ADF"
 	PublicUpdateOracleSourceV2DtoTypeAIRFLOW        PublicUpdateOracleSourceV2DtoType = "AIRFLOW"
 	PublicUpdateOracleSourceV2DtoTypeATHENA         PublicUpdateOracleSourceV2DtoType = "ATHENA"
 	PublicUpdateOracleSourceV2DtoTypeBIGQUERY       PublicUpdateOracleSourceV2DtoType = "BIGQUERY"
@@ -15524,6 +17778,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateOracleSourceV2DtoType enum.
 func (e PublicUpdateOracleSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateOracleSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateOracleSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateOracleSourceV2DtoTypeATHENA:
@@ -15575,6 +17831,7 @@ func (e PublicUpdateOracleSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdatePostgresqlSourceV2DtoType.
 const (
+	PublicUpdatePostgresqlSourceV2DtoTypeADF            PublicUpdatePostgresqlSourceV2DtoType = "ADF"
 	PublicUpdatePostgresqlSourceV2DtoTypeAIRFLOW        PublicUpdatePostgresqlSourceV2DtoType = "AIRFLOW"
 	PublicUpdatePostgresqlSourceV2DtoTypeATHENA         PublicUpdatePostgresqlSourceV2DtoType = "ATHENA"
 	PublicUpdatePostgresqlSourceV2DtoTypeBIGQUERY       PublicUpdatePostgresqlSourceV2DtoType = "BIGQUERY"
@@ -15602,6 +17859,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdatePostgresqlSourceV2DtoType enum.
 func (e PublicUpdatePostgresqlSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdatePostgresqlSourceV2DtoTypeADF:
+		return true
 	case PublicUpdatePostgresqlSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdatePostgresqlSourceV2DtoTypeATHENA:
@@ -15653,6 +17912,7 @@ func (e PublicUpdatePostgresqlSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdatePowerBiSourceV2DtoType.
 const (
+	PublicUpdatePowerBiSourceV2DtoTypeADF            PublicUpdatePowerBiSourceV2DtoType = "ADF"
 	PublicUpdatePowerBiSourceV2DtoTypeAIRFLOW        PublicUpdatePowerBiSourceV2DtoType = "AIRFLOW"
 	PublicUpdatePowerBiSourceV2DtoTypeATHENA         PublicUpdatePowerBiSourceV2DtoType = "ATHENA"
 	PublicUpdatePowerBiSourceV2DtoTypeBIGQUERY       PublicUpdatePowerBiSourceV2DtoType = "BIGQUERY"
@@ -15680,6 +17940,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdatePowerBiSourceV2DtoType enum.
 func (e PublicUpdatePowerBiSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdatePowerBiSourceV2DtoTypeADF:
+		return true
 	case PublicUpdatePowerBiSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdatePowerBiSourceV2DtoTypeATHENA:
@@ -15731,6 +17993,7 @@ func (e PublicUpdatePowerBiSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateQlikSourceV2DtoType.
 const (
+	PublicUpdateQlikSourceV2DtoTypeADF            PublicUpdateQlikSourceV2DtoType = "ADF"
 	PublicUpdateQlikSourceV2DtoTypeAIRFLOW        PublicUpdateQlikSourceV2DtoType = "AIRFLOW"
 	PublicUpdateQlikSourceV2DtoTypeATHENA         PublicUpdateQlikSourceV2DtoType = "ATHENA"
 	PublicUpdateQlikSourceV2DtoTypeBIGQUERY       PublicUpdateQlikSourceV2DtoType = "BIGQUERY"
@@ -15758,6 +18021,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateQlikSourceV2DtoType enum.
 func (e PublicUpdateQlikSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateQlikSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateQlikSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateQlikSourceV2DtoTypeATHENA:
@@ -15809,6 +18074,7 @@ func (e PublicUpdateQlikSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateQuicksightSourceV2DtoType.
 const (
+	PublicUpdateQuicksightSourceV2DtoTypeADF            PublicUpdateQuicksightSourceV2DtoType = "ADF"
 	PublicUpdateQuicksightSourceV2DtoTypeAIRFLOW        PublicUpdateQuicksightSourceV2DtoType = "AIRFLOW"
 	PublicUpdateQuicksightSourceV2DtoTypeATHENA         PublicUpdateQuicksightSourceV2DtoType = "ATHENA"
 	PublicUpdateQuicksightSourceV2DtoTypeBIGQUERY       PublicUpdateQuicksightSourceV2DtoType = "BIGQUERY"
@@ -15836,6 +18102,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateQuicksightSourceV2DtoType enum.
 func (e PublicUpdateQuicksightSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateQuicksightSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateQuicksightSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateQuicksightSourceV2DtoTypeATHENA:
@@ -15887,6 +18155,7 @@ func (e PublicUpdateQuicksightSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateRedshiftSourceV2DtoType.
 const (
+	PublicUpdateRedshiftSourceV2DtoTypeADF            PublicUpdateRedshiftSourceV2DtoType = "ADF"
 	PublicUpdateRedshiftSourceV2DtoTypeAIRFLOW        PublicUpdateRedshiftSourceV2DtoType = "AIRFLOW"
 	PublicUpdateRedshiftSourceV2DtoTypeATHENA         PublicUpdateRedshiftSourceV2DtoType = "ATHENA"
 	PublicUpdateRedshiftSourceV2DtoTypeBIGQUERY       PublicUpdateRedshiftSourceV2DtoType = "BIGQUERY"
@@ -15914,6 +18183,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateRedshiftSourceV2DtoType enum.
 func (e PublicUpdateRedshiftSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateRedshiftSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateRedshiftSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateRedshiftSourceV2DtoTypeATHENA:
@@ -15965,6 +18236,7 @@ func (e PublicUpdateRedshiftSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateSnowflakeSourceV2DtoType.
 const (
+	PublicUpdateSnowflakeSourceV2DtoTypeADF            PublicUpdateSnowflakeSourceV2DtoType = "ADF"
 	PublicUpdateSnowflakeSourceV2DtoTypeAIRFLOW        PublicUpdateSnowflakeSourceV2DtoType = "AIRFLOW"
 	PublicUpdateSnowflakeSourceV2DtoTypeATHENA         PublicUpdateSnowflakeSourceV2DtoType = "ATHENA"
 	PublicUpdateSnowflakeSourceV2DtoTypeBIGQUERY       PublicUpdateSnowflakeSourceV2DtoType = "BIGQUERY"
@@ -15992,6 +18264,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateSnowflakeSourceV2DtoType enum.
 func (e PublicUpdateSnowflakeSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateSnowflakeSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateSnowflakeSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateSnowflakeSourceV2DtoTypeATHENA:
@@ -16043,6 +18317,7 @@ func (e PublicUpdateSnowflakeSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateSourceV2DtoType.
 const (
+	PublicUpdateSourceV2DtoTypeADF            PublicUpdateSourceV2DtoType = "ADF"
 	PublicUpdateSourceV2DtoTypeAIRFLOW        PublicUpdateSourceV2DtoType = "AIRFLOW"
 	PublicUpdateSourceV2DtoTypeATHENA         PublicUpdateSourceV2DtoType = "ATHENA"
 	PublicUpdateSourceV2DtoTypeBIGQUERY       PublicUpdateSourceV2DtoType = "BIGQUERY"
@@ -16070,6 +18345,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateSourceV2DtoType enum.
 func (e PublicUpdateSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateSourceV2DtoTypeATHENA:
@@ -16121,6 +18398,7 @@ func (e PublicUpdateSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateSynapseSourceV2DtoType.
 const (
+	PublicUpdateSynapseSourceV2DtoTypeADF            PublicUpdateSynapseSourceV2DtoType = "ADF"
 	PublicUpdateSynapseSourceV2DtoTypeAIRFLOW        PublicUpdateSynapseSourceV2DtoType = "AIRFLOW"
 	PublicUpdateSynapseSourceV2DtoTypeATHENA         PublicUpdateSynapseSourceV2DtoType = "ATHENA"
 	PublicUpdateSynapseSourceV2DtoTypeBIGQUERY       PublicUpdateSynapseSourceV2DtoType = "BIGQUERY"
@@ -16148,6 +18426,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateSynapseSourceV2DtoType enum.
 func (e PublicUpdateSynapseSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateSynapseSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateSynapseSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateSynapseSourceV2DtoTypeATHENA:
@@ -16199,6 +18479,7 @@ func (e PublicUpdateSynapseSourceV2DtoType) Valid() bool {
 
 // Defines values for PublicUpdateTableauSourceV2DtoType.
 const (
+	PublicUpdateTableauSourceV2DtoTypeADF            PublicUpdateTableauSourceV2DtoType = "ADF"
 	PublicUpdateTableauSourceV2DtoTypeAIRFLOW        PublicUpdateTableauSourceV2DtoType = "AIRFLOW"
 	PublicUpdateTableauSourceV2DtoTypeATHENA         PublicUpdateTableauSourceV2DtoType = "ATHENA"
 	PublicUpdateTableauSourceV2DtoTypeBIGQUERY       PublicUpdateTableauSourceV2DtoType = "BIGQUERY"
@@ -16226,6 +18507,8 @@ const (
 // Valid indicates whether the value is a known member of the PublicUpdateTableauSourceV2DtoType enum.
 func (e PublicUpdateTableauSourceV2DtoType) Valid() bool {
 	switch e {
+	case PublicUpdateTableauSourceV2DtoTypeADF:
+		return true
 	case PublicUpdateTableauSourceV2DtoTypeAIRFLOW:
 		return true
 	case PublicUpdateTableauSourceV2DtoTypeATHENA:
@@ -16598,19 +18881,19 @@ func (e RuleRunDtoStatus) Valid() bool {
 
 // Defines values for RuleRunDtoType.
 const (
-	DBT       RuleRunDtoType = "DBT"
-	MANUAL    RuleRunDtoType = "MANUAL"
-	SCHEDULED RuleRunDtoType = "SCHEDULED"
+	RuleRunDtoTypeDBT       RuleRunDtoType = "DBT"
+	RuleRunDtoTypeMANUAL    RuleRunDtoType = "MANUAL"
+	RuleRunDtoTypeSCHEDULED RuleRunDtoType = "SCHEDULED"
 )
 
 // Valid indicates whether the value is a known member of the RuleRunDtoType enum.
 func (e RuleRunDtoType) Valid() bool {
 	switch e {
-	case DBT:
+	case RuleRunDtoTypeDBT:
 		return true
-	case MANUAL:
+	case RuleRunDtoTypeMANUAL:
 		return true
-	case SCHEDULED:
+	case RuleRunDtoTypeSCHEDULED:
 		return true
 	default:
 		return false
@@ -16676,19 +18959,30 @@ func (e SimpleDurationUnit) Valid() bool {
 
 // Defines values for TagDtoType.
 const (
-	TagDtoTypeBIGQUERYEXTERNAL          TagDtoType = "BIGQUERY_EXTERNAL"
-	TagDtoTypeDATABRICKSEXTERNAL        TagDtoType = "DATABRICKS_EXTERNAL"
-	TagDtoTypeDBTEXTERNAL               TagDtoType = "DBT_EXTERNAL"
-	TagDtoTypeGENERIC                   TagDtoType = "GENERIC"
-	TagDtoTypeHIDDENDATACLASSIFICATION  TagDtoType = "HIDDEN_DATA_CLASSIFICATION"
-	TagDtoTypeSNOWFLAKEEXTERNAL         TagDtoType = "SNOWFLAKE_EXTERNAL"
-	TagDtoTypeTERM                      TagDtoType = "TERM"
-	TagDtoTypeVISIBLEDATACLASSIFICATION TagDtoType = "VISIBLE_DATA_CLASSIFICATION"
+	TagDtoTypeADFEXTERNAL                TagDtoType = "ADF_EXTERNAL"
+	TagDtoTypeATLANEXTERNAL              TagDtoType = "ATLAN_EXTERNAL"
+	TagDtoTypeATLANEXTERNALTERM          TagDtoType = "ATLAN_EXTERNAL_TERM"
+	TagDtoTypeBIGQUERYEXTERNAL           TagDtoType = "BIGQUERY_EXTERNAL"
+	TagDtoTypeDATABRICKSEXTERNAL         TagDtoType = "DATABRICKS_EXTERNAL"
+	TagDtoTypeDBTEXTERNAL                TagDtoType = "DBT_EXTERNAL"
+	TagDtoTypeGENERIC                    TagDtoType = "GENERIC"
+	TagDtoTypeGENERICCATALOGEXTERNAL     TagDtoType = "GENERIC_CATALOG_EXTERNAL"
+	TagDtoTypeGENERICCATALOGEXTERNALTERM TagDtoType = "GENERIC_CATALOG_EXTERNAL_TERM"
+	TagDtoTypeHIDDENDATACLASSIFICATION   TagDtoType = "HIDDEN_DATA_CLASSIFICATION"
+	TagDtoTypeSNOWFLAKEEXTERNAL          TagDtoType = "SNOWFLAKE_EXTERNAL"
+	TagDtoTypeTERM                       TagDtoType = "TERM"
+	TagDtoTypeVISIBLEDATACLASSIFICATION  TagDtoType = "VISIBLE_DATA_CLASSIFICATION"
 )
 
 // Valid indicates whether the value is a known member of the TagDtoType enum.
 func (e TagDtoType) Valid() bool {
 	switch e {
+	case TagDtoTypeADFEXTERNAL:
+		return true
+	case TagDtoTypeATLANEXTERNAL:
+		return true
+	case TagDtoTypeATLANEXTERNALTERM:
+		return true
 	case TagDtoTypeBIGQUERYEXTERNAL:
 		return true
 	case TagDtoTypeDATABRICKSEXTERNAL:
@@ -16696,6 +18990,10 @@ func (e TagDtoType) Valid() bool {
 	case TagDtoTypeDBTEXTERNAL:
 		return true
 	case TagDtoTypeGENERIC:
+		return true
+	case TagDtoTypeGENERICCATALOGEXTERNAL:
+		return true
+	case TagDtoTypeGENERICCATALOGEXTERNALTERM:
 		return true
 	case TagDtoTypeHIDDENDATACLASSIFICATION:
 		return true
@@ -16968,6 +19266,21 @@ type AccessTokenProviderDto struct {
 // AccessTokenProviderDtoType defines model for AccessTokenProviderDto.Type.
 type AccessTokenProviderDtoType string
 
+// AdfInformation ADF connection settings
+type AdfInformation struct {
+	// FactoryName Your ADF Factory Name
+	FactoryName string `json:"factoryName"`
+
+	// ResourceGroup Your ADF Resource Group
+	ResourceGroup string `json:"resourceGroup"`
+
+	// SubscriptionId Your ADF Subscription ID
+	SubscriptionId string `json:"subscriptionId"`
+
+	// TenantId Your ADF Tenant ID
+	TenantId string `json:"tenantId"`
+}
+
 // AirflowInformation Airflow connection settings
 type AirflowInformation struct {
 	// Host Your Airflow server hostname
@@ -17000,8 +19313,12 @@ type AlertingHookDtoType string
 
 // AlertingHookParams defines model for AlertingHookParams.
 type AlertingHookParams struct {
-	Type AlertingHookParamsType `json:"type"`
+	Scope AlertingHookParamsScope `json:"scope"`
+	Type  AlertingHookParamsType  `json:"type"`
 }
+
+// AlertingHookParamsScope defines model for AlertingHookParams.Scope.
+type AlertingHookParamsScope string
 
 // AlertingHookParamsType defines model for AlertingHookParams.Type.
 type AlertingHookParamsType string
@@ -17093,9 +19410,13 @@ type AsCodeConditionGroupDtoKind string
 
 // AsCodeConditionalMonitorParamsDto defines model for AsCodeConditionalMonitorParamsDto.
 type AsCodeConditionalMonitorParamsDto struct {
-	Condition *AsCodeConditionalMonitorParamsDto_Condition `json:"condition,omitempty"`
-	Kind      *AsCodeConditionalMonitorParamsDtoKind       `json:"kind,omitempty"`
-	Threshold *AsCodeConditionalMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	Condition      *AsCodeConditionalMonitorParamsDto_Condition `json:"condition,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                      `json:"groupBy,omitempty"`
+	Kind           *AsCodeConditionalMonitorParamsDtoKind       `json:"kind,omitempty"`
+	Partition      *AsCodeConditionalMonitorParamsDto_Partition `json:"partition,omitempty"`
+	Threshold      *AsCodeConditionalMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2                 `json:"timeWindow,omitempty"`
+	WhereStatement *string                                      `json:"whereStatement,omitempty"`
 }
 
 // AsCodeConditionalMonitorParamsDto_Condition defines model for AsCodeConditionalMonitorParamsDto.Condition.
@@ -17105,6 +19426,11 @@ type AsCodeConditionalMonitorParamsDto_Condition struct {
 
 // AsCodeConditionalMonitorParamsDtoKind defines model for AsCodeConditionalMonitorParamsDto.Kind.
 type AsCodeConditionalMonitorParamsDtoKind string
+
+// AsCodeConditionalMonitorParamsDto_Partition defines model for AsCodeConditionalMonitorParamsDto.Partition.
+type AsCodeConditionalMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
 
 // AsCodeConditionalMonitorParamsDto_Threshold defines model for AsCodeConditionalMonitorParamsDto.Threshold.
 type AsCodeConditionalMonitorParamsDto_Threshold struct {
@@ -17132,6 +19458,15 @@ type AsCodeCorrelatedMetricsMonitorParamsDtoKind string
 type AsCodeCorrelatedMetricsMonitorParamsDto_Threshold struct {
 	union json.RawMessage
 }
+
+// AsCodeCustomAggregationClauseDtoV2 defines model for AsCodeCustomAggregationClauseDtoV2.
+type AsCodeCustomAggregationClauseDtoV2 struct {
+	Kind AsCodeCustomAggregationClauseDtoV2Kind `json:"kind"`
+	Sql  *string                                `json:"sql,omitempty"`
+}
+
+// AsCodeCustomAggregationClauseDtoV2Kind defines model for AsCodeCustomAggregationClauseDtoV2.Kind.
+type AsCodeCustomAggregationClauseDtoV2Kind string
 
 // AsCodeCustomMetadataEntryLabelValueReferenceDto defines model for AsCodeCustomMetadataEntryLabelValueReferenceDto.
 type AsCodeCustomMetadataEntryLabelValueReferenceDto struct {
@@ -17163,6 +19498,16 @@ type AsCodeCustomMetadataEntryStringValueReferenceDto struct {
 
 // AsCodeCustomMetadataEntryStringValueReferenceDtoKind defines model for AsCodeCustomMetadataEntryStringValueReferenceDto.Kind.
 type AsCodeCustomMetadataEntryStringValueReferenceDtoKind string
+
+// AsCodeCustomMetadataEntryTeamValueReferenceDto defines model for AsCodeCustomMetadataEntryTeamValueReferenceDto.
+type AsCodeCustomMetadataEntryTeamValueReferenceDto struct {
+	CustomMetadataName *string                                            `json:"customMetadataName,omitempty"`
+	Kind               AsCodeCustomMetadataEntryTeamValueReferenceDtoKind `json:"kind"`
+	Name               *string                                            `json:"name,omitempty"`
+}
+
+// AsCodeCustomMetadataEntryTeamValueReferenceDtoKind defines model for AsCodeCustomMetadataEntryTeamValueReferenceDto.Kind.
+type AsCodeCustomMetadataEntryTeamValueReferenceDtoKind string
 
 // AsCodeCustomMetadataEntryUserValueReferenceDto defines model for AsCodeCustomMetadataEntryUserValueReferenceDto.
 type AsCodeCustomMetadataEntryUserValueReferenceDto struct {
@@ -18087,6 +20432,30 @@ type AsCodeServiceNowNotificationDto struct {
 // AsCodeServiceNowNotificationDtoKind defines model for AsCodeServiceNowNotificationDto.Kind.
 type AsCodeServiceNowNotificationDtoKind string
 
+// AsCodeSqlConditionMonitorParamsDto defines model for AsCodeSqlConditionMonitorParamsDto.
+type AsCodeSqlConditionMonitorParamsDto struct {
+	GroupBy        *AsCodeGroupByClauseDto                       `json:"groupBy,omitempty"`
+	Kind           *AsCodeSqlConditionMonitorParamsDtoKind       `json:"kind,omitempty"`
+	Partition      *AsCodeSqlConditionMonitorParamsDto_Partition `json:"partition,omitempty"`
+	Sql            *string                                       `json:"sql,omitempty"`
+	Threshold      *AsCodeSqlConditionMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2                  `json:"timeWindow,omitempty"`
+	WhereStatement *string                                       `json:"whereStatement,omitempty"`
+}
+
+// AsCodeSqlConditionMonitorParamsDtoKind defines model for AsCodeSqlConditionMonitorParamsDto.Kind.
+type AsCodeSqlConditionMonitorParamsDtoKind string
+
+// AsCodeSqlConditionMonitorParamsDto_Partition defines model for AsCodeSqlConditionMonitorParamsDto.Partition.
+type AsCodeSqlConditionMonitorParamsDto_Partition struct {
+	union json.RawMessage
+}
+
+// AsCodeSqlConditionMonitorParamsDto_Threshold defines model for AsCodeSqlConditionMonitorParamsDto.Threshold.
+type AsCodeSqlConditionMonitorParamsDto_Threshold struct {
+	union json.RawMessage
+}
+
 // AsCodeSqlMonitorParamsDto defines model for AsCodeSqlMonitorParamsDto.
 type AsCodeSqlMonitorParamsDto struct {
 	Kind      *AsCodeSqlMonitorParamsDtoKind       `json:"kind,omitempty"`
@@ -18523,26 +20892,34 @@ type DbtInformation struct {
 
 // DefaultWebhookParams defines model for DefaultWebhookParams.
 type DefaultWebhookParams struct {
-	Headers *[]CustomHeader          `json:"headers,omitempty"`
-	Type    DefaultWebhookParamsType `json:"type"`
+	Headers *[]CustomHeader           `json:"headers,omitempty"`
+	Scope   DefaultWebhookParamsScope `json:"scope"`
+	Type    DefaultWebhookParamsType  `json:"type"`
 }
+
+// DefaultWebhookParamsScope defines model for DefaultWebhookParams.Scope.
+type DefaultWebhookParamsScope string
 
 // DefaultWebhookParamsType defines model for DefaultWebhookParams.Type.
 type DefaultWebhookParamsType string
 
 // EntityCustomMetadataDto defines model for EntityCustomMetadataDto.
 type EntityCustomMetadataDto struct {
-	Description *string                                `json:"description,omitempty"`
-	Entries     []EntityCustomMetadataDto_Entries_Item `json:"entries"`
-	Id          openapi_types.UUID                     `json:"id"`
-	Name        string                                 `json:"name"`
-	Type        EntityCustomMetadataDtoType            `json:"type"`
+	Description     *string                                 `json:"description,omitempty"`
+	Entries         []EntityCustomMetadataDto_Entries_Item  `json:"entries"`
+	Id              openapi_types.UUID                      `json:"id"`
+	LineagePlatform *EntityCustomMetadataDtoLineagePlatform `json:"lineagePlatform,omitempty"`
+	Name            string                                  `json:"name"`
+	Type            EntityCustomMetadataDtoType             `json:"type"`
 }
 
 // EntityCustomMetadataDto_Entries_Item defines model for EntityCustomMetadataDto.entries.Item.
 type EntityCustomMetadataDto_Entries_Item struct {
 	union json.RawMessage
 }
+
+// EntityCustomMetadataDtoLineagePlatform defines model for EntityCustomMetadataDto.LineagePlatform.
+type EntityCustomMetadataDtoLineagePlatform string
 
 // EntityCustomMetadataDtoType defines model for EntityCustomMetadataDto.Type.
 type EntityCustomMetadataDtoType string
@@ -18575,6 +20952,17 @@ type EntityCustomMetadataEntryStringDto struct {
 
 // EntityCustomMetadataEntryStringDtoType defines model for EntityCustomMetadataEntryStringDto.Type.
 type EntityCustomMetadataEntryStringDtoType string
+
+// EntityCustomMetadataEntryTeamDto defines model for EntityCustomMetadataEntryTeamDto.
+type EntityCustomMetadataEntryTeamDto struct {
+	Id     openapi_types.UUID                   `json:"id"`
+	Name   *string                              `json:"name,omitempty"`
+	TeamId *openapi_types.UUID                  `json:"teamId,omitempty"`
+	Type   EntityCustomMetadataEntryTeamDtoType `json:"type"`
+}
+
+// EntityCustomMetadataEntryTeamDtoType defines model for EntityCustomMetadataEntryTeamDto.Type.
+type EntityCustomMetadataEntryTeamDtoType string
 
 // EntityCustomMetadataEntryUserDto defines model for EntityCustomMetadataEntryUserDto.
 type EntityCustomMetadataEntryUserDto struct {
@@ -18655,6 +21043,7 @@ type IncidentLightDto struct {
 	Owners                 []UserDto                      `json:"owners"`
 	Qualification          *IncidentLightDtoQualification `json:"qualification,omitempty"`
 	Status                 IncidentLightDtoStatus         `json:"status"`
+	Teams                  []IncidentTeamDto              `json:"teams"`
 	TriggerTime            int64                          `json:"triggerTime"`
 }
 
@@ -18663,6 +21052,12 @@ type IncidentLightDtoQualification string
 
 // IncidentLightDtoStatus defines model for IncidentLightDto.Status.
 type IncidentLightDtoStatus string
+
+// IncidentTeamDto defines model for IncidentTeamDto.
+type IncidentTeamDto struct {
+	Id   openapi_types.UUID `json:"id"`
+	Name string             `json:"name"`
+}
 
 // JsonNode defines model for JsonNode.
 type JsonNode = map[string]interface{}
@@ -18836,6 +21231,9 @@ type PublicAssetFilterDto struct {
 	// DomainId Domain to search on
 	DomainId *openapi_types.UUID `json:"domainId,omitempty"`
 
+	// ExternalTerms List of external business terms to filter on
+	ExternalTerms *[]PublicExternalTermReferenceDto `json:"externalTerms,omitempty"`
+
 	// HealthStatus List of health status to filter on
 	HealthStatus *[]PublicAssetFilterDtoHealthStatus `json:"healthStatus,omitempty"`
 
@@ -18854,7 +21252,7 @@ type PublicAssetFilterDto struct {
 	// Tags List of tags to filter on
 	Tags *[]PublicTagReferenceDto `json:"tags,omitempty"`
 
-	// Terms List of terms to filter on
+	// Terms List of business terms to filter on
 	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
 
 	// TextSearch Text to match in the asset names
@@ -18969,6 +21367,27 @@ type PublicCalendarUpdateDto struct {
 	Name        string             `json:"name"`
 	Timeslots   []CalendarTimeslot `json:"timeslots"`
 }
+
+// PublicCreateAdfSourceV2Dto defines model for PublicCreateAdfSourceV2Dto.
+type PublicCreateAdfSourceV2Dto struct {
+	// AdfInformation ADF connection settings
+	AdfInformation *AdfInformation `json:"adfInformation,omitempty"`
+
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule,omitempty"`
+
+	// Type Source type
+	Type PublicCreateAdfSourceV2DtoType `json:"type"`
+}
+
+// PublicCreateAdfSourceV2DtoType Source type
+type PublicCreateAdfSourceV2DtoType string
 
 // PublicCreateAirflowSourceV2Dto defines model for PublicCreateAirflowSourceV2Dto.
 type PublicCreateAirflowSourceV2Dto struct {
@@ -19117,6 +21536,9 @@ type PublicCreateDomainDto struct {
 
 	// Name Name of the domain
 	Name string `json:"name"`
+
+	// ParentDomainId Id of the parent domain if the new domain is a subdomain. Do not specify this field if the new domain is not a subdomain.
+	ParentDomainId *openapi_types.UUID `json:"parentDomainId,omitempty"`
 }
 
 // PublicCreateDomainDto_AssetContentDefinition defines model for PublicCreateDomainDto.AssetContentDefinition.
@@ -19452,6 +21874,21 @@ type PublicCreateTableauSourceV2Dto struct {
 // PublicCreateTableauSourceV2DtoType Source type
 type PublicCreateTableauSourceV2DtoType string
 
+// PublicCreateTeamDto defines model for PublicCreateTeamDto.
+type PublicCreateTeamDto struct {
+	// Description Description of the team
+	Description *string `json:"description,omitempty"`
+
+	// DomainPermissions Domains permissions granted to the team
+	DomainPermissions *[]PublicTeamPermissionAssignmentDto `json:"domainPermissions,omitempty"`
+
+	// Name Name of the team
+	Name string `json:"name"`
+
+	// Users Users belonging to the team
+	Users *[]PublicReferenceByIdOrEmailDto `json:"users,omitempty"`
+}
+
 // PublicCredentialsCreateDto defines model for PublicCredentialsCreateDto.
 type PublicCredentialsCreateDto struct {
 	// Description Description of credentials
@@ -19525,6 +21962,19 @@ type PublicCustomMetadataEntryStringReferenceDto struct {
 
 // PublicCustomMetadataEntryStringReferenceDtoType defines model for PublicCustomMetadataEntryStringReferenceDto.Type.
 type PublicCustomMetadataEntryStringReferenceDtoType string
+
+// PublicCustomMetadataEntryTeamReferenceDto defines model for PublicCustomMetadataEntryTeamReferenceDto.
+type PublicCustomMetadataEntryTeamReferenceDto struct {
+	// CustomMetadataName Name of the referenced custom metadata
+	CustomMetadataName string `json:"customMetadataName"`
+
+	// Name Value of the referenced custom metadata team name
+	Name *string                                       `json:"name,omitempty"`
+	Type PublicCustomMetadataEntryTeamReferenceDtoType `json:"type"`
+}
+
+// PublicCustomMetadataEntryTeamReferenceDtoType defines model for PublicCustomMetadataEntryTeamReferenceDto.Type.
+type PublicCustomMetadataEntryTeamReferenceDtoType string
 
 // PublicCustomMetadataEntryUserReferenceDto defines model for PublicCustomMetadataEntryUserReferenceDto.
 type PublicCustomMetadataEntryUserReferenceDto struct {
@@ -19626,7 +22076,7 @@ type PublicDeclarativeAssetDto struct {
 	// Utilized to know which value the declared asset should be nested in in the Asset type filter category of the Data Catalog. Selecting Generic will result in the subType value being added as a value of this Asset type filter category.
 	Type PublicDeclarativeAssetDtoType `json:"type"`
 
-	// Uri URI string identifying the declared asset. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	// Uri URI string identifying the declared asset. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
 	Uri string `json:"uri"`
 }
 
@@ -19641,19 +22091,19 @@ type PublicDeclarativeAssetDtoType string
 
 // PublicDeclarativeLineageDto Use this parameter to declare lineage links between assets. It is recommended to use the `lineages` arrays of objects object rather than the `lineages` object of the `assets` array of objects for cases where you want to declare lineage links between existing assets.
 type PublicDeclarativeLineageDto struct {
-	// From URI string identifying the upstream asset of the lineage. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	// From URI string identifying the upstream asset of the lineage. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
 	From string `json:"from"`
 
-	// To URI string identifying the downstream asset of the lineage. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	// To URI string identifying the downstream asset of the lineage. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
 	To string `json:"to"`
 }
 
 // PublicDeclarativeLineageListDto Lineage links to be created for the declared asset
 type PublicDeclarativeLineageListDto struct {
-	// From URI strings identifying the upstream assets. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	// From URI strings identifying the upstream assets. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
 	From *[]string `json:"from,omitempty"`
 
-	// To URI strings identifying the downstream assets. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	// To URI strings identifying the downstream assets. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
 	To *[]string `json:"to,omitempty"`
 }
 
@@ -19686,7 +22136,7 @@ type PublicDeclarativeSourceDto struct {
 	// Tags Tags to be associated with the declared source
 	Tags *[]PublicTagReferenceDto `json:"tags,omitempty"`
 
-	// Uri URI string identifying the declared source. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	// Uri URI string identifying the declared source. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
 	Uri string `json:"uri"`
 }
 
@@ -19713,6 +22163,18 @@ type PublicDomainGetDto struct {
 	Id   openapi_types.UUID `json:"id"`
 	Name string             `json:"name"`
 }
+
+// PublicDomainTeamPermissionDto Teams permissions granted in the domain
+type PublicDomainTeamPermissionDto struct {
+	// DomainRole Domain role assigned to the referenced team for accessing domain
+	DomainRole PublicDomainTeamPermissionDtoDomainRole `json:"domainRole"`
+
+	// TeamId Id of the team
+	TeamId openapi_types.UUID `json:"teamId"`
+}
+
+// PublicDomainTeamPermissionDtoDomainRole Domain role assigned to the referenced team for accessing domain
+type PublicDomainTeamPermissionDtoDomainRole string
 
 // PublicDynamicDomainContentDefinitionDto defines model for PublicDynamicDomainContentDefinitionDto.
 type PublicDynamicDomainContentDefinitionDto struct {
@@ -19752,6 +22214,21 @@ type PublicExternalTagReferenceDto struct {
 // PublicExternalTagReferenceDtoKind Type of the referenced tag
 type PublicExternalTagReferenceDtoKind string
 
+// PublicExternalTermReferenceDto Asset business glossary from external providers.
+type PublicExternalTermReferenceDto struct {
+	// Id Id of the referenced object
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// Kind Type of the referenced tag
+	Kind *PublicExternalTermReferenceDtoKind `json:"kind,omitempty"`
+
+	// Name Name of the referenced object
+	Name *string `json:"name,omitempty"`
+}
+
+// PublicExternalTermReferenceDtoKind Type of the referenced tag
+type PublicExternalTermReferenceDtoKind string
+
 // PublicFilterDomainConditionDto List of the conditions defining content of the domain
 type PublicFilterDomainConditionDto struct {
 	// Type Type of the condition
@@ -19770,6 +22247,33 @@ type PublicFivetranParametersDto struct {
 
 // PublicFivetranParametersDtoType defines model for PublicFivetranParametersDto.Type.
 type PublicFivetranParametersDtoType string
+
+// PublicGetAdfSourceV2Dto defines model for PublicGetAdfSourceV2Dto.
+type PublicGetAdfSourceV2Dto struct {
+	// AdfInformation ADF connection settings
+	AdfInformation *AdfInformation `json:"adfInformation,omitempty"`
+
+	// Credentials Credentials of the source
+	Credentials *string `json:"credentials,omitempty"`
+
+	// Id id the source
+	Id *openapi_types.UUID `json:"id,omitempty"`
+
+	// LastRun Information about the last run of the source
+	LastRun *PublicGetLastRunV2Dto `json:"lastRun,omitempty"`
+
+	// Name Name of the source
+	Name string `json:"name"`
+
+	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
+	Schedule *string `json:"schedule,omitempty"`
+
+	// Type Source type
+	Type PublicGetAdfSourceV2DtoType `json:"type"`
+}
+
+// PublicGetAdfSourceV2DtoType Source type
+type PublicGetAdfSourceV2DtoType string
 
 // PublicGetAirflowSourceV2Dto defines model for PublicGetAirflowSourceV2Dto.
 type PublicGetAirflowSourceV2Dto struct {
@@ -19843,6 +22347,9 @@ type PublicGetAssetDto struct {
 	// ExternalTags Asset tags from external providers
 	ExternalTags *[]PublicExternalTagReferenceDto `json:"externalTags,omitempty"`
 
+	// ExternalTerms Business terms from external providers
+	ExternalTerms *[]PublicExternalTermReferenceDto `json:"externalTerms,omitempty"`
+
 	// HealthStatus Asset health status
 	HealthStatus PublicGetAssetDtoHealthStatus `json:"healthStatus"`
 	Id           openapi_types.UUID            `json:"id"`
@@ -19862,7 +22369,7 @@ type PublicGetAssetDto struct {
 	// Technology Technology of the asset
 	Technology PublicGetAssetDtoTechnology `json:"technology"`
 
-	// Terms Business glossaries of the asset
+	// Terms Business terms of the asset
 	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
 
 	// TransformationRun Transformation associated to the asset
@@ -19871,7 +22378,7 @@ type PublicGetAssetDto struct {
 	// Type Type of the asset
 	Type PublicGetAssetDtoType `json:"type"`
 
-	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
 	Uri string `json:"uri"`
 
 	// Urn Internal Sifflet identifier for the asset
@@ -19912,6 +22419,9 @@ type PublicGetAssetListDto struct {
 	// ExternalTags Asset tags from external providers
 	ExternalTags *[]PublicExternalTagReferenceDto `json:"externalTags,omitempty"`
 
+	// ExternalTerms Business terms from external providers
+	ExternalTerms *[]PublicExternalTermReferenceDto `json:"externalTerms,omitempty"`
+
 	// HealthStatus Asset health status
 	HealthStatus PublicGetAssetListDtoHealthStatus `json:"healthStatus"`
 	Id           openapi_types.UUID                `json:"id"`
@@ -19931,7 +22441,7 @@ type PublicGetAssetListDto struct {
 	// Technology Technology of the asset
 	Technology PublicGetAssetListDtoTechnology `json:"technology"`
 
-	// Terms Business glossaries of the asset
+	// Terms Business terms of the asset
 	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
 
 	// TransformationRun Transformation associated to the asset
@@ -19940,7 +22450,7 @@ type PublicGetAssetListDto struct {
 	// Type Type of the asset
 	Type PublicGetAssetListDtoType `json:"type"`
 
-	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
 	Uri string `json:"uri"`
 
 	// Urn Internal Sifflet identifier for the asset
@@ -19967,7 +22477,7 @@ type PublicGetAssetListDtoUsage string
 
 // PublicGetAssetRequestDto defines model for PublicGetAssetRequestDto.
 type PublicGetAssetRequestDto struct {
-	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
 	Uri string `json:"uri"`
 }
 
@@ -20053,6 +22563,17 @@ type PublicGetCustomMetadataEntryStringDto struct {
 
 // PublicGetCustomMetadataEntryStringDtoType defines model for PublicGetCustomMetadataEntryStringDto.Type.
 type PublicGetCustomMetadataEntryStringDtoType string
+
+// PublicGetCustomMetadataEntryTeamDto defines model for PublicGetCustomMetadataEntryTeamDto.
+type PublicGetCustomMetadataEntryTeamDto struct {
+	// CustomMetadataName Name of the referenced custom metadata
+	CustomMetadataName string                                  `json:"customMetadataName"`
+	Name               *string                                 `json:"name,omitempty"`
+	Type               PublicGetCustomMetadataEntryTeamDtoType `json:"type"`
+}
+
+// PublicGetCustomMetadataEntryTeamDtoType defines model for PublicGetCustomMetadataEntryTeamDto.Type.
+type PublicGetCustomMetadataEntryTeamDtoType string
 
 // PublicGetCustomMetadataEntryUserDto defines model for PublicGetCustomMetadataEntryUserDto.
 type PublicGetCustomMetadataEntryUserDto struct {
@@ -20180,6 +22701,12 @@ type PublicGetDomainDto struct {
 
 	// Name Name of the domain
 	Name string `json:"name"`
+
+	// ParentDomainId Id of the parent domain, if the domain has a parent
+	ParentDomainId *openapi_types.UUID `json:"parentDomainId,omitempty"`
+
+	// TeamPermissions Teams permissions granted in the domain
+	TeamPermissions *[]PublicDomainTeamPermissionDto `json:"teamPermissions,omitempty"`
 }
 
 // PublicGetDomainDto_AssetContentDefinition defines model for PublicGetDomainDto.AssetContentDefinition.
@@ -20648,6 +23175,22 @@ type PublicGetTableauSourceV2Dto struct {
 // PublicGetTableauSourceV2DtoType Source type
 type PublicGetTableauSourceV2DtoType string
 
+// PublicGetTeamDto defines model for PublicGetTeamDto.
+type PublicGetTeamDto struct {
+	// Description Description of the team
+	Description *string `json:"description,omitempty"`
+
+	// DomainPermissions Domains permissions granted to the team
+	DomainPermissions *[]PublicTeamPermissionAssignmentDto `json:"domainPermissions,omitempty"`
+	Id                openapi_types.UUID                   `json:"id"`
+
+	// Name Name of the team
+	Name string `json:"name"`
+
+	// Users Users belonging to the team
+	Users *[]PublicReferenceByIdOrEmailDto `json:"users,omitempty"`
+}
+
 // PublicLookerParametersDto defines model for PublicLookerParametersDto.
 type PublicLookerParametersDto struct {
 	// GitConnections The LookML configuration. See https://docs.siffletdata.com/docs/looker. If you don't use LookML, use an empty list `[]`
@@ -20759,6 +23302,12 @@ type PublicPageDtoPublicGetSourceV2Dto struct {
 // PublicPageDtoPublicGetSourceV2Dto_Data_Item defines model for PublicPageDtoPublicGetSourceV2Dto.data.Item.
 type PublicPageDtoPublicGetSourceV2Dto_Data_Item struct {
 	union json.RawMessage
+}
+
+// PublicPageDtoPublicGetTeamDto defines model for PublicPageDtoPublicGetTeamDto.
+type PublicPageDtoPublicGetTeamDto struct {
+	Data       []PublicGetTeamDto `json:"data"`
+	TotalCount *int64             `json:"totalCount,omitempty"`
 }
 
 // PublicPageDtoPublicUserGetDto defines model for PublicPageDtoPublicUserGetDto.
@@ -20882,7 +23431,7 @@ type PublicSourceFilterDomainConditionDto struct {
 	// Operator Operator of the condition
 	Operator *PublicSourceFilterDomainConditionDtoOperator `json:"operator,omitempty"`
 
-	// Sources List of the sources in the condition in URI format. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	// Sources List of the sources in the condition in URI format. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
 	Sources *[]string `json:"sources,omitempty"`
 
 	// Type Type of the condition
@@ -21014,6 +23563,18 @@ type PublicTagReferenceDto struct {
 // PublicTagReferenceDtoKind Type of the referenced tag
 type PublicTagReferenceDtoKind string
 
+// PublicTeamPermissionAssignmentDto Domains permissions granted to the team
+type PublicTeamPermissionAssignmentDto struct {
+	// DomainId Id of the domain
+	DomainId openapi_types.UUID `json:"domainId"`
+
+	// DomainRole Domain role assigned to the team for accessing the referenced domain
+	DomainRole PublicTeamPermissionAssignmentDtoDomainRole `json:"domainRole"`
+}
+
+// PublicTeamPermissionAssignmentDtoDomainRole Domain role assigned to the team for accessing the referenced domain
+type PublicTeamPermissionAssignmentDtoDomainRole string
+
 // PublicTransformationRunDto Transformation associated to the asset
 type PublicTransformationRunDto struct {
 	// LastRunDate Last run date of the transformation
@@ -21083,7 +23644,7 @@ type PublicUpdateAssetDto struct {
 	// Terms Terms of the asset
 	Terms *[]PublicReferenceByIdOrNameDto `json:"terms,omitempty"`
 
-	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uris">[Read more about URIs]</a>
+	// Uri URI string identifying the asset. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
 	Uri string `json:"uri"`
 }
 
@@ -21553,6 +24114,21 @@ type PublicUpdateTableauSourceV2Dto struct {
 // PublicUpdateTableauSourceV2DtoType Source type
 type PublicUpdateTableauSourceV2DtoType string
 
+// PublicUpdateTeamDto defines model for PublicUpdateTeamDto.
+type PublicUpdateTeamDto struct {
+	// Description Description of the team
+	Description *string `json:"description,omitempty"`
+
+	// DomainPermissions Domains permissions granted to the team
+	DomainPermissions *[]PublicTeamPermissionAssignmentDto `json:"domainPermissions,omitempty"`
+
+	// Name Name of the team
+	Name string `json:"name"`
+
+	// Users Users belonging to the team
+	Users *[]PublicReferenceByIdOrEmailDto `json:"users,omitempty"`
+}
+
 // PublicUserCreateDto defines model for PublicUserCreateDto.
 type PublicUserCreateDto struct {
 	// AuthTypes Authorized authentication type of the user
@@ -21565,7 +24141,7 @@ type PublicUserCreateDto struct {
 	Name string `json:"name"`
 
 	// Permissions Domain access permissions of the user
-	Permissions []PublicUserPermissionAssignmentDto `json:"permissions"`
+	Permissions *[]PublicUserPermissionAssignmentDto `json:"permissions,omitempty"`
 
 	// Role System role of the user
 	Role PublicUserCreateDtoRole `json:"role"`
@@ -21597,6 +24173,9 @@ type PublicUserGetDto struct {
 
 	// Status Status of the user
 	Status PublicUserGetDtoStatus `json:"status"`
+
+	// Teams Teams of the user
+	Teams []PublicUserTeamDto `json:"teams"`
 }
 
 // PublicUserGetDtoAuthTypes Authorized authentication type of the user
@@ -21625,6 +24204,12 @@ type PublicUserResetPasswordDto struct {
 	Password string `json:"password"`
 }
 
+// PublicUserTeamDto Teams of the user
+type PublicUserTeamDto struct {
+	// TeamId Id of the team
+	TeamId openapi_types.UUID `json:"teamId"`
+}
+
 // PublicUserUpdateDto defines model for PublicUserUpdateDto.
 type PublicUserUpdateDto struct {
 	// AuthTypes Authorized authentication type of the user
@@ -21634,7 +24219,7 @@ type PublicUserUpdateDto struct {
 	Name string `json:"name"`
 
 	// Permissions Domain access permissions of the user
-	Permissions []PublicUserPermissionAssignmentDto `json:"permissions"`
+	Permissions *[]PublicUserPermissionAssignmentDto `json:"permissions,omitempty"`
 
 	// Role System role of the user
 	Role PublicUserUpdateDtoRole `json:"role"`
@@ -22112,6 +24697,15 @@ type GetSiffletRuleRunParams struct {
 // GetSiffletRuleRunParamsExpand defines parameters for GetSiffletRuleRun.
 type GetSiffletRuleRunParamsExpand string
 
+// PublicGetTeamsParams defines parameters for PublicGetTeams.
+type PublicGetTeamsParams struct {
+	// Page The page number to retrieve. Starts at 0.
+	Page *int32 `form:"page,omitempty" json:"page,omitempty"`
+
+	// ItemsPerPage The number of elements to be returned inside the page.
+	ItemsPerPage *int32 `form:"itemsPerPage,omitempty" json:"itemsPerPage,omitempty"`
+}
+
 // PublicGetUsersParams defines parameters for PublicGetUsers.
 type PublicGetUsersParams struct {
 	// Page The page number to retrieve. Starts at 0.
@@ -22175,6 +24769,12 @@ type TestSourceConnectionJSONRequestBody = PublicCreateSourceDto
 
 // PublicEditSourceJSONRequestBody defines body for PublicEditSource for application/json ContentType.
 type PublicEditSourceJSONRequestBody = PublicUpdateSourceDto
+
+// PublicCreateTeamJSONRequestBody defines body for PublicCreateTeam for application/json ContentType.
+type PublicCreateTeamJSONRequestBody = PublicCreateTeamDto
+
+// PublicUpdateTeamJSONRequestBody defines body for PublicUpdateTeam for application/json ContentType.
+type PublicUpdateTeamJSONRequestBody = PublicUpdateTeamDto
 
 // PublicCreateUserJSONRequestBody defines body for PublicCreateUser for application/json ContentType.
 type PublicCreateUserJSONRequestBody = PublicUserCreateDto
@@ -22618,6 +25218,94 @@ func (t *AsCodeConditionalMonitorParamsDto_Condition) UnmarshalJSON(b []byte) er
 	return err
 }
 
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeConditionalMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeConditionalMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeConditionalMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeConditionalMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeConditionalMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeConditionalMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeConditionalMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeConditionalMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeConditionalMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeConditionalMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeConditionalMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeConditionalMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeConditionalMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeConditionalMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeConditionalMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeConditionalMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeConditionalMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeConditionalMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeConditionalMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeConditionalMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeConditionalMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
 func (t AsCodeConditionalMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
 	var body AsCodeDynamicThresholdDtoV2
@@ -22784,6 +25472,32 @@ func (t *AsCodeCustomMetadataEntryReferenceDto_Value) FromAsCodeCustomMetadataEn
 
 // MergeAsCodeCustomMetadataEntryStringValueReferenceDto performs a merge with any union data inside the AsCodeCustomMetadataEntryReferenceDto_Value, using the provided AsCodeCustomMetadataEntryStringValueReferenceDto
 func (t *AsCodeCustomMetadataEntryReferenceDto_Value) MergeAsCodeCustomMetadataEntryStringValueReferenceDto(v AsCodeCustomMetadataEntryStringValueReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeCustomMetadataEntryTeamValueReferenceDto returns the union data inside the AsCodeCustomMetadataEntryReferenceDto_Value as a AsCodeCustomMetadataEntryTeamValueReferenceDto
+func (t AsCodeCustomMetadataEntryReferenceDto_Value) AsAsCodeCustomMetadataEntryTeamValueReferenceDto() (AsCodeCustomMetadataEntryTeamValueReferenceDto, error) {
+	var body AsCodeCustomMetadataEntryTeamValueReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeCustomMetadataEntryTeamValueReferenceDto overwrites any union data inside the AsCodeCustomMetadataEntryReferenceDto_Value as the provided AsCodeCustomMetadataEntryTeamValueReferenceDto
+func (t *AsCodeCustomMetadataEntryReferenceDto_Value) FromAsCodeCustomMetadataEntryTeamValueReferenceDto(v AsCodeCustomMetadataEntryTeamValueReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeCustomMetadataEntryTeamValueReferenceDto performs a merge with any union data inside the AsCodeCustomMetadataEntryReferenceDto_Value, using the provided AsCodeCustomMetadataEntryTeamValueReferenceDto
+func (t *AsCodeCustomMetadataEntryReferenceDto_Value) MergeAsCodeCustomMetadataEntryTeamValueReferenceDto(v AsCodeCustomMetadataEntryTeamValueReferenceDto) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -25018,6 +27732,32 @@ func (t *AsCodeMetricClauseDto_Aggregation) MergeAsCodeAggregationClauseDtoV2(v 
 	return err
 }
 
+// AsAsCodeCustomAggregationClauseDtoV2 returns the union data inside the AsCodeMetricClauseDto_Aggregation as a AsCodeCustomAggregationClauseDtoV2
+func (t AsCodeMetricClauseDto_Aggregation) AsAsCodeCustomAggregationClauseDtoV2() (AsCodeCustomAggregationClauseDtoV2, error) {
+	var body AsCodeCustomAggregationClauseDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeCustomAggregationClauseDtoV2 overwrites any union data inside the AsCodeMetricClauseDto_Aggregation as the provided AsCodeCustomAggregationClauseDtoV2
+func (t *AsCodeMetricClauseDto_Aggregation) FromAsCodeCustomAggregationClauseDtoV2(v AsCodeCustomAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeCustomAggregationClauseDtoV2 performs a merge with any union data inside the AsCodeMetricClauseDto_Aggregation, using the provided AsCodeCustomAggregationClauseDtoV2
+func (t *AsCodeMetricClauseDto_Aggregation) MergeAsCodeCustomAggregationClauseDtoV2(v AsCodeCustomAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsAsCodeQuantileAggregationClauseDtoV2 returns the union data inside the AsCodeMetricClauseDto_Aggregation as a AsCodeQuantileAggregationClauseDtoV2
 func (t AsCodeMetricClauseDto_Aggregation) AsAsCodeQuantileAggregationClauseDtoV2() (AsCodeQuantileAggregationClauseDtoV2, error) {
 	var body AsCodeQuantileAggregationClauseDtoV2
@@ -25158,6 +27898,32 @@ func (t *AsCodeMetricsMonitorParamsDto_Aggregation) FromAsCodeAggregationClauseD
 
 // MergeAsCodeAggregationClauseDtoV2 performs a merge with any union data inside the AsCodeMetricsMonitorParamsDto_Aggregation, using the provided AsCodeAggregationClauseDtoV2
 func (t *AsCodeMetricsMonitorParamsDto_Aggregation) MergeAsCodeAggregationClauseDtoV2(v AsCodeAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeCustomAggregationClauseDtoV2 returns the union data inside the AsCodeMetricsMonitorParamsDto_Aggregation as a AsCodeCustomAggregationClauseDtoV2
+func (t AsCodeMetricsMonitorParamsDto_Aggregation) AsAsCodeCustomAggregationClauseDtoV2() (AsCodeCustomAggregationClauseDtoV2, error) {
+	var body AsCodeCustomAggregationClauseDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeCustomAggregationClauseDtoV2 overwrites any union data inside the AsCodeMetricsMonitorParamsDto_Aggregation as the provided AsCodeCustomAggregationClauseDtoV2
+func (t *AsCodeMetricsMonitorParamsDto_Aggregation) FromAsCodeCustomAggregationClauseDtoV2(v AsCodeCustomAggregationClauseDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeCustomAggregationClauseDtoV2 performs a merge with any union data inside the AsCodeMetricsMonitorParamsDto_Aggregation, using the provided AsCodeCustomAggregationClauseDtoV2
+func (t *AsCodeMetricsMonitorParamsDto_Aggregation) MergeAsCodeCustomAggregationClauseDtoV2(v AsCodeCustomAggregationClauseDtoV2) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -26092,6 +28858,32 @@ func (t *AsCodeMonitorDto_Parameters) MergeAsCodeSchemaChangeMonitorParamsDto(v 
 	return err
 }
 
+// AsAsCodeSqlConditionMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeSqlConditionMonitorParamsDto
+func (t AsCodeMonitorDto_Parameters) AsAsCodeSqlConditionMonitorParamsDto() (AsCodeSqlConditionMonitorParamsDto, error) {
+	var body AsCodeSqlConditionMonitorParamsDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeSqlConditionMonitorParamsDto overwrites any union data inside the AsCodeMonitorDto_Parameters as the provided AsCodeSqlConditionMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) FromAsCodeSqlConditionMonitorParamsDto(v AsCodeSqlConditionMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeSqlConditionMonitorParamsDto performs a merge with any union data inside the AsCodeMonitorDto_Parameters, using the provided AsCodeSqlConditionMonitorParamsDto
+func (t *AsCodeMonitorDto_Parameters) MergeAsCodeSqlConditionMonitorParamsDto(v AsCodeSqlConditionMonitorParamsDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsAsCodeSqlMonitorParamsDto returns the union data inside the AsCodeMonitorDto_Parameters as a AsCodeSqlMonitorParamsDto
 func (t AsCodeMonitorDto_Parameters) AsAsCodeSqlMonitorParamsDto() (AsCodeSqlMonitorParamsDto, error) {
 	var body AsCodeSqlMonitorParamsDto
@@ -26704,6 +29496,156 @@ func (t AsCodeRowDuplicatesMonitorParamsDto_Threshold) MarshalJSON() ([]byte, er
 }
 
 func (t *AsCodeRowDuplicatesMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeIngestionTimePartitionClauseDto returns the union data inside the AsCodeSqlConditionMonitorParamsDto_Partition as a AsCodeIngestionTimePartitionClauseDto
+func (t AsCodeSqlConditionMonitorParamsDto_Partition) AsAsCodeIngestionTimePartitionClauseDto() (AsCodeIngestionTimePartitionClauseDto, error) {
+	var body AsCodeIngestionTimePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIngestionTimePartitionClauseDto overwrites any union data inside the AsCodeSqlConditionMonitorParamsDto_Partition as the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeSqlConditionMonitorParamsDto_Partition) FromAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIngestionTimePartitionClauseDto performs a merge with any union data inside the AsCodeSqlConditionMonitorParamsDto_Partition, using the provided AsCodeIngestionTimePartitionClauseDto
+func (t *AsCodeSqlConditionMonitorParamsDto_Partition) MergeAsCodeIngestionTimePartitionClauseDto(v AsCodeIngestionTimePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeIntegerRangePartitionClauseDto returns the union data inside the AsCodeSqlConditionMonitorParamsDto_Partition as a AsCodeIntegerRangePartitionClauseDto
+func (t AsCodeSqlConditionMonitorParamsDto_Partition) AsAsCodeIntegerRangePartitionClauseDto() (AsCodeIntegerRangePartitionClauseDto, error) {
+	var body AsCodeIntegerRangePartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeIntegerRangePartitionClauseDto overwrites any union data inside the AsCodeSqlConditionMonitorParamsDto_Partition as the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeSqlConditionMonitorParamsDto_Partition) FromAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeIntegerRangePartitionClauseDto performs a merge with any union data inside the AsCodeSqlConditionMonitorParamsDto_Partition, using the provided AsCodeIntegerRangePartitionClauseDto
+func (t *AsCodeSqlConditionMonitorParamsDto_Partition) MergeAsCodeIntegerRangePartitionClauseDto(v AsCodeIntegerRangePartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeTimeUnitColumnPartitionClauseDto returns the union data inside the AsCodeSqlConditionMonitorParamsDto_Partition as a AsCodeTimeUnitColumnPartitionClauseDto
+func (t AsCodeSqlConditionMonitorParamsDto_Partition) AsAsCodeTimeUnitColumnPartitionClauseDto() (AsCodeTimeUnitColumnPartitionClauseDto, error) {
+	var body AsCodeTimeUnitColumnPartitionClauseDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeTimeUnitColumnPartitionClauseDto overwrites any union data inside the AsCodeSqlConditionMonitorParamsDto_Partition as the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeSqlConditionMonitorParamsDto_Partition) FromAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeTimeUnitColumnPartitionClauseDto performs a merge with any union data inside the AsCodeSqlConditionMonitorParamsDto_Partition, using the provided AsCodeTimeUnitColumnPartitionClauseDto
+func (t *AsCodeSqlConditionMonitorParamsDto_Partition) MergeAsCodeTimeUnitColumnPartitionClauseDto(v AsCodeTimeUnitColumnPartitionClauseDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeSqlConditionMonitorParamsDto_Partition) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeSqlConditionMonitorParamsDto_Partition) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsAsCodeDynamicThresholdDtoV2 returns the union data inside the AsCodeSqlConditionMonitorParamsDto_Threshold as a AsCodeDynamicThresholdDtoV2
+func (t AsCodeSqlConditionMonitorParamsDto_Threshold) AsAsCodeDynamicThresholdDtoV2() (AsCodeDynamicThresholdDtoV2, error) {
+	var body AsCodeDynamicThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeDynamicThresholdDtoV2 overwrites any union data inside the AsCodeSqlConditionMonitorParamsDto_Threshold as the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeSqlConditionMonitorParamsDto_Threshold) FromAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeDynamicThresholdDtoV2 performs a merge with any union data inside the AsCodeSqlConditionMonitorParamsDto_Threshold, using the provided AsCodeDynamicThresholdDtoV2
+func (t *AsCodeSqlConditionMonitorParamsDto_Threshold) MergeAsCodeDynamicThresholdDtoV2(v AsCodeDynamicThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsAsCodeStaticThresholdDtoV2 returns the union data inside the AsCodeSqlConditionMonitorParamsDto_Threshold as a AsCodeStaticThresholdDtoV2
+func (t AsCodeSqlConditionMonitorParamsDto_Threshold) AsAsCodeStaticThresholdDtoV2() (AsCodeStaticThresholdDtoV2, error) {
+	var body AsCodeStaticThresholdDtoV2
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAsCodeStaticThresholdDtoV2 overwrites any union data inside the AsCodeSqlConditionMonitorParamsDto_Threshold as the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeSqlConditionMonitorParamsDto_Threshold) FromAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAsCodeStaticThresholdDtoV2 performs a merge with any union data inside the AsCodeSqlConditionMonitorParamsDto_Threshold, using the provided AsCodeStaticThresholdDtoV2
+func (t *AsCodeSqlConditionMonitorParamsDto_Threshold) MergeAsCodeStaticThresholdDtoV2(v AsCodeStaticThresholdDtoV2) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AsCodeSqlConditionMonitorParamsDto_Threshold) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AsCodeSqlConditionMonitorParamsDto_Threshold) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -27572,6 +30514,32 @@ func (t *EntityCustomMetadataDto_Entries_Item) MergeEntityCustomMetadataEntryStr
 	return err
 }
 
+// AsEntityCustomMetadataEntryTeamDto returns the union data inside the EntityCustomMetadataDto_Entries_Item as a EntityCustomMetadataEntryTeamDto
+func (t EntityCustomMetadataDto_Entries_Item) AsEntityCustomMetadataEntryTeamDto() (EntityCustomMetadataEntryTeamDto, error) {
+	var body EntityCustomMetadataEntryTeamDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEntityCustomMetadataEntryTeamDto overwrites any union data inside the EntityCustomMetadataDto_Entries_Item as the provided EntityCustomMetadataEntryTeamDto
+func (t *EntityCustomMetadataDto_Entries_Item) FromEntityCustomMetadataEntryTeamDto(v EntityCustomMetadataEntryTeamDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEntityCustomMetadataEntryTeamDto performs a merge with any union data inside the EntityCustomMetadataDto_Entries_Item, using the provided EntityCustomMetadataEntryTeamDto
+func (t *EntityCustomMetadataDto_Entries_Item) MergeEntityCustomMetadataEntryTeamDto(v EntityCustomMetadataEntryTeamDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsEntityCustomMetadataEntryUserDto returns the union data inside the EntityCustomMetadataDto_Entries_Item as a EntityCustomMetadataEntryUserDto
 func (t EntityCustomMetadataDto_Entries_Item) AsEntityCustomMetadataEntryUserDto() (EntityCustomMetadataEntryUserDto, error) {
 	var body EntityCustomMetadataEntryUserDto
@@ -27650,6 +30618,32 @@ func (t *PublicAssetFilterDto_CustomMetadataValues_Item) FromPublicCustomMetadat
 
 // MergePublicCustomMetadataEntryStringReferenceDto performs a merge with any union data inside the PublicAssetFilterDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryStringReferenceDto
 func (t *PublicAssetFilterDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryStringReferenceDto(v PublicCustomMetadataEntryStringReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicCustomMetadataEntryTeamReferenceDto returns the union data inside the PublicAssetFilterDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryTeamReferenceDto
+func (t PublicAssetFilterDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryTeamReferenceDto() (PublicCustomMetadataEntryTeamReferenceDto, error) {
+	var body PublicCustomMetadataEntryTeamReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryTeamReferenceDto overwrites any union data inside the PublicAssetFilterDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryTeamReferenceDto
+func (t *PublicAssetFilterDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryTeamReferenceDto(v PublicCustomMetadataEntryTeamReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryTeamReferenceDto performs a merge with any union data inside the PublicAssetFilterDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryTeamReferenceDto
+func (t *PublicAssetFilterDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryTeamReferenceDto(v PublicCustomMetadataEntryTeamReferenceDto) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -28314,6 +31308,32 @@ func (t *PublicDeclarativeAssetDto_CustomMetadataValues_Item) MergePublicCustomM
 	return err
 }
 
+// AsPublicCustomMetadataEntryTeamReferenceDto returns the union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryTeamReferenceDto
+func (t PublicDeclarativeAssetDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryTeamReferenceDto() (PublicCustomMetadataEntryTeamReferenceDto, error) {
+	var body PublicCustomMetadataEntryTeamReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryTeamReferenceDto overwrites any union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryTeamReferenceDto
+func (t *PublicDeclarativeAssetDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryTeamReferenceDto(v PublicCustomMetadataEntryTeamReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryTeamReferenceDto performs a merge with any union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryTeamReferenceDto
+func (t *PublicDeclarativeAssetDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryTeamReferenceDto(v PublicCustomMetadataEntryTeamReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsPublicCustomMetadataEntryUserReferenceDto returns the union data inside the PublicDeclarativeAssetDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryUserReferenceDto
 func (t PublicDeclarativeAssetDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryUserReferenceDto() (PublicCustomMetadataEntryUserReferenceDto, error) {
 	var body PublicCustomMetadataEntryUserReferenceDto
@@ -28454,6 +31474,32 @@ func (t *PublicGetAssetDto_CustomMetadataValues_Item) FromPublicGetCustomMetadat
 
 // MergePublicGetCustomMetadataEntryStringDto performs a merge with any union data inside the PublicGetAssetDto_CustomMetadataValues_Item, using the provided PublicGetCustomMetadataEntryStringDto
 func (t *PublicGetAssetDto_CustomMetadataValues_Item) MergePublicGetCustomMetadataEntryStringDto(v PublicGetCustomMetadataEntryStringDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicGetCustomMetadataEntryTeamDto returns the union data inside the PublicGetAssetDto_CustomMetadataValues_Item as a PublicGetCustomMetadataEntryTeamDto
+func (t PublicGetAssetDto_CustomMetadataValues_Item) AsPublicGetCustomMetadataEntryTeamDto() (PublicGetCustomMetadataEntryTeamDto, error) {
+	var body PublicGetCustomMetadataEntryTeamDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetCustomMetadataEntryTeamDto overwrites any union data inside the PublicGetAssetDto_CustomMetadataValues_Item as the provided PublicGetCustomMetadataEntryTeamDto
+func (t *PublicGetAssetDto_CustomMetadataValues_Item) FromPublicGetCustomMetadataEntryTeamDto(v PublicGetCustomMetadataEntryTeamDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetCustomMetadataEntryTeamDto performs a merge with any union data inside the PublicGetAssetDto_CustomMetadataValues_Item, using the provided PublicGetCustomMetadataEntryTeamDto
+func (t *PublicGetAssetDto_CustomMetadataValues_Item) MergePublicGetCustomMetadataEntryTeamDto(v PublicGetCustomMetadataEntryTeamDto) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -29066,6 +32112,32 @@ func (t *PublicGetSourceDto_Parameters) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsPublicGetAdfSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetAdfSourceV2Dto
+func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetAdfSourceV2Dto() (PublicGetAdfSourceV2Dto, error) {
+	var body PublicGetAdfSourceV2Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicGetAdfSourceV2Dto overwrites any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as the provided PublicGetAdfSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) FromPublicGetAdfSourceV2Dto(v PublicGetAdfSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicGetAdfSourceV2Dto performs a merge with any union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item, using the provided PublicGetAdfSourceV2Dto
+func (t *PublicPageDtoPublicGetSourceV2Dto_Data_Item) MergePublicGetAdfSourceV2Dto(v PublicGetAdfSourceV2Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 // AsPublicGetAirflowSourceV2Dto returns the union data inside the PublicPageDtoPublicGetSourceV2Dto_Data_Item as a PublicGetAirflowSourceV2Dto
 func (t PublicPageDtoPublicGetSourceV2Dto_Data_Item) AsPublicGetAirflowSourceV2Dto() (PublicGetAirflowSourceV2Dto, error) {
 	var body PublicGetAirflowSourceV2Dto
@@ -29664,6 +32736,32 @@ func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) FromPublicCustomMetadat
 
 // MergePublicCustomMetadataEntryStringReferenceDto performs a merge with any union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryStringReferenceDto
 func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryStringReferenceDto(v PublicCustomMetadataEntryStringReferenceDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPublicCustomMetadataEntryTeamReferenceDto returns the union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item as a PublicCustomMetadataEntryTeamReferenceDto
+func (t PublicUpdateAssetDto_CustomMetadataValues_Item) AsPublicCustomMetadataEntryTeamReferenceDto() (PublicCustomMetadataEntryTeamReferenceDto, error) {
+	var body PublicCustomMetadataEntryTeamReferenceDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPublicCustomMetadataEntryTeamReferenceDto overwrites any union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item as the provided PublicCustomMetadataEntryTeamReferenceDto
+func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) FromPublicCustomMetadataEntryTeamReferenceDto(v PublicCustomMetadataEntryTeamReferenceDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePublicCustomMetadataEntryTeamReferenceDto performs a merge with any union data inside the PublicUpdateAssetDto_CustomMetadataValues_Item, using the provided PublicCustomMetadataEntryTeamReferenceDto
+func (t *PublicUpdateAssetDto_CustomMetadataValues_Item) MergePublicCustomMetadataEntryTeamReferenceDto(v PublicCustomMetadataEntryTeamReferenceDto) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -30947,6 +34045,25 @@ type ClientInterface interface {
 	// PublicSourceIngestionManualRun request
 	PublicSourceIngestionManualRun(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// PublicGetTeams request
+	PublicGetTeams(ctx context.Context, params *PublicGetTeamsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicCreateTeamWithBody request with any body
+	PublicCreateTeamWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PublicCreateTeam(ctx context.Context, body PublicCreateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicDeleteTeam request
+	PublicDeleteTeam(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicGetTeam request
+	PublicGetTeam(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicUpdateTeamWithBody request with any body
+	PublicUpdateTeamWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PublicUpdateTeam(ctx context.Context, id openapi_types.UUID, body PublicUpdateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// PublicGetUsers request
 	PublicGetUsers(ctx context.Context, params *PublicGetUsersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -31606,6 +34723,90 @@ func (c *Client) PublicEditSource(ctx context.Context, id openapi_types.UUID, bo
 
 func (c *Client) PublicSourceIngestionManualRun(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPublicSourceIngestionManualRunRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicGetTeams(ctx context.Context, params *PublicGetTeamsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetTeamsRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicCreateTeamWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicCreateTeamRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicCreateTeam(ctx context.Context, body PublicCreateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicCreateTeamRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicDeleteTeam(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicDeleteTeamRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicGetTeam(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicGetTeamRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicUpdateTeamWithBody(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicUpdateTeamRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicUpdateTeam(ctx context.Context, id openapi_types.UUID, body PublicUpdateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicUpdateTeamRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -33779,6 +36980,226 @@ func NewPublicSourceIngestionManualRunRequest(server string, id openapi_types.UU
 	return req, nil
 }
 
+// NewPublicGetTeamsRequest generates requests for PublicGetTeams
+func NewPublicGetTeamsRequest(server string, params *PublicGetTeamsParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/teams")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ItemsPerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "itemsPerPage", *params.ItemsPerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPublicCreateTeamRequest calls the generic PublicCreateTeam builder with application/json body
+func NewPublicCreateTeamRequest(server string, body PublicCreateTeamJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPublicCreateTeamRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPublicCreateTeamRequestWithBody generates requests for PublicCreateTeam with any type of body
+func NewPublicCreateTeamRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/teams")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPublicDeleteTeamRequest generates requests for PublicDeleteTeam
+func NewPublicDeleteTeamRequest(server string, id openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/teams/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPublicGetTeamRequest generates requests for PublicGetTeam
+func NewPublicGetTeamRequest(server string, id openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/teams/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPublicUpdateTeamRequest calls the generic PublicUpdateTeam builder with application/json body
+func NewPublicUpdateTeamRequest(server string, id openapi_types.UUID, body PublicUpdateTeamJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPublicUpdateTeamRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewPublicUpdateTeamRequestWithBody generates requests for PublicUpdateTeam with any type of body
+func NewPublicUpdateTeamRequestWithBody(server string, id openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/teams/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewPublicGetUsersRequest generates requests for PublicGetUsers
 func NewPublicGetUsersRequest(server string, params *PublicGetUsersParams) (*http.Request, error) {
 	var err error
@@ -34433,6 +37854,25 @@ type ClientWithResponsesInterface interface {
 
 	// PublicSourceIngestionManualRunWithResponse request
 	PublicSourceIngestionManualRunWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicSourceIngestionManualRunResponse, error)
+
+	// PublicGetTeamsWithResponse request
+	PublicGetTeamsWithResponse(ctx context.Context, params *PublicGetTeamsParams, reqEditors ...RequestEditorFn) (*PublicGetTeamsResponse, error)
+
+	// PublicCreateTeamWithBodyWithResponse request with any body
+	PublicCreateTeamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateTeamResponse, error)
+
+	PublicCreateTeamWithResponse(ctx context.Context, body PublicCreateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicCreateTeamResponse, error)
+
+	// PublicDeleteTeamWithResponse request
+	PublicDeleteTeamWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicDeleteTeamResponse, error)
+
+	// PublicGetTeamWithResponse request
+	PublicGetTeamWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicGetTeamResponse, error)
+
+	// PublicUpdateTeamWithBodyWithResponse request with any body
+	PublicUpdateTeamWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicUpdateTeamResponse, error)
+
+	PublicUpdateTeamWithResponse(ctx context.Context, id openapi_types.UUID, body PublicUpdateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicUpdateTeamResponse, error)
 
 	// PublicGetUsersWithResponse request
 	PublicGetUsersWithResponse(ctx context.Context, params *PublicGetUsersParams, reqEditors ...RequestEditorFn) (*PublicGetUsersResponse, error)
@@ -35493,6 +38933,135 @@ func (r PublicSourceIngestionManualRunResponse) StatusCode() int {
 	return 0
 }
 
+type PublicGetTeamsResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *PublicPageDtoPublicGetTeamDto
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicGetTeamsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicGetTeamsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicCreateTeamResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON201                   *PublicGetTeamDto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicCreateTeamResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicCreateTeamResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicDeleteTeamResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicDeleteTeamResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicDeleteTeamResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicGetTeamResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *PublicGetTeamDto
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicGetTeamResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicGetTeamResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicUpdateTeamResponse struct {
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *PublicGetTeamDto
+	ApplicationproblemJSON400 *ApiProblemSchema
+	ApplicationproblemJSON401 *ApiProblemSchema
+	ApplicationproblemJSON403 *ApiProblemSchema
+	ApplicationproblemJSON404 *ApiProblemSchema
+	ApplicationproblemJSON500 *ApiProblemSchema
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicUpdateTeamResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicUpdateTeamResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type PublicGetUsersResponse struct {
 	Body                      []byte
 	HTTPResponse              *http.Response
@@ -36274,6 +39843,67 @@ func (c *ClientWithResponses) PublicSourceIngestionManualRunWithResponse(ctx con
 		return nil, err
 	}
 	return ParsePublicSourceIngestionManualRunResponse(rsp)
+}
+
+// PublicGetTeamsWithResponse request returning *PublicGetTeamsResponse
+func (c *ClientWithResponses) PublicGetTeamsWithResponse(ctx context.Context, params *PublicGetTeamsParams, reqEditors ...RequestEditorFn) (*PublicGetTeamsResponse, error) {
+	rsp, err := c.PublicGetTeams(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicGetTeamsResponse(rsp)
+}
+
+// PublicCreateTeamWithBodyWithResponse request with arbitrary body returning *PublicCreateTeamResponse
+func (c *ClientWithResponses) PublicCreateTeamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicCreateTeamResponse, error) {
+	rsp, err := c.PublicCreateTeamWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicCreateTeamResponse(rsp)
+}
+
+func (c *ClientWithResponses) PublicCreateTeamWithResponse(ctx context.Context, body PublicCreateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicCreateTeamResponse, error) {
+	rsp, err := c.PublicCreateTeam(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicCreateTeamResponse(rsp)
+}
+
+// PublicDeleteTeamWithResponse request returning *PublicDeleteTeamResponse
+func (c *ClientWithResponses) PublicDeleteTeamWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicDeleteTeamResponse, error) {
+	rsp, err := c.PublicDeleteTeam(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicDeleteTeamResponse(rsp)
+}
+
+// PublicGetTeamWithResponse request returning *PublicGetTeamResponse
+func (c *ClientWithResponses) PublicGetTeamWithResponse(ctx context.Context, id openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicGetTeamResponse, error) {
+	rsp, err := c.PublicGetTeam(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicGetTeamResponse(rsp)
+}
+
+// PublicUpdateTeamWithBodyWithResponse request with arbitrary body returning *PublicUpdateTeamResponse
+func (c *ClientWithResponses) PublicUpdateTeamWithBodyWithResponse(ctx context.Context, id openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PublicUpdateTeamResponse, error) {
+	rsp, err := c.PublicUpdateTeamWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicUpdateTeamResponse(rsp)
+}
+
+func (c *ClientWithResponses) PublicUpdateTeamWithResponse(ctx context.Context, id openapi_types.UUID, body PublicUpdateTeamJSONRequestBody, reqEditors ...RequestEditorFn) (*PublicUpdateTeamResponse, error) {
+	rsp, err := c.PublicUpdateTeam(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicUpdateTeamResponse(rsp)
 }
 
 // PublicGetUsersWithResponse request returning *PublicGetUsersResponse
@@ -38617,6 +42247,269 @@ func ParsePublicSourceIngestionManualRunResponse(rsp *http.Response) (*PublicSou
 	}
 
 	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicGetTeamsResponse parses an HTTP response from a PublicGetTeamsWithResponse call
+func ParsePublicGetTeamsResponse(rsp *http.Response) (*PublicGetTeamsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicGetTeamsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicPageDtoPublicGetTeamDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicCreateTeamResponse parses an HTTP response from a PublicCreateTeamWithResponse call
+func ParsePublicCreateTeamResponse(rsp *http.Response) (*PublicCreateTeamResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicCreateTeamResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest PublicGetTeamDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicDeleteTeamResponse parses an HTTP response from a PublicDeleteTeamWithResponse call
+func ParsePublicDeleteTeamResponse(rsp *http.Response) (*PublicDeleteTeamResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicDeleteTeamResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicGetTeamResponse parses an HTTP response from a PublicGetTeamWithResponse call
+func ParsePublicGetTeamResponse(rsp *http.Response) (*PublicGetTeamResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicGetTeamResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicGetTeamDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON500 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicUpdateTeamResponse parses an HTTP response from a PublicUpdateTeamWithResponse call
+func ParsePublicUpdateTeamResponse(rsp *http.Response) (*PublicUpdateTeamResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicUpdateTeamResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicGetTeamDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ApiProblemSchema
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationproblemJSON400 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
 		var dest ApiProblemSchema
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {

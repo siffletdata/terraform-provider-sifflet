@@ -24,6 +24,7 @@ import (
 	"terraform-provider-sifflet/internal/provider/source"
 	"terraform-provider-sifflet/internal/provider/source_v2"
 	"terraform-provider-sifflet/internal/provider/tag"
+	"terraform-provider-sifflet/internal/provider/team"
 	"terraform-provider-sifflet/internal/provider/user"
 )
 
@@ -205,6 +206,7 @@ func (p *siffletProvider) DataSources(_ context.Context) []func() datasource.Dat
 		source.DataSources(),
 		source_v2.DataSources(),
 		tag.DataSources(),
+		team.DataSources(),
 		user.DataSources(),
 	)
 }
@@ -218,6 +220,7 @@ func (p *siffletProvider) Resources(_ context.Context) []func() resource.Resourc
 		source.Resources(),
 		source_v2.Resources(),
 		tag.Resources(),
+		team.Resources(),
 		user.Resources(),
 	)
 }
