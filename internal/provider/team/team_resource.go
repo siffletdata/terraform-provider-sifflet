@@ -9,11 +9,13 @@ import (
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/tfutils"
 
+	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
+	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 )
 
 var (
@@ -81,11 +83,21 @@ func (r *teamResource) Schema(ctx context.Context, _ resource.SchemaRequest, res
 							Description: "User ID. Either user_id or email must be specified.",
 							Optional:    true,
 							Computed:    true,
+							Validators: []validator.String{
+								stringvalidator.ExactlyOneOf(
+									path.MatchRelative().AtParent().AtName("email"),
+								),
+							},
 						},
 						"email": schema.StringAttribute{
 							Description: "User email. Either user_id or email must be specified.",
 							Optional:    true,
 							Computed:    true,
+							Validators: []validator.String{
+								stringvalidator.ExactlyOneOf(
+									path.MatchRelative().AtParent().AtName("user_id"),
+								),
+							},
 						},
 					},
 				},

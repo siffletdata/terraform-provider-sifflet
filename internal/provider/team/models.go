@@ -110,7 +110,7 @@ func (m teamModel) ToUpdateDto(ctx context.Context) (sifflet.PublicUpdateTeamDto
 	}
 
 	var domainPermissionsDto *[]sifflet.PublicTeamPermissionAssignmentDto
-	if len(domainPermissionsModel) > 0 {
+	if !m.DomainPermissions.IsNull() && !m.DomainPermissions.IsUnknown() {
 		permissions := make([]sifflet.PublicTeamPermissionAssignmentDto, len(domainPermissionsModel))
 		for i, permissionModel := range domainPermissionsModel {
 			dto, diags := permissionModel.ToDto(ctx)
@@ -128,7 +128,7 @@ func (m teamModel) ToUpdateDto(ctx context.Context) (sifflet.PublicUpdateTeamDto
 	}
 
 	var usersDto *[]sifflet.PublicReferenceByIdOrEmailDto
-	if len(usersModel) > 0 {
+	if !m.Users.IsNull() && !m.Users.IsUnknown() {
 		users := make([]sifflet.PublicReferenceByIdOrEmailDto, len(usersModel))
 		for i, userModel := range usersModel {
 			dto, diags := userModel.ToDto(ctx)

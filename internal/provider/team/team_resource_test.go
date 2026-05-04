@@ -27,6 +27,25 @@ func TestAccTeamResourceBasic(t *testing.T) {
 						resource "sifflet_team" "test" {
 							name = "%s"
 							description = "Test team created by Terraform"
+						}
+						`, teamName),
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttr("sifflet_team.test", "name", teamName),
+					resource.TestCheckResourceAttr("sifflet_team.test", "description", "Test team created by Terraform"),
+					resource.TestCheckResourceAttrSet("sifflet_team.test", "id"),
+				),
+			},
+			{
+				ResourceName:                         "sifflet_team.test",
+				ImportState:                          true,
+				ImportStateVerify:                    true,
+				ImportStateVerifyIdentifierAttribute: "id",
+			},
+			{
+				Config: providertests.ProviderConfig() + fmt.Sprintf(`
+						resource "sifflet_team" "test" {
+							name = "%s"
+							description = "Test team created by Terraform"
 							domain_permissions = [{
 								domain_id = "%s"
 								domain_role = "VIEWER"
@@ -42,18 +61,17 @@ func TestAccTeamResourceBasic(t *testing.T) {
 						"domain_role": "VIEWER",
 					}),
 				),
-			},
-			{
-				ResourceName:                         "sifflet_team.test",
-				ImportState:                          true,
-				ImportStateVerify:                    true,
-				ImportStateVerifyIdentifierAttribute: "id",
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectResourceAction("sifflet_team.test", plancheck.ResourceActionUpdate),
+					},
+				},
 			},
 			{
 				Config: providertests.ProviderConfig() + fmt.Sprintf(`
 						resource "sifflet_team" "test" {
-							name = "%s Updated"
-							description = "Updated description"
+							name = "%s"
+							description = "Test team created by Terraform"
 							domain_permissions = [{
 								domain_id = "%s"
 								domain_role = "CATALOG_EDITOR"
@@ -61,13 +79,33 @@ func TestAccTeamResourceBasic(t *testing.T) {
 						}
 						`, teamName, domainId),
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr("sifflet_team.test", "name", teamName+" Updated"),
-					resource.TestCheckResourceAttr("sifflet_team.test", "description", "Updated description"),
+					resource.TestCheckResourceAttr("sifflet_team.test", "name", teamName),
+					resource.TestCheckResourceAttr("sifflet_team.test", "description", "Test team created by Terraform"),
 					resource.TestCheckResourceAttrSet("sifflet_team.test", "id"),
 					resource.TestCheckTypeSetElemNestedAttrs("sifflet_team.test", "domain_permissions.*", map[string]string{
 						"domain_id":   domainId,
 						"domain_role": "CATALOG_EDITOR",
 					}),
+				),
+				ConfigPlanChecks: resource.ConfigPlanChecks{
+					PreApply: []plancheck.PlanCheck{
+						plancheck.ExpectResourceAction("sifflet_team.test", plancheck.ResourceActionUpdate),
+					},
+				},
+			},
+			{
+				Config: providertests.ProviderConfig() + fmt.Sprintf(`
+						resource "sifflet_team" "test" {
+							name = "%s"
+							description = "Test team created by Terraform"
+							domain_permissions = []
+						}
+						`, teamName),
+				Check: resource.ComposeTestCheckFunc(
+					resource.TestCheckResourceAttr("sifflet_team.test", "name", teamName),
+					resource.TestCheckResourceAttr("sifflet_team.test", "description", "Test team created by Terraform"),
+					resource.TestCheckResourceAttrSet("sifflet_team.test", "id"),
+					resource.TestCheckResourceAttr("sifflet_team.test", "domain_permissions.#", "0"),
 				),
 				ConfigPlanChecks: resource.ConfigPlanChecks{
 					PreApply: []plancheck.PlanCheck{
