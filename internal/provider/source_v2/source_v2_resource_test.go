@@ -242,6 +242,7 @@ func TestAccSourceParamsV2(t *testing.T) {
 	accountId := providertests.RandomName()
 	clientId := providertests.RandomName()
 	accountIdentifier := providertests.RandomName()
+	athenaDatasource := providertests.RandomName()
 	credName := providertests.RandomCredentialsName()
 
 	resource.Test(t, resource.TestCase{
@@ -290,7 +291,7 @@ func TestAccSourceParamsV2(t *testing.T) {
 				name = "%s-athena"
 				parameters = {
 					athena = {
-						datasource = "datasource"
+						datasource = "%s"
 						region = "region"
 						role_arn = "arn:aws:iam::123456789012:role/role"
 						s3_output_location = "s3://mybucket"
@@ -298,11 +299,11 @@ func TestAccSourceParamsV2(t *testing.T) {
 					}
 				}
 			}
-			`, sourceName),
+			`, sourceName, athenaDatasource),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("sifflet_source_v2.test", "name", fmt.Sprintf("%s-athena", sourceName)),
 					resource.TestCheckResourceAttr("sifflet_source_v2.test", "parameters.source_type", "athena"),
-					resource.TestCheckResourceAttr("sifflet_source_v2.test", "parameters.athena.datasource", "datasource"),
+					resource.TestCheckResourceAttr("sifflet_source_v2.test", "parameters.athena.datasource", athenaDatasource),
 				),
 			},
 			{
