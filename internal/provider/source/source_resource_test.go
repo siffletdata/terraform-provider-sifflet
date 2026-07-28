@@ -85,6 +85,8 @@ func baseConfig(credName string) string {
 // BigQuery sources are also used for testing specific attributes and behaviours of the sifflet_source resource.
 // For other source types, we only do a simple create/destroy test.
 func TestAccSourceBasic(t *testing.T) {
+	t.Skip("skipped due to known server bug: PATCH /v1/sources/{id} returns 500 (UnknownAssetToUnselectException) when updating dataset_id. See internal ticket BIG-3247.")
+
 	sourceName := randomSourceName()
 	projectId := providertests.RandomName()
 	credName := providertests.RandomCredentialsName()
