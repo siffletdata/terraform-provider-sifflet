@@ -127,6 +127,11 @@ func (v permissionsAdminValidator) ValidateResource(ctx context.Context, req res
 		return
 	}
 
+	// Skip the validation below when values are not yet known at the validation stage.
+	if config.Role.IsUnknown() || config.Permissions.IsUnknown() {
+		return
+	}
+
 	isAdmin := config.Role.ValueString() == "ADMIN"
 	permissionsSet := !config.Permissions.IsNull() && len(config.Permissions.Elements()) > 0
 

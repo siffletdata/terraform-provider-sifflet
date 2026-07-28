@@ -9,8 +9,11 @@ import (
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
+	"github.com/hashicorp/terraform-plugin-testing/knownvalue"
 	"github.com/hashicorp/terraform-plugin-testing/plancheck"
+	"github.com/hashicorp/terraform-plugin-testing/statecheck"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
+	"github.com/hashicorp/terraform-plugin-testing/tfjsonpath"
 )
 
 func TestAccUserResourceBasic(t *testing.T) {
@@ -370,6 +373,62 @@ func TestAccUserInvalidConfig(t *testing.T) {
 					}
 				`, userEmail),
 				ExpectError: regexp.MustCompile("Attribute auth_types set must contain at least 1 elements, got: 0"),
+			},
+		},
+	})
+}
+
+// TestAccUserForEachPermissions tests that when "permissions" is populated dynamically via
+// count/count.index the permissionsAdminValidator doesn't incorrectly report
+// "permissions must be set for non-ADMIN users".
+//
+// This uses `count` rather than `for_each` because the acceptance testing framework doesn't
+// support for_each-indexed resources in test configs: https://github.com/hashicorp/terraform-plugin-sdk/issues/536
+// `count` still exercises the same code path, since the computed permissions value is unknown
+// at plan time either way.
+func TestAccUserForEachPermissions(t *testing.T) {
+	userEmail := providertests.RandomEmail()
+
+	// All tenants have by default a domain named "All" with this static ID.
+	domainId := "aaaabbbb-aaaa-bbbb-aaaa-bbbbaaaabbbb"
+
+	resource.Test(t, resource.TestCase{
+		ProtoV6ProviderFactories: provider.TestAccProtoV6ProviderFactories,
+		Steps: []resource.TestStep{
+			{
+				Config: providertests.ProviderConfig() + fmt.Sprintf(`
+					locals {
+						viewer_users = [
+							{
+								email = "%s"
+								permissions = [{
+									domain_id   = "%s"
+									domain_role = "VIEWER"
+								}]
+							}
+						]
+					}
+
+					resource "sifflet_user" "test" {
+						count       = length(local.viewer_users)
+						email       = local.viewer_users[count.index].email
+						name        = "Terraform Test User"
+						role        = "VIEWER"
+						permissions = local.viewer_users[count.index].permissions
+					}
+					`, userEmail, domainId),
+				ConfigStateChecks: []statecheck.StateCheck{
+					statecheck.ExpectKnownValue(
+						"sifflet_user.test[0]",
+						tfjsonpath.New("email"),
+						knownvalue.StringExact(userEmail),
+					),
+					statecheck.ExpectKnownValue(
+						"sifflet_user.test[0]",
+						tfjsonpath.New("permissions").AtSliceIndex(0).AtMapKey("domain_id"),
+						knownvalue.StringExact(domainId),
+					),
+				},
 			},
 		},
 	})
