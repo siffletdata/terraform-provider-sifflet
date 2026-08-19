@@ -22,7 +22,7 @@ Also see `CODING.md` for high-level guidelines.
 
 ### Requirements
 
-- [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.0
+- [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.9
 - [Go](https://golang.org/doc/install) >= 1.23
 
 ### Building the provider
