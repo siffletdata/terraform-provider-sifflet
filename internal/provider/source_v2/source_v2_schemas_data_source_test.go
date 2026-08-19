@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 	"regexp"
-	"strings"
 	sifflet "terraform-provider-sifflet/internal/client"
 	"terraform-provider-sifflet/internal/provider"
 	"terraform-provider-sifflet/internal/provider/providertests"
@@ -129,13 +128,13 @@ func createSourceSchemaAndGetSourceId(ctx context.Context, client *sifflet.Clien
 		if err != nil {
 			return types.UUID{}, fmt.Errorf("Error reading source: %s", err)
 		}
-		if strings.Contains(sourceItem.GetName(), providertests.SessionPrefix()) {
+		if sourceItem.GetName() == subSourceName {
 			sourceId = sourceItem.GetId()
 			break
 		}
 	}
 	if sourceId == (types.UUID{}) {
-		return types.UUID{}, fmt.Errorf("No source found with name containing %s", providertests.SessionPrefix())
+		return types.UUID{}, fmt.Errorf("No source found with name %s", subSourceName)
 	}
 
 	return sourceId, nil
