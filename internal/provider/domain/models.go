@@ -108,7 +108,7 @@ func (m domainModel) getStaticContentDefinitionDto(ctx context.Context) (sifflet
 	}
 
 	return sifflet.PublicStaticDomainContentDefinitionDto{
-		Type:   sifflet.STATIC,
+		Type:   sifflet.PublicStaticDomainContentDefinitionDtoTypeSTATIC,
 		Assets: &assets,
 	}, diag.Diagnostics{}
 }
