@@ -87,11 +87,11 @@ func (m *MssqlParametersModel) CreateSourceDtoFromModel(ctx context.Context, p P
 	}
 	dto := sifflet.PublicMssqlParametersDto{
 		Type:     sifflet.PublicMssqlParametersDtoTypeMSSQL,
-		Host:     m.Host.ValueStringPointer(),
-		Database: m.Database.ValueStringPointer(),
-		Port:     m.Port.ValueInt32Pointer(),
-		Schema:   m.Schema.ValueStringPointer(),
-		Ssl:      m.Ssl.ValueBoolPointer(),
+		Host:     m.Host.ValueString(),
+		Database: m.Database.ValueString(),
+		Port:     m.Port.ValueInt32(),
+		Schema:   m.Schema.ValueString(),
+		Ssl:      m.Ssl.ValueBool(),
 	}
 	err := parametersDto.FromPublicMssqlParametersDto(dto)
 	if err != nil {
@@ -110,11 +110,11 @@ func (m *MssqlParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p P
 	}
 	dto := sifflet.PublicMssqlParametersDto{
 		Type:     sifflet.PublicMssqlParametersDtoTypeMSSQL,
-		Host:     m.Host.ValueStringPointer(),
-		Database: m.Database.ValueStringPointer(),
-		Port:     m.Port.ValueInt32Pointer(),
-		Schema:   m.Schema.ValueStringPointer(),
-		Ssl:      m.Ssl.ValueBoolPointer(),
+		Host:     m.Host.ValueString(),
+		Database: m.Database.ValueString(),
+		Port:     m.Port.ValueInt32(),
+		Schema:   m.Schema.ValueString(),
+		Ssl:      m.Ssl.ValueBool(),
 	}
 	err := parametersDto.FromPublicMssqlParametersDto(dto)
 	if err != nil {
@@ -130,11 +130,11 @@ func (m *MssqlParametersModel) ModelFromDto(ctx context.Context, d sifflet.Publi
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.Host = types.StringPointerValue(paramsDto.Host)
-	m.Database = types.StringPointerValue(paramsDto.Database)
-	m.Port = types.Int32PointerValue(paramsDto.Port)
-	m.Schema = types.StringPointerValue(paramsDto.Schema)
-	m.Ssl = types.BoolPointerValue(paramsDto.Ssl)
+	m.Host = types.StringValue(paramsDto.Host)
+	m.Database = types.StringValue(paramsDto.Database)
+	m.Port = types.Int32Value(paramsDto.Port)
+	m.Schema = types.StringValue(paramsDto.Schema)
+	m.Ssl = types.BoolValue(paramsDto.Ssl)
 	return diag.Diagnostics{}
 }
 

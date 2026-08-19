@@ -61,7 +61,7 @@ func (m *FivetranParametersModel) CreateSourceDtoFromModel(ctx context.Context, 
 		return sifflet.PublicCreateSourceDto_Parameters{}, diags
 	}
 	dto := sifflet.PublicFivetranParametersDto{
-		Host: m.Host.ValueStringPointer(),
+		Host: m.Host.ValueString(),
 		Type: sifflet.PublicFivetranParametersDtoTypeFIVETRAN,
 	}
 	err := parametersDto.FromPublicFivetranParametersDto(dto)
@@ -80,7 +80,7 @@ func (m *FivetranParametersModel) UpdateSourceDtoFromModel(ctx context.Context, 
 		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
 	}
 	dto := sifflet.PublicFivetranParametersDto{
-		Host: m.Host.ValueStringPointer(),
+		Host: m.Host.ValueString(),
 		Type: sifflet.PublicFivetranParametersDtoTypeFIVETRAN,
 	}
 	err := parametersDto.FromPublicFivetranParametersDto(dto)
@@ -97,7 +97,7 @@ func (m *FivetranParametersModel) ModelFromDto(ctx context.Context, d sifflet.Pu
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.Host = types.StringPointerValue(paramsDto.Host)
+	m.Host = types.StringValue(paramsDto.Host)
 	return diag.Diagnostics{}
 }
 

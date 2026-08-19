@@ -62,7 +62,7 @@ func (m DbtParametersModel) ToCreateDto(ctx context.Context, name string) (siffl
 	dbtCreateDto := &sifflet.PublicCreateDbtSourceV2Dto{
 		Name:           name,
 		Type:           sifflet.PublicCreateDbtSourceV2DtoTypeDBT,
-		DbtInformation: &dbtInformation,
+		DbtInformation: dbtInformation,
 	}
 
 	var createSourceJsonBody sifflet.PublicCreateSourceV2JSONBody
@@ -83,7 +83,7 @@ func (m DbtParametersModel) ToUpdateDto(ctx context.Context, name string) (siffl
 	dbtUpdateDto := &sifflet.PublicUpdateDbtSourceV2Dto{
 		Name:           &name,
 		Type:           sifflet.PublicUpdateDbtSourceV2DtoTypeDBT,
-		DbtInformation: &dbtInformation,
+		DbtInformation: dbtInformation,
 	}
 
 	var editSourceJsonBody sifflet.PublicEditSourceV2JSONBody

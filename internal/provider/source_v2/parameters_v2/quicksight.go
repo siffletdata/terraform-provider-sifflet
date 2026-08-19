@@ -75,7 +75,7 @@ func (m QuickSightParametersModel) ToCreateDto(ctx context.Context, name string)
 	quickSightCreateDto := &sifflet.PublicCreateQuicksightSourceV2Dto{
 		Name:                  name,
 		Type:                  sifflet.PublicCreateQuicksightSourceV2DtoTypeQUICKSIGHT,
-		QuicksightInformation: &quickSightInformation,
+		QuicksightInformation: quickSightInformation,
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 
@@ -98,7 +98,7 @@ func (m QuickSightParametersModel) ToUpdateDto(ctx context.Context, name string)
 	quickSightUpdateDto := &sifflet.PublicUpdateQuicksightSourceV2Dto{
 		Name:                  &name,
 		Type:                  sifflet.PublicUpdateQuicksightSourceV2DtoTypeQUICKSIGHT,
-		QuicksightInformation: &quickSightInformation,
+		QuicksightInformation: quickSightInformation,
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 

@@ -92,8 +92,8 @@ func (m MssqlParametersModel) ToCreateDto(ctx context.Context, name string) (sif
 	mssqlCreateDto := &sifflet.PublicCreateMssqlSourceV2Dto{
 		Name:             name,
 		Type:             sifflet.PublicCreateMssqlSourceV2DtoTypeMSSQL,
-		MssqlInformation: &mssqlInformation,
-		Credentials:      m.Credentials.ValueStringPointer(),
+		MssqlInformation: mssqlInformation,
+		Credentials:      m.Credentials.ValueString(),
 		Schedule:         m.Schedule.ValueStringPointer(),
 	}
 
@@ -117,8 +117,8 @@ func (m MssqlParametersModel) ToUpdateDto(ctx context.Context, name string) (sif
 	mssqlUpdateDto := &sifflet.PublicUpdateMssqlSourceV2Dto{
 		Name:             &name,
 		Type:             sifflet.PublicUpdateMssqlSourceV2DtoTypeMSSQL,
-		MssqlInformation: &mssqlInformation,
-		Credentials:      m.Credentials.ValueStringPointer(),
+		MssqlInformation: mssqlInformation,
+		Credentials:      m.Credentials.ValueString(),
 		Schedule:         m.Schedule.ValueStringPointer(),
 	}
 
@@ -141,7 +141,7 @@ func (m *MssqlParametersModel) ModelFromDto(ctx context.Context, d sifflet.Siffl
 	m.Database = types.StringValue(mssqlDto.MssqlInformation.Database)
 	m.Port = types.Int32Value(mssqlDto.MssqlInformation.Port)
 	m.Ssl = types.BoolValue(mssqlDto.MssqlInformation.Ssl)
-	m.Credentials = types.StringPointerValue(mssqlDto.Credentials)
+	m.Credentials = types.StringValue(mssqlDto.Credentials)
 	m.Schedule = types.StringPointerValue(mssqlDto.Schedule)
 	return diag.Diagnostics{}
 }

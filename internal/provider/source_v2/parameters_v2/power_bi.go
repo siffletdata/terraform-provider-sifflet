@@ -74,8 +74,8 @@ func (m PowerBiParametersModel) ToCreateDto(ctx context.Context, name string) (s
 	powerBiCreateDto := &sifflet.PublicCreatePowerBiSourceV2Dto{
 		Name:               name,
 		Type:               sifflet.PublicCreatePowerBiSourceV2DtoTypePOWERBI,
-		PowerBiInformation: &powerBiInformation,
-		Credentials:        m.Credentials.ValueStringPointer(),
+		PowerBiInformation: powerBiInformation,
+		Credentials:        m.Credentials.ValueString(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 
@@ -97,8 +97,8 @@ func (m PowerBiParametersModel) ToUpdateDto(ctx context.Context, name string) (s
 	powerBiUpdateDto := &sifflet.PublicUpdatePowerBiSourceV2Dto{
 		Name:               &name,
 		Type:               sifflet.PublicUpdatePowerBiSourceV2DtoTypePOWERBI,
-		PowerBiInformation: &powerBiInformation,
-		Credentials:        m.Credentials.ValueStringPointer(),
+		PowerBiInformation: powerBiInformation,
+		Credentials:        m.Credentials.ValueString(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 
@@ -119,7 +119,7 @@ func (m *PowerBiParametersModel) ModelFromDto(ctx context.Context, d sifflet.Sif
 
 	m.ClientId = types.StringValue(powerBiDto.PowerBiInformation.ClientId)
 	m.TenantId = types.StringValue(powerBiDto.PowerBiInformation.TenantId)
-	m.Credentials = types.StringPointerValue(powerBiDto.Credentials)
+	m.Credentials = types.StringValue(powerBiDto.Credentials)
 	m.Schedule = types.StringPointerValue(powerBiDto.Schedule)
 	return diag.Diagnostics{}
 }

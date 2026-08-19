@@ -82,8 +82,8 @@ func (m OracleParametersModel) ToCreateDto(ctx context.Context, name string) (si
 	oracleCreateDto := &sifflet.PublicCreateOracleSourceV2Dto{
 		Name:              name,
 		Type:              sifflet.PublicCreateOracleSourceV2DtoTypeORACLE,
-		OracleInformation: &oracleInformation,
-		Credentials:       m.Credentials.ValueStringPointer(),
+		OracleInformation: oracleInformation,
+		Credentials:       m.Credentials.ValueString(),
 		Schedule:          m.Schedule.ValueStringPointer(),
 	}
 
@@ -106,8 +106,8 @@ func (m OracleParametersModel) ToUpdateDto(ctx context.Context, name string) (si
 	oracleUpdateDto := &sifflet.PublicUpdateOracleSourceV2Dto{
 		Name:              &name,
 		Type:              sifflet.PublicUpdateOracleSourceV2DtoTypeORACLE,
-		OracleInformation: &oracleInformation,
-		Credentials:       m.Credentials.ValueStringPointer(),
+		OracleInformation: oracleInformation,
+		Credentials:       m.Credentials.ValueString(),
 		Schedule:          m.Schedule.ValueStringPointer(),
 	}
 
@@ -129,7 +129,7 @@ func (m *OracleParametersModel) ModelFromDto(ctx context.Context, d sifflet.Siff
 	m.Host = types.StringValue(oracleDto.OracleInformation.Host)
 	m.Database = types.StringValue(oracleDto.OracleInformation.Database)
 	m.Port = types.Int32Value(oracleDto.OracleInformation.Port)
-	m.Credentials = types.StringPointerValue(oracleDto.Credentials)
+	m.Credentials = types.StringValue(oracleDto.Credentials)
 	m.Schedule = types.StringPointerValue(oracleDto.Schedule)
 	return diag.Diagnostics{}
 }

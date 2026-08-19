@@ -186,8 +186,8 @@ func (m LookerParametersModel) ToCreateDto(ctx context.Context, name string) (si
 	lookerCreateDto := &sifflet.PublicCreateLookerSourceV2Dto{
 		Name:              name,
 		Type:              sifflet.PublicCreateLookerSourceV2DtoTypeLOOKER,
-		LookerInformation: &lookerInformation,
-		Credentials:       m.Credentials.ValueStringPointer(),
+		LookerInformation: lookerInformation,
+		Credentials:       m.Credentials.ValueString(),
 		Schedule:          m.Schedule.ValueStringPointer(),
 	}
 
@@ -214,8 +214,8 @@ func (m LookerParametersModel) ToUpdateDto(ctx context.Context, name string) (si
 	lookerUpdateDto := &sifflet.PublicUpdateLookerSourceV2Dto{
 		Name:              &name,
 		Type:              sifflet.PublicUpdateLookerSourceV2DtoTypeLOOKER,
-		LookerInformation: &lookerInformation,
-		Credentials:       m.Credentials.ValueStringPointer(),
+		LookerInformation: lookerInformation,
+		Credentials:       m.Credentials.ValueString(),
 		Schedule:          m.Schedule.ValueStringPointer(),
 	}
 
@@ -256,7 +256,7 @@ func (m *LookerParametersModel) ModelFromDto(ctx context.Context, d sifflet.Siff
 
 	m.GitConnections = gitConnections
 	m.Host = types.StringValue(lookerDto.LookerInformation.Host)
-	m.Credentials = types.StringPointerValue(lookerDto.Credentials)
+	m.Credentials = types.StringValue(lookerDto.Credentials)
 	m.Schedule = types.StringPointerValue(lookerDto.Schedule)
 	return diag.Diagnostics{}
 }

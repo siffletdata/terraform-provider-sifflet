@@ -121,8 +121,8 @@ func (m MysqlParametersModel) ToCreateDto(ctx context.Context, name string) (sif
 	mysqlCreateDto := sifflet.PublicCreateMysqlSourceV2Dto{
 		Name:             name,
 		Type:             sifflet.PublicCreateMysqlSourceV2DtoTypeMYSQL,
-		MysqlInformation: &mysqlInformation,
-		Credentials:      m.Credentials.ValueStringPointer(),
+		MysqlInformation: mysqlInformation,
+		Credentials:      m.Credentials.ValueString(),
 		Schedule:         m.Schedule.ValueStringPointer(),
 	}
 
@@ -150,8 +150,8 @@ func (m MysqlParametersModel) ToUpdateDto(ctx context.Context, name string) (sif
 	mysqlUpdateDto := sifflet.PublicUpdateMysqlSourceV2Dto{
 		Name:             &name,
 		Type:             sifflet.PublicUpdateMysqlSourceV2DtoTypeMYSQL,
-		MysqlInformation: &mysqlInformation,
-		Credentials:      m.Credentials.ValueStringPointer(),
+		MysqlInformation: mysqlInformation,
+		Credentials:      m.Credentials.ValueString(),
 		Schedule:         m.Schedule.ValueStringPointer(),
 	}
 
@@ -178,7 +178,7 @@ func (m *MysqlParametersModel) ModelFromDto(ctx context.Context, d sifflet.Siffl
 		return diag.Diagnostics{diag.NewErrorDiagnostic("Cannot read Mysql source", err.Error())}
 	}
 	m.MysqlTlsVersion = types.StringValue(mysqlTlsVersion)
-	m.Credentials = types.StringPointerValue(mysqlDto.Credentials)
+	m.Credentials = types.StringValue(mysqlDto.Credentials)
 	m.Schedule = types.StringPointerValue(mysqlDto.Schedule)
 	return diag.Diagnostics{}
 }

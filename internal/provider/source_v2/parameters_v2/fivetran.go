@@ -70,8 +70,8 @@ func (m FivetranParametersModel) ToCreateDto(ctx context.Context, name string) (
 	fivetranCreateDto := &sifflet.PublicCreateFivetranSourceV2Dto{
 		Name:                name,
 		Type:                sifflet.PublicCreateFivetranSourceV2DtoTypeFIVETRAN,
-		FivetranInformation: &fivetranInformation,
-		Credentials:         m.Credentials.ValueStringPointer(),
+		FivetranInformation: fivetranInformation,
+		Credentials:         m.Credentials.ValueString(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
@@ -92,8 +92,8 @@ func (m FivetranParametersModel) ToUpdateDto(ctx context.Context, name string) (
 	fivetranUpdateDto := &sifflet.PublicUpdateFivetranSourceV2Dto{
 		Name:                &name,
 		Type:                sifflet.PublicUpdateFivetranSourceV2DtoTypeFIVETRAN,
-		FivetranInformation: &fivetranInformation,
-		Credentials:         m.Credentials.ValueStringPointer(),
+		FivetranInformation: fivetranInformation,
+		Credentials:         m.Credentials.ValueString(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
@@ -113,7 +113,7 @@ func (m *FivetranParametersModel) ModelFromDto(ctx context.Context, d sifflet.Si
 	}
 
 	m.Host = types.StringValue(fivetranDto.FivetranInformation.Host)
-	m.Credentials = types.StringPointerValue(fivetranDto.Credentials)
+	m.Credentials = types.StringValue(fivetranDto.Credentials)
 	m.Schedule = types.StringPointerValue(fivetranDto.Schedule)
 	return diag.Diagnostics{}
 }

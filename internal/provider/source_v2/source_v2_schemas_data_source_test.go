@@ -82,9 +82,9 @@ func createSourceSchemaAndGetSourceId(ctx context.Context, client *sifflet.Clien
 	// We use a AWS Quicksight source because it does not require secrets, so it is easier to setup.
 	dto := sifflet.PublicQuicksightParametersDto{
 		Type:      sifflet.PublicQuicksightParametersDtoTypeQUICKSIGHT,
-		AccountId: &accountId,
-		AwsRegion: &awsRegion,
-		RoleArn:   &roleArn,
+		AccountId: accountId,
+		AwsRegion: awsRegion,
+		RoleArn:   roleArn,
 	}
 	var parametersDto sifflet.PublicCreateSourceDto_Parameters
 	err := parametersDto.FromPublicQuicksightParametersDto(dto)

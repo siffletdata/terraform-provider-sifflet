@@ -77,10 +77,10 @@ func (m *SynapseParametersModel) CreateSourceDtoFromModel(ctx context.Context, p
 	}
 	dto := sifflet.PublicSynapseParametersDto{
 		Type:     sifflet.PublicSynapseParametersDtoTypeSYNAPSE,
-		Database: m.Database.ValueStringPointer(),
-		Host:     m.Host.ValueStringPointer(),
-		Port:     m.Port.ValueInt32Pointer(),
-		Schema:   m.Schema.ValueStringPointer(),
+		Database: m.Database.ValueString(),
+		Host:     m.Host.ValueString(),
+		Port:     m.Port.ValueInt32(),
+		Schema:   m.Schema.ValueString(),
 	}
 	err := parametersDto.FromPublicSynapseParametersDto(dto)
 	if err != nil {
@@ -99,10 +99,10 @@ func (m *SynapseParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p
 	}
 	dto := sifflet.PublicSynapseParametersDto{
 		Type:     sifflet.PublicSynapseParametersDtoTypeSYNAPSE,
-		Database: m.Database.ValueStringPointer(),
-		Host:     m.Host.ValueStringPointer(),
-		Port:     m.Port.ValueInt32Pointer(),
-		Schema:   m.Schema.ValueStringPointer(),
+		Database: m.Database.ValueString(),
+		Host:     m.Host.ValueString(),
+		Port:     m.Port.ValueInt32(),
+		Schema:   m.Schema.ValueString(),
 	}
 	err := parametersDto.FromPublicSynapseParametersDto(dto)
 	if err != nil {
@@ -118,10 +118,10 @@ func (m *SynapseParametersModel) ModelFromDto(ctx context.Context, d sifflet.Pub
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.Database = types.StringPointerValue(paramsDto.Database)
-	m.Host = types.StringPointerValue(paramsDto.Host)
-	m.Port = types.Int32PointerValue(paramsDto.Port)
-	m.Schema = types.StringPointerValue(paramsDto.Schema)
+	m.Database = types.StringValue(paramsDto.Database)
+	m.Host = types.StringValue(paramsDto.Host)
+	m.Port = types.Int32Value(paramsDto.Port)
+	m.Schema = types.StringValue(paramsDto.Schema)
 	return diag.Diagnostics{}
 }
 

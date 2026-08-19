@@ -75,8 +75,8 @@ func (m AirflowParametersModel) ToCreateDto(ctx context.Context, name string) (s
 	airflowCreateDto := sifflet.PublicCreateAirflowSourceV2Dto{
 		Name:               name,
 		Type:               sifflet.PublicCreateAirflowSourceV2DtoTypeAIRFLOW,
-		AirflowInformation: &airflowInformation,
-		Credentials:        m.Credentials.ValueStringPointer(),
+		AirflowInformation: airflowInformation,
+		Credentials:        m.Credentials.ValueString(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 
@@ -98,8 +98,8 @@ func (m AirflowParametersModel) ToUpdateDto(ctx context.Context, name string) (s
 	airflowUpdateDto := sifflet.PublicUpdateAirflowSourceV2Dto{
 		Name:               &name,
 		Type:               sifflet.PublicUpdateAirflowSourceV2DtoTypeAIRFLOW,
-		AirflowInformation: &airflowInformation,
-		Credentials:        m.Credentials.ValueStringPointer(),
+		AirflowInformation: airflowInformation,
+		Credentials:        m.Credentials.ValueString(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 
@@ -120,7 +120,7 @@ func (m *AirflowParametersModel) ModelFromDto(ctx context.Context, d sifflet.Sif
 
 	m.Host = types.StringValue(airflowDto.AirflowInformation.Host)
 	m.Port = types.Int32Value(airflowDto.AirflowInformation.Port)
-	m.Credentials = types.StringPointerValue(airflowDto.Credentials)
+	m.Credentials = types.StringValue(airflowDto.Credentials)
 	m.Schedule = types.StringPointerValue(airflowDto.Schedule)
 
 	return diag.Diagnostics{}

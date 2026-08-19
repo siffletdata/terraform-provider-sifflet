@@ -68,7 +68,7 @@ func (m *TableauParametersModel) CreateSourceDtoFromModel(ctx context.Context, p
 	}
 	dto := sifflet.PublicTableauParametersDto{
 		Type: sifflet.PublicTableauParametersDtoTypeTABLEAU,
-		Host: m.Host.ValueStringPointer(),
+		Host: m.Host.ValueString(),
 		Site: m.Site.ValueStringPointer(),
 	}
 	err := parametersDto.FromPublicTableauParametersDto(dto)
@@ -88,7 +88,7 @@ func (m *TableauParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p
 	}
 	dto := sifflet.PublicTableauParametersDto{
 		Type: sifflet.PublicTableauParametersDtoTypeTABLEAU,
-		Host: m.Host.ValueStringPointer(),
+		Host: m.Host.ValueString(),
 		Site: m.Site.ValueStringPointer(),
 	}
 	err := parametersDto.FromPublicTableauParametersDto(dto)
@@ -105,7 +105,7 @@ func (m *TableauParametersModel) ModelFromDto(ctx context.Context, d sifflet.Pub
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.Host = types.StringPointerValue(paramsDto.Host)
+	m.Host = types.StringValue(paramsDto.Host)
 	m.Site = types.StringPointerValue(paramsDto.Site)
 	return diag.Diagnostics{}
 }

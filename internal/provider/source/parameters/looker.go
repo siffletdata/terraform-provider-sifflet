@@ -162,8 +162,8 @@ func (m *LookerParametersModel) makeLookerParametersDto(ctx context.Context, p P
 	}
 
 	return sifflet.PublicLookerParametersDto{
-		GitConnections: &gitConnectionsDto,
-		Host:           m.Host.ValueStringPointer(),
+		GitConnections: gitConnectionsDto,
+		Host:           m.Host.ValueString(),
 		Type:           sifflet.PublicLookerParametersDtoTypeLOOKER,
 	}, diags
 }
@@ -203,10 +203,10 @@ func (m *LookerParametersModel) ModelFromDto(ctx context.Context, d sifflet.Publ
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.Host = types.StringPointerValue(paramsDto.Host)
+	m.Host = types.StringValue(paramsDto.Host)
 
-	gitConnectionModels := make([]gitConnectionModel, len(*paramsDto.GitConnections))
-	for i, gitConnectionDto := range *paramsDto.GitConnections {
+	gitConnectionModels := make([]gitConnectionModel, len(paramsDto.GitConnections))
+	for i, gitConnectionDto := range paramsDto.GitConnections {
 		authType, err := gitConnectionAuthTypeToString(gitConnectionDto.AuthType)
 		if err != nil {
 			return diag.Diagnostics{diag.NewErrorDiagnostic("Unable to read source", err.Error())}
