@@ -111,10 +111,10 @@ func (m *MysqlParametersModel) CreateSourceDtoFromModel(ctx context.Context, p P
 	}
 	dto := sifflet.PublicMysqlParametersDto{
 		Type:            sifflet.PublicMysqlParametersDtoTypeMYSQL,
-		Host:            m.Host.ValueStringPointer(),
-		Database:        m.Database.ValueStringPointer(),
-		Port:            m.Port.ValueInt32Pointer(),
-		MysqlTlsVersion: &mysqlTlsVersion,
+		Host:            m.Host.ValueString(),
+		Database:        m.Database.ValueString(),
+		Port:            m.Port.ValueInt32(),
+		MysqlTlsVersion: mysqlTlsVersion,
 	}
 	err = parametersDto.FromPublicMysqlParametersDto(dto)
 	if err != nil {
@@ -139,10 +139,10 @@ func (m *MysqlParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p P
 	}
 	dto := sifflet.PublicMysqlParametersDto{
 		Type:            sifflet.PublicMysqlParametersDtoTypeMYSQL,
-		Host:            m.Host.ValueStringPointer(),
-		Database:        m.Database.ValueStringPointer(),
-		Port:            m.Port.ValueInt32Pointer(),
-		MysqlTlsVersion: &mysqlTlsVersion,
+		Host:            m.Host.ValueString(),
+		Database:        m.Database.ValueString(),
+		Port:            m.Port.ValueInt32(),
+		MysqlTlsVersion: mysqlTlsVersion,
 	}
 	err = parametersDto.FromPublicMysqlParametersDto(dto)
 	if err != nil {
@@ -158,13 +158,13 @@ func (m *MysqlParametersModel) ModelFromDto(ctx context.Context, d sifflet.Publi
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	mysqlTlsVersion, err := mysqlTlsVersionToString(*paramsDto.MysqlTlsVersion)
+	mysqlTlsVersion, err := mysqlTlsVersionToString(paramsDto.MysqlTlsVersion)
 	if err != nil {
 		return diag.Diagnostics{diag.NewErrorDiagnostic("Unable to create source", err.Error())}
 	}
-	m.Host = types.StringPointerValue(paramsDto.Host)
-	m.Database = types.StringPointerValue(paramsDto.Database)
-	m.Port = types.Int32PointerValue(paramsDto.Port)
+	m.Host = types.StringValue(paramsDto.Host)
+	m.Database = types.StringValue(paramsDto.Database)
+	m.Port = types.Int32Value(paramsDto.Port)
 	m.MysqlTlsVersion = types.StringValue(mysqlTlsVersion)
 	return diag.Diagnostics{}
 }

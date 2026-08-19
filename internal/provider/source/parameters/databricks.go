@@ -83,11 +83,11 @@ func (m *DatabricksParametersModel) CreateSourceDtoFromModel(ctx context.Context
 	}
 	dto := sifflet.PublicDatabricksParametersDto{
 		Type:     sifflet.PublicDatabricksParametersDtoTypeDATABRICKS,
-		Catalog:  m.Catalog.ValueStringPointer(),
-		Host:     m.Host.ValueStringPointer(),
-		HttpPath: m.HttpPath.ValueStringPointer(),
-		Port:     m.Port.ValueInt32Pointer(),
-		Schema:   m.Schema.ValueStringPointer(),
+		Catalog:  m.Catalog.ValueString(),
+		Host:     m.Host.ValueString(),
+		HttpPath: m.HttpPath.ValueString(),
+		Port:     m.Port.ValueInt32(),
+		Schema:   m.Schema.ValueString(),
 	}
 	err := parametersDto.FromPublicDatabricksParametersDto(dto)
 	if err != nil {
@@ -106,11 +106,11 @@ func (m *DatabricksParametersModel) UpdateSourceDtoFromModel(ctx context.Context
 	}
 	dto := sifflet.PublicDatabricksParametersDto{
 		Type:     sifflet.PublicDatabricksParametersDtoTypeDATABRICKS,
-		Catalog:  m.Catalog.ValueStringPointer(),
-		Host:     m.Host.ValueStringPointer(),
-		HttpPath: m.HttpPath.ValueStringPointer(),
-		Port:     m.Port.ValueInt32Pointer(),
-		Schema:   m.Schema.ValueStringPointer(),
+		Catalog:  m.Catalog.ValueString(),
+		Host:     m.Host.ValueString(),
+		HttpPath: m.HttpPath.ValueString(),
+		Port:     m.Port.ValueInt32(),
+		Schema:   m.Schema.ValueString(),
 	}
 	err := parametersDto.FromPublicDatabricksParametersDto(dto)
 	if err != nil {
@@ -126,11 +126,11 @@ func (m *DatabricksParametersModel) ModelFromDto(ctx context.Context, d sifflet.
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.Catalog = types.StringPointerValue(paramsDto.Catalog)
-	m.Host = types.StringPointerValue(paramsDto.Host)
-	m.HttpPath = types.StringPointerValue(paramsDto.HttpPath)
-	m.Port = types.Int32PointerValue(paramsDto.Port)
-	m.Schema = types.StringPointerValue(paramsDto.Schema)
+	m.Catalog = types.StringValue(paramsDto.Catalog)
+	m.Host = types.StringValue(paramsDto.Host)
+	m.HttpPath = types.StringValue(paramsDto.HttpPath)
+	m.Port = types.Int32Value(paramsDto.Port)
+	m.Schema = types.StringValue(paramsDto.Schema)
 	return diag.Diagnostics{}
 }
 

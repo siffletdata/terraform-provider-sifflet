@@ -85,8 +85,8 @@ func (m domainModel) getDynamicContentDefinitionDto(ctx context.Context) (siffle
 	filterLogicalOperator := sifflet.PublicDynamicDomainContentDefinitionDtoFilterLogicalOperator(dynamicContentDefinitionModel.LogicalOperator.ValueString())
 	return sifflet.PublicDynamicDomainContentDefinitionDto{
 		Type:                  sifflet.PublicDynamicDomainContentDefinitionDtoTypeDYNAMIC,
-		FilterLogicalOperator: &filterLogicalOperator,
-		Conditions:            &conditions,
+		FilterLogicalOperator: filterLogicalOperator,
+		Conditions:            conditions,
 	}, diag.Diagnostics{}
 }
 
@@ -109,7 +109,7 @@ func (m domainModel) getStaticContentDefinitionDto(ctx context.Context) (sifflet
 
 	return sifflet.PublicStaticDomainContentDefinitionDto{
 		Type:   sifflet.PublicStaticDomainContentDefinitionDtoTypeSTATIC,
-		Assets: &assets,
+		Assets: assets,
 	}, diag.Diagnostics{}
 }
 
@@ -271,8 +271,8 @@ func (m staticContentDefinitionModel) AttributeTypes() map[string]attr.Type {
 }
 
 func (m *staticContentDefinitionModel) FromDto(ctx context.Context, dto sifflet.PublicStaticDomainContentDefinitionDto) diag.Diagnostics {
-	assets := make([]types.String, 0, len(*dto.Assets))
-	for _, asset := range *dto.Assets {
+	assets := make([]types.String, 0, len(dto.Assets))
+	for _, asset := range dto.Assets {
 		assets = append(assets, types.StringValue(asset))
 	}
 	assetUris, diags := types.SetValueFrom(ctx, types.StringType, assets)
@@ -294,10 +294,10 @@ func (m dynamicContentDefinitionModel) AttributeTypes() map[string]attr.Type {
 }
 
 func (m *dynamicContentDefinitionModel) FromDto(ctx context.Context, dto sifflet.PublicDynamicDomainContentDefinitionDto) diag.Diagnostics {
-	logicalOperator := types.StringValue(string(*dto.FilterLogicalOperator))
+	logicalOperator := types.StringValue(string(dto.FilterLogicalOperator))
 
 	conditionList, diags := model.NewModelListFromDto(
-		ctx, *dto.Conditions,
+		ctx, dto.Conditions,
 		func() model.InnerModel[sifflet.PublicDynamicDomainContentDefinitionDto_Conditions_Item] {
 			return &dynamicContentDefinitionConditionModel{}
 		},
@@ -343,7 +343,7 @@ func (m *dynamicContentDefinitionConditionModel) FromDto(ctx context.Context, dt
 		if diags.HasError() {
 			return diags
 		}
-		m.LogicalOperator = types.StringValue(string(*sourceFilterCondition.Operator))
+		m.LogicalOperator = types.StringValue(string(sourceFilterCondition.Operator))
 		m.SchemaUris = schemaUris
 		m.Tags = types.ListNull(types.ObjectType{AttrTypes: tagModel{}.AttributeTypes()})
 	} else if conditionType == string(sifflet.PublicFilterDomainConditionDtoTypeTAG) {
@@ -354,13 +354,13 @@ func (m *dynamicContentDefinitionConditionModel) FromDto(ctx context.Context, dt
 			}
 		}
 		tags, diags := model.NewModelListFromDto(
-			ctx, *tagFilterCondition.Tags,
+			ctx, tagFilterCondition.Tags,
 			func() model.InnerModel[sifflet.PublicExternalTagReferenceDto] { return &tagModel{} },
 		)
 		if diags.HasError() {
 			return diags
 		}
-		m.LogicalOperator = types.StringValue(string(*tagFilterCondition.Operator))
+		m.LogicalOperator = types.StringValue(string(tagFilterCondition.Operator))
 		m.Tags = tags
 		m.SchemaUris = types.SetNull(types.StringType)
 	} else {
@@ -389,8 +389,8 @@ func (m dynamicContentDefinitionConditionModel) ToDto(ctx context.Context) (siff
 		operator := sifflet.PublicSourceFilterDomainConditionDtoOperator(m.LogicalOperator.ValueString())
 		sourceFilterCondition := sifflet.PublicSourceFilterDomainConditionDto{
 			Type:     sifflet.PublicSourceFilterDomainConditionDtoTypeSOURCE,
-			Sources:  &schemaUris,
-			Operator: &operator,
+			Sources:  schemaUris,
+			Operator: operator,
 		}
 		err := conditionDto.FromPublicSourceFilterDomainConditionDto(sourceFilterCondition)
 		if err != nil {
@@ -421,8 +421,8 @@ func (m dynamicContentDefinitionConditionModel) ToDto(ctx context.Context) (siff
 		operator := sifflet.PublicTagFilterDomainConditionDtoOperator(m.LogicalOperator.ValueString())
 		tagFilterCondition := sifflet.PublicTagFilterDomainConditionDto{
 			Type:     sifflet.PublicTagFilterDomainConditionDtoTypeTAG,
-			Tags:     &tags,
-			Operator: &operator,
+			Tags:     tags,
+			Operator: operator,
 		}
 		err := conditionDto.FromPublicTagFilterDomainConditionDto(tagFilterCondition)
 		if err != nil {

@@ -84,8 +84,8 @@ func (m RedshiftParametersModel) ToCreateDto(ctx context.Context, name string) (
 	redshiftCreateDto := &sifflet.PublicCreateRedshiftSourceV2Dto{
 		Name:                name,
 		Type:                sifflet.PublicCreateRedshiftSourceV2DtoTypeREDSHIFT,
-		RedshiftInformation: &redshiftInformation,
-		Credentials:         m.Credentials.ValueStringPointer(),
+		RedshiftInformation: redshiftInformation,
+		Credentials:         m.Credentials.ValueString(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
@@ -108,8 +108,8 @@ func (m RedshiftParametersModel) ToUpdateDto(ctx context.Context, name string) (
 	redshiftUpdateDto := &sifflet.PublicUpdateRedshiftSourceV2Dto{
 		Name:                &name,
 		Type:                sifflet.PublicUpdateRedshiftSourceV2DtoTypeREDSHIFT,
-		RedshiftInformation: &redshiftInformation,
-		Credentials:         m.Credentials.ValueStringPointer(),
+		RedshiftInformation: redshiftInformation,
+		Credentials:         m.Credentials.ValueString(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
@@ -131,7 +131,7 @@ func (m *RedshiftParametersModel) ModelFromDto(ctx context.Context, d sifflet.Si
 	m.Host = types.StringValue(redshiftDto.RedshiftInformation.Host)
 	m.Port = types.Int32Value(redshiftDto.RedshiftInformation.Port)
 	m.Ssl = types.BoolValue(redshiftDto.RedshiftInformation.Ssl)
-	m.Credentials = types.StringPointerValue(redshiftDto.Credentials)
+	m.Credentials = types.StringValue(redshiftDto.Credentials)
 	m.Schedule = types.StringPointerValue(redshiftDto.Schedule)
 	return diag.Diagnostics{}
 }

@@ -5,5 +5,3 @@ generate:
   models: true
   client: true
 output: sifflet.gen.go
-compatibility:
-  old-allof-sibling-merging: true

@@ -77,10 +77,10 @@ func (m *SnowflakeParametersModel) CreateSourceDtoFromModel(ctx context.Context,
 	}
 	dto := sifflet.PublicSnowflakeParametersDto{
 		Type:              sifflet.PublicSnowflakeParametersDtoTypeSNOWFLAKE,
-		AccountIdentifier: m.AccountIdentifier.ValueStringPointer(),
-		Database:          m.Database.ValueStringPointer(),
-		Schema:            m.Schema.ValueStringPointer(),
-		Warehouse:         m.Warehouse.ValueStringPointer(),
+		AccountIdentifier: m.AccountIdentifier.ValueString(),
+		Database:          m.Database.ValueString(),
+		Schema:            m.Schema.ValueString(),
+		Warehouse:         m.Warehouse.ValueString(),
 	}
 	err := parametersDto.FromPublicSnowflakeParametersDto(dto)
 	if err != nil {
@@ -99,10 +99,10 @@ func (m *SnowflakeParametersModel) UpdateSourceDtoFromModel(ctx context.Context,
 	}
 	dto := sifflet.PublicSnowflakeParametersDto{
 		Type:              sifflet.PublicSnowflakeParametersDtoTypeSNOWFLAKE,
-		AccountIdentifier: m.AccountIdentifier.ValueStringPointer(),
-		Database:          m.Database.ValueStringPointer(),
-		Schema:            m.Schema.ValueStringPointer(),
-		Warehouse:         m.Warehouse.ValueStringPointer(),
+		AccountIdentifier: m.AccountIdentifier.ValueString(),
+		Database:          m.Database.ValueString(),
+		Schema:            m.Schema.ValueString(),
+		Warehouse:         m.Warehouse.ValueString(),
 	}
 	err := parametersDto.FromPublicSnowflakeParametersDto(dto)
 	if err != nil {
@@ -118,10 +118,10 @@ func (m *SnowflakeParametersModel) ModelFromDto(ctx context.Context, d sifflet.P
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.AccountIdentifier = types.StringPointerValue(paramsDto.AccountIdentifier)
-	m.Database = types.StringPointerValue(paramsDto.Database)
-	m.Schema = types.StringPointerValue(paramsDto.Schema)
-	m.Warehouse = types.StringPointerValue(paramsDto.Warehouse)
+	m.AccountIdentifier = types.StringValue(paramsDto.AccountIdentifier)
+	m.Database = types.StringValue(paramsDto.Database)
+	m.Schema = types.StringValue(paramsDto.Schema)
+	m.Warehouse = types.StringValue(paramsDto.Warehouse)
 	return diag.Diagnostics{}
 }
 

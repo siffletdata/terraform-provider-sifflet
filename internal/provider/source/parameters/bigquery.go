@@ -71,9 +71,9 @@ func (m *BigQueryParametersModel) CreateSourceDtoFromModel(ctx context.Context, 
 	}
 	dto := sifflet.PublicBigQueryParametersDto{
 		Type:             sifflet.PublicBigQueryParametersDtoTypeBIGQUERY,
-		ProjectId:        m.ProjectId.ValueStringPointer(),
+		ProjectId:        m.ProjectId.ValueString(),
 		BillingProjectId: m.BillingProjectId.ValueStringPointer(),
-		DatasetId:        m.DatasetId.ValueStringPointer(),
+		DatasetId:        m.DatasetId.ValueString(),
 	}
 	err := parametersDto.FromPublicBigQueryParametersDto(dto)
 	if err != nil {
@@ -92,9 +92,9 @@ func (m *BigQueryParametersModel) UpdateSourceDtoFromModel(ctx context.Context, 
 	}
 	dto := sifflet.PublicBigQueryParametersDto{
 		Type:             sifflet.PublicBigQueryParametersDtoTypeBIGQUERY,
-		ProjectId:        m.ProjectId.ValueStringPointer(),
+		ProjectId:        m.ProjectId.ValueString(),
 		BillingProjectId: m.BillingProjectId.ValueStringPointer(),
-		DatasetId:        m.DatasetId.ValueStringPointer(),
+		DatasetId:        m.DatasetId.ValueString(),
 	}
 	err := parametersDto.FromPublicBigQueryParametersDto(dto)
 	if err != nil {
@@ -110,9 +110,9 @@ func (m *BigQueryParametersModel) ModelFromDto(ctx context.Context, d sifflet.Pu
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.ProjectId = types.StringPointerValue(paramsDto.ProjectId)
+	m.ProjectId = types.StringValue(paramsDto.ProjectId)
 	m.BillingProjectId = types.StringPointerValue(paramsDto.BillingProjectId)
-	m.DatasetId = types.StringPointerValue(paramsDto.DatasetId)
+	m.DatasetId = types.StringValue(paramsDto.DatasetId)
 	return diag.Diagnostics{}
 }
 

@@ -78,8 +78,8 @@ func (m TableauParametersModel) ToCreateDto(ctx context.Context, name string) (s
 	tableauCreateDto := &sifflet.PublicCreateTableauSourceV2Dto{
 		Name:               name,
 		Type:               sifflet.PublicCreateTableauSourceV2DtoTypeTABLEAU,
-		TableauInformation: &tableauInformation,
-		Credentials:        m.Credentials.ValueStringPointer(),
+		TableauInformation: tableauInformation,
+		Credentials:        m.Credentials.ValueString(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 
@@ -101,8 +101,8 @@ func (m TableauParametersModel) ToUpdateDto(ctx context.Context, name string) (s
 	tableauUpdateDto := &sifflet.PublicUpdateTableauSourceV2Dto{
 		Name:               &name,
 		Type:               sifflet.PublicUpdateTableauSourceV2DtoTypeTABLEAU,
-		TableauInformation: &tableauInformation,
-		Credentials:        m.Credentials.ValueStringPointer(),
+		TableauInformation: tableauInformation,
+		Credentials:        m.Credentials.ValueString(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 
@@ -123,7 +123,7 @@ func (m *TableauParametersModel) ModelFromDto(ctx context.Context, d sifflet.Sif
 
 	m.Host = types.StringValue(tableauDto.TableauInformation.Host)
 	m.Site = types.StringPointerValue(&tableauDto.TableauInformation.Site)
-	m.Credentials = types.StringPointerValue(tableauDto.Credentials)
+	m.Credentials = types.StringValue(tableauDto.Credentials)
 	m.Schedule = types.StringPointerValue(tableauDto.Schedule)
 	return diag.Diagnostics{}
 }

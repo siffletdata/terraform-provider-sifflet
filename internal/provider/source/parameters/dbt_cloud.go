@@ -77,9 +77,9 @@ func (m *DbtCloudParametersModel) CreateSourceDtoFromModel(ctx context.Context, 
 	}
 	dto := sifflet.PublicDbtCloudParametersDto{
 		Type:            sifflet.PublicDbtCloudParametersDtoTypeDBTCLOUD,
-		AccountId:       m.AccountID.ValueStringPointer(),
-		BaseUrl:         m.BaseUrl.ValueStringPointer(),
-		ProjectId:       m.ProjectID.ValueStringPointer(),
+		AccountId:       m.AccountID.ValueString(),
+		BaseUrl:         m.BaseUrl.ValueString(),
+		ProjectId:       m.ProjectID.ValueString(),
 		JobDefinitionId: m.JobDefinitionID.ValueStringPointer(),
 	}
 	err := parametersDto.FromPublicDbtCloudParametersDto(dto)
@@ -99,9 +99,9 @@ func (m *DbtCloudParametersModel) UpdateSourceDtoFromModel(ctx context.Context, 
 	}
 	dto := sifflet.PublicDbtCloudParametersDto{
 		Type:            sifflet.PublicDbtCloudParametersDtoTypeDBTCLOUD,
-		AccountId:       m.AccountID.ValueStringPointer(),
-		BaseUrl:         m.BaseUrl.ValueStringPointer(),
-		ProjectId:       m.ProjectID.ValueStringPointer(),
+		AccountId:       m.AccountID.ValueString(),
+		BaseUrl:         m.BaseUrl.ValueString(),
+		ProjectId:       m.ProjectID.ValueString(),
 		JobDefinitionId: m.JobDefinitionID.ValueStringPointer(),
 	}
 	err := parametersDto.FromPublicDbtCloudParametersDto(dto)
@@ -118,9 +118,9 @@ func (m *DbtCloudParametersModel) ModelFromDto(ctx context.Context, d sifflet.Pu
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.AccountID = types.StringPointerValue(paramsDto.AccountId)
-	m.BaseUrl = types.StringPointerValue(paramsDto.BaseUrl)
-	m.ProjectID = types.StringPointerValue(paramsDto.ProjectId)
+	m.AccountID = types.StringValue(paramsDto.AccountId)
+	m.BaseUrl = types.StringValue(paramsDto.BaseUrl)
+	m.ProjectID = types.StringValue(paramsDto.ProjectId)
 	m.JobDefinitionID = types.StringPointerValue(paramsDto.JobDefinitionId)
 	return diag.Diagnostics{}
 }

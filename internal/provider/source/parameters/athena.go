@@ -95,13 +95,13 @@ func (m *AthenaParametersModel) CreateSourceDtoFromModel(ctx context.Context, p 
 	}
 	dto := sifflet.PublicAthenaParametersDto{
 		Type:             sifflet.PublicAthenaParametersDtoTypeATHENA,
-		Database:         m.Database.ValueStringPointer(),
-		Datasource:       m.Datasource.ValueStringPointer(),
-		Region:           m.Region.ValueStringPointer(),
-		RoleArn:          m.RoleArn.ValueStringPointer(),
-		S3OutputLocation: m.S3OutputLocation.ValueStringPointer(),
+		Database:         m.Database.ValueString(),
+		Datasource:       m.Datasource.ValueString(),
+		Region:           m.Region.ValueString(),
+		RoleArn:          m.RoleArn.ValueString(),
+		S3OutputLocation: m.S3OutputLocation.ValueString(),
 		VpcUrl:           m.VpcUrl.ValueStringPointer(),
-		Workgroup:        m.Workgroup.ValueStringPointer(),
+		Workgroup:        m.Workgroup.ValueString(),
 	}
 	err := parametersDto.FromPublicAthenaParametersDto(dto)
 	if err != nil {
@@ -120,13 +120,13 @@ func (m *AthenaParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p 
 	}
 	dto := sifflet.PublicAthenaParametersDto{
 		Type:             sifflet.PublicAthenaParametersDtoTypeATHENA,
-		Database:         m.Database.ValueStringPointer(),
-		Datasource:       m.Datasource.ValueStringPointer(),
-		Region:           m.Region.ValueStringPointer(),
-		RoleArn:          m.RoleArn.ValueStringPointer(),
-		S3OutputLocation: m.S3OutputLocation.ValueStringPointer(),
+		Database:         m.Database.ValueString(),
+		Datasource:       m.Datasource.ValueString(),
+		Region:           m.Region.ValueString(),
+		RoleArn:          m.RoleArn.ValueString(),
+		S3OutputLocation: m.S3OutputLocation.ValueString(),
 		VpcUrl:           m.VpcUrl.ValueStringPointer(),
-		Workgroup:        m.Workgroup.ValueStringPointer(),
+		Workgroup:        m.Workgroup.ValueString(),
 	}
 	err := parametersDto.FromPublicAthenaParametersDto(dto)
 	if err != nil {
@@ -142,13 +142,13 @@ func (m *AthenaParametersModel) ModelFromDto(ctx context.Context, d sifflet.Publ
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.Database = types.StringPointerValue(paramsDto.Database)
-	m.Datasource = types.StringPointerValue(paramsDto.Datasource)
-	m.Region = types.StringPointerValue(paramsDto.Region)
-	m.RoleArn = types.StringPointerValue(paramsDto.RoleArn)
-	m.S3OutputLocation = types.StringPointerValue(paramsDto.S3OutputLocation)
+	m.Database = types.StringValue(paramsDto.Database)
+	m.Datasource = types.StringValue(paramsDto.Datasource)
+	m.Region = types.StringValue(paramsDto.Region)
+	m.RoleArn = types.StringValue(paramsDto.RoleArn)
+	m.S3OutputLocation = types.StringValue(paramsDto.S3OutputLocation)
 	m.VpcUrl = types.StringPointerValue(paramsDto.VpcUrl)
-	m.Workgroup = types.StringPointerValue(paramsDto.Workgroup)
+	m.Workgroup = types.StringValue(paramsDto.Workgroup)
 	return diag.Diagnostics{}
 }
 

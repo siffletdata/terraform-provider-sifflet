@@ -77,10 +77,10 @@ func (m *OracleParametersModel) CreateSourceDtoFromModel(ctx context.Context, p 
 	}
 	dto := sifflet.PublicOracleParametersDto{
 		Type:     sifflet.PublicOracleParametersDtoTypeORACLE,
-		Host:     m.Host.ValueStringPointer(),
-		Database: m.Database.ValueStringPointer(),
-		Port:     m.Port.ValueInt32Pointer(),
-		Schema:   m.Schema.ValueStringPointer(),
+		Host:     m.Host.ValueString(),
+		Database: m.Database.ValueString(),
+		Port:     m.Port.ValueInt32(),
+		Schema:   m.Schema.ValueString(),
 	}
 	err := parametersDto.FromPublicOracleParametersDto(dto)
 	if err != nil {
@@ -99,10 +99,10 @@ func (m *OracleParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p 
 	}
 	dto := sifflet.PublicOracleParametersDto{
 		Type:     sifflet.PublicOracleParametersDtoTypeORACLE,
-		Host:     m.Host.ValueStringPointer(),
-		Database: m.Database.ValueStringPointer(),
-		Port:     m.Port.ValueInt32Pointer(),
-		Schema:   m.Schema.ValueStringPointer(),
+		Host:     m.Host.ValueString(),
+		Database: m.Database.ValueString(),
+		Port:     m.Port.ValueInt32(),
+		Schema:   m.Schema.ValueString(),
 	}
 	err := parametersDto.FromPublicOracleParametersDto(dto)
 	if err != nil {
@@ -118,10 +118,10 @@ func (m *OracleParametersModel) ModelFromDto(ctx context.Context, d sifflet.Publ
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.Host = types.StringPointerValue(paramsDto.Host)
-	m.Database = types.StringPointerValue(paramsDto.Database)
-	m.Port = types.Int32PointerValue(paramsDto.Port)
-	m.Schema = types.StringPointerValue(paramsDto.Schema)
+	m.Host = types.StringValue(paramsDto.Host)
+	m.Database = types.StringValue(paramsDto.Database)
+	m.Port = types.Int32Value(paramsDto.Port)
+	m.Schema = types.StringValue(paramsDto.Schema)
 	return diag.Diagnostics{}
 }
 

@@ -81,8 +81,8 @@ func (m PostgresqlParametersModel) ToCreateDto(ctx context.Context, name string)
 	postgresqlCreateDto := &sifflet.PublicCreatePostgresqlSourceV2Dto{
 		Name:                  name,
 		Type:                  sifflet.PublicCreatePostgresqlSourceV2DtoTypePOSTGRESQL,
-		PostgresqlInformation: &postgresqlInformation,
-		Credentials:           m.Credentials.ValueStringPointer(),
+		PostgresqlInformation: postgresqlInformation,
+		Credentials:           m.Credentials.ValueString(),
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 
@@ -105,8 +105,8 @@ func (m PostgresqlParametersModel) ToUpdateDto(ctx context.Context, name string)
 	postgresqlUpdateDto := &sifflet.PublicUpdatePostgresqlSourceV2Dto{
 		Name:                  &name,
 		Type:                  sifflet.PublicUpdatePostgresqlSourceV2DtoTypePOSTGRESQL,
-		PostgresqlInformation: &postgresqlInformation,
-		Credentials:           m.Credentials.ValueStringPointer(),
+		PostgresqlInformation: postgresqlInformation,
+		Credentials:           m.Credentials.ValueString(),
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 
@@ -128,7 +128,7 @@ func (m *PostgresqlParametersModel) ModelFromDto(ctx context.Context, d sifflet.
 	m.Host = types.StringValue(postgresqlDto.PostgresqlInformation.Host)
 	m.Database = types.StringValue(postgresqlDto.PostgresqlInformation.Database)
 	m.Port = types.Int32Value(postgresqlDto.PostgresqlInformation.Port)
-	m.Credentials = types.StringPointerValue(postgresqlDto.Credentials)
+	m.Credentials = types.StringValue(postgresqlDto.Credentials)
 	m.Schedule = types.StringPointerValue(postgresqlDto.Schedule)
 	return diag.Diagnostics{}
 }

@@ -65,8 +65,8 @@ func (m *DbtParametersModel) CreateSourceDtoFromModel(ctx context.Context, p Par
 	}
 	dto := sifflet.PublicDbtParametersDto{
 		Type:        sifflet.PublicDbtParametersDtoTypeDBT,
-		ProjectName: m.ProjectName.ValueStringPointer(),
-		Target:      m.Target.ValueStringPointer(),
+		ProjectName: m.ProjectName.ValueString(),
+		Target:      m.Target.ValueString(),
 	}
 	err := parametersDto.FromPublicDbtParametersDto(dto)
 	if err != nil {
@@ -85,8 +85,8 @@ func (m *DbtParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p Par
 	}
 	dto := sifflet.PublicDbtParametersDto{
 		Type:        sifflet.PublicDbtParametersDtoTypeDBT,
-		ProjectName: m.ProjectName.ValueStringPointer(),
-		Target:      m.Target.ValueStringPointer(),
+		ProjectName: m.ProjectName.ValueString(),
+		Target:      m.Target.ValueString(),
 	}
 	err := parametersDto.FromPublicDbtParametersDto(dto)
 	if err != nil {
@@ -102,8 +102,8 @@ func (m *DbtParametersModel) ModelFromDto(ctx context.Context, d sifflet.PublicG
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.ProjectName = types.StringPointerValue(paramsDto.ProjectName)
-	m.Target = types.StringPointerValue(paramsDto.Target)
+	m.ProjectName = types.StringValue(paramsDto.ProjectName)
+	m.Target = types.StringValue(paramsDto.Target)
 	return diag.Diagnostics{}
 }
 

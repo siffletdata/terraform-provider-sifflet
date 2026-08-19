@@ -74,8 +74,8 @@ func (m SynapseParametersModel) ToCreateDto(ctx context.Context, name string) (s
 	synapseCreateDto := &sifflet.PublicCreateSynapseSourceV2Dto{
 		Name:               name,
 		Type:               sifflet.PublicCreateSynapseSourceV2DtoTypeSYNAPSE,
-		SynapseInformation: &synapseInformation,
-		Credentials:        m.Credentials.ValueStringPointer(),
+		SynapseInformation: synapseInformation,
+		Credentials:        m.Credentials.ValueString(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 
@@ -97,8 +97,8 @@ func (m SynapseParametersModel) ToUpdateDto(ctx context.Context, name string) (s
 	synapseUpdateDto := &sifflet.PublicUpdateSynapseSourceV2Dto{
 		Name:               &name,
 		Type:               sifflet.PublicUpdateSynapseSourceV2DtoTypeSYNAPSE,
-		SynapseInformation: &synapseInformation,
-		Credentials:        m.Credentials.ValueStringPointer(),
+		SynapseInformation: synapseInformation,
+		Credentials:        m.Credentials.ValueString(),
 		Schedule:           m.Schedule.ValueStringPointer(),
 	}
 
@@ -119,7 +119,7 @@ func (m *SynapseParametersModel) ModelFromDto(ctx context.Context, d sifflet.Sif
 
 	m.Host = types.StringValue(synapseDto.SynapseInformation.Host)
 	m.Port = types.Int32Value(synapseDto.SynapseInformation.Port)
-	m.Credentials = types.StringPointerValue(synapseDto.Credentials)
+	m.Credentials = types.StringValue(synapseDto.Credentials)
 	m.Schedule = types.StringPointerValue(synapseDto.Schedule)
 	return diag.Diagnostics{}
 }

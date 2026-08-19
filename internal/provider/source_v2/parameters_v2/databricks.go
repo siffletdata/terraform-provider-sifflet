@@ -81,8 +81,8 @@ func (m DatabricksParametersModel) ToCreateDto(ctx context.Context, name string)
 	databricksCreateDto := &sifflet.PublicCreateDatabricksSourceV2Dto{
 		Name:                  name,
 		Type:                  sifflet.PublicCreateDatabricksSourceV2DtoTypeDATABRICKS,
-		DatabricksInformation: &databricksInformation,
-		Credentials:           m.Credentials.ValueStringPointer(),
+		DatabricksInformation: databricksInformation,
+		Credentials:           m.Credentials.ValueString(),
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 
@@ -105,8 +105,8 @@ func (m DatabricksParametersModel) ToUpdateDto(ctx context.Context, name string)
 	databricksUpdateDto := &sifflet.PublicUpdateDatabricksSourceV2Dto{
 		Name:                  &name,
 		Type:                  sifflet.PublicUpdateDatabricksSourceV2DtoTypeDATABRICKS,
-		DatabricksInformation: &databricksInformation,
-		Credentials:           m.Credentials.ValueStringPointer(),
+		DatabricksInformation: databricksInformation,
+		Credentials:           m.Credentials.ValueString(),
 		Schedule:              m.Schedule.ValueStringPointer(),
 	}
 
@@ -128,7 +128,7 @@ func (m *DatabricksParametersModel) ModelFromDto(ctx context.Context, d sifflet.
 	m.Host = types.StringValue(databricksDto.DatabricksInformation.Host)
 	m.HttpPath = types.StringValue(databricksDto.DatabricksInformation.HttpPath)
 	m.Port = types.Int32Value(databricksDto.DatabricksInformation.Port)
-	m.Credentials = types.StringPointerValue(databricksDto.Credentials)
+	m.Credentials = types.StringValue(databricksDto.Credentials)
 	m.Schedule = types.StringPointerValue(databricksDto.Schedule)
 	return diag.Diagnostics{}
 }

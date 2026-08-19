@@ -71,9 +71,9 @@ func (m *QuickSightParametersModel) CreateSourceDtoFromModel(ctx context.Context
 	}
 	dto := sifflet.PublicQuicksightParametersDto{
 		Type:      sifflet.PublicQuicksightParametersDtoTypeQUICKSIGHT,
-		AccountId: m.AccountID.ValueStringPointer(),
-		AwsRegion: m.AwsRegion.ValueStringPointer(),
-		RoleArn:   m.RoleArn.ValueStringPointer(),
+		AccountId: m.AccountID.ValueString(),
+		AwsRegion: m.AwsRegion.ValueString(),
+		RoleArn:   m.RoleArn.ValueString(),
 	}
 	err := parametersDto.FromPublicQuicksightParametersDto(dto)
 	if err != nil {
@@ -92,9 +92,9 @@ func (m *QuickSightParametersModel) UpdateSourceDtoFromModel(ctx context.Context
 	}
 	dto := sifflet.PublicQuicksightParametersDto{
 		Type:      sifflet.PublicQuicksightParametersDtoTypeQUICKSIGHT,
-		AccountId: m.AccountID.ValueStringPointer(),
-		AwsRegion: m.AwsRegion.ValueStringPointer(),
-		RoleArn:   m.RoleArn.ValueStringPointer(),
+		AccountId: m.AccountID.ValueString(),
+		AwsRegion: m.AwsRegion.ValueString(),
+		RoleArn:   m.RoleArn.ValueString(),
 	}
 	err := parametersDto.FromPublicQuicksightParametersDto(dto)
 	if err != nil {
@@ -110,9 +110,9 @@ func (m *QuickSightParametersModel) ModelFromDto(ctx context.Context, d sifflet.
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.AccountID = types.StringPointerValue(paramsDto.AccountId)
-	m.AwsRegion = types.StringPointerValue(paramsDto.AwsRegion)
-	m.RoleArn = types.StringPointerValue(paramsDto.RoleArn)
+	m.AccountID = types.StringValue(paramsDto.AccountId)
+	m.AwsRegion = types.StringValue(paramsDto.AwsRegion)
+	m.RoleArn = types.StringValue(paramsDto.RoleArn)
 	return diag.Diagnostics{}
 }
 

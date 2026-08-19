@@ -74,8 +74,8 @@ func (m BigQueryParametersModel) ToCreateDto(ctx context.Context, name string) (
 	bigQueryCreateDto := &sifflet.PublicCreateBigQuerySourceV2Dto{
 		Name:                name,
 		Type:                sifflet.PublicCreateBigQuerySourceV2DtoTypeBIGQUERY,
-		BigQueryInformation: &bigQueryInformation,
-		Credentials:         m.Credentials.ValueStringPointer(),
+		BigQueryInformation: bigQueryInformation,
+		Credentials:         m.Credentials.ValueString(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
@@ -97,8 +97,8 @@ func (m BigQueryParametersModel) ToUpdateDto(ctx context.Context, name string) (
 	bigQueryUpdateDto := &sifflet.PublicUpdateBigQuerySourceV2Dto{
 		Name:                &name,
 		Type:                sifflet.PublicUpdateBigQuerySourceV2DtoTypeBIGQUERY,
-		BigQueryInformation: &bigQueryInformation,
-		Credentials:         m.Credentials.ValueStringPointer(),
+		BigQueryInformation: bigQueryInformation,
+		Credentials:         m.Credentials.ValueString(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
@@ -119,7 +119,7 @@ func (m *BigQueryParametersModel) ModelFromDto(ctx context.Context, d sifflet.Si
 
 	m.ProjectId = types.StringValue(bigQueryDto.BigQueryInformation.ProjectId)
 	m.BillingProjectId = types.StringValue(*bigQueryDto.BigQueryInformation.BillingProjectId)
-	m.Credentials = types.StringPointerValue(bigQueryDto.Credentials)
+	m.Credentials = types.StringValue(bigQueryDto.Credentials)
 	m.Schedule = types.StringPointerValue(bigQueryDto.Schedule)
 	return diag.Diagnostics{}
 }

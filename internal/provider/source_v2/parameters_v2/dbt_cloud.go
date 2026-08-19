@@ -74,8 +74,8 @@ func (m DbtCloudParametersModel) ToCreateDto(ctx context.Context, name string) (
 	dbtCloudCreateDto := &sifflet.PublicCreateDbtCloudSourceV2Dto{
 		Name:                name,
 		Type:                sifflet.PublicCreateDbtCloudSourceV2DtoTypeDBTCLOUD,
-		DbtCloudInformation: &dbtCloudInformation,
-		Credentials:         m.Credentials.ValueStringPointer(),
+		DbtCloudInformation: dbtCloudInformation,
+		Credentials:         m.Credentials.ValueString(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
@@ -97,8 +97,8 @@ func (m DbtCloudParametersModel) ToUpdateDto(ctx context.Context, name string) (
 	dbtCloudUpdateDto := &sifflet.PublicUpdateDbtCloudSourceV2Dto{
 		Name:                &name,
 		Type:                sifflet.PublicUpdateDbtCloudSourceV2DtoTypeDBTCLOUD,
-		DbtCloudInformation: &dbtCloudInformation,
-		Credentials:         m.Credentials.ValueStringPointer(),
+		DbtCloudInformation: dbtCloudInformation,
+		Credentials:         m.Credentials.ValueString(),
 		Schedule:            m.Schedule.ValueStringPointer(),
 	}
 
@@ -119,7 +119,7 @@ func (m *DbtCloudParametersModel) ModelFromDto(ctx context.Context, d sifflet.Si
 
 	m.AccountId = types.StringValue(dbtCloudDto.DbtCloudInformation.AccountId)
 	m.BaseUrl = types.StringValue(dbtCloudDto.DbtCloudInformation.BaseUrl)
-	m.Credentials = types.StringPointerValue(dbtCloudDto.Credentials)
+	m.Credentials = types.StringValue(dbtCloudDto.Credentials)
 	m.Schedule = types.StringPointerValue(dbtCloudDto.Schedule)
 	return diag.Diagnostics{}
 }

@@ -74,8 +74,8 @@ func (m SnowflakeParametersModel) ToCreateDto(ctx context.Context, name string) 
 	snowflakeCreateDto := &sifflet.PublicCreateSnowflakeSourceV2Dto{
 		Name:                 name,
 		Type:                 sifflet.PublicCreateSnowflakeSourceV2DtoTypeSNOWFLAKE,
-		SnowflakeInformation: &snowflakeInformation,
-		Credentials:          m.Credentials.ValueStringPointer(),
+		SnowflakeInformation: snowflakeInformation,
+		Credentials:          m.Credentials.ValueString(),
 		Schedule:             m.Schedule.ValueStringPointer(),
 	}
 
@@ -97,8 +97,8 @@ func (m SnowflakeParametersModel) ToUpdateDto(ctx context.Context, name string) 
 	snowflakeUpdateDto := &sifflet.PublicUpdateSnowflakeSourceV2Dto{
 		Name:                 &name,
 		Type:                 sifflet.PublicUpdateSnowflakeSourceV2DtoTypeSNOWFLAKE,
-		SnowflakeInformation: &snowflakeInformation,
-		Credentials:          m.Credentials.ValueStringPointer(),
+		SnowflakeInformation: snowflakeInformation,
+		Credentials:          m.Credentials.ValueString(),
 		Schedule:             m.Schedule.ValueStringPointer(),
 	}
 
@@ -119,7 +119,7 @@ func (m *SnowflakeParametersModel) ModelFromDto(ctx context.Context, d sifflet.S
 
 	m.AccountIdentifier = types.StringValue(snowflakeDto.SnowflakeInformation.AccountIdentifier)
 	m.Warehouse = types.StringValue(snowflakeDto.SnowflakeInformation.Warehouse)
-	m.Credentials = types.StringPointerValue(snowflakeDto.Credentials)
+	m.Credentials = types.StringValue(snowflakeDto.Credentials)
 	m.Schedule = types.StringPointerValue(snowflakeDto.Schedule)
 	return diag.Diagnostics{}
 }

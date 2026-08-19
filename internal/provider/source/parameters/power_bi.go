@@ -71,9 +71,9 @@ func (m *PowerBiParametersModel) CreateSourceDtoFromModel(ctx context.Context, p
 	}
 	dto := sifflet.PublicPowerBiParametersDto{
 		Type:        sifflet.PublicPowerBiParametersDtoTypePOWERBI,
-		ClientId:    m.ClientID.ValueStringPointer(),
-		TenantId:    m.TenantID.ValueStringPointer(),
-		WorkspaceId: m.WorkspaceID.ValueStringPointer(),
+		ClientId:    m.ClientID.ValueString(),
+		TenantId:    m.TenantID.ValueString(),
+		WorkspaceId: m.WorkspaceID.ValueString(),
 	}
 	err := parametersDto.FromPublicPowerBiParametersDto(dto)
 	if err != nil {
@@ -92,9 +92,9 @@ func (m *PowerBiParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p
 	}
 	dto := sifflet.PublicPowerBiParametersDto{
 		Type:        sifflet.PublicPowerBiParametersDtoTypePOWERBI,
-		ClientId:    m.ClientID.ValueStringPointer(),
-		TenantId:    m.TenantID.ValueStringPointer(),
-		WorkspaceId: m.WorkspaceID.ValueStringPointer(),
+		ClientId:    m.ClientID.ValueString(),
+		TenantId:    m.TenantID.ValueString(),
+		WorkspaceId: m.WorkspaceID.ValueString(),
 	}
 	err := parametersDto.FromPublicPowerBiParametersDto(dto)
 	if err != nil {
@@ -110,9 +110,9 @@ func (m *PowerBiParametersModel) ModelFromDto(ctx context.Context, d sifflet.Pub
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.ClientID = types.StringPointerValue(paramsDto.ClientId)
-	m.TenantID = types.StringPointerValue(paramsDto.TenantId)
-	m.WorkspaceID = types.StringPointerValue(paramsDto.WorkspaceId)
+	m.ClientID = types.StringValue(paramsDto.ClientId)
+	m.TenantID = types.StringValue(paramsDto.TenantId)
+	m.WorkspaceID = types.StringValue(paramsDto.WorkspaceId)
 	return diag.Diagnostics{}
 }
 

@@ -64,8 +64,8 @@ func (m *AirflowParametersModel) CreateSourceDtoFromModel(ctx context.Context, p
 		return sifflet.PublicCreateSourceDto_Parameters{}, diags
 	}
 	dto := sifflet.PublicAirflowParametersDto{
-		Host: m.Host.ValueStringPointer(),
-		Port: m.Port.ValueInt32Pointer(),
+		Host: m.Host.ValueString(),
+		Port: m.Port.ValueInt32(),
 		Type: sifflet.PublicAirflowParametersDtoTypeAIRFLOW,
 	}
 	err := parametersDto.FromPublicAirflowParametersDto(dto)
@@ -84,8 +84,8 @@ func (m *AirflowParametersModel) UpdateSourceDtoFromModel(ctx context.Context, p
 		return sifflet.PublicUpdateSourceDto_Parameters{}, diags
 	}
 	dto := sifflet.PublicAirflowParametersDto{
-		Host: m.Host.ValueStringPointer(),
-		Port: m.Port.ValueInt32Pointer(),
+		Host: m.Host.ValueString(),
+		Port: m.Port.ValueInt32(),
 		Type: sifflet.PublicAirflowParametersDtoTypeAIRFLOW,
 	}
 	err := parametersDto.FromPublicAirflowParametersDto(dto)
@@ -102,8 +102,8 @@ func (m *AirflowParametersModel) ModelFromDto(ctx context.Context, d sifflet.Pub
 	if diags := handleDtoToModelError(err, m.SchemaSourceType()); diags.HasError() {
 		return diags
 	}
-	m.Host = types.StringPointerValue(paramsDto.Host)
-	m.Port = types.Int32PointerValue(paramsDto.Port)
+	m.Host = types.StringValue(paramsDto.Host)
+	m.Port = types.Int32Value(paramsDto.Port)
 	return diag.Diagnostics{}
 }
 

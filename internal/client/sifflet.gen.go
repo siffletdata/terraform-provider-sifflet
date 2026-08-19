@@ -4070,6 +4070,24 @@ func (e AsCodeStaticFieldProfilingMonitorParamsDtoKind) Valid() bool {
 	}
 }
 
+// Defines values for AsCodeStaticFreshnessThresholdDtoKind.
+const (
+	AsCodeStaticFreshnessThresholdDtoKindDynamic AsCodeStaticFreshnessThresholdDtoKind = "Dynamic"
+	AsCodeStaticFreshnessThresholdDtoKindStatic  AsCodeStaticFreshnessThresholdDtoKind = "Static"
+)
+
+// Valid indicates whether the value is a known member of the AsCodeStaticFreshnessThresholdDtoKind enum.
+func (e AsCodeStaticFreshnessThresholdDtoKind) Valid() bool {
+	switch e {
+	case AsCodeStaticFreshnessThresholdDtoKindDynamic:
+		return true
+	case AsCodeStaticFreshnessThresholdDtoKindStatic:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AsCodeStaticMetricMonitorParamsDtoKind.
 const (
 	AsCodeStaticMetricMonitorParamsDtoKindCompleteness          AsCodeStaticMetricMonitorParamsDtoKind = "Completeness"
@@ -6272,6 +6290,42 @@ func (e GitConnectionAuthType) Valid() bool {
 	case SSH:
 		return true
 	case USERPASSWORD:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GoogleChatWebhookParamsScope.
+const (
+	GoogleChatWebhookParamsScopeALLEVENTS    GoogleChatWebhookParamsScope = "ALL_EVENTS"
+	GoogleChatWebhookParamsScopeLINKEDEVENTS GoogleChatWebhookParamsScope = "LINKED_EVENTS"
+)
+
+// Valid indicates whether the value is a known member of the GoogleChatWebhookParamsScope enum.
+func (e GoogleChatWebhookParamsScope) Valid() bool {
+	switch e {
+	case GoogleChatWebhookParamsScopeALLEVENTS:
+		return true
+	case GoogleChatWebhookParamsScopeLINKEDEVENTS:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GoogleChatWebhookParamsType.
+const (
+	GoogleChatWebhookParamsTypeDEFAULT    GoogleChatWebhookParamsType = "DEFAULT"
+	GoogleChatWebhookParamsTypeGOOGLECHAT GoogleChatWebhookParamsType = "GOOGLE_CHAT"
+)
+
+// Valid indicates whether the value is a known member of the GoogleChatWebhookParamsType enum.
+func (e GoogleChatWebhookParamsType) Valid() bool {
+	switch e {
+	case GoogleChatWebhookParamsTypeDEFAULT:
+		return true
+	case GoogleChatWebhookParamsTypeGOOGLECHAT:
 		return true
 	default:
 		return false
@@ -8978,6 +9032,78 @@ func (e PublicDeclarativeAssetDtoType) Valid() bool {
 	case MlModel:
 		return true
 	case Pipeline:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for PublicDeclarativeParametersDtoType.
+const (
+	PublicDeclarativeParametersDtoTypeAIRFLOW           PublicDeclarativeParametersDtoType = "AIRFLOW"
+	PublicDeclarativeParametersDtoTypeATHENA            PublicDeclarativeParametersDtoType = "ATHENA"
+	PublicDeclarativeParametersDtoTypeBIGQUERY          PublicDeclarativeParametersDtoType = "BIGQUERY"
+	PublicDeclarativeParametersDtoTypeDATABRICKS        PublicDeclarativeParametersDtoType = "DATABRICKS"
+	PublicDeclarativeParametersDtoTypeDBT               PublicDeclarativeParametersDtoType = "DBT"
+	PublicDeclarativeParametersDtoTypeDBTCLOUD          PublicDeclarativeParametersDtoType = "DBT_CLOUD"
+	PublicDeclarativeParametersDtoTypeDECLARATIVE       PublicDeclarativeParametersDtoType = "DECLARATIVE"
+	PublicDeclarativeParametersDtoTypeFIVETRAN          PublicDeclarativeParametersDtoType = "FIVETRAN"
+	PublicDeclarativeParametersDtoTypeLOOKER            PublicDeclarativeParametersDtoType = "LOOKER"
+	PublicDeclarativeParametersDtoTypeMSSQL             PublicDeclarativeParametersDtoType = "MSSQL"
+	PublicDeclarativeParametersDtoTypeMYSQL             PublicDeclarativeParametersDtoType = "MYSQL"
+	PublicDeclarativeParametersDtoTypeORACLE            PublicDeclarativeParametersDtoType = "ORACLE"
+	PublicDeclarativeParametersDtoTypePOSTGRESQL        PublicDeclarativeParametersDtoType = "POSTGRESQL"
+	PublicDeclarativeParametersDtoTypePOWERBI           PublicDeclarativeParametersDtoType = "POWER_BI"
+	PublicDeclarativeParametersDtoTypeQUICKSIGHT        PublicDeclarativeParametersDtoType = "QUICKSIGHT"
+	PublicDeclarativeParametersDtoTypeREDSHIFT          PublicDeclarativeParametersDtoType = "REDSHIFT"
+	PublicDeclarativeParametersDtoTypeSNOWFLAKE         PublicDeclarativeParametersDtoType = "SNOWFLAKE"
+	PublicDeclarativeParametersDtoTypeSYNAPSE           PublicDeclarativeParametersDtoType = "SYNAPSE"
+	PublicDeclarativeParametersDtoTypeTABLEAU           PublicDeclarativeParametersDtoType = "TABLEAU"
+	PublicDeclarativeParametersDtoTypeUnderscoreUNKNOWN PublicDeclarativeParametersDtoType = "_UNKNOWN_"
+)
+
+// Valid indicates whether the value is a known member of the PublicDeclarativeParametersDtoType enum.
+func (e PublicDeclarativeParametersDtoType) Valid() bool {
+	switch e {
+	case PublicDeclarativeParametersDtoTypeAIRFLOW:
+		return true
+	case PublicDeclarativeParametersDtoTypeATHENA:
+		return true
+	case PublicDeclarativeParametersDtoTypeBIGQUERY:
+		return true
+	case PublicDeclarativeParametersDtoTypeDATABRICKS:
+		return true
+	case PublicDeclarativeParametersDtoTypeDBT:
+		return true
+	case PublicDeclarativeParametersDtoTypeDBTCLOUD:
+		return true
+	case PublicDeclarativeParametersDtoTypeDECLARATIVE:
+		return true
+	case PublicDeclarativeParametersDtoTypeFIVETRAN:
+		return true
+	case PublicDeclarativeParametersDtoTypeLOOKER:
+		return true
+	case PublicDeclarativeParametersDtoTypeMSSQL:
+		return true
+	case PublicDeclarativeParametersDtoTypeMYSQL:
+		return true
+	case PublicDeclarativeParametersDtoTypeORACLE:
+		return true
+	case PublicDeclarativeParametersDtoTypePOSTGRESQL:
+		return true
+	case PublicDeclarativeParametersDtoTypePOWERBI:
+		return true
+	case PublicDeclarativeParametersDtoTypeQUICKSIGHT:
+		return true
+	case PublicDeclarativeParametersDtoTypeREDSHIFT:
+		return true
+	case PublicDeclarativeParametersDtoTypeSNOWFLAKE:
+		return true
+	case PublicDeclarativeParametersDtoTypeSYNAPSE:
+		return true
+	case PublicDeclarativeParametersDtoTypeTABLEAU:
+		return true
+	case PublicDeclarativeParametersDtoTypeUnderscoreUNKNOWN:
 		return true
 	default:
 		return false
@@ -19255,7 +19381,7 @@ func (e GetSiffletRuleRunParamsExpand) Valid() bool {
 
 // AccessTokenProviderDto defines model for AccessTokenProviderDto.
 type AccessTokenProviderDto struct {
-	Name *string                     `json:"name,omitempty"`
+	Name string                      `json:"name"`
 	Type *AccessTokenProviderDtoType `json:"type,omitempty"`
 }
 
@@ -19404,8 +19530,8 @@ type AsCodeConditionDtoKind string
 
 // AsCodeConditionGroupDto defines model for AsCodeConditionGroupDto.
 type AsCodeConditionGroupDto struct {
-	Conditions *[]AsCodeConditionGroupDto_Conditions_Item `json:"conditions,omitempty"`
-	Kind       AsCodeConditionGroupDtoKind                `json:"kind"`
+	Conditions []AsCodeConditionGroupDto_Conditions_Item `json:"conditions"`
+	Kind       AsCodeConditionGroupDtoKind               `json:"kind"`
 }
 
 // AsCodeConditionGroupDto_Conditions_Item defines model for AsCodeConditionGroupDto.conditions.Item.
@@ -19418,11 +19544,11 @@ type AsCodeConditionGroupDtoKind string
 
 // AsCodeConditionalMonitorParamsDto defines model for AsCodeConditionalMonitorParamsDto.
 type AsCodeConditionalMonitorParamsDto struct {
-	Condition      *AsCodeConditionalMonitorParamsDto_Condition `json:"condition,omitempty"`
+	Condition      AsCodeConditionalMonitorParamsDto_Condition  `json:"condition"`
 	GroupBy        *AsCodeGroupByClauseDto                      `json:"groupBy,omitempty"`
 	Kind           *AsCodeConditionalMonitorParamsDtoKind       `json:"kind,omitempty"`
 	Partition      *AsCodeConditionalMonitorParamsDto_Partition `json:"partition,omitempty"`
-	Threshold      *AsCodeConditionalMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	Threshold      AsCodeConditionalMonitorParamsDto_Threshold  `json:"threshold"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV2                 `json:"timeWindow,omitempty"`
 	WhereStatement *string                                      `json:"whereStatement,omitempty"`
 }
@@ -19452,11 +19578,11 @@ type AsCodeConnectionParamsOverrideDto struct {
 
 // AsCodeCorrelatedMetricsMonitorParamsDto defines model for AsCodeCorrelatedMetricsMonitorParamsDto.
 type AsCodeCorrelatedMetricsMonitorParamsDto struct {
-	Kind          *AsCodeCorrelatedMetricsMonitorParamsDtoKind       `json:"kind,omitempty"`
-	MetadataBased *bool                                              `json:"metadataBased,omitempty"`
-	Metrics       *[]AsCodeMetricClauseDto                           `json:"metrics,omitempty"`
-	Threshold     *AsCodeCorrelatedMetricsMonitorParamsDto_Threshold `json:"threshold,omitempty"`
-	TimeWindow    *AsCodeTimeWindowClauseWithoutFieldDtoV2           `json:"timeWindow,omitempty"`
+	Kind          *AsCodeCorrelatedMetricsMonitorParamsDtoKind      `json:"kind,omitempty"`
+	MetadataBased *bool                                             `json:"metadataBased,omitempty"`
+	Metrics       []AsCodeMetricClauseDto                           `json:"metrics"`
+	Threshold     AsCodeCorrelatedMetricsMonitorParamsDto_Threshold `json:"threshold"`
+	TimeWindow    *AsCodeTimeWindowClauseWithoutFieldDtoV2          `json:"timeWindow,omitempty"`
 }
 
 // AsCodeCorrelatedMetricsMonitorParamsDtoKind defines model for AsCodeCorrelatedMetricsMonitorParamsDto.Kind.
@@ -19470,7 +19596,7 @@ type AsCodeCorrelatedMetricsMonitorParamsDto_Threshold struct {
 // AsCodeCustomAggregationClauseDtoV2 defines model for AsCodeCustomAggregationClauseDtoV2.
 type AsCodeCustomAggregationClauseDtoV2 struct {
 	Kind AsCodeCustomAggregationClauseDtoV2Kind `json:"kind"`
-	Sql  *string                                `json:"sql,omitempty"`
+	Sql  string                                 `json:"sql"`
 }
 
 // AsCodeCustomAggregationClauseDtoV2Kind defines model for AsCodeCustomAggregationClauseDtoV2.Kind.
@@ -19541,7 +19667,7 @@ type AsCodeCustomMetricsMonitorParamsDtoV1 struct {
 	GroupBy    *AsCodeGroupByClauseDto                          `json:"groupBy,omitempty"`
 	Kind       *AsCodeCustomMetricsMonitorParamsDtoV1Kind       `json:"kind,omitempty"`
 	Partition  *AsCodeCustomMetricsMonitorParamsDtoV1_Partition `json:"partition,omitempty"`
-	Sql        *string                                          `json:"sql,omitempty"`
+	Sql        string                                           `json:"sql"`
 	Threshold  *AsCodeDynamicThresholdDtoV1                     `json:"threshold,omitempty"`
 	TimeWindow *AsCodeTimeWindowOffsetClauseDto                 `json:"timeWindow,omitempty"`
 }
@@ -19556,11 +19682,11 @@ type AsCodeCustomMetricsMonitorParamsDtoV1_Partition struct {
 
 // AsCodeCustomMetricsMonitorParamsDtoV2 defines model for AsCodeCustomMetricsMonitorParamsDtoV2.
 type AsCodeCustomMetricsMonitorParamsDtoV2 struct {
-	EmptyMeansZero *bool                                            `json:"emptyMeansZero,omitempty"`
-	Kind           *AsCodeCustomMetricsMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
-	Sql            *string                                          `json:"sql,omitempty"`
-	Threshold      *AsCodeCustomMetricsMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
-	TimeWindow     *AsCodeCustomMetricsTimeWindowDto                `json:"timeWindow,omitempty"`
+	EmptyMeansZero *bool                                           `json:"emptyMeansZero,omitempty"`
+	Kind           *AsCodeCustomMetricsMonitorParamsDtoV2Kind      `json:"kind,omitempty"`
+	Sql            string                                          `json:"sql"`
+	Threshold      AsCodeCustomMetricsMonitorParamsDtoV2_Threshold `json:"threshold"`
+	TimeWindow     *AsCodeCustomMetricsTimeWindowDto               `json:"timeWindow,omitempty"`
 }
 
 // AsCodeCustomMetricsMonitorParamsDtoV2Kind defines model for AsCodeCustomMetricsMonitorParamsDtoV2.Kind.
@@ -19587,8 +19713,8 @@ type AsCodeDatasetReferenceDto struct {
 
 // AsCodeDateConditionDto defines model for AsCodeDateConditionDto.
 type AsCodeDateConditionDto struct {
-	DateExpression *AsCodeFieldExpressionDto  `json:"dateExpression,omitempty"`
-	Duration       *AsCodeDurationDto         `json:"duration,omitempty"`
+	DateExpression AsCodeFieldExpressionDto   `json:"dateExpression"`
+	Duration       AsCodeDurationDto          `json:"duration"`
 	Kind           AsCodeDateConditionDtoKind `json:"kind"`
 }
 
@@ -19609,14 +19735,14 @@ type AsCodeDistributionChangeTimeWindowClauseDtoV2 struct {
 
 // AsCodeDistributionMonitorParamsDto defines model for AsCodeDistributionMonitorParamsDto.
 type AsCodeDistributionMonitorParamsDto struct {
-	Field             *[]AsCodeFieldReferenceDto                     `json:"field,omitempty"`
+	Field             []AsCodeFieldReferenceDto                      `json:"field"`
 	GroupBy           *AsCodeGroupByClauseDto                        `json:"groupBy,omitempty"`
 	Kind              *AsCodeDistributionMonitorParamsDtoKind        `json:"kind,omitempty"`
 	OnAddedCategory   *bool                                          `json:"onAddedCategory,omitempty"`
 	OnRemovedCategory *bool                                          `json:"onRemovedCategory,omitempty"`
 	Partition         *AsCodeDistributionMonitorParamsDto_Partition  `json:"partition,omitempty"`
 	Reference         *AsCodeDistributionMonitorParamsDto_Reference  `json:"reference,omitempty"`
-	Threshold         *AsCodeDistributionMonitorParamsDto_Threshold  `json:"threshold,omitempty"`
+	Threshold         AsCodeDistributionMonitorParamsDto_Threshold   `json:"threshold"`
 	TimeWindow        *AsCodeDistributionChangeTimeWindowClauseDtoV2 `json:"timeWindow,omitempty"`
 	WhereStatement    *string                                        `json:"whereStatement,omitempty"`
 }
@@ -19676,11 +19802,11 @@ type AsCodeDurationDtoTimeUnit string
 
 // AsCodeDynamicFieldProfilingMonitorParamsDto defines model for AsCodeDynamicFieldProfilingMonitorParamsDto.
 type AsCodeDynamicFieldProfilingMonitorParamsDto struct {
-	Field          *[]string                                               `json:"field,omitempty"`
+	Field          []string                                                `json:"field"`
 	GroupBy        *AsCodeGroupByClauseDto                                 `json:"groupBy,omitempty"`
 	Kind           *AsCodeDynamicFieldProfilingMonitorParamsDtoKind        `json:"kind,omitempty"`
 	Partition      *AsCodeDynamicFieldProfilingMonitorParamsDto_Partition  `json:"partition,omitempty"`
-	Profiling      *AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling  `json:"profiling,omitempty"`
+	Profiling      AsCodeDynamicFieldProfilingMonitorParamsDto_Profiling   `json:"profiling"`
 	Threshold      *AsCodeDynamicThresholdDtoV1                            `json:"threshold,omitempty"`
 	TimeWindow     *AsCodeTimeWindowWithOffsetFrequencyAndRollingClauseDto `json:"timeWindow,omitempty"`
 	WhereStatement *string                                                 `json:"whereStatement,omitempty"`
@@ -19711,8 +19837,8 @@ type AsCodeDynamicFreshnessThresholdDtoKind string
 
 // AsCodeDynamicMetricMonitorParamsDto defines model for AsCodeDynamicMetricMonitorParamsDto.
 type AsCodeDynamicMetricMonitorParamsDto struct {
-	Aggregation    *AsCodeDynamicMetricMonitorParamsDto_Aggregation        `json:"aggregation,omitempty"`
-	Field          *string                                                 `json:"field,omitempty"`
+	Aggregation    AsCodeDynamicMetricMonitorParamsDto_Aggregation         `json:"aggregation"`
+	Field          string                                                  `json:"field"`
 	GroupBy        *AsCodeGroupByClauseDto                                 `json:"groupBy,omitempty"`
 	Kind           *AsCodeDynamicMetricMonitorParamsDtoKind                `json:"kind,omitempty"`
 	Partition      *AsCodeDynamicMetricMonitorParamsDto_Partition          `json:"partition,omitempty"`
@@ -19749,7 +19875,7 @@ type AsCodeDynamicThresholdDtoV2 struct {
 	Bounds        *AsCodeDynamicThresholdDtoV2Bounds    `json:"bounds,omitempty"`
 	ExcludedDates *[]AsCodeCalendarReferenceDto         `json:"excludedDates,omitempty"`
 	Kind          AsCodeDynamicThresholdDtoV2Kind       `json:"kind"`
-	Sensitivity   *int32                                `json:"sensitivity,omitempty"`
+	Sensitivity   int32                                 `json:"sensitivity"`
 	ValueMode     *AsCodeDynamicThresholdDtoV2ValueMode `json:"valueMode,omitempty"`
 }
 
@@ -19781,11 +19907,11 @@ type AsCodeExpressionDtoKind string
 
 // AsCodeFieldDuplicatesMonitorParamsDto defines model for AsCodeFieldDuplicatesMonitorParamsDto.
 type AsCodeFieldDuplicatesMonitorParamsDto struct {
-	Field          *[]AsCodeFieldReferenceDto                       `json:"field,omitempty"`
+	Field          []AsCodeFieldReferenceDto                        `json:"field"`
 	GroupBy        *AsCodeGroupByClauseDto                          `json:"groupBy,omitempty"`
 	Kind           *AsCodeFieldDuplicatesMonitorParamsDtoKind       `json:"kind,omitempty"`
 	Partition      *AsCodeFieldDuplicatesMonitorParamsDto_Partition `json:"partition,omitempty"`
-	Threshold      *AsCodeFieldDuplicatesMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	Threshold      AsCodeFieldDuplicatesMonitorParamsDto_Threshold  `json:"threshold"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV2                     `json:"timeWindow,omitempty"`
 	WhereStatement *string                                          `json:"whereStatement,omitempty"`
 }
@@ -19805,7 +19931,7 @@ type AsCodeFieldDuplicatesMonitorParamsDto_Threshold struct {
 
 // AsCodeFieldExpressionDto defines model for AsCodeFieldExpressionDto.
 type AsCodeFieldExpressionDto struct {
-	Field *AsCodeFieldReferenceDto     `json:"field,omitempty"`
+	Field AsCodeFieldReferenceDto      `json:"field"`
 	Kind  AsCodeFieldExpressionDtoKind `json:"kind"`
 }
 
@@ -19814,8 +19940,8 @@ type AsCodeFieldExpressionDtoKind string
 
 // AsCodeFieldFormatMonitorParamsDtoV1 defines model for AsCodeFieldFormatMonitorParamsDtoV1.
 type AsCodeFieldFormatMonitorParamsDtoV1 struct {
-	Field          *string                                        `json:"field,omitempty"`
-	Format         *AsCodeFieldFormatMonitorParamsDtoV1_Format    `json:"format,omitempty"`
+	Field          string                                         `json:"field"`
+	Format         AsCodeFieldFormatMonitorParamsDtoV1_Format     `json:"format"`
 	GroupBy        *AsCodeGroupByClauseDto                        `json:"groupBy,omitempty"`
 	Kind           *AsCodeFieldFormatMonitorParamsDtoV1Kind       `json:"kind,omitempty"`
 	Partition      *AsCodeFieldFormatMonitorParamsDtoV1_Partition `json:"partition,omitempty"`
@@ -19838,12 +19964,12 @@ type AsCodeFieldFormatMonitorParamsDtoV1_Partition struct {
 
 // AsCodeFieldFormatMonitorParamsDtoV2 defines model for AsCodeFieldFormatMonitorParamsDtoV2.
 type AsCodeFieldFormatMonitorParamsDtoV2 struct {
-	Field          *AsCodeFieldReferenceDto                       `json:"field,omitempty"`
-	Format         *AsCodeFieldFormatMonitorParamsDtoV2_Format    `json:"format,omitempty"`
+	Field          AsCodeFieldReferenceDto                        `json:"field"`
+	Format         AsCodeFieldFormatMonitorParamsDtoV2_Format     `json:"format"`
 	GroupBy        *AsCodeGroupByClauseDto                        `json:"groupBy,omitempty"`
 	Kind           *AsCodeFieldFormatMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
 	Partition      *AsCodeFieldFormatMonitorParamsDtoV2_Partition `json:"partition,omitempty"`
-	Threshold      *AsCodeFieldFormatMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+	Threshold      AsCodeFieldFormatMonitorParamsDtoV2_Threshold  `json:"threshold"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV2                   `json:"timeWindow,omitempty"`
 	WhereStatement *string                                        `json:"whereStatement,omitempty"`
 }
@@ -19876,12 +20002,12 @@ type AsCodeFieldFormatValidationClauseDtoKind string
 
 // AsCodeFieldInListConstraintMonitorParamsDtoV1 defines model for AsCodeFieldInListConstraintMonitorParamsDtoV1.
 type AsCodeFieldInListConstraintMonitorParamsDtoV1 struct {
-	Field          *string                                                  `json:"field,omitempty"`
+	Field          string                                                   `json:"field"`
 	GroupBy        *AsCodeGroupByClauseDto                                  `json:"groupBy,omitempty"`
 	Kind           *AsCodeFieldInListConstraintMonitorParamsDtoV1Kind       `json:"kind,omitempty"`
 	Partition      *AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition `json:"partition,omitempty"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV1                             `json:"timeWindow,omitempty"`
-	Values         *[]string                                                `json:"values,omitempty"`
+	Values         []string                                                 `json:"values"`
 	WhereStatement *string                                                  `json:"whereStatement,omitempty"`
 }
 
@@ -19895,13 +20021,13 @@ type AsCodeFieldInListConstraintMonitorParamsDtoV1_Partition struct {
 
 // AsCodeFieldInListConstraintMonitorParamsDtoV2 defines model for AsCodeFieldInListConstraintMonitorParamsDtoV2.
 type AsCodeFieldInListConstraintMonitorParamsDtoV2 struct {
-	Field          *AsCodeFieldReferenceDto                                 `json:"field,omitempty"`
+	Field          AsCodeFieldReferenceDto                                  `json:"field"`
 	GroupBy        *AsCodeGroupByClauseDto                                  `json:"groupBy,omitempty"`
 	Kind           *AsCodeFieldInListConstraintMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
 	Partition      *AsCodeFieldInListConstraintMonitorParamsDtoV2_Partition `json:"partition,omitempty"`
-	Threshold      *AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+	Threshold      AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold  `json:"threshold"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV2                             `json:"timeWindow,omitempty"`
-	Values         *[]string                                                `json:"values,omitempty"`
+	Values         []string                                                 `json:"values"`
 	WhereStatement *string                                                  `json:"whereStatement,omitempty"`
 }
 
@@ -19920,12 +20046,12 @@ type AsCodeFieldInListConstraintMonitorParamsDtoV2_Threshold struct {
 
 // AsCodeFieldNullsMonitorParamsDto defines model for AsCodeFieldNullsMonitorParamsDto.
 type AsCodeFieldNullsMonitorParamsDto struct {
-	Field          *AsCodeFieldReferenceDto                    `json:"field,omitempty"`
+	Field          AsCodeFieldReferenceDto                     `json:"field"`
 	GroupBy        *AsCodeGroupByClauseDto                     `json:"groupBy,omitempty"`
 	Kind           *AsCodeFieldNullsMonitorParamsDtoKind       `json:"kind,omitempty"`
-	NullValues     *AsCodeFieldNullsMonitorParamsDtoNullValues `json:"nullValues,omitempty"`
+	NullValues     AsCodeFieldNullsMonitorParamsDtoNullValues  `json:"nullValues"`
 	Partition      *AsCodeFieldNullsMonitorParamsDto_Partition `json:"partition,omitempty"`
-	Threshold      *AsCodeFieldNullsMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	Threshold      AsCodeFieldNullsMonitorParamsDto_Threshold  `json:"threshold"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV2                `json:"timeWindow,omitempty"`
 	WhereStatement *string                                     `json:"whereStatement,omitempty"`
 }
@@ -19962,7 +20088,7 @@ type AsCodeFieldReferenceDto struct {
 
 // AsCodeFieldUniquenessMonitorParamsDto defines model for AsCodeFieldUniquenessMonitorParamsDto.
 type AsCodeFieldUniquenessMonitorParamsDto struct {
-	Field          *[]string                                        `json:"field,omitempty"`
+	Field          []string                                         `json:"field"`
 	GroupBy        *AsCodeGroupByClauseDto                          `json:"groupBy,omitempty"`
 	Kind           *AsCodeFieldUniquenessMonitorParamsDtoKind       `json:"kind,omitempty"`
 	Partition      *AsCodeFieldUniquenessMonitorParamsDto_Partition `json:"partition,omitempty"`
@@ -19981,7 +20107,7 @@ type AsCodeFieldUniquenessMonitorParamsDto_Partition struct {
 // AsCodeFixedDistributionReferenceDto defines model for AsCodeFixedDistributionReferenceDto.
 type AsCodeFixedDistributionReferenceDto struct {
 	Kind      AsCodeFixedDistributionReferenceDtoKind `json:"kind"`
-	Timestamp *string                                 `json:"timestamp,omitempty"`
+	Timestamp string                                  `json:"timestamp"`
 }
 
 // AsCodeFixedDistributionReferenceDtoKind defines model for AsCodeFixedDistributionReferenceDto.Kind.
@@ -20015,7 +20141,7 @@ type AsCodeFreshnessMonitorParamsDtoV2 struct {
 	GroupBy        *AsCodeGroupByClauseDto                      `json:"groupBy,omitempty"`
 	Kind           *AsCodeFreshnessMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
 	Partition      *AsCodeFreshnessMonitorParamsDtoV2_Partition `json:"partition,omitempty"`
-	Threshold      *AsCodeFreshnessMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+	Threshold      AsCodeFreshnessMonitorParamsDtoV2_Threshold  `json:"threshold"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV2                 `json:"timeWindow,omitempty"`
 	WhereStatement *string                                      `json:"whereStatement,omitempty"`
 }
@@ -20060,7 +20186,7 @@ type AsCodeIncidentDtoSeverity string
 
 // AsCodeIngestionTimePartitionClauseDto defines model for AsCodeIngestionTimePartitionClauseDto.
 type AsCodeIngestionTimePartitionClauseDto struct {
-	Interval *SimpleDuration                            `json:"interval,omitempty"`
+	Interval SimpleDuration                             `json:"interval"`
 	Kind     *AsCodeIngestionTimePartitionClauseDtoKind `json:"kind,omitempty"`
 }
 
@@ -20069,10 +20195,10 @@ type AsCodeIngestionTimePartitionClauseDtoKind string
 
 // AsCodeIntegerRangePartitionClauseDto defines model for AsCodeIntegerRangePartitionClauseDto.
 type AsCodeIntegerRangePartitionClauseDto struct {
-	Field *AsCodeFieldReferenceDto                  `json:"field,omitempty"`
+	Field AsCodeFieldReferenceDto                   `json:"field"`
 	Kind  *AsCodeIntegerRangePartitionClauseDtoKind `json:"kind,omitempty"`
-	Max   *int32                                    `json:"max,omitempty"`
-	Min   *int32                                    `json:"min,omitempty"`
+	Max   int32                                     `json:"max"`
+	Min   int32                                     `json:"min"`
 }
 
 // AsCodeIntegerRangePartitionClauseDtoKind defines model for AsCodeIntegerRangePartitionClauseDto.Kind.
@@ -20129,8 +20255,8 @@ type AsCodeMetadataFreshnessMonitorParamsDtoV1Kind string
 
 // AsCodeMetadataFreshnessMonitorParamsDtoV2 defines model for AsCodeMetadataFreshnessMonitorParamsDtoV2.
 type AsCodeMetadataFreshnessMonitorParamsDtoV2 struct {
-	Kind      *AsCodeMetadataFreshnessMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
-	Threshold *AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+	Kind      *AsCodeMetadataFreshnessMonitorParamsDtoV2Kind      `json:"kind,omitempty"`
+	Threshold AsCodeMetadataFreshnessMonitorParamsDtoV2_Threshold `json:"threshold"`
 }
 
 // AsCodeMetadataFreshnessMonitorParamsDtoV2Kind defines model for AsCodeMetadataFreshnessMonitorParamsDtoV2.Kind.
@@ -20164,14 +20290,14 @@ type AsCodeMetricClauseDto_Partition struct {
 
 // AsCodeMetricsMonitorParamsDto defines model for AsCodeMetricsMonitorParamsDto.
 type AsCodeMetricsMonitorParamsDto struct {
-	Aggregation    *AsCodeMetricsMonitorParamsDto_Aggregation `json:"aggregation,omitempty"`
-	Field          *AsCodeFieldReferenceDto                   `json:"field,omitempty"`
-	GroupBy        *AsCodeGroupByClauseDto                    `json:"groupBy,omitempty"`
-	Kind           *AsCodeMetricsMonitorParamsDtoKind         `json:"kind,omitempty"`
-	Partition      *AsCodeMetricsMonitorParamsDto_Partition   `json:"partition,omitempty"`
-	Threshold      *AsCodeMetricsMonitorParamsDto_Threshold   `json:"threshold,omitempty"`
-	TimeWindow     *AsCodeTimeWindowClauseDtoV2               `json:"timeWindow,omitempty"`
-	WhereStatement *string                                    `json:"whereStatement,omitempty"`
+	Aggregation    AsCodeMetricsMonitorParamsDto_Aggregation `json:"aggregation"`
+	Field          *AsCodeFieldReferenceDto                  `json:"field,omitempty"`
+	GroupBy        *AsCodeGroupByClauseDto                   `json:"groupBy,omitempty"`
+	Kind           *AsCodeMetricsMonitorParamsDtoKind        `json:"kind,omitempty"`
+	Partition      *AsCodeMetricsMonitorParamsDto_Partition  `json:"partition,omitempty"`
+	Threshold      AsCodeMetricsMonitorParamsDto_Threshold   `json:"threshold"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV2              `json:"timeWindow,omitempty"`
+	WhereStatement *string                                   `json:"whereStatement,omitempty"`
 }
 
 // AsCodeMetricsMonitorParamsDto_Aggregation defines model for AsCodeMetricsMonitorParamsDto.Aggregation.
@@ -20244,7 +20370,7 @@ type AsCodeNotificationReferenceDtoKind string
 
 // AsCodeNullCheckConditionDto defines model for AsCodeNullCheckConditionDto.
 type AsCodeNullCheckConditionDto struct {
-	Expression *AsCodeFieldExpressionDto       `json:"expression,omitempty"`
+	Expression AsCodeFieldExpressionDto        `json:"expression"`
 	Kind       AsCodeNullCheckConditionDtoKind `json:"kind"`
 }
 
@@ -20265,9 +20391,9 @@ type AsCodeNullFieldProfilingClauseDtoNullValues string
 
 // AsCodeNumericComparisonConditionDto defines model for AsCodeNumericComparisonConditionDto.
 type AsCodeNumericComparisonConditionDto struct {
-	Kind            AsCodeNumericComparisonConditionDtoKind              `json:"kind"`
-	LeftExpression  *AsCodeFieldExpressionDto                            `json:"leftExpression,omitempty"`
-	RightExpression *AsCodeNumericComparisonConditionDto_RightExpression `json:"rightExpression,omitempty"`
+	Kind            AsCodeNumericComparisonConditionDtoKind             `json:"kind"`
+	LeftExpression  AsCodeFieldExpressionDto                            `json:"leftExpression"`
+	RightExpression AsCodeNumericComparisonConditionDto_RightExpression `json:"rightExpression"`
 }
 
 // AsCodeNumericComparisonConditionDtoKind defines model for AsCodeNumericComparisonConditionDto.Kind.
@@ -20289,7 +20415,7 @@ type AsCodePartitionClauseDtoKind string
 // AsCodeQuantileAggregationClauseDtoV1 defines model for AsCodeQuantileAggregationClauseDtoV1.
 type AsCodeQuantileAggregationClauseDtoV1 struct {
 	Kind     AsCodeQuantileAggregationClauseDtoV1Kind `json:"kind"`
-	Quantile *float32                                 `json:"quantile,omitempty"`
+	Quantile float32                                  `json:"quantile"`
 }
 
 // AsCodeQuantileAggregationClauseDtoV1Kind defines model for AsCodeQuantileAggregationClauseDtoV1.Kind.
@@ -20298,7 +20424,7 @@ type AsCodeQuantileAggregationClauseDtoV1Kind string
 // AsCodeQuantileAggregationClauseDtoV2 defines model for AsCodeQuantileAggregationClauseDtoV2.
 type AsCodeQuantileAggregationClauseDtoV2 struct {
 	Kind     AsCodeQuantileAggregationClauseDtoV2Kind `json:"kind"`
-	Quantile *float32                                 `json:"quantile,omitempty"`
+	Quantile float32                                  `json:"quantile"`
 }
 
 // AsCodeQuantileAggregationClauseDtoV2Kind defines model for AsCodeQuantileAggregationClauseDtoV2.Kind.
@@ -20348,10 +20474,10 @@ type AsCodeReferentialIntegrityLeftDtoV2_Partition struct {
 
 // AsCodeReferentialIntegrityMonitorParamsDtoV1 defines model for AsCodeReferentialIntegrityMonitorParamsDtoV1.
 type AsCodeReferentialIntegrityMonitorParamsDtoV1 struct {
-	Kind      *AsCodeReferentialIntegrityMonitorParamsDtoV1Kind      `json:"kind,omitempty"`
-	Left      *AsCodeReferentialIntegrityLeftDtoV1                   `json:"left,omitempty"`
-	MatchType *AsCodeReferentialIntegrityMonitorParamsDtoV1MatchType `json:"matchType,omitempty"`
-	Right     *AsCodeReferentialIntegrityRightDto                    `json:"right,omitempty"`
+	Kind      *AsCodeReferentialIntegrityMonitorParamsDtoV1Kind     `json:"kind,omitempty"`
+	Left      AsCodeReferentialIntegrityLeftDtoV1                   `json:"left"`
+	MatchType AsCodeReferentialIntegrityMonitorParamsDtoV1MatchType `json:"matchType"`
+	Right     AsCodeReferentialIntegrityRightDto                    `json:"right"`
 }
 
 // AsCodeReferentialIntegrityMonitorParamsDtoV1Kind defines model for AsCodeReferentialIntegrityMonitorParamsDtoV1.Kind.
@@ -20362,11 +20488,11 @@ type AsCodeReferentialIntegrityMonitorParamsDtoV1MatchType string
 
 // AsCodeReferentialIntegrityMonitorParamsDtoV2 defines model for AsCodeReferentialIntegrityMonitorParamsDtoV2.
 type AsCodeReferentialIntegrityMonitorParamsDtoV2 struct {
-	Kind      *AsCodeReferentialIntegrityMonitorParamsDtoV2Kind       `json:"kind,omitempty"`
-	Left      *AsCodeReferentialIntegrityLeftDtoV2                    `json:"left,omitempty"`
-	MatchType *AsCodeReferentialIntegrityMonitorParamsDtoV2MatchType  `json:"matchType,omitempty"`
-	Right     *AsCodeReferentialIntegrityRightDto                     `json:"right,omitempty"`
-	Threshold *AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold `json:"threshold,omitempty"`
+	Kind      *AsCodeReferentialIntegrityMonitorParamsDtoV2Kind      `json:"kind,omitempty"`
+	Left      AsCodeReferentialIntegrityLeftDtoV2                    `json:"left"`
+	MatchType AsCodeReferentialIntegrityMonitorParamsDtoV2MatchType  `json:"matchType"`
+	Right     AsCodeReferentialIntegrityRightDto                     `json:"right"`
+	Threshold AsCodeReferentialIntegrityMonitorParamsDtoV2_Threshold `json:"threshold"`
 }
 
 // AsCodeReferentialIntegrityMonitorParamsDtoV2Kind defines model for AsCodeReferentialIntegrityMonitorParamsDtoV2.Kind.
@@ -20389,7 +20515,7 @@ type AsCodeReferentialIntegrityRightDto struct {
 // AsCodeRegexFieldFormatValidationClauseDto defines model for AsCodeRegexFieldFormatValidationClauseDto.
 type AsCodeRegexFieldFormatValidationClauseDto struct {
 	Kind  AsCodeRegexFieldFormatValidationClauseDtoKind `json:"kind"`
-	Regex *string                                       `json:"regex,omitempty"`
+	Regex string                                        `json:"regex"`
 }
 
 // AsCodeRegexFieldFormatValidationClauseDtoKind defines model for AsCodeRegexFieldFormatValidationClauseDto.Kind.
@@ -20409,7 +20535,7 @@ type AsCodeRowDuplicatesMonitorParamsDto struct {
 	GroupBy        *AsCodeGroupByClauseDto                        `json:"groupBy,omitempty"`
 	Kind           *AsCodeRowDuplicatesMonitorParamsDtoKind       `json:"kind,omitempty"`
 	Partition      *AsCodeRowDuplicatesMonitorParamsDto_Partition `json:"partition,omitempty"`
-	Threshold      *AsCodeRowDuplicatesMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	Threshold      AsCodeRowDuplicatesMonitorParamsDto_Threshold  `json:"threshold"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV2                   `json:"timeWindow,omitempty"`
 	WhereStatement *string                                        `json:"whereStatement,omitempty"`
 }
@@ -20445,8 +20571,8 @@ type AsCodeSqlConditionMonitorParamsDto struct {
 	GroupBy        *AsCodeGroupByClauseDto                       `json:"groupBy,omitempty"`
 	Kind           *AsCodeSqlConditionMonitorParamsDtoKind       `json:"kind,omitempty"`
 	Partition      *AsCodeSqlConditionMonitorParamsDto_Partition `json:"partition,omitempty"`
-	Sql            *string                                       `json:"sql,omitempty"`
-	Threshold      *AsCodeSqlConditionMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	Sql            string                                        `json:"sql"`
+	Threshold      AsCodeSqlConditionMonitorParamsDto_Threshold  `json:"threshold"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV2                  `json:"timeWindow,omitempty"`
 	WhereStatement *string                                       `json:"whereStatement,omitempty"`
 }
@@ -20466,9 +20592,9 @@ type AsCodeSqlConditionMonitorParamsDto_Threshold struct {
 
 // AsCodeSqlMonitorParamsDto defines model for AsCodeSqlMonitorParamsDto.
 type AsCodeSqlMonitorParamsDto struct {
-	Kind      *AsCodeSqlMonitorParamsDtoKind       `json:"kind,omitempty"`
-	Sql       *string                              `json:"sql,omitempty"`
-	Threshold *AsCodeSqlMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	Kind      *AsCodeSqlMonitorParamsDtoKind      `json:"kind,omitempty"`
+	Sql       string                              `json:"sql"`
+	Threshold AsCodeSqlMonitorParamsDto_Threshold `json:"threshold"`
 }
 
 // AsCodeSqlMonitorParamsDtoKind defines model for AsCodeSqlMonitorParamsDto.Kind.
@@ -20484,7 +20610,7 @@ type AsCodeStaticCompletenessMonitorParamsDto struct {
 	GroupBy        *AsCodeGroupByClauseDto                             `json:"groupBy,omitempty"`
 	Kind           *AsCodeStaticCompletenessMonitorParamsDtoKind       `json:"kind,omitempty"`
 	Partition      *AsCodeStaticCompletenessMonitorParamsDto_Partition `json:"partition,omitempty"`
-	Threshold      *AsCodeStaticThresholdWithComparisonModeDto         `json:"threshold,omitempty"`
+	Threshold      AsCodeStaticThresholdWithComparisonModeDto          `json:"threshold"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV1                        `json:"timeWindow,omitempty"`
 	WhereStatement *string                                             `json:"whereStatement,omitempty"`
 }
@@ -20499,11 +20625,11 @@ type AsCodeStaticCompletenessMonitorParamsDto_Partition struct {
 
 // AsCodeStaticFieldProfilingMonitorParamsDto defines model for AsCodeStaticFieldProfilingMonitorParamsDto.
 type AsCodeStaticFieldProfilingMonitorParamsDto struct {
-	Field          *[]string                                             `json:"field,omitempty"`
+	Field          []string                                              `json:"field"`
 	GroupBy        *AsCodeGroupByClauseDto                               `json:"groupBy,omitempty"`
 	Kind           *AsCodeStaticFieldProfilingMonitorParamsDtoKind       `json:"kind,omitempty"`
 	Partition      *AsCodeStaticFieldProfilingMonitorParamsDto_Partition `json:"partition,omitempty"`
-	Profiling      *AsCodeStaticFieldProfilingMonitorParamsDto_Profiling `json:"profiling,omitempty"`
+	Profiling      AsCodeStaticFieldProfilingMonitorParamsDto_Profiling  `json:"profiling"`
 	Threshold      *AsCodeStaticFieldProfilingThresholdDto               `json:"threshold,omitempty"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV1                          `json:"timeWindow,omitempty"`
 	WhereStatement *string                                               `json:"whereStatement,omitempty"`
@@ -20529,18 +20655,24 @@ type AsCodeStaticFieldProfilingThresholdDto struct {
 }
 
 // AsCodeStaticFreshnessThresholdDto defines model for AsCodeStaticFreshnessThresholdDto.
-type AsCodeStaticFreshnessThresholdDto = AsCodeFreshnessThresholdDto
+type AsCodeStaticFreshnessThresholdDto struct {
+	ExcludedDates *[]AsCodeCalendarReferenceDto         `json:"excludedDates,omitempty"`
+	Kind          AsCodeStaticFreshnessThresholdDtoKind `json:"kind"`
+}
+
+// AsCodeStaticFreshnessThresholdDtoKind defines model for AsCodeStaticFreshnessThresholdDto.Kind.
+type AsCodeStaticFreshnessThresholdDtoKind string
 
 // AsCodeStaticMetricMonitorParamsDto defines model for AsCodeStaticMetricMonitorParamsDto.
 type AsCodeStaticMetricMonitorParamsDto struct {
-	Aggregation    *AsCodeStaticMetricMonitorParamsDto_Aggregation `json:"aggregation,omitempty"`
-	Field          *string                                         `json:"field,omitempty"`
-	GroupBy        *AsCodeGroupByClauseDto                         `json:"groupBy,omitempty"`
-	Kind           *AsCodeStaticMetricMonitorParamsDtoKind         `json:"kind,omitempty"`
-	Partition      *AsCodeStaticMetricMonitorParamsDto_Partition   `json:"partition,omitempty"`
-	Threshold      *AsCodeStaticThresholdDtoV1                     `json:"threshold,omitempty"`
-	TimeWindow     *AsCodeTimeWindowClauseDtoV1                    `json:"timeWindow,omitempty"`
-	WhereStatement *string                                         `json:"whereStatement,omitempty"`
+	Aggregation    AsCodeStaticMetricMonitorParamsDto_Aggregation `json:"aggregation"`
+	Field          string                                         `json:"field"`
+	GroupBy        *AsCodeGroupByClauseDto                        `json:"groupBy,omitempty"`
+	Kind           *AsCodeStaticMetricMonitorParamsDtoKind        `json:"kind,omitempty"`
+	Partition      *AsCodeStaticMetricMonitorParamsDto_Partition  `json:"partition,omitempty"`
+	Threshold      AsCodeStaticThresholdDtoV1                     `json:"threshold"`
+	TimeWindow     *AsCodeTimeWindowClauseDtoV1                   `json:"timeWindow,omitempty"`
+	WhereStatement *string                                        `json:"whereStatement,omitempty"`
 }
 
 // AsCodeStaticMetricMonitorParamsDto_Aggregation defines model for AsCodeStaticMetricMonitorParamsDto.Aggregation.
@@ -20601,9 +20733,9 @@ type AsCodeStaticThresholdWithComparisonModeDtoComparisonMode string
 
 // AsCodeStringConditionDto defines model for AsCodeStringConditionDto.
 type AsCodeStringConditionDto struct {
-	Kind            AsCodeStringConditionDtoKind              `json:"kind"`
-	LeftExpression  *AsCodeFieldExpressionDto                 `json:"leftExpression,omitempty"`
-	RightExpression *AsCodeStringConditionDto_RightExpression `json:"rightExpression,omitempty"`
+	Kind            AsCodeStringConditionDtoKind             `json:"kind"`
+	LeftExpression  AsCodeFieldExpressionDto                 `json:"leftExpression"`
+	RightExpression AsCodeStringConditionDto_RightExpression `json:"rightExpression"`
 }
 
 // AsCodeStringConditionDtoKind defines model for AsCodeStringConditionDto.Kind.
@@ -20639,8 +20771,8 @@ type AsCodeThresholdBaseDtoValueMode string
 
 // AsCodeTimeUnitColumnPartitionClauseDto defines model for AsCodeTimeUnitColumnPartitionClauseDto.
 type AsCodeTimeUnitColumnPartitionClauseDto struct {
-	Field    *AsCodeFieldReferenceDto                    `json:"field,omitempty"`
-	Interval *SimpleDuration                             `json:"interval,omitempty"`
+	Field    AsCodeFieldReferenceDto                     `json:"field"`
+	Interval SimpleDuration                              `json:"interval"`
 	Kind     *AsCodeTimeUnitColumnPartitionClauseDtoKind `json:"kind,omitempty"`
 }
 
@@ -20703,7 +20835,7 @@ type AsCodeTimeWindowWithOffsetFrequencyAndRollingClauseDto struct {
 // AsCodeValueExpressionDto defines model for AsCodeValueExpressionDto.
 type AsCodeValueExpressionDto struct {
 	Kind  AsCodeValueExpressionDtoKind `json:"kind"`
-	Value *string                      `json:"value,omitempty"`
+	Value string                       `json:"value"`
 }
 
 // AsCodeValueExpressionDtoKind defines model for AsCodeValueExpressionDto.Kind.
@@ -20711,12 +20843,12 @@ type AsCodeValueExpressionDtoKind string
 
 // AsCodeValueRangeMonitorParamsDto defines model for AsCodeValueRangeMonitorParamsDto.
 type AsCodeValueRangeMonitorParamsDto struct {
-	Field          *AsCodeFieldReferenceDto                    `json:"field,omitempty"`
+	Field          AsCodeFieldReferenceDto                     `json:"field"`
 	GroupBy        *AsCodeGroupByClauseDto                     `json:"groupBy,omitempty"`
 	Kind           *AsCodeValueRangeMonitorParamsDtoKind       `json:"kind,omitempty"`
 	Partition      *AsCodeValueRangeMonitorParamsDto_Partition `json:"partition,omitempty"`
-	Range          *AsCodeRangeDto                             `json:"range,omitempty"`
-	Threshold      *AsCodeValueRangeMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	Range          AsCodeRangeDto                              `json:"range"`
+	Threshold      AsCodeValueRangeMonitorParamsDto_Threshold  `json:"threshold"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV2                `json:"timeWindow,omitempty"`
 	WhereStatement *string                                     `json:"whereStatement,omitempty"`
 }
@@ -20740,7 +20872,7 @@ type AsCodeVolumeMonitorParamsDto struct {
 	Kind           *AsCodeVolumeMonitorParamsDtoKind       `json:"kind,omitempty"`
 	MetadataBased  *bool                                   `json:"metadataBased,omitempty"`
 	Partition      *AsCodeVolumeMonitorParamsDto_Partition `json:"partition,omitempty"`
-	Threshold      *AsCodeVolumeMonitorParamsDto_Threshold `json:"threshold,omitempty"`
+	Threshold      AsCodeVolumeMonitorParamsDto_Threshold  `json:"threshold"`
 	TimeWindow     *AsCodeTimeWindowClauseDtoV2            `json:"timeWindow,omitempty"`
 	WhereStatement *string                                 `json:"whereStatement,omitempty"`
 }
@@ -20981,7 +21113,7 @@ type EntityCustomMetadataEntryDtoType string
 type EntityCustomMetadataEntryLabelDto struct {
 	Id    openapi_types.UUID                    `json:"id"`
 	Type  EntityCustomMetadataEntryLabelDtoType `json:"type"`
-	Value *string                               `json:"value,omitempty"`
+	Value string                                `json:"value"`
 }
 
 // EntityCustomMetadataEntryLabelDtoType defines model for EntityCustomMetadataEntryLabelDto.Type.
@@ -20991,7 +21123,7 @@ type EntityCustomMetadataEntryLabelDtoType string
 type EntityCustomMetadataEntryStringDto struct {
 	Id    openapi_types.UUID                     `json:"id"`
 	Type  EntityCustomMetadataEntryStringDtoType `json:"type"`
-	Value *string                                `json:"value,omitempty"`
+	Value string                                 `json:"value"`
 }
 
 // EntityCustomMetadataEntryStringDtoType defines model for EntityCustomMetadataEntryStringDto.Type.
@@ -21000,8 +21132,8 @@ type EntityCustomMetadataEntryStringDtoType string
 // EntityCustomMetadataEntryTeamDto defines model for EntityCustomMetadataEntryTeamDto.
 type EntityCustomMetadataEntryTeamDto struct {
 	Id     openapi_types.UUID                   `json:"id"`
-	Name   *string                              `json:"name,omitempty"`
-	TeamId *openapi_types.UUID                  `json:"teamId,omitempty"`
+	Name   string                               `json:"name"`
+	TeamId openapi_types.UUID                   `json:"teamId"`
 	Type   EntityCustomMetadataEntryTeamDtoType `json:"type"`
 }
 
@@ -21011,10 +21143,10 @@ type EntityCustomMetadataEntryTeamDtoType string
 // EntityCustomMetadataEntryUserDto defines model for EntityCustomMetadataEntryUserDto.
 type EntityCustomMetadataEntryUserDto struct {
 	Id     openapi_types.UUID                   `json:"id"`
-	Login  *string                              `json:"login,omitempty"`
-	Name   *string                              `json:"name,omitempty"`
+	Login  string                               `json:"login"`
+	Name   string                               `json:"name"`
 	Type   EntityCustomMetadataEntryUserDtoType `json:"type"`
-	UserId *openapi_types.UUID                  `json:"userId,omitempty"`
+	UserId openapi_types.UUID                   `json:"userId"`
 }
 
 // EntityCustomMetadataEntryUserDtoType defines model for EntityCustomMetadataEntryUserDto.Type.
@@ -21068,7 +21200,16 @@ type GitConnection struct {
 type GitConnectionAuthType string
 
 // GoogleChatWebhookParams defines model for GoogleChatWebhookParams.
-type GoogleChatWebhookParams = AlertingHookParams
+type GoogleChatWebhookParams struct {
+	Scope GoogleChatWebhookParamsScope `json:"scope"`
+	Type  GoogleChatWebhookParamsType  `json:"type"`
+}
+
+// GoogleChatWebhookParamsScope defines model for GoogleChatWebhookParams.Scope.
+type GoogleChatWebhookParamsScope string
+
+// GoogleChatWebhookParamsType defines model for GoogleChatWebhookParams.Type.
+type GoogleChatWebhookParamsType string
 
 // GroupDecryptedValuesDto defines model for GroupDecryptedValuesDto.
 type GroupDecryptedValuesDto struct {
@@ -21293,12 +21434,12 @@ type PublicAirflowParametersDto struct {
 	// Host Your Airflow server hostname
 	//
 	// Example: airflow.example.com
-	Host *string `json:"host,omitempty"`
+	Host string `json:"host"`
 
 	// Port Your Airflow server port
 	//
 	// Example: 8080
-	Port *int32                         `json:"port,omitempty"`
+	Port int32                          `json:"port"`
 	Type PublicAirflowParametersDtoType `json:"type"`
 }
 
@@ -21386,27 +21527,27 @@ type PublicAthenaParametersDto struct {
 	// Database Your Athena database name
 	//
 	// Example: my_database
-	Database *string `json:"database,omitempty"`
+	Database string `json:"database"`
 
 	// Datasource Your Athena data source name
 	//
 	// Example: AwsDataCatalog
-	Datasource *string `json:"datasource,omitempty"`
+	Datasource string `json:"datasource"`
 
 	// Region Your Athena instance AWS region
 	//
 	// Example: us-east-1
-	Region *string `json:"region,omitempty"`
+	Region string `json:"region"`
 
 	// RoleArn ARN of the IAM role to use for Athena queries
 	//
 	// Example: arn:aws:iam::123456789101:role/sifflet_athena_read_role
-	RoleArn *string `json:"roleArn,omitempty"`
+	RoleArn string `json:"roleArn"`
 
 	// S3OutputLocation The S3 location where Athena query results are stored
 	//
 	// Example: s3://my-athena-bucket/
-	S3OutputLocation *string                       `json:"s3OutputLocation,omitempty"`
+	S3OutputLocation string                        `json:"s3OutputLocation"`
 	Type             PublicAthenaParametersDtoType `json:"type"`
 
 	// VpcUrl Your VPC URL for Athena connection
@@ -21415,7 +21556,7 @@ type PublicAthenaParametersDto struct {
 	// Workgroup Your Athena workgroup name
 	//
 	// Example: primary
-	Workgroup *string `json:"workgroup,omitempty"`
+	Workgroup string `json:"workgroup"`
 }
 
 // PublicAthenaParametersDtoType defines model for PublicAthenaParametersDto.Type.
@@ -21431,12 +21572,12 @@ type PublicBigQueryParametersDto struct {
 	// DatasetId Your BigQuery dataset ID
 	//
 	// Example: dataset-id
-	DatasetId *string `json:"datasetId,omitempty"`
+	DatasetId string `json:"datasetId"`
 
 	// ProjectId Your BigQuery project ID
 	//
 	// Example: gcp-project-id
-	ProjectId *string                         `json:"projectId,omitempty"`
+	ProjectId string                          `json:"projectId"`
 	Type      PublicBigQueryParametersDtoType `json:"type"`
 
 	// WorkerProjectIds Comma separated list of project ids where your queries run. Optional if it's the same as the projectId parameter
@@ -21478,16 +21619,16 @@ type PublicCalendarUpdateDto struct {
 // PublicCreateAdfSourceV2Dto defines model for PublicCreateAdfSourceV2Dto.
 type PublicCreateAdfSourceV2Dto struct {
 	// AdfInformation ADF connection settings
-	AdfInformation *AdfInformation `json:"adfInformation,omitempty"`
+	AdfInformation AdfInformation `json:"adfInformation"`
 
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateAdfSourceV2DtoType `json:"type"`
@@ -21499,16 +21640,16 @@ type PublicCreateAdfSourceV2DtoType string
 // PublicCreateAirflowSourceV2Dto defines model for PublicCreateAirflowSourceV2Dto.
 type PublicCreateAirflowSourceV2Dto struct {
 	// AirflowInformation Airflow connection settings
-	AirflowInformation *AirflowInformation `json:"airflowInformation,omitempty"`
+	AirflowInformation AirflowInformation `json:"airflowInformation"`
 
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateAirflowSourceV2DtoType `json:"type"`
@@ -21520,13 +21661,13 @@ type PublicCreateAirflowSourceV2DtoType string
 // PublicCreateAthenaSourceV2Dto defines model for PublicCreateAthenaSourceV2Dto.
 type PublicCreateAthenaSourceV2Dto struct {
 	// AthenaInformation Athena connection settings
-	AthenaInformation *AthenaInformation `json:"athenaInformation,omitempty"`
+	AthenaInformation AthenaInformation `json:"athenaInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateAthenaSourceV2DtoType `json:"type"`
@@ -21538,16 +21679,16 @@ type PublicCreateAthenaSourceV2DtoType string
 // PublicCreateBigQuerySourceV2Dto defines model for PublicCreateBigQuerySourceV2Dto.
 type PublicCreateBigQuerySourceV2Dto struct {
 	// BigQueryInformation BigQuery connection settings
-	BigQueryInformation *BigQueryInformation `json:"bigQueryInformation,omitempty"`
+	BigQueryInformation BigQueryInformation `json:"bigQueryInformation"`
 
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateBigQuerySourceV2DtoType `json:"type"`
@@ -21559,16 +21700,16 @@ type PublicCreateBigQuerySourceV2DtoType string
 // PublicCreateDatabricksJobsSourceV2Dto defines model for PublicCreateDatabricksJobsSourceV2Dto.
 type PublicCreateDatabricksJobsSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// DatabricksJobsInformation Databricks Jobs connection settings
-	DatabricksJobsInformation *DatabricksJobsInformation `json:"databricksJobsInformation,omitempty"`
+	DatabricksJobsInformation DatabricksJobsInformation `json:"databricksJobsInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateDatabricksJobsSourceV2DtoType `json:"type"`
@@ -21580,16 +21721,16 @@ type PublicCreateDatabricksJobsSourceV2DtoType string
 // PublicCreateDatabricksSourceV2Dto defines model for PublicCreateDatabricksSourceV2Dto.
 type PublicCreateDatabricksSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// DatabricksInformation Databricks connection settings
-	DatabricksInformation *DatabricksInformation `json:"databricksInformation,omitempty"`
+	DatabricksInformation DatabricksInformation `json:"databricksInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateDatabricksSourceV2DtoType `json:"type"`
@@ -21601,16 +21742,16 @@ type PublicCreateDatabricksSourceV2DtoType string
 // PublicCreateDbtCloudSourceV2Dto defines model for PublicCreateDbtCloudSourceV2Dto.
 type PublicCreateDbtCloudSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// DbtCloudInformation DBT Cloud connection settings
-	DbtCloudInformation *DbtCloudInformation `json:"dbtCloudInformation,omitempty"`
+	DbtCloudInformation DbtCloudInformation `json:"dbtCloudInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateDbtCloudSourceV2DtoType `json:"type"`
@@ -21622,7 +21763,7 @@ type PublicCreateDbtCloudSourceV2DtoType string
 // PublicCreateDbtSourceV2Dto defines model for PublicCreateDbtSourceV2Dto.
 type PublicCreateDbtSourceV2Dto struct {
 	// DbtInformation DBT connection settings
-	DbtInformation *DbtInformation `json:"dbtInformation,omitempty"`
+	DbtInformation DbtInformation `json:"dbtInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
@@ -21656,16 +21797,16 @@ type PublicCreateDomainDto_AssetContentDefinition struct {
 // PublicCreateFivetranSourceV2Dto defines model for PublicCreateFivetranSourceV2Dto.
 type PublicCreateFivetranSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// FivetranInformation Fivetran connection settings
-	FivetranInformation *FivetranInformation `json:"fivetranInformation,omitempty"`
+	FivetranInformation FivetranInformation `json:"fivetranInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateFivetranSourceV2DtoType `json:"type"`
@@ -21677,16 +21818,16 @@ type PublicCreateFivetranSourceV2DtoType string
 // PublicCreateLookerSourceV2Dto defines model for PublicCreateLookerSourceV2Dto.
 type PublicCreateLookerSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// LookerInformation Looker connection settings
-	LookerInformation *LookerInformation `json:"lookerInformation,omitempty"`
+	LookerInformation LookerInformation `json:"lookerInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateLookerSourceV2DtoType `json:"type"`
@@ -21698,16 +21839,16 @@ type PublicCreateLookerSourceV2DtoType string
 // PublicCreateMicrostrategySourceV2Dto defines model for PublicCreateMicrostrategySourceV2Dto.
 type PublicCreateMicrostrategySourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// MicrostrategyInformation MicroStrategy connection settings
-	MicrostrategyInformation *MicrostrategyInformation `json:"microstrategyInformation,omitempty"`
+	MicrostrategyInformation MicrostrategyInformation `json:"microstrategyInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateMicrostrategySourceV2DtoType `json:"type"`
@@ -21719,16 +21860,16 @@ type PublicCreateMicrostrategySourceV2DtoType string
 // PublicCreateMssqlSourceV2Dto defines model for PublicCreateMssqlSourceV2Dto.
 type PublicCreateMssqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// MssqlInformation MSSQL connection settings
-	MssqlInformation *MssqlInformation `json:"mssqlInformation,omitempty"`
+	MssqlInformation MssqlInformation `json:"mssqlInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateMssqlSourceV2DtoType `json:"type"`
@@ -21740,16 +21881,16 @@ type PublicCreateMssqlSourceV2DtoType string
 // PublicCreateMysqlSourceV2Dto defines model for PublicCreateMysqlSourceV2Dto.
 type PublicCreateMysqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// MysqlInformation MySQL connection settings
-	MysqlInformation *MysqlInformation `json:"mysqlInformation,omitempty"`
+	MysqlInformation MysqlInformation `json:"mysqlInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateMysqlSourceV2DtoType `json:"type"`
@@ -21761,16 +21902,16 @@ type PublicCreateMysqlSourceV2DtoType string
 // PublicCreateOracleSourceV2Dto defines model for PublicCreateOracleSourceV2Dto.
 type PublicCreateOracleSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// OracleInformation Oracle connection settings
-	OracleInformation *OracleInformation `json:"oracleInformation,omitempty"`
+	OracleInformation OracleInformation `json:"oracleInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateOracleSourceV2DtoType `json:"type"`
@@ -21782,16 +21923,16 @@ type PublicCreateOracleSourceV2DtoType string
 // PublicCreatePostgresqlSourceV2Dto defines model for PublicCreatePostgresqlSourceV2Dto.
 type PublicCreatePostgresqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// PostgresqlInformation PostgreSQL connection settings
-	PostgresqlInformation *PostgresqlInformation `json:"postgresqlInformation,omitempty"`
+	PostgresqlInformation PostgresqlInformation `json:"postgresqlInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreatePostgresqlSourceV2DtoType `json:"type"`
@@ -21803,16 +21944,16 @@ type PublicCreatePostgresqlSourceV2DtoType string
 // PublicCreatePowerBiSourceV2Dto defines model for PublicCreatePowerBiSourceV2Dto.
 type PublicCreatePowerBiSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// PowerBiInformation Power BI connection settings
-	PowerBiInformation *PowerBiInformation `json:"powerBiInformation,omitempty"`
+	PowerBiInformation PowerBiInformation `json:"powerBiInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreatePowerBiSourceV2DtoType `json:"type"`
@@ -21824,16 +21965,16 @@ type PublicCreatePowerBiSourceV2DtoType string
 // PublicCreateQlikSourceV2Dto defines model for PublicCreateQlikSourceV2Dto.
 type PublicCreateQlikSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// QlikInformation Qlik connection settings
-	QlikInformation *QlikInformation `json:"qlikInformation,omitempty"`
+	QlikInformation QlikInformation `json:"qlikInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateQlikSourceV2DtoType `json:"type"`
@@ -21848,10 +21989,10 @@ type PublicCreateQuicksightSourceV2Dto struct {
 	Name string `json:"name"`
 
 	// QuicksightInformation QuickSight connection settings
-	QuicksightInformation *QuicksightInformation `json:"quicksightInformation,omitempty"`
+	QuicksightInformation QuicksightInformation `json:"quicksightInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateQuicksightSourceV2DtoType `json:"type"`
@@ -21863,16 +22004,16 @@ type PublicCreateQuicksightSourceV2DtoType string
 // PublicCreateRedshiftSourceV2Dto defines model for PublicCreateRedshiftSourceV2Dto.
 type PublicCreateRedshiftSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// RedshiftInformation Redshift connection settings
-	RedshiftInformation *RedshiftInformation `json:"redshiftInformation,omitempty"`
+	RedshiftInformation RedshiftInformation `json:"redshiftInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// Type Source type
 	Type PublicCreateRedshiftSourceV2DtoType `json:"type"`
@@ -21884,16 +22025,16 @@ type PublicCreateRedshiftSourceV2DtoType string
 // PublicCreateSnowflakeSourceV2Dto defines model for PublicCreateSnowflakeSourceV2Dto.
 type PublicCreateSnowflakeSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// SnowflakeInformation Snowflake connection settings
-	SnowflakeInformation *SnowflakeInformation `json:"snowflakeInformation,omitempty"`
+	SnowflakeInformation SnowflakeInformation `json:"snowflakeInformation"`
 
 	// Type Source type
 	Type PublicCreateSnowflakeSourceV2DtoType `json:"type"`
@@ -21944,16 +22085,16 @@ type PublicCreateSourceV2DtoType string
 // PublicCreateSynapseSourceV2Dto defines model for PublicCreateSynapseSourceV2Dto.
 type PublicCreateSynapseSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// SynapseInformation Synapse connection settings
-	SynapseInformation *SynapseInformation `json:"synapseInformation,omitempty"`
+	SynapseInformation SynapseInformation `json:"synapseInformation"`
 
 	// Type Source type
 	Type PublicCreateSynapseSourceV2DtoType `json:"type"`
@@ -21965,16 +22106,16 @@ type PublicCreateSynapseSourceV2DtoType string
 // PublicCreateTableauSourceV2Dto defines model for PublicCreateTableauSourceV2Dto.
 type PublicCreateTableauSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name string `json:"name"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
-	Schedule *string `json:"schedule,omitempty"`
+	Schedule *string `json:"schedule"`
 
 	// TableauInformation Tableau connection settings
-	TableauInformation *TableauInformation `json:"tableauInformation,omitempty"`
+	TableauInformation TableauInformation `json:"tableauInformation"`
 
 	// Type Source type
 	Type PublicCreateTableauSourceV2DtoType `json:"type"`
@@ -22052,7 +22193,7 @@ type PublicCustomMetadataEntryLabelReferenceDto struct {
 	CustomMetadataName string `json:"customMetadataName"`
 
 	// LabelValue Value of the referenced custom metadata label
-	LabelValue *string                                        `json:"labelValue,omitempty"`
+	LabelValue string                                         `json:"labelValue"`
 	Type       PublicCustomMetadataEntryLabelReferenceDtoType `json:"type"`
 }
 
@@ -22075,7 +22216,7 @@ type PublicCustomMetadataEntryStringReferenceDto struct {
 	CustomMetadataName string `json:"customMetadataName"`
 
 	// StringValue Value of the referenced custom metadata string
-	StringValue *string                                         `json:"stringValue,omitempty"`
+	StringValue string                                          `json:"stringValue"`
 	Type        PublicCustomMetadataEntryStringReferenceDtoType `json:"type"`
 }
 
@@ -22088,7 +22229,7 @@ type PublicCustomMetadataEntryTeamReferenceDto struct {
 	CustomMetadataName string `json:"customMetadataName"`
 
 	// Name Value of the referenced custom metadata team name
-	Name *string                                       `json:"name,omitempty"`
+	Name string                                        `json:"name"`
 	Type PublicCustomMetadataEntryTeamReferenceDtoType `json:"type"`
 }
 
@@ -22101,7 +22242,7 @@ type PublicCustomMetadataEntryUserReferenceDto struct {
 	CustomMetadataName string `json:"customMetadataName"`
 
 	// Email Value of the referenced custom metadata user email
-	Email *string                                       `json:"email,omitempty"`
+	Email string                                        `json:"email"`
 	Type  PublicCustomMetadataEntryUserReferenceDtoType `json:"type"`
 }
 
@@ -22113,27 +22254,27 @@ type PublicDatabricksParametersDto struct {
 	// Catalog Your Databricks catalog
 	//
 	// Example: main
-	Catalog *string `json:"catalog,omitempty"`
+	Catalog string `json:"catalog"`
 
 	// Host Your Databricks server hostname
 	//
 	// Example: abc-123ab1234-abc1.cloud.databricks.com
-	Host *string `json:"host,omitempty"`
+	Host string `json:"host"`
 
 	// HttpPath Your Databricks HTTP path
 	//
 	// Example: /sql/1.0/warehouses/0123456789
-	HttpPath *string `json:"httpPath,omitempty"`
+	HttpPath string `json:"httpPath"`
 
 	// Port Your Databricks server port
 	//
 	// Example: 443
-	Port *int32 `json:"port,omitempty"`
+	Port int32 `json:"port"`
 
 	// Schema Your Databricks schema
 	//
 	// Example: default
-	Schema *string                           `json:"schema,omitempty"`
+	Schema string                            `json:"schema"`
 	Type   PublicDatabricksParametersDtoType `json:"type"`
 }
 
@@ -22145,12 +22286,12 @@ type PublicDbtCloudParametersDto struct {
 	// AccountId Your dbt Cloud account ID
 	//
 	// Example: 12345
-	AccountId *string `json:"accountId,omitempty"`
+	AccountId string `json:"accountId"`
 
 	// BaseUrl Your dbt Cloud base URL
 	//
 	// Example: https://cloud.getdbt.com/api/v2
-	BaseUrl *string `json:"baseUrl,omitempty"`
+	BaseUrl string `json:"baseUrl"`
 
 	// JobDefinitionId Your dbt Cloud job ID
 	//
@@ -22160,7 +22301,7 @@ type PublicDbtCloudParametersDto struct {
 	// ProjectId Your dbt Cloud project ID
 	//
 	// Example: 67890
-	ProjectId *string                         `json:"projectId,omitempty"`
+	ProjectId string                          `json:"projectId"`
 	Type      PublicDbtCloudParametersDtoType `json:"type"`
 }
 
@@ -22172,12 +22313,12 @@ type PublicDbtParametersDto struct {
 	// ProjectName Your dbt project name (the 'name' value in your dbt_project.yml file)
 	//
 	// Example: my_project
-	ProjectName *string `json:"projectName,omitempty"`
+	ProjectName string `json:"projectName"`
 
 	// Target Your dbt target name (the 'target' value in your profiles.yml file)
 	//
 	// Example: dev
-	Target *string                    `json:"target,omitempty"`
+	Target string                     `json:"target"`
 	Type   PublicDbtParametersDtoType `json:"type"`
 }
 
@@ -22248,8 +22389,13 @@ type PublicDeclarativeLineageListDto struct {
 	To *[]string `json:"to,omitempty"`
 }
 
-// PublicDeclarativeParametersDto Parameters of the source
-type PublicDeclarativeParametersDto = PublicSourceParametersDto
+// PublicDeclarativeParametersDto defines model for PublicDeclarativeParametersDto.
+type PublicDeclarativeParametersDto struct {
+	Type PublicDeclarativeParametersDtoType `json:"type"`
+}
+
+// PublicDeclarativeParametersDtoType defines model for PublicDeclarativeParametersDto.Type.
+type PublicDeclarativeParametersDtoType string
 
 // PublicDeclarativePayloadDto defines model for PublicDeclarativePayloadDto.
 type PublicDeclarativePayloadDto struct {
@@ -22320,10 +22466,10 @@ type PublicDomainTeamPermissionDtoDomainRole string
 // PublicDynamicDomainContentDefinitionDto defines model for PublicDynamicDomainContentDefinitionDto.
 type PublicDynamicDomainContentDefinitionDto struct {
 	// Conditions List of the conditions defining content of the domain
-	Conditions *[]PublicDynamicDomainContentDefinitionDto_Conditions_Item `json:"conditions,omitempty"`
+	Conditions []PublicDynamicDomainContentDefinitionDto_Conditions_Item `json:"conditions"`
 
 	// FilterLogicalOperator Logical operator to use between conditions
-	FilterLogicalOperator *PublicDynamicDomainContentDefinitionDtoFilterLogicalOperator `json:"filterLogicalOperator,omitempty"`
+	FilterLogicalOperator PublicDynamicDomainContentDefinitionDtoFilterLogicalOperator `json:"filterLogicalOperator"`
 
 	// Type Type of the domain content definition
 	Type PublicDynamicDomainContentDefinitionDtoType `json:"type"`
@@ -22388,7 +22534,7 @@ type PublicFivetranParametersDto struct {
 	// Host Your Fivetran environment URL
 	//
 	// Example: https://api.fivetran.com
-	Host *string                         `json:"host,omitempty"`
+	Host string                          `json:"host"`
 	Type PublicFivetranParametersDtoType `json:"type"`
 }
 
@@ -22398,10 +22544,10 @@ type PublicFivetranParametersDtoType string
 // PublicGetAdfSourceV2Dto defines model for PublicGetAdfSourceV2Dto.
 type PublicGetAdfSourceV2Dto struct {
 	// AdfInformation ADF connection settings
-	AdfInformation *AdfInformation `json:"adfInformation,omitempty"`
+	AdfInformation AdfInformation `json:"adfInformation"`
 
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -22425,10 +22571,10 @@ type PublicGetAdfSourceV2DtoType string
 // PublicGetAirflowSourceV2Dto defines model for PublicGetAirflowSourceV2Dto.
 type PublicGetAirflowSourceV2Dto struct {
 	// AirflowInformation Airflow connection settings
-	AirflowInformation *AirflowInformation `json:"airflowInformation,omitempty"`
+	AirflowInformation AirflowInformation `json:"airflowInformation"`
 
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -22657,7 +22803,7 @@ type PublicGetAssetRequestDto struct {
 // PublicGetAthenaSourceV2Dto defines model for PublicGetAthenaSourceV2Dto.
 type PublicGetAthenaSourceV2Dto struct {
 	// AthenaInformation Athena connection settings
-	AthenaInformation *AthenaInformation `json:"athenaInformation,omitempty"`
+	AthenaInformation AthenaInformation `json:"athenaInformation"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -22681,10 +22827,10 @@ type PublicGetAthenaSourceV2DtoType string
 // PublicGetBigQuerySourceV2Dto defines model for PublicGetBigQuerySourceV2Dto.
 type PublicGetBigQuerySourceV2Dto struct {
 	// BigQueryInformation BigQuery connection settings
-	BigQueryInformation *BigQueryInformation `json:"bigQueryInformation,omitempty"`
+	BigQueryInformation BigQueryInformation `json:"bigQueryInformation"`
 
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -22719,7 +22865,7 @@ type PublicGetCustomMetadataEntryDtoType string
 type PublicGetCustomMetadataEntryLabelDto struct {
 	// CustomMetadataName Name of the referenced custom metadata
 	CustomMetadataName string                                   `json:"customMetadataName"`
-	LabelValue         *string                                  `json:"labelValue,omitempty"`
+	LabelValue         string                                   `json:"labelValue"`
 	Type               PublicGetCustomMetadataEntryLabelDtoType `json:"type"`
 }
 
@@ -22730,7 +22876,7 @@ type PublicGetCustomMetadataEntryLabelDtoType string
 type PublicGetCustomMetadataEntryStringDto struct {
 	// CustomMetadataName Name of the referenced custom metadata
 	CustomMetadataName string                                    `json:"customMetadataName"`
-	StringValue        *string                                   `json:"stringValue,omitempty"`
+	StringValue        string                                    `json:"stringValue"`
 	Type               PublicGetCustomMetadataEntryStringDtoType `json:"type"`
 }
 
@@ -22741,7 +22887,7 @@ type PublicGetCustomMetadataEntryStringDtoType string
 type PublicGetCustomMetadataEntryTeamDto struct {
 	// CustomMetadataName Name of the referenced custom metadata
 	CustomMetadataName string                                  `json:"customMetadataName"`
-	Name               *string                                 `json:"name,omitempty"`
+	Name               string                                  `json:"name"`
 	Type               PublicGetCustomMetadataEntryTeamDtoType `json:"type"`
 }
 
@@ -22752,7 +22898,7 @@ type PublicGetCustomMetadataEntryTeamDtoType string
 type PublicGetCustomMetadataEntryUserDto struct {
 	// CustomMetadataName Name of the referenced custom metadata
 	CustomMetadataName string                                  `json:"customMetadataName"`
-	Email              *string                                 `json:"email,omitempty"`
+	Email              string                                  `json:"email"`
 	Type               PublicGetCustomMetadataEntryUserDtoType `json:"type"`
 }
 
@@ -22762,10 +22908,10 @@ type PublicGetCustomMetadataEntryUserDtoType string
 // PublicGetDatabricksJobsSourceV2Dto defines model for PublicGetDatabricksJobsSourceV2Dto.
 type PublicGetDatabricksJobsSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// DatabricksJobsInformation Databricks Jobs connection settings
-	DatabricksJobsInformation *DatabricksJobsInformation `json:"databricksJobsInformation,omitempty"`
+	DatabricksJobsInformation DatabricksJobsInformation `json:"databricksJobsInformation"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -22789,10 +22935,10 @@ type PublicGetDatabricksJobsSourceV2DtoType string
 // PublicGetDatabricksSourceV2Dto defines model for PublicGetDatabricksSourceV2Dto.
 type PublicGetDatabricksSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// DatabricksInformation Databricks connection settings
-	DatabricksInformation *DatabricksInformation `json:"databricksInformation,omitempty"`
+	DatabricksInformation DatabricksInformation `json:"databricksInformation"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -22816,10 +22962,10 @@ type PublicGetDatabricksSourceV2DtoType string
 // PublicGetDbtCloudSourceV2Dto defines model for PublicGetDbtCloudSourceV2Dto.
 type PublicGetDbtCloudSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// DbtCloudInformation DBT Cloud connection settings
-	DbtCloudInformation *DbtCloudInformation `json:"dbtCloudInformation,omitempty"`
+	DbtCloudInformation DbtCloudInformation `json:"dbtCloudInformation"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -22843,7 +22989,7 @@ type PublicGetDbtCloudSourceV2DtoType string
 // PublicGetDbtSourceV2Dto defines model for PublicGetDbtSourceV2Dto.
 type PublicGetDbtSourceV2Dto struct {
 	// DbtInformation DBT connection settings
-	DbtInformation *DbtInformation `json:"dbtInformation,omitempty"`
+	DbtInformation DbtInformation `json:"dbtInformation"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -22890,10 +23036,10 @@ type PublicGetDomainDto_AssetContentDefinition struct {
 // PublicGetFivetranSourceV2Dto defines model for PublicGetFivetranSourceV2Dto.
 type PublicGetFivetranSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// FivetranInformation Fivetran connection settings
-	FivetranInformation *FivetranInformation `json:"fivetranInformation,omitempty"`
+	FivetranInformation FivetranInformation `json:"fivetranInformation"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -22941,7 +23087,7 @@ type PublicGetLastRunV2DtoStatus string
 // PublicGetLookerSourceV2Dto defines model for PublicGetLookerSourceV2Dto.
 type PublicGetLookerSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -22950,7 +23096,7 @@ type PublicGetLookerSourceV2Dto struct {
 	LastRun *PublicGetLastRunV2Dto `json:"lastRun,omitempty"`
 
 	// LookerInformation Looker connection settings
-	LookerInformation *LookerInformation `json:"lookerInformation,omitempty"`
+	LookerInformation LookerInformation `json:"lookerInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
@@ -22968,7 +23114,7 @@ type PublicGetLookerSourceV2DtoType string
 // PublicGetMicrostrategySourceV2Dto defines model for PublicGetMicrostrategySourceV2Dto.
 type PublicGetMicrostrategySourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -22977,7 +23123,7 @@ type PublicGetMicrostrategySourceV2Dto struct {
 	LastRun *PublicGetLastRunV2Dto `json:"lastRun,omitempty"`
 
 	// MicrostrategyInformation MicroStrategy connection settings
-	MicrostrategyInformation *MicrostrategyInformation `json:"microstrategyInformation,omitempty"`
+	MicrostrategyInformation MicrostrategyInformation `json:"microstrategyInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
@@ -22995,7 +23141,7 @@ type PublicGetMicrostrategySourceV2DtoType string
 // PublicGetMssqlSourceV2Dto defines model for PublicGetMssqlSourceV2Dto.
 type PublicGetMssqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -23004,7 +23150,7 @@ type PublicGetMssqlSourceV2Dto struct {
 	LastRun *PublicGetLastRunV2Dto `json:"lastRun,omitempty"`
 
 	// MssqlInformation MSSQL connection settings
-	MssqlInformation *MssqlInformation `json:"mssqlInformation,omitempty"`
+	MssqlInformation MssqlInformation `json:"mssqlInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
@@ -23022,7 +23168,7 @@ type PublicGetMssqlSourceV2DtoType string
 // PublicGetMysqlSourceV2Dto defines model for PublicGetMysqlSourceV2Dto.
 type PublicGetMysqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -23031,7 +23177,7 @@ type PublicGetMysqlSourceV2Dto struct {
 	LastRun *PublicGetLastRunV2Dto `json:"lastRun,omitempty"`
 
 	// MysqlInformation MySQL connection settings
-	MysqlInformation *MysqlInformation `json:"mysqlInformation,omitempty"`
+	MysqlInformation MysqlInformation `json:"mysqlInformation"`
 
 	// Name Name of the source
 	Name string `json:"name"`
@@ -23049,7 +23195,7 @@ type PublicGetMysqlSourceV2DtoType string
 // PublicGetOracleSourceV2Dto defines model for PublicGetOracleSourceV2Dto.
 type PublicGetOracleSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -23061,7 +23207,7 @@ type PublicGetOracleSourceV2Dto struct {
 	Name string `json:"name"`
 
 	// OracleInformation Oracle connection settings
-	OracleInformation *OracleInformation `json:"oracleInformation,omitempty"`
+	OracleInformation OracleInformation `json:"oracleInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -23076,7 +23222,7 @@ type PublicGetOracleSourceV2DtoType string
 // PublicGetPostgresqlSourceV2Dto defines model for PublicGetPostgresqlSourceV2Dto.
 type PublicGetPostgresqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -23088,7 +23234,7 @@ type PublicGetPostgresqlSourceV2Dto struct {
 	Name string `json:"name"`
 
 	// PostgresqlInformation PostgreSQL connection settings
-	PostgresqlInformation *PostgresqlInformation `json:"postgresqlInformation,omitempty"`
+	PostgresqlInformation PostgresqlInformation `json:"postgresqlInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -23103,7 +23249,7 @@ type PublicGetPostgresqlSourceV2DtoType string
 // PublicGetPowerBiSourceV2Dto defines model for PublicGetPowerBiSourceV2Dto.
 type PublicGetPowerBiSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -23115,7 +23261,7 @@ type PublicGetPowerBiSourceV2Dto struct {
 	Name string `json:"name"`
 
 	// PowerBiInformation Power BI connection settings
-	PowerBiInformation *PowerBiInformation `json:"powerBiInformation,omitempty"`
+	PowerBiInformation PowerBiInformation `json:"powerBiInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -23130,7 +23276,7 @@ type PublicGetPowerBiSourceV2DtoType string
 // PublicGetQlikSourceV2Dto defines model for PublicGetQlikSourceV2Dto.
 type PublicGetQlikSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -23142,7 +23288,7 @@ type PublicGetQlikSourceV2Dto struct {
 	Name string `json:"name"`
 
 	// QlikInformation Qlik connection settings
-	QlikInformation *QlikInformation `json:"qlikInformation,omitempty"`
+	QlikInformation QlikInformation `json:"qlikInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -23166,7 +23312,7 @@ type PublicGetQuicksightSourceV2Dto struct {
 	Name string `json:"name"`
 
 	// QuicksightInformation QuickSight connection settings
-	QuicksightInformation *QuicksightInformation `json:"quicksightInformation,omitempty"`
+	QuicksightInformation QuicksightInformation `json:"quicksightInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -23181,7 +23327,7 @@ type PublicGetQuicksightSourceV2DtoType string
 // PublicGetRedshiftSourceV2Dto defines model for PublicGetRedshiftSourceV2Dto.
 type PublicGetRedshiftSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -23193,7 +23339,7 @@ type PublicGetRedshiftSourceV2Dto struct {
 	Name string `json:"name"`
 
 	// RedshiftInformation Redshift connection settings
-	RedshiftInformation *RedshiftInformation `json:"redshiftInformation,omitempty"`
+	RedshiftInformation RedshiftInformation `json:"redshiftInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -23208,7 +23354,7 @@ type PublicGetRedshiftSourceV2DtoType string
 // PublicGetSnowflakeSourceV2Dto defines model for PublicGetSnowflakeSourceV2Dto.
 type PublicGetSnowflakeSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -23223,7 +23369,7 @@ type PublicGetSnowflakeSourceV2Dto struct {
 	Schedule *string `json:"schedule,omitempty"`
 
 	// SnowflakeInformation Snowflake connection settings
-	SnowflakeInformation *SnowflakeInformation `json:"snowflakeInformation,omitempty"`
+	SnowflakeInformation SnowflakeInformation `json:"snowflakeInformation"`
 
 	// Type Source type
 	Type PublicGetSnowflakeSourceV2DtoType `json:"type"`
@@ -23301,7 +23447,7 @@ type PublicGetSourceV2DtoType string
 // PublicGetSynapseSourceV2Dto defines model for PublicGetSynapseSourceV2Dto.
 type PublicGetSynapseSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -23316,7 +23462,7 @@ type PublicGetSynapseSourceV2Dto struct {
 	Schedule *string `json:"schedule,omitempty"`
 
 	// SynapseInformation Synapse connection settings
-	SynapseInformation *SynapseInformation `json:"synapseInformation,omitempty"`
+	SynapseInformation SynapseInformation `json:"synapseInformation"`
 
 	// Type Source type
 	Type PublicGetSynapseSourceV2DtoType `json:"type"`
@@ -23328,7 +23474,7 @@ type PublicGetSynapseSourceV2DtoType string
 // PublicGetTableauSourceV2Dto defines model for PublicGetTableauSourceV2Dto.
 type PublicGetTableauSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Id id the source
 	Id *openapi_types.UUID `json:"id,omitempty"`
@@ -23343,7 +23489,7 @@ type PublicGetTableauSourceV2Dto struct {
 	Schedule *string `json:"schedule,omitempty"`
 
 	// TableauInformation Tableau connection settings
-	TableauInformation *TableauInformation `json:"tableauInformation,omitempty"`
+	TableauInformation TableauInformation `json:"tableauInformation"`
 
 	// Type Source type
 	Type PublicGetTableauSourceV2DtoType `json:"type"`
@@ -23371,7 +23517,7 @@ type PublicGetTeamDto struct {
 // PublicLookerParametersDto defines model for PublicLookerParametersDto.
 type PublicLookerParametersDto struct {
 	// GitConnections The LookML configuration. See https://docs.siffletdata.com/docs/looker. If you don't use LookML, use an empty list `[]`
-	GitConnections *[]GitConnection `json:"gitConnections,omitempty"`
+	GitConnections []GitConnection `json:"gitConnections"`
 
 	// Host URL of the Looker site and append at the end the following "/api/4.0".
 	// For instance if you usually connect to Looker on "https://abcdef.cloud.looker.com/",
@@ -23379,7 +23525,7 @@ type PublicLookerParametersDto struct {
 	//
 	//
 	// Example: https://abcdef.cloud.looker.com/api/4.0
-	Host *string                       `json:"host,omitempty"`
+	Host string                        `json:"host"`
 	Type PublicLookerParametersDtoType `json:"type"`
 }
 
@@ -23391,25 +23537,25 @@ type PublicMssqlParametersDto struct {
 	// Database Your database name
 	//
 	// Example: my_database
-	Database *string `json:"database,omitempty"`
+	Database string `json:"database"`
 
 	// Host Your MSSQL server hostname
 	//
 	// Example: my-mssql-server.com
-	Host *string `json:"host,omitempty"`
+	Host string `json:"host"`
 
 	// Port Your MSSQL server port
 	//
 	// Example: 1433
-	Port *int32 `json:"port,omitempty"`
+	Port int32 `json:"port"`
 
 	// Schema Your schema name
 	//
 	// Example: public
-	Schema *string `json:"schema,omitempty"`
+	Schema string `json:"schema"`
 
 	// Ssl Whether to use SSL to connect to your MSSQL server (recommended: true)
-	Ssl  *bool                        `json:"ssl,omitempty"`
+	Ssl  bool                         `json:"ssl"`
 	Type PublicMssqlParametersDtoType `json:"type"`
 }
 
@@ -23421,22 +23567,22 @@ type PublicMysqlParametersDto struct {
 	// Database Your database name
 	//
 	// Example: my_database
-	Database *string `json:"database,omitempty"`
+	Database string `json:"database"`
 
 	// Host Your MySQL server hostname
 	//
 	// Example: my-mysql-server.com
-	Host *string `json:"host,omitempty"`
+	Host string `json:"host"`
 
 	// MysqlTlsVersion The TLS version to use to connect to your MySQL server
 	//
 	// Example: TLS_V_1_2
-	MysqlTlsVersion *PublicMysqlParametersDtoMysqlTlsVersion `json:"mysqlTlsVersion,omitempty"`
+	MysqlTlsVersion PublicMysqlParametersDtoMysqlTlsVersion `json:"mysqlTlsVersion"`
 
 	// Port Your MySQL server port
 	//
 	// Example: 3306
-	Port *int32                       `json:"port,omitempty"`
+	Port int32                        `json:"port"`
 	Type PublicMysqlParametersDtoType `json:"type"`
 }
 
@@ -23453,22 +23599,22 @@ type PublicOracleParametersDto struct {
 	// Database Your database name
 	//
 	// Example: my_dergatabase
-	Database *string `json:"database,omitempty"`
+	Database string `json:"database"`
 
 	// Host Your Oracle server hostname
 	//
 	// Example: my-oracle-server.com
-	Host *string `json:"host,omitempty"`
+	Host string `json:"host"`
 
 	// Port Your Oracle server port
 	//
 	// Example: 1521
-	Port *int32 `json:"port,omitempty"`
+	Port int32 `json:"port"`
 
 	// Schema Your schema name
 	//
 	// Example: default
-	Schema *string                       `json:"schema,omitempty"`
+	Schema string                        `json:"schema"`
 	Type   PublicOracleParametersDtoType `json:"type"`
 }
 
@@ -23527,22 +23673,22 @@ type PublicPostgresqlParametersDto struct {
 	// Database Your database name
 	//
 	// Example: my_database
-	Database *string `json:"database,omitempty"`
+	Database string `json:"database"`
 
 	// Host Your PostgreSQL server host
 	//
 	// Example: my-postgresql-server.com
-	Host *string `json:"host,omitempty"`
+	Host string `json:"host"`
 
 	// Port Your PostgreSQL server port
 	//
 	// Example: 5432
-	Port *int32 `json:"port,omitempty"`
+	Port int32 `json:"port"`
 
 	// Schema Your schema name
 	//
 	// Example: public
-	Schema *string                           `json:"schema,omitempty"`
+	Schema string                            `json:"schema"`
 	Type   PublicPostgresqlParametersDtoType `json:"type"`
 }
 
@@ -23554,18 +23700,18 @@ type PublicPowerBiParametersDto struct {
 	// ClientId Your Azure AD client ID
 	//
 	// Example: 12345678-1234-1234-1234-123456789012
-	ClientId *string `json:"clientId,omitempty"`
+	ClientId string `json:"clientId"`
 
 	// TenantId Your Azure AD tenant ID
 	//
 	// Example: 12345678-1234-1234-1234-123456789012
-	TenantId *string                        `json:"tenantId,omitempty"`
+	TenantId string                         `json:"tenantId"`
 	Type     PublicPowerBiParametersDtoType `json:"type"`
 
 	// WorkspaceId Your Power BI workspace ID
 	//
 	// Example: 12345678-1234-1234-1234-123456789012
-	WorkspaceId *string `json:"workspaceId,omitempty"`
+	WorkspaceId string `json:"workspaceId"`
 }
 
 // PublicPowerBiParametersDtoType defines model for PublicPowerBiParametersDto.Type.
@@ -23576,17 +23722,17 @@ type PublicQuicksightParametersDto struct {
 	// AccountId Your AWS account ID
 	//
 	// Example: 123456789101
-	AccountId *string `json:"accountId,omitempty"`
+	AccountId string `json:"accountId"`
 
 	// AwsRegion Your AWS region
 	//
 	// Example: us-east-1
-	AwsRegion *string `json:"awsRegion,omitempty"`
+	AwsRegion string `json:"awsRegion"`
 
 	// RoleArn The ARN for your QuickSight role
 	//
 	// Example: arn:aws:iam::123456789101:role/sifflet_quicksight_read_role
-	RoleArn *string                           `json:"roleArn,omitempty"`
+	RoleArn string                            `json:"roleArn"`
 	Type    PublicQuicksightParametersDtoType `json:"type"`
 }
 
@@ -23598,25 +23744,25 @@ type PublicRedshiftParametersDto struct {
 	// Database Your database name
 	//
 	// Example: my_database
-	Database *string `json:"database,omitempty"`
+	Database string `json:"database"`
 
 	// Host Your Redshift server host
 	//
 	// Example: redshift.example.com
-	Host *string `json:"host,omitempty"`
+	Host string `json:"host"`
 
 	// Port Your Redshift server port
 	//
 	// Example: 5439
-	Port *int32 `json:"port,omitempty"`
+	Port int32 `json:"port"`
 
 	// Schema Your schema name
 	//
 	// Example: public
-	Schema *string `json:"schema,omitempty"`
+	Schema string `json:"schema"`
 
 	// Ssl Whether to use SSL to connect to your Redshift server
-	Ssl  *bool                           `json:"ssl,omitempty"`
+	Ssl  bool                            `json:"ssl"`
 	Type PublicRedshiftParametersDtoType `json:"type"`
 }
 
@@ -23646,23 +23792,23 @@ type PublicSnowflakeParametersDto struct {
 	// AccountIdentifier Your Snowflake account identifier
 	//
 	// Example: my_account_identifier
-	AccountIdentifier *string `json:"accountIdentifier,omitempty"`
+	AccountIdentifier string `json:"accountIdentifier"`
 
 	// Database Your database name
 	//
 	// Example: my_database
-	Database *string `json:"database,omitempty"`
+	Database string `json:"database"`
 
 	// Schema Your schema name
 	//
 	// Example: public
-	Schema *string                          `json:"schema,omitempty"`
+	Schema string                           `json:"schema"`
 	Type   PublicSnowflakeParametersDtoType `json:"type"`
 
 	// Warehouse Your Snowflake warehouse
 	//
 	// Example: my_warehouse
-	Warehouse *string `json:"warehouse,omitempty"`
+	Warehouse string `json:"warehouse"`
 }
 
 // PublicSnowflakeParametersDtoType defines model for PublicSnowflakeParametersDto.Type.
@@ -23671,10 +23817,10 @@ type PublicSnowflakeParametersDtoType string
 // PublicSourceFilterDomainConditionDto defines model for PublicSourceFilterDomainConditionDto.
 type PublicSourceFilterDomainConditionDto struct {
 	// Operator Operator of the condition
-	Operator *PublicSourceFilterDomainConditionDtoOperator `json:"operator,omitempty"`
+	Operator PublicSourceFilterDomainConditionDtoOperator `json:"operator"`
 
 	// Sources List of the sources in the condition in URI format. <a href="https://docs.siffletdata.com/docs/uri">[Read more about URIs]</a>
-	Sources *[]string `json:"sources,omitempty"`
+	Sources []string `json:"sources"`
 
 	// Type Type of the condition
 	Type PublicSourceFilterDomainConditionDtoType `json:"type"`
@@ -23733,7 +23879,7 @@ type PublicSourceSearchCriteriaDto struct {
 // PublicStaticDomainContentDefinitionDto defines model for PublicStaticDomainContentDefinitionDto.
 type PublicStaticDomainContentDefinitionDto struct {
 	// Assets List of the assets of the domain
-	Assets *[]string `json:"assets,omitempty"`
+	Assets []string `json:"assets"`
 
 	// Type Type of the domain content definition
 	Type PublicStaticDomainContentDefinitionDtoType `json:"type"`
@@ -23747,22 +23893,22 @@ type PublicSynapseParametersDto struct {
 	// Database Your database name
 	//
 	// Example: my_database
-	Database *string `json:"database,omitempty"`
+	Database string `json:"database"`
 
 	// Host The host of your Synapse server
 	//
 	// Example: synapse-company.sql.azuresynapse.net
-	Host *string `json:"host,omitempty"`
+	Host string `json:"host"`
 
 	// Port Your Synapse server port
 	//
 	// Example: 1433
-	Port *int32 `json:"port,omitempty"`
+	Port int32 `json:"port"`
 
 	// Schema Your schema name
 	//
 	// Example: public
-	Schema *string                        `json:"schema,omitempty"`
+	Schema string                         `json:"schema"`
 	Type   PublicSynapseParametersDtoType `json:"type"`
 }
 
@@ -23774,7 +23920,7 @@ type PublicTableauParametersDto struct {
 	// Host Your Tableau Server hostname
 	//
 	// Example: https://dub01.online.tableau.com
-	Host *string `json:"host,omitempty"`
+	Host string `json:"host"`
 
 	// Site Your Tableau Server site. Leave empty if your Tableau environment is using the Default Site.
 	//
@@ -23789,10 +23935,10 @@ type PublicTableauParametersDtoType string
 // PublicTagFilterDomainConditionDto defines model for PublicTagFilterDomainConditionDto.
 type PublicTagFilterDomainConditionDto struct {
 	// Operator Operator of the condition
-	Operator *PublicTagFilterDomainConditionDtoOperator `json:"operator,omitempty"`
+	Operator PublicTagFilterDomainConditionDtoOperator `json:"operator"`
 
 	// Tags List of the tags references in the condition
-	Tags *[]PublicExternalTagReferenceDto `json:"tags,omitempty"`
+	Tags []PublicExternalTagReferenceDto `json:"tags"`
 
 	// Type Type of the condition
 	Type PublicTagFilterDomainConditionDtoType `json:"type"`
@@ -23851,10 +23997,10 @@ type PublicTransformationRunDtoLastRunStatus string
 // PublicUpdateAirflowSourceV2Dto defines model for PublicUpdateAirflowSourceV2Dto.
 type PublicUpdateAirflowSourceV2Dto struct {
 	// AirflowInformation Airflow connection settings
-	AirflowInformation *AirflowInformation `json:"airflowInformation,omitempty"`
+	AirflowInformation AirflowInformation `json:"airflowInformation"`
 
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -23914,7 +24060,7 @@ type PublicUpdateAssetDto_CustomMetadataValues_Item struct {
 // PublicUpdateAthenaSourceV2Dto defines model for PublicUpdateAthenaSourceV2Dto.
 type PublicUpdateAthenaSourceV2Dto struct {
 	// AthenaInformation Athena connection settings
-	AthenaInformation *AthenaInformation `json:"athenaInformation,omitempty"`
+	AthenaInformation AthenaInformation `json:"athenaInformation"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -23932,10 +24078,10 @@ type PublicUpdateAthenaSourceV2DtoType string
 // PublicUpdateBigQuerySourceV2Dto defines model for PublicUpdateBigQuerySourceV2Dto.
 type PublicUpdateBigQuerySourceV2Dto struct {
 	// BigQueryInformation BigQuery connection settings
-	BigQueryInformation *BigQueryInformation `json:"bigQueryInformation,omitempty"`
+	BigQueryInformation BigQueryInformation `json:"bigQueryInformation"`
 
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -23953,10 +24099,10 @@ type PublicUpdateBigQuerySourceV2DtoType string
 // PublicUpdateDatabricksJobsSourceV2Dto defines model for PublicUpdateDatabricksJobsSourceV2Dto.
 type PublicUpdateDatabricksJobsSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// DatabricksJobsInformation Databricks Jobs connection settings
-	DatabricksJobsInformation *DatabricksJobsInformation `json:"databricksJobsInformation,omitempty"`
+	DatabricksJobsInformation DatabricksJobsInformation `json:"databricksJobsInformation"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -23974,10 +24120,10 @@ type PublicUpdateDatabricksJobsSourceV2DtoType string
 // PublicUpdateDatabricksSourceV2Dto defines model for PublicUpdateDatabricksSourceV2Dto.
 type PublicUpdateDatabricksSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// DatabricksInformation Databricks connection settings
-	DatabricksInformation *DatabricksInformation `json:"databricksInformation,omitempty"`
+	DatabricksInformation DatabricksInformation `json:"databricksInformation"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -23995,10 +24141,10 @@ type PublicUpdateDatabricksSourceV2DtoType string
 // PublicUpdateDbtCloudSourceV2Dto defines model for PublicUpdateDbtCloudSourceV2Dto.
 type PublicUpdateDbtCloudSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// DbtCloudInformation DBT Cloud connection settings
-	DbtCloudInformation *DbtCloudInformation `json:"dbtCloudInformation,omitempty"`
+	DbtCloudInformation DbtCloudInformation `json:"dbtCloudInformation"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -24016,7 +24162,7 @@ type PublicUpdateDbtCloudSourceV2DtoType string
 // PublicUpdateDbtSourceV2Dto defines model for PublicUpdateDbtSourceV2Dto.
 type PublicUpdateDbtSourceV2Dto struct {
 	// DbtInformation DBT connection settings
-	DbtInformation *DbtInformation `json:"dbtInformation,omitempty"`
+	DbtInformation DbtInformation `json:"dbtInformation"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -24047,10 +24193,10 @@ type PublicUpdateDomainDto_AssetContentDefinition struct {
 // PublicUpdateFivetranSourceV2Dto defines model for PublicUpdateFivetranSourceV2Dto.
 type PublicUpdateFivetranSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// FivetranInformation Fivetran connection settings
-	FivetranInformation *FivetranInformation `json:"fivetranInformation,omitempty"`
+	FivetranInformation FivetranInformation `json:"fivetranInformation"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -24068,10 +24214,10 @@ type PublicUpdateFivetranSourceV2DtoType string
 // PublicUpdateLookerSourceV2Dto defines model for PublicUpdateLookerSourceV2Dto.
 type PublicUpdateLookerSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// LookerInformation Looker connection settings
-	LookerInformation *LookerInformation `json:"lookerInformation,omitempty"`
+	LookerInformation LookerInformation `json:"lookerInformation"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -24089,10 +24235,10 @@ type PublicUpdateLookerSourceV2DtoType string
 // PublicUpdateMicrostrategySourceV2Dto defines model for PublicUpdateMicrostrategySourceV2Dto.
 type PublicUpdateMicrostrategySourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// MicrostrategyInformation MicroStrategy connection settings
-	MicrostrategyInformation *MicrostrategyInformation `json:"microstrategyInformation,omitempty"`
+	MicrostrategyInformation MicrostrategyInformation `json:"microstrategyInformation"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -24110,10 +24256,10 @@ type PublicUpdateMicrostrategySourceV2DtoType string
 // PublicUpdateMssqlSourceV2Dto defines model for PublicUpdateMssqlSourceV2Dto.
 type PublicUpdateMssqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// MssqlInformation MSSQL connection settings
-	MssqlInformation *MssqlInformation `json:"mssqlInformation,omitempty"`
+	MssqlInformation MssqlInformation `json:"mssqlInformation"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -24131,10 +24277,10 @@ type PublicUpdateMssqlSourceV2DtoType string
 // PublicUpdateMysqlSourceV2Dto defines model for PublicUpdateMysqlSourceV2Dto.
 type PublicUpdateMysqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// MysqlInformation MySQL connection settings
-	MysqlInformation *MysqlInformation `json:"mysqlInformation,omitempty"`
+	MysqlInformation MysqlInformation `json:"mysqlInformation"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -24152,13 +24298,13 @@ type PublicUpdateMysqlSourceV2DtoType string
 // PublicUpdateOracleSourceV2Dto defines model for PublicUpdateOracleSourceV2Dto.
 type PublicUpdateOracleSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
 	// OracleInformation Oracle connection settings
-	OracleInformation *OracleInformation `json:"oracleInformation,omitempty"`
+	OracleInformation OracleInformation `json:"oracleInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -24173,13 +24319,13 @@ type PublicUpdateOracleSourceV2DtoType string
 // PublicUpdatePostgresqlSourceV2Dto defines model for PublicUpdatePostgresqlSourceV2Dto.
 type PublicUpdatePostgresqlSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
 	// PostgresqlInformation PostgreSQL connection settings
-	PostgresqlInformation *PostgresqlInformation `json:"postgresqlInformation,omitempty"`
+	PostgresqlInformation PostgresqlInformation `json:"postgresqlInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -24194,13 +24340,13 @@ type PublicUpdatePostgresqlSourceV2DtoType string
 // PublicUpdatePowerBiSourceV2Dto defines model for PublicUpdatePowerBiSourceV2Dto.
 type PublicUpdatePowerBiSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
 	// PowerBiInformation Power BI connection settings
-	PowerBiInformation *PowerBiInformation `json:"powerBiInformation,omitempty"`
+	PowerBiInformation PowerBiInformation `json:"powerBiInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -24215,13 +24361,13 @@ type PublicUpdatePowerBiSourceV2DtoType string
 // PublicUpdateQlikSourceV2Dto defines model for PublicUpdateQlikSourceV2Dto.
 type PublicUpdateQlikSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
 	// QlikInformation Qlik connection settings
-	QlikInformation *QlikInformation `json:"qlikInformation,omitempty"`
+	QlikInformation QlikInformation `json:"qlikInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -24239,7 +24385,7 @@ type PublicUpdateQuicksightSourceV2Dto struct {
 	Name *string `json:"name,omitempty"`
 
 	// QuicksightInformation QuickSight connection settings
-	QuicksightInformation *QuicksightInformation `json:"quicksightInformation,omitempty"`
+	QuicksightInformation QuicksightInformation `json:"quicksightInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -24254,13 +24400,13 @@ type PublicUpdateQuicksightSourceV2DtoType string
 // PublicUpdateRedshiftSourceV2Dto defines model for PublicUpdateRedshiftSourceV2Dto.
 type PublicUpdateRedshiftSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
 
 	// RedshiftInformation Redshift connection settings
-	RedshiftInformation *RedshiftInformation `json:"redshiftInformation,omitempty"`
+	RedshiftInformation RedshiftInformation `json:"redshiftInformation"`
 
 	// Schedule Schedule of the source. Supports CRON syntax. If empty, the source won't be scheduled.
 	Schedule *string `json:"schedule,omitempty"`
@@ -24275,7 +24421,7 @@ type PublicUpdateRedshiftSourceV2DtoType string
 // PublicUpdateSnowflakeSourceV2Dto defines model for PublicUpdateSnowflakeSourceV2Dto.
 type PublicUpdateSnowflakeSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -24284,7 +24430,7 @@ type PublicUpdateSnowflakeSourceV2Dto struct {
 	Schedule *string `json:"schedule,omitempty"`
 
 	// SnowflakeInformation Snowflake connection settings
-	SnowflakeInformation *SnowflakeInformation `json:"snowflakeInformation,omitempty"`
+	SnowflakeInformation SnowflakeInformation `json:"snowflakeInformation"`
 
 	// Type Source type
 	Type PublicUpdateSnowflakeSourceV2DtoType `json:"type"`
@@ -24335,7 +24481,7 @@ type PublicUpdateSourceV2DtoType string
 // PublicUpdateSynapseSourceV2Dto defines model for PublicUpdateSynapseSourceV2Dto.
 type PublicUpdateSynapseSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -24344,7 +24490,7 @@ type PublicUpdateSynapseSourceV2Dto struct {
 	Schedule *string `json:"schedule,omitempty"`
 
 	// SynapseInformation Synapse connection settings
-	SynapseInformation *SynapseInformation `json:"synapseInformation,omitempty"`
+	SynapseInformation SynapseInformation `json:"synapseInformation"`
 
 	// Type Source type
 	Type PublicUpdateSynapseSourceV2DtoType `json:"type"`
@@ -24356,7 +24502,7 @@ type PublicUpdateSynapseSourceV2DtoType string
 // PublicUpdateTableauSourceV2Dto defines model for PublicUpdateTableauSourceV2Dto.
 type PublicUpdateTableauSourceV2Dto struct {
 	// Credentials Credentials of the source
-	Credentials *string `json:"credentials,omitempty"`
+	Credentials string `json:"credentials"`
 
 	// Name Name of the source
 	Name *string `json:"name,omitempty"`
@@ -24365,7 +24511,7 @@ type PublicUpdateTableauSourceV2Dto struct {
 	Schedule *string `json:"schedule,omitempty"`
 
 	// TableauInformation Tableau connection settings
-	TableauInformation *TableauInformation `json:"tableauInformation,omitempty"`
+	TableauInformation TableauInformation `json:"tableauInformation"`
 
 	// Type Source type
 	Type PublicUpdateTableauSourceV2DtoType `json:"type"`
@@ -24805,7 +24951,7 @@ type UserDto struct {
 
 // UserProviderDto defines model for UserProviderDto.
 type UserProviderDto struct {
-	Name *string              `json:"name,omitempty"`
+	Name string               `json:"name"`
 	Type *UserProviderDtoType `json:"type,omitempty"`
 }
 
